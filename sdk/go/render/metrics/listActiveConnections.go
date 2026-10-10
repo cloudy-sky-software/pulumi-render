@@ -14,7 +14,7 @@ import (
 func ListActiveConnections(ctx *pulumi.Context, args *ListActiveConnectionsArgs, opts ...pulumi.InvokeOption) (*ListActiveConnectionsResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv ListActiveConnectionsResult
-	err := ctx.Invoke("render:metrics:listActiveConnections", args, &rv, opts...)
+	err := ctx.Invoke("render:metrics:listActiveConnections", args.Defaults(), &rv, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -22,6 +22,19 @@ func ListActiveConnections(ctx *pulumi.Context, args *ListActiveConnectionsArgs,
 }
 
 type ListActiveConnectionsArgs struct {
+	// Query params to send with the API request.
+	QueryParams *ListActiveConnectionsQueryParams `pulumi:"queryParams"`
+}
+
+// Defaults sets the appropriate defaults for ListActiveConnectionsArgs
+func (val *ListActiveConnectionsArgs) Defaults() *ListActiveConnectionsArgs {
+	if val == nil {
+		return nil
+	}
+	tmp := *val
+	tmp.QueryParams = tmp.QueryParams.Defaults()
+
+	return &tmp
 }
 
 type ListActiveConnectionsResult struct {
@@ -29,11 +42,18 @@ type ListActiveConnectionsResult struct {
 }
 
 func ListActiveConnectionsOutput(ctx *pulumi.Context, args ListActiveConnectionsOutputArgs, opts ...pulumi.InvokeOption) ListActiveConnectionsResultOutput {
+	outputArgs := pulumi.ToOutputWithContext(ctx.Context(), args).
+		ApplyT(func(v interface{}) *ListActiveConnectionsArgs {
+			args := v.(ListActiveConnectionsArgs)
+			return args.Defaults()
+		})
 	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-	return ctx.InvokeOutput("render:metrics:listActiveConnections", args, ListActiveConnectionsResultOutput{}, options).(ListActiveConnectionsResultOutput)
+	return ctx.InvokeOutput("render:metrics:listActiveConnections", outputArgs, ListActiveConnectionsResultOutput{}, options).(ListActiveConnectionsResultOutput)
 }
 
 type ListActiveConnectionsOutputArgs struct {
+	// Query params to send with the API request.
+	QueryParams ListActiveConnectionsQueryParamsPtrInput `pulumi:"queryParams"`
 }
 
 func (ListActiveConnectionsOutputArgs) ElementType() reflect.Type {

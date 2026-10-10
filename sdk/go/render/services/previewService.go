@@ -21,8 +21,10 @@ type PreviewService struct {
 	// A name for the service preview instance. If not specified, Render generates the name using the base service's name and the specified tag or SHA.
 	Name pulumi.StringPtrOutput `pulumi:"name"`
 	// The instance type to use for the preview instance. Note that base services with any paid instance type can't create preview instances with the `free` instance type.
-	Plan    PlanPtrOutput    `pulumi:"plan"`
-	Service ServicePtrOutput `pulumi:"service"`
+	Plan PlanPtrOutput `pulumi:"plan"`
+	// Query params to send with the API requests for this resource.
+	QueryParams PreviewServiceQueryParamsPtrOutput `pulumi:"queryParams"`
+	Service     ServicePtrOutput                   `pulumi:"service"`
 }
 
 // NewPreviewService registers a new resource with the given unique name, arguments, and options.
@@ -74,6 +76,8 @@ type previewServiceArgs struct {
 	Name *string `pulumi:"name"`
 	// The instance type to use for the preview instance. Note that base services with any paid instance type can't create preview instances with the `free` instance type.
 	Plan *Plan `pulumi:"plan"`
+	// Query params to send with the API requests for this resource.
+	QueryParams *PreviewServiceQueryParams `pulumi:"queryParams"`
 	// The ID of the service
 	ServiceId *string `pulumi:"serviceId"`
 }
@@ -86,6 +90,8 @@ type PreviewServiceArgs struct {
 	Name pulumi.StringPtrInput
 	// The instance type to use for the preview instance. Note that base services with any paid instance type can't create preview instances with the `free` instance type.
 	Plan PlanPtrInput
+	// Query params to send with the API requests for this resource.
+	QueryParams PreviewServiceQueryParamsPtrInput
 	// The ID of the service
 	ServiceId pulumi.StringPtrInput
 }
@@ -144,6 +150,11 @@ func (o PreviewServiceOutput) Name() pulumi.StringPtrOutput {
 // The instance type to use for the preview instance. Note that base services with any paid instance type can't create preview instances with the `free` instance type.
 func (o PreviewServiceOutput) Plan() PlanPtrOutput {
 	return o.ApplyT(func(v *PreviewService) PlanPtrOutput { return v.Plan }).(PlanPtrOutput)
+}
+
+// Query params to send with the API requests for this resource.
+func (o PreviewServiceOutput) QueryParams() PreviewServiceQueryParamsPtrOutput {
+	return o.ApplyT(func(v *PreviewService) PreviewServiceQueryParamsPtrOutput { return v.QueryParams }).(PreviewServiceQueryParamsPtrOutput)
 }
 
 func (o PreviewServiceOutput) Service() ServicePtrOutput {

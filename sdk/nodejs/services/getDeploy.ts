@@ -11,6 +11,7 @@ export function getDeploy(args: GetDeployArgs, opts?: pulumi.InvokeOptions): Pro
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("render:services:getDeploy", {
         "deployId": args.deployId,
+        "queryParams": args.queryParams,
         "serviceId": args.serviceId,
     }, opts);
 }
@@ -20,6 +21,10 @@ export interface GetDeployArgs {
      * The ID of the deploy
      */
     deployId: string;
+    /**
+     * Query params to send with the API request.
+     */
+    queryParams?: inputs.services.GetDeployQueryParams;
     /**
      * The ID of the service
      */
@@ -44,6 +49,7 @@ export function getDeployOutput(args: GetDeployOutputArgs, opts?: pulumi.InvokeO
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("render:services:getDeploy", {
         "deployId": args.deployId,
+        "queryParams": args.queryParams,
         "serviceId": args.serviceId,
     }, opts);
 }
@@ -53,6 +59,10 @@ export interface GetDeployOutputArgs {
      * The ID of the deploy
      */
     deployId: pulumi.Input<string>;
+    /**
+     * Query params to send with the API request.
+     */
+    queryParams?: pulumi.Input<inputs.services.GetDeployQueryParamsArgs | undefined>;
     /**
      * The ID of the service
      */

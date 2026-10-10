@@ -11,18 +11,31 @@ export function listRedis(args?: ListRedisArgs, opts?: pulumi.InvokeOptions): Pr
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("render:redis:listRedis", {
+        "queryParams": args.queryParams ? inputs.redis.listRedisQueryParamsProvideDefaults(args.queryParams) : undefined,
     }, opts);
 }
 
 export interface ListRedisArgs {
+    /**
+     * Query params to send with the API request.
+     */
+    queryParams?: inputs.redis.ListRedisQueryParams;
 }
 
 export interface ListRedisResult {
     readonly items: outputs.redis.RedisWithCursor[];
 }
-export function listRedisOutput(opts?: pulumi.InvokeOutputOptions): pulumi.Output<ListRedisResult> {
+export function listRedisOutput(args?: ListRedisOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<ListRedisResult> {
+    args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("render:redis:listRedis", {
+        "queryParams": pulumi.output(args.queryParams).apply(v => v === undefined ? undefined : inputs.redis.listRedisQueryParamsProvideDefaults(v)),
     }, opts);
 }
 
+export interface ListRedisOutputArgs {
+    /**
+     * Query params to send with the API request.
+     */
+    queryParams?: pulumi.Input<inputs.redis.ListRedisQueryParamsArgs | undefined>;
+}

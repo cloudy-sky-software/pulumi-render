@@ -11,6 +11,7 @@ export function listBlueprintSyncs(args: ListBlueprintSyncsArgs, opts?: pulumi.I
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("render:blueprints:listBlueprintSyncs", {
         "blueprintId": args.blueprintId,
+        "queryParams": args.queryParams ? inputs.blueprints.listBlueprintSyncsQueryParamsProvideDefaults(args.queryParams) : undefined,
     }, opts);
 }
 
@@ -19,6 +20,10 @@ export interface ListBlueprintSyncsArgs {
      * The ID of the Blueprint
      */
     blueprintId: string;
+    /**
+     * Query params to send with the API request.
+     */
+    queryParams?: inputs.blueprints.ListBlueprintSyncsQueryParams;
 }
 
 export interface ListBlueprintSyncsResult {
@@ -28,6 +33,7 @@ export function listBlueprintSyncsOutput(args: ListBlueprintSyncsOutputArgs, opt
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("render:blueprints:listBlueprintSyncs", {
         "blueprintId": args.blueprintId,
+        "queryParams": pulumi.output(args.queryParams).apply(v => v === undefined ? undefined : inputs.blueprints.listBlueprintSyncsQueryParamsProvideDefaults(v)),
     }, opts);
 }
 
@@ -36,4 +42,8 @@ export interface ListBlueprintSyncsOutputArgs {
      * The ID of the Blueprint
      */
     blueprintId: pulumi.Input<string>;
+    /**
+     * Query params to send with the API request.
+     */
+    queryParams?: pulumi.Input<inputs.blueprints.ListBlueprintSyncsQueryParamsArgs | undefined>;
 }

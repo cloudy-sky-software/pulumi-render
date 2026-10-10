@@ -10,4 +10,5 @@ from ._enums import *
 from .get_webhook import *
 from .list_webhooks import *
 from .webhook import *
+from ._inputs import *
 from . import outputs

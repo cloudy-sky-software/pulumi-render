@@ -26,6 +26,1043 @@ type EnvGroupType struct {
 	UpdatedAt    string         `pulumi:"updatedAt"`
 }
 
+// Query params for the API request.
+type EnvGroupCreateQueryParams struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams map[string]string `pulumi:"additionalParams"`
+}
+
+// EnvGroupCreateQueryParamsInput is an input type that accepts EnvGroupCreateQueryParamsArgs and EnvGroupCreateQueryParamsOutput values.
+// You can construct a concrete instance of `EnvGroupCreateQueryParamsInput` via:
+//
+//	EnvGroupCreateQueryParamsArgs{...}
+type EnvGroupCreateQueryParamsInput interface {
+	pulumi.Input
+
+	ToEnvGroupCreateQueryParamsOutput() EnvGroupCreateQueryParamsOutput
+	ToEnvGroupCreateQueryParamsOutputWithContext(context.Context) EnvGroupCreateQueryParamsOutput
+}
+
+// Query params for the API request.
+type EnvGroupCreateQueryParamsArgs struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams pulumi.StringMapInput `pulumi:"additionalParams"`
+}
+
+func (EnvGroupCreateQueryParamsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*EnvGroupCreateQueryParams)(nil)).Elem()
+}
+
+func (i EnvGroupCreateQueryParamsArgs) ToEnvGroupCreateQueryParamsOutput() EnvGroupCreateQueryParamsOutput {
+	return i.ToEnvGroupCreateQueryParamsOutputWithContext(context.Background())
+}
+
+func (i EnvGroupCreateQueryParamsArgs) ToEnvGroupCreateQueryParamsOutputWithContext(ctx context.Context) EnvGroupCreateQueryParamsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(EnvGroupCreateQueryParamsOutput)
+}
+
+func (i EnvGroupCreateQueryParamsArgs) ToEnvGroupCreateQueryParamsPtrOutput() EnvGroupCreateQueryParamsPtrOutput {
+	return i.ToEnvGroupCreateQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i EnvGroupCreateQueryParamsArgs) ToEnvGroupCreateQueryParamsPtrOutputWithContext(ctx context.Context) EnvGroupCreateQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(EnvGroupCreateQueryParamsOutput).ToEnvGroupCreateQueryParamsPtrOutputWithContext(ctx)
+}
+
+// EnvGroupCreateQueryParamsPtrInput is an input type that accepts EnvGroupCreateQueryParamsArgs, EnvGroupCreateQueryParamsPtr and EnvGroupCreateQueryParamsPtrOutput values.
+// You can construct a concrete instance of `EnvGroupCreateQueryParamsPtrInput` via:
+//
+//	        EnvGroupCreateQueryParamsArgs{...}
+//
+//	or:
+//
+//	        nil
+type EnvGroupCreateQueryParamsPtrInput interface {
+	pulumi.Input
+
+	ToEnvGroupCreateQueryParamsPtrOutput() EnvGroupCreateQueryParamsPtrOutput
+	ToEnvGroupCreateQueryParamsPtrOutputWithContext(context.Context) EnvGroupCreateQueryParamsPtrOutput
+}
+
+type envGroupCreateQueryParamsPtrType EnvGroupCreateQueryParamsArgs
+
+func EnvGroupCreateQueryParamsPtr(v *EnvGroupCreateQueryParamsArgs) EnvGroupCreateQueryParamsPtrInput {
+	return (*envGroupCreateQueryParamsPtrType)(v)
+}
+
+func (*envGroupCreateQueryParamsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**EnvGroupCreateQueryParams)(nil)).Elem()
+}
+
+func (i *envGroupCreateQueryParamsPtrType) ToEnvGroupCreateQueryParamsPtrOutput() EnvGroupCreateQueryParamsPtrOutput {
+	return i.ToEnvGroupCreateQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i *envGroupCreateQueryParamsPtrType) ToEnvGroupCreateQueryParamsPtrOutputWithContext(ctx context.Context) EnvGroupCreateQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(EnvGroupCreateQueryParamsPtrOutput)
+}
+
+// Query params for the API request.
+type EnvGroupCreateQueryParamsOutput struct{ *pulumi.OutputState }
+
+func (EnvGroupCreateQueryParamsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*EnvGroupCreateQueryParams)(nil)).Elem()
+}
+
+func (o EnvGroupCreateQueryParamsOutput) ToEnvGroupCreateQueryParamsOutput() EnvGroupCreateQueryParamsOutput {
+	return o
+}
+
+func (o EnvGroupCreateQueryParamsOutput) ToEnvGroupCreateQueryParamsOutputWithContext(ctx context.Context) EnvGroupCreateQueryParamsOutput {
+	return o
+}
+
+func (o EnvGroupCreateQueryParamsOutput) ToEnvGroupCreateQueryParamsPtrOutput() EnvGroupCreateQueryParamsPtrOutput {
+	return o.ToEnvGroupCreateQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (o EnvGroupCreateQueryParamsOutput) ToEnvGroupCreateQueryParamsPtrOutputWithContext(ctx context.Context) EnvGroupCreateQueryParamsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v EnvGroupCreateQueryParams) *EnvGroupCreateQueryParams {
+		return &v
+	}).(EnvGroupCreateQueryParamsPtrOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o EnvGroupCreateQueryParamsOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v EnvGroupCreateQueryParams) map[string]string { return v.AdditionalParams }).(pulumi.StringMapOutput)
+}
+
+type EnvGroupCreateQueryParamsPtrOutput struct{ *pulumi.OutputState }
+
+func (EnvGroupCreateQueryParamsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**EnvGroupCreateQueryParams)(nil)).Elem()
+}
+
+func (o EnvGroupCreateQueryParamsPtrOutput) ToEnvGroupCreateQueryParamsPtrOutput() EnvGroupCreateQueryParamsPtrOutput {
+	return o
+}
+
+func (o EnvGroupCreateQueryParamsPtrOutput) ToEnvGroupCreateQueryParamsPtrOutputWithContext(ctx context.Context) EnvGroupCreateQueryParamsPtrOutput {
+	return o
+}
+
+func (o EnvGroupCreateQueryParamsPtrOutput) Elem() EnvGroupCreateQueryParamsOutput {
+	return o.ApplyT(func(v *EnvGroupCreateQueryParams) EnvGroupCreateQueryParams {
+		if v != nil {
+			return *v
+		}
+		var ret EnvGroupCreateQueryParams
+		return ret
+	}).(EnvGroupCreateQueryParamsOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o EnvGroupCreateQueryParamsPtrOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *EnvGroupCreateQueryParams) map[string]string {
+		if v == nil {
+			return nil
+		}
+		return v.AdditionalParams
+	}).(pulumi.StringMapOutput)
+}
+
+// Query params for the API request.
+type EnvGroupDeleteQueryParams struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams map[string]string `pulumi:"additionalParams"`
+}
+
+// EnvGroupDeleteQueryParamsInput is an input type that accepts EnvGroupDeleteQueryParamsArgs and EnvGroupDeleteQueryParamsOutput values.
+// You can construct a concrete instance of `EnvGroupDeleteQueryParamsInput` via:
+//
+//	EnvGroupDeleteQueryParamsArgs{...}
+type EnvGroupDeleteQueryParamsInput interface {
+	pulumi.Input
+
+	ToEnvGroupDeleteQueryParamsOutput() EnvGroupDeleteQueryParamsOutput
+	ToEnvGroupDeleteQueryParamsOutputWithContext(context.Context) EnvGroupDeleteQueryParamsOutput
+}
+
+// Query params for the API request.
+type EnvGroupDeleteQueryParamsArgs struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams pulumi.StringMapInput `pulumi:"additionalParams"`
+}
+
+func (EnvGroupDeleteQueryParamsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*EnvGroupDeleteQueryParams)(nil)).Elem()
+}
+
+func (i EnvGroupDeleteQueryParamsArgs) ToEnvGroupDeleteQueryParamsOutput() EnvGroupDeleteQueryParamsOutput {
+	return i.ToEnvGroupDeleteQueryParamsOutputWithContext(context.Background())
+}
+
+func (i EnvGroupDeleteQueryParamsArgs) ToEnvGroupDeleteQueryParamsOutputWithContext(ctx context.Context) EnvGroupDeleteQueryParamsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(EnvGroupDeleteQueryParamsOutput)
+}
+
+func (i EnvGroupDeleteQueryParamsArgs) ToEnvGroupDeleteQueryParamsPtrOutput() EnvGroupDeleteQueryParamsPtrOutput {
+	return i.ToEnvGroupDeleteQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i EnvGroupDeleteQueryParamsArgs) ToEnvGroupDeleteQueryParamsPtrOutputWithContext(ctx context.Context) EnvGroupDeleteQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(EnvGroupDeleteQueryParamsOutput).ToEnvGroupDeleteQueryParamsPtrOutputWithContext(ctx)
+}
+
+// EnvGroupDeleteQueryParamsPtrInput is an input type that accepts EnvGroupDeleteQueryParamsArgs, EnvGroupDeleteQueryParamsPtr and EnvGroupDeleteQueryParamsPtrOutput values.
+// You can construct a concrete instance of `EnvGroupDeleteQueryParamsPtrInput` via:
+//
+//	        EnvGroupDeleteQueryParamsArgs{...}
+//
+//	or:
+//
+//	        nil
+type EnvGroupDeleteQueryParamsPtrInput interface {
+	pulumi.Input
+
+	ToEnvGroupDeleteQueryParamsPtrOutput() EnvGroupDeleteQueryParamsPtrOutput
+	ToEnvGroupDeleteQueryParamsPtrOutputWithContext(context.Context) EnvGroupDeleteQueryParamsPtrOutput
+}
+
+type envGroupDeleteQueryParamsPtrType EnvGroupDeleteQueryParamsArgs
+
+func EnvGroupDeleteQueryParamsPtr(v *EnvGroupDeleteQueryParamsArgs) EnvGroupDeleteQueryParamsPtrInput {
+	return (*envGroupDeleteQueryParamsPtrType)(v)
+}
+
+func (*envGroupDeleteQueryParamsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**EnvGroupDeleteQueryParams)(nil)).Elem()
+}
+
+func (i *envGroupDeleteQueryParamsPtrType) ToEnvGroupDeleteQueryParamsPtrOutput() EnvGroupDeleteQueryParamsPtrOutput {
+	return i.ToEnvGroupDeleteQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i *envGroupDeleteQueryParamsPtrType) ToEnvGroupDeleteQueryParamsPtrOutputWithContext(ctx context.Context) EnvGroupDeleteQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(EnvGroupDeleteQueryParamsPtrOutput)
+}
+
+// Query params for the API request.
+type EnvGroupDeleteQueryParamsOutput struct{ *pulumi.OutputState }
+
+func (EnvGroupDeleteQueryParamsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*EnvGroupDeleteQueryParams)(nil)).Elem()
+}
+
+func (o EnvGroupDeleteQueryParamsOutput) ToEnvGroupDeleteQueryParamsOutput() EnvGroupDeleteQueryParamsOutput {
+	return o
+}
+
+func (o EnvGroupDeleteQueryParamsOutput) ToEnvGroupDeleteQueryParamsOutputWithContext(ctx context.Context) EnvGroupDeleteQueryParamsOutput {
+	return o
+}
+
+func (o EnvGroupDeleteQueryParamsOutput) ToEnvGroupDeleteQueryParamsPtrOutput() EnvGroupDeleteQueryParamsPtrOutput {
+	return o.ToEnvGroupDeleteQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (o EnvGroupDeleteQueryParamsOutput) ToEnvGroupDeleteQueryParamsPtrOutputWithContext(ctx context.Context) EnvGroupDeleteQueryParamsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v EnvGroupDeleteQueryParams) *EnvGroupDeleteQueryParams {
+		return &v
+	}).(EnvGroupDeleteQueryParamsPtrOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o EnvGroupDeleteQueryParamsOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v EnvGroupDeleteQueryParams) map[string]string { return v.AdditionalParams }).(pulumi.StringMapOutput)
+}
+
+type EnvGroupDeleteQueryParamsPtrOutput struct{ *pulumi.OutputState }
+
+func (EnvGroupDeleteQueryParamsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**EnvGroupDeleteQueryParams)(nil)).Elem()
+}
+
+func (o EnvGroupDeleteQueryParamsPtrOutput) ToEnvGroupDeleteQueryParamsPtrOutput() EnvGroupDeleteQueryParamsPtrOutput {
+	return o
+}
+
+func (o EnvGroupDeleteQueryParamsPtrOutput) ToEnvGroupDeleteQueryParamsPtrOutputWithContext(ctx context.Context) EnvGroupDeleteQueryParamsPtrOutput {
+	return o
+}
+
+func (o EnvGroupDeleteQueryParamsPtrOutput) Elem() EnvGroupDeleteQueryParamsOutput {
+	return o.ApplyT(func(v *EnvGroupDeleteQueryParams) EnvGroupDeleteQueryParams {
+		if v != nil {
+			return *v
+		}
+		var ret EnvGroupDeleteQueryParams
+		return ret
+	}).(EnvGroupDeleteQueryParamsOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o EnvGroupDeleteQueryParamsPtrOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *EnvGroupDeleteQueryParams) map[string]string {
+		if v == nil {
+			return nil
+		}
+		return v.AdditionalParams
+	}).(pulumi.StringMapOutput)
+}
+
+// Query params for the API request.
+type EnvGroupEnvVarCreateQueryParams struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams map[string]string `pulumi:"additionalParams"`
+}
+
+// EnvGroupEnvVarCreateQueryParamsInput is an input type that accepts EnvGroupEnvVarCreateQueryParamsArgs and EnvGroupEnvVarCreateQueryParamsOutput values.
+// You can construct a concrete instance of `EnvGroupEnvVarCreateQueryParamsInput` via:
+//
+//	EnvGroupEnvVarCreateQueryParamsArgs{...}
+type EnvGroupEnvVarCreateQueryParamsInput interface {
+	pulumi.Input
+
+	ToEnvGroupEnvVarCreateQueryParamsOutput() EnvGroupEnvVarCreateQueryParamsOutput
+	ToEnvGroupEnvVarCreateQueryParamsOutputWithContext(context.Context) EnvGroupEnvVarCreateQueryParamsOutput
+}
+
+// Query params for the API request.
+type EnvGroupEnvVarCreateQueryParamsArgs struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams pulumi.StringMapInput `pulumi:"additionalParams"`
+}
+
+func (EnvGroupEnvVarCreateQueryParamsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*EnvGroupEnvVarCreateQueryParams)(nil)).Elem()
+}
+
+func (i EnvGroupEnvVarCreateQueryParamsArgs) ToEnvGroupEnvVarCreateQueryParamsOutput() EnvGroupEnvVarCreateQueryParamsOutput {
+	return i.ToEnvGroupEnvVarCreateQueryParamsOutputWithContext(context.Background())
+}
+
+func (i EnvGroupEnvVarCreateQueryParamsArgs) ToEnvGroupEnvVarCreateQueryParamsOutputWithContext(ctx context.Context) EnvGroupEnvVarCreateQueryParamsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(EnvGroupEnvVarCreateQueryParamsOutput)
+}
+
+func (i EnvGroupEnvVarCreateQueryParamsArgs) ToEnvGroupEnvVarCreateQueryParamsPtrOutput() EnvGroupEnvVarCreateQueryParamsPtrOutput {
+	return i.ToEnvGroupEnvVarCreateQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i EnvGroupEnvVarCreateQueryParamsArgs) ToEnvGroupEnvVarCreateQueryParamsPtrOutputWithContext(ctx context.Context) EnvGroupEnvVarCreateQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(EnvGroupEnvVarCreateQueryParamsOutput).ToEnvGroupEnvVarCreateQueryParamsPtrOutputWithContext(ctx)
+}
+
+// EnvGroupEnvVarCreateQueryParamsPtrInput is an input type that accepts EnvGroupEnvVarCreateQueryParamsArgs, EnvGroupEnvVarCreateQueryParamsPtr and EnvGroupEnvVarCreateQueryParamsPtrOutput values.
+// You can construct a concrete instance of `EnvGroupEnvVarCreateQueryParamsPtrInput` via:
+//
+//	        EnvGroupEnvVarCreateQueryParamsArgs{...}
+//
+//	or:
+//
+//	        nil
+type EnvGroupEnvVarCreateQueryParamsPtrInput interface {
+	pulumi.Input
+
+	ToEnvGroupEnvVarCreateQueryParamsPtrOutput() EnvGroupEnvVarCreateQueryParamsPtrOutput
+	ToEnvGroupEnvVarCreateQueryParamsPtrOutputWithContext(context.Context) EnvGroupEnvVarCreateQueryParamsPtrOutput
+}
+
+type envGroupEnvVarCreateQueryParamsPtrType EnvGroupEnvVarCreateQueryParamsArgs
+
+func EnvGroupEnvVarCreateQueryParamsPtr(v *EnvGroupEnvVarCreateQueryParamsArgs) EnvGroupEnvVarCreateQueryParamsPtrInput {
+	return (*envGroupEnvVarCreateQueryParamsPtrType)(v)
+}
+
+func (*envGroupEnvVarCreateQueryParamsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**EnvGroupEnvVarCreateQueryParams)(nil)).Elem()
+}
+
+func (i *envGroupEnvVarCreateQueryParamsPtrType) ToEnvGroupEnvVarCreateQueryParamsPtrOutput() EnvGroupEnvVarCreateQueryParamsPtrOutput {
+	return i.ToEnvGroupEnvVarCreateQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i *envGroupEnvVarCreateQueryParamsPtrType) ToEnvGroupEnvVarCreateQueryParamsPtrOutputWithContext(ctx context.Context) EnvGroupEnvVarCreateQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(EnvGroupEnvVarCreateQueryParamsPtrOutput)
+}
+
+// Query params for the API request.
+type EnvGroupEnvVarCreateQueryParamsOutput struct{ *pulumi.OutputState }
+
+func (EnvGroupEnvVarCreateQueryParamsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*EnvGroupEnvVarCreateQueryParams)(nil)).Elem()
+}
+
+func (o EnvGroupEnvVarCreateQueryParamsOutput) ToEnvGroupEnvVarCreateQueryParamsOutput() EnvGroupEnvVarCreateQueryParamsOutput {
+	return o
+}
+
+func (o EnvGroupEnvVarCreateQueryParamsOutput) ToEnvGroupEnvVarCreateQueryParamsOutputWithContext(ctx context.Context) EnvGroupEnvVarCreateQueryParamsOutput {
+	return o
+}
+
+func (o EnvGroupEnvVarCreateQueryParamsOutput) ToEnvGroupEnvVarCreateQueryParamsPtrOutput() EnvGroupEnvVarCreateQueryParamsPtrOutput {
+	return o.ToEnvGroupEnvVarCreateQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (o EnvGroupEnvVarCreateQueryParamsOutput) ToEnvGroupEnvVarCreateQueryParamsPtrOutputWithContext(ctx context.Context) EnvGroupEnvVarCreateQueryParamsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v EnvGroupEnvVarCreateQueryParams) *EnvGroupEnvVarCreateQueryParams {
+		return &v
+	}).(EnvGroupEnvVarCreateQueryParamsPtrOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o EnvGroupEnvVarCreateQueryParamsOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v EnvGroupEnvVarCreateQueryParams) map[string]string { return v.AdditionalParams }).(pulumi.StringMapOutput)
+}
+
+type EnvGroupEnvVarCreateQueryParamsPtrOutput struct{ *pulumi.OutputState }
+
+func (EnvGroupEnvVarCreateQueryParamsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**EnvGroupEnvVarCreateQueryParams)(nil)).Elem()
+}
+
+func (o EnvGroupEnvVarCreateQueryParamsPtrOutput) ToEnvGroupEnvVarCreateQueryParamsPtrOutput() EnvGroupEnvVarCreateQueryParamsPtrOutput {
+	return o
+}
+
+func (o EnvGroupEnvVarCreateQueryParamsPtrOutput) ToEnvGroupEnvVarCreateQueryParamsPtrOutputWithContext(ctx context.Context) EnvGroupEnvVarCreateQueryParamsPtrOutput {
+	return o
+}
+
+func (o EnvGroupEnvVarCreateQueryParamsPtrOutput) Elem() EnvGroupEnvVarCreateQueryParamsOutput {
+	return o.ApplyT(func(v *EnvGroupEnvVarCreateQueryParams) EnvGroupEnvVarCreateQueryParams {
+		if v != nil {
+			return *v
+		}
+		var ret EnvGroupEnvVarCreateQueryParams
+		return ret
+	}).(EnvGroupEnvVarCreateQueryParamsOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o EnvGroupEnvVarCreateQueryParamsPtrOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *EnvGroupEnvVarCreateQueryParams) map[string]string {
+		if v == nil {
+			return nil
+		}
+		return v.AdditionalParams
+	}).(pulumi.StringMapOutput)
+}
+
+// Query params for the API request.
+type EnvGroupEnvVarDeleteQueryParams struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams map[string]string `pulumi:"additionalParams"`
+}
+
+// EnvGroupEnvVarDeleteQueryParamsInput is an input type that accepts EnvGroupEnvVarDeleteQueryParamsArgs and EnvGroupEnvVarDeleteQueryParamsOutput values.
+// You can construct a concrete instance of `EnvGroupEnvVarDeleteQueryParamsInput` via:
+//
+//	EnvGroupEnvVarDeleteQueryParamsArgs{...}
+type EnvGroupEnvVarDeleteQueryParamsInput interface {
+	pulumi.Input
+
+	ToEnvGroupEnvVarDeleteQueryParamsOutput() EnvGroupEnvVarDeleteQueryParamsOutput
+	ToEnvGroupEnvVarDeleteQueryParamsOutputWithContext(context.Context) EnvGroupEnvVarDeleteQueryParamsOutput
+}
+
+// Query params for the API request.
+type EnvGroupEnvVarDeleteQueryParamsArgs struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams pulumi.StringMapInput `pulumi:"additionalParams"`
+}
+
+func (EnvGroupEnvVarDeleteQueryParamsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*EnvGroupEnvVarDeleteQueryParams)(nil)).Elem()
+}
+
+func (i EnvGroupEnvVarDeleteQueryParamsArgs) ToEnvGroupEnvVarDeleteQueryParamsOutput() EnvGroupEnvVarDeleteQueryParamsOutput {
+	return i.ToEnvGroupEnvVarDeleteQueryParamsOutputWithContext(context.Background())
+}
+
+func (i EnvGroupEnvVarDeleteQueryParamsArgs) ToEnvGroupEnvVarDeleteQueryParamsOutputWithContext(ctx context.Context) EnvGroupEnvVarDeleteQueryParamsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(EnvGroupEnvVarDeleteQueryParamsOutput)
+}
+
+func (i EnvGroupEnvVarDeleteQueryParamsArgs) ToEnvGroupEnvVarDeleteQueryParamsPtrOutput() EnvGroupEnvVarDeleteQueryParamsPtrOutput {
+	return i.ToEnvGroupEnvVarDeleteQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i EnvGroupEnvVarDeleteQueryParamsArgs) ToEnvGroupEnvVarDeleteQueryParamsPtrOutputWithContext(ctx context.Context) EnvGroupEnvVarDeleteQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(EnvGroupEnvVarDeleteQueryParamsOutput).ToEnvGroupEnvVarDeleteQueryParamsPtrOutputWithContext(ctx)
+}
+
+// EnvGroupEnvVarDeleteQueryParamsPtrInput is an input type that accepts EnvGroupEnvVarDeleteQueryParamsArgs, EnvGroupEnvVarDeleteQueryParamsPtr and EnvGroupEnvVarDeleteQueryParamsPtrOutput values.
+// You can construct a concrete instance of `EnvGroupEnvVarDeleteQueryParamsPtrInput` via:
+//
+//	        EnvGroupEnvVarDeleteQueryParamsArgs{...}
+//
+//	or:
+//
+//	        nil
+type EnvGroupEnvVarDeleteQueryParamsPtrInput interface {
+	pulumi.Input
+
+	ToEnvGroupEnvVarDeleteQueryParamsPtrOutput() EnvGroupEnvVarDeleteQueryParamsPtrOutput
+	ToEnvGroupEnvVarDeleteQueryParamsPtrOutputWithContext(context.Context) EnvGroupEnvVarDeleteQueryParamsPtrOutput
+}
+
+type envGroupEnvVarDeleteQueryParamsPtrType EnvGroupEnvVarDeleteQueryParamsArgs
+
+func EnvGroupEnvVarDeleteQueryParamsPtr(v *EnvGroupEnvVarDeleteQueryParamsArgs) EnvGroupEnvVarDeleteQueryParamsPtrInput {
+	return (*envGroupEnvVarDeleteQueryParamsPtrType)(v)
+}
+
+func (*envGroupEnvVarDeleteQueryParamsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**EnvGroupEnvVarDeleteQueryParams)(nil)).Elem()
+}
+
+func (i *envGroupEnvVarDeleteQueryParamsPtrType) ToEnvGroupEnvVarDeleteQueryParamsPtrOutput() EnvGroupEnvVarDeleteQueryParamsPtrOutput {
+	return i.ToEnvGroupEnvVarDeleteQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i *envGroupEnvVarDeleteQueryParamsPtrType) ToEnvGroupEnvVarDeleteQueryParamsPtrOutputWithContext(ctx context.Context) EnvGroupEnvVarDeleteQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(EnvGroupEnvVarDeleteQueryParamsPtrOutput)
+}
+
+// Query params for the API request.
+type EnvGroupEnvVarDeleteQueryParamsOutput struct{ *pulumi.OutputState }
+
+func (EnvGroupEnvVarDeleteQueryParamsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*EnvGroupEnvVarDeleteQueryParams)(nil)).Elem()
+}
+
+func (o EnvGroupEnvVarDeleteQueryParamsOutput) ToEnvGroupEnvVarDeleteQueryParamsOutput() EnvGroupEnvVarDeleteQueryParamsOutput {
+	return o
+}
+
+func (o EnvGroupEnvVarDeleteQueryParamsOutput) ToEnvGroupEnvVarDeleteQueryParamsOutputWithContext(ctx context.Context) EnvGroupEnvVarDeleteQueryParamsOutput {
+	return o
+}
+
+func (o EnvGroupEnvVarDeleteQueryParamsOutput) ToEnvGroupEnvVarDeleteQueryParamsPtrOutput() EnvGroupEnvVarDeleteQueryParamsPtrOutput {
+	return o.ToEnvGroupEnvVarDeleteQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (o EnvGroupEnvVarDeleteQueryParamsOutput) ToEnvGroupEnvVarDeleteQueryParamsPtrOutputWithContext(ctx context.Context) EnvGroupEnvVarDeleteQueryParamsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v EnvGroupEnvVarDeleteQueryParams) *EnvGroupEnvVarDeleteQueryParams {
+		return &v
+	}).(EnvGroupEnvVarDeleteQueryParamsPtrOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o EnvGroupEnvVarDeleteQueryParamsOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v EnvGroupEnvVarDeleteQueryParams) map[string]string { return v.AdditionalParams }).(pulumi.StringMapOutput)
+}
+
+type EnvGroupEnvVarDeleteQueryParamsPtrOutput struct{ *pulumi.OutputState }
+
+func (EnvGroupEnvVarDeleteQueryParamsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**EnvGroupEnvVarDeleteQueryParams)(nil)).Elem()
+}
+
+func (o EnvGroupEnvVarDeleteQueryParamsPtrOutput) ToEnvGroupEnvVarDeleteQueryParamsPtrOutput() EnvGroupEnvVarDeleteQueryParamsPtrOutput {
+	return o
+}
+
+func (o EnvGroupEnvVarDeleteQueryParamsPtrOutput) ToEnvGroupEnvVarDeleteQueryParamsPtrOutputWithContext(ctx context.Context) EnvGroupEnvVarDeleteQueryParamsPtrOutput {
+	return o
+}
+
+func (o EnvGroupEnvVarDeleteQueryParamsPtrOutput) Elem() EnvGroupEnvVarDeleteQueryParamsOutput {
+	return o.ApplyT(func(v *EnvGroupEnvVarDeleteQueryParams) EnvGroupEnvVarDeleteQueryParams {
+		if v != nil {
+			return *v
+		}
+		var ret EnvGroupEnvVarDeleteQueryParams
+		return ret
+	}).(EnvGroupEnvVarDeleteQueryParamsOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o EnvGroupEnvVarDeleteQueryParamsPtrOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *EnvGroupEnvVarDeleteQueryParams) map[string]string {
+		if v == nil {
+			return nil
+		}
+		return v.AdditionalParams
+	}).(pulumi.StringMapOutput)
+}
+
+// Query params for the API request.
+type EnvGroupEnvVarPutQueryParams struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams map[string]string `pulumi:"additionalParams"`
+}
+
+// EnvGroupEnvVarPutQueryParamsInput is an input type that accepts EnvGroupEnvVarPutQueryParamsArgs and EnvGroupEnvVarPutQueryParamsOutput values.
+// You can construct a concrete instance of `EnvGroupEnvVarPutQueryParamsInput` via:
+//
+//	EnvGroupEnvVarPutQueryParamsArgs{...}
+type EnvGroupEnvVarPutQueryParamsInput interface {
+	pulumi.Input
+
+	ToEnvGroupEnvVarPutQueryParamsOutput() EnvGroupEnvVarPutQueryParamsOutput
+	ToEnvGroupEnvVarPutQueryParamsOutputWithContext(context.Context) EnvGroupEnvVarPutQueryParamsOutput
+}
+
+// Query params for the API request.
+type EnvGroupEnvVarPutQueryParamsArgs struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams pulumi.StringMapInput `pulumi:"additionalParams"`
+}
+
+func (EnvGroupEnvVarPutQueryParamsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*EnvGroupEnvVarPutQueryParams)(nil)).Elem()
+}
+
+func (i EnvGroupEnvVarPutQueryParamsArgs) ToEnvGroupEnvVarPutQueryParamsOutput() EnvGroupEnvVarPutQueryParamsOutput {
+	return i.ToEnvGroupEnvVarPutQueryParamsOutputWithContext(context.Background())
+}
+
+func (i EnvGroupEnvVarPutQueryParamsArgs) ToEnvGroupEnvVarPutQueryParamsOutputWithContext(ctx context.Context) EnvGroupEnvVarPutQueryParamsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(EnvGroupEnvVarPutQueryParamsOutput)
+}
+
+func (i EnvGroupEnvVarPutQueryParamsArgs) ToEnvGroupEnvVarPutQueryParamsPtrOutput() EnvGroupEnvVarPutQueryParamsPtrOutput {
+	return i.ToEnvGroupEnvVarPutQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i EnvGroupEnvVarPutQueryParamsArgs) ToEnvGroupEnvVarPutQueryParamsPtrOutputWithContext(ctx context.Context) EnvGroupEnvVarPutQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(EnvGroupEnvVarPutQueryParamsOutput).ToEnvGroupEnvVarPutQueryParamsPtrOutputWithContext(ctx)
+}
+
+// EnvGroupEnvVarPutQueryParamsPtrInput is an input type that accepts EnvGroupEnvVarPutQueryParamsArgs, EnvGroupEnvVarPutQueryParamsPtr and EnvGroupEnvVarPutQueryParamsPtrOutput values.
+// You can construct a concrete instance of `EnvGroupEnvVarPutQueryParamsPtrInput` via:
+//
+//	        EnvGroupEnvVarPutQueryParamsArgs{...}
+//
+//	or:
+//
+//	        nil
+type EnvGroupEnvVarPutQueryParamsPtrInput interface {
+	pulumi.Input
+
+	ToEnvGroupEnvVarPutQueryParamsPtrOutput() EnvGroupEnvVarPutQueryParamsPtrOutput
+	ToEnvGroupEnvVarPutQueryParamsPtrOutputWithContext(context.Context) EnvGroupEnvVarPutQueryParamsPtrOutput
+}
+
+type envGroupEnvVarPutQueryParamsPtrType EnvGroupEnvVarPutQueryParamsArgs
+
+func EnvGroupEnvVarPutQueryParamsPtr(v *EnvGroupEnvVarPutQueryParamsArgs) EnvGroupEnvVarPutQueryParamsPtrInput {
+	return (*envGroupEnvVarPutQueryParamsPtrType)(v)
+}
+
+func (*envGroupEnvVarPutQueryParamsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**EnvGroupEnvVarPutQueryParams)(nil)).Elem()
+}
+
+func (i *envGroupEnvVarPutQueryParamsPtrType) ToEnvGroupEnvVarPutQueryParamsPtrOutput() EnvGroupEnvVarPutQueryParamsPtrOutput {
+	return i.ToEnvGroupEnvVarPutQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i *envGroupEnvVarPutQueryParamsPtrType) ToEnvGroupEnvVarPutQueryParamsPtrOutputWithContext(ctx context.Context) EnvGroupEnvVarPutQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(EnvGroupEnvVarPutQueryParamsPtrOutput)
+}
+
+// Query params for the API request.
+type EnvGroupEnvVarPutQueryParamsOutput struct{ *pulumi.OutputState }
+
+func (EnvGroupEnvVarPutQueryParamsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*EnvGroupEnvVarPutQueryParams)(nil)).Elem()
+}
+
+func (o EnvGroupEnvVarPutQueryParamsOutput) ToEnvGroupEnvVarPutQueryParamsOutput() EnvGroupEnvVarPutQueryParamsOutput {
+	return o
+}
+
+func (o EnvGroupEnvVarPutQueryParamsOutput) ToEnvGroupEnvVarPutQueryParamsOutputWithContext(ctx context.Context) EnvGroupEnvVarPutQueryParamsOutput {
+	return o
+}
+
+func (o EnvGroupEnvVarPutQueryParamsOutput) ToEnvGroupEnvVarPutQueryParamsPtrOutput() EnvGroupEnvVarPutQueryParamsPtrOutput {
+	return o.ToEnvGroupEnvVarPutQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (o EnvGroupEnvVarPutQueryParamsOutput) ToEnvGroupEnvVarPutQueryParamsPtrOutputWithContext(ctx context.Context) EnvGroupEnvVarPutQueryParamsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v EnvGroupEnvVarPutQueryParams) *EnvGroupEnvVarPutQueryParams {
+		return &v
+	}).(EnvGroupEnvVarPutQueryParamsPtrOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o EnvGroupEnvVarPutQueryParamsOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v EnvGroupEnvVarPutQueryParams) map[string]string { return v.AdditionalParams }).(pulumi.StringMapOutput)
+}
+
+type EnvGroupEnvVarPutQueryParamsPtrOutput struct{ *pulumi.OutputState }
+
+func (EnvGroupEnvVarPutQueryParamsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**EnvGroupEnvVarPutQueryParams)(nil)).Elem()
+}
+
+func (o EnvGroupEnvVarPutQueryParamsPtrOutput) ToEnvGroupEnvVarPutQueryParamsPtrOutput() EnvGroupEnvVarPutQueryParamsPtrOutput {
+	return o
+}
+
+func (o EnvGroupEnvVarPutQueryParamsPtrOutput) ToEnvGroupEnvVarPutQueryParamsPtrOutputWithContext(ctx context.Context) EnvGroupEnvVarPutQueryParamsPtrOutput {
+	return o
+}
+
+func (o EnvGroupEnvVarPutQueryParamsPtrOutput) Elem() EnvGroupEnvVarPutQueryParamsOutput {
+	return o.ApplyT(func(v *EnvGroupEnvVarPutQueryParams) EnvGroupEnvVarPutQueryParams {
+		if v != nil {
+			return *v
+		}
+		var ret EnvGroupEnvVarPutQueryParams
+		return ret
+	}).(EnvGroupEnvVarPutQueryParamsOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o EnvGroupEnvVarPutQueryParamsPtrOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *EnvGroupEnvVarPutQueryParams) map[string]string {
+		if v == nil {
+			return nil
+		}
+		return v.AdditionalParams
+	}).(pulumi.StringMapOutput)
+}
+
+// Query params for each of the operations of the resource.
+type EnvGroupEnvVarQueryParams struct {
+	// Query params for the create operation.
+	Create *EnvGroupEnvVarCreateQueryParams `pulumi:"create"`
+	// Query params for the delete operation.
+	Delete *EnvGroupEnvVarDeleteQueryParams `pulumi:"delete"`
+	// Query params for the put operation.
+	Put *EnvGroupEnvVarPutQueryParams `pulumi:"put"`
+	// Query params for the read operation.
+	Read *EnvGroupEnvVarReadQueryParams `pulumi:"read"`
+}
+
+// EnvGroupEnvVarQueryParamsInput is an input type that accepts EnvGroupEnvVarQueryParamsArgs and EnvGroupEnvVarQueryParamsOutput values.
+// You can construct a concrete instance of `EnvGroupEnvVarQueryParamsInput` via:
+//
+//	EnvGroupEnvVarQueryParamsArgs{...}
+type EnvGroupEnvVarQueryParamsInput interface {
+	pulumi.Input
+
+	ToEnvGroupEnvVarQueryParamsOutput() EnvGroupEnvVarQueryParamsOutput
+	ToEnvGroupEnvVarQueryParamsOutputWithContext(context.Context) EnvGroupEnvVarQueryParamsOutput
+}
+
+// Query params for each of the operations of the resource.
+type EnvGroupEnvVarQueryParamsArgs struct {
+	// Query params for the create operation.
+	Create EnvGroupEnvVarCreateQueryParamsPtrInput `pulumi:"create"`
+	// Query params for the delete operation.
+	Delete EnvGroupEnvVarDeleteQueryParamsPtrInput `pulumi:"delete"`
+	// Query params for the put operation.
+	Put EnvGroupEnvVarPutQueryParamsPtrInput `pulumi:"put"`
+	// Query params for the read operation.
+	Read EnvGroupEnvVarReadQueryParamsPtrInput `pulumi:"read"`
+}
+
+func (EnvGroupEnvVarQueryParamsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*EnvGroupEnvVarQueryParams)(nil)).Elem()
+}
+
+func (i EnvGroupEnvVarQueryParamsArgs) ToEnvGroupEnvVarQueryParamsOutput() EnvGroupEnvVarQueryParamsOutput {
+	return i.ToEnvGroupEnvVarQueryParamsOutputWithContext(context.Background())
+}
+
+func (i EnvGroupEnvVarQueryParamsArgs) ToEnvGroupEnvVarQueryParamsOutputWithContext(ctx context.Context) EnvGroupEnvVarQueryParamsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(EnvGroupEnvVarQueryParamsOutput)
+}
+
+func (i EnvGroupEnvVarQueryParamsArgs) ToEnvGroupEnvVarQueryParamsPtrOutput() EnvGroupEnvVarQueryParamsPtrOutput {
+	return i.ToEnvGroupEnvVarQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i EnvGroupEnvVarQueryParamsArgs) ToEnvGroupEnvVarQueryParamsPtrOutputWithContext(ctx context.Context) EnvGroupEnvVarQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(EnvGroupEnvVarQueryParamsOutput).ToEnvGroupEnvVarQueryParamsPtrOutputWithContext(ctx)
+}
+
+// EnvGroupEnvVarQueryParamsPtrInput is an input type that accepts EnvGroupEnvVarQueryParamsArgs, EnvGroupEnvVarQueryParamsPtr and EnvGroupEnvVarQueryParamsPtrOutput values.
+// You can construct a concrete instance of `EnvGroupEnvVarQueryParamsPtrInput` via:
+//
+//	        EnvGroupEnvVarQueryParamsArgs{...}
+//
+//	or:
+//
+//	        nil
+type EnvGroupEnvVarQueryParamsPtrInput interface {
+	pulumi.Input
+
+	ToEnvGroupEnvVarQueryParamsPtrOutput() EnvGroupEnvVarQueryParamsPtrOutput
+	ToEnvGroupEnvVarQueryParamsPtrOutputWithContext(context.Context) EnvGroupEnvVarQueryParamsPtrOutput
+}
+
+type envGroupEnvVarQueryParamsPtrType EnvGroupEnvVarQueryParamsArgs
+
+func EnvGroupEnvVarQueryParamsPtr(v *EnvGroupEnvVarQueryParamsArgs) EnvGroupEnvVarQueryParamsPtrInput {
+	return (*envGroupEnvVarQueryParamsPtrType)(v)
+}
+
+func (*envGroupEnvVarQueryParamsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**EnvGroupEnvVarQueryParams)(nil)).Elem()
+}
+
+func (i *envGroupEnvVarQueryParamsPtrType) ToEnvGroupEnvVarQueryParamsPtrOutput() EnvGroupEnvVarQueryParamsPtrOutput {
+	return i.ToEnvGroupEnvVarQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i *envGroupEnvVarQueryParamsPtrType) ToEnvGroupEnvVarQueryParamsPtrOutputWithContext(ctx context.Context) EnvGroupEnvVarQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(EnvGroupEnvVarQueryParamsPtrOutput)
+}
+
+// Query params for each of the operations of the resource.
+type EnvGroupEnvVarQueryParamsOutput struct{ *pulumi.OutputState }
+
+func (EnvGroupEnvVarQueryParamsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*EnvGroupEnvVarQueryParams)(nil)).Elem()
+}
+
+func (o EnvGroupEnvVarQueryParamsOutput) ToEnvGroupEnvVarQueryParamsOutput() EnvGroupEnvVarQueryParamsOutput {
+	return o
+}
+
+func (o EnvGroupEnvVarQueryParamsOutput) ToEnvGroupEnvVarQueryParamsOutputWithContext(ctx context.Context) EnvGroupEnvVarQueryParamsOutput {
+	return o
+}
+
+func (o EnvGroupEnvVarQueryParamsOutput) ToEnvGroupEnvVarQueryParamsPtrOutput() EnvGroupEnvVarQueryParamsPtrOutput {
+	return o.ToEnvGroupEnvVarQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (o EnvGroupEnvVarQueryParamsOutput) ToEnvGroupEnvVarQueryParamsPtrOutputWithContext(ctx context.Context) EnvGroupEnvVarQueryParamsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v EnvGroupEnvVarQueryParams) *EnvGroupEnvVarQueryParams {
+		return &v
+	}).(EnvGroupEnvVarQueryParamsPtrOutput)
+}
+
+// Query params for the create operation.
+func (o EnvGroupEnvVarQueryParamsOutput) Create() EnvGroupEnvVarCreateQueryParamsPtrOutput {
+	return o.ApplyT(func(v EnvGroupEnvVarQueryParams) *EnvGroupEnvVarCreateQueryParams { return v.Create }).(EnvGroupEnvVarCreateQueryParamsPtrOutput)
+}
+
+// Query params for the delete operation.
+func (o EnvGroupEnvVarQueryParamsOutput) Delete() EnvGroupEnvVarDeleteQueryParamsPtrOutput {
+	return o.ApplyT(func(v EnvGroupEnvVarQueryParams) *EnvGroupEnvVarDeleteQueryParams { return v.Delete }).(EnvGroupEnvVarDeleteQueryParamsPtrOutput)
+}
+
+// Query params for the put operation.
+func (o EnvGroupEnvVarQueryParamsOutput) Put() EnvGroupEnvVarPutQueryParamsPtrOutput {
+	return o.ApplyT(func(v EnvGroupEnvVarQueryParams) *EnvGroupEnvVarPutQueryParams { return v.Put }).(EnvGroupEnvVarPutQueryParamsPtrOutput)
+}
+
+// Query params for the read operation.
+func (o EnvGroupEnvVarQueryParamsOutput) Read() EnvGroupEnvVarReadQueryParamsPtrOutput {
+	return o.ApplyT(func(v EnvGroupEnvVarQueryParams) *EnvGroupEnvVarReadQueryParams { return v.Read }).(EnvGroupEnvVarReadQueryParamsPtrOutput)
+}
+
+type EnvGroupEnvVarQueryParamsPtrOutput struct{ *pulumi.OutputState }
+
+func (EnvGroupEnvVarQueryParamsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**EnvGroupEnvVarQueryParams)(nil)).Elem()
+}
+
+func (o EnvGroupEnvVarQueryParamsPtrOutput) ToEnvGroupEnvVarQueryParamsPtrOutput() EnvGroupEnvVarQueryParamsPtrOutput {
+	return o
+}
+
+func (o EnvGroupEnvVarQueryParamsPtrOutput) ToEnvGroupEnvVarQueryParamsPtrOutputWithContext(ctx context.Context) EnvGroupEnvVarQueryParamsPtrOutput {
+	return o
+}
+
+func (o EnvGroupEnvVarQueryParamsPtrOutput) Elem() EnvGroupEnvVarQueryParamsOutput {
+	return o.ApplyT(func(v *EnvGroupEnvVarQueryParams) EnvGroupEnvVarQueryParams {
+		if v != nil {
+			return *v
+		}
+		var ret EnvGroupEnvVarQueryParams
+		return ret
+	}).(EnvGroupEnvVarQueryParamsOutput)
+}
+
+// Query params for the create operation.
+func (o EnvGroupEnvVarQueryParamsPtrOutput) Create() EnvGroupEnvVarCreateQueryParamsPtrOutput {
+	return o.ApplyT(func(v *EnvGroupEnvVarQueryParams) *EnvGroupEnvVarCreateQueryParams {
+		if v == nil {
+			return nil
+		}
+		return v.Create
+	}).(EnvGroupEnvVarCreateQueryParamsPtrOutput)
+}
+
+// Query params for the delete operation.
+func (o EnvGroupEnvVarQueryParamsPtrOutput) Delete() EnvGroupEnvVarDeleteQueryParamsPtrOutput {
+	return o.ApplyT(func(v *EnvGroupEnvVarQueryParams) *EnvGroupEnvVarDeleteQueryParams {
+		if v == nil {
+			return nil
+		}
+		return v.Delete
+	}).(EnvGroupEnvVarDeleteQueryParamsPtrOutput)
+}
+
+// Query params for the put operation.
+func (o EnvGroupEnvVarQueryParamsPtrOutput) Put() EnvGroupEnvVarPutQueryParamsPtrOutput {
+	return o.ApplyT(func(v *EnvGroupEnvVarQueryParams) *EnvGroupEnvVarPutQueryParams {
+		if v == nil {
+			return nil
+		}
+		return v.Put
+	}).(EnvGroupEnvVarPutQueryParamsPtrOutput)
+}
+
+// Query params for the read operation.
+func (o EnvGroupEnvVarQueryParamsPtrOutput) Read() EnvGroupEnvVarReadQueryParamsPtrOutput {
+	return o.ApplyT(func(v *EnvGroupEnvVarQueryParams) *EnvGroupEnvVarReadQueryParams {
+		if v == nil {
+			return nil
+		}
+		return v.Read
+	}).(EnvGroupEnvVarReadQueryParamsPtrOutput)
+}
+
+// Query params for the API request.
+type EnvGroupEnvVarReadQueryParams struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams map[string]string `pulumi:"additionalParams"`
+}
+
+// EnvGroupEnvVarReadQueryParamsInput is an input type that accepts EnvGroupEnvVarReadQueryParamsArgs and EnvGroupEnvVarReadQueryParamsOutput values.
+// You can construct a concrete instance of `EnvGroupEnvVarReadQueryParamsInput` via:
+//
+//	EnvGroupEnvVarReadQueryParamsArgs{...}
+type EnvGroupEnvVarReadQueryParamsInput interface {
+	pulumi.Input
+
+	ToEnvGroupEnvVarReadQueryParamsOutput() EnvGroupEnvVarReadQueryParamsOutput
+	ToEnvGroupEnvVarReadQueryParamsOutputWithContext(context.Context) EnvGroupEnvVarReadQueryParamsOutput
+}
+
+// Query params for the API request.
+type EnvGroupEnvVarReadQueryParamsArgs struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams pulumi.StringMapInput `pulumi:"additionalParams"`
+}
+
+func (EnvGroupEnvVarReadQueryParamsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*EnvGroupEnvVarReadQueryParams)(nil)).Elem()
+}
+
+func (i EnvGroupEnvVarReadQueryParamsArgs) ToEnvGroupEnvVarReadQueryParamsOutput() EnvGroupEnvVarReadQueryParamsOutput {
+	return i.ToEnvGroupEnvVarReadQueryParamsOutputWithContext(context.Background())
+}
+
+func (i EnvGroupEnvVarReadQueryParamsArgs) ToEnvGroupEnvVarReadQueryParamsOutputWithContext(ctx context.Context) EnvGroupEnvVarReadQueryParamsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(EnvGroupEnvVarReadQueryParamsOutput)
+}
+
+func (i EnvGroupEnvVarReadQueryParamsArgs) ToEnvGroupEnvVarReadQueryParamsPtrOutput() EnvGroupEnvVarReadQueryParamsPtrOutput {
+	return i.ToEnvGroupEnvVarReadQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i EnvGroupEnvVarReadQueryParamsArgs) ToEnvGroupEnvVarReadQueryParamsPtrOutputWithContext(ctx context.Context) EnvGroupEnvVarReadQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(EnvGroupEnvVarReadQueryParamsOutput).ToEnvGroupEnvVarReadQueryParamsPtrOutputWithContext(ctx)
+}
+
+// EnvGroupEnvVarReadQueryParamsPtrInput is an input type that accepts EnvGroupEnvVarReadQueryParamsArgs, EnvGroupEnvVarReadQueryParamsPtr and EnvGroupEnvVarReadQueryParamsPtrOutput values.
+// You can construct a concrete instance of `EnvGroupEnvVarReadQueryParamsPtrInput` via:
+//
+//	        EnvGroupEnvVarReadQueryParamsArgs{...}
+//
+//	or:
+//
+//	        nil
+type EnvGroupEnvVarReadQueryParamsPtrInput interface {
+	pulumi.Input
+
+	ToEnvGroupEnvVarReadQueryParamsPtrOutput() EnvGroupEnvVarReadQueryParamsPtrOutput
+	ToEnvGroupEnvVarReadQueryParamsPtrOutputWithContext(context.Context) EnvGroupEnvVarReadQueryParamsPtrOutput
+}
+
+type envGroupEnvVarReadQueryParamsPtrType EnvGroupEnvVarReadQueryParamsArgs
+
+func EnvGroupEnvVarReadQueryParamsPtr(v *EnvGroupEnvVarReadQueryParamsArgs) EnvGroupEnvVarReadQueryParamsPtrInput {
+	return (*envGroupEnvVarReadQueryParamsPtrType)(v)
+}
+
+func (*envGroupEnvVarReadQueryParamsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**EnvGroupEnvVarReadQueryParams)(nil)).Elem()
+}
+
+func (i *envGroupEnvVarReadQueryParamsPtrType) ToEnvGroupEnvVarReadQueryParamsPtrOutput() EnvGroupEnvVarReadQueryParamsPtrOutput {
+	return i.ToEnvGroupEnvVarReadQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i *envGroupEnvVarReadQueryParamsPtrType) ToEnvGroupEnvVarReadQueryParamsPtrOutputWithContext(ctx context.Context) EnvGroupEnvVarReadQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(EnvGroupEnvVarReadQueryParamsPtrOutput)
+}
+
+// Query params for the API request.
+type EnvGroupEnvVarReadQueryParamsOutput struct{ *pulumi.OutputState }
+
+func (EnvGroupEnvVarReadQueryParamsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*EnvGroupEnvVarReadQueryParams)(nil)).Elem()
+}
+
+func (o EnvGroupEnvVarReadQueryParamsOutput) ToEnvGroupEnvVarReadQueryParamsOutput() EnvGroupEnvVarReadQueryParamsOutput {
+	return o
+}
+
+func (o EnvGroupEnvVarReadQueryParamsOutput) ToEnvGroupEnvVarReadQueryParamsOutputWithContext(ctx context.Context) EnvGroupEnvVarReadQueryParamsOutput {
+	return o
+}
+
+func (o EnvGroupEnvVarReadQueryParamsOutput) ToEnvGroupEnvVarReadQueryParamsPtrOutput() EnvGroupEnvVarReadQueryParamsPtrOutput {
+	return o.ToEnvGroupEnvVarReadQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (o EnvGroupEnvVarReadQueryParamsOutput) ToEnvGroupEnvVarReadQueryParamsPtrOutputWithContext(ctx context.Context) EnvGroupEnvVarReadQueryParamsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v EnvGroupEnvVarReadQueryParams) *EnvGroupEnvVarReadQueryParams {
+		return &v
+	}).(EnvGroupEnvVarReadQueryParamsPtrOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o EnvGroupEnvVarReadQueryParamsOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v EnvGroupEnvVarReadQueryParams) map[string]string { return v.AdditionalParams }).(pulumi.StringMapOutput)
+}
+
+type EnvGroupEnvVarReadQueryParamsPtrOutput struct{ *pulumi.OutputState }
+
+func (EnvGroupEnvVarReadQueryParamsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**EnvGroupEnvVarReadQueryParams)(nil)).Elem()
+}
+
+func (o EnvGroupEnvVarReadQueryParamsPtrOutput) ToEnvGroupEnvVarReadQueryParamsPtrOutput() EnvGroupEnvVarReadQueryParamsPtrOutput {
+	return o
+}
+
+func (o EnvGroupEnvVarReadQueryParamsPtrOutput) ToEnvGroupEnvVarReadQueryParamsPtrOutputWithContext(ctx context.Context) EnvGroupEnvVarReadQueryParamsPtrOutput {
+	return o
+}
+
+func (o EnvGroupEnvVarReadQueryParamsPtrOutput) Elem() EnvGroupEnvVarReadQueryParamsOutput {
+	return o.ApplyT(func(v *EnvGroupEnvVarReadQueryParams) EnvGroupEnvVarReadQueryParams {
+		if v != nil {
+			return *v
+		}
+		var ret EnvGroupEnvVarReadQueryParams
+		return ret
+	}).(EnvGroupEnvVarReadQueryParamsOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o EnvGroupEnvVarReadQueryParamsPtrOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *EnvGroupEnvVarReadQueryParams) map[string]string {
+		if v == nil {
+			return nil
+		}
+		return v.AdditionalParams
+	}).(pulumi.StringMapOutput)
+}
+
 type EnvGroupLink struct {
 	Id   string           `pulumi:"id"`
 	Name string           `pulumi:"name"`
@@ -150,6 +1187,1240 @@ func (o EnvGroupMetaArrayOutput) Index(i pulumi.IntInput) EnvGroupMetaOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) EnvGroupMeta {
 		return vs[0].([]EnvGroupMeta)[vs[1].(int)]
 	}).(EnvGroupMetaOutput)
+}
+
+// Query params for each of the operations of the resource.
+type EnvGroupQueryParams struct {
+	// Query params for the create operation.
+	Create *EnvGroupCreateQueryParams `pulumi:"create"`
+	// Query params for the delete operation.
+	Delete *EnvGroupDeleteQueryParams `pulumi:"delete"`
+	// Query params for the read operation.
+	Read *EnvGroupReadQueryParams `pulumi:"read"`
+	// Query params for the update operation.
+	Update *EnvGroupUpdateQueryParams `pulumi:"update"`
+}
+
+// EnvGroupQueryParamsInput is an input type that accepts EnvGroupQueryParamsArgs and EnvGroupQueryParamsOutput values.
+// You can construct a concrete instance of `EnvGroupQueryParamsInput` via:
+//
+//	EnvGroupQueryParamsArgs{...}
+type EnvGroupQueryParamsInput interface {
+	pulumi.Input
+
+	ToEnvGroupQueryParamsOutput() EnvGroupQueryParamsOutput
+	ToEnvGroupQueryParamsOutputWithContext(context.Context) EnvGroupQueryParamsOutput
+}
+
+// Query params for each of the operations of the resource.
+type EnvGroupQueryParamsArgs struct {
+	// Query params for the create operation.
+	Create EnvGroupCreateQueryParamsPtrInput `pulumi:"create"`
+	// Query params for the delete operation.
+	Delete EnvGroupDeleteQueryParamsPtrInput `pulumi:"delete"`
+	// Query params for the read operation.
+	Read EnvGroupReadQueryParamsPtrInput `pulumi:"read"`
+	// Query params for the update operation.
+	Update EnvGroupUpdateQueryParamsPtrInput `pulumi:"update"`
+}
+
+func (EnvGroupQueryParamsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*EnvGroupQueryParams)(nil)).Elem()
+}
+
+func (i EnvGroupQueryParamsArgs) ToEnvGroupQueryParamsOutput() EnvGroupQueryParamsOutput {
+	return i.ToEnvGroupQueryParamsOutputWithContext(context.Background())
+}
+
+func (i EnvGroupQueryParamsArgs) ToEnvGroupQueryParamsOutputWithContext(ctx context.Context) EnvGroupQueryParamsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(EnvGroupQueryParamsOutput)
+}
+
+func (i EnvGroupQueryParamsArgs) ToEnvGroupQueryParamsPtrOutput() EnvGroupQueryParamsPtrOutput {
+	return i.ToEnvGroupQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i EnvGroupQueryParamsArgs) ToEnvGroupQueryParamsPtrOutputWithContext(ctx context.Context) EnvGroupQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(EnvGroupQueryParamsOutput).ToEnvGroupQueryParamsPtrOutputWithContext(ctx)
+}
+
+// EnvGroupQueryParamsPtrInput is an input type that accepts EnvGroupQueryParamsArgs, EnvGroupQueryParamsPtr and EnvGroupQueryParamsPtrOutput values.
+// You can construct a concrete instance of `EnvGroupQueryParamsPtrInput` via:
+//
+//	        EnvGroupQueryParamsArgs{...}
+//
+//	or:
+//
+//	        nil
+type EnvGroupQueryParamsPtrInput interface {
+	pulumi.Input
+
+	ToEnvGroupQueryParamsPtrOutput() EnvGroupQueryParamsPtrOutput
+	ToEnvGroupQueryParamsPtrOutputWithContext(context.Context) EnvGroupQueryParamsPtrOutput
+}
+
+type envGroupQueryParamsPtrType EnvGroupQueryParamsArgs
+
+func EnvGroupQueryParamsPtr(v *EnvGroupQueryParamsArgs) EnvGroupQueryParamsPtrInput {
+	return (*envGroupQueryParamsPtrType)(v)
+}
+
+func (*envGroupQueryParamsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**EnvGroupQueryParams)(nil)).Elem()
+}
+
+func (i *envGroupQueryParamsPtrType) ToEnvGroupQueryParamsPtrOutput() EnvGroupQueryParamsPtrOutput {
+	return i.ToEnvGroupQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i *envGroupQueryParamsPtrType) ToEnvGroupQueryParamsPtrOutputWithContext(ctx context.Context) EnvGroupQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(EnvGroupQueryParamsPtrOutput)
+}
+
+// Query params for each of the operations of the resource.
+type EnvGroupQueryParamsOutput struct{ *pulumi.OutputState }
+
+func (EnvGroupQueryParamsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*EnvGroupQueryParams)(nil)).Elem()
+}
+
+func (o EnvGroupQueryParamsOutput) ToEnvGroupQueryParamsOutput() EnvGroupQueryParamsOutput {
+	return o
+}
+
+func (o EnvGroupQueryParamsOutput) ToEnvGroupQueryParamsOutputWithContext(ctx context.Context) EnvGroupQueryParamsOutput {
+	return o
+}
+
+func (o EnvGroupQueryParamsOutput) ToEnvGroupQueryParamsPtrOutput() EnvGroupQueryParamsPtrOutput {
+	return o.ToEnvGroupQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (o EnvGroupQueryParamsOutput) ToEnvGroupQueryParamsPtrOutputWithContext(ctx context.Context) EnvGroupQueryParamsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v EnvGroupQueryParams) *EnvGroupQueryParams {
+		return &v
+	}).(EnvGroupQueryParamsPtrOutput)
+}
+
+// Query params for the create operation.
+func (o EnvGroupQueryParamsOutput) Create() EnvGroupCreateQueryParamsPtrOutput {
+	return o.ApplyT(func(v EnvGroupQueryParams) *EnvGroupCreateQueryParams { return v.Create }).(EnvGroupCreateQueryParamsPtrOutput)
+}
+
+// Query params for the delete operation.
+func (o EnvGroupQueryParamsOutput) Delete() EnvGroupDeleteQueryParamsPtrOutput {
+	return o.ApplyT(func(v EnvGroupQueryParams) *EnvGroupDeleteQueryParams { return v.Delete }).(EnvGroupDeleteQueryParamsPtrOutput)
+}
+
+// Query params for the read operation.
+func (o EnvGroupQueryParamsOutput) Read() EnvGroupReadQueryParamsPtrOutput {
+	return o.ApplyT(func(v EnvGroupQueryParams) *EnvGroupReadQueryParams { return v.Read }).(EnvGroupReadQueryParamsPtrOutput)
+}
+
+// Query params for the update operation.
+func (o EnvGroupQueryParamsOutput) Update() EnvGroupUpdateQueryParamsPtrOutput {
+	return o.ApplyT(func(v EnvGroupQueryParams) *EnvGroupUpdateQueryParams { return v.Update }).(EnvGroupUpdateQueryParamsPtrOutput)
+}
+
+type EnvGroupQueryParamsPtrOutput struct{ *pulumi.OutputState }
+
+func (EnvGroupQueryParamsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**EnvGroupQueryParams)(nil)).Elem()
+}
+
+func (o EnvGroupQueryParamsPtrOutput) ToEnvGroupQueryParamsPtrOutput() EnvGroupQueryParamsPtrOutput {
+	return o
+}
+
+func (o EnvGroupQueryParamsPtrOutput) ToEnvGroupQueryParamsPtrOutputWithContext(ctx context.Context) EnvGroupQueryParamsPtrOutput {
+	return o
+}
+
+func (o EnvGroupQueryParamsPtrOutput) Elem() EnvGroupQueryParamsOutput {
+	return o.ApplyT(func(v *EnvGroupQueryParams) EnvGroupQueryParams {
+		if v != nil {
+			return *v
+		}
+		var ret EnvGroupQueryParams
+		return ret
+	}).(EnvGroupQueryParamsOutput)
+}
+
+// Query params for the create operation.
+func (o EnvGroupQueryParamsPtrOutput) Create() EnvGroupCreateQueryParamsPtrOutput {
+	return o.ApplyT(func(v *EnvGroupQueryParams) *EnvGroupCreateQueryParams {
+		if v == nil {
+			return nil
+		}
+		return v.Create
+	}).(EnvGroupCreateQueryParamsPtrOutput)
+}
+
+// Query params for the delete operation.
+func (o EnvGroupQueryParamsPtrOutput) Delete() EnvGroupDeleteQueryParamsPtrOutput {
+	return o.ApplyT(func(v *EnvGroupQueryParams) *EnvGroupDeleteQueryParams {
+		if v == nil {
+			return nil
+		}
+		return v.Delete
+	}).(EnvGroupDeleteQueryParamsPtrOutput)
+}
+
+// Query params for the read operation.
+func (o EnvGroupQueryParamsPtrOutput) Read() EnvGroupReadQueryParamsPtrOutput {
+	return o.ApplyT(func(v *EnvGroupQueryParams) *EnvGroupReadQueryParams {
+		if v == nil {
+			return nil
+		}
+		return v.Read
+	}).(EnvGroupReadQueryParamsPtrOutput)
+}
+
+// Query params for the update operation.
+func (o EnvGroupQueryParamsPtrOutput) Update() EnvGroupUpdateQueryParamsPtrOutput {
+	return o.ApplyT(func(v *EnvGroupQueryParams) *EnvGroupUpdateQueryParams {
+		if v == nil {
+			return nil
+		}
+		return v.Update
+	}).(EnvGroupUpdateQueryParamsPtrOutput)
+}
+
+// Query params for the API request.
+type EnvGroupReadQueryParams struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams map[string]string `pulumi:"additionalParams"`
+}
+
+// EnvGroupReadQueryParamsInput is an input type that accepts EnvGroupReadQueryParamsArgs and EnvGroupReadQueryParamsOutput values.
+// You can construct a concrete instance of `EnvGroupReadQueryParamsInput` via:
+//
+//	EnvGroupReadQueryParamsArgs{...}
+type EnvGroupReadQueryParamsInput interface {
+	pulumi.Input
+
+	ToEnvGroupReadQueryParamsOutput() EnvGroupReadQueryParamsOutput
+	ToEnvGroupReadQueryParamsOutputWithContext(context.Context) EnvGroupReadQueryParamsOutput
+}
+
+// Query params for the API request.
+type EnvGroupReadQueryParamsArgs struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams pulumi.StringMapInput `pulumi:"additionalParams"`
+}
+
+func (EnvGroupReadQueryParamsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*EnvGroupReadQueryParams)(nil)).Elem()
+}
+
+func (i EnvGroupReadQueryParamsArgs) ToEnvGroupReadQueryParamsOutput() EnvGroupReadQueryParamsOutput {
+	return i.ToEnvGroupReadQueryParamsOutputWithContext(context.Background())
+}
+
+func (i EnvGroupReadQueryParamsArgs) ToEnvGroupReadQueryParamsOutputWithContext(ctx context.Context) EnvGroupReadQueryParamsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(EnvGroupReadQueryParamsOutput)
+}
+
+func (i EnvGroupReadQueryParamsArgs) ToEnvGroupReadQueryParamsPtrOutput() EnvGroupReadQueryParamsPtrOutput {
+	return i.ToEnvGroupReadQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i EnvGroupReadQueryParamsArgs) ToEnvGroupReadQueryParamsPtrOutputWithContext(ctx context.Context) EnvGroupReadQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(EnvGroupReadQueryParamsOutput).ToEnvGroupReadQueryParamsPtrOutputWithContext(ctx)
+}
+
+// EnvGroupReadQueryParamsPtrInput is an input type that accepts EnvGroupReadQueryParamsArgs, EnvGroupReadQueryParamsPtr and EnvGroupReadQueryParamsPtrOutput values.
+// You can construct a concrete instance of `EnvGroupReadQueryParamsPtrInput` via:
+//
+//	        EnvGroupReadQueryParamsArgs{...}
+//
+//	or:
+//
+//	        nil
+type EnvGroupReadQueryParamsPtrInput interface {
+	pulumi.Input
+
+	ToEnvGroupReadQueryParamsPtrOutput() EnvGroupReadQueryParamsPtrOutput
+	ToEnvGroupReadQueryParamsPtrOutputWithContext(context.Context) EnvGroupReadQueryParamsPtrOutput
+}
+
+type envGroupReadQueryParamsPtrType EnvGroupReadQueryParamsArgs
+
+func EnvGroupReadQueryParamsPtr(v *EnvGroupReadQueryParamsArgs) EnvGroupReadQueryParamsPtrInput {
+	return (*envGroupReadQueryParamsPtrType)(v)
+}
+
+func (*envGroupReadQueryParamsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**EnvGroupReadQueryParams)(nil)).Elem()
+}
+
+func (i *envGroupReadQueryParamsPtrType) ToEnvGroupReadQueryParamsPtrOutput() EnvGroupReadQueryParamsPtrOutput {
+	return i.ToEnvGroupReadQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i *envGroupReadQueryParamsPtrType) ToEnvGroupReadQueryParamsPtrOutputWithContext(ctx context.Context) EnvGroupReadQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(EnvGroupReadQueryParamsPtrOutput)
+}
+
+// Query params for the API request.
+type EnvGroupReadQueryParamsOutput struct{ *pulumi.OutputState }
+
+func (EnvGroupReadQueryParamsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*EnvGroupReadQueryParams)(nil)).Elem()
+}
+
+func (o EnvGroupReadQueryParamsOutput) ToEnvGroupReadQueryParamsOutput() EnvGroupReadQueryParamsOutput {
+	return o
+}
+
+func (o EnvGroupReadQueryParamsOutput) ToEnvGroupReadQueryParamsOutputWithContext(ctx context.Context) EnvGroupReadQueryParamsOutput {
+	return o
+}
+
+func (o EnvGroupReadQueryParamsOutput) ToEnvGroupReadQueryParamsPtrOutput() EnvGroupReadQueryParamsPtrOutput {
+	return o.ToEnvGroupReadQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (o EnvGroupReadQueryParamsOutput) ToEnvGroupReadQueryParamsPtrOutputWithContext(ctx context.Context) EnvGroupReadQueryParamsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v EnvGroupReadQueryParams) *EnvGroupReadQueryParams {
+		return &v
+	}).(EnvGroupReadQueryParamsPtrOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o EnvGroupReadQueryParamsOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v EnvGroupReadQueryParams) map[string]string { return v.AdditionalParams }).(pulumi.StringMapOutput)
+}
+
+type EnvGroupReadQueryParamsPtrOutput struct{ *pulumi.OutputState }
+
+func (EnvGroupReadQueryParamsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**EnvGroupReadQueryParams)(nil)).Elem()
+}
+
+func (o EnvGroupReadQueryParamsPtrOutput) ToEnvGroupReadQueryParamsPtrOutput() EnvGroupReadQueryParamsPtrOutput {
+	return o
+}
+
+func (o EnvGroupReadQueryParamsPtrOutput) ToEnvGroupReadQueryParamsPtrOutputWithContext(ctx context.Context) EnvGroupReadQueryParamsPtrOutput {
+	return o
+}
+
+func (o EnvGroupReadQueryParamsPtrOutput) Elem() EnvGroupReadQueryParamsOutput {
+	return o.ApplyT(func(v *EnvGroupReadQueryParams) EnvGroupReadQueryParams {
+		if v != nil {
+			return *v
+		}
+		var ret EnvGroupReadQueryParams
+		return ret
+	}).(EnvGroupReadQueryParamsOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o EnvGroupReadQueryParamsPtrOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *EnvGroupReadQueryParams) map[string]string {
+		if v == nil {
+			return nil
+		}
+		return v.AdditionalParams
+	}).(pulumi.StringMapOutput)
+}
+
+// Query params for the API request.
+type EnvGroupSecretFileCreateQueryParams struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams map[string]string `pulumi:"additionalParams"`
+}
+
+// EnvGroupSecretFileCreateQueryParamsInput is an input type that accepts EnvGroupSecretFileCreateQueryParamsArgs and EnvGroupSecretFileCreateQueryParamsOutput values.
+// You can construct a concrete instance of `EnvGroupSecretFileCreateQueryParamsInput` via:
+//
+//	EnvGroupSecretFileCreateQueryParamsArgs{...}
+type EnvGroupSecretFileCreateQueryParamsInput interface {
+	pulumi.Input
+
+	ToEnvGroupSecretFileCreateQueryParamsOutput() EnvGroupSecretFileCreateQueryParamsOutput
+	ToEnvGroupSecretFileCreateQueryParamsOutputWithContext(context.Context) EnvGroupSecretFileCreateQueryParamsOutput
+}
+
+// Query params for the API request.
+type EnvGroupSecretFileCreateQueryParamsArgs struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams pulumi.StringMapInput `pulumi:"additionalParams"`
+}
+
+func (EnvGroupSecretFileCreateQueryParamsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*EnvGroupSecretFileCreateQueryParams)(nil)).Elem()
+}
+
+func (i EnvGroupSecretFileCreateQueryParamsArgs) ToEnvGroupSecretFileCreateQueryParamsOutput() EnvGroupSecretFileCreateQueryParamsOutput {
+	return i.ToEnvGroupSecretFileCreateQueryParamsOutputWithContext(context.Background())
+}
+
+func (i EnvGroupSecretFileCreateQueryParamsArgs) ToEnvGroupSecretFileCreateQueryParamsOutputWithContext(ctx context.Context) EnvGroupSecretFileCreateQueryParamsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(EnvGroupSecretFileCreateQueryParamsOutput)
+}
+
+func (i EnvGroupSecretFileCreateQueryParamsArgs) ToEnvGroupSecretFileCreateQueryParamsPtrOutput() EnvGroupSecretFileCreateQueryParamsPtrOutput {
+	return i.ToEnvGroupSecretFileCreateQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i EnvGroupSecretFileCreateQueryParamsArgs) ToEnvGroupSecretFileCreateQueryParamsPtrOutputWithContext(ctx context.Context) EnvGroupSecretFileCreateQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(EnvGroupSecretFileCreateQueryParamsOutput).ToEnvGroupSecretFileCreateQueryParamsPtrOutputWithContext(ctx)
+}
+
+// EnvGroupSecretFileCreateQueryParamsPtrInput is an input type that accepts EnvGroupSecretFileCreateQueryParamsArgs, EnvGroupSecretFileCreateQueryParamsPtr and EnvGroupSecretFileCreateQueryParamsPtrOutput values.
+// You can construct a concrete instance of `EnvGroupSecretFileCreateQueryParamsPtrInput` via:
+//
+//	        EnvGroupSecretFileCreateQueryParamsArgs{...}
+//
+//	or:
+//
+//	        nil
+type EnvGroupSecretFileCreateQueryParamsPtrInput interface {
+	pulumi.Input
+
+	ToEnvGroupSecretFileCreateQueryParamsPtrOutput() EnvGroupSecretFileCreateQueryParamsPtrOutput
+	ToEnvGroupSecretFileCreateQueryParamsPtrOutputWithContext(context.Context) EnvGroupSecretFileCreateQueryParamsPtrOutput
+}
+
+type envGroupSecretFileCreateQueryParamsPtrType EnvGroupSecretFileCreateQueryParamsArgs
+
+func EnvGroupSecretFileCreateQueryParamsPtr(v *EnvGroupSecretFileCreateQueryParamsArgs) EnvGroupSecretFileCreateQueryParamsPtrInput {
+	return (*envGroupSecretFileCreateQueryParamsPtrType)(v)
+}
+
+func (*envGroupSecretFileCreateQueryParamsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**EnvGroupSecretFileCreateQueryParams)(nil)).Elem()
+}
+
+func (i *envGroupSecretFileCreateQueryParamsPtrType) ToEnvGroupSecretFileCreateQueryParamsPtrOutput() EnvGroupSecretFileCreateQueryParamsPtrOutput {
+	return i.ToEnvGroupSecretFileCreateQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i *envGroupSecretFileCreateQueryParamsPtrType) ToEnvGroupSecretFileCreateQueryParamsPtrOutputWithContext(ctx context.Context) EnvGroupSecretFileCreateQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(EnvGroupSecretFileCreateQueryParamsPtrOutput)
+}
+
+// Query params for the API request.
+type EnvGroupSecretFileCreateQueryParamsOutput struct{ *pulumi.OutputState }
+
+func (EnvGroupSecretFileCreateQueryParamsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*EnvGroupSecretFileCreateQueryParams)(nil)).Elem()
+}
+
+func (o EnvGroupSecretFileCreateQueryParamsOutput) ToEnvGroupSecretFileCreateQueryParamsOutput() EnvGroupSecretFileCreateQueryParamsOutput {
+	return o
+}
+
+func (o EnvGroupSecretFileCreateQueryParamsOutput) ToEnvGroupSecretFileCreateQueryParamsOutputWithContext(ctx context.Context) EnvGroupSecretFileCreateQueryParamsOutput {
+	return o
+}
+
+func (o EnvGroupSecretFileCreateQueryParamsOutput) ToEnvGroupSecretFileCreateQueryParamsPtrOutput() EnvGroupSecretFileCreateQueryParamsPtrOutput {
+	return o.ToEnvGroupSecretFileCreateQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (o EnvGroupSecretFileCreateQueryParamsOutput) ToEnvGroupSecretFileCreateQueryParamsPtrOutputWithContext(ctx context.Context) EnvGroupSecretFileCreateQueryParamsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v EnvGroupSecretFileCreateQueryParams) *EnvGroupSecretFileCreateQueryParams {
+		return &v
+	}).(EnvGroupSecretFileCreateQueryParamsPtrOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o EnvGroupSecretFileCreateQueryParamsOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v EnvGroupSecretFileCreateQueryParams) map[string]string { return v.AdditionalParams }).(pulumi.StringMapOutput)
+}
+
+type EnvGroupSecretFileCreateQueryParamsPtrOutput struct{ *pulumi.OutputState }
+
+func (EnvGroupSecretFileCreateQueryParamsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**EnvGroupSecretFileCreateQueryParams)(nil)).Elem()
+}
+
+func (o EnvGroupSecretFileCreateQueryParamsPtrOutput) ToEnvGroupSecretFileCreateQueryParamsPtrOutput() EnvGroupSecretFileCreateQueryParamsPtrOutput {
+	return o
+}
+
+func (o EnvGroupSecretFileCreateQueryParamsPtrOutput) ToEnvGroupSecretFileCreateQueryParamsPtrOutputWithContext(ctx context.Context) EnvGroupSecretFileCreateQueryParamsPtrOutput {
+	return o
+}
+
+func (o EnvGroupSecretFileCreateQueryParamsPtrOutput) Elem() EnvGroupSecretFileCreateQueryParamsOutput {
+	return o.ApplyT(func(v *EnvGroupSecretFileCreateQueryParams) EnvGroupSecretFileCreateQueryParams {
+		if v != nil {
+			return *v
+		}
+		var ret EnvGroupSecretFileCreateQueryParams
+		return ret
+	}).(EnvGroupSecretFileCreateQueryParamsOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o EnvGroupSecretFileCreateQueryParamsPtrOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *EnvGroupSecretFileCreateQueryParams) map[string]string {
+		if v == nil {
+			return nil
+		}
+		return v.AdditionalParams
+	}).(pulumi.StringMapOutput)
+}
+
+// Query params for the API request.
+type EnvGroupSecretFileDeleteQueryParams struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams map[string]string `pulumi:"additionalParams"`
+}
+
+// EnvGroupSecretFileDeleteQueryParamsInput is an input type that accepts EnvGroupSecretFileDeleteQueryParamsArgs and EnvGroupSecretFileDeleteQueryParamsOutput values.
+// You can construct a concrete instance of `EnvGroupSecretFileDeleteQueryParamsInput` via:
+//
+//	EnvGroupSecretFileDeleteQueryParamsArgs{...}
+type EnvGroupSecretFileDeleteQueryParamsInput interface {
+	pulumi.Input
+
+	ToEnvGroupSecretFileDeleteQueryParamsOutput() EnvGroupSecretFileDeleteQueryParamsOutput
+	ToEnvGroupSecretFileDeleteQueryParamsOutputWithContext(context.Context) EnvGroupSecretFileDeleteQueryParamsOutput
+}
+
+// Query params for the API request.
+type EnvGroupSecretFileDeleteQueryParamsArgs struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams pulumi.StringMapInput `pulumi:"additionalParams"`
+}
+
+func (EnvGroupSecretFileDeleteQueryParamsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*EnvGroupSecretFileDeleteQueryParams)(nil)).Elem()
+}
+
+func (i EnvGroupSecretFileDeleteQueryParamsArgs) ToEnvGroupSecretFileDeleteQueryParamsOutput() EnvGroupSecretFileDeleteQueryParamsOutput {
+	return i.ToEnvGroupSecretFileDeleteQueryParamsOutputWithContext(context.Background())
+}
+
+func (i EnvGroupSecretFileDeleteQueryParamsArgs) ToEnvGroupSecretFileDeleteQueryParamsOutputWithContext(ctx context.Context) EnvGroupSecretFileDeleteQueryParamsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(EnvGroupSecretFileDeleteQueryParamsOutput)
+}
+
+func (i EnvGroupSecretFileDeleteQueryParamsArgs) ToEnvGroupSecretFileDeleteQueryParamsPtrOutput() EnvGroupSecretFileDeleteQueryParamsPtrOutput {
+	return i.ToEnvGroupSecretFileDeleteQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i EnvGroupSecretFileDeleteQueryParamsArgs) ToEnvGroupSecretFileDeleteQueryParamsPtrOutputWithContext(ctx context.Context) EnvGroupSecretFileDeleteQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(EnvGroupSecretFileDeleteQueryParamsOutput).ToEnvGroupSecretFileDeleteQueryParamsPtrOutputWithContext(ctx)
+}
+
+// EnvGroupSecretFileDeleteQueryParamsPtrInput is an input type that accepts EnvGroupSecretFileDeleteQueryParamsArgs, EnvGroupSecretFileDeleteQueryParamsPtr and EnvGroupSecretFileDeleteQueryParamsPtrOutput values.
+// You can construct a concrete instance of `EnvGroupSecretFileDeleteQueryParamsPtrInput` via:
+//
+//	        EnvGroupSecretFileDeleteQueryParamsArgs{...}
+//
+//	or:
+//
+//	        nil
+type EnvGroupSecretFileDeleteQueryParamsPtrInput interface {
+	pulumi.Input
+
+	ToEnvGroupSecretFileDeleteQueryParamsPtrOutput() EnvGroupSecretFileDeleteQueryParamsPtrOutput
+	ToEnvGroupSecretFileDeleteQueryParamsPtrOutputWithContext(context.Context) EnvGroupSecretFileDeleteQueryParamsPtrOutput
+}
+
+type envGroupSecretFileDeleteQueryParamsPtrType EnvGroupSecretFileDeleteQueryParamsArgs
+
+func EnvGroupSecretFileDeleteQueryParamsPtr(v *EnvGroupSecretFileDeleteQueryParamsArgs) EnvGroupSecretFileDeleteQueryParamsPtrInput {
+	return (*envGroupSecretFileDeleteQueryParamsPtrType)(v)
+}
+
+func (*envGroupSecretFileDeleteQueryParamsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**EnvGroupSecretFileDeleteQueryParams)(nil)).Elem()
+}
+
+func (i *envGroupSecretFileDeleteQueryParamsPtrType) ToEnvGroupSecretFileDeleteQueryParamsPtrOutput() EnvGroupSecretFileDeleteQueryParamsPtrOutput {
+	return i.ToEnvGroupSecretFileDeleteQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i *envGroupSecretFileDeleteQueryParamsPtrType) ToEnvGroupSecretFileDeleteQueryParamsPtrOutputWithContext(ctx context.Context) EnvGroupSecretFileDeleteQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(EnvGroupSecretFileDeleteQueryParamsPtrOutput)
+}
+
+// Query params for the API request.
+type EnvGroupSecretFileDeleteQueryParamsOutput struct{ *pulumi.OutputState }
+
+func (EnvGroupSecretFileDeleteQueryParamsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*EnvGroupSecretFileDeleteQueryParams)(nil)).Elem()
+}
+
+func (o EnvGroupSecretFileDeleteQueryParamsOutput) ToEnvGroupSecretFileDeleteQueryParamsOutput() EnvGroupSecretFileDeleteQueryParamsOutput {
+	return o
+}
+
+func (o EnvGroupSecretFileDeleteQueryParamsOutput) ToEnvGroupSecretFileDeleteQueryParamsOutputWithContext(ctx context.Context) EnvGroupSecretFileDeleteQueryParamsOutput {
+	return o
+}
+
+func (o EnvGroupSecretFileDeleteQueryParamsOutput) ToEnvGroupSecretFileDeleteQueryParamsPtrOutput() EnvGroupSecretFileDeleteQueryParamsPtrOutput {
+	return o.ToEnvGroupSecretFileDeleteQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (o EnvGroupSecretFileDeleteQueryParamsOutput) ToEnvGroupSecretFileDeleteQueryParamsPtrOutputWithContext(ctx context.Context) EnvGroupSecretFileDeleteQueryParamsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v EnvGroupSecretFileDeleteQueryParams) *EnvGroupSecretFileDeleteQueryParams {
+		return &v
+	}).(EnvGroupSecretFileDeleteQueryParamsPtrOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o EnvGroupSecretFileDeleteQueryParamsOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v EnvGroupSecretFileDeleteQueryParams) map[string]string { return v.AdditionalParams }).(pulumi.StringMapOutput)
+}
+
+type EnvGroupSecretFileDeleteQueryParamsPtrOutput struct{ *pulumi.OutputState }
+
+func (EnvGroupSecretFileDeleteQueryParamsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**EnvGroupSecretFileDeleteQueryParams)(nil)).Elem()
+}
+
+func (o EnvGroupSecretFileDeleteQueryParamsPtrOutput) ToEnvGroupSecretFileDeleteQueryParamsPtrOutput() EnvGroupSecretFileDeleteQueryParamsPtrOutput {
+	return o
+}
+
+func (o EnvGroupSecretFileDeleteQueryParamsPtrOutput) ToEnvGroupSecretFileDeleteQueryParamsPtrOutputWithContext(ctx context.Context) EnvGroupSecretFileDeleteQueryParamsPtrOutput {
+	return o
+}
+
+func (o EnvGroupSecretFileDeleteQueryParamsPtrOutput) Elem() EnvGroupSecretFileDeleteQueryParamsOutput {
+	return o.ApplyT(func(v *EnvGroupSecretFileDeleteQueryParams) EnvGroupSecretFileDeleteQueryParams {
+		if v != nil {
+			return *v
+		}
+		var ret EnvGroupSecretFileDeleteQueryParams
+		return ret
+	}).(EnvGroupSecretFileDeleteQueryParamsOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o EnvGroupSecretFileDeleteQueryParamsPtrOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *EnvGroupSecretFileDeleteQueryParams) map[string]string {
+		if v == nil {
+			return nil
+		}
+		return v.AdditionalParams
+	}).(pulumi.StringMapOutput)
+}
+
+// Query params for the API request.
+type EnvGroupSecretFilePutQueryParams struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams map[string]string `pulumi:"additionalParams"`
+}
+
+// EnvGroupSecretFilePutQueryParamsInput is an input type that accepts EnvGroupSecretFilePutQueryParamsArgs and EnvGroupSecretFilePutQueryParamsOutput values.
+// You can construct a concrete instance of `EnvGroupSecretFilePutQueryParamsInput` via:
+//
+//	EnvGroupSecretFilePutQueryParamsArgs{...}
+type EnvGroupSecretFilePutQueryParamsInput interface {
+	pulumi.Input
+
+	ToEnvGroupSecretFilePutQueryParamsOutput() EnvGroupSecretFilePutQueryParamsOutput
+	ToEnvGroupSecretFilePutQueryParamsOutputWithContext(context.Context) EnvGroupSecretFilePutQueryParamsOutput
+}
+
+// Query params for the API request.
+type EnvGroupSecretFilePutQueryParamsArgs struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams pulumi.StringMapInput `pulumi:"additionalParams"`
+}
+
+func (EnvGroupSecretFilePutQueryParamsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*EnvGroupSecretFilePutQueryParams)(nil)).Elem()
+}
+
+func (i EnvGroupSecretFilePutQueryParamsArgs) ToEnvGroupSecretFilePutQueryParamsOutput() EnvGroupSecretFilePutQueryParamsOutput {
+	return i.ToEnvGroupSecretFilePutQueryParamsOutputWithContext(context.Background())
+}
+
+func (i EnvGroupSecretFilePutQueryParamsArgs) ToEnvGroupSecretFilePutQueryParamsOutputWithContext(ctx context.Context) EnvGroupSecretFilePutQueryParamsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(EnvGroupSecretFilePutQueryParamsOutput)
+}
+
+func (i EnvGroupSecretFilePutQueryParamsArgs) ToEnvGroupSecretFilePutQueryParamsPtrOutput() EnvGroupSecretFilePutQueryParamsPtrOutput {
+	return i.ToEnvGroupSecretFilePutQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i EnvGroupSecretFilePutQueryParamsArgs) ToEnvGroupSecretFilePutQueryParamsPtrOutputWithContext(ctx context.Context) EnvGroupSecretFilePutQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(EnvGroupSecretFilePutQueryParamsOutput).ToEnvGroupSecretFilePutQueryParamsPtrOutputWithContext(ctx)
+}
+
+// EnvGroupSecretFilePutQueryParamsPtrInput is an input type that accepts EnvGroupSecretFilePutQueryParamsArgs, EnvGroupSecretFilePutQueryParamsPtr and EnvGroupSecretFilePutQueryParamsPtrOutput values.
+// You can construct a concrete instance of `EnvGroupSecretFilePutQueryParamsPtrInput` via:
+//
+//	        EnvGroupSecretFilePutQueryParamsArgs{...}
+//
+//	or:
+//
+//	        nil
+type EnvGroupSecretFilePutQueryParamsPtrInput interface {
+	pulumi.Input
+
+	ToEnvGroupSecretFilePutQueryParamsPtrOutput() EnvGroupSecretFilePutQueryParamsPtrOutput
+	ToEnvGroupSecretFilePutQueryParamsPtrOutputWithContext(context.Context) EnvGroupSecretFilePutQueryParamsPtrOutput
+}
+
+type envGroupSecretFilePutQueryParamsPtrType EnvGroupSecretFilePutQueryParamsArgs
+
+func EnvGroupSecretFilePutQueryParamsPtr(v *EnvGroupSecretFilePutQueryParamsArgs) EnvGroupSecretFilePutQueryParamsPtrInput {
+	return (*envGroupSecretFilePutQueryParamsPtrType)(v)
+}
+
+func (*envGroupSecretFilePutQueryParamsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**EnvGroupSecretFilePutQueryParams)(nil)).Elem()
+}
+
+func (i *envGroupSecretFilePutQueryParamsPtrType) ToEnvGroupSecretFilePutQueryParamsPtrOutput() EnvGroupSecretFilePutQueryParamsPtrOutput {
+	return i.ToEnvGroupSecretFilePutQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i *envGroupSecretFilePutQueryParamsPtrType) ToEnvGroupSecretFilePutQueryParamsPtrOutputWithContext(ctx context.Context) EnvGroupSecretFilePutQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(EnvGroupSecretFilePutQueryParamsPtrOutput)
+}
+
+// Query params for the API request.
+type EnvGroupSecretFilePutQueryParamsOutput struct{ *pulumi.OutputState }
+
+func (EnvGroupSecretFilePutQueryParamsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*EnvGroupSecretFilePutQueryParams)(nil)).Elem()
+}
+
+func (o EnvGroupSecretFilePutQueryParamsOutput) ToEnvGroupSecretFilePutQueryParamsOutput() EnvGroupSecretFilePutQueryParamsOutput {
+	return o
+}
+
+func (o EnvGroupSecretFilePutQueryParamsOutput) ToEnvGroupSecretFilePutQueryParamsOutputWithContext(ctx context.Context) EnvGroupSecretFilePutQueryParamsOutput {
+	return o
+}
+
+func (o EnvGroupSecretFilePutQueryParamsOutput) ToEnvGroupSecretFilePutQueryParamsPtrOutput() EnvGroupSecretFilePutQueryParamsPtrOutput {
+	return o.ToEnvGroupSecretFilePutQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (o EnvGroupSecretFilePutQueryParamsOutput) ToEnvGroupSecretFilePutQueryParamsPtrOutputWithContext(ctx context.Context) EnvGroupSecretFilePutQueryParamsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v EnvGroupSecretFilePutQueryParams) *EnvGroupSecretFilePutQueryParams {
+		return &v
+	}).(EnvGroupSecretFilePutQueryParamsPtrOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o EnvGroupSecretFilePutQueryParamsOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v EnvGroupSecretFilePutQueryParams) map[string]string { return v.AdditionalParams }).(pulumi.StringMapOutput)
+}
+
+type EnvGroupSecretFilePutQueryParamsPtrOutput struct{ *pulumi.OutputState }
+
+func (EnvGroupSecretFilePutQueryParamsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**EnvGroupSecretFilePutQueryParams)(nil)).Elem()
+}
+
+func (o EnvGroupSecretFilePutQueryParamsPtrOutput) ToEnvGroupSecretFilePutQueryParamsPtrOutput() EnvGroupSecretFilePutQueryParamsPtrOutput {
+	return o
+}
+
+func (o EnvGroupSecretFilePutQueryParamsPtrOutput) ToEnvGroupSecretFilePutQueryParamsPtrOutputWithContext(ctx context.Context) EnvGroupSecretFilePutQueryParamsPtrOutput {
+	return o
+}
+
+func (o EnvGroupSecretFilePutQueryParamsPtrOutput) Elem() EnvGroupSecretFilePutQueryParamsOutput {
+	return o.ApplyT(func(v *EnvGroupSecretFilePutQueryParams) EnvGroupSecretFilePutQueryParams {
+		if v != nil {
+			return *v
+		}
+		var ret EnvGroupSecretFilePutQueryParams
+		return ret
+	}).(EnvGroupSecretFilePutQueryParamsOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o EnvGroupSecretFilePutQueryParamsPtrOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *EnvGroupSecretFilePutQueryParams) map[string]string {
+		if v == nil {
+			return nil
+		}
+		return v.AdditionalParams
+	}).(pulumi.StringMapOutput)
+}
+
+// Query params for each of the operations of the resource.
+type EnvGroupSecretFileQueryParams struct {
+	// Query params for the create operation.
+	Create *EnvGroupSecretFileCreateQueryParams `pulumi:"create"`
+	// Query params for the delete operation.
+	Delete *EnvGroupSecretFileDeleteQueryParams `pulumi:"delete"`
+	// Query params for the put operation.
+	Put *EnvGroupSecretFilePutQueryParams `pulumi:"put"`
+	// Query params for the read operation.
+	Read *EnvGroupSecretFileReadQueryParams `pulumi:"read"`
+}
+
+// EnvGroupSecretFileQueryParamsInput is an input type that accepts EnvGroupSecretFileQueryParamsArgs and EnvGroupSecretFileQueryParamsOutput values.
+// You can construct a concrete instance of `EnvGroupSecretFileQueryParamsInput` via:
+//
+//	EnvGroupSecretFileQueryParamsArgs{...}
+type EnvGroupSecretFileQueryParamsInput interface {
+	pulumi.Input
+
+	ToEnvGroupSecretFileQueryParamsOutput() EnvGroupSecretFileQueryParamsOutput
+	ToEnvGroupSecretFileQueryParamsOutputWithContext(context.Context) EnvGroupSecretFileQueryParamsOutput
+}
+
+// Query params for each of the operations of the resource.
+type EnvGroupSecretFileQueryParamsArgs struct {
+	// Query params for the create operation.
+	Create EnvGroupSecretFileCreateQueryParamsPtrInput `pulumi:"create"`
+	// Query params for the delete operation.
+	Delete EnvGroupSecretFileDeleteQueryParamsPtrInput `pulumi:"delete"`
+	// Query params for the put operation.
+	Put EnvGroupSecretFilePutQueryParamsPtrInput `pulumi:"put"`
+	// Query params for the read operation.
+	Read EnvGroupSecretFileReadQueryParamsPtrInput `pulumi:"read"`
+}
+
+func (EnvGroupSecretFileQueryParamsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*EnvGroupSecretFileQueryParams)(nil)).Elem()
+}
+
+func (i EnvGroupSecretFileQueryParamsArgs) ToEnvGroupSecretFileQueryParamsOutput() EnvGroupSecretFileQueryParamsOutput {
+	return i.ToEnvGroupSecretFileQueryParamsOutputWithContext(context.Background())
+}
+
+func (i EnvGroupSecretFileQueryParamsArgs) ToEnvGroupSecretFileQueryParamsOutputWithContext(ctx context.Context) EnvGroupSecretFileQueryParamsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(EnvGroupSecretFileQueryParamsOutput)
+}
+
+func (i EnvGroupSecretFileQueryParamsArgs) ToEnvGroupSecretFileQueryParamsPtrOutput() EnvGroupSecretFileQueryParamsPtrOutput {
+	return i.ToEnvGroupSecretFileQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i EnvGroupSecretFileQueryParamsArgs) ToEnvGroupSecretFileQueryParamsPtrOutputWithContext(ctx context.Context) EnvGroupSecretFileQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(EnvGroupSecretFileQueryParamsOutput).ToEnvGroupSecretFileQueryParamsPtrOutputWithContext(ctx)
+}
+
+// EnvGroupSecretFileQueryParamsPtrInput is an input type that accepts EnvGroupSecretFileQueryParamsArgs, EnvGroupSecretFileQueryParamsPtr and EnvGroupSecretFileQueryParamsPtrOutput values.
+// You can construct a concrete instance of `EnvGroupSecretFileQueryParamsPtrInput` via:
+//
+//	        EnvGroupSecretFileQueryParamsArgs{...}
+//
+//	or:
+//
+//	        nil
+type EnvGroupSecretFileQueryParamsPtrInput interface {
+	pulumi.Input
+
+	ToEnvGroupSecretFileQueryParamsPtrOutput() EnvGroupSecretFileQueryParamsPtrOutput
+	ToEnvGroupSecretFileQueryParamsPtrOutputWithContext(context.Context) EnvGroupSecretFileQueryParamsPtrOutput
+}
+
+type envGroupSecretFileQueryParamsPtrType EnvGroupSecretFileQueryParamsArgs
+
+func EnvGroupSecretFileQueryParamsPtr(v *EnvGroupSecretFileQueryParamsArgs) EnvGroupSecretFileQueryParamsPtrInput {
+	return (*envGroupSecretFileQueryParamsPtrType)(v)
+}
+
+func (*envGroupSecretFileQueryParamsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**EnvGroupSecretFileQueryParams)(nil)).Elem()
+}
+
+func (i *envGroupSecretFileQueryParamsPtrType) ToEnvGroupSecretFileQueryParamsPtrOutput() EnvGroupSecretFileQueryParamsPtrOutput {
+	return i.ToEnvGroupSecretFileQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i *envGroupSecretFileQueryParamsPtrType) ToEnvGroupSecretFileQueryParamsPtrOutputWithContext(ctx context.Context) EnvGroupSecretFileQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(EnvGroupSecretFileQueryParamsPtrOutput)
+}
+
+// Query params for each of the operations of the resource.
+type EnvGroupSecretFileQueryParamsOutput struct{ *pulumi.OutputState }
+
+func (EnvGroupSecretFileQueryParamsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*EnvGroupSecretFileQueryParams)(nil)).Elem()
+}
+
+func (o EnvGroupSecretFileQueryParamsOutput) ToEnvGroupSecretFileQueryParamsOutput() EnvGroupSecretFileQueryParamsOutput {
+	return o
+}
+
+func (o EnvGroupSecretFileQueryParamsOutput) ToEnvGroupSecretFileQueryParamsOutputWithContext(ctx context.Context) EnvGroupSecretFileQueryParamsOutput {
+	return o
+}
+
+func (o EnvGroupSecretFileQueryParamsOutput) ToEnvGroupSecretFileQueryParamsPtrOutput() EnvGroupSecretFileQueryParamsPtrOutput {
+	return o.ToEnvGroupSecretFileQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (o EnvGroupSecretFileQueryParamsOutput) ToEnvGroupSecretFileQueryParamsPtrOutputWithContext(ctx context.Context) EnvGroupSecretFileQueryParamsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v EnvGroupSecretFileQueryParams) *EnvGroupSecretFileQueryParams {
+		return &v
+	}).(EnvGroupSecretFileQueryParamsPtrOutput)
+}
+
+// Query params for the create operation.
+func (o EnvGroupSecretFileQueryParamsOutput) Create() EnvGroupSecretFileCreateQueryParamsPtrOutput {
+	return o.ApplyT(func(v EnvGroupSecretFileQueryParams) *EnvGroupSecretFileCreateQueryParams { return v.Create }).(EnvGroupSecretFileCreateQueryParamsPtrOutput)
+}
+
+// Query params for the delete operation.
+func (o EnvGroupSecretFileQueryParamsOutput) Delete() EnvGroupSecretFileDeleteQueryParamsPtrOutput {
+	return o.ApplyT(func(v EnvGroupSecretFileQueryParams) *EnvGroupSecretFileDeleteQueryParams { return v.Delete }).(EnvGroupSecretFileDeleteQueryParamsPtrOutput)
+}
+
+// Query params for the put operation.
+func (o EnvGroupSecretFileQueryParamsOutput) Put() EnvGroupSecretFilePutQueryParamsPtrOutput {
+	return o.ApplyT(func(v EnvGroupSecretFileQueryParams) *EnvGroupSecretFilePutQueryParams { return v.Put }).(EnvGroupSecretFilePutQueryParamsPtrOutput)
+}
+
+// Query params for the read operation.
+func (o EnvGroupSecretFileQueryParamsOutput) Read() EnvGroupSecretFileReadQueryParamsPtrOutput {
+	return o.ApplyT(func(v EnvGroupSecretFileQueryParams) *EnvGroupSecretFileReadQueryParams { return v.Read }).(EnvGroupSecretFileReadQueryParamsPtrOutput)
+}
+
+type EnvGroupSecretFileQueryParamsPtrOutput struct{ *pulumi.OutputState }
+
+func (EnvGroupSecretFileQueryParamsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**EnvGroupSecretFileQueryParams)(nil)).Elem()
+}
+
+func (o EnvGroupSecretFileQueryParamsPtrOutput) ToEnvGroupSecretFileQueryParamsPtrOutput() EnvGroupSecretFileQueryParamsPtrOutput {
+	return o
+}
+
+func (o EnvGroupSecretFileQueryParamsPtrOutput) ToEnvGroupSecretFileQueryParamsPtrOutputWithContext(ctx context.Context) EnvGroupSecretFileQueryParamsPtrOutput {
+	return o
+}
+
+func (o EnvGroupSecretFileQueryParamsPtrOutput) Elem() EnvGroupSecretFileQueryParamsOutput {
+	return o.ApplyT(func(v *EnvGroupSecretFileQueryParams) EnvGroupSecretFileQueryParams {
+		if v != nil {
+			return *v
+		}
+		var ret EnvGroupSecretFileQueryParams
+		return ret
+	}).(EnvGroupSecretFileQueryParamsOutput)
+}
+
+// Query params for the create operation.
+func (o EnvGroupSecretFileQueryParamsPtrOutput) Create() EnvGroupSecretFileCreateQueryParamsPtrOutput {
+	return o.ApplyT(func(v *EnvGroupSecretFileQueryParams) *EnvGroupSecretFileCreateQueryParams {
+		if v == nil {
+			return nil
+		}
+		return v.Create
+	}).(EnvGroupSecretFileCreateQueryParamsPtrOutput)
+}
+
+// Query params for the delete operation.
+func (o EnvGroupSecretFileQueryParamsPtrOutput) Delete() EnvGroupSecretFileDeleteQueryParamsPtrOutput {
+	return o.ApplyT(func(v *EnvGroupSecretFileQueryParams) *EnvGroupSecretFileDeleteQueryParams {
+		if v == nil {
+			return nil
+		}
+		return v.Delete
+	}).(EnvGroupSecretFileDeleteQueryParamsPtrOutput)
+}
+
+// Query params for the put operation.
+func (o EnvGroupSecretFileQueryParamsPtrOutput) Put() EnvGroupSecretFilePutQueryParamsPtrOutput {
+	return o.ApplyT(func(v *EnvGroupSecretFileQueryParams) *EnvGroupSecretFilePutQueryParams {
+		if v == nil {
+			return nil
+		}
+		return v.Put
+	}).(EnvGroupSecretFilePutQueryParamsPtrOutput)
+}
+
+// Query params for the read operation.
+func (o EnvGroupSecretFileQueryParamsPtrOutput) Read() EnvGroupSecretFileReadQueryParamsPtrOutput {
+	return o.ApplyT(func(v *EnvGroupSecretFileQueryParams) *EnvGroupSecretFileReadQueryParams {
+		if v == nil {
+			return nil
+		}
+		return v.Read
+	}).(EnvGroupSecretFileReadQueryParamsPtrOutput)
+}
+
+// Query params for the API request.
+type EnvGroupSecretFileReadQueryParams struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams map[string]string `pulumi:"additionalParams"`
+}
+
+// EnvGroupSecretFileReadQueryParamsInput is an input type that accepts EnvGroupSecretFileReadQueryParamsArgs and EnvGroupSecretFileReadQueryParamsOutput values.
+// You can construct a concrete instance of `EnvGroupSecretFileReadQueryParamsInput` via:
+//
+//	EnvGroupSecretFileReadQueryParamsArgs{...}
+type EnvGroupSecretFileReadQueryParamsInput interface {
+	pulumi.Input
+
+	ToEnvGroupSecretFileReadQueryParamsOutput() EnvGroupSecretFileReadQueryParamsOutput
+	ToEnvGroupSecretFileReadQueryParamsOutputWithContext(context.Context) EnvGroupSecretFileReadQueryParamsOutput
+}
+
+// Query params for the API request.
+type EnvGroupSecretFileReadQueryParamsArgs struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams pulumi.StringMapInput `pulumi:"additionalParams"`
+}
+
+func (EnvGroupSecretFileReadQueryParamsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*EnvGroupSecretFileReadQueryParams)(nil)).Elem()
+}
+
+func (i EnvGroupSecretFileReadQueryParamsArgs) ToEnvGroupSecretFileReadQueryParamsOutput() EnvGroupSecretFileReadQueryParamsOutput {
+	return i.ToEnvGroupSecretFileReadQueryParamsOutputWithContext(context.Background())
+}
+
+func (i EnvGroupSecretFileReadQueryParamsArgs) ToEnvGroupSecretFileReadQueryParamsOutputWithContext(ctx context.Context) EnvGroupSecretFileReadQueryParamsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(EnvGroupSecretFileReadQueryParamsOutput)
+}
+
+func (i EnvGroupSecretFileReadQueryParamsArgs) ToEnvGroupSecretFileReadQueryParamsPtrOutput() EnvGroupSecretFileReadQueryParamsPtrOutput {
+	return i.ToEnvGroupSecretFileReadQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i EnvGroupSecretFileReadQueryParamsArgs) ToEnvGroupSecretFileReadQueryParamsPtrOutputWithContext(ctx context.Context) EnvGroupSecretFileReadQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(EnvGroupSecretFileReadQueryParamsOutput).ToEnvGroupSecretFileReadQueryParamsPtrOutputWithContext(ctx)
+}
+
+// EnvGroupSecretFileReadQueryParamsPtrInput is an input type that accepts EnvGroupSecretFileReadQueryParamsArgs, EnvGroupSecretFileReadQueryParamsPtr and EnvGroupSecretFileReadQueryParamsPtrOutput values.
+// You can construct a concrete instance of `EnvGroupSecretFileReadQueryParamsPtrInput` via:
+//
+//	        EnvGroupSecretFileReadQueryParamsArgs{...}
+//
+//	or:
+//
+//	        nil
+type EnvGroupSecretFileReadQueryParamsPtrInput interface {
+	pulumi.Input
+
+	ToEnvGroupSecretFileReadQueryParamsPtrOutput() EnvGroupSecretFileReadQueryParamsPtrOutput
+	ToEnvGroupSecretFileReadQueryParamsPtrOutputWithContext(context.Context) EnvGroupSecretFileReadQueryParamsPtrOutput
+}
+
+type envGroupSecretFileReadQueryParamsPtrType EnvGroupSecretFileReadQueryParamsArgs
+
+func EnvGroupSecretFileReadQueryParamsPtr(v *EnvGroupSecretFileReadQueryParamsArgs) EnvGroupSecretFileReadQueryParamsPtrInput {
+	return (*envGroupSecretFileReadQueryParamsPtrType)(v)
+}
+
+func (*envGroupSecretFileReadQueryParamsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**EnvGroupSecretFileReadQueryParams)(nil)).Elem()
+}
+
+func (i *envGroupSecretFileReadQueryParamsPtrType) ToEnvGroupSecretFileReadQueryParamsPtrOutput() EnvGroupSecretFileReadQueryParamsPtrOutput {
+	return i.ToEnvGroupSecretFileReadQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i *envGroupSecretFileReadQueryParamsPtrType) ToEnvGroupSecretFileReadQueryParamsPtrOutputWithContext(ctx context.Context) EnvGroupSecretFileReadQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(EnvGroupSecretFileReadQueryParamsPtrOutput)
+}
+
+// Query params for the API request.
+type EnvGroupSecretFileReadQueryParamsOutput struct{ *pulumi.OutputState }
+
+func (EnvGroupSecretFileReadQueryParamsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*EnvGroupSecretFileReadQueryParams)(nil)).Elem()
+}
+
+func (o EnvGroupSecretFileReadQueryParamsOutput) ToEnvGroupSecretFileReadQueryParamsOutput() EnvGroupSecretFileReadQueryParamsOutput {
+	return o
+}
+
+func (o EnvGroupSecretFileReadQueryParamsOutput) ToEnvGroupSecretFileReadQueryParamsOutputWithContext(ctx context.Context) EnvGroupSecretFileReadQueryParamsOutput {
+	return o
+}
+
+func (o EnvGroupSecretFileReadQueryParamsOutput) ToEnvGroupSecretFileReadQueryParamsPtrOutput() EnvGroupSecretFileReadQueryParamsPtrOutput {
+	return o.ToEnvGroupSecretFileReadQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (o EnvGroupSecretFileReadQueryParamsOutput) ToEnvGroupSecretFileReadQueryParamsPtrOutputWithContext(ctx context.Context) EnvGroupSecretFileReadQueryParamsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v EnvGroupSecretFileReadQueryParams) *EnvGroupSecretFileReadQueryParams {
+		return &v
+	}).(EnvGroupSecretFileReadQueryParamsPtrOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o EnvGroupSecretFileReadQueryParamsOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v EnvGroupSecretFileReadQueryParams) map[string]string { return v.AdditionalParams }).(pulumi.StringMapOutput)
+}
+
+type EnvGroupSecretFileReadQueryParamsPtrOutput struct{ *pulumi.OutputState }
+
+func (EnvGroupSecretFileReadQueryParamsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**EnvGroupSecretFileReadQueryParams)(nil)).Elem()
+}
+
+func (o EnvGroupSecretFileReadQueryParamsPtrOutput) ToEnvGroupSecretFileReadQueryParamsPtrOutput() EnvGroupSecretFileReadQueryParamsPtrOutput {
+	return o
+}
+
+func (o EnvGroupSecretFileReadQueryParamsPtrOutput) ToEnvGroupSecretFileReadQueryParamsPtrOutputWithContext(ctx context.Context) EnvGroupSecretFileReadQueryParamsPtrOutput {
+	return o
+}
+
+func (o EnvGroupSecretFileReadQueryParamsPtrOutput) Elem() EnvGroupSecretFileReadQueryParamsOutput {
+	return o.ApplyT(func(v *EnvGroupSecretFileReadQueryParams) EnvGroupSecretFileReadQueryParams {
+		if v != nil {
+			return *v
+		}
+		var ret EnvGroupSecretFileReadQueryParams
+		return ret
+	}).(EnvGroupSecretFileReadQueryParamsOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o EnvGroupSecretFileReadQueryParamsPtrOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *EnvGroupSecretFileReadQueryParams) map[string]string {
+		if v == nil {
+			return nil
+		}
+		return v.AdditionalParams
+	}).(pulumi.StringMapOutput)
+}
+
+// Query params for the API request.
+type EnvGroupUpdateQueryParams struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams map[string]string `pulumi:"additionalParams"`
+}
+
+// EnvGroupUpdateQueryParamsInput is an input type that accepts EnvGroupUpdateQueryParamsArgs and EnvGroupUpdateQueryParamsOutput values.
+// You can construct a concrete instance of `EnvGroupUpdateQueryParamsInput` via:
+//
+//	EnvGroupUpdateQueryParamsArgs{...}
+type EnvGroupUpdateQueryParamsInput interface {
+	pulumi.Input
+
+	ToEnvGroupUpdateQueryParamsOutput() EnvGroupUpdateQueryParamsOutput
+	ToEnvGroupUpdateQueryParamsOutputWithContext(context.Context) EnvGroupUpdateQueryParamsOutput
+}
+
+// Query params for the API request.
+type EnvGroupUpdateQueryParamsArgs struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams pulumi.StringMapInput `pulumi:"additionalParams"`
+}
+
+func (EnvGroupUpdateQueryParamsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*EnvGroupUpdateQueryParams)(nil)).Elem()
+}
+
+func (i EnvGroupUpdateQueryParamsArgs) ToEnvGroupUpdateQueryParamsOutput() EnvGroupUpdateQueryParamsOutput {
+	return i.ToEnvGroupUpdateQueryParamsOutputWithContext(context.Background())
+}
+
+func (i EnvGroupUpdateQueryParamsArgs) ToEnvGroupUpdateQueryParamsOutputWithContext(ctx context.Context) EnvGroupUpdateQueryParamsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(EnvGroupUpdateQueryParamsOutput)
+}
+
+func (i EnvGroupUpdateQueryParamsArgs) ToEnvGroupUpdateQueryParamsPtrOutput() EnvGroupUpdateQueryParamsPtrOutput {
+	return i.ToEnvGroupUpdateQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i EnvGroupUpdateQueryParamsArgs) ToEnvGroupUpdateQueryParamsPtrOutputWithContext(ctx context.Context) EnvGroupUpdateQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(EnvGroupUpdateQueryParamsOutput).ToEnvGroupUpdateQueryParamsPtrOutputWithContext(ctx)
+}
+
+// EnvGroupUpdateQueryParamsPtrInput is an input type that accepts EnvGroupUpdateQueryParamsArgs, EnvGroupUpdateQueryParamsPtr and EnvGroupUpdateQueryParamsPtrOutput values.
+// You can construct a concrete instance of `EnvGroupUpdateQueryParamsPtrInput` via:
+//
+//	        EnvGroupUpdateQueryParamsArgs{...}
+//
+//	or:
+//
+//	        nil
+type EnvGroupUpdateQueryParamsPtrInput interface {
+	pulumi.Input
+
+	ToEnvGroupUpdateQueryParamsPtrOutput() EnvGroupUpdateQueryParamsPtrOutput
+	ToEnvGroupUpdateQueryParamsPtrOutputWithContext(context.Context) EnvGroupUpdateQueryParamsPtrOutput
+}
+
+type envGroupUpdateQueryParamsPtrType EnvGroupUpdateQueryParamsArgs
+
+func EnvGroupUpdateQueryParamsPtr(v *EnvGroupUpdateQueryParamsArgs) EnvGroupUpdateQueryParamsPtrInput {
+	return (*envGroupUpdateQueryParamsPtrType)(v)
+}
+
+func (*envGroupUpdateQueryParamsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**EnvGroupUpdateQueryParams)(nil)).Elem()
+}
+
+func (i *envGroupUpdateQueryParamsPtrType) ToEnvGroupUpdateQueryParamsPtrOutput() EnvGroupUpdateQueryParamsPtrOutput {
+	return i.ToEnvGroupUpdateQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i *envGroupUpdateQueryParamsPtrType) ToEnvGroupUpdateQueryParamsPtrOutputWithContext(ctx context.Context) EnvGroupUpdateQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(EnvGroupUpdateQueryParamsPtrOutput)
+}
+
+// Query params for the API request.
+type EnvGroupUpdateQueryParamsOutput struct{ *pulumi.OutputState }
+
+func (EnvGroupUpdateQueryParamsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*EnvGroupUpdateQueryParams)(nil)).Elem()
+}
+
+func (o EnvGroupUpdateQueryParamsOutput) ToEnvGroupUpdateQueryParamsOutput() EnvGroupUpdateQueryParamsOutput {
+	return o
+}
+
+func (o EnvGroupUpdateQueryParamsOutput) ToEnvGroupUpdateQueryParamsOutputWithContext(ctx context.Context) EnvGroupUpdateQueryParamsOutput {
+	return o
+}
+
+func (o EnvGroupUpdateQueryParamsOutput) ToEnvGroupUpdateQueryParamsPtrOutput() EnvGroupUpdateQueryParamsPtrOutput {
+	return o.ToEnvGroupUpdateQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (o EnvGroupUpdateQueryParamsOutput) ToEnvGroupUpdateQueryParamsPtrOutputWithContext(ctx context.Context) EnvGroupUpdateQueryParamsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v EnvGroupUpdateQueryParams) *EnvGroupUpdateQueryParams {
+		return &v
+	}).(EnvGroupUpdateQueryParamsPtrOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o EnvGroupUpdateQueryParamsOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v EnvGroupUpdateQueryParams) map[string]string { return v.AdditionalParams }).(pulumi.StringMapOutput)
+}
+
+type EnvGroupUpdateQueryParamsPtrOutput struct{ *pulumi.OutputState }
+
+func (EnvGroupUpdateQueryParamsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**EnvGroupUpdateQueryParams)(nil)).Elem()
+}
+
+func (o EnvGroupUpdateQueryParamsPtrOutput) ToEnvGroupUpdateQueryParamsPtrOutput() EnvGroupUpdateQueryParamsPtrOutput {
+	return o
+}
+
+func (o EnvGroupUpdateQueryParamsPtrOutput) ToEnvGroupUpdateQueryParamsPtrOutputWithContext(ctx context.Context) EnvGroupUpdateQueryParamsPtrOutput {
+	return o
+}
+
+func (o EnvGroupUpdateQueryParamsPtrOutput) Elem() EnvGroupUpdateQueryParamsOutput {
+	return o.ApplyT(func(v *EnvGroupUpdateQueryParams) EnvGroupUpdateQueryParams {
+		if v != nil {
+			return *v
+		}
+		var ret EnvGroupUpdateQueryParams
+		return ret
+	}).(EnvGroupUpdateQueryParamsOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o EnvGroupUpdateQueryParamsPtrOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *EnvGroupUpdateQueryParams) map[string]string {
+		if v == nil {
+			return nil
+		}
+		return v.AdditionalParams
+	}).(pulumi.StringMapOutput)
 }
 
 type EnvVar struct {
@@ -305,6 +2576,1041 @@ func (o EnvVarInputTypeArrayOutput) Index(i pulumi.IntInput) EnvVarInputTypeOutp
 	}).(EnvVarInputTypeOutput)
 }
 
+// Query params for the API request.
+type GetEnvGroupEnvVarQueryParams struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams map[string]string `pulumi:"additionalParams"`
+}
+
+// GetEnvGroupEnvVarQueryParamsInput is an input type that accepts GetEnvGroupEnvVarQueryParamsArgs and GetEnvGroupEnvVarQueryParamsOutput values.
+// You can construct a concrete instance of `GetEnvGroupEnvVarQueryParamsInput` via:
+//
+//	GetEnvGroupEnvVarQueryParamsArgs{...}
+type GetEnvGroupEnvVarQueryParamsInput interface {
+	pulumi.Input
+
+	ToGetEnvGroupEnvVarQueryParamsOutput() GetEnvGroupEnvVarQueryParamsOutput
+	ToGetEnvGroupEnvVarQueryParamsOutputWithContext(context.Context) GetEnvGroupEnvVarQueryParamsOutput
+}
+
+// Query params for the API request.
+type GetEnvGroupEnvVarQueryParamsArgs struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams pulumi.StringMapInput `pulumi:"additionalParams"`
+}
+
+func (GetEnvGroupEnvVarQueryParamsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetEnvGroupEnvVarQueryParams)(nil)).Elem()
+}
+
+func (i GetEnvGroupEnvVarQueryParamsArgs) ToGetEnvGroupEnvVarQueryParamsOutput() GetEnvGroupEnvVarQueryParamsOutput {
+	return i.ToGetEnvGroupEnvVarQueryParamsOutputWithContext(context.Background())
+}
+
+func (i GetEnvGroupEnvVarQueryParamsArgs) ToGetEnvGroupEnvVarQueryParamsOutputWithContext(ctx context.Context) GetEnvGroupEnvVarQueryParamsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetEnvGroupEnvVarQueryParamsOutput)
+}
+
+func (i GetEnvGroupEnvVarQueryParamsArgs) ToGetEnvGroupEnvVarQueryParamsPtrOutput() GetEnvGroupEnvVarQueryParamsPtrOutput {
+	return i.ToGetEnvGroupEnvVarQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i GetEnvGroupEnvVarQueryParamsArgs) ToGetEnvGroupEnvVarQueryParamsPtrOutputWithContext(ctx context.Context) GetEnvGroupEnvVarQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetEnvGroupEnvVarQueryParamsOutput).ToGetEnvGroupEnvVarQueryParamsPtrOutputWithContext(ctx)
+}
+
+// GetEnvGroupEnvVarQueryParamsPtrInput is an input type that accepts GetEnvGroupEnvVarQueryParamsArgs, GetEnvGroupEnvVarQueryParamsPtr and GetEnvGroupEnvVarQueryParamsPtrOutput values.
+// You can construct a concrete instance of `GetEnvGroupEnvVarQueryParamsPtrInput` via:
+//
+//	        GetEnvGroupEnvVarQueryParamsArgs{...}
+//
+//	or:
+//
+//	        nil
+type GetEnvGroupEnvVarQueryParamsPtrInput interface {
+	pulumi.Input
+
+	ToGetEnvGroupEnvVarQueryParamsPtrOutput() GetEnvGroupEnvVarQueryParamsPtrOutput
+	ToGetEnvGroupEnvVarQueryParamsPtrOutputWithContext(context.Context) GetEnvGroupEnvVarQueryParamsPtrOutput
+}
+
+type getEnvGroupEnvVarQueryParamsPtrType GetEnvGroupEnvVarQueryParamsArgs
+
+func GetEnvGroupEnvVarQueryParamsPtr(v *GetEnvGroupEnvVarQueryParamsArgs) GetEnvGroupEnvVarQueryParamsPtrInput {
+	return (*getEnvGroupEnvVarQueryParamsPtrType)(v)
+}
+
+func (*getEnvGroupEnvVarQueryParamsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**GetEnvGroupEnvVarQueryParams)(nil)).Elem()
+}
+
+func (i *getEnvGroupEnvVarQueryParamsPtrType) ToGetEnvGroupEnvVarQueryParamsPtrOutput() GetEnvGroupEnvVarQueryParamsPtrOutput {
+	return i.ToGetEnvGroupEnvVarQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i *getEnvGroupEnvVarQueryParamsPtrType) ToGetEnvGroupEnvVarQueryParamsPtrOutputWithContext(ctx context.Context) GetEnvGroupEnvVarQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetEnvGroupEnvVarQueryParamsPtrOutput)
+}
+
+// Query params for the API request.
+type GetEnvGroupEnvVarQueryParamsOutput struct{ *pulumi.OutputState }
+
+func (GetEnvGroupEnvVarQueryParamsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetEnvGroupEnvVarQueryParams)(nil)).Elem()
+}
+
+func (o GetEnvGroupEnvVarQueryParamsOutput) ToGetEnvGroupEnvVarQueryParamsOutput() GetEnvGroupEnvVarQueryParamsOutput {
+	return o
+}
+
+func (o GetEnvGroupEnvVarQueryParamsOutput) ToGetEnvGroupEnvVarQueryParamsOutputWithContext(ctx context.Context) GetEnvGroupEnvVarQueryParamsOutput {
+	return o
+}
+
+func (o GetEnvGroupEnvVarQueryParamsOutput) ToGetEnvGroupEnvVarQueryParamsPtrOutput() GetEnvGroupEnvVarQueryParamsPtrOutput {
+	return o.ToGetEnvGroupEnvVarQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (o GetEnvGroupEnvVarQueryParamsOutput) ToGetEnvGroupEnvVarQueryParamsPtrOutputWithContext(ctx context.Context) GetEnvGroupEnvVarQueryParamsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v GetEnvGroupEnvVarQueryParams) *GetEnvGroupEnvVarQueryParams {
+		return &v
+	}).(GetEnvGroupEnvVarQueryParamsPtrOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o GetEnvGroupEnvVarQueryParamsOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v GetEnvGroupEnvVarQueryParams) map[string]string { return v.AdditionalParams }).(pulumi.StringMapOutput)
+}
+
+type GetEnvGroupEnvVarQueryParamsPtrOutput struct{ *pulumi.OutputState }
+
+func (GetEnvGroupEnvVarQueryParamsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**GetEnvGroupEnvVarQueryParams)(nil)).Elem()
+}
+
+func (o GetEnvGroupEnvVarQueryParamsPtrOutput) ToGetEnvGroupEnvVarQueryParamsPtrOutput() GetEnvGroupEnvVarQueryParamsPtrOutput {
+	return o
+}
+
+func (o GetEnvGroupEnvVarQueryParamsPtrOutput) ToGetEnvGroupEnvVarQueryParamsPtrOutputWithContext(ctx context.Context) GetEnvGroupEnvVarQueryParamsPtrOutput {
+	return o
+}
+
+func (o GetEnvGroupEnvVarQueryParamsPtrOutput) Elem() GetEnvGroupEnvVarQueryParamsOutput {
+	return o.ApplyT(func(v *GetEnvGroupEnvVarQueryParams) GetEnvGroupEnvVarQueryParams {
+		if v != nil {
+			return *v
+		}
+		var ret GetEnvGroupEnvVarQueryParams
+		return ret
+	}).(GetEnvGroupEnvVarQueryParamsOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o GetEnvGroupEnvVarQueryParamsPtrOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *GetEnvGroupEnvVarQueryParams) map[string]string {
+		if v == nil {
+			return nil
+		}
+		return v.AdditionalParams
+	}).(pulumi.StringMapOutput)
+}
+
+// Query params for the API request.
+type GetEnvGroupQueryParams struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams map[string]string `pulumi:"additionalParams"`
+}
+
+// GetEnvGroupQueryParamsInput is an input type that accepts GetEnvGroupQueryParamsArgs and GetEnvGroupQueryParamsOutput values.
+// You can construct a concrete instance of `GetEnvGroupQueryParamsInput` via:
+//
+//	GetEnvGroupQueryParamsArgs{...}
+type GetEnvGroupQueryParamsInput interface {
+	pulumi.Input
+
+	ToGetEnvGroupQueryParamsOutput() GetEnvGroupQueryParamsOutput
+	ToGetEnvGroupQueryParamsOutputWithContext(context.Context) GetEnvGroupQueryParamsOutput
+}
+
+// Query params for the API request.
+type GetEnvGroupQueryParamsArgs struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams pulumi.StringMapInput `pulumi:"additionalParams"`
+}
+
+func (GetEnvGroupQueryParamsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetEnvGroupQueryParams)(nil)).Elem()
+}
+
+func (i GetEnvGroupQueryParamsArgs) ToGetEnvGroupQueryParamsOutput() GetEnvGroupQueryParamsOutput {
+	return i.ToGetEnvGroupQueryParamsOutputWithContext(context.Background())
+}
+
+func (i GetEnvGroupQueryParamsArgs) ToGetEnvGroupQueryParamsOutputWithContext(ctx context.Context) GetEnvGroupQueryParamsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetEnvGroupQueryParamsOutput)
+}
+
+func (i GetEnvGroupQueryParamsArgs) ToGetEnvGroupQueryParamsPtrOutput() GetEnvGroupQueryParamsPtrOutput {
+	return i.ToGetEnvGroupQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i GetEnvGroupQueryParamsArgs) ToGetEnvGroupQueryParamsPtrOutputWithContext(ctx context.Context) GetEnvGroupQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetEnvGroupQueryParamsOutput).ToGetEnvGroupQueryParamsPtrOutputWithContext(ctx)
+}
+
+// GetEnvGroupQueryParamsPtrInput is an input type that accepts GetEnvGroupQueryParamsArgs, GetEnvGroupQueryParamsPtr and GetEnvGroupQueryParamsPtrOutput values.
+// You can construct a concrete instance of `GetEnvGroupQueryParamsPtrInput` via:
+//
+//	        GetEnvGroupQueryParamsArgs{...}
+//
+//	or:
+//
+//	        nil
+type GetEnvGroupQueryParamsPtrInput interface {
+	pulumi.Input
+
+	ToGetEnvGroupQueryParamsPtrOutput() GetEnvGroupQueryParamsPtrOutput
+	ToGetEnvGroupQueryParamsPtrOutputWithContext(context.Context) GetEnvGroupQueryParamsPtrOutput
+}
+
+type getEnvGroupQueryParamsPtrType GetEnvGroupQueryParamsArgs
+
+func GetEnvGroupQueryParamsPtr(v *GetEnvGroupQueryParamsArgs) GetEnvGroupQueryParamsPtrInput {
+	return (*getEnvGroupQueryParamsPtrType)(v)
+}
+
+func (*getEnvGroupQueryParamsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**GetEnvGroupQueryParams)(nil)).Elem()
+}
+
+func (i *getEnvGroupQueryParamsPtrType) ToGetEnvGroupQueryParamsPtrOutput() GetEnvGroupQueryParamsPtrOutput {
+	return i.ToGetEnvGroupQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i *getEnvGroupQueryParamsPtrType) ToGetEnvGroupQueryParamsPtrOutputWithContext(ctx context.Context) GetEnvGroupQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetEnvGroupQueryParamsPtrOutput)
+}
+
+// Query params for the API request.
+type GetEnvGroupQueryParamsOutput struct{ *pulumi.OutputState }
+
+func (GetEnvGroupQueryParamsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetEnvGroupQueryParams)(nil)).Elem()
+}
+
+func (o GetEnvGroupQueryParamsOutput) ToGetEnvGroupQueryParamsOutput() GetEnvGroupQueryParamsOutput {
+	return o
+}
+
+func (o GetEnvGroupQueryParamsOutput) ToGetEnvGroupQueryParamsOutputWithContext(ctx context.Context) GetEnvGroupQueryParamsOutput {
+	return o
+}
+
+func (o GetEnvGroupQueryParamsOutput) ToGetEnvGroupQueryParamsPtrOutput() GetEnvGroupQueryParamsPtrOutput {
+	return o.ToGetEnvGroupQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (o GetEnvGroupQueryParamsOutput) ToGetEnvGroupQueryParamsPtrOutputWithContext(ctx context.Context) GetEnvGroupQueryParamsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v GetEnvGroupQueryParams) *GetEnvGroupQueryParams {
+		return &v
+	}).(GetEnvGroupQueryParamsPtrOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o GetEnvGroupQueryParamsOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v GetEnvGroupQueryParams) map[string]string { return v.AdditionalParams }).(pulumi.StringMapOutput)
+}
+
+type GetEnvGroupQueryParamsPtrOutput struct{ *pulumi.OutputState }
+
+func (GetEnvGroupQueryParamsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**GetEnvGroupQueryParams)(nil)).Elem()
+}
+
+func (o GetEnvGroupQueryParamsPtrOutput) ToGetEnvGroupQueryParamsPtrOutput() GetEnvGroupQueryParamsPtrOutput {
+	return o
+}
+
+func (o GetEnvGroupQueryParamsPtrOutput) ToGetEnvGroupQueryParamsPtrOutputWithContext(ctx context.Context) GetEnvGroupQueryParamsPtrOutput {
+	return o
+}
+
+func (o GetEnvGroupQueryParamsPtrOutput) Elem() GetEnvGroupQueryParamsOutput {
+	return o.ApplyT(func(v *GetEnvGroupQueryParams) GetEnvGroupQueryParams {
+		if v != nil {
+			return *v
+		}
+		var ret GetEnvGroupQueryParams
+		return ret
+	}).(GetEnvGroupQueryParamsOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o GetEnvGroupQueryParamsPtrOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *GetEnvGroupQueryParams) map[string]string {
+		if v == nil {
+			return nil
+		}
+		return v.AdditionalParams
+	}).(pulumi.StringMapOutput)
+}
+
+// Query params for the API request.
+type GetEnvGroupSecretFileQueryParams struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams map[string]string `pulumi:"additionalParams"`
+}
+
+// GetEnvGroupSecretFileQueryParamsInput is an input type that accepts GetEnvGroupSecretFileQueryParamsArgs and GetEnvGroupSecretFileQueryParamsOutput values.
+// You can construct a concrete instance of `GetEnvGroupSecretFileQueryParamsInput` via:
+//
+//	GetEnvGroupSecretFileQueryParamsArgs{...}
+type GetEnvGroupSecretFileQueryParamsInput interface {
+	pulumi.Input
+
+	ToGetEnvGroupSecretFileQueryParamsOutput() GetEnvGroupSecretFileQueryParamsOutput
+	ToGetEnvGroupSecretFileQueryParamsOutputWithContext(context.Context) GetEnvGroupSecretFileQueryParamsOutput
+}
+
+// Query params for the API request.
+type GetEnvGroupSecretFileQueryParamsArgs struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams pulumi.StringMapInput `pulumi:"additionalParams"`
+}
+
+func (GetEnvGroupSecretFileQueryParamsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetEnvGroupSecretFileQueryParams)(nil)).Elem()
+}
+
+func (i GetEnvGroupSecretFileQueryParamsArgs) ToGetEnvGroupSecretFileQueryParamsOutput() GetEnvGroupSecretFileQueryParamsOutput {
+	return i.ToGetEnvGroupSecretFileQueryParamsOutputWithContext(context.Background())
+}
+
+func (i GetEnvGroupSecretFileQueryParamsArgs) ToGetEnvGroupSecretFileQueryParamsOutputWithContext(ctx context.Context) GetEnvGroupSecretFileQueryParamsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetEnvGroupSecretFileQueryParamsOutput)
+}
+
+func (i GetEnvGroupSecretFileQueryParamsArgs) ToGetEnvGroupSecretFileQueryParamsPtrOutput() GetEnvGroupSecretFileQueryParamsPtrOutput {
+	return i.ToGetEnvGroupSecretFileQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i GetEnvGroupSecretFileQueryParamsArgs) ToGetEnvGroupSecretFileQueryParamsPtrOutputWithContext(ctx context.Context) GetEnvGroupSecretFileQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetEnvGroupSecretFileQueryParamsOutput).ToGetEnvGroupSecretFileQueryParamsPtrOutputWithContext(ctx)
+}
+
+// GetEnvGroupSecretFileQueryParamsPtrInput is an input type that accepts GetEnvGroupSecretFileQueryParamsArgs, GetEnvGroupSecretFileQueryParamsPtr and GetEnvGroupSecretFileQueryParamsPtrOutput values.
+// You can construct a concrete instance of `GetEnvGroupSecretFileQueryParamsPtrInput` via:
+//
+//	        GetEnvGroupSecretFileQueryParamsArgs{...}
+//
+//	or:
+//
+//	        nil
+type GetEnvGroupSecretFileQueryParamsPtrInput interface {
+	pulumi.Input
+
+	ToGetEnvGroupSecretFileQueryParamsPtrOutput() GetEnvGroupSecretFileQueryParamsPtrOutput
+	ToGetEnvGroupSecretFileQueryParamsPtrOutputWithContext(context.Context) GetEnvGroupSecretFileQueryParamsPtrOutput
+}
+
+type getEnvGroupSecretFileQueryParamsPtrType GetEnvGroupSecretFileQueryParamsArgs
+
+func GetEnvGroupSecretFileQueryParamsPtr(v *GetEnvGroupSecretFileQueryParamsArgs) GetEnvGroupSecretFileQueryParamsPtrInput {
+	return (*getEnvGroupSecretFileQueryParamsPtrType)(v)
+}
+
+func (*getEnvGroupSecretFileQueryParamsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**GetEnvGroupSecretFileQueryParams)(nil)).Elem()
+}
+
+func (i *getEnvGroupSecretFileQueryParamsPtrType) ToGetEnvGroupSecretFileQueryParamsPtrOutput() GetEnvGroupSecretFileQueryParamsPtrOutput {
+	return i.ToGetEnvGroupSecretFileQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i *getEnvGroupSecretFileQueryParamsPtrType) ToGetEnvGroupSecretFileQueryParamsPtrOutputWithContext(ctx context.Context) GetEnvGroupSecretFileQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetEnvGroupSecretFileQueryParamsPtrOutput)
+}
+
+// Query params for the API request.
+type GetEnvGroupSecretFileQueryParamsOutput struct{ *pulumi.OutputState }
+
+func (GetEnvGroupSecretFileQueryParamsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetEnvGroupSecretFileQueryParams)(nil)).Elem()
+}
+
+func (o GetEnvGroupSecretFileQueryParamsOutput) ToGetEnvGroupSecretFileQueryParamsOutput() GetEnvGroupSecretFileQueryParamsOutput {
+	return o
+}
+
+func (o GetEnvGroupSecretFileQueryParamsOutput) ToGetEnvGroupSecretFileQueryParamsOutputWithContext(ctx context.Context) GetEnvGroupSecretFileQueryParamsOutput {
+	return o
+}
+
+func (o GetEnvGroupSecretFileQueryParamsOutput) ToGetEnvGroupSecretFileQueryParamsPtrOutput() GetEnvGroupSecretFileQueryParamsPtrOutput {
+	return o.ToGetEnvGroupSecretFileQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (o GetEnvGroupSecretFileQueryParamsOutput) ToGetEnvGroupSecretFileQueryParamsPtrOutputWithContext(ctx context.Context) GetEnvGroupSecretFileQueryParamsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v GetEnvGroupSecretFileQueryParams) *GetEnvGroupSecretFileQueryParams {
+		return &v
+	}).(GetEnvGroupSecretFileQueryParamsPtrOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o GetEnvGroupSecretFileQueryParamsOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v GetEnvGroupSecretFileQueryParams) map[string]string { return v.AdditionalParams }).(pulumi.StringMapOutput)
+}
+
+type GetEnvGroupSecretFileQueryParamsPtrOutput struct{ *pulumi.OutputState }
+
+func (GetEnvGroupSecretFileQueryParamsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**GetEnvGroupSecretFileQueryParams)(nil)).Elem()
+}
+
+func (o GetEnvGroupSecretFileQueryParamsPtrOutput) ToGetEnvGroupSecretFileQueryParamsPtrOutput() GetEnvGroupSecretFileQueryParamsPtrOutput {
+	return o
+}
+
+func (o GetEnvGroupSecretFileQueryParamsPtrOutput) ToGetEnvGroupSecretFileQueryParamsPtrOutputWithContext(ctx context.Context) GetEnvGroupSecretFileQueryParamsPtrOutput {
+	return o
+}
+
+func (o GetEnvGroupSecretFileQueryParamsPtrOutput) Elem() GetEnvGroupSecretFileQueryParamsOutput {
+	return o.ApplyT(func(v *GetEnvGroupSecretFileQueryParams) GetEnvGroupSecretFileQueryParams {
+		if v != nil {
+			return *v
+		}
+		var ret GetEnvGroupSecretFileQueryParams
+		return ret
+	}).(GetEnvGroupSecretFileQueryParamsOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o GetEnvGroupSecretFileQueryParamsPtrOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *GetEnvGroupSecretFileQueryParams) map[string]string {
+		if v == nil {
+			return nil
+		}
+		return v.AdditionalParams
+	}).(pulumi.StringMapOutput)
+}
+
+// Query params for the API request.
+type LinkServiceToEnvGroupCreateQueryParams struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams map[string]string `pulumi:"additionalParams"`
+}
+
+// LinkServiceToEnvGroupCreateQueryParamsInput is an input type that accepts LinkServiceToEnvGroupCreateQueryParamsArgs and LinkServiceToEnvGroupCreateQueryParamsOutput values.
+// You can construct a concrete instance of `LinkServiceToEnvGroupCreateQueryParamsInput` via:
+//
+//	LinkServiceToEnvGroupCreateQueryParamsArgs{...}
+type LinkServiceToEnvGroupCreateQueryParamsInput interface {
+	pulumi.Input
+
+	ToLinkServiceToEnvGroupCreateQueryParamsOutput() LinkServiceToEnvGroupCreateQueryParamsOutput
+	ToLinkServiceToEnvGroupCreateQueryParamsOutputWithContext(context.Context) LinkServiceToEnvGroupCreateQueryParamsOutput
+}
+
+// Query params for the API request.
+type LinkServiceToEnvGroupCreateQueryParamsArgs struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams pulumi.StringMapInput `pulumi:"additionalParams"`
+}
+
+func (LinkServiceToEnvGroupCreateQueryParamsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*LinkServiceToEnvGroupCreateQueryParams)(nil)).Elem()
+}
+
+func (i LinkServiceToEnvGroupCreateQueryParamsArgs) ToLinkServiceToEnvGroupCreateQueryParamsOutput() LinkServiceToEnvGroupCreateQueryParamsOutput {
+	return i.ToLinkServiceToEnvGroupCreateQueryParamsOutputWithContext(context.Background())
+}
+
+func (i LinkServiceToEnvGroupCreateQueryParamsArgs) ToLinkServiceToEnvGroupCreateQueryParamsOutputWithContext(ctx context.Context) LinkServiceToEnvGroupCreateQueryParamsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(LinkServiceToEnvGroupCreateQueryParamsOutput)
+}
+
+func (i LinkServiceToEnvGroupCreateQueryParamsArgs) ToLinkServiceToEnvGroupCreateQueryParamsPtrOutput() LinkServiceToEnvGroupCreateQueryParamsPtrOutput {
+	return i.ToLinkServiceToEnvGroupCreateQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i LinkServiceToEnvGroupCreateQueryParamsArgs) ToLinkServiceToEnvGroupCreateQueryParamsPtrOutputWithContext(ctx context.Context) LinkServiceToEnvGroupCreateQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(LinkServiceToEnvGroupCreateQueryParamsOutput).ToLinkServiceToEnvGroupCreateQueryParamsPtrOutputWithContext(ctx)
+}
+
+// LinkServiceToEnvGroupCreateQueryParamsPtrInput is an input type that accepts LinkServiceToEnvGroupCreateQueryParamsArgs, LinkServiceToEnvGroupCreateQueryParamsPtr and LinkServiceToEnvGroupCreateQueryParamsPtrOutput values.
+// You can construct a concrete instance of `LinkServiceToEnvGroupCreateQueryParamsPtrInput` via:
+//
+//	        LinkServiceToEnvGroupCreateQueryParamsArgs{...}
+//
+//	or:
+//
+//	        nil
+type LinkServiceToEnvGroupCreateQueryParamsPtrInput interface {
+	pulumi.Input
+
+	ToLinkServiceToEnvGroupCreateQueryParamsPtrOutput() LinkServiceToEnvGroupCreateQueryParamsPtrOutput
+	ToLinkServiceToEnvGroupCreateQueryParamsPtrOutputWithContext(context.Context) LinkServiceToEnvGroupCreateQueryParamsPtrOutput
+}
+
+type linkServiceToEnvGroupCreateQueryParamsPtrType LinkServiceToEnvGroupCreateQueryParamsArgs
+
+func LinkServiceToEnvGroupCreateQueryParamsPtr(v *LinkServiceToEnvGroupCreateQueryParamsArgs) LinkServiceToEnvGroupCreateQueryParamsPtrInput {
+	return (*linkServiceToEnvGroupCreateQueryParamsPtrType)(v)
+}
+
+func (*linkServiceToEnvGroupCreateQueryParamsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**LinkServiceToEnvGroupCreateQueryParams)(nil)).Elem()
+}
+
+func (i *linkServiceToEnvGroupCreateQueryParamsPtrType) ToLinkServiceToEnvGroupCreateQueryParamsPtrOutput() LinkServiceToEnvGroupCreateQueryParamsPtrOutput {
+	return i.ToLinkServiceToEnvGroupCreateQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i *linkServiceToEnvGroupCreateQueryParamsPtrType) ToLinkServiceToEnvGroupCreateQueryParamsPtrOutputWithContext(ctx context.Context) LinkServiceToEnvGroupCreateQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(LinkServiceToEnvGroupCreateQueryParamsPtrOutput)
+}
+
+// Query params for the API request.
+type LinkServiceToEnvGroupCreateQueryParamsOutput struct{ *pulumi.OutputState }
+
+func (LinkServiceToEnvGroupCreateQueryParamsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*LinkServiceToEnvGroupCreateQueryParams)(nil)).Elem()
+}
+
+func (o LinkServiceToEnvGroupCreateQueryParamsOutput) ToLinkServiceToEnvGroupCreateQueryParamsOutput() LinkServiceToEnvGroupCreateQueryParamsOutput {
+	return o
+}
+
+func (o LinkServiceToEnvGroupCreateQueryParamsOutput) ToLinkServiceToEnvGroupCreateQueryParamsOutputWithContext(ctx context.Context) LinkServiceToEnvGroupCreateQueryParamsOutput {
+	return o
+}
+
+func (o LinkServiceToEnvGroupCreateQueryParamsOutput) ToLinkServiceToEnvGroupCreateQueryParamsPtrOutput() LinkServiceToEnvGroupCreateQueryParamsPtrOutput {
+	return o.ToLinkServiceToEnvGroupCreateQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (o LinkServiceToEnvGroupCreateQueryParamsOutput) ToLinkServiceToEnvGroupCreateQueryParamsPtrOutputWithContext(ctx context.Context) LinkServiceToEnvGroupCreateQueryParamsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v LinkServiceToEnvGroupCreateQueryParams) *LinkServiceToEnvGroupCreateQueryParams {
+		return &v
+	}).(LinkServiceToEnvGroupCreateQueryParamsPtrOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o LinkServiceToEnvGroupCreateQueryParamsOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v LinkServiceToEnvGroupCreateQueryParams) map[string]string { return v.AdditionalParams }).(pulumi.StringMapOutput)
+}
+
+type LinkServiceToEnvGroupCreateQueryParamsPtrOutput struct{ *pulumi.OutputState }
+
+func (LinkServiceToEnvGroupCreateQueryParamsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**LinkServiceToEnvGroupCreateQueryParams)(nil)).Elem()
+}
+
+func (o LinkServiceToEnvGroupCreateQueryParamsPtrOutput) ToLinkServiceToEnvGroupCreateQueryParamsPtrOutput() LinkServiceToEnvGroupCreateQueryParamsPtrOutput {
+	return o
+}
+
+func (o LinkServiceToEnvGroupCreateQueryParamsPtrOutput) ToLinkServiceToEnvGroupCreateQueryParamsPtrOutputWithContext(ctx context.Context) LinkServiceToEnvGroupCreateQueryParamsPtrOutput {
+	return o
+}
+
+func (o LinkServiceToEnvGroupCreateQueryParamsPtrOutput) Elem() LinkServiceToEnvGroupCreateQueryParamsOutput {
+	return o.ApplyT(func(v *LinkServiceToEnvGroupCreateQueryParams) LinkServiceToEnvGroupCreateQueryParams {
+		if v != nil {
+			return *v
+		}
+		var ret LinkServiceToEnvGroupCreateQueryParams
+		return ret
+	}).(LinkServiceToEnvGroupCreateQueryParamsOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o LinkServiceToEnvGroupCreateQueryParamsPtrOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *LinkServiceToEnvGroupCreateQueryParams) map[string]string {
+		if v == nil {
+			return nil
+		}
+		return v.AdditionalParams
+	}).(pulumi.StringMapOutput)
+}
+
+// Query params for each of the operations of the resource.
+type LinkServiceToEnvGroupQueryParams struct {
+	// Query params for the create operation.
+	Create *LinkServiceToEnvGroupCreateQueryParams `pulumi:"create"`
+}
+
+// LinkServiceToEnvGroupQueryParamsInput is an input type that accepts LinkServiceToEnvGroupQueryParamsArgs and LinkServiceToEnvGroupQueryParamsOutput values.
+// You can construct a concrete instance of `LinkServiceToEnvGroupQueryParamsInput` via:
+//
+//	LinkServiceToEnvGroupQueryParamsArgs{...}
+type LinkServiceToEnvGroupQueryParamsInput interface {
+	pulumi.Input
+
+	ToLinkServiceToEnvGroupQueryParamsOutput() LinkServiceToEnvGroupQueryParamsOutput
+	ToLinkServiceToEnvGroupQueryParamsOutputWithContext(context.Context) LinkServiceToEnvGroupQueryParamsOutput
+}
+
+// Query params for each of the operations of the resource.
+type LinkServiceToEnvGroupQueryParamsArgs struct {
+	// Query params for the create operation.
+	Create LinkServiceToEnvGroupCreateQueryParamsPtrInput `pulumi:"create"`
+}
+
+func (LinkServiceToEnvGroupQueryParamsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*LinkServiceToEnvGroupQueryParams)(nil)).Elem()
+}
+
+func (i LinkServiceToEnvGroupQueryParamsArgs) ToLinkServiceToEnvGroupQueryParamsOutput() LinkServiceToEnvGroupQueryParamsOutput {
+	return i.ToLinkServiceToEnvGroupQueryParamsOutputWithContext(context.Background())
+}
+
+func (i LinkServiceToEnvGroupQueryParamsArgs) ToLinkServiceToEnvGroupQueryParamsOutputWithContext(ctx context.Context) LinkServiceToEnvGroupQueryParamsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(LinkServiceToEnvGroupQueryParamsOutput)
+}
+
+func (i LinkServiceToEnvGroupQueryParamsArgs) ToLinkServiceToEnvGroupQueryParamsPtrOutput() LinkServiceToEnvGroupQueryParamsPtrOutput {
+	return i.ToLinkServiceToEnvGroupQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i LinkServiceToEnvGroupQueryParamsArgs) ToLinkServiceToEnvGroupQueryParamsPtrOutputWithContext(ctx context.Context) LinkServiceToEnvGroupQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(LinkServiceToEnvGroupQueryParamsOutput).ToLinkServiceToEnvGroupQueryParamsPtrOutputWithContext(ctx)
+}
+
+// LinkServiceToEnvGroupQueryParamsPtrInput is an input type that accepts LinkServiceToEnvGroupQueryParamsArgs, LinkServiceToEnvGroupQueryParamsPtr and LinkServiceToEnvGroupQueryParamsPtrOutput values.
+// You can construct a concrete instance of `LinkServiceToEnvGroupQueryParamsPtrInput` via:
+//
+//	        LinkServiceToEnvGroupQueryParamsArgs{...}
+//
+//	or:
+//
+//	        nil
+type LinkServiceToEnvGroupQueryParamsPtrInput interface {
+	pulumi.Input
+
+	ToLinkServiceToEnvGroupQueryParamsPtrOutput() LinkServiceToEnvGroupQueryParamsPtrOutput
+	ToLinkServiceToEnvGroupQueryParamsPtrOutputWithContext(context.Context) LinkServiceToEnvGroupQueryParamsPtrOutput
+}
+
+type linkServiceToEnvGroupQueryParamsPtrType LinkServiceToEnvGroupQueryParamsArgs
+
+func LinkServiceToEnvGroupQueryParamsPtr(v *LinkServiceToEnvGroupQueryParamsArgs) LinkServiceToEnvGroupQueryParamsPtrInput {
+	return (*linkServiceToEnvGroupQueryParamsPtrType)(v)
+}
+
+func (*linkServiceToEnvGroupQueryParamsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**LinkServiceToEnvGroupQueryParams)(nil)).Elem()
+}
+
+func (i *linkServiceToEnvGroupQueryParamsPtrType) ToLinkServiceToEnvGroupQueryParamsPtrOutput() LinkServiceToEnvGroupQueryParamsPtrOutput {
+	return i.ToLinkServiceToEnvGroupQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i *linkServiceToEnvGroupQueryParamsPtrType) ToLinkServiceToEnvGroupQueryParamsPtrOutputWithContext(ctx context.Context) LinkServiceToEnvGroupQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(LinkServiceToEnvGroupQueryParamsPtrOutput)
+}
+
+// Query params for each of the operations of the resource.
+type LinkServiceToEnvGroupQueryParamsOutput struct{ *pulumi.OutputState }
+
+func (LinkServiceToEnvGroupQueryParamsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*LinkServiceToEnvGroupQueryParams)(nil)).Elem()
+}
+
+func (o LinkServiceToEnvGroupQueryParamsOutput) ToLinkServiceToEnvGroupQueryParamsOutput() LinkServiceToEnvGroupQueryParamsOutput {
+	return o
+}
+
+func (o LinkServiceToEnvGroupQueryParamsOutput) ToLinkServiceToEnvGroupQueryParamsOutputWithContext(ctx context.Context) LinkServiceToEnvGroupQueryParamsOutput {
+	return o
+}
+
+func (o LinkServiceToEnvGroupQueryParamsOutput) ToLinkServiceToEnvGroupQueryParamsPtrOutput() LinkServiceToEnvGroupQueryParamsPtrOutput {
+	return o.ToLinkServiceToEnvGroupQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (o LinkServiceToEnvGroupQueryParamsOutput) ToLinkServiceToEnvGroupQueryParamsPtrOutputWithContext(ctx context.Context) LinkServiceToEnvGroupQueryParamsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v LinkServiceToEnvGroupQueryParams) *LinkServiceToEnvGroupQueryParams {
+		return &v
+	}).(LinkServiceToEnvGroupQueryParamsPtrOutput)
+}
+
+// Query params for the create operation.
+func (o LinkServiceToEnvGroupQueryParamsOutput) Create() LinkServiceToEnvGroupCreateQueryParamsPtrOutput {
+	return o.ApplyT(func(v LinkServiceToEnvGroupQueryParams) *LinkServiceToEnvGroupCreateQueryParams { return v.Create }).(LinkServiceToEnvGroupCreateQueryParamsPtrOutput)
+}
+
+type LinkServiceToEnvGroupQueryParamsPtrOutput struct{ *pulumi.OutputState }
+
+func (LinkServiceToEnvGroupQueryParamsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**LinkServiceToEnvGroupQueryParams)(nil)).Elem()
+}
+
+func (o LinkServiceToEnvGroupQueryParamsPtrOutput) ToLinkServiceToEnvGroupQueryParamsPtrOutput() LinkServiceToEnvGroupQueryParamsPtrOutput {
+	return o
+}
+
+func (o LinkServiceToEnvGroupQueryParamsPtrOutput) ToLinkServiceToEnvGroupQueryParamsPtrOutputWithContext(ctx context.Context) LinkServiceToEnvGroupQueryParamsPtrOutput {
+	return o
+}
+
+func (o LinkServiceToEnvGroupQueryParamsPtrOutput) Elem() LinkServiceToEnvGroupQueryParamsOutput {
+	return o.ApplyT(func(v *LinkServiceToEnvGroupQueryParams) LinkServiceToEnvGroupQueryParams {
+		if v != nil {
+			return *v
+		}
+		var ret LinkServiceToEnvGroupQueryParams
+		return ret
+	}).(LinkServiceToEnvGroupQueryParamsOutput)
+}
+
+// Query params for the create operation.
+func (o LinkServiceToEnvGroupQueryParamsPtrOutput) Create() LinkServiceToEnvGroupCreateQueryParamsPtrOutput {
+	return o.ApplyT(func(v *LinkServiceToEnvGroupQueryParams) *LinkServiceToEnvGroupCreateQueryParams {
+		if v == nil {
+			return nil
+		}
+		return v.Create
+	}).(LinkServiceToEnvGroupCreateQueryParamsPtrOutput)
+}
+
+// Query params for the API request.
+type ListEnvGroupsQueryParams struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams map[string]string `pulumi:"additionalParams"`
+	// Filter for resources created after a certain time (specified as an ISO 8601 timestamp)
+	CreatedAfter *string `pulumi:"createdAfter"`
+	// Filter for resources created before a certain time (specified as an ISO 8601 timestamp)
+	CreatedBefore *string `pulumi:"createdBefore"`
+	// The position in the result list to start from when fetching paginated results. For details, see [Pagination](https://api-docs.render.com/reference/pagination).
+	Cursor *string `pulumi:"cursor"`
+	// Filter for resources that belong to an environment
+	EnvironmentId []string `pulumi:"environmentId"`
+	// The maximum number of items to return. For details, see [Pagination](https://api-docs.render.com/reference/pagination).
+	Limit *int `pulumi:"limit"`
+	// Filter by name
+	Name []string `pulumi:"name"`
+	// The ID of the workspaces to return resources for
+	OwnerId []string `pulumi:"ownerId"`
+	// Filter for resources updated after a certain time (specified as an ISO 8601 timestamp)
+	UpdatedAfter *string `pulumi:"updatedAfter"`
+	// Filter for resources updated before a certain time (specified as an ISO 8601 timestamp)
+	UpdatedBefore *string `pulumi:"updatedBefore"`
+}
+
+// Defaults sets the appropriate defaults for ListEnvGroupsQueryParams
+func (val *ListEnvGroupsQueryParams) Defaults() *ListEnvGroupsQueryParams {
+	if val == nil {
+		return nil
+	}
+	tmp := *val
+	if tmp.Limit == nil {
+		limit_ := 20
+		tmp.Limit = &limit_
+	}
+	return &tmp
+}
+
+// ListEnvGroupsQueryParamsInput is an input type that accepts ListEnvGroupsQueryParamsArgs and ListEnvGroupsQueryParamsOutput values.
+// You can construct a concrete instance of `ListEnvGroupsQueryParamsInput` via:
+//
+//	ListEnvGroupsQueryParamsArgs{...}
+type ListEnvGroupsQueryParamsInput interface {
+	pulumi.Input
+
+	ToListEnvGroupsQueryParamsOutput() ListEnvGroupsQueryParamsOutput
+	ToListEnvGroupsQueryParamsOutputWithContext(context.Context) ListEnvGroupsQueryParamsOutput
+}
+
+// Query params for the API request.
+type ListEnvGroupsQueryParamsArgs struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams pulumi.StringMapInput `pulumi:"additionalParams"`
+	// Filter for resources created after a certain time (specified as an ISO 8601 timestamp)
+	CreatedAfter pulumi.StringPtrInput `pulumi:"createdAfter"`
+	// Filter for resources created before a certain time (specified as an ISO 8601 timestamp)
+	CreatedBefore pulumi.StringPtrInput `pulumi:"createdBefore"`
+	// The position in the result list to start from when fetching paginated results. For details, see [Pagination](https://api-docs.render.com/reference/pagination).
+	Cursor pulumi.StringPtrInput `pulumi:"cursor"`
+	// Filter for resources that belong to an environment
+	EnvironmentId pulumi.StringArrayInput `pulumi:"environmentId"`
+	// The maximum number of items to return. For details, see [Pagination](https://api-docs.render.com/reference/pagination).
+	Limit pulumi.IntPtrInput `pulumi:"limit"`
+	// Filter by name
+	Name pulumi.StringArrayInput `pulumi:"name"`
+	// The ID of the workspaces to return resources for
+	OwnerId pulumi.StringArrayInput `pulumi:"ownerId"`
+	// Filter for resources updated after a certain time (specified as an ISO 8601 timestamp)
+	UpdatedAfter pulumi.StringPtrInput `pulumi:"updatedAfter"`
+	// Filter for resources updated before a certain time (specified as an ISO 8601 timestamp)
+	UpdatedBefore pulumi.StringPtrInput `pulumi:"updatedBefore"`
+}
+
+// Defaults sets the appropriate defaults for ListEnvGroupsQueryParamsArgs
+func (val *ListEnvGroupsQueryParamsArgs) Defaults() *ListEnvGroupsQueryParamsArgs {
+	if val == nil {
+		return nil
+	}
+	tmp := *val
+	if tmp.Limit == nil {
+		tmp.Limit = pulumi.IntPtr(20)
+	}
+	return &tmp
+}
+func (ListEnvGroupsQueryParamsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ListEnvGroupsQueryParams)(nil)).Elem()
+}
+
+func (i ListEnvGroupsQueryParamsArgs) ToListEnvGroupsQueryParamsOutput() ListEnvGroupsQueryParamsOutput {
+	return i.ToListEnvGroupsQueryParamsOutputWithContext(context.Background())
+}
+
+func (i ListEnvGroupsQueryParamsArgs) ToListEnvGroupsQueryParamsOutputWithContext(ctx context.Context) ListEnvGroupsQueryParamsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ListEnvGroupsQueryParamsOutput)
+}
+
+func (i ListEnvGroupsQueryParamsArgs) ToListEnvGroupsQueryParamsPtrOutput() ListEnvGroupsQueryParamsPtrOutput {
+	return i.ToListEnvGroupsQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i ListEnvGroupsQueryParamsArgs) ToListEnvGroupsQueryParamsPtrOutputWithContext(ctx context.Context) ListEnvGroupsQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ListEnvGroupsQueryParamsOutput).ToListEnvGroupsQueryParamsPtrOutputWithContext(ctx)
+}
+
+// ListEnvGroupsQueryParamsPtrInput is an input type that accepts ListEnvGroupsQueryParamsArgs, ListEnvGroupsQueryParamsPtr and ListEnvGroupsQueryParamsPtrOutput values.
+// You can construct a concrete instance of `ListEnvGroupsQueryParamsPtrInput` via:
+//
+//	        ListEnvGroupsQueryParamsArgs{...}
+//
+//	or:
+//
+//	        nil
+type ListEnvGroupsQueryParamsPtrInput interface {
+	pulumi.Input
+
+	ToListEnvGroupsQueryParamsPtrOutput() ListEnvGroupsQueryParamsPtrOutput
+	ToListEnvGroupsQueryParamsPtrOutputWithContext(context.Context) ListEnvGroupsQueryParamsPtrOutput
+}
+
+type listEnvGroupsQueryParamsPtrType ListEnvGroupsQueryParamsArgs
+
+func ListEnvGroupsQueryParamsPtr(v *ListEnvGroupsQueryParamsArgs) ListEnvGroupsQueryParamsPtrInput {
+	return (*listEnvGroupsQueryParamsPtrType)(v)
+}
+
+func (*listEnvGroupsQueryParamsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**ListEnvGroupsQueryParams)(nil)).Elem()
+}
+
+func (i *listEnvGroupsQueryParamsPtrType) ToListEnvGroupsQueryParamsPtrOutput() ListEnvGroupsQueryParamsPtrOutput {
+	return i.ToListEnvGroupsQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i *listEnvGroupsQueryParamsPtrType) ToListEnvGroupsQueryParamsPtrOutputWithContext(ctx context.Context) ListEnvGroupsQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ListEnvGroupsQueryParamsPtrOutput)
+}
+
+// Query params for the API request.
+type ListEnvGroupsQueryParamsOutput struct{ *pulumi.OutputState }
+
+func (ListEnvGroupsQueryParamsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ListEnvGroupsQueryParams)(nil)).Elem()
+}
+
+func (o ListEnvGroupsQueryParamsOutput) ToListEnvGroupsQueryParamsOutput() ListEnvGroupsQueryParamsOutput {
+	return o
+}
+
+func (o ListEnvGroupsQueryParamsOutput) ToListEnvGroupsQueryParamsOutputWithContext(ctx context.Context) ListEnvGroupsQueryParamsOutput {
+	return o
+}
+
+func (o ListEnvGroupsQueryParamsOutput) ToListEnvGroupsQueryParamsPtrOutput() ListEnvGroupsQueryParamsPtrOutput {
+	return o.ToListEnvGroupsQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (o ListEnvGroupsQueryParamsOutput) ToListEnvGroupsQueryParamsPtrOutputWithContext(ctx context.Context) ListEnvGroupsQueryParamsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v ListEnvGroupsQueryParams) *ListEnvGroupsQueryParams {
+		return &v
+	}).(ListEnvGroupsQueryParamsPtrOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o ListEnvGroupsQueryParamsOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v ListEnvGroupsQueryParams) map[string]string { return v.AdditionalParams }).(pulumi.StringMapOutput)
+}
+
+// Filter for resources created after a certain time (specified as an ISO 8601 timestamp)
+func (o ListEnvGroupsQueryParamsOutput) CreatedAfter() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ListEnvGroupsQueryParams) *string { return v.CreatedAfter }).(pulumi.StringPtrOutput)
+}
+
+// Filter for resources created before a certain time (specified as an ISO 8601 timestamp)
+func (o ListEnvGroupsQueryParamsOutput) CreatedBefore() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ListEnvGroupsQueryParams) *string { return v.CreatedBefore }).(pulumi.StringPtrOutput)
+}
+
+// The position in the result list to start from when fetching paginated results. For details, see [Pagination](https://api-docs.render.com/reference/pagination).
+func (o ListEnvGroupsQueryParamsOutput) Cursor() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ListEnvGroupsQueryParams) *string { return v.Cursor }).(pulumi.StringPtrOutput)
+}
+
+// Filter for resources that belong to an environment
+func (o ListEnvGroupsQueryParamsOutput) EnvironmentId() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v ListEnvGroupsQueryParams) []string { return v.EnvironmentId }).(pulumi.StringArrayOutput)
+}
+
+// The maximum number of items to return. For details, see [Pagination](https://api-docs.render.com/reference/pagination).
+func (o ListEnvGroupsQueryParamsOutput) Limit() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v ListEnvGroupsQueryParams) *int { return v.Limit }).(pulumi.IntPtrOutput)
+}
+
+// Filter by name
+func (o ListEnvGroupsQueryParamsOutput) Name() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v ListEnvGroupsQueryParams) []string { return v.Name }).(pulumi.StringArrayOutput)
+}
+
+// The ID of the workspaces to return resources for
+func (o ListEnvGroupsQueryParamsOutput) OwnerId() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v ListEnvGroupsQueryParams) []string { return v.OwnerId }).(pulumi.StringArrayOutput)
+}
+
+// Filter for resources updated after a certain time (specified as an ISO 8601 timestamp)
+func (o ListEnvGroupsQueryParamsOutput) UpdatedAfter() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ListEnvGroupsQueryParams) *string { return v.UpdatedAfter }).(pulumi.StringPtrOutput)
+}
+
+// Filter for resources updated before a certain time (specified as an ISO 8601 timestamp)
+func (o ListEnvGroupsQueryParamsOutput) UpdatedBefore() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ListEnvGroupsQueryParams) *string { return v.UpdatedBefore }).(pulumi.StringPtrOutput)
+}
+
+type ListEnvGroupsQueryParamsPtrOutput struct{ *pulumi.OutputState }
+
+func (ListEnvGroupsQueryParamsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ListEnvGroupsQueryParams)(nil)).Elem()
+}
+
+func (o ListEnvGroupsQueryParamsPtrOutput) ToListEnvGroupsQueryParamsPtrOutput() ListEnvGroupsQueryParamsPtrOutput {
+	return o
+}
+
+func (o ListEnvGroupsQueryParamsPtrOutput) ToListEnvGroupsQueryParamsPtrOutputWithContext(ctx context.Context) ListEnvGroupsQueryParamsPtrOutput {
+	return o
+}
+
+func (o ListEnvGroupsQueryParamsPtrOutput) Elem() ListEnvGroupsQueryParamsOutput {
+	return o.ApplyT(func(v *ListEnvGroupsQueryParams) ListEnvGroupsQueryParams {
+		if v != nil {
+			return *v
+		}
+		var ret ListEnvGroupsQueryParams
+		return ret
+	}).(ListEnvGroupsQueryParamsOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o ListEnvGroupsQueryParamsPtrOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *ListEnvGroupsQueryParams) map[string]string {
+		if v == nil {
+			return nil
+		}
+		return v.AdditionalParams
+	}).(pulumi.StringMapOutput)
+}
+
+// Filter for resources created after a certain time (specified as an ISO 8601 timestamp)
+func (o ListEnvGroupsQueryParamsPtrOutput) CreatedAfter() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ListEnvGroupsQueryParams) *string {
+		if v == nil {
+			return nil
+		}
+		return v.CreatedAfter
+	}).(pulumi.StringPtrOutput)
+}
+
+// Filter for resources created before a certain time (specified as an ISO 8601 timestamp)
+func (o ListEnvGroupsQueryParamsPtrOutput) CreatedBefore() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ListEnvGroupsQueryParams) *string {
+		if v == nil {
+			return nil
+		}
+		return v.CreatedBefore
+	}).(pulumi.StringPtrOutput)
+}
+
+// The position in the result list to start from when fetching paginated results. For details, see [Pagination](https://api-docs.render.com/reference/pagination).
+func (o ListEnvGroupsQueryParamsPtrOutput) Cursor() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ListEnvGroupsQueryParams) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Cursor
+	}).(pulumi.StringPtrOutput)
+}
+
+// Filter for resources that belong to an environment
+func (o ListEnvGroupsQueryParamsPtrOutput) EnvironmentId() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *ListEnvGroupsQueryParams) []string {
+		if v == nil {
+			return nil
+		}
+		return v.EnvironmentId
+	}).(pulumi.StringArrayOutput)
+}
+
+// The maximum number of items to return. For details, see [Pagination](https://api-docs.render.com/reference/pagination).
+func (o ListEnvGroupsQueryParamsPtrOutput) Limit() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *ListEnvGroupsQueryParams) *int {
+		if v == nil {
+			return nil
+		}
+		return v.Limit
+	}).(pulumi.IntPtrOutput)
+}
+
+// Filter by name
+func (o ListEnvGroupsQueryParamsPtrOutput) Name() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *ListEnvGroupsQueryParams) []string {
+		if v == nil {
+			return nil
+		}
+		return v.Name
+	}).(pulumi.StringArrayOutput)
+}
+
+// The ID of the workspaces to return resources for
+func (o ListEnvGroupsQueryParamsPtrOutput) OwnerId() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *ListEnvGroupsQueryParams) []string {
+		if v == nil {
+			return nil
+		}
+		return v.OwnerId
+	}).(pulumi.StringArrayOutput)
+}
+
+// Filter for resources updated after a certain time (specified as an ISO 8601 timestamp)
+func (o ListEnvGroupsQueryParamsPtrOutput) UpdatedAfter() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ListEnvGroupsQueryParams) *string {
+		if v == nil {
+			return nil
+		}
+		return v.UpdatedAfter
+	}).(pulumi.StringPtrOutput)
+}
+
+// Filter for resources updated before a certain time (specified as an ISO 8601 timestamp)
+func (o ListEnvGroupsQueryParamsPtrOutput) UpdatedBefore() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ListEnvGroupsQueryParams) *string {
+		if v == nil {
+			return nil
+		}
+		return v.UpdatedBefore
+	}).(pulumi.StringPtrOutput)
+}
+
 type SecretFile struct {
 	Content string `pulumi:"content"`
 	Name    string `pulumi:"name"`
@@ -453,18 +3759,102 @@ func (o SecretFileInputTypeArrayOutput) Index(i pulumi.IntInput) SecretFileInput
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*EnvGroupCreateQueryParamsInput)(nil)).Elem(), EnvGroupCreateQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*EnvGroupCreateQueryParamsPtrInput)(nil)).Elem(), EnvGroupCreateQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*EnvGroupDeleteQueryParamsInput)(nil)).Elem(), EnvGroupDeleteQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*EnvGroupDeleteQueryParamsPtrInput)(nil)).Elem(), EnvGroupDeleteQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*EnvGroupEnvVarCreateQueryParamsInput)(nil)).Elem(), EnvGroupEnvVarCreateQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*EnvGroupEnvVarCreateQueryParamsPtrInput)(nil)).Elem(), EnvGroupEnvVarCreateQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*EnvGroupEnvVarDeleteQueryParamsInput)(nil)).Elem(), EnvGroupEnvVarDeleteQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*EnvGroupEnvVarDeleteQueryParamsPtrInput)(nil)).Elem(), EnvGroupEnvVarDeleteQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*EnvGroupEnvVarPutQueryParamsInput)(nil)).Elem(), EnvGroupEnvVarPutQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*EnvGroupEnvVarPutQueryParamsPtrInput)(nil)).Elem(), EnvGroupEnvVarPutQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*EnvGroupEnvVarQueryParamsInput)(nil)).Elem(), EnvGroupEnvVarQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*EnvGroupEnvVarQueryParamsPtrInput)(nil)).Elem(), EnvGroupEnvVarQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*EnvGroupEnvVarReadQueryParamsInput)(nil)).Elem(), EnvGroupEnvVarReadQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*EnvGroupEnvVarReadQueryParamsPtrInput)(nil)).Elem(), EnvGroupEnvVarReadQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*EnvGroupQueryParamsInput)(nil)).Elem(), EnvGroupQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*EnvGroupQueryParamsPtrInput)(nil)).Elem(), EnvGroupQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*EnvGroupReadQueryParamsInput)(nil)).Elem(), EnvGroupReadQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*EnvGroupReadQueryParamsPtrInput)(nil)).Elem(), EnvGroupReadQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*EnvGroupSecretFileCreateQueryParamsInput)(nil)).Elem(), EnvGroupSecretFileCreateQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*EnvGroupSecretFileCreateQueryParamsPtrInput)(nil)).Elem(), EnvGroupSecretFileCreateQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*EnvGroupSecretFileDeleteQueryParamsInput)(nil)).Elem(), EnvGroupSecretFileDeleteQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*EnvGroupSecretFileDeleteQueryParamsPtrInput)(nil)).Elem(), EnvGroupSecretFileDeleteQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*EnvGroupSecretFilePutQueryParamsInput)(nil)).Elem(), EnvGroupSecretFilePutQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*EnvGroupSecretFilePutQueryParamsPtrInput)(nil)).Elem(), EnvGroupSecretFilePutQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*EnvGroupSecretFileQueryParamsInput)(nil)).Elem(), EnvGroupSecretFileQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*EnvGroupSecretFileQueryParamsPtrInput)(nil)).Elem(), EnvGroupSecretFileQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*EnvGroupSecretFileReadQueryParamsInput)(nil)).Elem(), EnvGroupSecretFileReadQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*EnvGroupSecretFileReadQueryParamsPtrInput)(nil)).Elem(), EnvGroupSecretFileReadQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*EnvGroupUpdateQueryParamsInput)(nil)).Elem(), EnvGroupUpdateQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*EnvGroupUpdateQueryParamsPtrInput)(nil)).Elem(), EnvGroupUpdateQueryParamsArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*EnvVarInputTypeInput)(nil)).Elem(), EnvVarInputTypeArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*EnvVarInputTypeArrayInput)(nil)).Elem(), EnvVarInputTypeArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetEnvGroupEnvVarQueryParamsInput)(nil)).Elem(), GetEnvGroupEnvVarQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetEnvGroupEnvVarQueryParamsPtrInput)(nil)).Elem(), GetEnvGroupEnvVarQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetEnvGroupQueryParamsInput)(nil)).Elem(), GetEnvGroupQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetEnvGroupQueryParamsPtrInput)(nil)).Elem(), GetEnvGroupQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetEnvGroupSecretFileQueryParamsInput)(nil)).Elem(), GetEnvGroupSecretFileQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetEnvGroupSecretFileQueryParamsPtrInput)(nil)).Elem(), GetEnvGroupSecretFileQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*LinkServiceToEnvGroupCreateQueryParamsInput)(nil)).Elem(), LinkServiceToEnvGroupCreateQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*LinkServiceToEnvGroupCreateQueryParamsPtrInput)(nil)).Elem(), LinkServiceToEnvGroupCreateQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*LinkServiceToEnvGroupQueryParamsInput)(nil)).Elem(), LinkServiceToEnvGroupQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*LinkServiceToEnvGroupQueryParamsPtrInput)(nil)).Elem(), LinkServiceToEnvGroupQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ListEnvGroupsQueryParamsInput)(nil)).Elem(), ListEnvGroupsQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ListEnvGroupsQueryParamsPtrInput)(nil)).Elem(), ListEnvGroupsQueryParamsArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SecretFileInputTypeInput)(nil)).Elem(), SecretFileInputTypeArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SecretFileInputTypeArrayInput)(nil)).Elem(), SecretFileInputTypeArray{})
+	pulumi.RegisterOutputType(EnvGroupCreateQueryParamsOutput{})
+	pulumi.RegisterOutputType(EnvGroupCreateQueryParamsPtrOutput{})
+	pulumi.RegisterOutputType(EnvGroupDeleteQueryParamsOutput{})
+	pulumi.RegisterOutputType(EnvGroupDeleteQueryParamsPtrOutput{})
+	pulumi.RegisterOutputType(EnvGroupEnvVarCreateQueryParamsOutput{})
+	pulumi.RegisterOutputType(EnvGroupEnvVarCreateQueryParamsPtrOutput{})
+	pulumi.RegisterOutputType(EnvGroupEnvVarDeleteQueryParamsOutput{})
+	pulumi.RegisterOutputType(EnvGroupEnvVarDeleteQueryParamsPtrOutput{})
+	pulumi.RegisterOutputType(EnvGroupEnvVarPutQueryParamsOutput{})
+	pulumi.RegisterOutputType(EnvGroupEnvVarPutQueryParamsPtrOutput{})
+	pulumi.RegisterOutputType(EnvGroupEnvVarQueryParamsOutput{})
+	pulumi.RegisterOutputType(EnvGroupEnvVarQueryParamsPtrOutput{})
+	pulumi.RegisterOutputType(EnvGroupEnvVarReadQueryParamsOutput{})
+	pulumi.RegisterOutputType(EnvGroupEnvVarReadQueryParamsPtrOutput{})
 	pulumi.RegisterOutputType(EnvGroupLinkOutput{})
 	pulumi.RegisterOutputType(EnvGroupLinkArrayOutput{})
 	pulumi.RegisterOutputType(EnvGroupMetaOutput{})
 	pulumi.RegisterOutputType(EnvGroupMetaArrayOutput{})
+	pulumi.RegisterOutputType(EnvGroupQueryParamsOutput{})
+	pulumi.RegisterOutputType(EnvGroupQueryParamsPtrOutput{})
+	pulumi.RegisterOutputType(EnvGroupReadQueryParamsOutput{})
+	pulumi.RegisterOutputType(EnvGroupReadQueryParamsPtrOutput{})
+	pulumi.RegisterOutputType(EnvGroupSecretFileCreateQueryParamsOutput{})
+	pulumi.RegisterOutputType(EnvGroupSecretFileCreateQueryParamsPtrOutput{})
+	pulumi.RegisterOutputType(EnvGroupSecretFileDeleteQueryParamsOutput{})
+	pulumi.RegisterOutputType(EnvGroupSecretFileDeleteQueryParamsPtrOutput{})
+	pulumi.RegisterOutputType(EnvGroupSecretFilePutQueryParamsOutput{})
+	pulumi.RegisterOutputType(EnvGroupSecretFilePutQueryParamsPtrOutput{})
+	pulumi.RegisterOutputType(EnvGroupSecretFileQueryParamsOutput{})
+	pulumi.RegisterOutputType(EnvGroupSecretFileQueryParamsPtrOutput{})
+	pulumi.RegisterOutputType(EnvGroupSecretFileReadQueryParamsOutput{})
+	pulumi.RegisterOutputType(EnvGroupSecretFileReadQueryParamsPtrOutput{})
+	pulumi.RegisterOutputType(EnvGroupUpdateQueryParamsOutput{})
+	pulumi.RegisterOutputType(EnvGroupUpdateQueryParamsPtrOutput{})
 	pulumi.RegisterOutputType(EnvVarOutput{})
 	pulumi.RegisterOutputType(EnvVarArrayOutput{})
 	pulumi.RegisterOutputType(EnvVarInputTypeOutput{})
 	pulumi.RegisterOutputType(EnvVarInputTypeArrayOutput{})
+	pulumi.RegisterOutputType(GetEnvGroupEnvVarQueryParamsOutput{})
+	pulumi.RegisterOutputType(GetEnvGroupEnvVarQueryParamsPtrOutput{})
+	pulumi.RegisterOutputType(GetEnvGroupQueryParamsOutput{})
+	pulumi.RegisterOutputType(GetEnvGroupQueryParamsPtrOutput{})
+	pulumi.RegisterOutputType(GetEnvGroupSecretFileQueryParamsOutput{})
+	pulumi.RegisterOutputType(GetEnvGroupSecretFileQueryParamsPtrOutput{})
+	pulumi.RegisterOutputType(LinkServiceToEnvGroupCreateQueryParamsOutput{})
+	pulumi.RegisterOutputType(LinkServiceToEnvGroupCreateQueryParamsPtrOutput{})
+	pulumi.RegisterOutputType(LinkServiceToEnvGroupQueryParamsOutput{})
+	pulumi.RegisterOutputType(LinkServiceToEnvGroupQueryParamsPtrOutput{})
+	pulumi.RegisterOutputType(ListEnvGroupsQueryParamsOutput{})
+	pulumi.RegisterOutputType(ListEnvGroupsQueryParamsPtrOutput{})
 	pulumi.RegisterOutputType(SecretFileOutput{})
 	pulumi.RegisterOutputType(SecretFileArrayOutput{})
 	pulumi.RegisterOutputType(SecretFileInputTypeOutput{})

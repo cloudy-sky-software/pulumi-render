@@ -15,6 +15,7 @@ else:
 from .. import _utilities
 from . import outputs
 from ._enums import *
+from ._inputs import *
 
 __all__ = ['EnvGroupEnvVarArgs', 'EnvGroupEnvVar']
 
@@ -24,12 +25,14 @@ class EnvGroupEnvVarArgs:
                  env_group_id: pulumi.Input[Optional[_builtins.str]] = None,
                  env_var_key: pulumi.Input[Optional[_builtins.str]] = None,
                  generate_value: pulumi.Input[Optional[_builtins.bool]] = None,
+                 query_params: pulumi.Input[Optional['EnvGroupEnvVarQueryParamsArgs']] = None,
                  value: pulumi.Input[Optional[_builtins.str]] = None):
         """
         The set of arguments for constructing a EnvGroupEnvVar resource.
 
         :param pulumi.Input[_builtins.str] env_group_id: Filter for resources that belong to an environment group
         :param pulumi.Input[_builtins.str] env_var_key: The name of the environment variable
+        :param pulumi.Input['EnvGroupEnvVarQueryParamsArgs'] query_params: Query params to send with the API requests for this resource.
         """
         if env_group_id is not None:
             pulumi.set(__self__, "env_group_id", env_group_id)
@@ -37,6 +40,8 @@ class EnvGroupEnvVarArgs:
             pulumi.set(__self__, "env_var_key", env_var_key)
         if generate_value is not None:
             pulumi.set(__self__, "generate_value", generate_value)
+        if query_params is not None:
+            pulumi.set(__self__, "query_params", query_params)
         if value is not None:
             pulumi.set(__self__, "value", value)
 
@@ -74,6 +79,18 @@ class EnvGroupEnvVarArgs:
         pulumi.set(self, "generate_value", value)
 
     @_builtins.property
+    @pulumi.getter(name="queryParams")
+    def query_params(self) -> pulumi.Input[Optional['EnvGroupEnvVarQueryParamsArgs']]:
+        """
+        Query params to send with the API requests for this resource.
+        """
+        return pulumi.get(self, "query_params")
+
+    @query_params.setter
+    def query_params(self, value: pulumi.Input[Optional['EnvGroupEnvVarQueryParamsArgs']]):
+        pulumi.set(self, "query_params", value)
+
+    @_builtins.property
     @pulumi.getter
     def value(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "value")
@@ -92,6 +109,7 @@ class EnvGroupEnvVar(pulumi.CustomResource):
                  env_group_id: pulumi.Input[Optional[_builtins.str]] = None,
                  env_var_key: pulumi.Input[Optional[_builtins.str]] = None,
                  generate_value: pulumi.Input[Optional[_builtins.bool]] = None,
+                 query_params: pulumi.Input[Optional[Union['EnvGroupEnvVarQueryParamsArgs', 'EnvGroupEnvVarQueryParamsArgsDict', 'outputs.EnvGroupEnvVarQueryParams']]] = None,
                  value: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
@@ -101,6 +119,7 @@ class EnvGroupEnvVar(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] env_group_id: Filter for resources that belong to an environment group
         :param pulumi.Input[_builtins.str] env_var_key: The name of the environment variable
+        :param pulumi.Input[Union['EnvGroupEnvVarQueryParamsArgs', 'EnvGroupEnvVarQueryParamsArgsDict', 'outputs.EnvGroupEnvVarQueryParams']] query_params: Query params to send with the API requests for this resource.
         """
         ...
     @overload
@@ -129,6 +148,7 @@ class EnvGroupEnvVar(pulumi.CustomResource):
                  env_group_id: pulumi.Input[Optional[_builtins.str]] = None,
                  env_var_key: pulumi.Input[Optional[_builtins.str]] = None,
                  generate_value: pulumi.Input[Optional[_builtins.bool]] = None,
+                 query_params: pulumi.Input[Optional[Union['EnvGroupEnvVarQueryParamsArgs', 'EnvGroupEnvVarQueryParamsArgsDict', 'outputs.EnvGroupEnvVarQueryParams']]] = None,
                  value: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -142,6 +162,7 @@ class EnvGroupEnvVar(pulumi.CustomResource):
             __props__.__dict__["env_group_id"] = env_group_id
             __props__.__dict__["env_var_key"] = env_var_key
             __props__.__dict__["generate_value"] = generate_value
+            __props__.__dict__["query_params"] = query_params
             __props__.__dict__["value"] = value
             __props__.__dict__["created_at"] = None
             __props__.__dict__["env_vars"] = None
@@ -179,6 +200,7 @@ class EnvGroupEnvVar(pulumi.CustomResource):
         __props__.__dict__["generate_value"] = None
         __props__.__dict__["name"] = None
         __props__.__dict__["owner_id"] = None
+        __props__.__dict__["query_params"] = None
         __props__.__dict__["secret_files"] = None
         __props__.__dict__["service_links"] = None
         __props__.__dict__["updated_at"] = None
@@ -214,6 +236,14 @@ class EnvGroupEnvVar(pulumi.CustomResource):
     @pulumi.getter(name="ownerId")
     def owner_id(self) -> pulumi.Output[Optional[_builtins.str]]:
         return pulumi.get(self, "owner_id")
+
+    @_builtins.property
+    @pulumi.getter(name="queryParams")
+    def query_params(self) -> pulumi.Output[Optional['outputs.EnvGroupEnvVarQueryParams']]:
+        """
+        Query params to send with the API requests for this resource.
+        """
+        return pulumi.get(self, "query_params")
 
     @_builtins.property
     @pulumi.getter(name="secretFiles")

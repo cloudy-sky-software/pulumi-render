@@ -25,7 +25,7 @@ export const getPostgresRecoveryInfo: typeof import("./getPostgresRecoveryInfo")
 export const getPostgresRecoveryInfoOutput: typeof import("./getPostgresRecoveryInfo").getPostgresRecoveryInfoOutput = null as any;
 utilities.lazyLoad(exports, ["getPostgresRecoveryInfo","getPostgresRecoveryInfoOutput"], () => require("./getPostgresRecoveryInfo"));
 
-export { ListPostgresArgs, ListPostgresResult } from "./listPostgres";
+export { ListPostgresArgs, ListPostgresResult, ListPostgresOutputArgs } from "./listPostgres";
 export const listPostgres: typeof import("./listPostgres").listPostgres = null as any;
 export const listPostgresOutput: typeof import("./listPostgres").listPostgresOutput = null as any;
 utilities.lazyLoad(exports, ["listPostgres","listPostgresOutput"], () => require("./listPostgres"));

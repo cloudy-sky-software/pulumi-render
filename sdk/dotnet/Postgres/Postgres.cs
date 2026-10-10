@@ -84,6 +84,12 @@ namespace Pulumi.Render.Postgres
         [Output("primaryPostgresID")]
         public Output<string?> PrimaryPostgresID { get; private set; } = null!;
 
+        /// <summary>
+        /// Query params to send with the API requests for this resource.
+        /// </summary>
+        [Output("queryParams")]
+        public Output<Outputs.PostgresQueryParams?> QueryParams { get; private set; } = null!;
+
         [Output("readReplicas")]
         public Output<ImmutableArray<Outputs.ReadReplica>> ReadReplicas { get; private set; } = null!;
 
@@ -212,6 +218,12 @@ namespace Pulumi.Render.Postgres
 
         [Input("plan", required: true)]
         public Input<Pulumi.Render.Postgres.Plan> Plan { get; set; } = null!;
+
+        /// <summary>
+        /// Query params to send with the API requests for this resource.
+        /// </summary>
+        [Input("queryParams")]
+        public Input<Inputs.PostgresQueryParamsArgs>? QueryParams { get; set; }
 
         [Input("readReplicas")]
         private InputList<Inputs.ReadReplicaInputArgs>? _readReplicas;

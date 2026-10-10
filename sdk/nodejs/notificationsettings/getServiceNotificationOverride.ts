@@ -10,11 +10,16 @@ import * as utilities from "../utilities";
 export function getServiceNotificationOverride(args: GetServiceNotificationOverrideArgs, opts?: pulumi.InvokeOptions): Promise<GetServiceNotificationOverrideResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("render:notification-settings:getServiceNotificationOverride", {
+        "queryParams": args.queryParams,
         "serviceId": args.serviceId,
     }, opts);
 }
 
 export interface GetServiceNotificationOverrideArgs {
+    /**
+     * Query params to send with the API request.
+     */
+    queryParams?: inputs.notificationsettings.GetServiceNotificationOverrideQueryParams;
     /**
      * The ID of the service
      */
@@ -29,11 +34,16 @@ export interface GetServiceNotificationOverrideResult {
 export function getServiceNotificationOverrideOutput(args: GetServiceNotificationOverrideOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetServiceNotificationOverrideResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("render:notification-settings:getServiceNotificationOverride", {
+        "queryParams": args.queryParams,
         "serviceId": args.serviceId,
     }, opts);
 }
 
 export interface GetServiceNotificationOverrideOutputArgs {
+    /**
+     * Query params to send with the API request.
+     */
+    queryParams?: pulumi.Input<inputs.notificationsettings.GetServiceNotificationOverrideQueryParamsArgs | undefined>;
     /**
      * The ID of the service
      */

@@ -11,18 +11,31 @@ export function listEnvGroups(args?: ListEnvGroupsArgs, opts?: pulumi.InvokeOpti
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("render:env-groups:listEnvGroups", {
+        "queryParams": args.queryParams ? inputs.envgroups.listEnvGroupsQueryParamsProvideDefaults(args.queryParams) : undefined,
     }, opts);
 }
 
 export interface ListEnvGroupsArgs {
+    /**
+     * Query params to send with the API request.
+     */
+    queryParams?: inputs.envgroups.ListEnvGroupsQueryParams;
 }
 
 export interface ListEnvGroupsResult {
     readonly items: outputs.envgroups.EnvGroupMeta[];
 }
-export function listEnvGroupsOutput(opts?: pulumi.InvokeOutputOptions): pulumi.Output<ListEnvGroupsResult> {
+export function listEnvGroupsOutput(args?: ListEnvGroupsOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<ListEnvGroupsResult> {
+    args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("render:env-groups:listEnvGroups", {
+        "queryParams": pulumi.output(args.queryParams).apply(v => v === undefined ? undefined : inputs.envgroups.listEnvGroupsQueryParamsProvideDefaults(v)),
     }, opts);
 }
 
+export interface ListEnvGroupsOutputArgs {
+    /**
+     * Query params to send with the API request.
+     */
+    queryParams?: pulumi.Input<inputs.envgroups.ListEnvGroupsQueryParamsArgs | undefined>;
+}

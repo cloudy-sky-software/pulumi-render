@@ -14,6 +14,7 @@ else:
     from typing_extensions import NotRequired, TypedDict, TypeAlias
 from .. import _utilities
 from . import outputs
+from ._inputs import *
 
 __all__ = [
     'ListHeadersResult',
@@ -44,28 +45,34 @@ class AwaitableListHeadersResult(ListHeadersResult):
             items=self.items)
 
 
-def list_headers(service_id: Optional[_builtins.str] = None,
+def list_headers(query_params: Optional[Union['ListHeadersQueryParams', 'ListHeadersQueryParamsDict']] = None,
+                 service_id: Optional[_builtins.str] = None,
                  opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableListHeadersResult:
     """
     Use this data source to access information about an existing resource.
 
+    :param Union['ListHeadersQueryParams', 'ListHeadersQueryParamsDict'] query_params: Query params to send with the API request.
     :param _builtins.str service_id: The ID of the service
     """
     __args__ = dict()
+    __args__['queryParams'] = query_params
     __args__['serviceId'] = service_id
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke('render:services:listHeaders', __args__, opts=opts, typ=ListHeadersResult).value
 
     return AwaitableListHeadersResult(
         items=pulumi.get(__ret__, 'items'))
-def list_headers_output(service_id: pulumi.Input[Optional[_builtins.str]] = None,
+def list_headers_output(query_params: pulumi.Input[Optional[Optional[Union['ListHeadersQueryParams', 'ListHeadersQueryParamsDict']]]] = None,
+                        service_id: pulumi.Input[Optional[_builtins.str]] = None,
                         opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[ListHeadersResult]:
     """
     Use this data source to access information about an existing resource.
 
+    :param Union['ListHeadersQueryParams', 'ListHeadersQueryParamsDict'] query_params: Query params to send with the API request.
     :param _builtins.str service_id: The ID of the service
     """
     __args__ = dict()
+    __args__['queryParams'] = query_params
     __args__['serviceId'] = service_id
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('render:services:listHeaders', __args__, opts=opts, typ=ListHeadersResult)

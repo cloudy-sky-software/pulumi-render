@@ -26,6 +26,8 @@ type LookupEnvGroupEnvVarArgs struct {
 	EnvGroupId string `pulumi:"envGroupId"`
 	// The name of the environment variable
 	EnvVarKey string `pulumi:"envVarKey"`
+	// Query params to send with the API request.
+	QueryParams *GetEnvGroupEnvVarQueryParams `pulumi:"queryParams"`
 }
 
 type LookupEnvGroupEnvVarResult struct {
@@ -43,6 +45,8 @@ type LookupEnvGroupEnvVarOutputArgs struct {
 	EnvGroupId pulumi.StringInput `pulumi:"envGroupId"`
 	// The name of the environment variable
 	EnvVarKey pulumi.StringInput `pulumi:"envVarKey"`
+	// Query params to send with the API request.
+	QueryParams GetEnvGroupEnvVarQueryParamsPtrInput `pulumi:"queryParams"`
 }
 
 func (LookupEnvGroupEnvVarOutputArgs) ElementType() reflect.Type {

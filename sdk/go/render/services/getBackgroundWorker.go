@@ -22,6 +22,8 @@ func LookupBackgroundWorker(ctx *pulumi.Context, args *LookupBackgroundWorkerArg
 }
 
 type LookupBackgroundWorkerArgs struct {
+	// Query params to send with the API request.
+	QueryParams *GetBackgroundWorkerQueryParams `pulumi:"queryParams"`
 	// The ID of the service
 	ServiceId string `pulumi:"serviceId"`
 }
@@ -73,6 +75,8 @@ func LookupBackgroundWorkerOutput(ctx *pulumi.Context, args LookupBackgroundWork
 }
 
 type LookupBackgroundWorkerOutputArgs struct {
+	// Query params to send with the API request.
+	QueryParams GetBackgroundWorkerQueryParamsPtrInput `pulumi:"queryParams"`
 	// The ID of the service
 	ServiceId pulumi.StringInput `pulumi:"serviceId"`
 }

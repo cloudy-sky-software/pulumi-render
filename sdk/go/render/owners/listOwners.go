@@ -14,7 +14,7 @@ import (
 func ListOwners(ctx *pulumi.Context, args *ListOwnersArgs, opts ...pulumi.InvokeOption) (*ListOwnersResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv ListOwnersResult
-	err := ctx.Invoke("render:owners:listOwners", args, &rv, opts...)
+	err := ctx.Invoke("render:owners:listOwners", args.Defaults(), &rv, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -22,6 +22,19 @@ func ListOwners(ctx *pulumi.Context, args *ListOwnersArgs, opts ...pulumi.Invoke
 }
 
 type ListOwnersArgs struct {
+	// Query params to send with the API request.
+	QueryParams *ListOwnersQueryParams `pulumi:"queryParams"`
+}
+
+// Defaults sets the appropriate defaults for ListOwnersArgs
+func (val *ListOwnersArgs) Defaults() *ListOwnersArgs {
+	if val == nil {
+		return nil
+	}
+	tmp := *val
+	tmp.QueryParams = tmp.QueryParams.Defaults()
+
+	return &tmp
 }
 
 type ListOwnersResult struct {
@@ -29,11 +42,18 @@ type ListOwnersResult struct {
 }
 
 func ListOwnersOutput(ctx *pulumi.Context, args ListOwnersOutputArgs, opts ...pulumi.InvokeOption) ListOwnersResultOutput {
+	outputArgs := pulumi.ToOutputWithContext(ctx.Context(), args).
+		ApplyT(func(v interface{}) *ListOwnersArgs {
+			args := v.(ListOwnersArgs)
+			return args.Defaults()
+		})
 	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-	return ctx.InvokeOutput("render:owners:listOwners", args, ListOwnersResultOutput{}, options).(ListOwnersResultOutput)
+	return ctx.InvokeOutput("render:owners:listOwners", outputArgs, ListOwnersResultOutput{}, options).(ListOwnersResultOutput)
 }
 
 type ListOwnersOutputArgs struct {
+	// Query params to send with the API request.
+	QueryParams ListOwnersQueryParamsPtrInput `pulumi:"queryParams"`
 }
 
 func (ListOwnersOutputArgs) ElementType() reflect.Type {

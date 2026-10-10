@@ -13,7 +13,9 @@ if sys.version_info >= (3, 11):
 else:
     from typing_extensions import NotRequired, TypedDict, TypeAlias
 from .. import _utilities
+from . import outputs
 from ._enums import *
+from ._inputs import *
 
 __all__ = ['CancelJobArgs', 'CancelJob']
 
@@ -21,15 +23,19 @@ __all__ = ['CancelJobArgs', 'CancelJob']
 class CancelJobArgs:
     def __init__(__self__, *,
                  job_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 query_params: pulumi.Input[Optional['CancelJobQueryParamsArgs']] = None,
                  service_id: pulumi.Input[Optional[_builtins.str]] = None):
         """
         The set of arguments for constructing a CancelJob resource.
 
         :param pulumi.Input[_builtins.str] job_id: The ID of the job
+        :param pulumi.Input['CancelJobQueryParamsArgs'] query_params: Query params to send with the API requests for this resource.
         :param pulumi.Input[_builtins.str] service_id: The ID of the service
         """
         if job_id is not None:
             pulumi.set(__self__, "job_id", job_id)
+        if query_params is not None:
+            pulumi.set(__self__, "query_params", query_params)
         if service_id is not None:
             pulumi.set(__self__, "service_id", service_id)
 
@@ -44,6 +50,18 @@ class CancelJobArgs:
     @job_id.setter
     def job_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "job_id", value)
+
+    @_builtins.property
+    @pulumi.getter(name="queryParams")
+    def query_params(self) -> pulumi.Input[Optional['CancelJobQueryParamsArgs']]:
+        """
+        Query params to send with the API requests for this resource.
+        """
+        return pulumi.get(self, "query_params")
+
+    @query_params.setter
+    def query_params(self, value: pulumi.Input[Optional['CancelJobQueryParamsArgs']]):
+        pulumi.set(self, "query_params", value)
 
     @_builtins.property
     @pulumi.getter(name="serviceId")
@@ -65,6 +83,7 @@ class CancelJob(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  job_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 query_params: pulumi.Input[Optional[Union['CancelJobQueryParamsArgs', 'CancelJobQueryParamsArgsDict', 'outputs.CancelJobQueryParams']]] = None,
                  service_id: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
@@ -73,6 +92,7 @@ class CancelJob(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] job_id: The ID of the job
+        :param pulumi.Input[Union['CancelJobQueryParamsArgs', 'CancelJobQueryParamsArgsDict', 'outputs.CancelJobQueryParams']] query_params: Query params to send with the API requests for this resource.
         :param pulumi.Input[_builtins.str] service_id: The ID of the service
         """
         ...
@@ -100,6 +120,7 @@ class CancelJob(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  job_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 query_params: pulumi.Input[Optional[Union['CancelJobQueryParamsArgs', 'CancelJobQueryParamsArgsDict', 'outputs.CancelJobQueryParams']]] = None,
                  service_id: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -111,6 +132,7 @@ class CancelJob(pulumi.CustomResource):
             __props__ = CancelJobArgs.__new__(CancelJobArgs)
 
             __props__.__dict__["job_id"] = job_id
+            __props__.__dict__["query_params"] = query_params
             __props__.__dict__["service_id"] = service_id
             __props__.__dict__["created_at"] = None
             __props__.__dict__["finished_at"] = None
@@ -143,6 +165,7 @@ class CancelJob(pulumi.CustomResource):
         __props__.__dict__["created_at"] = None
         __props__.__dict__["finished_at"] = None
         __props__.__dict__["plan_id"] = None
+        __props__.__dict__["query_params"] = None
         __props__.__dict__["service_id"] = None
         __props__.__dict__["start_command"] = None
         __props__.__dict__["started_at"] = None
@@ -163,6 +186,14 @@ class CancelJob(pulumi.CustomResource):
     @pulumi.getter(name="planId")
     def plan_id(self) -> pulumi.Output[_builtins.str]:
         return pulumi.get(self, "plan_id")
+
+    @_builtins.property
+    @pulumi.getter(name="queryParams")
+    def query_params(self) -> pulumi.Output[Optional['outputs.CancelJobQueryParams']]:
+        """
+        Query params to send with the API requests for this resource.
+        """
+        return pulumi.get(self, "query_params")
 
     @_builtins.property
     @pulumi.getter(name="serviceId")

@@ -14,7 +14,7 @@ import (
 func ListKeyValue(ctx *pulumi.Context, args *ListKeyValueArgs, opts ...pulumi.InvokeOption) (*ListKeyValueResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv ListKeyValueResult
-	err := ctx.Invoke("render:key-value:listKeyValue", args, &rv, opts...)
+	err := ctx.Invoke("render:key-value:listKeyValue", args.Defaults(), &rv, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -22,6 +22,19 @@ func ListKeyValue(ctx *pulumi.Context, args *ListKeyValueArgs, opts ...pulumi.In
 }
 
 type ListKeyValueArgs struct {
+	// Query params to send with the API request.
+	QueryParams *ListKeyValueQueryParams `pulumi:"queryParams"`
+}
+
+// Defaults sets the appropriate defaults for ListKeyValueArgs
+func (val *ListKeyValueArgs) Defaults() *ListKeyValueArgs {
+	if val == nil {
+		return nil
+	}
+	tmp := *val
+	tmp.QueryParams = tmp.QueryParams.Defaults()
+
+	return &tmp
 }
 
 type ListKeyValueResult struct {
@@ -29,11 +42,18 @@ type ListKeyValueResult struct {
 }
 
 func ListKeyValueOutput(ctx *pulumi.Context, args ListKeyValueOutputArgs, opts ...pulumi.InvokeOption) ListKeyValueResultOutput {
+	outputArgs := pulumi.ToOutputWithContext(ctx.Context(), args).
+		ApplyT(func(v interface{}) *ListKeyValueArgs {
+			args := v.(ListKeyValueArgs)
+			return args.Defaults()
+		})
 	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-	return ctx.InvokeOutput("render:key-value:listKeyValue", args, ListKeyValueResultOutput{}, options).(ListKeyValueResultOutput)
+	return ctx.InvokeOutput("render:key-value:listKeyValue", outputArgs, ListKeyValueResultOutput{}, options).(ListKeyValueResultOutput)
 }
 
 type ListKeyValueOutputArgs struct {
+	// Query params to send with the API request.
+	QueryParams ListKeyValueQueryParamsPtrInput `pulumi:"queryParams"`
 }
 
 func (ListKeyValueOutputArgs) ElementType() reflect.Type {

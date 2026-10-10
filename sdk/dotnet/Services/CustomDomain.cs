@@ -15,6 +15,12 @@ namespace Pulumi.Render.Services
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
 
+        /// <summary>
+        /// Query params to send with the API requests for this resource.
+        /// </summary>
+        [Output("queryParams")]
+        public Output<Outputs.CustomDomainQueryParams?> QueryParams { get; private set; } = null!;
+
 
         /// <summary>
         /// Create a CustomDomain resource with the given unique name, arguments, and options.
@@ -63,6 +69,12 @@ namespace Pulumi.Render.Services
     {
         [Input("name")]
         public Input<string>? Name { get; set; }
+
+        /// <summary>
+        /// Query params to send with the API requests for this resource.
+        /// </summary>
+        [Input("queryParams")]
+        public Input<Inputs.CustomDomainQueryParamsArgs>? QueryParams { get; set; }
 
         /// <summary>
         /// The ID of the service

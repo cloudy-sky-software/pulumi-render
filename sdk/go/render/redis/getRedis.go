@@ -22,7 +22,9 @@ func LookupRedis(ctx *pulumi.Context, args *LookupRedisArgs, opts ...pulumi.Invo
 }
 
 type LookupRedisArgs struct {
-	RedisId string `pulumi:"redisId"`
+	// Query params to send with the API request.
+	QueryParams *GetRedisQueryParams `pulumi:"queryParams"`
+	RedisId     string               `pulumi:"redisId"`
 }
 
 // A Redis instance
@@ -68,7 +70,9 @@ func LookupRedisOutput(ctx *pulumi.Context, args LookupRedisOutputArgs, opts ...
 }
 
 type LookupRedisOutputArgs struct {
-	RedisId pulumi.StringInput `pulumi:"redisId"`
+	// Query params to send with the API request.
+	QueryParams GetRedisQueryParamsPtrInput `pulumi:"queryParams"`
+	RedisId     pulumi.StringInput          `pulumi:"redisId"`
 }
 
 func (LookupRedisOutputArgs) ElementType() reflect.Type {

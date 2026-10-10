@@ -10,4 +10,5 @@ from ._enums import *
 from .get_bandwidth_source import *
 from .list_active_connections import *
 from .list_replication_lag import *
+from ._inputs import *
 from . import outputs

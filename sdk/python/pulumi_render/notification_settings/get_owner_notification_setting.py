@@ -14,6 +14,7 @@ else:
     from typing_extensions import NotRequired, TypedDict, TypeAlias
 from .. import _utilities
 from ._enums import *
+from ._inputs import *
 
 __all__ = [
     'GetOwnerNotificationSettingResult',
@@ -81,14 +82,17 @@ class AwaitableGetOwnerNotificationSettingResult(GetOwnerNotificationSettingResu
 
 
 def get_owner_notification_setting(owner_id: Optional[_builtins.str] = None,
+                                   query_params: Optional[Union['GetOwnerNotificationSettingQueryParams', 'GetOwnerNotificationSettingQueryParamsDict']] = None,
                                    opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetOwnerNotificationSettingResult:
     """
     Use this data source to access information about an existing resource.
 
     :param _builtins.str owner_id: The ID of the workspace to return resources for
+    :param Union['GetOwnerNotificationSettingQueryParams', 'GetOwnerNotificationSettingQueryParamsDict'] query_params: Query params to send with the API request.
     """
     __args__ = dict()
     __args__['ownerId'] = owner_id
+    __args__['queryParams'] = query_params
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke('render:notification-settings:getOwnerNotificationSetting', __args__, opts=opts, typ=GetOwnerNotificationSettingResult).value
 
@@ -99,14 +103,17 @@ def get_owner_notification_setting(owner_id: Optional[_builtins.str] = None,
         preview_notifications_enabled=pulumi.get(__ret__, 'preview_notifications_enabled'),
         slack_enabled=pulumi.get(__ret__, 'slack_enabled'))
 def get_owner_notification_setting_output(owner_id: pulumi.Input[Optional[_builtins.str]] = None,
+                                          query_params: pulumi.Input[Optional[Optional[Union['GetOwnerNotificationSettingQueryParams', 'GetOwnerNotificationSettingQueryParamsDict']]]] = None,
                                           opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetOwnerNotificationSettingResult]:
     """
     Use this data source to access information about an existing resource.
 
     :param _builtins.str owner_id: The ID of the workspace to return resources for
+    :param Union['GetOwnerNotificationSettingQueryParams', 'GetOwnerNotificationSettingQueryParamsDict'] query_params: Query params to send with the API request.
     """
     __args__ = dict()
     __args__['ownerId'] = owner_id
+    __args__['queryParams'] = query_params
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('render:notification-settings:getOwnerNotificationSetting', __args__, opts=opts, typ=GetOwnerNotificationSettingResult)
     return __ret__.apply(lambda __response__: GetOwnerNotificationSettingResult(

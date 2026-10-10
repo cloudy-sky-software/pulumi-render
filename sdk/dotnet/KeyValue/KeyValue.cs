@@ -67,6 +67,12 @@ namespace Pulumi.Render.KeyValue
         public Output<Pulumi.Render.KeyValue.Plan> Plan { get; private set; } = null!;
 
         /// <summary>
+        /// Query params to send with the API requests for this resource.
+        /// </summary>
+        [Output("queryParams")]
+        public Output<Outputs.KeyValueQueryParams?> QueryParams { get; private set; } = null!;
+
+        /// <summary>
         /// Defaults to "oregon"
         /// </summary>
         [Output("region")]
@@ -164,6 +170,12 @@ namespace Pulumi.Render.KeyValue
 
         [Input("plan", required: true)]
         public Input<Pulumi.Render.KeyValue.Plan> Plan { get; set; } = null!;
+
+        /// <summary>
+        /// Query params to send with the API requests for this resource.
+        /// </summary>
+        [Input("queryParams")]
+        public Input<Inputs.KeyValueQueryParamsArgs>? QueryParams { get; set; }
 
         /// <summary>
         /// The region where the Key Value instance is located

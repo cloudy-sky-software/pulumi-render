@@ -18,11 +18,13 @@ type CancelDeploy struct {
 	CreatedAt  pulumi.StringPtrOutput    `pulumi:"createdAt"`
 	FinishedAt pulumi.StringPtrOutput    `pulumi:"finishedAt"`
 	// Image information used when creating the deploy. Not present for Git-backed deploys
-	Image     ImagePropertiesPtrOutput `pulumi:"image"`
-	StartedAt pulumi.StringPtrOutput   `pulumi:"startedAt"`
-	Status    StatusPtrOutput          `pulumi:"status"`
-	Trigger   TriggerPtrOutput         `pulumi:"trigger"`
-	UpdatedAt pulumi.StringPtrOutput   `pulumi:"updatedAt"`
+	Image ImagePropertiesPtrOutput `pulumi:"image"`
+	// Query params to send with the API requests for this resource.
+	QueryParams CancelDeployQueryParamsPtrOutput `pulumi:"queryParams"`
+	StartedAt   pulumi.StringPtrOutput           `pulumi:"startedAt"`
+	Status      StatusPtrOutput                  `pulumi:"status"`
+	Trigger     TriggerPtrOutput                 `pulumi:"trigger"`
+	UpdatedAt   pulumi.StringPtrOutput           `pulumi:"updatedAt"`
 }
 
 // NewCancelDeploy registers a new resource with the given unique name, arguments, and options.
@@ -67,6 +69,8 @@ func (CancelDeployState) ElementType() reflect.Type {
 type cancelDeployArgs struct {
 	// The ID of the deploy
 	DeployId *string `pulumi:"deployId"`
+	// Query params to send with the API requests for this resource.
+	QueryParams *CancelDeployQueryParams `pulumi:"queryParams"`
 	// The ID of the service
 	ServiceId *string `pulumi:"serviceId"`
 }
@@ -75,6 +79,8 @@ type cancelDeployArgs struct {
 type CancelDeployArgs struct {
 	// The ID of the deploy
 	DeployId pulumi.StringPtrInput
+	// Query params to send with the API requests for this resource.
+	QueryParams CancelDeployQueryParamsPtrInput
 	// The ID of the service
 	ServiceId pulumi.StringPtrInput
 }
@@ -131,6 +137,11 @@ func (o CancelDeployOutput) FinishedAt() pulumi.StringPtrOutput {
 // Image information used when creating the deploy. Not present for Git-backed deploys
 func (o CancelDeployOutput) Image() ImagePropertiesPtrOutput {
 	return o.ApplyT(func(v *CancelDeploy) ImagePropertiesPtrOutput { return v.Image }).(ImagePropertiesPtrOutput)
+}
+
+// Query params to send with the API requests for this resource.
+func (o CancelDeployOutput) QueryParams() CancelDeployQueryParamsPtrOutput {
+	return o.ApplyT(func(v *CancelDeploy) CancelDeployQueryParamsPtrOutput { return v.QueryParams }).(CancelDeployQueryParamsPtrOutput)
 }
 
 func (o CancelDeployOutput) StartedAt() pulumi.StringPtrOutput {

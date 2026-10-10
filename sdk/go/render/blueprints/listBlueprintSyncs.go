@@ -14,7 +14,7 @@ import (
 func ListBlueprintSyncs(ctx *pulumi.Context, args *ListBlueprintSyncsArgs, opts ...pulumi.InvokeOption) (*ListBlueprintSyncsResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv ListBlueprintSyncsResult
-	err := ctx.Invoke("render:blueprints:listBlueprintSyncs", args, &rv, opts...)
+	err := ctx.Invoke("render:blueprints:listBlueprintSyncs", args.Defaults(), &rv, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -24,6 +24,19 @@ func ListBlueprintSyncs(ctx *pulumi.Context, args *ListBlueprintSyncsArgs, opts 
 type ListBlueprintSyncsArgs struct {
 	// The ID of the Blueprint
 	BlueprintId string `pulumi:"blueprintId"`
+	// Query params to send with the API request.
+	QueryParams *ListBlueprintSyncsQueryParams `pulumi:"queryParams"`
+}
+
+// Defaults sets the appropriate defaults for ListBlueprintSyncsArgs
+func (val *ListBlueprintSyncsArgs) Defaults() *ListBlueprintSyncsArgs {
+	if val == nil {
+		return nil
+	}
+	tmp := *val
+	tmp.QueryParams = tmp.QueryParams.Defaults()
+
+	return &tmp
 }
 
 type ListBlueprintSyncsResult struct {
@@ -31,13 +44,20 @@ type ListBlueprintSyncsResult struct {
 }
 
 func ListBlueprintSyncsOutput(ctx *pulumi.Context, args ListBlueprintSyncsOutputArgs, opts ...pulumi.InvokeOption) ListBlueprintSyncsResultOutput {
+	outputArgs := pulumi.ToOutputWithContext(ctx.Context(), args).
+		ApplyT(func(v interface{}) *ListBlueprintSyncsArgs {
+			args := v.(ListBlueprintSyncsArgs)
+			return args.Defaults()
+		})
 	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-	return ctx.InvokeOutput("render:blueprints:listBlueprintSyncs", args, ListBlueprintSyncsResultOutput{}, options).(ListBlueprintSyncsResultOutput)
+	return ctx.InvokeOutput("render:blueprints:listBlueprintSyncs", outputArgs, ListBlueprintSyncsResultOutput{}, options).(ListBlueprintSyncsResultOutput)
 }
 
 type ListBlueprintSyncsOutputArgs struct {
 	// The ID of the Blueprint
 	BlueprintId pulumi.StringInput `pulumi:"blueprintId"`
+	// Query params to send with the API request.
+	QueryParams ListBlueprintSyncsQueryParamsPtrInput `pulumi:"queryParams"`
 }
 
 func (ListBlueprintSyncsOutputArgs) ElementType() reflect.Type {

@@ -15,6 +15,7 @@ else:
 from .. import _utilities
 from . import outputs
 from ._enums import *
+from ._inputs import *
 
 __all__ = ['RecoverPostgresArgs', 'RecoverPostgres']
 
@@ -27,6 +28,7 @@ class RecoverPostgresArgs:
                  environment_id: pulumi.Input[Optional[_builtins.str]] = None,
                  plan: pulumi.Input[Optional[_builtins.str]] = None,
                  postgres_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 query_params: pulumi.Input[Optional['RecoverPostgresQueryParamsArgs']] = None,
                  restore_name: pulumi.Input[Optional[_builtins.str]] = None):
         """
         The set of arguments for constructing a RecoverPostgres resource.
@@ -36,6 +38,7 @@ class RecoverPostgresArgs:
         :param pulumi.Input[_builtins.str] datadog_site: Datadog region code to use for monitoring the new database. Defaults to the region code of the original database. Use an empty string to prevent copying of the region code to the new database.
         :param pulumi.Input[_builtins.str] environment_id: The environment to create the new database in. Defaults to the environment of the original database.
         :param pulumi.Input[_builtins.str] plan: The plan to use for the new database. Defaults to the same plan as the original database. Cannot be a lower tier plan than the original database.
+        :param pulumi.Input['RecoverPostgresQueryParamsArgs'] query_params: Query params to send with the API requests for this resource.
         :param pulumi.Input[_builtins.str] restore_name: Name of the new database.
         """
         pulumi.set(__self__, "restore_time", restore_time)
@@ -49,6 +52,8 @@ class RecoverPostgresArgs:
             pulumi.set(__self__, "plan", plan)
         if postgres_id is not None:
             pulumi.set(__self__, "postgres_id", postgres_id)
+        if query_params is not None:
+            pulumi.set(__self__, "query_params", query_params)
         if restore_name is not None:
             pulumi.set(__self__, "restore_name", restore_name)
 
@@ -122,6 +127,18 @@ class RecoverPostgresArgs:
         pulumi.set(self, "postgres_id", value)
 
     @_builtins.property
+    @pulumi.getter(name="queryParams")
+    def query_params(self) -> pulumi.Input[Optional['RecoverPostgresQueryParamsArgs']]:
+        """
+        Query params to send with the API requests for this resource.
+        """
+        return pulumi.get(self, "query_params")
+
+    @query_params.setter
+    def query_params(self, value: pulumi.Input[Optional['RecoverPostgresQueryParamsArgs']]):
+        pulumi.set(self, "query_params", value)
+
+    @_builtins.property
     @pulumi.getter(name="restoreName")
     def restore_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
@@ -145,6 +162,7 @@ class RecoverPostgres(pulumi.CustomResource):
                  environment_id: pulumi.Input[Optional[_builtins.str]] = None,
                  plan: pulumi.Input[Optional[_builtins.str]] = None,
                  postgres_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 query_params: pulumi.Input[Optional[Union['RecoverPostgresQueryParamsArgs', 'RecoverPostgresQueryParamsArgsDict', 'outputs.RecoverPostgresQueryParams']]] = None,
                  restore_name: pulumi.Input[Optional[_builtins.str]] = None,
                  restore_time: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
@@ -157,6 +175,7 @@ class RecoverPostgres(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] datadog_site: Datadog region code to use for monitoring the new database. Defaults to the region code of the original database. Use an empty string to prevent copying of the region code to the new database.
         :param pulumi.Input[_builtins.str] environment_id: The environment to create the new database in. Defaults to the environment of the original database.
         :param pulumi.Input[_builtins.str] plan: The plan to use for the new database. Defaults to the same plan as the original database. Cannot be a lower tier plan than the original database.
+        :param pulumi.Input[Union['RecoverPostgresQueryParamsArgs', 'RecoverPostgresQueryParamsArgsDict', 'outputs.RecoverPostgresQueryParams']] query_params: Query params to send with the API requests for this resource.
         :param pulumi.Input[_builtins.str] restore_name: Name of the new database.
         :param pulumi.Input[_builtins.str] restore_time: The point in time to restore the database to. See `/recovery-info` for restore availability
         """
@@ -189,6 +208,7 @@ class RecoverPostgres(pulumi.CustomResource):
                  environment_id: pulumi.Input[Optional[_builtins.str]] = None,
                  plan: pulumi.Input[Optional[_builtins.str]] = None,
                  postgres_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 query_params: pulumi.Input[Optional[Union['RecoverPostgresQueryParamsArgs', 'RecoverPostgresQueryParamsArgsDict', 'outputs.RecoverPostgresQueryParams']]] = None,
                  restore_name: pulumi.Input[Optional[_builtins.str]] = None,
                  restore_time: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
@@ -205,6 +225,7 @@ class RecoverPostgres(pulumi.CustomResource):
             __props__.__dict__["environment_id"] = environment_id
             __props__.__dict__["plan"] = plan
             __props__.__dict__["postgres_id"] = postgres_id
+            __props__.__dict__["query_params"] = query_params
             __props__.__dict__["restore_name"] = restore_name
             if restore_time is None and not opts.urn:
                 raise TypeError("Missing required property 'restore_time'")
@@ -267,6 +288,7 @@ class RecoverPostgres(pulumi.CustomResource):
         __props__.__dict__["owner"] = None
         __props__.__dict__["plan"] = None
         __props__.__dict__["primary_postgres_id"] = None
+        __props__.__dict__["query_params"] = None
         __props__.__dict__["read_replicas"] = None
         __props__.__dict__["region"] = None
         __props__.__dict__["restore_name"] = None
@@ -370,6 +392,14 @@ class RecoverPostgres(pulumi.CustomResource):
     @pulumi.getter(name="primaryPostgresID")
     def primary_postgres_id(self) -> pulumi.Output[Optional[_builtins.str]]:
         return pulumi.get(self, "primary_postgres_id")
+
+    @_builtins.property
+    @pulumi.getter(name="queryParams")
+    def query_params(self) -> pulumi.Output[Optional['outputs.RecoverPostgresQueryParams']]:
+        """
+        Query params to send with the API requests for this resource.
+        """
+        return pulumi.get(self, "query_params")
 
     @_builtins.property
     @pulumi.getter(name="readReplicas")

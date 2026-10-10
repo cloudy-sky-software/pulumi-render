@@ -16,11 +16,743 @@ from .. import _utilities
 from ._enums import *
 
 __all__ = [
+    'EnvGroupCreateQueryParamsArgs',
+    'EnvGroupCreateQueryParamsArgsDict',
+    'EnvGroupDeleteQueryParamsArgs',
+    'EnvGroupDeleteQueryParamsArgsDict',
+    'EnvGroupEnvVarCreateQueryParamsArgs',
+    'EnvGroupEnvVarCreateQueryParamsArgsDict',
+    'EnvGroupEnvVarDeleteQueryParamsArgs',
+    'EnvGroupEnvVarDeleteQueryParamsArgsDict',
+    'EnvGroupEnvVarPutQueryParamsArgs',
+    'EnvGroupEnvVarPutQueryParamsArgsDict',
+    'EnvGroupEnvVarQueryParamsArgs',
+    'EnvGroupEnvVarQueryParamsArgsDict',
+    'EnvGroupEnvVarReadQueryParamsArgs',
+    'EnvGroupEnvVarReadQueryParamsArgsDict',
+    'EnvGroupQueryParamsArgs',
+    'EnvGroupQueryParamsArgsDict',
+    'EnvGroupReadQueryParamsArgs',
+    'EnvGroupReadQueryParamsArgsDict',
+    'EnvGroupSecretFileCreateQueryParamsArgs',
+    'EnvGroupSecretFileCreateQueryParamsArgsDict',
+    'EnvGroupSecretFileDeleteQueryParamsArgs',
+    'EnvGroupSecretFileDeleteQueryParamsArgsDict',
+    'EnvGroupSecretFilePutQueryParamsArgs',
+    'EnvGroupSecretFilePutQueryParamsArgsDict',
+    'EnvGroupSecretFileQueryParamsArgs',
+    'EnvGroupSecretFileQueryParamsArgsDict',
+    'EnvGroupSecretFileReadQueryParamsArgs',
+    'EnvGroupSecretFileReadQueryParamsArgsDict',
+    'EnvGroupUpdateQueryParamsArgs',
+    'EnvGroupUpdateQueryParamsArgsDict',
     'EnvVarInputArgs',
     'EnvVarInputArgsDict',
+    'GetEnvGroupEnvVarQueryParams',
+    'GetEnvGroupEnvVarQueryParamsDict',
+    'GetEnvGroupQueryParams',
+    'GetEnvGroupQueryParamsDict',
+    'GetEnvGroupSecretFileQueryParams',
+    'GetEnvGroupSecretFileQueryParamsDict',
+    'LinkServiceToEnvGroupCreateQueryParamsArgs',
+    'LinkServiceToEnvGroupCreateQueryParamsArgsDict',
+    'LinkServiceToEnvGroupQueryParamsArgs',
+    'LinkServiceToEnvGroupQueryParamsArgsDict',
+    'ListEnvGroupsQueryParams',
+    'ListEnvGroupsQueryParamsDict',
     'SecretFileInputArgs',
     'SecretFileInputArgsDict',
 ]
+
+class EnvGroupCreateQueryParamsArgsDict(TypedDict):
+    """
+    Query params for the API request.
+    """
+    additional_params: NotRequired[pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]]
+    """
+    Additional query params to send with the request that are not defined in the API spec.
+    """
+
+@pulumi.input_type
+class EnvGroupCreateQueryParamsArgs:
+    def __init__(__self__, *,
+                 additional_params: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None):
+        """
+        Query params for the API request.
+
+        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] additional_params: Additional query params to send with the request that are not defined in the API spec.
+        """
+        if additional_params is not None:
+            pulumi.set(__self__, "additional_params", additional_params)
+
+    @_builtins.property
+    @pulumi.getter(name="additionalParams")
+    def additional_params(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
+        """
+        Additional query params to send with the request that are not defined in the API spec.
+        """
+        return pulumi.get(self, "additional_params")
+
+    @additional_params.setter
+    def additional_params(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "additional_params", value)
+
+
+class EnvGroupDeleteQueryParamsArgsDict(TypedDict):
+    """
+    Query params for the API request.
+    """
+    additional_params: NotRequired[pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]]
+    """
+    Additional query params to send with the request that are not defined in the API spec.
+    """
+
+@pulumi.input_type
+class EnvGroupDeleteQueryParamsArgs:
+    def __init__(__self__, *,
+                 additional_params: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None):
+        """
+        Query params for the API request.
+
+        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] additional_params: Additional query params to send with the request that are not defined in the API spec.
+        """
+        if additional_params is not None:
+            pulumi.set(__self__, "additional_params", additional_params)
+
+    @_builtins.property
+    @pulumi.getter(name="additionalParams")
+    def additional_params(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
+        """
+        Additional query params to send with the request that are not defined in the API spec.
+        """
+        return pulumi.get(self, "additional_params")
+
+    @additional_params.setter
+    def additional_params(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "additional_params", value)
+
+
+class EnvGroupEnvVarCreateQueryParamsArgsDict(TypedDict):
+    """
+    Query params for the API request.
+    """
+    additional_params: NotRequired[pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]]
+    """
+    Additional query params to send with the request that are not defined in the API spec.
+    """
+
+@pulumi.input_type
+class EnvGroupEnvVarCreateQueryParamsArgs:
+    def __init__(__self__, *,
+                 additional_params: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None):
+        """
+        Query params for the API request.
+
+        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] additional_params: Additional query params to send with the request that are not defined in the API spec.
+        """
+        if additional_params is not None:
+            pulumi.set(__self__, "additional_params", additional_params)
+
+    @_builtins.property
+    @pulumi.getter(name="additionalParams")
+    def additional_params(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
+        """
+        Additional query params to send with the request that are not defined in the API spec.
+        """
+        return pulumi.get(self, "additional_params")
+
+    @additional_params.setter
+    def additional_params(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "additional_params", value)
+
+
+class EnvGroupEnvVarDeleteQueryParamsArgsDict(TypedDict):
+    """
+    Query params for the API request.
+    """
+    additional_params: NotRequired[pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]]
+    """
+    Additional query params to send with the request that are not defined in the API spec.
+    """
+
+@pulumi.input_type
+class EnvGroupEnvVarDeleteQueryParamsArgs:
+    def __init__(__self__, *,
+                 additional_params: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None):
+        """
+        Query params for the API request.
+
+        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] additional_params: Additional query params to send with the request that are not defined in the API spec.
+        """
+        if additional_params is not None:
+            pulumi.set(__self__, "additional_params", additional_params)
+
+    @_builtins.property
+    @pulumi.getter(name="additionalParams")
+    def additional_params(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
+        """
+        Additional query params to send with the request that are not defined in the API spec.
+        """
+        return pulumi.get(self, "additional_params")
+
+    @additional_params.setter
+    def additional_params(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "additional_params", value)
+
+
+class EnvGroupEnvVarPutQueryParamsArgsDict(TypedDict):
+    """
+    Query params for the API request.
+    """
+    additional_params: NotRequired[pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]]
+    """
+    Additional query params to send with the request that are not defined in the API spec.
+    """
+
+@pulumi.input_type
+class EnvGroupEnvVarPutQueryParamsArgs:
+    def __init__(__self__, *,
+                 additional_params: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None):
+        """
+        Query params for the API request.
+
+        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] additional_params: Additional query params to send with the request that are not defined in the API spec.
+        """
+        if additional_params is not None:
+            pulumi.set(__self__, "additional_params", additional_params)
+
+    @_builtins.property
+    @pulumi.getter(name="additionalParams")
+    def additional_params(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
+        """
+        Additional query params to send with the request that are not defined in the API spec.
+        """
+        return pulumi.get(self, "additional_params")
+
+    @additional_params.setter
+    def additional_params(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "additional_params", value)
+
+
+class EnvGroupEnvVarQueryParamsArgsDict(TypedDict):
+    """
+    Query params for each of the operations of the resource.
+    """
+    create: NotRequired[pulumi.Input[Optional['EnvGroupEnvVarCreateQueryParamsArgsDict']]]
+    """
+    Query params for the create operation.
+    """
+    delete: NotRequired[pulumi.Input[Optional['EnvGroupEnvVarDeleteQueryParamsArgsDict']]]
+    """
+    Query params for the delete operation.
+    """
+    put: NotRequired[pulumi.Input[Optional['EnvGroupEnvVarPutQueryParamsArgsDict']]]
+    """
+    Query params for the put operation.
+    """
+    read: NotRequired[pulumi.Input[Optional['EnvGroupEnvVarReadQueryParamsArgsDict']]]
+    """
+    Query params for the read operation.
+    """
+
+@pulumi.input_type
+class EnvGroupEnvVarQueryParamsArgs:
+    def __init__(__self__, *,
+                 create: pulumi.Input[Optional['EnvGroupEnvVarCreateQueryParamsArgs']] = None,
+                 delete: pulumi.Input[Optional['EnvGroupEnvVarDeleteQueryParamsArgs']] = None,
+                 put: pulumi.Input[Optional['EnvGroupEnvVarPutQueryParamsArgs']] = None,
+                 read: pulumi.Input[Optional['EnvGroupEnvVarReadQueryParamsArgs']] = None):
+        """
+        Query params for each of the operations of the resource.
+
+        :param pulumi.Input['EnvGroupEnvVarCreateQueryParamsArgs'] create: Query params for the create operation.
+        :param pulumi.Input['EnvGroupEnvVarDeleteQueryParamsArgs'] delete: Query params for the delete operation.
+        :param pulumi.Input['EnvGroupEnvVarPutQueryParamsArgs'] put: Query params for the put operation.
+        :param pulumi.Input['EnvGroupEnvVarReadQueryParamsArgs'] read: Query params for the read operation.
+        """
+        if create is not None:
+            pulumi.set(__self__, "create", create)
+        if delete is not None:
+            pulumi.set(__self__, "delete", delete)
+        if put is not None:
+            pulumi.set(__self__, "put", put)
+        if read is not None:
+            pulumi.set(__self__, "read", read)
+
+    @_builtins.property
+    @pulumi.getter
+    def create(self) -> pulumi.Input[Optional['EnvGroupEnvVarCreateQueryParamsArgs']]:
+        """
+        Query params for the create operation.
+        """
+        return pulumi.get(self, "create")
+
+    @create.setter
+    def create(self, value: pulumi.Input[Optional['EnvGroupEnvVarCreateQueryParamsArgs']]):
+        pulumi.set(self, "create", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def delete(self) -> pulumi.Input[Optional['EnvGroupEnvVarDeleteQueryParamsArgs']]:
+        """
+        Query params for the delete operation.
+        """
+        return pulumi.get(self, "delete")
+
+    @delete.setter
+    def delete(self, value: pulumi.Input[Optional['EnvGroupEnvVarDeleteQueryParamsArgs']]):
+        pulumi.set(self, "delete", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def put(self) -> pulumi.Input[Optional['EnvGroupEnvVarPutQueryParamsArgs']]:
+        """
+        Query params for the put operation.
+        """
+        return pulumi.get(self, "put")
+
+    @put.setter
+    def put(self, value: pulumi.Input[Optional['EnvGroupEnvVarPutQueryParamsArgs']]):
+        pulumi.set(self, "put", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def read(self) -> pulumi.Input[Optional['EnvGroupEnvVarReadQueryParamsArgs']]:
+        """
+        Query params for the read operation.
+        """
+        return pulumi.get(self, "read")
+
+    @read.setter
+    def read(self, value: pulumi.Input[Optional['EnvGroupEnvVarReadQueryParamsArgs']]):
+        pulumi.set(self, "read", value)
+
+
+class EnvGroupEnvVarReadQueryParamsArgsDict(TypedDict):
+    """
+    Query params for the API request.
+    """
+    additional_params: NotRequired[pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]]
+    """
+    Additional query params to send with the request that are not defined in the API spec.
+    """
+
+@pulumi.input_type
+class EnvGroupEnvVarReadQueryParamsArgs:
+    def __init__(__self__, *,
+                 additional_params: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None):
+        """
+        Query params for the API request.
+
+        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] additional_params: Additional query params to send with the request that are not defined in the API spec.
+        """
+        if additional_params is not None:
+            pulumi.set(__self__, "additional_params", additional_params)
+
+    @_builtins.property
+    @pulumi.getter(name="additionalParams")
+    def additional_params(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
+        """
+        Additional query params to send with the request that are not defined in the API spec.
+        """
+        return pulumi.get(self, "additional_params")
+
+    @additional_params.setter
+    def additional_params(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "additional_params", value)
+
+
+class EnvGroupQueryParamsArgsDict(TypedDict):
+    """
+    Query params for each of the operations of the resource.
+    """
+    create: NotRequired[pulumi.Input[Optional['EnvGroupCreateQueryParamsArgsDict']]]
+    """
+    Query params for the create operation.
+    """
+    delete: NotRequired[pulumi.Input[Optional['EnvGroupDeleteQueryParamsArgsDict']]]
+    """
+    Query params for the delete operation.
+    """
+    read: NotRequired[pulumi.Input[Optional['EnvGroupReadQueryParamsArgsDict']]]
+    """
+    Query params for the read operation.
+    """
+    update: NotRequired[pulumi.Input[Optional['EnvGroupUpdateQueryParamsArgsDict']]]
+    """
+    Query params for the update operation.
+    """
+
+@pulumi.input_type
+class EnvGroupQueryParamsArgs:
+    def __init__(__self__, *,
+                 create: pulumi.Input[Optional['EnvGroupCreateQueryParamsArgs']] = None,
+                 delete: pulumi.Input[Optional['EnvGroupDeleteQueryParamsArgs']] = None,
+                 read: pulumi.Input[Optional['EnvGroupReadQueryParamsArgs']] = None,
+                 update: pulumi.Input[Optional['EnvGroupUpdateQueryParamsArgs']] = None):
+        """
+        Query params for each of the operations of the resource.
+
+        :param pulumi.Input['EnvGroupCreateQueryParamsArgs'] create: Query params for the create operation.
+        :param pulumi.Input['EnvGroupDeleteQueryParamsArgs'] delete: Query params for the delete operation.
+        :param pulumi.Input['EnvGroupReadQueryParamsArgs'] read: Query params for the read operation.
+        :param pulumi.Input['EnvGroupUpdateQueryParamsArgs'] update: Query params for the update operation.
+        """
+        if create is not None:
+            pulumi.set(__self__, "create", create)
+        if delete is not None:
+            pulumi.set(__self__, "delete", delete)
+        if read is not None:
+            pulumi.set(__self__, "read", read)
+        if update is not None:
+            pulumi.set(__self__, "update", update)
+
+    @_builtins.property
+    @pulumi.getter
+    def create(self) -> pulumi.Input[Optional['EnvGroupCreateQueryParamsArgs']]:
+        """
+        Query params for the create operation.
+        """
+        return pulumi.get(self, "create")
+
+    @create.setter
+    def create(self, value: pulumi.Input[Optional['EnvGroupCreateQueryParamsArgs']]):
+        pulumi.set(self, "create", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def delete(self) -> pulumi.Input[Optional['EnvGroupDeleteQueryParamsArgs']]:
+        """
+        Query params for the delete operation.
+        """
+        return pulumi.get(self, "delete")
+
+    @delete.setter
+    def delete(self, value: pulumi.Input[Optional['EnvGroupDeleteQueryParamsArgs']]):
+        pulumi.set(self, "delete", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def read(self) -> pulumi.Input[Optional['EnvGroupReadQueryParamsArgs']]:
+        """
+        Query params for the read operation.
+        """
+        return pulumi.get(self, "read")
+
+    @read.setter
+    def read(self, value: pulumi.Input[Optional['EnvGroupReadQueryParamsArgs']]):
+        pulumi.set(self, "read", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def update(self) -> pulumi.Input[Optional['EnvGroupUpdateQueryParamsArgs']]:
+        """
+        Query params for the update operation.
+        """
+        return pulumi.get(self, "update")
+
+    @update.setter
+    def update(self, value: pulumi.Input[Optional['EnvGroupUpdateQueryParamsArgs']]):
+        pulumi.set(self, "update", value)
+
+
+class EnvGroupReadQueryParamsArgsDict(TypedDict):
+    """
+    Query params for the API request.
+    """
+    additional_params: NotRequired[pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]]
+    """
+    Additional query params to send with the request that are not defined in the API spec.
+    """
+
+@pulumi.input_type
+class EnvGroupReadQueryParamsArgs:
+    def __init__(__self__, *,
+                 additional_params: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None):
+        """
+        Query params for the API request.
+
+        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] additional_params: Additional query params to send with the request that are not defined in the API spec.
+        """
+        if additional_params is not None:
+            pulumi.set(__self__, "additional_params", additional_params)
+
+    @_builtins.property
+    @pulumi.getter(name="additionalParams")
+    def additional_params(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
+        """
+        Additional query params to send with the request that are not defined in the API spec.
+        """
+        return pulumi.get(self, "additional_params")
+
+    @additional_params.setter
+    def additional_params(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "additional_params", value)
+
+
+class EnvGroupSecretFileCreateQueryParamsArgsDict(TypedDict):
+    """
+    Query params for the API request.
+    """
+    additional_params: NotRequired[pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]]
+    """
+    Additional query params to send with the request that are not defined in the API spec.
+    """
+
+@pulumi.input_type
+class EnvGroupSecretFileCreateQueryParamsArgs:
+    def __init__(__self__, *,
+                 additional_params: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None):
+        """
+        Query params for the API request.
+
+        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] additional_params: Additional query params to send with the request that are not defined in the API spec.
+        """
+        if additional_params is not None:
+            pulumi.set(__self__, "additional_params", additional_params)
+
+    @_builtins.property
+    @pulumi.getter(name="additionalParams")
+    def additional_params(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
+        """
+        Additional query params to send with the request that are not defined in the API spec.
+        """
+        return pulumi.get(self, "additional_params")
+
+    @additional_params.setter
+    def additional_params(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "additional_params", value)
+
+
+class EnvGroupSecretFileDeleteQueryParamsArgsDict(TypedDict):
+    """
+    Query params for the API request.
+    """
+    additional_params: NotRequired[pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]]
+    """
+    Additional query params to send with the request that are not defined in the API spec.
+    """
+
+@pulumi.input_type
+class EnvGroupSecretFileDeleteQueryParamsArgs:
+    def __init__(__self__, *,
+                 additional_params: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None):
+        """
+        Query params for the API request.
+
+        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] additional_params: Additional query params to send with the request that are not defined in the API spec.
+        """
+        if additional_params is not None:
+            pulumi.set(__self__, "additional_params", additional_params)
+
+    @_builtins.property
+    @pulumi.getter(name="additionalParams")
+    def additional_params(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
+        """
+        Additional query params to send with the request that are not defined in the API spec.
+        """
+        return pulumi.get(self, "additional_params")
+
+    @additional_params.setter
+    def additional_params(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "additional_params", value)
+
+
+class EnvGroupSecretFilePutQueryParamsArgsDict(TypedDict):
+    """
+    Query params for the API request.
+    """
+    additional_params: NotRequired[pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]]
+    """
+    Additional query params to send with the request that are not defined in the API spec.
+    """
+
+@pulumi.input_type
+class EnvGroupSecretFilePutQueryParamsArgs:
+    def __init__(__self__, *,
+                 additional_params: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None):
+        """
+        Query params for the API request.
+
+        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] additional_params: Additional query params to send with the request that are not defined in the API spec.
+        """
+        if additional_params is not None:
+            pulumi.set(__self__, "additional_params", additional_params)
+
+    @_builtins.property
+    @pulumi.getter(name="additionalParams")
+    def additional_params(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
+        """
+        Additional query params to send with the request that are not defined in the API spec.
+        """
+        return pulumi.get(self, "additional_params")
+
+    @additional_params.setter
+    def additional_params(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "additional_params", value)
+
+
+class EnvGroupSecretFileQueryParamsArgsDict(TypedDict):
+    """
+    Query params for each of the operations of the resource.
+    """
+    create: NotRequired[pulumi.Input[Optional['EnvGroupSecretFileCreateQueryParamsArgsDict']]]
+    """
+    Query params for the create operation.
+    """
+    delete: NotRequired[pulumi.Input[Optional['EnvGroupSecretFileDeleteQueryParamsArgsDict']]]
+    """
+    Query params for the delete operation.
+    """
+    put: NotRequired[pulumi.Input[Optional['EnvGroupSecretFilePutQueryParamsArgsDict']]]
+    """
+    Query params for the put operation.
+    """
+    read: NotRequired[pulumi.Input[Optional['EnvGroupSecretFileReadQueryParamsArgsDict']]]
+    """
+    Query params for the read operation.
+    """
+
+@pulumi.input_type
+class EnvGroupSecretFileQueryParamsArgs:
+    def __init__(__self__, *,
+                 create: pulumi.Input[Optional['EnvGroupSecretFileCreateQueryParamsArgs']] = None,
+                 delete: pulumi.Input[Optional['EnvGroupSecretFileDeleteQueryParamsArgs']] = None,
+                 put: pulumi.Input[Optional['EnvGroupSecretFilePutQueryParamsArgs']] = None,
+                 read: pulumi.Input[Optional['EnvGroupSecretFileReadQueryParamsArgs']] = None):
+        """
+        Query params for each of the operations of the resource.
+
+        :param pulumi.Input['EnvGroupSecretFileCreateQueryParamsArgs'] create: Query params for the create operation.
+        :param pulumi.Input['EnvGroupSecretFileDeleteQueryParamsArgs'] delete: Query params for the delete operation.
+        :param pulumi.Input['EnvGroupSecretFilePutQueryParamsArgs'] put: Query params for the put operation.
+        :param pulumi.Input['EnvGroupSecretFileReadQueryParamsArgs'] read: Query params for the read operation.
+        """
+        if create is not None:
+            pulumi.set(__self__, "create", create)
+        if delete is not None:
+            pulumi.set(__self__, "delete", delete)
+        if put is not None:
+            pulumi.set(__self__, "put", put)
+        if read is not None:
+            pulumi.set(__self__, "read", read)
+
+    @_builtins.property
+    @pulumi.getter
+    def create(self) -> pulumi.Input[Optional['EnvGroupSecretFileCreateQueryParamsArgs']]:
+        """
+        Query params for the create operation.
+        """
+        return pulumi.get(self, "create")
+
+    @create.setter
+    def create(self, value: pulumi.Input[Optional['EnvGroupSecretFileCreateQueryParamsArgs']]):
+        pulumi.set(self, "create", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def delete(self) -> pulumi.Input[Optional['EnvGroupSecretFileDeleteQueryParamsArgs']]:
+        """
+        Query params for the delete operation.
+        """
+        return pulumi.get(self, "delete")
+
+    @delete.setter
+    def delete(self, value: pulumi.Input[Optional['EnvGroupSecretFileDeleteQueryParamsArgs']]):
+        pulumi.set(self, "delete", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def put(self) -> pulumi.Input[Optional['EnvGroupSecretFilePutQueryParamsArgs']]:
+        """
+        Query params for the put operation.
+        """
+        return pulumi.get(self, "put")
+
+    @put.setter
+    def put(self, value: pulumi.Input[Optional['EnvGroupSecretFilePutQueryParamsArgs']]):
+        pulumi.set(self, "put", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def read(self) -> pulumi.Input[Optional['EnvGroupSecretFileReadQueryParamsArgs']]:
+        """
+        Query params for the read operation.
+        """
+        return pulumi.get(self, "read")
+
+    @read.setter
+    def read(self, value: pulumi.Input[Optional['EnvGroupSecretFileReadQueryParamsArgs']]):
+        pulumi.set(self, "read", value)
+
+
+class EnvGroupSecretFileReadQueryParamsArgsDict(TypedDict):
+    """
+    Query params for the API request.
+    """
+    additional_params: NotRequired[pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]]
+    """
+    Additional query params to send with the request that are not defined in the API spec.
+    """
+
+@pulumi.input_type
+class EnvGroupSecretFileReadQueryParamsArgs:
+    def __init__(__self__, *,
+                 additional_params: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None):
+        """
+        Query params for the API request.
+
+        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] additional_params: Additional query params to send with the request that are not defined in the API spec.
+        """
+        if additional_params is not None:
+            pulumi.set(__self__, "additional_params", additional_params)
+
+    @_builtins.property
+    @pulumi.getter(name="additionalParams")
+    def additional_params(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
+        """
+        Additional query params to send with the request that are not defined in the API spec.
+        """
+        return pulumi.get(self, "additional_params")
+
+    @additional_params.setter
+    def additional_params(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "additional_params", value)
+
+
+class EnvGroupUpdateQueryParamsArgsDict(TypedDict):
+    """
+    Query params for the API request.
+    """
+    additional_params: NotRequired[pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]]
+    """
+    Additional query params to send with the request that are not defined in the API spec.
+    """
+
+@pulumi.input_type
+class EnvGroupUpdateQueryParamsArgs:
+    def __init__(__self__, *,
+                 additional_params: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None):
+        """
+        Query params for the API request.
+
+        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] additional_params: Additional query params to send with the request that are not defined in the API spec.
+        """
+        if additional_params is not None:
+            pulumi.set(__self__, "additional_params", additional_params)
+
+    @_builtins.property
+    @pulumi.getter(name="additionalParams")
+    def additional_params(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
+        """
+        Additional query params to send with the request that are not defined in the API spec.
+        """
+        return pulumi.get(self, "additional_params")
+
+    @additional_params.setter
+    def additional_params(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "additional_params", value)
+
 
 class EnvVarInputArgsDict(TypedDict):
     generate_value: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
@@ -66,6 +798,392 @@ class EnvVarInputArgs:
     @value.setter
     def value(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "value", value)
+
+
+class GetEnvGroupEnvVarQueryParamsDict(TypedDict):
+    """
+    Query params for the API request.
+    """
+    additional_params: NotRequired[Mapping[str, _builtins.str]]
+    """
+    Additional query params to send with the request that are not defined in the API spec.
+    """
+
+@pulumi.input_type
+class GetEnvGroupEnvVarQueryParams:
+    def __init__(__self__, *,
+                 additional_params: Optional[Mapping[str, _builtins.str]] = None):
+        """
+        Query params for the API request.
+
+        :param Mapping[str, _builtins.str] additional_params: Additional query params to send with the request that are not defined in the API spec.
+        """
+        if additional_params is not None:
+            pulumi.set(__self__, "additional_params", additional_params)
+
+    @_builtins.property
+    @pulumi.getter(name="additionalParams")
+    def additional_params(self) -> Optional[Mapping[str, _builtins.str]]:
+        """
+        Additional query params to send with the request that are not defined in the API spec.
+        """
+        return pulumi.get(self, "additional_params")
+
+    @additional_params.setter
+    def additional_params(self, value: Optional[Mapping[str, _builtins.str]]):
+        pulumi.set(self, "additional_params", value)
+
+
+class GetEnvGroupQueryParamsDict(TypedDict):
+    """
+    Query params for the API request.
+    """
+    additional_params: NotRequired[Mapping[str, _builtins.str]]
+    """
+    Additional query params to send with the request that are not defined in the API spec.
+    """
+
+@pulumi.input_type
+class GetEnvGroupQueryParams:
+    def __init__(__self__, *,
+                 additional_params: Optional[Mapping[str, _builtins.str]] = None):
+        """
+        Query params for the API request.
+
+        :param Mapping[str, _builtins.str] additional_params: Additional query params to send with the request that are not defined in the API spec.
+        """
+        if additional_params is not None:
+            pulumi.set(__self__, "additional_params", additional_params)
+
+    @_builtins.property
+    @pulumi.getter(name="additionalParams")
+    def additional_params(self) -> Optional[Mapping[str, _builtins.str]]:
+        """
+        Additional query params to send with the request that are not defined in the API spec.
+        """
+        return pulumi.get(self, "additional_params")
+
+    @additional_params.setter
+    def additional_params(self, value: Optional[Mapping[str, _builtins.str]]):
+        pulumi.set(self, "additional_params", value)
+
+
+class GetEnvGroupSecretFileQueryParamsDict(TypedDict):
+    """
+    Query params for the API request.
+    """
+    additional_params: NotRequired[Mapping[str, _builtins.str]]
+    """
+    Additional query params to send with the request that are not defined in the API spec.
+    """
+
+@pulumi.input_type
+class GetEnvGroupSecretFileQueryParams:
+    def __init__(__self__, *,
+                 additional_params: Optional[Mapping[str, _builtins.str]] = None):
+        """
+        Query params for the API request.
+
+        :param Mapping[str, _builtins.str] additional_params: Additional query params to send with the request that are not defined in the API spec.
+        """
+        if additional_params is not None:
+            pulumi.set(__self__, "additional_params", additional_params)
+
+    @_builtins.property
+    @pulumi.getter(name="additionalParams")
+    def additional_params(self) -> Optional[Mapping[str, _builtins.str]]:
+        """
+        Additional query params to send with the request that are not defined in the API spec.
+        """
+        return pulumi.get(self, "additional_params")
+
+    @additional_params.setter
+    def additional_params(self, value: Optional[Mapping[str, _builtins.str]]):
+        pulumi.set(self, "additional_params", value)
+
+
+class LinkServiceToEnvGroupCreateQueryParamsArgsDict(TypedDict):
+    """
+    Query params for the API request.
+    """
+    additional_params: NotRequired[pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]]
+    """
+    Additional query params to send with the request that are not defined in the API spec.
+    """
+
+@pulumi.input_type
+class LinkServiceToEnvGroupCreateQueryParamsArgs:
+    def __init__(__self__, *,
+                 additional_params: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None):
+        """
+        Query params for the API request.
+
+        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] additional_params: Additional query params to send with the request that are not defined in the API spec.
+        """
+        if additional_params is not None:
+            pulumi.set(__self__, "additional_params", additional_params)
+
+    @_builtins.property
+    @pulumi.getter(name="additionalParams")
+    def additional_params(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
+        """
+        Additional query params to send with the request that are not defined in the API spec.
+        """
+        return pulumi.get(self, "additional_params")
+
+    @additional_params.setter
+    def additional_params(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "additional_params", value)
+
+
+class LinkServiceToEnvGroupQueryParamsArgsDict(TypedDict):
+    """
+    Query params for each of the operations of the resource.
+    """
+    create: NotRequired[pulumi.Input[Optional['LinkServiceToEnvGroupCreateQueryParamsArgsDict']]]
+    """
+    Query params for the create operation.
+    """
+
+@pulumi.input_type
+class LinkServiceToEnvGroupQueryParamsArgs:
+    def __init__(__self__, *,
+                 create: pulumi.Input[Optional['LinkServiceToEnvGroupCreateQueryParamsArgs']] = None):
+        """
+        Query params for each of the operations of the resource.
+
+        :param pulumi.Input['LinkServiceToEnvGroupCreateQueryParamsArgs'] create: Query params for the create operation.
+        """
+        if create is not None:
+            pulumi.set(__self__, "create", create)
+
+    @_builtins.property
+    @pulumi.getter
+    def create(self) -> pulumi.Input[Optional['LinkServiceToEnvGroupCreateQueryParamsArgs']]:
+        """
+        Query params for the create operation.
+        """
+        return pulumi.get(self, "create")
+
+    @create.setter
+    def create(self, value: pulumi.Input[Optional['LinkServiceToEnvGroupCreateQueryParamsArgs']]):
+        pulumi.set(self, "create", value)
+
+
+class ListEnvGroupsQueryParamsDict(TypedDict):
+    """
+    Query params for the API request.
+    """
+    additional_params: NotRequired[Mapping[str, _builtins.str]]
+    """
+    Additional query params to send with the request that are not defined in the API spec.
+    """
+    created_after: NotRequired[_builtins.str]
+    """
+    Filter for resources created after a certain time (specified as an ISO 8601 timestamp)
+    """
+    created_before: NotRequired[_builtins.str]
+    """
+    Filter for resources created before a certain time (specified as an ISO 8601 timestamp)
+    """
+    cursor: NotRequired[_builtins.str]
+    """
+    The position in the result list to start from when fetching paginated results. For details, see [Pagination](https://api-docs.render.com/reference/pagination).
+    """
+    environment_id: NotRequired[Sequence[_builtins.str]]
+    """
+    Filter for resources that belong to an environment
+    """
+    limit: NotRequired[_builtins.int]
+    """
+    The maximum number of items to return. For details, see [Pagination](https://api-docs.render.com/reference/pagination).
+    """
+    name: NotRequired[Sequence[_builtins.str]]
+    """
+    Filter by name
+    """
+    owner_id: NotRequired[Sequence[_builtins.str]]
+    """
+    The ID of the workspaces to return resources for
+    """
+    updated_after: NotRequired[_builtins.str]
+    """
+    Filter for resources updated after a certain time (specified as an ISO 8601 timestamp)
+    """
+    updated_before: NotRequired[_builtins.str]
+    """
+    Filter for resources updated before a certain time (specified as an ISO 8601 timestamp)
+    """
+
+@pulumi.input_type
+class ListEnvGroupsQueryParams:
+    def __init__(__self__, *,
+                 additional_params: Optional[Mapping[str, _builtins.str]] = None,
+                 created_after: Optional[_builtins.str] = None,
+                 created_before: Optional[_builtins.str] = None,
+                 cursor: Optional[_builtins.str] = None,
+                 environment_id: Optional[Sequence[_builtins.str]] = None,
+                 limit: Optional[_builtins.int] = None,
+                 name: Optional[Sequence[_builtins.str]] = None,
+                 owner_id: Optional[Sequence[_builtins.str]] = None,
+                 updated_after: Optional[_builtins.str] = None,
+                 updated_before: Optional[_builtins.str] = None):
+        """
+        Query params for the API request.
+
+        :param Mapping[str, _builtins.str] additional_params: Additional query params to send with the request that are not defined in the API spec.
+        :param _builtins.str created_after: Filter for resources created after a certain time (specified as an ISO 8601 timestamp)
+        :param _builtins.str created_before: Filter for resources created before a certain time (specified as an ISO 8601 timestamp)
+        :param _builtins.str cursor: The position in the result list to start from when fetching paginated results. For details, see [Pagination](https://api-docs.render.com/reference/pagination).
+        :param Sequence[_builtins.str] environment_id: Filter for resources that belong to an environment
+        :param _builtins.int limit: The maximum number of items to return. For details, see [Pagination](https://api-docs.render.com/reference/pagination).
+        :param Sequence[_builtins.str] name: Filter by name
+        :param Sequence[_builtins.str] owner_id: The ID of the workspaces to return resources for
+        :param _builtins.str updated_after: Filter for resources updated after a certain time (specified as an ISO 8601 timestamp)
+        :param _builtins.str updated_before: Filter for resources updated before a certain time (specified as an ISO 8601 timestamp)
+        """
+        if additional_params is not None:
+            pulumi.set(__self__, "additional_params", additional_params)
+        if created_after is not None:
+            pulumi.set(__self__, "created_after", created_after)
+        if created_before is not None:
+            pulumi.set(__self__, "created_before", created_before)
+        if cursor is not None:
+            pulumi.set(__self__, "cursor", cursor)
+        if environment_id is not None:
+            pulumi.set(__self__, "environment_id", environment_id)
+        if limit is None:
+            limit = 20
+        if limit is not None:
+            pulumi.set(__self__, "limit", limit)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if owner_id is not None:
+            pulumi.set(__self__, "owner_id", owner_id)
+        if updated_after is not None:
+            pulumi.set(__self__, "updated_after", updated_after)
+        if updated_before is not None:
+            pulumi.set(__self__, "updated_before", updated_before)
+
+    @_builtins.property
+    @pulumi.getter(name="additionalParams")
+    def additional_params(self) -> Optional[Mapping[str, _builtins.str]]:
+        """
+        Additional query params to send with the request that are not defined in the API spec.
+        """
+        return pulumi.get(self, "additional_params")
+
+    @additional_params.setter
+    def additional_params(self, value: Optional[Mapping[str, _builtins.str]]):
+        pulumi.set(self, "additional_params", value)
+
+    @_builtins.property
+    @pulumi.getter(name="createdAfter")
+    def created_after(self) -> Optional[_builtins.str]:
+        """
+        Filter for resources created after a certain time (specified as an ISO 8601 timestamp)
+        """
+        return pulumi.get(self, "created_after")
+
+    @created_after.setter
+    def created_after(self, value: Optional[_builtins.str]):
+        pulumi.set(self, "created_after", value)
+
+    @_builtins.property
+    @pulumi.getter(name="createdBefore")
+    def created_before(self) -> Optional[_builtins.str]:
+        """
+        Filter for resources created before a certain time (specified as an ISO 8601 timestamp)
+        """
+        return pulumi.get(self, "created_before")
+
+    @created_before.setter
+    def created_before(self, value: Optional[_builtins.str]):
+        pulumi.set(self, "created_before", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def cursor(self) -> Optional[_builtins.str]:
+        """
+        The position in the result list to start from when fetching paginated results. For details, see [Pagination](https://api-docs.render.com/reference/pagination).
+        """
+        return pulumi.get(self, "cursor")
+
+    @cursor.setter
+    def cursor(self, value: Optional[_builtins.str]):
+        pulumi.set(self, "cursor", value)
+
+    @_builtins.property
+    @pulumi.getter(name="environmentId")
+    def environment_id(self) -> Optional[Sequence[_builtins.str]]:
+        """
+        Filter for resources that belong to an environment
+        """
+        return pulumi.get(self, "environment_id")
+
+    @environment_id.setter
+    def environment_id(self, value: Optional[Sequence[_builtins.str]]):
+        pulumi.set(self, "environment_id", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def limit(self) -> Optional[_builtins.int]:
+        """
+        The maximum number of items to return. For details, see [Pagination](https://api-docs.render.com/reference/pagination).
+        """
+        return pulumi.get(self, "limit")
+
+    @limit.setter
+    def limit(self, value: Optional[_builtins.int]):
+        pulumi.set(self, "limit", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> Optional[Sequence[_builtins.str]]:
+        """
+        Filter by name
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: Optional[Sequence[_builtins.str]]):
+        pulumi.set(self, "name", value)
+
+    @_builtins.property
+    @pulumi.getter(name="ownerId")
+    def owner_id(self) -> Optional[Sequence[_builtins.str]]:
+        """
+        The ID of the workspaces to return resources for
+        """
+        return pulumi.get(self, "owner_id")
+
+    @owner_id.setter
+    def owner_id(self, value: Optional[Sequence[_builtins.str]]):
+        pulumi.set(self, "owner_id", value)
+
+    @_builtins.property
+    @pulumi.getter(name="updatedAfter")
+    def updated_after(self) -> Optional[_builtins.str]:
+        """
+        Filter for resources updated after a certain time (specified as an ISO 8601 timestamp)
+        """
+        return pulumi.get(self, "updated_after")
+
+    @updated_after.setter
+    def updated_after(self, value: Optional[_builtins.str]):
+        pulumi.set(self, "updated_after", value)
+
+    @_builtins.property
+    @pulumi.getter(name="updatedBefore")
+    def updated_before(self) -> Optional[_builtins.str]:
+        """
+        Filter for resources updated before a certain time (specified as an ISO 8601 timestamp)
+        """
+        return pulumi.get(self, "updated_before")
+
+    @updated_before.setter
+    def updated_before(self, value: Optional[_builtins.str]):
+        pulumi.set(self, "updated_before", value)
 
 
 class SecretFileInputArgsDict(TypedDict):

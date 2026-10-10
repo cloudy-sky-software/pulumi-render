@@ -2,6 +2,9 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
+import * as inputs from "../types/input";
+import * as outputs from "../types/output";
+import * as enums from "../types/enums";
 import * as utilities from "../utilities";
 
 export class RestoreSnapshot extends pulumi.CustomResource {
@@ -38,6 +41,10 @@ export class RestoreSnapshot extends pulumi.CustomResource {
     declare public readonly instanceId: pulumi.Output<string | undefined>;
     declare public /*out*/ readonly mountPath: pulumi.Output<string>;
     declare public /*out*/ readonly name: pulumi.Output<string>;
+    /**
+     * Query params to send with the API requests for this resource.
+     */
+    declare public readonly queryParams: pulumi.Output<outputs.disks.RestoreSnapshotQueryParams | undefined>;
     declare public /*out*/ readonly serviceId: pulumi.Output<string | undefined>;
     declare public /*out*/ readonly sizeGB: pulumi.Output<number>;
     declare public readonly snapshotKey: pulumi.Output<string>;
@@ -59,6 +66,7 @@ export class RestoreSnapshot extends pulumi.CustomResource {
             }
             resourceInputs["diskId"] = args?.diskId;
             resourceInputs["instanceId"] = args?.instanceId;
+            resourceInputs["queryParams"] = args?.queryParams;
             resourceInputs["snapshotKey"] = args?.snapshotKey;
             resourceInputs["createdAt"] = undefined /*out*/;
             resourceInputs["mountPath"] = undefined /*out*/;
@@ -71,6 +79,7 @@ export class RestoreSnapshot extends pulumi.CustomResource {
             resourceInputs["instanceId"] = undefined /*out*/;
             resourceInputs["mountPath"] = undefined /*out*/;
             resourceInputs["name"] = undefined /*out*/;
+            resourceInputs["queryParams"] = undefined /*out*/;
             resourceInputs["serviceId"] = undefined /*out*/;
             resourceInputs["sizeGB"] = undefined /*out*/;
             resourceInputs["snapshotKey"] = undefined /*out*/;
@@ -93,5 +102,9 @@ export interface RestoreSnapshotArgs {
      * When a service with a disk is scaled, the instanceId is used to identify the instance that the disk is attached to. Each instance's disks get their own snapshots, and can be restored separately.
      */
     instanceId?: pulumi.Input<string | undefined>;
+    /**
+     * Query params to send with the API requests for this resource.
+     */
+    queryParams?: pulumi.Input<inputs.disks.RestoreSnapshotQueryParamsArgs | undefined>;
     snapshotKey: pulumi.Input<string>;
 }

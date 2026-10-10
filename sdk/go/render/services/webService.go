@@ -20,14 +20,16 @@ type WebService struct {
 	BuildFilter BuildFilterPtrOutput       `pulumi:"buildFilter"`
 	CreatedAt   pulumi.StringPtrOutput     `pulumi:"createdAt"`
 	// The URL to view the service in the Render Dashboard
-	DashboardUrl       pulumi.StringPtrOutput             `pulumi:"dashboardUrl"`
-	EnvVars            EnvVarInputTypeArrayOutput         `pulumi:"envVars"`
-	EnvironmentId      pulumi.StringPtrOutput             `pulumi:"environmentId"`
-	Image              ImagePtrOutput                     `pulumi:"image"`
-	ImagePath          pulumi.StringPtrOutput             `pulumi:"imagePath"`
-	Name               pulumi.StringPtrOutput             `pulumi:"name"`
-	NotifyOnFail       ServiceNotifyOnFailPtrOutput       `pulumi:"notifyOnFail"`
-	OwnerId            pulumi.StringPtrOutput             `pulumi:"ownerId"`
+	DashboardUrl  pulumi.StringPtrOutput       `pulumi:"dashboardUrl"`
+	EnvVars       EnvVarInputTypeArrayOutput   `pulumi:"envVars"`
+	EnvironmentId pulumi.StringPtrOutput       `pulumi:"environmentId"`
+	Image         ImagePtrOutput               `pulumi:"image"`
+	ImagePath     pulumi.StringPtrOutput       `pulumi:"imagePath"`
+	Name          pulumi.StringPtrOutput       `pulumi:"name"`
+	NotifyOnFail  ServiceNotifyOnFailPtrOutput `pulumi:"notifyOnFail"`
+	OwnerId       pulumi.StringPtrOutput       `pulumi:"ownerId"`
+	// Query params to send with the API requests for this resource.
+	QueryParams        WebServiceQueryParamsPtrOutput     `pulumi:"queryParams"`
 	RegistryCredential RegistryCredentialSummaryPtrOutput `pulumi:"registryCredential"`
 	Repo               pulumi.StringPtrOutput             `pulumi:"repo"`
 	RootDir            pulumi.StringPtrOutput             `pulumi:"rootDir"`
@@ -105,6 +107,8 @@ type webServiceArgs struct {
 	Image         *Image  `pulumi:"image"`
 	Name          string  `pulumi:"name"`
 	OwnerId       string  `pulumi:"ownerId"`
+	// Query params to send with the API requests for this resource.
+	QueryParams *WebServiceQueryParams `pulumi:"queryParams"`
 	// Do not include the branch in the repo string. You can instead supply a 'branch' parameter.
 	Repo           *string                  `pulumi:"repo"`
 	RootDir        *string                  `pulumi:"rootDir"`
@@ -125,6 +129,8 @@ type WebServiceArgs struct {
 	Image         ImagePtrInput
 	Name          pulumi.StringInput
 	OwnerId       pulumi.StringInput
+	// Query params to send with the API requests for this resource.
+	QueryParams WebServiceQueryParamsPtrInput
 	// Do not include the branch in the repo string. You can instead supply a 'branch' parameter.
 	Repo           pulumi.StringPtrInput
 	RootDir        pulumi.StringPtrInput
@@ -217,6 +223,11 @@ func (o WebServiceOutput) NotifyOnFail() ServiceNotifyOnFailPtrOutput {
 
 func (o WebServiceOutput) OwnerId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *WebService) pulumi.StringPtrOutput { return v.OwnerId }).(pulumi.StringPtrOutput)
+}
+
+// Query params to send with the API requests for this resource.
+func (o WebServiceOutput) QueryParams() WebServiceQueryParamsPtrOutput {
+	return o.ApplyT(func(v *WebService) WebServiceQueryParamsPtrOutput { return v.QueryParams }).(WebServiceQueryParamsPtrOutput)
 }
 
 func (o WebServiceOutput) RegistryCredential() RegistryCredentialSummaryPtrOutput {

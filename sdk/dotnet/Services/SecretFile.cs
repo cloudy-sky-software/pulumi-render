@@ -18,6 +18,12 @@ namespace Pulumi.Render.Services
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
 
+        /// <summary>
+        /// Query params to send with the API requests for this resource.
+        /// </summary>
+        [Output("queryParams")]
+        public Output<Outputs.SecretFileQueryParams?> QueryParams { get; private set; } = null!;
+
 
         /// <summary>
         /// Create a SecretFile resource with the given unique name, arguments, and options.
@@ -66,6 +72,12 @@ namespace Pulumi.Render.Services
     {
         [Input("content")]
         public Input<string>? Content { get; set; }
+
+        /// <summary>
+        /// Query params to send with the API requests for this resource.
+        /// </summary>
+        [Input("queryParams")]
+        public Input<Inputs.SecretFileQueryParamsArgs>? QueryParams { get; set; }
 
         /// <summary>
         /// The file name of the secret file

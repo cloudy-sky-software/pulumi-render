@@ -15,6 +15,7 @@ else:
 from .. import _utilities
 from . import outputs
 from ._enums import *
+from ._inputs import *
 
 __all__ = [
     'ListNotificationOverridesResult',
@@ -45,21 +46,29 @@ class AwaitableListNotificationOverridesResult(ListNotificationOverridesResult):
             items=self.items)
 
 
-def list_notification_overrides(opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableListNotificationOverridesResult:
+def list_notification_overrides(query_params: Optional[Union['ListNotificationOverridesQueryParams', 'ListNotificationOverridesQueryParamsDict']] = None,
+                                opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableListNotificationOverridesResult:
     """
     Use this data source to access information about an existing resource.
+
+    :param Union['ListNotificationOverridesQueryParams', 'ListNotificationOverridesQueryParamsDict'] query_params: Query params to send with the API request.
     """
     __args__ = dict()
+    __args__['queryParams'] = query_params
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke('render:notification-settings:listNotificationOverrides', __args__, opts=opts, typ=ListNotificationOverridesResult).value
 
     return AwaitableListNotificationOverridesResult(
         items=pulumi.get(__ret__, 'items'))
-def list_notification_overrides_output(opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[ListNotificationOverridesResult]:
+def list_notification_overrides_output(query_params: pulumi.Input[Optional[Optional[Union['ListNotificationOverridesQueryParams', 'ListNotificationOverridesQueryParamsDict']]]] = None,
+                                       opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[ListNotificationOverridesResult]:
     """
     Use this data source to access information about an existing resource.
+
+    :param Union['ListNotificationOverridesQueryParams', 'ListNotificationOverridesQueryParamsDict'] query_params: Query params to send with the API request.
     """
     __args__ = dict()
+    __args__['queryParams'] = query_params
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('render:notification-settings:listNotificationOverrides', __args__, opts=opts, typ=ListNotificationOverridesResult)
     return __ret__.apply(lambda __response__: ListNotificationOverridesResult(

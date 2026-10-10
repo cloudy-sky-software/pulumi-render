@@ -13,6 +13,763 @@ import (
 
 var _ = internal.GetEnvOrDefault
 
+// Query params for the API request.
+type DiskCreateQueryParams struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams map[string]string `pulumi:"additionalParams"`
+}
+
+// DiskCreateQueryParamsInput is an input type that accepts DiskCreateQueryParamsArgs and DiskCreateQueryParamsOutput values.
+// You can construct a concrete instance of `DiskCreateQueryParamsInput` via:
+//
+//	DiskCreateQueryParamsArgs{...}
+type DiskCreateQueryParamsInput interface {
+	pulumi.Input
+
+	ToDiskCreateQueryParamsOutput() DiskCreateQueryParamsOutput
+	ToDiskCreateQueryParamsOutputWithContext(context.Context) DiskCreateQueryParamsOutput
+}
+
+// Query params for the API request.
+type DiskCreateQueryParamsArgs struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams pulumi.StringMapInput `pulumi:"additionalParams"`
+}
+
+func (DiskCreateQueryParamsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*DiskCreateQueryParams)(nil)).Elem()
+}
+
+func (i DiskCreateQueryParamsArgs) ToDiskCreateQueryParamsOutput() DiskCreateQueryParamsOutput {
+	return i.ToDiskCreateQueryParamsOutputWithContext(context.Background())
+}
+
+func (i DiskCreateQueryParamsArgs) ToDiskCreateQueryParamsOutputWithContext(ctx context.Context) DiskCreateQueryParamsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DiskCreateQueryParamsOutput)
+}
+
+func (i DiskCreateQueryParamsArgs) ToDiskCreateQueryParamsPtrOutput() DiskCreateQueryParamsPtrOutput {
+	return i.ToDiskCreateQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i DiskCreateQueryParamsArgs) ToDiskCreateQueryParamsPtrOutputWithContext(ctx context.Context) DiskCreateQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DiskCreateQueryParamsOutput).ToDiskCreateQueryParamsPtrOutputWithContext(ctx)
+}
+
+// DiskCreateQueryParamsPtrInput is an input type that accepts DiskCreateQueryParamsArgs, DiskCreateQueryParamsPtr and DiskCreateQueryParamsPtrOutput values.
+// You can construct a concrete instance of `DiskCreateQueryParamsPtrInput` via:
+//
+//	        DiskCreateQueryParamsArgs{...}
+//
+//	or:
+//
+//	        nil
+type DiskCreateQueryParamsPtrInput interface {
+	pulumi.Input
+
+	ToDiskCreateQueryParamsPtrOutput() DiskCreateQueryParamsPtrOutput
+	ToDiskCreateQueryParamsPtrOutputWithContext(context.Context) DiskCreateQueryParamsPtrOutput
+}
+
+type diskCreateQueryParamsPtrType DiskCreateQueryParamsArgs
+
+func DiskCreateQueryParamsPtr(v *DiskCreateQueryParamsArgs) DiskCreateQueryParamsPtrInput {
+	return (*diskCreateQueryParamsPtrType)(v)
+}
+
+func (*diskCreateQueryParamsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**DiskCreateQueryParams)(nil)).Elem()
+}
+
+func (i *diskCreateQueryParamsPtrType) ToDiskCreateQueryParamsPtrOutput() DiskCreateQueryParamsPtrOutput {
+	return i.ToDiskCreateQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i *diskCreateQueryParamsPtrType) ToDiskCreateQueryParamsPtrOutputWithContext(ctx context.Context) DiskCreateQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DiskCreateQueryParamsPtrOutput)
+}
+
+// Query params for the API request.
+type DiskCreateQueryParamsOutput struct{ *pulumi.OutputState }
+
+func (DiskCreateQueryParamsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*DiskCreateQueryParams)(nil)).Elem()
+}
+
+func (o DiskCreateQueryParamsOutput) ToDiskCreateQueryParamsOutput() DiskCreateQueryParamsOutput {
+	return o
+}
+
+func (o DiskCreateQueryParamsOutput) ToDiskCreateQueryParamsOutputWithContext(ctx context.Context) DiskCreateQueryParamsOutput {
+	return o
+}
+
+func (o DiskCreateQueryParamsOutput) ToDiskCreateQueryParamsPtrOutput() DiskCreateQueryParamsPtrOutput {
+	return o.ToDiskCreateQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (o DiskCreateQueryParamsOutput) ToDiskCreateQueryParamsPtrOutputWithContext(ctx context.Context) DiskCreateQueryParamsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v DiskCreateQueryParams) *DiskCreateQueryParams {
+		return &v
+	}).(DiskCreateQueryParamsPtrOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o DiskCreateQueryParamsOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v DiskCreateQueryParams) map[string]string { return v.AdditionalParams }).(pulumi.StringMapOutput)
+}
+
+type DiskCreateQueryParamsPtrOutput struct{ *pulumi.OutputState }
+
+func (DiskCreateQueryParamsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**DiskCreateQueryParams)(nil)).Elem()
+}
+
+func (o DiskCreateQueryParamsPtrOutput) ToDiskCreateQueryParamsPtrOutput() DiskCreateQueryParamsPtrOutput {
+	return o
+}
+
+func (o DiskCreateQueryParamsPtrOutput) ToDiskCreateQueryParamsPtrOutputWithContext(ctx context.Context) DiskCreateQueryParamsPtrOutput {
+	return o
+}
+
+func (o DiskCreateQueryParamsPtrOutput) Elem() DiskCreateQueryParamsOutput {
+	return o.ApplyT(func(v *DiskCreateQueryParams) DiskCreateQueryParams {
+		if v != nil {
+			return *v
+		}
+		var ret DiskCreateQueryParams
+		return ret
+	}).(DiskCreateQueryParamsOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o DiskCreateQueryParamsPtrOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *DiskCreateQueryParams) map[string]string {
+		if v == nil {
+			return nil
+		}
+		return v.AdditionalParams
+	}).(pulumi.StringMapOutput)
+}
+
+// Query params for the API request.
+type DiskDeleteQueryParams struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams map[string]string `pulumi:"additionalParams"`
+}
+
+// DiskDeleteQueryParamsInput is an input type that accepts DiskDeleteQueryParamsArgs and DiskDeleteQueryParamsOutput values.
+// You can construct a concrete instance of `DiskDeleteQueryParamsInput` via:
+//
+//	DiskDeleteQueryParamsArgs{...}
+type DiskDeleteQueryParamsInput interface {
+	pulumi.Input
+
+	ToDiskDeleteQueryParamsOutput() DiskDeleteQueryParamsOutput
+	ToDiskDeleteQueryParamsOutputWithContext(context.Context) DiskDeleteQueryParamsOutput
+}
+
+// Query params for the API request.
+type DiskDeleteQueryParamsArgs struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams pulumi.StringMapInput `pulumi:"additionalParams"`
+}
+
+func (DiskDeleteQueryParamsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*DiskDeleteQueryParams)(nil)).Elem()
+}
+
+func (i DiskDeleteQueryParamsArgs) ToDiskDeleteQueryParamsOutput() DiskDeleteQueryParamsOutput {
+	return i.ToDiskDeleteQueryParamsOutputWithContext(context.Background())
+}
+
+func (i DiskDeleteQueryParamsArgs) ToDiskDeleteQueryParamsOutputWithContext(ctx context.Context) DiskDeleteQueryParamsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DiskDeleteQueryParamsOutput)
+}
+
+func (i DiskDeleteQueryParamsArgs) ToDiskDeleteQueryParamsPtrOutput() DiskDeleteQueryParamsPtrOutput {
+	return i.ToDiskDeleteQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i DiskDeleteQueryParamsArgs) ToDiskDeleteQueryParamsPtrOutputWithContext(ctx context.Context) DiskDeleteQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DiskDeleteQueryParamsOutput).ToDiskDeleteQueryParamsPtrOutputWithContext(ctx)
+}
+
+// DiskDeleteQueryParamsPtrInput is an input type that accepts DiskDeleteQueryParamsArgs, DiskDeleteQueryParamsPtr and DiskDeleteQueryParamsPtrOutput values.
+// You can construct a concrete instance of `DiskDeleteQueryParamsPtrInput` via:
+//
+//	        DiskDeleteQueryParamsArgs{...}
+//
+//	or:
+//
+//	        nil
+type DiskDeleteQueryParamsPtrInput interface {
+	pulumi.Input
+
+	ToDiskDeleteQueryParamsPtrOutput() DiskDeleteQueryParamsPtrOutput
+	ToDiskDeleteQueryParamsPtrOutputWithContext(context.Context) DiskDeleteQueryParamsPtrOutput
+}
+
+type diskDeleteQueryParamsPtrType DiskDeleteQueryParamsArgs
+
+func DiskDeleteQueryParamsPtr(v *DiskDeleteQueryParamsArgs) DiskDeleteQueryParamsPtrInput {
+	return (*diskDeleteQueryParamsPtrType)(v)
+}
+
+func (*diskDeleteQueryParamsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**DiskDeleteQueryParams)(nil)).Elem()
+}
+
+func (i *diskDeleteQueryParamsPtrType) ToDiskDeleteQueryParamsPtrOutput() DiskDeleteQueryParamsPtrOutput {
+	return i.ToDiskDeleteQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i *diskDeleteQueryParamsPtrType) ToDiskDeleteQueryParamsPtrOutputWithContext(ctx context.Context) DiskDeleteQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DiskDeleteQueryParamsPtrOutput)
+}
+
+// Query params for the API request.
+type DiskDeleteQueryParamsOutput struct{ *pulumi.OutputState }
+
+func (DiskDeleteQueryParamsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*DiskDeleteQueryParams)(nil)).Elem()
+}
+
+func (o DiskDeleteQueryParamsOutput) ToDiskDeleteQueryParamsOutput() DiskDeleteQueryParamsOutput {
+	return o
+}
+
+func (o DiskDeleteQueryParamsOutput) ToDiskDeleteQueryParamsOutputWithContext(ctx context.Context) DiskDeleteQueryParamsOutput {
+	return o
+}
+
+func (o DiskDeleteQueryParamsOutput) ToDiskDeleteQueryParamsPtrOutput() DiskDeleteQueryParamsPtrOutput {
+	return o.ToDiskDeleteQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (o DiskDeleteQueryParamsOutput) ToDiskDeleteQueryParamsPtrOutputWithContext(ctx context.Context) DiskDeleteQueryParamsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v DiskDeleteQueryParams) *DiskDeleteQueryParams {
+		return &v
+	}).(DiskDeleteQueryParamsPtrOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o DiskDeleteQueryParamsOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v DiskDeleteQueryParams) map[string]string { return v.AdditionalParams }).(pulumi.StringMapOutput)
+}
+
+type DiskDeleteQueryParamsPtrOutput struct{ *pulumi.OutputState }
+
+func (DiskDeleteQueryParamsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**DiskDeleteQueryParams)(nil)).Elem()
+}
+
+func (o DiskDeleteQueryParamsPtrOutput) ToDiskDeleteQueryParamsPtrOutput() DiskDeleteQueryParamsPtrOutput {
+	return o
+}
+
+func (o DiskDeleteQueryParamsPtrOutput) ToDiskDeleteQueryParamsPtrOutputWithContext(ctx context.Context) DiskDeleteQueryParamsPtrOutput {
+	return o
+}
+
+func (o DiskDeleteQueryParamsPtrOutput) Elem() DiskDeleteQueryParamsOutput {
+	return o.ApplyT(func(v *DiskDeleteQueryParams) DiskDeleteQueryParams {
+		if v != nil {
+			return *v
+		}
+		var ret DiskDeleteQueryParams
+		return ret
+	}).(DiskDeleteQueryParamsOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o DiskDeleteQueryParamsPtrOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *DiskDeleteQueryParams) map[string]string {
+		if v == nil {
+			return nil
+		}
+		return v.AdditionalParams
+	}).(pulumi.StringMapOutput)
+}
+
+// Query params for each of the operations of the resource.
+type DiskQueryParams struct {
+	// Query params for the create operation.
+	Create *DiskCreateQueryParams `pulumi:"create"`
+	// Query params for the delete operation.
+	Delete *DiskDeleteQueryParams `pulumi:"delete"`
+	// Query params for the read operation.
+	Read *DiskReadQueryParams `pulumi:"read"`
+	// Query params for the update operation.
+	Update *DiskUpdateQueryParams `pulumi:"update"`
+}
+
+// DiskQueryParamsInput is an input type that accepts DiskQueryParamsArgs and DiskQueryParamsOutput values.
+// You can construct a concrete instance of `DiskQueryParamsInput` via:
+//
+//	DiskQueryParamsArgs{...}
+type DiskQueryParamsInput interface {
+	pulumi.Input
+
+	ToDiskQueryParamsOutput() DiskQueryParamsOutput
+	ToDiskQueryParamsOutputWithContext(context.Context) DiskQueryParamsOutput
+}
+
+// Query params for each of the operations of the resource.
+type DiskQueryParamsArgs struct {
+	// Query params for the create operation.
+	Create DiskCreateQueryParamsPtrInput `pulumi:"create"`
+	// Query params for the delete operation.
+	Delete DiskDeleteQueryParamsPtrInput `pulumi:"delete"`
+	// Query params for the read operation.
+	Read DiskReadQueryParamsPtrInput `pulumi:"read"`
+	// Query params for the update operation.
+	Update DiskUpdateQueryParamsPtrInput `pulumi:"update"`
+}
+
+func (DiskQueryParamsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*DiskQueryParams)(nil)).Elem()
+}
+
+func (i DiskQueryParamsArgs) ToDiskQueryParamsOutput() DiskQueryParamsOutput {
+	return i.ToDiskQueryParamsOutputWithContext(context.Background())
+}
+
+func (i DiskQueryParamsArgs) ToDiskQueryParamsOutputWithContext(ctx context.Context) DiskQueryParamsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DiskQueryParamsOutput)
+}
+
+func (i DiskQueryParamsArgs) ToDiskQueryParamsPtrOutput() DiskQueryParamsPtrOutput {
+	return i.ToDiskQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i DiskQueryParamsArgs) ToDiskQueryParamsPtrOutputWithContext(ctx context.Context) DiskQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DiskQueryParamsOutput).ToDiskQueryParamsPtrOutputWithContext(ctx)
+}
+
+// DiskQueryParamsPtrInput is an input type that accepts DiskQueryParamsArgs, DiskQueryParamsPtr and DiskQueryParamsPtrOutput values.
+// You can construct a concrete instance of `DiskQueryParamsPtrInput` via:
+//
+//	        DiskQueryParamsArgs{...}
+//
+//	or:
+//
+//	        nil
+type DiskQueryParamsPtrInput interface {
+	pulumi.Input
+
+	ToDiskQueryParamsPtrOutput() DiskQueryParamsPtrOutput
+	ToDiskQueryParamsPtrOutputWithContext(context.Context) DiskQueryParamsPtrOutput
+}
+
+type diskQueryParamsPtrType DiskQueryParamsArgs
+
+func DiskQueryParamsPtr(v *DiskQueryParamsArgs) DiskQueryParamsPtrInput {
+	return (*diskQueryParamsPtrType)(v)
+}
+
+func (*diskQueryParamsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**DiskQueryParams)(nil)).Elem()
+}
+
+func (i *diskQueryParamsPtrType) ToDiskQueryParamsPtrOutput() DiskQueryParamsPtrOutput {
+	return i.ToDiskQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i *diskQueryParamsPtrType) ToDiskQueryParamsPtrOutputWithContext(ctx context.Context) DiskQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DiskQueryParamsPtrOutput)
+}
+
+// Query params for each of the operations of the resource.
+type DiskQueryParamsOutput struct{ *pulumi.OutputState }
+
+func (DiskQueryParamsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*DiskQueryParams)(nil)).Elem()
+}
+
+func (o DiskQueryParamsOutput) ToDiskQueryParamsOutput() DiskQueryParamsOutput {
+	return o
+}
+
+func (o DiskQueryParamsOutput) ToDiskQueryParamsOutputWithContext(ctx context.Context) DiskQueryParamsOutput {
+	return o
+}
+
+func (o DiskQueryParamsOutput) ToDiskQueryParamsPtrOutput() DiskQueryParamsPtrOutput {
+	return o.ToDiskQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (o DiskQueryParamsOutput) ToDiskQueryParamsPtrOutputWithContext(ctx context.Context) DiskQueryParamsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v DiskQueryParams) *DiskQueryParams {
+		return &v
+	}).(DiskQueryParamsPtrOutput)
+}
+
+// Query params for the create operation.
+func (o DiskQueryParamsOutput) Create() DiskCreateQueryParamsPtrOutput {
+	return o.ApplyT(func(v DiskQueryParams) *DiskCreateQueryParams { return v.Create }).(DiskCreateQueryParamsPtrOutput)
+}
+
+// Query params for the delete operation.
+func (o DiskQueryParamsOutput) Delete() DiskDeleteQueryParamsPtrOutput {
+	return o.ApplyT(func(v DiskQueryParams) *DiskDeleteQueryParams { return v.Delete }).(DiskDeleteQueryParamsPtrOutput)
+}
+
+// Query params for the read operation.
+func (o DiskQueryParamsOutput) Read() DiskReadQueryParamsPtrOutput {
+	return o.ApplyT(func(v DiskQueryParams) *DiskReadQueryParams { return v.Read }).(DiskReadQueryParamsPtrOutput)
+}
+
+// Query params for the update operation.
+func (o DiskQueryParamsOutput) Update() DiskUpdateQueryParamsPtrOutput {
+	return o.ApplyT(func(v DiskQueryParams) *DiskUpdateQueryParams { return v.Update }).(DiskUpdateQueryParamsPtrOutput)
+}
+
+type DiskQueryParamsPtrOutput struct{ *pulumi.OutputState }
+
+func (DiskQueryParamsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**DiskQueryParams)(nil)).Elem()
+}
+
+func (o DiskQueryParamsPtrOutput) ToDiskQueryParamsPtrOutput() DiskQueryParamsPtrOutput {
+	return o
+}
+
+func (o DiskQueryParamsPtrOutput) ToDiskQueryParamsPtrOutputWithContext(ctx context.Context) DiskQueryParamsPtrOutput {
+	return o
+}
+
+func (o DiskQueryParamsPtrOutput) Elem() DiskQueryParamsOutput {
+	return o.ApplyT(func(v *DiskQueryParams) DiskQueryParams {
+		if v != nil {
+			return *v
+		}
+		var ret DiskQueryParams
+		return ret
+	}).(DiskQueryParamsOutput)
+}
+
+// Query params for the create operation.
+func (o DiskQueryParamsPtrOutput) Create() DiskCreateQueryParamsPtrOutput {
+	return o.ApplyT(func(v *DiskQueryParams) *DiskCreateQueryParams {
+		if v == nil {
+			return nil
+		}
+		return v.Create
+	}).(DiskCreateQueryParamsPtrOutput)
+}
+
+// Query params for the delete operation.
+func (o DiskQueryParamsPtrOutput) Delete() DiskDeleteQueryParamsPtrOutput {
+	return o.ApplyT(func(v *DiskQueryParams) *DiskDeleteQueryParams {
+		if v == nil {
+			return nil
+		}
+		return v.Delete
+	}).(DiskDeleteQueryParamsPtrOutput)
+}
+
+// Query params for the read operation.
+func (o DiskQueryParamsPtrOutput) Read() DiskReadQueryParamsPtrOutput {
+	return o.ApplyT(func(v *DiskQueryParams) *DiskReadQueryParams {
+		if v == nil {
+			return nil
+		}
+		return v.Read
+	}).(DiskReadQueryParamsPtrOutput)
+}
+
+// Query params for the update operation.
+func (o DiskQueryParamsPtrOutput) Update() DiskUpdateQueryParamsPtrOutput {
+	return o.ApplyT(func(v *DiskQueryParams) *DiskUpdateQueryParams {
+		if v == nil {
+			return nil
+		}
+		return v.Update
+	}).(DiskUpdateQueryParamsPtrOutput)
+}
+
+// Query params for the API request.
+type DiskReadQueryParams struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams map[string]string `pulumi:"additionalParams"`
+}
+
+// DiskReadQueryParamsInput is an input type that accepts DiskReadQueryParamsArgs and DiskReadQueryParamsOutput values.
+// You can construct a concrete instance of `DiskReadQueryParamsInput` via:
+//
+//	DiskReadQueryParamsArgs{...}
+type DiskReadQueryParamsInput interface {
+	pulumi.Input
+
+	ToDiskReadQueryParamsOutput() DiskReadQueryParamsOutput
+	ToDiskReadQueryParamsOutputWithContext(context.Context) DiskReadQueryParamsOutput
+}
+
+// Query params for the API request.
+type DiskReadQueryParamsArgs struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams pulumi.StringMapInput `pulumi:"additionalParams"`
+}
+
+func (DiskReadQueryParamsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*DiskReadQueryParams)(nil)).Elem()
+}
+
+func (i DiskReadQueryParamsArgs) ToDiskReadQueryParamsOutput() DiskReadQueryParamsOutput {
+	return i.ToDiskReadQueryParamsOutputWithContext(context.Background())
+}
+
+func (i DiskReadQueryParamsArgs) ToDiskReadQueryParamsOutputWithContext(ctx context.Context) DiskReadQueryParamsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DiskReadQueryParamsOutput)
+}
+
+func (i DiskReadQueryParamsArgs) ToDiskReadQueryParamsPtrOutput() DiskReadQueryParamsPtrOutput {
+	return i.ToDiskReadQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i DiskReadQueryParamsArgs) ToDiskReadQueryParamsPtrOutputWithContext(ctx context.Context) DiskReadQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DiskReadQueryParamsOutput).ToDiskReadQueryParamsPtrOutputWithContext(ctx)
+}
+
+// DiskReadQueryParamsPtrInput is an input type that accepts DiskReadQueryParamsArgs, DiskReadQueryParamsPtr and DiskReadQueryParamsPtrOutput values.
+// You can construct a concrete instance of `DiskReadQueryParamsPtrInput` via:
+//
+//	        DiskReadQueryParamsArgs{...}
+//
+//	or:
+//
+//	        nil
+type DiskReadQueryParamsPtrInput interface {
+	pulumi.Input
+
+	ToDiskReadQueryParamsPtrOutput() DiskReadQueryParamsPtrOutput
+	ToDiskReadQueryParamsPtrOutputWithContext(context.Context) DiskReadQueryParamsPtrOutput
+}
+
+type diskReadQueryParamsPtrType DiskReadQueryParamsArgs
+
+func DiskReadQueryParamsPtr(v *DiskReadQueryParamsArgs) DiskReadQueryParamsPtrInput {
+	return (*diskReadQueryParamsPtrType)(v)
+}
+
+func (*diskReadQueryParamsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**DiskReadQueryParams)(nil)).Elem()
+}
+
+func (i *diskReadQueryParamsPtrType) ToDiskReadQueryParamsPtrOutput() DiskReadQueryParamsPtrOutput {
+	return i.ToDiskReadQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i *diskReadQueryParamsPtrType) ToDiskReadQueryParamsPtrOutputWithContext(ctx context.Context) DiskReadQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DiskReadQueryParamsPtrOutput)
+}
+
+// Query params for the API request.
+type DiskReadQueryParamsOutput struct{ *pulumi.OutputState }
+
+func (DiskReadQueryParamsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*DiskReadQueryParams)(nil)).Elem()
+}
+
+func (o DiskReadQueryParamsOutput) ToDiskReadQueryParamsOutput() DiskReadQueryParamsOutput {
+	return o
+}
+
+func (o DiskReadQueryParamsOutput) ToDiskReadQueryParamsOutputWithContext(ctx context.Context) DiskReadQueryParamsOutput {
+	return o
+}
+
+func (o DiskReadQueryParamsOutput) ToDiskReadQueryParamsPtrOutput() DiskReadQueryParamsPtrOutput {
+	return o.ToDiskReadQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (o DiskReadQueryParamsOutput) ToDiskReadQueryParamsPtrOutputWithContext(ctx context.Context) DiskReadQueryParamsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v DiskReadQueryParams) *DiskReadQueryParams {
+		return &v
+	}).(DiskReadQueryParamsPtrOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o DiskReadQueryParamsOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v DiskReadQueryParams) map[string]string { return v.AdditionalParams }).(pulumi.StringMapOutput)
+}
+
+type DiskReadQueryParamsPtrOutput struct{ *pulumi.OutputState }
+
+func (DiskReadQueryParamsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**DiskReadQueryParams)(nil)).Elem()
+}
+
+func (o DiskReadQueryParamsPtrOutput) ToDiskReadQueryParamsPtrOutput() DiskReadQueryParamsPtrOutput {
+	return o
+}
+
+func (o DiskReadQueryParamsPtrOutput) ToDiskReadQueryParamsPtrOutputWithContext(ctx context.Context) DiskReadQueryParamsPtrOutput {
+	return o
+}
+
+func (o DiskReadQueryParamsPtrOutput) Elem() DiskReadQueryParamsOutput {
+	return o.ApplyT(func(v *DiskReadQueryParams) DiskReadQueryParams {
+		if v != nil {
+			return *v
+		}
+		var ret DiskReadQueryParams
+		return ret
+	}).(DiskReadQueryParamsOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o DiskReadQueryParamsPtrOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *DiskReadQueryParams) map[string]string {
+		if v == nil {
+			return nil
+		}
+		return v.AdditionalParams
+	}).(pulumi.StringMapOutput)
+}
+
+// Query params for the API request.
+type DiskUpdateQueryParams struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams map[string]string `pulumi:"additionalParams"`
+}
+
+// DiskUpdateQueryParamsInput is an input type that accepts DiskUpdateQueryParamsArgs and DiskUpdateQueryParamsOutput values.
+// You can construct a concrete instance of `DiskUpdateQueryParamsInput` via:
+//
+//	DiskUpdateQueryParamsArgs{...}
+type DiskUpdateQueryParamsInput interface {
+	pulumi.Input
+
+	ToDiskUpdateQueryParamsOutput() DiskUpdateQueryParamsOutput
+	ToDiskUpdateQueryParamsOutputWithContext(context.Context) DiskUpdateQueryParamsOutput
+}
+
+// Query params for the API request.
+type DiskUpdateQueryParamsArgs struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams pulumi.StringMapInput `pulumi:"additionalParams"`
+}
+
+func (DiskUpdateQueryParamsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*DiskUpdateQueryParams)(nil)).Elem()
+}
+
+func (i DiskUpdateQueryParamsArgs) ToDiskUpdateQueryParamsOutput() DiskUpdateQueryParamsOutput {
+	return i.ToDiskUpdateQueryParamsOutputWithContext(context.Background())
+}
+
+func (i DiskUpdateQueryParamsArgs) ToDiskUpdateQueryParamsOutputWithContext(ctx context.Context) DiskUpdateQueryParamsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DiskUpdateQueryParamsOutput)
+}
+
+func (i DiskUpdateQueryParamsArgs) ToDiskUpdateQueryParamsPtrOutput() DiskUpdateQueryParamsPtrOutput {
+	return i.ToDiskUpdateQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i DiskUpdateQueryParamsArgs) ToDiskUpdateQueryParamsPtrOutputWithContext(ctx context.Context) DiskUpdateQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DiskUpdateQueryParamsOutput).ToDiskUpdateQueryParamsPtrOutputWithContext(ctx)
+}
+
+// DiskUpdateQueryParamsPtrInput is an input type that accepts DiskUpdateQueryParamsArgs, DiskUpdateQueryParamsPtr and DiskUpdateQueryParamsPtrOutput values.
+// You can construct a concrete instance of `DiskUpdateQueryParamsPtrInput` via:
+//
+//	        DiskUpdateQueryParamsArgs{...}
+//
+//	or:
+//
+//	        nil
+type DiskUpdateQueryParamsPtrInput interface {
+	pulumi.Input
+
+	ToDiskUpdateQueryParamsPtrOutput() DiskUpdateQueryParamsPtrOutput
+	ToDiskUpdateQueryParamsPtrOutputWithContext(context.Context) DiskUpdateQueryParamsPtrOutput
+}
+
+type diskUpdateQueryParamsPtrType DiskUpdateQueryParamsArgs
+
+func DiskUpdateQueryParamsPtr(v *DiskUpdateQueryParamsArgs) DiskUpdateQueryParamsPtrInput {
+	return (*diskUpdateQueryParamsPtrType)(v)
+}
+
+func (*diskUpdateQueryParamsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**DiskUpdateQueryParams)(nil)).Elem()
+}
+
+func (i *diskUpdateQueryParamsPtrType) ToDiskUpdateQueryParamsPtrOutput() DiskUpdateQueryParamsPtrOutput {
+	return i.ToDiskUpdateQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i *diskUpdateQueryParamsPtrType) ToDiskUpdateQueryParamsPtrOutputWithContext(ctx context.Context) DiskUpdateQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DiskUpdateQueryParamsPtrOutput)
+}
+
+// Query params for the API request.
+type DiskUpdateQueryParamsOutput struct{ *pulumi.OutputState }
+
+func (DiskUpdateQueryParamsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*DiskUpdateQueryParams)(nil)).Elem()
+}
+
+func (o DiskUpdateQueryParamsOutput) ToDiskUpdateQueryParamsOutput() DiskUpdateQueryParamsOutput {
+	return o
+}
+
+func (o DiskUpdateQueryParamsOutput) ToDiskUpdateQueryParamsOutputWithContext(ctx context.Context) DiskUpdateQueryParamsOutput {
+	return o
+}
+
+func (o DiskUpdateQueryParamsOutput) ToDiskUpdateQueryParamsPtrOutput() DiskUpdateQueryParamsPtrOutput {
+	return o.ToDiskUpdateQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (o DiskUpdateQueryParamsOutput) ToDiskUpdateQueryParamsPtrOutputWithContext(ctx context.Context) DiskUpdateQueryParamsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v DiskUpdateQueryParams) *DiskUpdateQueryParams {
+		return &v
+	}).(DiskUpdateQueryParamsPtrOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o DiskUpdateQueryParamsOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v DiskUpdateQueryParams) map[string]string { return v.AdditionalParams }).(pulumi.StringMapOutput)
+}
+
+type DiskUpdateQueryParamsPtrOutput struct{ *pulumi.OutputState }
+
+func (DiskUpdateQueryParamsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**DiskUpdateQueryParams)(nil)).Elem()
+}
+
+func (o DiskUpdateQueryParamsPtrOutput) ToDiskUpdateQueryParamsPtrOutput() DiskUpdateQueryParamsPtrOutput {
+	return o
+}
+
+func (o DiskUpdateQueryParamsPtrOutput) ToDiskUpdateQueryParamsPtrOutputWithContext(ctx context.Context) DiskUpdateQueryParamsPtrOutput {
+	return o
+}
+
+func (o DiskUpdateQueryParamsPtrOutput) Elem() DiskUpdateQueryParamsOutput {
+	return o.ApplyT(func(v *DiskUpdateQueryParams) DiskUpdateQueryParams {
+		if v != nil {
+			return *v
+		}
+		var ret DiskUpdateQueryParams
+		return ret
+	}).(DiskUpdateQueryParamsOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o DiskUpdateQueryParamsPtrOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *DiskUpdateQueryParams) map[string]string {
+		if v == nil {
+			return nil
+		}
+		return v.AdditionalParams
+	}).(pulumi.StringMapOutput)
+}
+
 type DiskWithCursor struct {
 	Cursor string                       `pulumi:"cursor"`
 	Disk   DiskWithCursorDiskProperties `pulumi:"disk"`
@@ -122,8 +879,818 @@ type DiskWithCursorpropertiesdisk struct {
 	UpdatedAt string  `pulumi:"updatedAt"`
 }
 
+// Query params for the API request.
+type GetDiskQueryParams struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams map[string]string `pulumi:"additionalParams"`
+}
+
+// GetDiskQueryParamsInput is an input type that accepts GetDiskQueryParamsArgs and GetDiskQueryParamsOutput values.
+// You can construct a concrete instance of `GetDiskQueryParamsInput` via:
+//
+//	GetDiskQueryParamsArgs{...}
+type GetDiskQueryParamsInput interface {
+	pulumi.Input
+
+	ToGetDiskQueryParamsOutput() GetDiskQueryParamsOutput
+	ToGetDiskQueryParamsOutputWithContext(context.Context) GetDiskQueryParamsOutput
+}
+
+// Query params for the API request.
+type GetDiskQueryParamsArgs struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams pulumi.StringMapInput `pulumi:"additionalParams"`
+}
+
+func (GetDiskQueryParamsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetDiskQueryParams)(nil)).Elem()
+}
+
+func (i GetDiskQueryParamsArgs) ToGetDiskQueryParamsOutput() GetDiskQueryParamsOutput {
+	return i.ToGetDiskQueryParamsOutputWithContext(context.Background())
+}
+
+func (i GetDiskQueryParamsArgs) ToGetDiskQueryParamsOutputWithContext(ctx context.Context) GetDiskQueryParamsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetDiskQueryParamsOutput)
+}
+
+func (i GetDiskQueryParamsArgs) ToGetDiskQueryParamsPtrOutput() GetDiskQueryParamsPtrOutput {
+	return i.ToGetDiskQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i GetDiskQueryParamsArgs) ToGetDiskQueryParamsPtrOutputWithContext(ctx context.Context) GetDiskQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetDiskQueryParamsOutput).ToGetDiskQueryParamsPtrOutputWithContext(ctx)
+}
+
+// GetDiskQueryParamsPtrInput is an input type that accepts GetDiskQueryParamsArgs, GetDiskQueryParamsPtr and GetDiskQueryParamsPtrOutput values.
+// You can construct a concrete instance of `GetDiskQueryParamsPtrInput` via:
+//
+//	        GetDiskQueryParamsArgs{...}
+//
+//	or:
+//
+//	        nil
+type GetDiskQueryParamsPtrInput interface {
+	pulumi.Input
+
+	ToGetDiskQueryParamsPtrOutput() GetDiskQueryParamsPtrOutput
+	ToGetDiskQueryParamsPtrOutputWithContext(context.Context) GetDiskQueryParamsPtrOutput
+}
+
+type getDiskQueryParamsPtrType GetDiskQueryParamsArgs
+
+func GetDiskQueryParamsPtr(v *GetDiskQueryParamsArgs) GetDiskQueryParamsPtrInput {
+	return (*getDiskQueryParamsPtrType)(v)
+}
+
+func (*getDiskQueryParamsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**GetDiskQueryParams)(nil)).Elem()
+}
+
+func (i *getDiskQueryParamsPtrType) ToGetDiskQueryParamsPtrOutput() GetDiskQueryParamsPtrOutput {
+	return i.ToGetDiskQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i *getDiskQueryParamsPtrType) ToGetDiskQueryParamsPtrOutputWithContext(ctx context.Context) GetDiskQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetDiskQueryParamsPtrOutput)
+}
+
+// Query params for the API request.
+type GetDiskQueryParamsOutput struct{ *pulumi.OutputState }
+
+func (GetDiskQueryParamsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetDiskQueryParams)(nil)).Elem()
+}
+
+func (o GetDiskQueryParamsOutput) ToGetDiskQueryParamsOutput() GetDiskQueryParamsOutput {
+	return o
+}
+
+func (o GetDiskQueryParamsOutput) ToGetDiskQueryParamsOutputWithContext(ctx context.Context) GetDiskQueryParamsOutput {
+	return o
+}
+
+func (o GetDiskQueryParamsOutput) ToGetDiskQueryParamsPtrOutput() GetDiskQueryParamsPtrOutput {
+	return o.ToGetDiskQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (o GetDiskQueryParamsOutput) ToGetDiskQueryParamsPtrOutputWithContext(ctx context.Context) GetDiskQueryParamsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v GetDiskQueryParams) *GetDiskQueryParams {
+		return &v
+	}).(GetDiskQueryParamsPtrOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o GetDiskQueryParamsOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v GetDiskQueryParams) map[string]string { return v.AdditionalParams }).(pulumi.StringMapOutput)
+}
+
+type GetDiskQueryParamsPtrOutput struct{ *pulumi.OutputState }
+
+func (GetDiskQueryParamsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**GetDiskQueryParams)(nil)).Elem()
+}
+
+func (o GetDiskQueryParamsPtrOutput) ToGetDiskQueryParamsPtrOutput() GetDiskQueryParamsPtrOutput {
+	return o
+}
+
+func (o GetDiskQueryParamsPtrOutput) ToGetDiskQueryParamsPtrOutputWithContext(ctx context.Context) GetDiskQueryParamsPtrOutput {
+	return o
+}
+
+func (o GetDiskQueryParamsPtrOutput) Elem() GetDiskQueryParamsOutput {
+	return o.ApplyT(func(v *GetDiskQueryParams) GetDiskQueryParams {
+		if v != nil {
+			return *v
+		}
+		var ret GetDiskQueryParams
+		return ret
+	}).(GetDiskQueryParamsOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o GetDiskQueryParamsPtrOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *GetDiskQueryParams) map[string]string {
+		if v == nil {
+			return nil
+		}
+		return v.AdditionalParams
+	}).(pulumi.StringMapOutput)
+}
+
+// Query params for the API request.
+type ListDisksQueryParams struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams map[string]string `pulumi:"additionalParams"`
+	// Filter for resources created after a certain time (specified as an ISO 8601 timestamp)
+	CreatedAfter *string `pulumi:"createdAfter"`
+	// Filter for resources created before a certain time (specified as an ISO 8601 timestamp)
+	CreatedBefore *string `pulumi:"createdBefore"`
+	// The position in the result list to start from when fetching paginated results. For details, see [Pagination](https://api-docs.render.com/reference/pagination).
+	Cursor *string `pulumi:"cursor"`
+	// Filter by disk IDs
+	DiskId []string `pulumi:"diskId"`
+	// The maximum number of items to return. For details, see [Pagination](https://api-docs.render.com/reference/pagination).
+	Limit *int `pulumi:"limit"`
+	// Filter by name
+	Name []string `pulumi:"name"`
+	// The ID of the workspaces to return resources for
+	OwnerId []string `pulumi:"ownerId"`
+	// Filter for resources by service ID
+	ServiceId []string `pulumi:"serviceId"`
+	// Filter for resources updated after a certain time (specified as an ISO 8601 timestamp)
+	UpdatedAfter *string `pulumi:"updatedAfter"`
+	// Filter for resources updated before a certain time (specified as an ISO 8601 timestamp)
+	UpdatedBefore *string `pulumi:"updatedBefore"`
+}
+
+// Defaults sets the appropriate defaults for ListDisksQueryParams
+func (val *ListDisksQueryParams) Defaults() *ListDisksQueryParams {
+	if val == nil {
+		return nil
+	}
+	tmp := *val
+	if tmp.Limit == nil {
+		limit_ := 20
+		tmp.Limit = &limit_
+	}
+	return &tmp
+}
+
+// ListDisksQueryParamsInput is an input type that accepts ListDisksQueryParamsArgs and ListDisksQueryParamsOutput values.
+// You can construct a concrete instance of `ListDisksQueryParamsInput` via:
+//
+//	ListDisksQueryParamsArgs{...}
+type ListDisksQueryParamsInput interface {
+	pulumi.Input
+
+	ToListDisksQueryParamsOutput() ListDisksQueryParamsOutput
+	ToListDisksQueryParamsOutputWithContext(context.Context) ListDisksQueryParamsOutput
+}
+
+// Query params for the API request.
+type ListDisksQueryParamsArgs struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams pulumi.StringMapInput `pulumi:"additionalParams"`
+	// Filter for resources created after a certain time (specified as an ISO 8601 timestamp)
+	CreatedAfter pulumi.StringPtrInput `pulumi:"createdAfter"`
+	// Filter for resources created before a certain time (specified as an ISO 8601 timestamp)
+	CreatedBefore pulumi.StringPtrInput `pulumi:"createdBefore"`
+	// The position in the result list to start from when fetching paginated results. For details, see [Pagination](https://api-docs.render.com/reference/pagination).
+	Cursor pulumi.StringPtrInput `pulumi:"cursor"`
+	// Filter by disk IDs
+	DiskId pulumi.StringArrayInput `pulumi:"diskId"`
+	// The maximum number of items to return. For details, see [Pagination](https://api-docs.render.com/reference/pagination).
+	Limit pulumi.IntPtrInput `pulumi:"limit"`
+	// Filter by name
+	Name pulumi.StringArrayInput `pulumi:"name"`
+	// The ID of the workspaces to return resources for
+	OwnerId pulumi.StringArrayInput `pulumi:"ownerId"`
+	// Filter for resources by service ID
+	ServiceId pulumi.StringArrayInput `pulumi:"serviceId"`
+	// Filter for resources updated after a certain time (specified as an ISO 8601 timestamp)
+	UpdatedAfter pulumi.StringPtrInput `pulumi:"updatedAfter"`
+	// Filter for resources updated before a certain time (specified as an ISO 8601 timestamp)
+	UpdatedBefore pulumi.StringPtrInput `pulumi:"updatedBefore"`
+}
+
+// Defaults sets the appropriate defaults for ListDisksQueryParamsArgs
+func (val *ListDisksQueryParamsArgs) Defaults() *ListDisksQueryParamsArgs {
+	if val == nil {
+		return nil
+	}
+	tmp := *val
+	if tmp.Limit == nil {
+		tmp.Limit = pulumi.IntPtr(20)
+	}
+	return &tmp
+}
+func (ListDisksQueryParamsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ListDisksQueryParams)(nil)).Elem()
+}
+
+func (i ListDisksQueryParamsArgs) ToListDisksQueryParamsOutput() ListDisksQueryParamsOutput {
+	return i.ToListDisksQueryParamsOutputWithContext(context.Background())
+}
+
+func (i ListDisksQueryParamsArgs) ToListDisksQueryParamsOutputWithContext(ctx context.Context) ListDisksQueryParamsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ListDisksQueryParamsOutput)
+}
+
+func (i ListDisksQueryParamsArgs) ToListDisksQueryParamsPtrOutput() ListDisksQueryParamsPtrOutput {
+	return i.ToListDisksQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i ListDisksQueryParamsArgs) ToListDisksQueryParamsPtrOutputWithContext(ctx context.Context) ListDisksQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ListDisksQueryParamsOutput).ToListDisksQueryParamsPtrOutputWithContext(ctx)
+}
+
+// ListDisksQueryParamsPtrInput is an input type that accepts ListDisksQueryParamsArgs, ListDisksQueryParamsPtr and ListDisksQueryParamsPtrOutput values.
+// You can construct a concrete instance of `ListDisksQueryParamsPtrInput` via:
+//
+//	        ListDisksQueryParamsArgs{...}
+//
+//	or:
+//
+//	        nil
+type ListDisksQueryParamsPtrInput interface {
+	pulumi.Input
+
+	ToListDisksQueryParamsPtrOutput() ListDisksQueryParamsPtrOutput
+	ToListDisksQueryParamsPtrOutputWithContext(context.Context) ListDisksQueryParamsPtrOutput
+}
+
+type listDisksQueryParamsPtrType ListDisksQueryParamsArgs
+
+func ListDisksQueryParamsPtr(v *ListDisksQueryParamsArgs) ListDisksQueryParamsPtrInput {
+	return (*listDisksQueryParamsPtrType)(v)
+}
+
+func (*listDisksQueryParamsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**ListDisksQueryParams)(nil)).Elem()
+}
+
+func (i *listDisksQueryParamsPtrType) ToListDisksQueryParamsPtrOutput() ListDisksQueryParamsPtrOutput {
+	return i.ToListDisksQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i *listDisksQueryParamsPtrType) ToListDisksQueryParamsPtrOutputWithContext(ctx context.Context) ListDisksQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ListDisksQueryParamsPtrOutput)
+}
+
+// Query params for the API request.
+type ListDisksQueryParamsOutput struct{ *pulumi.OutputState }
+
+func (ListDisksQueryParamsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ListDisksQueryParams)(nil)).Elem()
+}
+
+func (o ListDisksQueryParamsOutput) ToListDisksQueryParamsOutput() ListDisksQueryParamsOutput {
+	return o
+}
+
+func (o ListDisksQueryParamsOutput) ToListDisksQueryParamsOutputWithContext(ctx context.Context) ListDisksQueryParamsOutput {
+	return o
+}
+
+func (o ListDisksQueryParamsOutput) ToListDisksQueryParamsPtrOutput() ListDisksQueryParamsPtrOutput {
+	return o.ToListDisksQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (o ListDisksQueryParamsOutput) ToListDisksQueryParamsPtrOutputWithContext(ctx context.Context) ListDisksQueryParamsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v ListDisksQueryParams) *ListDisksQueryParams {
+		return &v
+	}).(ListDisksQueryParamsPtrOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o ListDisksQueryParamsOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v ListDisksQueryParams) map[string]string { return v.AdditionalParams }).(pulumi.StringMapOutput)
+}
+
+// Filter for resources created after a certain time (specified as an ISO 8601 timestamp)
+func (o ListDisksQueryParamsOutput) CreatedAfter() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ListDisksQueryParams) *string { return v.CreatedAfter }).(pulumi.StringPtrOutput)
+}
+
+// Filter for resources created before a certain time (specified as an ISO 8601 timestamp)
+func (o ListDisksQueryParamsOutput) CreatedBefore() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ListDisksQueryParams) *string { return v.CreatedBefore }).(pulumi.StringPtrOutput)
+}
+
+// The position in the result list to start from when fetching paginated results. For details, see [Pagination](https://api-docs.render.com/reference/pagination).
+func (o ListDisksQueryParamsOutput) Cursor() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ListDisksQueryParams) *string { return v.Cursor }).(pulumi.StringPtrOutput)
+}
+
+// Filter by disk IDs
+func (o ListDisksQueryParamsOutput) DiskId() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v ListDisksQueryParams) []string { return v.DiskId }).(pulumi.StringArrayOutput)
+}
+
+// The maximum number of items to return. For details, see [Pagination](https://api-docs.render.com/reference/pagination).
+func (o ListDisksQueryParamsOutput) Limit() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v ListDisksQueryParams) *int { return v.Limit }).(pulumi.IntPtrOutput)
+}
+
+// Filter by name
+func (o ListDisksQueryParamsOutput) Name() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v ListDisksQueryParams) []string { return v.Name }).(pulumi.StringArrayOutput)
+}
+
+// The ID of the workspaces to return resources for
+func (o ListDisksQueryParamsOutput) OwnerId() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v ListDisksQueryParams) []string { return v.OwnerId }).(pulumi.StringArrayOutput)
+}
+
+// Filter for resources by service ID
+func (o ListDisksQueryParamsOutput) ServiceId() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v ListDisksQueryParams) []string { return v.ServiceId }).(pulumi.StringArrayOutput)
+}
+
+// Filter for resources updated after a certain time (specified as an ISO 8601 timestamp)
+func (o ListDisksQueryParamsOutput) UpdatedAfter() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ListDisksQueryParams) *string { return v.UpdatedAfter }).(pulumi.StringPtrOutput)
+}
+
+// Filter for resources updated before a certain time (specified as an ISO 8601 timestamp)
+func (o ListDisksQueryParamsOutput) UpdatedBefore() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ListDisksQueryParams) *string { return v.UpdatedBefore }).(pulumi.StringPtrOutput)
+}
+
+type ListDisksQueryParamsPtrOutput struct{ *pulumi.OutputState }
+
+func (ListDisksQueryParamsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ListDisksQueryParams)(nil)).Elem()
+}
+
+func (o ListDisksQueryParamsPtrOutput) ToListDisksQueryParamsPtrOutput() ListDisksQueryParamsPtrOutput {
+	return o
+}
+
+func (o ListDisksQueryParamsPtrOutput) ToListDisksQueryParamsPtrOutputWithContext(ctx context.Context) ListDisksQueryParamsPtrOutput {
+	return o
+}
+
+func (o ListDisksQueryParamsPtrOutput) Elem() ListDisksQueryParamsOutput {
+	return o.ApplyT(func(v *ListDisksQueryParams) ListDisksQueryParams {
+		if v != nil {
+			return *v
+		}
+		var ret ListDisksQueryParams
+		return ret
+	}).(ListDisksQueryParamsOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o ListDisksQueryParamsPtrOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *ListDisksQueryParams) map[string]string {
+		if v == nil {
+			return nil
+		}
+		return v.AdditionalParams
+	}).(pulumi.StringMapOutput)
+}
+
+// Filter for resources created after a certain time (specified as an ISO 8601 timestamp)
+func (o ListDisksQueryParamsPtrOutput) CreatedAfter() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ListDisksQueryParams) *string {
+		if v == nil {
+			return nil
+		}
+		return v.CreatedAfter
+	}).(pulumi.StringPtrOutput)
+}
+
+// Filter for resources created before a certain time (specified as an ISO 8601 timestamp)
+func (o ListDisksQueryParamsPtrOutput) CreatedBefore() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ListDisksQueryParams) *string {
+		if v == nil {
+			return nil
+		}
+		return v.CreatedBefore
+	}).(pulumi.StringPtrOutput)
+}
+
+// The position in the result list to start from when fetching paginated results. For details, see [Pagination](https://api-docs.render.com/reference/pagination).
+func (o ListDisksQueryParamsPtrOutput) Cursor() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ListDisksQueryParams) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Cursor
+	}).(pulumi.StringPtrOutput)
+}
+
+// Filter by disk IDs
+func (o ListDisksQueryParamsPtrOutput) DiskId() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *ListDisksQueryParams) []string {
+		if v == nil {
+			return nil
+		}
+		return v.DiskId
+	}).(pulumi.StringArrayOutput)
+}
+
+// The maximum number of items to return. For details, see [Pagination](https://api-docs.render.com/reference/pagination).
+func (o ListDisksQueryParamsPtrOutput) Limit() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *ListDisksQueryParams) *int {
+		if v == nil {
+			return nil
+		}
+		return v.Limit
+	}).(pulumi.IntPtrOutput)
+}
+
+// Filter by name
+func (o ListDisksQueryParamsPtrOutput) Name() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *ListDisksQueryParams) []string {
+		if v == nil {
+			return nil
+		}
+		return v.Name
+	}).(pulumi.StringArrayOutput)
+}
+
+// The ID of the workspaces to return resources for
+func (o ListDisksQueryParamsPtrOutput) OwnerId() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *ListDisksQueryParams) []string {
+		if v == nil {
+			return nil
+		}
+		return v.OwnerId
+	}).(pulumi.StringArrayOutput)
+}
+
+// Filter for resources by service ID
+func (o ListDisksQueryParamsPtrOutput) ServiceId() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *ListDisksQueryParams) []string {
+		if v == nil {
+			return nil
+		}
+		return v.ServiceId
+	}).(pulumi.StringArrayOutput)
+}
+
+// Filter for resources updated after a certain time (specified as an ISO 8601 timestamp)
+func (o ListDisksQueryParamsPtrOutput) UpdatedAfter() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ListDisksQueryParams) *string {
+		if v == nil {
+			return nil
+		}
+		return v.UpdatedAfter
+	}).(pulumi.StringPtrOutput)
+}
+
+// Filter for resources updated before a certain time (specified as an ISO 8601 timestamp)
+func (o ListDisksQueryParamsPtrOutput) UpdatedBefore() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ListDisksQueryParams) *string {
+		if v == nil {
+			return nil
+		}
+		return v.UpdatedBefore
+	}).(pulumi.StringPtrOutput)
+}
+
+// Query params for the API request.
+type RestoreSnapshotCreateQueryParams struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams map[string]string `pulumi:"additionalParams"`
+}
+
+// RestoreSnapshotCreateQueryParamsInput is an input type that accepts RestoreSnapshotCreateQueryParamsArgs and RestoreSnapshotCreateQueryParamsOutput values.
+// You can construct a concrete instance of `RestoreSnapshotCreateQueryParamsInput` via:
+//
+//	RestoreSnapshotCreateQueryParamsArgs{...}
+type RestoreSnapshotCreateQueryParamsInput interface {
+	pulumi.Input
+
+	ToRestoreSnapshotCreateQueryParamsOutput() RestoreSnapshotCreateQueryParamsOutput
+	ToRestoreSnapshotCreateQueryParamsOutputWithContext(context.Context) RestoreSnapshotCreateQueryParamsOutput
+}
+
+// Query params for the API request.
+type RestoreSnapshotCreateQueryParamsArgs struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams pulumi.StringMapInput `pulumi:"additionalParams"`
+}
+
+func (RestoreSnapshotCreateQueryParamsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*RestoreSnapshotCreateQueryParams)(nil)).Elem()
+}
+
+func (i RestoreSnapshotCreateQueryParamsArgs) ToRestoreSnapshotCreateQueryParamsOutput() RestoreSnapshotCreateQueryParamsOutput {
+	return i.ToRestoreSnapshotCreateQueryParamsOutputWithContext(context.Background())
+}
+
+func (i RestoreSnapshotCreateQueryParamsArgs) ToRestoreSnapshotCreateQueryParamsOutputWithContext(ctx context.Context) RestoreSnapshotCreateQueryParamsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RestoreSnapshotCreateQueryParamsOutput)
+}
+
+func (i RestoreSnapshotCreateQueryParamsArgs) ToRestoreSnapshotCreateQueryParamsPtrOutput() RestoreSnapshotCreateQueryParamsPtrOutput {
+	return i.ToRestoreSnapshotCreateQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i RestoreSnapshotCreateQueryParamsArgs) ToRestoreSnapshotCreateQueryParamsPtrOutputWithContext(ctx context.Context) RestoreSnapshotCreateQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RestoreSnapshotCreateQueryParamsOutput).ToRestoreSnapshotCreateQueryParamsPtrOutputWithContext(ctx)
+}
+
+// RestoreSnapshotCreateQueryParamsPtrInput is an input type that accepts RestoreSnapshotCreateQueryParamsArgs, RestoreSnapshotCreateQueryParamsPtr and RestoreSnapshotCreateQueryParamsPtrOutput values.
+// You can construct a concrete instance of `RestoreSnapshotCreateQueryParamsPtrInput` via:
+//
+//	        RestoreSnapshotCreateQueryParamsArgs{...}
+//
+//	or:
+//
+//	        nil
+type RestoreSnapshotCreateQueryParamsPtrInput interface {
+	pulumi.Input
+
+	ToRestoreSnapshotCreateQueryParamsPtrOutput() RestoreSnapshotCreateQueryParamsPtrOutput
+	ToRestoreSnapshotCreateQueryParamsPtrOutputWithContext(context.Context) RestoreSnapshotCreateQueryParamsPtrOutput
+}
+
+type restoreSnapshotCreateQueryParamsPtrType RestoreSnapshotCreateQueryParamsArgs
+
+func RestoreSnapshotCreateQueryParamsPtr(v *RestoreSnapshotCreateQueryParamsArgs) RestoreSnapshotCreateQueryParamsPtrInput {
+	return (*restoreSnapshotCreateQueryParamsPtrType)(v)
+}
+
+func (*restoreSnapshotCreateQueryParamsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**RestoreSnapshotCreateQueryParams)(nil)).Elem()
+}
+
+func (i *restoreSnapshotCreateQueryParamsPtrType) ToRestoreSnapshotCreateQueryParamsPtrOutput() RestoreSnapshotCreateQueryParamsPtrOutput {
+	return i.ToRestoreSnapshotCreateQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i *restoreSnapshotCreateQueryParamsPtrType) ToRestoreSnapshotCreateQueryParamsPtrOutputWithContext(ctx context.Context) RestoreSnapshotCreateQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RestoreSnapshotCreateQueryParamsPtrOutput)
+}
+
+// Query params for the API request.
+type RestoreSnapshotCreateQueryParamsOutput struct{ *pulumi.OutputState }
+
+func (RestoreSnapshotCreateQueryParamsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*RestoreSnapshotCreateQueryParams)(nil)).Elem()
+}
+
+func (o RestoreSnapshotCreateQueryParamsOutput) ToRestoreSnapshotCreateQueryParamsOutput() RestoreSnapshotCreateQueryParamsOutput {
+	return o
+}
+
+func (o RestoreSnapshotCreateQueryParamsOutput) ToRestoreSnapshotCreateQueryParamsOutputWithContext(ctx context.Context) RestoreSnapshotCreateQueryParamsOutput {
+	return o
+}
+
+func (o RestoreSnapshotCreateQueryParamsOutput) ToRestoreSnapshotCreateQueryParamsPtrOutput() RestoreSnapshotCreateQueryParamsPtrOutput {
+	return o.ToRestoreSnapshotCreateQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (o RestoreSnapshotCreateQueryParamsOutput) ToRestoreSnapshotCreateQueryParamsPtrOutputWithContext(ctx context.Context) RestoreSnapshotCreateQueryParamsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v RestoreSnapshotCreateQueryParams) *RestoreSnapshotCreateQueryParams {
+		return &v
+	}).(RestoreSnapshotCreateQueryParamsPtrOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o RestoreSnapshotCreateQueryParamsOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v RestoreSnapshotCreateQueryParams) map[string]string { return v.AdditionalParams }).(pulumi.StringMapOutput)
+}
+
+type RestoreSnapshotCreateQueryParamsPtrOutput struct{ *pulumi.OutputState }
+
+func (RestoreSnapshotCreateQueryParamsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**RestoreSnapshotCreateQueryParams)(nil)).Elem()
+}
+
+func (o RestoreSnapshotCreateQueryParamsPtrOutput) ToRestoreSnapshotCreateQueryParamsPtrOutput() RestoreSnapshotCreateQueryParamsPtrOutput {
+	return o
+}
+
+func (o RestoreSnapshotCreateQueryParamsPtrOutput) ToRestoreSnapshotCreateQueryParamsPtrOutputWithContext(ctx context.Context) RestoreSnapshotCreateQueryParamsPtrOutput {
+	return o
+}
+
+func (o RestoreSnapshotCreateQueryParamsPtrOutput) Elem() RestoreSnapshotCreateQueryParamsOutput {
+	return o.ApplyT(func(v *RestoreSnapshotCreateQueryParams) RestoreSnapshotCreateQueryParams {
+		if v != nil {
+			return *v
+		}
+		var ret RestoreSnapshotCreateQueryParams
+		return ret
+	}).(RestoreSnapshotCreateQueryParamsOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o RestoreSnapshotCreateQueryParamsPtrOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *RestoreSnapshotCreateQueryParams) map[string]string {
+		if v == nil {
+			return nil
+		}
+		return v.AdditionalParams
+	}).(pulumi.StringMapOutput)
+}
+
+// Query params for each of the operations of the resource.
+type RestoreSnapshotQueryParams struct {
+	// Query params for the create operation.
+	Create *RestoreSnapshotCreateQueryParams `pulumi:"create"`
+}
+
+// RestoreSnapshotQueryParamsInput is an input type that accepts RestoreSnapshotQueryParamsArgs and RestoreSnapshotQueryParamsOutput values.
+// You can construct a concrete instance of `RestoreSnapshotQueryParamsInput` via:
+//
+//	RestoreSnapshotQueryParamsArgs{...}
+type RestoreSnapshotQueryParamsInput interface {
+	pulumi.Input
+
+	ToRestoreSnapshotQueryParamsOutput() RestoreSnapshotQueryParamsOutput
+	ToRestoreSnapshotQueryParamsOutputWithContext(context.Context) RestoreSnapshotQueryParamsOutput
+}
+
+// Query params for each of the operations of the resource.
+type RestoreSnapshotQueryParamsArgs struct {
+	// Query params for the create operation.
+	Create RestoreSnapshotCreateQueryParamsPtrInput `pulumi:"create"`
+}
+
+func (RestoreSnapshotQueryParamsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*RestoreSnapshotQueryParams)(nil)).Elem()
+}
+
+func (i RestoreSnapshotQueryParamsArgs) ToRestoreSnapshotQueryParamsOutput() RestoreSnapshotQueryParamsOutput {
+	return i.ToRestoreSnapshotQueryParamsOutputWithContext(context.Background())
+}
+
+func (i RestoreSnapshotQueryParamsArgs) ToRestoreSnapshotQueryParamsOutputWithContext(ctx context.Context) RestoreSnapshotQueryParamsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RestoreSnapshotQueryParamsOutput)
+}
+
+func (i RestoreSnapshotQueryParamsArgs) ToRestoreSnapshotQueryParamsPtrOutput() RestoreSnapshotQueryParamsPtrOutput {
+	return i.ToRestoreSnapshotQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i RestoreSnapshotQueryParamsArgs) ToRestoreSnapshotQueryParamsPtrOutputWithContext(ctx context.Context) RestoreSnapshotQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RestoreSnapshotQueryParamsOutput).ToRestoreSnapshotQueryParamsPtrOutputWithContext(ctx)
+}
+
+// RestoreSnapshotQueryParamsPtrInput is an input type that accepts RestoreSnapshotQueryParamsArgs, RestoreSnapshotQueryParamsPtr and RestoreSnapshotQueryParamsPtrOutput values.
+// You can construct a concrete instance of `RestoreSnapshotQueryParamsPtrInput` via:
+//
+//	        RestoreSnapshotQueryParamsArgs{...}
+//
+//	or:
+//
+//	        nil
+type RestoreSnapshotQueryParamsPtrInput interface {
+	pulumi.Input
+
+	ToRestoreSnapshotQueryParamsPtrOutput() RestoreSnapshotQueryParamsPtrOutput
+	ToRestoreSnapshotQueryParamsPtrOutputWithContext(context.Context) RestoreSnapshotQueryParamsPtrOutput
+}
+
+type restoreSnapshotQueryParamsPtrType RestoreSnapshotQueryParamsArgs
+
+func RestoreSnapshotQueryParamsPtr(v *RestoreSnapshotQueryParamsArgs) RestoreSnapshotQueryParamsPtrInput {
+	return (*restoreSnapshotQueryParamsPtrType)(v)
+}
+
+func (*restoreSnapshotQueryParamsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**RestoreSnapshotQueryParams)(nil)).Elem()
+}
+
+func (i *restoreSnapshotQueryParamsPtrType) ToRestoreSnapshotQueryParamsPtrOutput() RestoreSnapshotQueryParamsPtrOutput {
+	return i.ToRestoreSnapshotQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i *restoreSnapshotQueryParamsPtrType) ToRestoreSnapshotQueryParamsPtrOutputWithContext(ctx context.Context) RestoreSnapshotQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RestoreSnapshotQueryParamsPtrOutput)
+}
+
+// Query params for each of the operations of the resource.
+type RestoreSnapshotQueryParamsOutput struct{ *pulumi.OutputState }
+
+func (RestoreSnapshotQueryParamsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*RestoreSnapshotQueryParams)(nil)).Elem()
+}
+
+func (o RestoreSnapshotQueryParamsOutput) ToRestoreSnapshotQueryParamsOutput() RestoreSnapshotQueryParamsOutput {
+	return o
+}
+
+func (o RestoreSnapshotQueryParamsOutput) ToRestoreSnapshotQueryParamsOutputWithContext(ctx context.Context) RestoreSnapshotQueryParamsOutput {
+	return o
+}
+
+func (o RestoreSnapshotQueryParamsOutput) ToRestoreSnapshotQueryParamsPtrOutput() RestoreSnapshotQueryParamsPtrOutput {
+	return o.ToRestoreSnapshotQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (o RestoreSnapshotQueryParamsOutput) ToRestoreSnapshotQueryParamsPtrOutputWithContext(ctx context.Context) RestoreSnapshotQueryParamsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v RestoreSnapshotQueryParams) *RestoreSnapshotQueryParams {
+		return &v
+	}).(RestoreSnapshotQueryParamsPtrOutput)
+}
+
+// Query params for the create operation.
+func (o RestoreSnapshotQueryParamsOutput) Create() RestoreSnapshotCreateQueryParamsPtrOutput {
+	return o.ApplyT(func(v RestoreSnapshotQueryParams) *RestoreSnapshotCreateQueryParams { return v.Create }).(RestoreSnapshotCreateQueryParamsPtrOutput)
+}
+
+type RestoreSnapshotQueryParamsPtrOutput struct{ *pulumi.OutputState }
+
+func (RestoreSnapshotQueryParamsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**RestoreSnapshotQueryParams)(nil)).Elem()
+}
+
+func (o RestoreSnapshotQueryParamsPtrOutput) ToRestoreSnapshotQueryParamsPtrOutput() RestoreSnapshotQueryParamsPtrOutput {
+	return o
+}
+
+func (o RestoreSnapshotQueryParamsPtrOutput) ToRestoreSnapshotQueryParamsPtrOutputWithContext(ctx context.Context) RestoreSnapshotQueryParamsPtrOutput {
+	return o
+}
+
+func (o RestoreSnapshotQueryParamsPtrOutput) Elem() RestoreSnapshotQueryParamsOutput {
+	return o.ApplyT(func(v *RestoreSnapshotQueryParams) RestoreSnapshotQueryParams {
+		if v != nil {
+			return *v
+		}
+		var ret RestoreSnapshotQueryParams
+		return ret
+	}).(RestoreSnapshotQueryParamsOutput)
+}
+
+// Query params for the create operation.
+func (o RestoreSnapshotQueryParamsPtrOutput) Create() RestoreSnapshotCreateQueryParamsPtrOutput {
+	return o.ApplyT(func(v *RestoreSnapshotQueryParams) *RestoreSnapshotCreateQueryParams {
+		if v == nil {
+			return nil
+		}
+		return v.Create
+	}).(RestoreSnapshotCreateQueryParamsPtrOutput)
+}
+
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*DiskCreateQueryParamsInput)(nil)).Elem(), DiskCreateQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DiskCreateQueryParamsPtrInput)(nil)).Elem(), DiskCreateQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DiskDeleteQueryParamsInput)(nil)).Elem(), DiskDeleteQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DiskDeleteQueryParamsPtrInput)(nil)).Elem(), DiskDeleteQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DiskQueryParamsInput)(nil)).Elem(), DiskQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DiskQueryParamsPtrInput)(nil)).Elem(), DiskQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DiskReadQueryParamsInput)(nil)).Elem(), DiskReadQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DiskReadQueryParamsPtrInput)(nil)).Elem(), DiskReadQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DiskUpdateQueryParamsInput)(nil)).Elem(), DiskUpdateQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DiskUpdateQueryParamsPtrInput)(nil)).Elem(), DiskUpdateQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetDiskQueryParamsInput)(nil)).Elem(), GetDiskQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetDiskQueryParamsPtrInput)(nil)).Elem(), GetDiskQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ListDisksQueryParamsInput)(nil)).Elem(), ListDisksQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ListDisksQueryParamsPtrInput)(nil)).Elem(), ListDisksQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RestoreSnapshotCreateQueryParamsInput)(nil)).Elem(), RestoreSnapshotCreateQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RestoreSnapshotCreateQueryParamsPtrInput)(nil)).Elem(), RestoreSnapshotCreateQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RestoreSnapshotQueryParamsInput)(nil)).Elem(), RestoreSnapshotQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RestoreSnapshotQueryParamsPtrInput)(nil)).Elem(), RestoreSnapshotQueryParamsArgs{})
+	pulumi.RegisterOutputType(DiskCreateQueryParamsOutput{})
+	pulumi.RegisterOutputType(DiskCreateQueryParamsPtrOutput{})
+	pulumi.RegisterOutputType(DiskDeleteQueryParamsOutput{})
+	pulumi.RegisterOutputType(DiskDeleteQueryParamsPtrOutput{})
+	pulumi.RegisterOutputType(DiskQueryParamsOutput{})
+	pulumi.RegisterOutputType(DiskQueryParamsPtrOutput{})
+	pulumi.RegisterOutputType(DiskReadQueryParamsOutput{})
+	pulumi.RegisterOutputType(DiskReadQueryParamsPtrOutput{})
+	pulumi.RegisterOutputType(DiskUpdateQueryParamsOutput{})
+	pulumi.RegisterOutputType(DiskUpdateQueryParamsPtrOutput{})
 	pulumi.RegisterOutputType(DiskWithCursorOutput{})
 	pulumi.RegisterOutputType(DiskWithCursorArrayOutput{})
 	pulumi.RegisterOutputType(DiskWithCursorDiskPropertiesOutput{})
+	pulumi.RegisterOutputType(GetDiskQueryParamsOutput{})
+	pulumi.RegisterOutputType(GetDiskQueryParamsPtrOutput{})
+	pulumi.RegisterOutputType(ListDisksQueryParamsOutput{})
+	pulumi.RegisterOutputType(ListDisksQueryParamsPtrOutput{})
+	pulumi.RegisterOutputType(RestoreSnapshotCreateQueryParamsOutput{})
+	pulumi.RegisterOutputType(RestoreSnapshotCreateQueryParamsPtrOutput{})
+	pulumi.RegisterOutputType(RestoreSnapshotQueryParamsOutput{})
+	pulumi.RegisterOutputType(RestoreSnapshotQueryParamsPtrOutput{})
 }

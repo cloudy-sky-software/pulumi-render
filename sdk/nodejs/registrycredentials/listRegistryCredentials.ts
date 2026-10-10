@@ -11,18 +11,31 @@ export function listRegistryCredentials(args?: ListRegistryCredentialsArgs, opts
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("render:registrycredentials:listRegistryCredentials", {
+        "queryParams": args.queryParams ? inputs.registrycredentials.listRegistryCredentialsQueryParamsProvideDefaults(args.queryParams) : undefined,
     }, opts);
 }
 
 export interface ListRegistryCredentialsArgs {
+    /**
+     * Query params to send with the API request.
+     */
+    queryParams?: inputs.registrycredentials.ListRegistryCredentialsQueryParams;
 }
 
 export interface ListRegistryCredentialsResult {
     readonly items: outputs.registrycredentials.RegistryCredential[];
 }
-export function listRegistryCredentialsOutput(opts?: pulumi.InvokeOutputOptions): pulumi.Output<ListRegistryCredentialsResult> {
+export function listRegistryCredentialsOutput(args?: ListRegistryCredentialsOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<ListRegistryCredentialsResult> {
+    args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("render:registrycredentials:listRegistryCredentials", {
+        "queryParams": pulumi.output(args.queryParams).apply(v => v === undefined ? undefined : inputs.registrycredentials.listRegistryCredentialsQueryParamsProvideDefaults(v)),
     }, opts);
 }
 
+export interface ListRegistryCredentialsOutputArgs {
+    /**
+     * Query params to send with the API request.
+     */
+    queryParams?: pulumi.Input<inputs.registrycredentials.ListRegistryCredentialsQueryParamsArgs | undefined>;
+}

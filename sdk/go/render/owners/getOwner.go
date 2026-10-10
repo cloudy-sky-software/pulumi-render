@@ -24,6 +24,8 @@ func GetOwner(ctx *pulumi.Context, args *GetOwnerArgs, opts ...pulumi.InvokeOpti
 type GetOwnerArgs struct {
 	// The ID of the user or team
 	OwnerId string `pulumi:"ownerId"`
+	// Query params to send with the API request.
+	QueryParams *GetOwnerQueryParams `pulumi:"queryParams"`
 }
 
 type GetOwnerResult struct {
@@ -43,6 +45,8 @@ func GetOwnerOutput(ctx *pulumi.Context, args GetOwnerOutputArgs, opts ...pulumi
 type GetOwnerOutputArgs struct {
 	// The ID of the user or team
 	OwnerId pulumi.StringInput `pulumi:"ownerId"`
+	// Query params to send with the API request.
+	QueryParams GetOwnerQueryParamsPtrInput `pulumi:"queryParams"`
 }
 
 func (GetOwnerOutputArgs) ElementType() reflect.Type {

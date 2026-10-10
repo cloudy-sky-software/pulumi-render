@@ -14,7 +14,7 @@ export const listBlueprintSyncs: typeof import("./listBlueprintSyncs").listBluep
 export const listBlueprintSyncsOutput: typeof import("./listBlueprintSyncs").listBlueprintSyncsOutput = null as any;
 utilities.lazyLoad(exports, ["listBlueprintSyncs","listBlueprintSyncsOutput"], () => require("./listBlueprintSyncs"));
 
-export { ListBlueprintsArgs, ListBlueprintsResult } from "./listBlueprints";
+export { ListBlueprintsArgs, ListBlueprintsResult, ListBlueprintsOutputArgs } from "./listBlueprints";
 export const listBlueprints: typeof import("./listBlueprints").listBlueprints = null as any;
 export const listBlueprintsOutput: typeof import("./listBlueprints").listBlueprintsOutput = null as any;
 utilities.lazyLoad(exports, ["listBlueprints","listBlueprintsOutput"], () => require("./listBlueprints"));

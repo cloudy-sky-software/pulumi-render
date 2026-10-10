@@ -7,22 +7,33 @@ import * as outputs from "../types/output";
 import * as enums from "../types/enums";
 import * as utilities from "../utilities";
 
-export function listEnvironments(args?: ListEnvironmentsArgs, opts?: pulumi.InvokeOptions): Promise<ListEnvironmentsResult> {
-    args = args || {};
+export function listEnvironments(args: ListEnvironmentsArgs, opts?: pulumi.InvokeOptions): Promise<ListEnvironmentsResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("render:environments:listEnvironments", {
+        "queryParams": args.queryParams ? inputs.environments.listEnvironmentsQueryParamsProvideDefaults(args.queryParams) : undefined,
     }, opts);
 }
 
 export interface ListEnvironmentsArgs {
+    /**
+     * Query params to send with the API request.
+     */
+    queryParams: inputs.environments.ListEnvironmentsQueryParams;
 }
 
 export interface ListEnvironmentsResult {
     readonly items: outputs.environments.EnvironmentWithCursor[];
 }
-export function listEnvironmentsOutput(opts?: pulumi.InvokeOutputOptions): pulumi.Output<ListEnvironmentsResult> {
+export function listEnvironmentsOutput(args: ListEnvironmentsOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<ListEnvironmentsResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("render:environments:listEnvironments", {
+        "queryParams": pulumi.output(args.queryParams).apply(inputs.environments.listEnvironmentsQueryParamsProvideDefaults),
     }, opts);
 }
 
+export interface ListEnvironmentsOutputArgs {
+    /**
+     * Query params to send with the API request.
+     */
+    queryParams: pulumi.Input<inputs.environments.ListEnvironmentsQueryParamsArgs>;
+}

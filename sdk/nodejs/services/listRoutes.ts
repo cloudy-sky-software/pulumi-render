@@ -10,11 +10,16 @@ import * as utilities from "../utilities";
 export function listRoutes(args: ListRoutesArgs, opts?: pulumi.InvokeOptions): Promise<ListRoutesResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("render:services:listRoutes", {
+        "queryParams": args.queryParams ? inputs.services.listRoutesQueryParamsProvideDefaults(args.queryParams) : undefined,
         "serviceId": args.serviceId,
     }, opts);
 }
 
 export interface ListRoutesArgs {
+    /**
+     * Query params to send with the API request.
+     */
+    queryParams?: inputs.services.ListRoutesQueryParams;
     /**
      * The ID of the service
      */
@@ -27,11 +32,16 @@ export interface ListRoutesResult {
 export function listRoutesOutput(args: ListRoutesOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<ListRoutesResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("render:services:listRoutes", {
+        "queryParams": pulumi.output(args.queryParams).apply(v => v === undefined ? undefined : inputs.services.listRoutesQueryParamsProvideDefaults(v)),
         "serviceId": args.serviceId,
     }, opts);
 }
 
 export interface ListRoutesOutputArgs {
+    /**
+     * Query params to send with the API request.
+     */
+    queryParams?: pulumi.Input<inputs.services.ListRoutesQueryParamsArgs | undefined>;
     /**
      * The ID of the service
      */

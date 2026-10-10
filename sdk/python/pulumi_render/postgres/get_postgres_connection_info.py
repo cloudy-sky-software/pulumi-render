@@ -13,6 +13,7 @@ if sys.version_info >= (3, 11):
 else:
     from typing_extensions import NotRequired, TypedDict, TypeAlias
 from .. import _utilities
+from ._inputs import *
 
 __all__ = [
     'GetPostgresConnectionInfoResult',
@@ -71,12 +72,16 @@ class AwaitableGetPostgresConnectionInfoResult(GetPostgresConnectionInfoResult):
 
 
 def get_postgres_connection_info(postgres_id: Optional[_builtins.str] = None,
+                                 query_params: Optional[Union['GetPostgresConnectionInfoQueryParams', 'GetPostgresConnectionInfoQueryParamsDict']] = None,
                                  opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetPostgresConnectionInfoResult:
     """
     Use this data source to access information about an existing resource.
+
+    :param Union['GetPostgresConnectionInfoQueryParams', 'GetPostgresConnectionInfoQueryParamsDict'] query_params: Query params to send with the API request.
     """
     __args__ = dict()
     __args__['postgresId'] = postgres_id
+    __args__['queryParams'] = query_params
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke('render:postgres:getPostgresConnectionInfo', __args__, opts=opts, typ=GetPostgresConnectionInfoResult).value
 
@@ -86,12 +91,16 @@ def get_postgres_connection_info(postgres_id: Optional[_builtins.str] = None,
         password=pulumi.get(__ret__, 'password'),
         psql_command=pulumi.get(__ret__, 'psql_command'))
 def get_postgres_connection_info_output(postgres_id: pulumi.Input[Optional[_builtins.str]] = None,
+                                        query_params: pulumi.Input[Optional[Optional[Union['GetPostgresConnectionInfoQueryParams', 'GetPostgresConnectionInfoQueryParamsDict']]]] = None,
                                         opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetPostgresConnectionInfoResult]:
     """
     Use this data source to access information about an existing resource.
+
+    :param Union['GetPostgresConnectionInfoQueryParams', 'GetPostgresConnectionInfoQueryParamsDict'] query_params: Query params to send with the API request.
     """
     __args__ = dict()
     __args__['postgresId'] = postgres_id
+    __args__['queryParams'] = query_params
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('render:postgres:getPostgresConnectionInfo', __args__, opts=opts, typ=GetPostgresConnectionInfoResult)
     return __ret__.apply(lambda __response__: GetPostgresConnectionInfoResult(

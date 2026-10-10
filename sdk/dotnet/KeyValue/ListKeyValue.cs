@@ -14,20 +14,40 @@ namespace Pulumi.Render.KeyValue
         public static Task<ListKeyValueResult> InvokeAsync(ListKeyValueArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<ListKeyValueResult>("render:key-value:listKeyValue", args ?? new ListKeyValueArgs(), options.WithDefaults());
 
-        public static Output<ListKeyValueResult> Invoke(InvokeOptions? options = null)
-            => global::Pulumi.Deployment.Instance.Invoke<ListKeyValueResult>("render:key-value:listKeyValue", InvokeArgs.Empty, options.WithDefaults());
+        public static Output<ListKeyValueResult> Invoke(ListKeyValueInvokeArgs? args = null, InvokeOptions? options = null)
+            => global::Pulumi.Deployment.Instance.Invoke<ListKeyValueResult>("render:key-value:listKeyValue", args ?? new ListKeyValueInvokeArgs(), options.WithDefaults());
 
-        public static Output<ListKeyValueResult> Invoke(InvokeOutputOptions options)
-            => global::Pulumi.Deployment.Instance.Invoke<ListKeyValueResult>("render:key-value:listKeyValue", InvokeArgs.Empty, options.WithDefaults());
+        public static Output<ListKeyValueResult> Invoke(ListKeyValueInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<ListKeyValueResult>("render:key-value:listKeyValue", args ?? new ListKeyValueInvokeArgs(), options.WithDefaults());
     }
 
 
     public sealed class ListKeyValueArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// Query params to send with the API request.
+        /// </summary>
+        [Input("queryParams")]
+        public Inputs.ListKeyValueQueryParams? QueryParams { get; set; }
+
         public ListKeyValueArgs()
         {
         }
         public static new ListKeyValueArgs Empty => new ListKeyValueArgs();
+    }
+
+    public sealed class ListKeyValueInvokeArgs : global::Pulumi.InvokeArgs
+    {
+        /// <summary>
+        /// Query params to send with the API request.
+        /// </summary>
+        [Input("queryParams")]
+        public Input<Inputs.ListKeyValueQueryParamsArgs>? QueryParams { get; set; }
+
+        public ListKeyValueInvokeArgs()
+        {
+        }
+        public static new ListKeyValueInvokeArgs Empty => new ListKeyValueInvokeArgs();
     }
 
 

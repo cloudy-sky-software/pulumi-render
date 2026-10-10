@@ -40,7 +40,7 @@ export type LinkServiceToEnvGroup = import("./linkServiceToEnvGroup").LinkServic
 export const LinkServiceToEnvGroup: typeof import("./linkServiceToEnvGroup").LinkServiceToEnvGroup = null as any;
 utilities.lazyLoad(exports, ["LinkServiceToEnvGroup"], () => require("./linkServiceToEnvGroup"));
 
-export { ListEnvGroupsArgs, ListEnvGroupsResult } from "./listEnvGroups";
+export { ListEnvGroupsArgs, ListEnvGroupsResult, ListEnvGroupsOutputArgs } from "./listEnvGroups";
 export const listEnvGroups: typeof import("./listEnvGroups").listEnvGroups = null as any;
 export const listEnvGroupsOutput: typeof import("./listEnvGroups").listEnvGroupsOutput = null as any;
 utilities.lazyLoad(exports, ["listEnvGroups","listEnvGroupsOutput"], () => require("./listEnvGroups"));

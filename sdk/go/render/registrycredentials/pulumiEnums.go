@@ -11,6 +11,223 @@ import (
 )
 
 // The registry to use this credential with
+type ListRegistryCredentialsQueryParamsTypeItem string
+
+const (
+	ListRegistryCredentialsQueryParamsTypeItemGithub         = ListRegistryCredentialsQueryParamsTypeItem("GITHUB")
+	ListRegistryCredentialsQueryParamsTypeItemGitlab         = ListRegistryCredentialsQueryParamsTypeItem("GITLAB")
+	ListRegistryCredentialsQueryParamsTypeItemDocker         = ListRegistryCredentialsQueryParamsTypeItem("DOCKER")
+	ListRegistryCredentialsQueryParamsTypeItemGoogleArtifact = ListRegistryCredentialsQueryParamsTypeItem("GOOGLE_ARTIFACT")
+	ListRegistryCredentialsQueryParamsTypeItemAwsEcr         = ListRegistryCredentialsQueryParamsTypeItem("AWS_ECR")
+)
+
+func (ListRegistryCredentialsQueryParamsTypeItem) ElementType() reflect.Type {
+	return reflect.TypeOf((*ListRegistryCredentialsQueryParamsTypeItem)(nil)).Elem()
+}
+
+func (e ListRegistryCredentialsQueryParamsTypeItem) ToListRegistryCredentialsQueryParamsTypeItemOutput() ListRegistryCredentialsQueryParamsTypeItemOutput {
+	return pulumi.ToOutput(e).(ListRegistryCredentialsQueryParamsTypeItemOutput)
+}
+
+func (e ListRegistryCredentialsQueryParamsTypeItem) ToListRegistryCredentialsQueryParamsTypeItemOutputWithContext(ctx context.Context) ListRegistryCredentialsQueryParamsTypeItemOutput {
+	return pulumi.ToOutputWithContext(ctx, e).(ListRegistryCredentialsQueryParamsTypeItemOutput)
+}
+
+func (e ListRegistryCredentialsQueryParamsTypeItem) ToListRegistryCredentialsQueryParamsTypeItemPtrOutput() ListRegistryCredentialsQueryParamsTypeItemPtrOutput {
+	return e.ToListRegistryCredentialsQueryParamsTypeItemPtrOutputWithContext(context.Background())
+}
+
+func (e ListRegistryCredentialsQueryParamsTypeItem) ToListRegistryCredentialsQueryParamsTypeItemPtrOutputWithContext(ctx context.Context) ListRegistryCredentialsQueryParamsTypeItemPtrOutput {
+	return ListRegistryCredentialsQueryParamsTypeItem(e).ToListRegistryCredentialsQueryParamsTypeItemOutputWithContext(ctx).ToListRegistryCredentialsQueryParamsTypeItemPtrOutputWithContext(ctx)
+}
+
+func (e ListRegistryCredentialsQueryParamsTypeItem) ToStringOutput() pulumi.StringOutput {
+	return pulumi.ToOutput(pulumi.String(e)).(pulumi.StringOutput)
+}
+
+func (e ListRegistryCredentialsQueryParamsTypeItem) ToStringOutputWithContext(ctx context.Context) pulumi.StringOutput {
+	return pulumi.ToOutputWithContext(ctx, pulumi.String(e)).(pulumi.StringOutput)
+}
+
+func (e ListRegistryCredentialsQueryParamsTypeItem) ToStringPtrOutput() pulumi.StringPtrOutput {
+	return pulumi.String(e).ToStringPtrOutputWithContext(context.Background())
+}
+
+func (e ListRegistryCredentialsQueryParamsTypeItem) ToStringPtrOutputWithContext(ctx context.Context) pulumi.StringPtrOutput {
+	return pulumi.String(e).ToStringOutputWithContext(ctx).ToStringPtrOutputWithContext(ctx)
+}
+
+type ListRegistryCredentialsQueryParamsTypeItemOutput struct{ *pulumi.OutputState }
+
+func (ListRegistryCredentialsQueryParamsTypeItemOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ListRegistryCredentialsQueryParamsTypeItem)(nil)).Elem()
+}
+
+func (o ListRegistryCredentialsQueryParamsTypeItemOutput) ToListRegistryCredentialsQueryParamsTypeItemOutput() ListRegistryCredentialsQueryParamsTypeItemOutput {
+	return o
+}
+
+func (o ListRegistryCredentialsQueryParamsTypeItemOutput) ToListRegistryCredentialsQueryParamsTypeItemOutputWithContext(ctx context.Context) ListRegistryCredentialsQueryParamsTypeItemOutput {
+	return o
+}
+
+func (o ListRegistryCredentialsQueryParamsTypeItemOutput) ToListRegistryCredentialsQueryParamsTypeItemPtrOutput() ListRegistryCredentialsQueryParamsTypeItemPtrOutput {
+	return o.ToListRegistryCredentialsQueryParamsTypeItemPtrOutputWithContext(context.Background())
+}
+
+func (o ListRegistryCredentialsQueryParamsTypeItemOutput) ToListRegistryCredentialsQueryParamsTypeItemPtrOutputWithContext(ctx context.Context) ListRegistryCredentialsQueryParamsTypeItemPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v ListRegistryCredentialsQueryParamsTypeItem) *ListRegistryCredentialsQueryParamsTypeItem {
+		return &v
+	}).(ListRegistryCredentialsQueryParamsTypeItemPtrOutput)
+}
+
+func (o ListRegistryCredentialsQueryParamsTypeItemOutput) ToStringOutput() pulumi.StringOutput {
+	return o.ToStringOutputWithContext(context.Background())
+}
+
+func (o ListRegistryCredentialsQueryParamsTypeItemOutput) ToStringOutputWithContext(ctx context.Context) pulumi.StringOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, e ListRegistryCredentialsQueryParamsTypeItem) string {
+		return string(e)
+	}).(pulumi.StringOutput)
+}
+
+func (o ListRegistryCredentialsQueryParamsTypeItemOutput) ToStringPtrOutput() pulumi.StringPtrOutput {
+	return o.ToStringPtrOutputWithContext(context.Background())
+}
+
+func (o ListRegistryCredentialsQueryParamsTypeItemOutput) ToStringPtrOutputWithContext(ctx context.Context) pulumi.StringPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, e ListRegistryCredentialsQueryParamsTypeItem) *string {
+		v := string(e)
+		return &v
+	}).(pulumi.StringPtrOutput)
+}
+
+type ListRegistryCredentialsQueryParamsTypeItemPtrOutput struct{ *pulumi.OutputState }
+
+func (ListRegistryCredentialsQueryParamsTypeItemPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ListRegistryCredentialsQueryParamsTypeItem)(nil)).Elem()
+}
+
+func (o ListRegistryCredentialsQueryParamsTypeItemPtrOutput) ToListRegistryCredentialsQueryParamsTypeItemPtrOutput() ListRegistryCredentialsQueryParamsTypeItemPtrOutput {
+	return o
+}
+
+func (o ListRegistryCredentialsQueryParamsTypeItemPtrOutput) ToListRegistryCredentialsQueryParamsTypeItemPtrOutputWithContext(ctx context.Context) ListRegistryCredentialsQueryParamsTypeItemPtrOutput {
+	return o
+}
+
+func (o ListRegistryCredentialsQueryParamsTypeItemPtrOutput) Elem() ListRegistryCredentialsQueryParamsTypeItemOutput {
+	return o.ApplyT(func(v *ListRegistryCredentialsQueryParamsTypeItem) ListRegistryCredentialsQueryParamsTypeItem {
+		if v != nil {
+			return *v
+		}
+		var ret ListRegistryCredentialsQueryParamsTypeItem
+		return ret
+	}).(ListRegistryCredentialsQueryParamsTypeItemOutput)
+}
+
+func (o ListRegistryCredentialsQueryParamsTypeItemPtrOutput) ToStringPtrOutput() pulumi.StringPtrOutput {
+	return o.ToStringPtrOutputWithContext(context.Background())
+}
+
+func (o ListRegistryCredentialsQueryParamsTypeItemPtrOutput) ToStringPtrOutputWithContext(ctx context.Context) pulumi.StringPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, e *ListRegistryCredentialsQueryParamsTypeItem) *string {
+		if e == nil {
+			return nil
+		}
+		v := string(*e)
+		return &v
+	}).(pulumi.StringPtrOutput)
+}
+
+// ListRegistryCredentialsQueryParamsTypeItemInput is an input type that accepts values of the ListRegistryCredentialsQueryParamsTypeItem enum
+// A concrete instance of `ListRegistryCredentialsQueryParamsTypeItemInput` can be one of the following:
+//
+//	ListRegistryCredentialsQueryParamsTypeItemGithub
+//	ListRegistryCredentialsQueryParamsTypeItemGitlab
+//	ListRegistryCredentialsQueryParamsTypeItemDocker
+//	ListRegistryCredentialsQueryParamsTypeItemGoogleArtifact
+//	ListRegistryCredentialsQueryParamsTypeItemAwsEcr
+type ListRegistryCredentialsQueryParamsTypeItemInput interface {
+	pulumi.Input
+
+	ToListRegistryCredentialsQueryParamsTypeItemOutput() ListRegistryCredentialsQueryParamsTypeItemOutput
+	ToListRegistryCredentialsQueryParamsTypeItemOutputWithContext(context.Context) ListRegistryCredentialsQueryParamsTypeItemOutput
+}
+
+var listRegistryCredentialsQueryParamsTypeItemPtrType = reflect.TypeOf((**ListRegistryCredentialsQueryParamsTypeItem)(nil)).Elem()
+
+type ListRegistryCredentialsQueryParamsTypeItemPtrInput interface {
+	pulumi.Input
+
+	ToListRegistryCredentialsQueryParamsTypeItemPtrOutput() ListRegistryCredentialsQueryParamsTypeItemPtrOutput
+	ToListRegistryCredentialsQueryParamsTypeItemPtrOutputWithContext(context.Context) ListRegistryCredentialsQueryParamsTypeItemPtrOutput
+}
+
+type listRegistryCredentialsQueryParamsTypeItemPtr string
+
+func ListRegistryCredentialsQueryParamsTypeItemPtr(v string) ListRegistryCredentialsQueryParamsTypeItemPtrInput {
+	return (*listRegistryCredentialsQueryParamsTypeItemPtr)(&v)
+}
+
+func (*listRegistryCredentialsQueryParamsTypeItemPtr) ElementType() reflect.Type {
+	return listRegistryCredentialsQueryParamsTypeItemPtrType
+}
+
+func (in *listRegistryCredentialsQueryParamsTypeItemPtr) ToListRegistryCredentialsQueryParamsTypeItemPtrOutput() ListRegistryCredentialsQueryParamsTypeItemPtrOutput {
+	return pulumi.ToOutput(in).(ListRegistryCredentialsQueryParamsTypeItemPtrOutput)
+}
+
+func (in *listRegistryCredentialsQueryParamsTypeItemPtr) ToListRegistryCredentialsQueryParamsTypeItemPtrOutputWithContext(ctx context.Context) ListRegistryCredentialsQueryParamsTypeItemPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, in).(ListRegistryCredentialsQueryParamsTypeItemPtrOutput)
+}
+
+// ListRegistryCredentialsQueryParamsTypeItemArrayInput is an input type that accepts ListRegistryCredentialsQueryParamsTypeItemArray and ListRegistryCredentialsQueryParamsTypeItemArrayOutput values.
+// You can construct a concrete instance of `ListRegistryCredentialsQueryParamsTypeItemArrayInput` via:
+//
+//	ListRegistryCredentialsQueryParamsTypeItemArray{ ListRegistryCredentialsQueryParamsTypeItemArgs{...} }
+type ListRegistryCredentialsQueryParamsTypeItemArrayInput interface {
+	pulumi.Input
+
+	ToListRegistryCredentialsQueryParamsTypeItemArrayOutput() ListRegistryCredentialsQueryParamsTypeItemArrayOutput
+	ToListRegistryCredentialsQueryParamsTypeItemArrayOutputWithContext(context.Context) ListRegistryCredentialsQueryParamsTypeItemArrayOutput
+}
+
+type ListRegistryCredentialsQueryParamsTypeItemArray []ListRegistryCredentialsQueryParamsTypeItem
+
+func (ListRegistryCredentialsQueryParamsTypeItemArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ListRegistryCredentialsQueryParamsTypeItem)(nil)).Elem()
+}
+
+func (i ListRegistryCredentialsQueryParamsTypeItemArray) ToListRegistryCredentialsQueryParamsTypeItemArrayOutput() ListRegistryCredentialsQueryParamsTypeItemArrayOutput {
+	return i.ToListRegistryCredentialsQueryParamsTypeItemArrayOutputWithContext(context.Background())
+}
+
+func (i ListRegistryCredentialsQueryParamsTypeItemArray) ToListRegistryCredentialsQueryParamsTypeItemArrayOutputWithContext(ctx context.Context) ListRegistryCredentialsQueryParamsTypeItemArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ListRegistryCredentialsQueryParamsTypeItemArrayOutput)
+}
+
+type ListRegistryCredentialsQueryParamsTypeItemArrayOutput struct{ *pulumi.OutputState }
+
+func (ListRegistryCredentialsQueryParamsTypeItemArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ListRegistryCredentialsQueryParamsTypeItem)(nil)).Elem()
+}
+
+func (o ListRegistryCredentialsQueryParamsTypeItemArrayOutput) ToListRegistryCredentialsQueryParamsTypeItemArrayOutput() ListRegistryCredentialsQueryParamsTypeItemArrayOutput {
+	return o
+}
+
+func (o ListRegistryCredentialsQueryParamsTypeItemArrayOutput) ToListRegistryCredentialsQueryParamsTypeItemArrayOutputWithContext(ctx context.Context) ListRegistryCredentialsQueryParamsTypeItemArrayOutput {
+	return o
+}
+
+func (o ListRegistryCredentialsQueryParamsTypeItemArrayOutput) Index(i pulumi.IntInput) ListRegistryCredentialsQueryParamsTypeItemOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ListRegistryCredentialsQueryParamsTypeItem {
+		return vs[0].([]ListRegistryCredentialsQueryParamsTypeItem)[vs[1].(int)]
+	}).(ListRegistryCredentialsQueryParamsTypeItemOutput)
+}
+
+// The registry to use this credential with
 type Registry string
 
 const (
@@ -277,8 +494,14 @@ func (o RegistryCredentialRegistryPtrOutput) ToStringPtrOutputWithContext(ctx co
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*ListRegistryCredentialsQueryParamsTypeItemInput)(nil)).Elem(), ListRegistryCredentialsQueryParamsTypeItem("GITHUB"))
+	pulumi.RegisterInputType(reflect.TypeOf((*ListRegistryCredentialsQueryParamsTypeItemPtrInput)(nil)).Elem(), ListRegistryCredentialsQueryParamsTypeItem("GITHUB"))
+	pulumi.RegisterInputType(reflect.TypeOf((*ListRegistryCredentialsQueryParamsTypeItemArrayInput)(nil)).Elem(), ListRegistryCredentialsQueryParamsTypeItemArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*RegistryInput)(nil)).Elem(), Registry("GITHUB"))
 	pulumi.RegisterInputType(reflect.TypeOf((*RegistryPtrInput)(nil)).Elem(), Registry("GITHUB"))
+	pulumi.RegisterOutputType(ListRegistryCredentialsQueryParamsTypeItemOutput{})
+	pulumi.RegisterOutputType(ListRegistryCredentialsQueryParamsTypeItemPtrOutput{})
+	pulumi.RegisterOutputType(ListRegistryCredentialsQueryParamsTypeItemArrayOutput{})
 	pulumi.RegisterOutputType(RegistryOutput{})
 	pulumi.RegisterOutputType(RegistryPtrOutput{})
 	pulumi.RegisterOutputType(RegistryCredentialRegistryOutput{})

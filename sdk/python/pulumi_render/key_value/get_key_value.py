@@ -15,6 +15,7 @@ else:
 from .. import _utilities
 from . import outputs
 from ._enums import *
+from ._inputs import *
 
 __all__ = [
     'GetKeyValueResult',
@@ -184,12 +185,16 @@ class AwaitableGetKeyValueResult(GetKeyValueResult):
 
 
 def get_key_value(key_value_id: Optional[_builtins.str] = None,
+                  query_params: Optional[Union['GetKeyValueQueryParams', 'GetKeyValueQueryParamsDict']] = None,
                   opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetKeyValueResult:
     """
     Use this data source to access information about an existing resource.
+
+    :param Union['GetKeyValueQueryParams', 'GetKeyValueQueryParamsDict'] query_params: Query params to send with the API request.
     """
     __args__ = dict()
     __args__['keyValueId'] = key_value_id
+    __args__['queryParams'] = query_params
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke('render:key-value:getKeyValue', __args__, opts=opts, typ=GetKeyValueResult).value
 
@@ -208,12 +213,16 @@ def get_key_value(key_value_id: Optional[_builtins.str] = None,
         updated_at=pulumi.get(__ret__, 'updated_at'),
         version=pulumi.get(__ret__, 'version'))
 def get_key_value_output(key_value_id: pulumi.Input[Optional[_builtins.str]] = None,
+                         query_params: pulumi.Input[Optional[Optional[Union['GetKeyValueQueryParams', 'GetKeyValueQueryParamsDict']]]] = None,
                          opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetKeyValueResult]:
     """
     Use this data source to access information about an existing resource.
+
+    :param Union['GetKeyValueQueryParams', 'GetKeyValueQueryParamsDict'] query_params: Query params to send with the API request.
     """
     __args__ = dict()
     __args__['keyValueId'] = key_value_id
+    __args__['queryParams'] = query_params
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('render:key-value:getKeyValue', __args__, opts=opts, typ=GetKeyValueResult)
     return __ret__.apply(lambda __response__: GetKeyValueResult(

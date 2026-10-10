@@ -13,7 +13,9 @@ if sys.version_info >= (3, 11):
 else:
     from typing_extensions import NotRequired, TypedDict, TypeAlias
 from .. import _utilities
+from . import outputs
 from ._enums import *
+from ._inputs import *
 
 __all__ = ['EnvironmentArgs', 'Environment']
 
@@ -23,12 +25,14 @@ class EnvironmentArgs:
                  project_id: pulumi.Input[_builtins.str],
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  network_isolation_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
-                 protected_status: pulumi.Input[Optional['ProtectedStatus']] = None):
+                 protected_status: pulumi.Input[Optional['ProtectedStatus']] = None,
+                 query_params: pulumi.Input[Optional['EnvironmentQueryParamsArgs']] = None):
         """
         The set of arguments for constructing a Environment resource.
 
         :param pulumi.Input[_builtins.bool] network_isolation_enabled: Indicates whether network connections across environments are allowed.
         :param pulumi.Input['ProtectedStatus'] protected_status: Indicates whether an environment is `unprotected` or `protected`. Only admin users can perform destructive actions in `protected` environments.
+        :param pulumi.Input['EnvironmentQueryParamsArgs'] query_params: Query params to send with the API requests for this resource.
         """
         pulumi.set(__self__, "project_id", project_id)
         if name is not None:
@@ -37,6 +41,8 @@ class EnvironmentArgs:
             pulumi.set(__self__, "network_isolation_enabled", network_isolation_enabled)
         if protected_status is not None:
             pulumi.set(__self__, "protected_status", protected_status)
+        if query_params is not None:
+            pulumi.set(__self__, "query_params", query_params)
 
     @_builtins.property
     @pulumi.getter(name="projectId")
@@ -80,6 +86,18 @@ class EnvironmentArgs:
     def protected_status(self, value: pulumi.Input[Optional['ProtectedStatus']]):
         pulumi.set(self, "protected_status", value)
 
+    @_builtins.property
+    @pulumi.getter(name="queryParams")
+    def query_params(self) -> pulumi.Input[Optional['EnvironmentQueryParamsArgs']]:
+        """
+        Query params to send with the API requests for this resource.
+        """
+        return pulumi.get(self, "query_params")
+
+    @query_params.setter
+    def query_params(self, value: pulumi.Input[Optional['EnvironmentQueryParamsArgs']]):
+        pulumi.set(self, "query_params", value)
+
 
 @pulumi.type_token("render:environments:Environment")
 class Environment(pulumi.CustomResource):
@@ -91,6 +109,7 @@ class Environment(pulumi.CustomResource):
                  network_isolation_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
                  project_id: pulumi.Input[Optional[_builtins.str]] = None,
                  protected_status: pulumi.Input[Optional['ProtectedStatus']] = None,
+                 query_params: pulumi.Input[Optional[Union['EnvironmentQueryParamsArgs', 'EnvironmentQueryParamsArgsDict', 'outputs.EnvironmentQueryParams']]] = None,
                  __props__=None):
         """
         Create a Environment resource with the given unique name, props, and options.
@@ -99,6 +118,7 @@ class Environment(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.bool] network_isolation_enabled: Indicates whether network connections across environments are allowed.
         :param pulumi.Input['ProtectedStatus'] protected_status: Indicates whether an environment is `unprotected` or `protected`. Only admin users can perform destructive actions in `protected` environments.
+        :param pulumi.Input[Union['EnvironmentQueryParamsArgs', 'EnvironmentQueryParamsArgsDict', 'outputs.EnvironmentQueryParams']] query_params: Query params to send with the API requests for this resource.
         """
         ...
     @overload
@@ -128,6 +148,7 @@ class Environment(pulumi.CustomResource):
                  network_isolation_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
                  project_id: pulumi.Input[Optional[_builtins.str]] = None,
                  protected_status: pulumi.Input[Optional['ProtectedStatus']] = None,
+                 query_params: pulumi.Input[Optional[Union['EnvironmentQueryParamsArgs', 'EnvironmentQueryParamsArgsDict', 'outputs.EnvironmentQueryParams']]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -143,6 +164,7 @@ class Environment(pulumi.CustomResource):
                 raise TypeError("Missing required property 'project_id'")
             __props__.__dict__["project_id"] = project_id
             __props__.__dict__["protected_status"] = protected_status
+            __props__.__dict__["query_params"] = query_params
             __props__.__dict__["databases_ids"] = None
             __props__.__dict__["env_group_ids"] = None
             __props__.__dict__["redis_ids"] = None
@@ -175,6 +197,7 @@ class Environment(pulumi.CustomResource):
         __props__.__dict__["network_isolation_enabled"] = None
         __props__.__dict__["project_id"] = None
         __props__.__dict__["protected_status"] = None
+        __props__.__dict__["query_params"] = None
         __props__.__dict__["redis_ids"] = None
         __props__.__dict__["service_ids"] = None
         return Environment(resource_name, opts=opts, __props__=__props__)
@@ -214,6 +237,14 @@ class Environment(pulumi.CustomResource):
         Indicates whether an environment is `unprotected` or `protected`. Only admin users can perform destructive actions in `protected` environments.
         """
         return pulumi.get(self, "protected_status")
+
+    @_builtins.property
+    @pulumi.getter(name="queryParams")
+    def query_params(self) -> pulumi.Output[Optional['outputs.EnvironmentQueryParams']]:
+        """
+        Query params to send with the API requests for this resource.
+        """
+        return pulumi.get(self, "query_params")
 
     @_builtins.property
     @pulumi.getter(name="redisIds")

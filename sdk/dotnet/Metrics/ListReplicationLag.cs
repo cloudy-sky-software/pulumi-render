@@ -14,20 +14,40 @@ namespace Pulumi.Render.Metrics
         public static Task<ListReplicationLagResult> InvokeAsync(ListReplicationLagArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<ListReplicationLagResult>("render:metrics:listReplicationLag", args ?? new ListReplicationLagArgs(), options.WithDefaults());
 
-        public static Output<ListReplicationLagResult> Invoke(InvokeOptions? options = null)
-            => global::Pulumi.Deployment.Instance.Invoke<ListReplicationLagResult>("render:metrics:listReplicationLag", InvokeArgs.Empty, options.WithDefaults());
+        public static Output<ListReplicationLagResult> Invoke(ListReplicationLagInvokeArgs? args = null, InvokeOptions? options = null)
+            => global::Pulumi.Deployment.Instance.Invoke<ListReplicationLagResult>("render:metrics:listReplicationLag", args ?? new ListReplicationLagInvokeArgs(), options.WithDefaults());
 
-        public static Output<ListReplicationLagResult> Invoke(InvokeOutputOptions options)
-            => global::Pulumi.Deployment.Instance.Invoke<ListReplicationLagResult>("render:metrics:listReplicationLag", InvokeArgs.Empty, options.WithDefaults());
+        public static Output<ListReplicationLagResult> Invoke(ListReplicationLagInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<ListReplicationLagResult>("render:metrics:listReplicationLag", args ?? new ListReplicationLagInvokeArgs(), options.WithDefaults());
     }
 
 
     public sealed class ListReplicationLagArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// Query params to send with the API request.
+        /// </summary>
+        [Input("queryParams")]
+        public Inputs.ListReplicationLagQueryParams? QueryParams { get; set; }
+
         public ListReplicationLagArgs()
         {
         }
         public static new ListReplicationLagArgs Empty => new ListReplicationLagArgs();
+    }
+
+    public sealed class ListReplicationLagInvokeArgs : global::Pulumi.InvokeArgs
+    {
+        /// <summary>
+        /// Query params to send with the API request.
+        /// </summary>
+        [Input("queryParams")]
+        public Input<Inputs.ListReplicationLagQueryParamsArgs>? QueryParams { get; set; }
+
+        public ListReplicationLagInvokeArgs()
+        {
+        }
+        public static new ListReplicationLagInvokeArgs Empty => new ListReplicationLagInvokeArgs();
     }
 
 

@@ -39,6 +39,10 @@ export class Route extends pulumi.CustomResource {
      * Redirect and Rewrite Rules are applied in priority order starting at 0
      */
     declare public readonly priority: pulumi.Output<number>;
+    /**
+     * Query params to send with the API requests for this resource.
+     */
+    declare public readonly queryParams: pulumi.Output<outputs.services.RouteQueryParams | undefined>;
     declare public readonly source: pulumi.Output<string>;
     declare public readonly type: pulumi.Output<enums.services.Type>;
 
@@ -64,12 +68,14 @@ export class Route extends pulumi.CustomResource {
             }
             resourceInputs["destination"] = args?.destination;
             resourceInputs["priority"] = args?.priority;
+            resourceInputs["queryParams"] = args?.queryParams;
             resourceInputs["serviceId"] = args?.serviceId;
             resourceInputs["source"] = args?.source;
             resourceInputs["type"] = args?.type;
         } else {
             resourceInputs["destination"] = undefined /*out*/;
             resourceInputs["priority"] = undefined /*out*/;
+            resourceInputs["queryParams"] = undefined /*out*/;
             resourceInputs["source"] = undefined /*out*/;
             resourceInputs["type"] = undefined /*out*/;
         }
@@ -87,6 +93,10 @@ export interface RouteArgs {
      * Redirect and Rewrite Rules are applied in priority order starting at 0. Defaults to last in the priority list.
      */
     priority?: pulumi.Input<number | undefined>;
+    /**
+     * Query params to send with the API requests for this resource.
+     */
+    queryParams?: pulumi.Input<inputs.services.RouteQueryParamsArgs | undefined>;
     /**
      * The ID of the service
      */

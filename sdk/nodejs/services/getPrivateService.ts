@@ -10,11 +10,16 @@ import * as utilities from "../utilities";
 export function getPrivateService(args: GetPrivateServiceArgs, opts?: pulumi.InvokeOptions): Promise<GetPrivateServiceResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("render:services:getPrivateService", {
+        "queryParams": args.queryParams,
         "serviceId": args.serviceId,
     }, opts);
 }
 
 export interface GetPrivateServiceArgs {
+    /**
+     * Query params to send with the API request.
+     */
+    queryParams?: inputs.services.GetPrivateServiceQueryParams;
     /**
      * The ID of the service
      */
@@ -49,11 +54,16 @@ export interface GetPrivateServiceResult {
 export function getPrivateServiceOutput(args: GetPrivateServiceOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetPrivateServiceResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("render:services:getPrivateService", {
+        "queryParams": args.queryParams,
         "serviceId": args.serviceId,
     }, opts);
 }
 
 export interface GetPrivateServiceOutputArgs {
+    /**
+     * Query params to send with the API request.
+     */
+    queryParams?: pulumi.Input<inputs.services.GetPrivateServiceQueryParamsArgs | undefined>;
     /**
      * The ID of the service
      */

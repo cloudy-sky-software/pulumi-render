@@ -10,11 +10,16 @@ import * as utilities from "../utilities";
 export function getRedis(args: GetRedisArgs, opts?: pulumi.InvokeOptions): Promise<GetRedisResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("render:redis:getRedis", {
+        "queryParams": args.queryParams,
         "redisId": args.redisId,
     }, opts);
 }
 
 export interface GetRedisArgs {
+    /**
+     * Query params to send with the API request.
+     */
+    queryParams?: inputs.redis.GetRedisQueryParams;
     redisId: string;
 }
 
@@ -66,10 +71,15 @@ export interface GetRedisResult {
 export function getRedisOutput(args: GetRedisOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetRedisResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("render:redis:getRedis", {
+        "queryParams": args.queryParams,
         "redisId": args.redisId,
     }, opts);
 }
 
 export interface GetRedisOutputArgs {
+    /**
+     * Query params to send with the API request.
+     */
+    queryParams?: pulumi.Input<inputs.redis.GetRedisQueryParamsArgs | undefined>;
     redisId: pulumi.Input<string>;
 }

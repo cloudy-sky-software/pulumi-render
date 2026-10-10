@@ -16,7 +16,9 @@ type EnvVar struct {
 
 	GenerateValue pulumi.BoolPtrOutput `pulumi:"generateValue"`
 	Key           pulumi.StringOutput  `pulumi:"key"`
-	Value         pulumi.StringOutput  `pulumi:"value"`
+	// Query params to send with the API requests for this resource.
+	QueryParams EnvVarQueryParamsPtrOutput `pulumi:"queryParams"`
+	Value       pulumi.StringOutput        `pulumi:"value"`
 }
 
 // NewEnvVar registers a new resource with the given unique name, arguments, and options.
@@ -62,6 +64,8 @@ type envVarArgs struct {
 	// The name of the environment variable
 	EnvVarKey     *string `pulumi:"envVarKey"`
 	GenerateValue *bool   `pulumi:"generateValue"`
+	// Query params to send with the API requests for this resource.
+	QueryParams *EnvVarQueryParams `pulumi:"queryParams"`
 	// The ID of the service
 	ServiceId *string `pulumi:"serviceId"`
 	Value     *string `pulumi:"value"`
@@ -72,6 +76,8 @@ type EnvVarArgs struct {
 	// The name of the environment variable
 	EnvVarKey     pulumi.StringPtrInput
 	GenerateValue pulumi.BoolPtrInput
+	// Query params to send with the API requests for this resource.
+	QueryParams EnvVarQueryParamsPtrInput
 	// The ID of the service
 	ServiceId pulumi.StringPtrInput
 	Value     pulumi.StringPtrInput
@@ -120,6 +126,11 @@ func (o EnvVarOutput) GenerateValue() pulumi.BoolPtrOutput {
 
 func (o EnvVarOutput) Key() pulumi.StringOutput {
 	return o.ApplyT(func(v *EnvVar) pulumi.StringOutput { return v.Key }).(pulumi.StringOutput)
+}
+
+// Query params to send with the API requests for this resource.
+func (o EnvVarOutput) QueryParams() EnvVarQueryParamsPtrOutput {
+	return o.ApplyT(func(v *EnvVar) EnvVarQueryParamsPtrOutput { return v.QueryParams }).(EnvVarQueryParamsPtrOutput)
 }
 
 func (o EnvVarOutput) Value() pulumi.StringOutput {

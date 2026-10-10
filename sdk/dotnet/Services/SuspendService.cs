@@ -13,6 +13,13 @@ namespace Pulumi.Render.Services
     public partial class SuspendService : global::Pulumi.CustomResource
     {
         /// <summary>
+        /// Query params to send with the API requests for this resource.
+        /// </summary>
+        [Output("queryParams")]
+        public Output<Outputs.SuspendServiceQueryParams?> QueryParams { get; private set; } = null!;
+
+
+        /// <summary>
         /// Create a SuspendService resource with the given unique name, arguments, and options.
         /// </summary>
         ///
@@ -57,6 +64,12 @@ namespace Pulumi.Render.Services
 
     public sealed class SuspendServiceArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// Query params to send with the API requests for this resource.
+        /// </summary>
+        [Input("queryParams")]
+        public Input<Inputs.SuspendServiceQueryParamsArgs>? QueryParams { get; set; }
+
         /// <summary>
         /// The ID of the service
         /// </summary>

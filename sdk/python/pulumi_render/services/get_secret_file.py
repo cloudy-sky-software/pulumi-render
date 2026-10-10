@@ -13,6 +13,7 @@ if sys.version_info >= (3, 11):
 else:
     from typing_extensions import NotRequired, TypedDict, TypeAlias
 from .. import _utilities
+from ._inputs import *
 
 __all__ = [
     'GetSecretFileResult',
@@ -52,16 +53,19 @@ class AwaitableGetSecretFileResult(GetSecretFileResult):
             name=self.name)
 
 
-def get_secret_file(secret_file_name: Optional[_builtins.str] = None,
+def get_secret_file(query_params: Optional[Union['GetSecretFileQueryParams', 'GetSecretFileQueryParamsDict']] = None,
+                    secret_file_name: Optional[_builtins.str] = None,
                     service_id: Optional[_builtins.str] = None,
                     opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetSecretFileResult:
     """
     Use this data source to access information about an existing resource.
 
+    :param Union['GetSecretFileQueryParams', 'GetSecretFileQueryParamsDict'] query_params: Query params to send with the API request.
     :param _builtins.str secret_file_name: The file name of the secret file
     :param _builtins.str service_id: The ID of the service
     """
     __args__ = dict()
+    __args__['queryParams'] = query_params
     __args__['secretFileName'] = secret_file_name
     __args__['serviceId'] = service_id
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
@@ -70,16 +74,19 @@ def get_secret_file(secret_file_name: Optional[_builtins.str] = None,
     return AwaitableGetSecretFileResult(
         content=pulumi.get(__ret__, 'content'),
         name=pulumi.get(__ret__, 'name'))
-def get_secret_file_output(secret_file_name: pulumi.Input[Optional[_builtins.str]] = None,
+def get_secret_file_output(query_params: pulumi.Input[Optional[Optional[Union['GetSecretFileQueryParams', 'GetSecretFileQueryParamsDict']]]] = None,
+                           secret_file_name: pulumi.Input[Optional[_builtins.str]] = None,
                            service_id: pulumi.Input[Optional[_builtins.str]] = None,
                            opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetSecretFileResult]:
     """
     Use this data source to access information about an existing resource.
 
+    :param Union['GetSecretFileQueryParams', 'GetSecretFileQueryParamsDict'] query_params: Query params to send with the API request.
     :param _builtins.str secret_file_name: The file name of the secret file
     :param _builtins.str service_id: The ID of the service
     """
     __args__ = dict()
+    __args__['queryParams'] = query_params
     __args__['secretFileName'] = secret_file_name
     __args__['serviceId'] = service_id
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)

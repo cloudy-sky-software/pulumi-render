@@ -79,6 +79,763 @@ func (o EnvironmentTypeOutput) ServiceIds() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v EnvironmentType) []string { return v.ServiceIds }).(pulumi.StringArrayOutput)
 }
 
+// Query params for the API request.
+type EnvironmentCreateQueryParams struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams map[string]string `pulumi:"additionalParams"`
+}
+
+// EnvironmentCreateQueryParamsInput is an input type that accepts EnvironmentCreateQueryParamsArgs and EnvironmentCreateQueryParamsOutput values.
+// You can construct a concrete instance of `EnvironmentCreateQueryParamsInput` via:
+//
+//	EnvironmentCreateQueryParamsArgs{...}
+type EnvironmentCreateQueryParamsInput interface {
+	pulumi.Input
+
+	ToEnvironmentCreateQueryParamsOutput() EnvironmentCreateQueryParamsOutput
+	ToEnvironmentCreateQueryParamsOutputWithContext(context.Context) EnvironmentCreateQueryParamsOutput
+}
+
+// Query params for the API request.
+type EnvironmentCreateQueryParamsArgs struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams pulumi.StringMapInput `pulumi:"additionalParams"`
+}
+
+func (EnvironmentCreateQueryParamsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*EnvironmentCreateQueryParams)(nil)).Elem()
+}
+
+func (i EnvironmentCreateQueryParamsArgs) ToEnvironmentCreateQueryParamsOutput() EnvironmentCreateQueryParamsOutput {
+	return i.ToEnvironmentCreateQueryParamsOutputWithContext(context.Background())
+}
+
+func (i EnvironmentCreateQueryParamsArgs) ToEnvironmentCreateQueryParamsOutputWithContext(ctx context.Context) EnvironmentCreateQueryParamsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(EnvironmentCreateQueryParamsOutput)
+}
+
+func (i EnvironmentCreateQueryParamsArgs) ToEnvironmentCreateQueryParamsPtrOutput() EnvironmentCreateQueryParamsPtrOutput {
+	return i.ToEnvironmentCreateQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i EnvironmentCreateQueryParamsArgs) ToEnvironmentCreateQueryParamsPtrOutputWithContext(ctx context.Context) EnvironmentCreateQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(EnvironmentCreateQueryParamsOutput).ToEnvironmentCreateQueryParamsPtrOutputWithContext(ctx)
+}
+
+// EnvironmentCreateQueryParamsPtrInput is an input type that accepts EnvironmentCreateQueryParamsArgs, EnvironmentCreateQueryParamsPtr and EnvironmentCreateQueryParamsPtrOutput values.
+// You can construct a concrete instance of `EnvironmentCreateQueryParamsPtrInput` via:
+//
+//	        EnvironmentCreateQueryParamsArgs{...}
+//
+//	or:
+//
+//	        nil
+type EnvironmentCreateQueryParamsPtrInput interface {
+	pulumi.Input
+
+	ToEnvironmentCreateQueryParamsPtrOutput() EnvironmentCreateQueryParamsPtrOutput
+	ToEnvironmentCreateQueryParamsPtrOutputWithContext(context.Context) EnvironmentCreateQueryParamsPtrOutput
+}
+
+type environmentCreateQueryParamsPtrType EnvironmentCreateQueryParamsArgs
+
+func EnvironmentCreateQueryParamsPtr(v *EnvironmentCreateQueryParamsArgs) EnvironmentCreateQueryParamsPtrInput {
+	return (*environmentCreateQueryParamsPtrType)(v)
+}
+
+func (*environmentCreateQueryParamsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**EnvironmentCreateQueryParams)(nil)).Elem()
+}
+
+func (i *environmentCreateQueryParamsPtrType) ToEnvironmentCreateQueryParamsPtrOutput() EnvironmentCreateQueryParamsPtrOutput {
+	return i.ToEnvironmentCreateQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i *environmentCreateQueryParamsPtrType) ToEnvironmentCreateQueryParamsPtrOutputWithContext(ctx context.Context) EnvironmentCreateQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(EnvironmentCreateQueryParamsPtrOutput)
+}
+
+// Query params for the API request.
+type EnvironmentCreateQueryParamsOutput struct{ *pulumi.OutputState }
+
+func (EnvironmentCreateQueryParamsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*EnvironmentCreateQueryParams)(nil)).Elem()
+}
+
+func (o EnvironmentCreateQueryParamsOutput) ToEnvironmentCreateQueryParamsOutput() EnvironmentCreateQueryParamsOutput {
+	return o
+}
+
+func (o EnvironmentCreateQueryParamsOutput) ToEnvironmentCreateQueryParamsOutputWithContext(ctx context.Context) EnvironmentCreateQueryParamsOutput {
+	return o
+}
+
+func (o EnvironmentCreateQueryParamsOutput) ToEnvironmentCreateQueryParamsPtrOutput() EnvironmentCreateQueryParamsPtrOutput {
+	return o.ToEnvironmentCreateQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (o EnvironmentCreateQueryParamsOutput) ToEnvironmentCreateQueryParamsPtrOutputWithContext(ctx context.Context) EnvironmentCreateQueryParamsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v EnvironmentCreateQueryParams) *EnvironmentCreateQueryParams {
+		return &v
+	}).(EnvironmentCreateQueryParamsPtrOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o EnvironmentCreateQueryParamsOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v EnvironmentCreateQueryParams) map[string]string { return v.AdditionalParams }).(pulumi.StringMapOutput)
+}
+
+type EnvironmentCreateQueryParamsPtrOutput struct{ *pulumi.OutputState }
+
+func (EnvironmentCreateQueryParamsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**EnvironmentCreateQueryParams)(nil)).Elem()
+}
+
+func (o EnvironmentCreateQueryParamsPtrOutput) ToEnvironmentCreateQueryParamsPtrOutput() EnvironmentCreateQueryParamsPtrOutput {
+	return o
+}
+
+func (o EnvironmentCreateQueryParamsPtrOutput) ToEnvironmentCreateQueryParamsPtrOutputWithContext(ctx context.Context) EnvironmentCreateQueryParamsPtrOutput {
+	return o
+}
+
+func (o EnvironmentCreateQueryParamsPtrOutput) Elem() EnvironmentCreateQueryParamsOutput {
+	return o.ApplyT(func(v *EnvironmentCreateQueryParams) EnvironmentCreateQueryParams {
+		if v != nil {
+			return *v
+		}
+		var ret EnvironmentCreateQueryParams
+		return ret
+	}).(EnvironmentCreateQueryParamsOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o EnvironmentCreateQueryParamsPtrOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *EnvironmentCreateQueryParams) map[string]string {
+		if v == nil {
+			return nil
+		}
+		return v.AdditionalParams
+	}).(pulumi.StringMapOutput)
+}
+
+// Query params for the API request.
+type EnvironmentDeleteQueryParams struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams map[string]string `pulumi:"additionalParams"`
+}
+
+// EnvironmentDeleteQueryParamsInput is an input type that accepts EnvironmentDeleteQueryParamsArgs and EnvironmentDeleteQueryParamsOutput values.
+// You can construct a concrete instance of `EnvironmentDeleteQueryParamsInput` via:
+//
+//	EnvironmentDeleteQueryParamsArgs{...}
+type EnvironmentDeleteQueryParamsInput interface {
+	pulumi.Input
+
+	ToEnvironmentDeleteQueryParamsOutput() EnvironmentDeleteQueryParamsOutput
+	ToEnvironmentDeleteQueryParamsOutputWithContext(context.Context) EnvironmentDeleteQueryParamsOutput
+}
+
+// Query params for the API request.
+type EnvironmentDeleteQueryParamsArgs struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams pulumi.StringMapInput `pulumi:"additionalParams"`
+}
+
+func (EnvironmentDeleteQueryParamsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*EnvironmentDeleteQueryParams)(nil)).Elem()
+}
+
+func (i EnvironmentDeleteQueryParamsArgs) ToEnvironmentDeleteQueryParamsOutput() EnvironmentDeleteQueryParamsOutput {
+	return i.ToEnvironmentDeleteQueryParamsOutputWithContext(context.Background())
+}
+
+func (i EnvironmentDeleteQueryParamsArgs) ToEnvironmentDeleteQueryParamsOutputWithContext(ctx context.Context) EnvironmentDeleteQueryParamsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(EnvironmentDeleteQueryParamsOutput)
+}
+
+func (i EnvironmentDeleteQueryParamsArgs) ToEnvironmentDeleteQueryParamsPtrOutput() EnvironmentDeleteQueryParamsPtrOutput {
+	return i.ToEnvironmentDeleteQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i EnvironmentDeleteQueryParamsArgs) ToEnvironmentDeleteQueryParamsPtrOutputWithContext(ctx context.Context) EnvironmentDeleteQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(EnvironmentDeleteQueryParamsOutput).ToEnvironmentDeleteQueryParamsPtrOutputWithContext(ctx)
+}
+
+// EnvironmentDeleteQueryParamsPtrInput is an input type that accepts EnvironmentDeleteQueryParamsArgs, EnvironmentDeleteQueryParamsPtr and EnvironmentDeleteQueryParamsPtrOutput values.
+// You can construct a concrete instance of `EnvironmentDeleteQueryParamsPtrInput` via:
+//
+//	        EnvironmentDeleteQueryParamsArgs{...}
+//
+//	or:
+//
+//	        nil
+type EnvironmentDeleteQueryParamsPtrInput interface {
+	pulumi.Input
+
+	ToEnvironmentDeleteQueryParamsPtrOutput() EnvironmentDeleteQueryParamsPtrOutput
+	ToEnvironmentDeleteQueryParamsPtrOutputWithContext(context.Context) EnvironmentDeleteQueryParamsPtrOutput
+}
+
+type environmentDeleteQueryParamsPtrType EnvironmentDeleteQueryParamsArgs
+
+func EnvironmentDeleteQueryParamsPtr(v *EnvironmentDeleteQueryParamsArgs) EnvironmentDeleteQueryParamsPtrInput {
+	return (*environmentDeleteQueryParamsPtrType)(v)
+}
+
+func (*environmentDeleteQueryParamsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**EnvironmentDeleteQueryParams)(nil)).Elem()
+}
+
+func (i *environmentDeleteQueryParamsPtrType) ToEnvironmentDeleteQueryParamsPtrOutput() EnvironmentDeleteQueryParamsPtrOutput {
+	return i.ToEnvironmentDeleteQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i *environmentDeleteQueryParamsPtrType) ToEnvironmentDeleteQueryParamsPtrOutputWithContext(ctx context.Context) EnvironmentDeleteQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(EnvironmentDeleteQueryParamsPtrOutput)
+}
+
+// Query params for the API request.
+type EnvironmentDeleteQueryParamsOutput struct{ *pulumi.OutputState }
+
+func (EnvironmentDeleteQueryParamsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*EnvironmentDeleteQueryParams)(nil)).Elem()
+}
+
+func (o EnvironmentDeleteQueryParamsOutput) ToEnvironmentDeleteQueryParamsOutput() EnvironmentDeleteQueryParamsOutput {
+	return o
+}
+
+func (o EnvironmentDeleteQueryParamsOutput) ToEnvironmentDeleteQueryParamsOutputWithContext(ctx context.Context) EnvironmentDeleteQueryParamsOutput {
+	return o
+}
+
+func (o EnvironmentDeleteQueryParamsOutput) ToEnvironmentDeleteQueryParamsPtrOutput() EnvironmentDeleteQueryParamsPtrOutput {
+	return o.ToEnvironmentDeleteQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (o EnvironmentDeleteQueryParamsOutput) ToEnvironmentDeleteQueryParamsPtrOutputWithContext(ctx context.Context) EnvironmentDeleteQueryParamsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v EnvironmentDeleteQueryParams) *EnvironmentDeleteQueryParams {
+		return &v
+	}).(EnvironmentDeleteQueryParamsPtrOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o EnvironmentDeleteQueryParamsOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v EnvironmentDeleteQueryParams) map[string]string { return v.AdditionalParams }).(pulumi.StringMapOutput)
+}
+
+type EnvironmentDeleteQueryParamsPtrOutput struct{ *pulumi.OutputState }
+
+func (EnvironmentDeleteQueryParamsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**EnvironmentDeleteQueryParams)(nil)).Elem()
+}
+
+func (o EnvironmentDeleteQueryParamsPtrOutput) ToEnvironmentDeleteQueryParamsPtrOutput() EnvironmentDeleteQueryParamsPtrOutput {
+	return o
+}
+
+func (o EnvironmentDeleteQueryParamsPtrOutput) ToEnvironmentDeleteQueryParamsPtrOutputWithContext(ctx context.Context) EnvironmentDeleteQueryParamsPtrOutput {
+	return o
+}
+
+func (o EnvironmentDeleteQueryParamsPtrOutput) Elem() EnvironmentDeleteQueryParamsOutput {
+	return o.ApplyT(func(v *EnvironmentDeleteQueryParams) EnvironmentDeleteQueryParams {
+		if v != nil {
+			return *v
+		}
+		var ret EnvironmentDeleteQueryParams
+		return ret
+	}).(EnvironmentDeleteQueryParamsOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o EnvironmentDeleteQueryParamsPtrOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *EnvironmentDeleteQueryParams) map[string]string {
+		if v == nil {
+			return nil
+		}
+		return v.AdditionalParams
+	}).(pulumi.StringMapOutput)
+}
+
+// Query params for each of the operations of the resource.
+type EnvironmentQueryParams struct {
+	// Query params for the create operation.
+	Create *EnvironmentCreateQueryParams `pulumi:"create"`
+	// Query params for the delete operation.
+	Delete *EnvironmentDeleteQueryParams `pulumi:"delete"`
+	// Query params for the read operation.
+	Read *EnvironmentReadQueryParams `pulumi:"read"`
+	// Query params for the update operation.
+	Update *EnvironmentUpdateQueryParams `pulumi:"update"`
+}
+
+// EnvironmentQueryParamsInput is an input type that accepts EnvironmentQueryParamsArgs and EnvironmentQueryParamsOutput values.
+// You can construct a concrete instance of `EnvironmentQueryParamsInput` via:
+//
+//	EnvironmentQueryParamsArgs{...}
+type EnvironmentQueryParamsInput interface {
+	pulumi.Input
+
+	ToEnvironmentQueryParamsOutput() EnvironmentQueryParamsOutput
+	ToEnvironmentQueryParamsOutputWithContext(context.Context) EnvironmentQueryParamsOutput
+}
+
+// Query params for each of the operations of the resource.
+type EnvironmentQueryParamsArgs struct {
+	// Query params for the create operation.
+	Create EnvironmentCreateQueryParamsPtrInput `pulumi:"create"`
+	// Query params for the delete operation.
+	Delete EnvironmentDeleteQueryParamsPtrInput `pulumi:"delete"`
+	// Query params for the read operation.
+	Read EnvironmentReadQueryParamsPtrInput `pulumi:"read"`
+	// Query params for the update operation.
+	Update EnvironmentUpdateQueryParamsPtrInput `pulumi:"update"`
+}
+
+func (EnvironmentQueryParamsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*EnvironmentQueryParams)(nil)).Elem()
+}
+
+func (i EnvironmentQueryParamsArgs) ToEnvironmentQueryParamsOutput() EnvironmentQueryParamsOutput {
+	return i.ToEnvironmentQueryParamsOutputWithContext(context.Background())
+}
+
+func (i EnvironmentQueryParamsArgs) ToEnvironmentQueryParamsOutputWithContext(ctx context.Context) EnvironmentQueryParamsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(EnvironmentQueryParamsOutput)
+}
+
+func (i EnvironmentQueryParamsArgs) ToEnvironmentQueryParamsPtrOutput() EnvironmentQueryParamsPtrOutput {
+	return i.ToEnvironmentQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i EnvironmentQueryParamsArgs) ToEnvironmentQueryParamsPtrOutputWithContext(ctx context.Context) EnvironmentQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(EnvironmentQueryParamsOutput).ToEnvironmentQueryParamsPtrOutputWithContext(ctx)
+}
+
+// EnvironmentQueryParamsPtrInput is an input type that accepts EnvironmentQueryParamsArgs, EnvironmentQueryParamsPtr and EnvironmentQueryParamsPtrOutput values.
+// You can construct a concrete instance of `EnvironmentQueryParamsPtrInput` via:
+//
+//	        EnvironmentQueryParamsArgs{...}
+//
+//	or:
+//
+//	        nil
+type EnvironmentQueryParamsPtrInput interface {
+	pulumi.Input
+
+	ToEnvironmentQueryParamsPtrOutput() EnvironmentQueryParamsPtrOutput
+	ToEnvironmentQueryParamsPtrOutputWithContext(context.Context) EnvironmentQueryParamsPtrOutput
+}
+
+type environmentQueryParamsPtrType EnvironmentQueryParamsArgs
+
+func EnvironmentQueryParamsPtr(v *EnvironmentQueryParamsArgs) EnvironmentQueryParamsPtrInput {
+	return (*environmentQueryParamsPtrType)(v)
+}
+
+func (*environmentQueryParamsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**EnvironmentQueryParams)(nil)).Elem()
+}
+
+func (i *environmentQueryParamsPtrType) ToEnvironmentQueryParamsPtrOutput() EnvironmentQueryParamsPtrOutput {
+	return i.ToEnvironmentQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i *environmentQueryParamsPtrType) ToEnvironmentQueryParamsPtrOutputWithContext(ctx context.Context) EnvironmentQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(EnvironmentQueryParamsPtrOutput)
+}
+
+// Query params for each of the operations of the resource.
+type EnvironmentQueryParamsOutput struct{ *pulumi.OutputState }
+
+func (EnvironmentQueryParamsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*EnvironmentQueryParams)(nil)).Elem()
+}
+
+func (o EnvironmentQueryParamsOutput) ToEnvironmentQueryParamsOutput() EnvironmentQueryParamsOutput {
+	return o
+}
+
+func (o EnvironmentQueryParamsOutput) ToEnvironmentQueryParamsOutputWithContext(ctx context.Context) EnvironmentQueryParamsOutput {
+	return o
+}
+
+func (o EnvironmentQueryParamsOutput) ToEnvironmentQueryParamsPtrOutput() EnvironmentQueryParamsPtrOutput {
+	return o.ToEnvironmentQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (o EnvironmentQueryParamsOutput) ToEnvironmentQueryParamsPtrOutputWithContext(ctx context.Context) EnvironmentQueryParamsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v EnvironmentQueryParams) *EnvironmentQueryParams {
+		return &v
+	}).(EnvironmentQueryParamsPtrOutput)
+}
+
+// Query params for the create operation.
+func (o EnvironmentQueryParamsOutput) Create() EnvironmentCreateQueryParamsPtrOutput {
+	return o.ApplyT(func(v EnvironmentQueryParams) *EnvironmentCreateQueryParams { return v.Create }).(EnvironmentCreateQueryParamsPtrOutput)
+}
+
+// Query params for the delete operation.
+func (o EnvironmentQueryParamsOutput) Delete() EnvironmentDeleteQueryParamsPtrOutput {
+	return o.ApplyT(func(v EnvironmentQueryParams) *EnvironmentDeleteQueryParams { return v.Delete }).(EnvironmentDeleteQueryParamsPtrOutput)
+}
+
+// Query params for the read operation.
+func (o EnvironmentQueryParamsOutput) Read() EnvironmentReadQueryParamsPtrOutput {
+	return o.ApplyT(func(v EnvironmentQueryParams) *EnvironmentReadQueryParams { return v.Read }).(EnvironmentReadQueryParamsPtrOutput)
+}
+
+// Query params for the update operation.
+func (o EnvironmentQueryParamsOutput) Update() EnvironmentUpdateQueryParamsPtrOutput {
+	return o.ApplyT(func(v EnvironmentQueryParams) *EnvironmentUpdateQueryParams { return v.Update }).(EnvironmentUpdateQueryParamsPtrOutput)
+}
+
+type EnvironmentQueryParamsPtrOutput struct{ *pulumi.OutputState }
+
+func (EnvironmentQueryParamsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**EnvironmentQueryParams)(nil)).Elem()
+}
+
+func (o EnvironmentQueryParamsPtrOutput) ToEnvironmentQueryParamsPtrOutput() EnvironmentQueryParamsPtrOutput {
+	return o
+}
+
+func (o EnvironmentQueryParamsPtrOutput) ToEnvironmentQueryParamsPtrOutputWithContext(ctx context.Context) EnvironmentQueryParamsPtrOutput {
+	return o
+}
+
+func (o EnvironmentQueryParamsPtrOutput) Elem() EnvironmentQueryParamsOutput {
+	return o.ApplyT(func(v *EnvironmentQueryParams) EnvironmentQueryParams {
+		if v != nil {
+			return *v
+		}
+		var ret EnvironmentQueryParams
+		return ret
+	}).(EnvironmentQueryParamsOutput)
+}
+
+// Query params for the create operation.
+func (o EnvironmentQueryParamsPtrOutput) Create() EnvironmentCreateQueryParamsPtrOutput {
+	return o.ApplyT(func(v *EnvironmentQueryParams) *EnvironmentCreateQueryParams {
+		if v == nil {
+			return nil
+		}
+		return v.Create
+	}).(EnvironmentCreateQueryParamsPtrOutput)
+}
+
+// Query params for the delete operation.
+func (o EnvironmentQueryParamsPtrOutput) Delete() EnvironmentDeleteQueryParamsPtrOutput {
+	return o.ApplyT(func(v *EnvironmentQueryParams) *EnvironmentDeleteQueryParams {
+		if v == nil {
+			return nil
+		}
+		return v.Delete
+	}).(EnvironmentDeleteQueryParamsPtrOutput)
+}
+
+// Query params for the read operation.
+func (o EnvironmentQueryParamsPtrOutput) Read() EnvironmentReadQueryParamsPtrOutput {
+	return o.ApplyT(func(v *EnvironmentQueryParams) *EnvironmentReadQueryParams {
+		if v == nil {
+			return nil
+		}
+		return v.Read
+	}).(EnvironmentReadQueryParamsPtrOutput)
+}
+
+// Query params for the update operation.
+func (o EnvironmentQueryParamsPtrOutput) Update() EnvironmentUpdateQueryParamsPtrOutput {
+	return o.ApplyT(func(v *EnvironmentQueryParams) *EnvironmentUpdateQueryParams {
+		if v == nil {
+			return nil
+		}
+		return v.Update
+	}).(EnvironmentUpdateQueryParamsPtrOutput)
+}
+
+// Query params for the API request.
+type EnvironmentReadQueryParams struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams map[string]string `pulumi:"additionalParams"`
+}
+
+// EnvironmentReadQueryParamsInput is an input type that accepts EnvironmentReadQueryParamsArgs and EnvironmentReadQueryParamsOutput values.
+// You can construct a concrete instance of `EnvironmentReadQueryParamsInput` via:
+//
+//	EnvironmentReadQueryParamsArgs{...}
+type EnvironmentReadQueryParamsInput interface {
+	pulumi.Input
+
+	ToEnvironmentReadQueryParamsOutput() EnvironmentReadQueryParamsOutput
+	ToEnvironmentReadQueryParamsOutputWithContext(context.Context) EnvironmentReadQueryParamsOutput
+}
+
+// Query params for the API request.
+type EnvironmentReadQueryParamsArgs struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams pulumi.StringMapInput `pulumi:"additionalParams"`
+}
+
+func (EnvironmentReadQueryParamsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*EnvironmentReadQueryParams)(nil)).Elem()
+}
+
+func (i EnvironmentReadQueryParamsArgs) ToEnvironmentReadQueryParamsOutput() EnvironmentReadQueryParamsOutput {
+	return i.ToEnvironmentReadQueryParamsOutputWithContext(context.Background())
+}
+
+func (i EnvironmentReadQueryParamsArgs) ToEnvironmentReadQueryParamsOutputWithContext(ctx context.Context) EnvironmentReadQueryParamsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(EnvironmentReadQueryParamsOutput)
+}
+
+func (i EnvironmentReadQueryParamsArgs) ToEnvironmentReadQueryParamsPtrOutput() EnvironmentReadQueryParamsPtrOutput {
+	return i.ToEnvironmentReadQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i EnvironmentReadQueryParamsArgs) ToEnvironmentReadQueryParamsPtrOutputWithContext(ctx context.Context) EnvironmentReadQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(EnvironmentReadQueryParamsOutput).ToEnvironmentReadQueryParamsPtrOutputWithContext(ctx)
+}
+
+// EnvironmentReadQueryParamsPtrInput is an input type that accepts EnvironmentReadQueryParamsArgs, EnvironmentReadQueryParamsPtr and EnvironmentReadQueryParamsPtrOutput values.
+// You can construct a concrete instance of `EnvironmentReadQueryParamsPtrInput` via:
+//
+//	        EnvironmentReadQueryParamsArgs{...}
+//
+//	or:
+//
+//	        nil
+type EnvironmentReadQueryParamsPtrInput interface {
+	pulumi.Input
+
+	ToEnvironmentReadQueryParamsPtrOutput() EnvironmentReadQueryParamsPtrOutput
+	ToEnvironmentReadQueryParamsPtrOutputWithContext(context.Context) EnvironmentReadQueryParamsPtrOutput
+}
+
+type environmentReadQueryParamsPtrType EnvironmentReadQueryParamsArgs
+
+func EnvironmentReadQueryParamsPtr(v *EnvironmentReadQueryParamsArgs) EnvironmentReadQueryParamsPtrInput {
+	return (*environmentReadQueryParamsPtrType)(v)
+}
+
+func (*environmentReadQueryParamsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**EnvironmentReadQueryParams)(nil)).Elem()
+}
+
+func (i *environmentReadQueryParamsPtrType) ToEnvironmentReadQueryParamsPtrOutput() EnvironmentReadQueryParamsPtrOutput {
+	return i.ToEnvironmentReadQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i *environmentReadQueryParamsPtrType) ToEnvironmentReadQueryParamsPtrOutputWithContext(ctx context.Context) EnvironmentReadQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(EnvironmentReadQueryParamsPtrOutput)
+}
+
+// Query params for the API request.
+type EnvironmentReadQueryParamsOutput struct{ *pulumi.OutputState }
+
+func (EnvironmentReadQueryParamsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*EnvironmentReadQueryParams)(nil)).Elem()
+}
+
+func (o EnvironmentReadQueryParamsOutput) ToEnvironmentReadQueryParamsOutput() EnvironmentReadQueryParamsOutput {
+	return o
+}
+
+func (o EnvironmentReadQueryParamsOutput) ToEnvironmentReadQueryParamsOutputWithContext(ctx context.Context) EnvironmentReadQueryParamsOutput {
+	return o
+}
+
+func (o EnvironmentReadQueryParamsOutput) ToEnvironmentReadQueryParamsPtrOutput() EnvironmentReadQueryParamsPtrOutput {
+	return o.ToEnvironmentReadQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (o EnvironmentReadQueryParamsOutput) ToEnvironmentReadQueryParamsPtrOutputWithContext(ctx context.Context) EnvironmentReadQueryParamsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v EnvironmentReadQueryParams) *EnvironmentReadQueryParams {
+		return &v
+	}).(EnvironmentReadQueryParamsPtrOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o EnvironmentReadQueryParamsOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v EnvironmentReadQueryParams) map[string]string { return v.AdditionalParams }).(pulumi.StringMapOutput)
+}
+
+type EnvironmentReadQueryParamsPtrOutput struct{ *pulumi.OutputState }
+
+func (EnvironmentReadQueryParamsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**EnvironmentReadQueryParams)(nil)).Elem()
+}
+
+func (o EnvironmentReadQueryParamsPtrOutput) ToEnvironmentReadQueryParamsPtrOutput() EnvironmentReadQueryParamsPtrOutput {
+	return o
+}
+
+func (o EnvironmentReadQueryParamsPtrOutput) ToEnvironmentReadQueryParamsPtrOutputWithContext(ctx context.Context) EnvironmentReadQueryParamsPtrOutput {
+	return o
+}
+
+func (o EnvironmentReadQueryParamsPtrOutput) Elem() EnvironmentReadQueryParamsOutput {
+	return o.ApplyT(func(v *EnvironmentReadQueryParams) EnvironmentReadQueryParams {
+		if v != nil {
+			return *v
+		}
+		var ret EnvironmentReadQueryParams
+		return ret
+	}).(EnvironmentReadQueryParamsOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o EnvironmentReadQueryParamsPtrOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *EnvironmentReadQueryParams) map[string]string {
+		if v == nil {
+			return nil
+		}
+		return v.AdditionalParams
+	}).(pulumi.StringMapOutput)
+}
+
+// Query params for the API request.
+type EnvironmentUpdateQueryParams struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams map[string]string `pulumi:"additionalParams"`
+}
+
+// EnvironmentUpdateQueryParamsInput is an input type that accepts EnvironmentUpdateQueryParamsArgs and EnvironmentUpdateQueryParamsOutput values.
+// You can construct a concrete instance of `EnvironmentUpdateQueryParamsInput` via:
+//
+//	EnvironmentUpdateQueryParamsArgs{...}
+type EnvironmentUpdateQueryParamsInput interface {
+	pulumi.Input
+
+	ToEnvironmentUpdateQueryParamsOutput() EnvironmentUpdateQueryParamsOutput
+	ToEnvironmentUpdateQueryParamsOutputWithContext(context.Context) EnvironmentUpdateQueryParamsOutput
+}
+
+// Query params for the API request.
+type EnvironmentUpdateQueryParamsArgs struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams pulumi.StringMapInput `pulumi:"additionalParams"`
+}
+
+func (EnvironmentUpdateQueryParamsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*EnvironmentUpdateQueryParams)(nil)).Elem()
+}
+
+func (i EnvironmentUpdateQueryParamsArgs) ToEnvironmentUpdateQueryParamsOutput() EnvironmentUpdateQueryParamsOutput {
+	return i.ToEnvironmentUpdateQueryParamsOutputWithContext(context.Background())
+}
+
+func (i EnvironmentUpdateQueryParamsArgs) ToEnvironmentUpdateQueryParamsOutputWithContext(ctx context.Context) EnvironmentUpdateQueryParamsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(EnvironmentUpdateQueryParamsOutput)
+}
+
+func (i EnvironmentUpdateQueryParamsArgs) ToEnvironmentUpdateQueryParamsPtrOutput() EnvironmentUpdateQueryParamsPtrOutput {
+	return i.ToEnvironmentUpdateQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i EnvironmentUpdateQueryParamsArgs) ToEnvironmentUpdateQueryParamsPtrOutputWithContext(ctx context.Context) EnvironmentUpdateQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(EnvironmentUpdateQueryParamsOutput).ToEnvironmentUpdateQueryParamsPtrOutputWithContext(ctx)
+}
+
+// EnvironmentUpdateQueryParamsPtrInput is an input type that accepts EnvironmentUpdateQueryParamsArgs, EnvironmentUpdateQueryParamsPtr and EnvironmentUpdateQueryParamsPtrOutput values.
+// You can construct a concrete instance of `EnvironmentUpdateQueryParamsPtrInput` via:
+//
+//	        EnvironmentUpdateQueryParamsArgs{...}
+//
+//	or:
+//
+//	        nil
+type EnvironmentUpdateQueryParamsPtrInput interface {
+	pulumi.Input
+
+	ToEnvironmentUpdateQueryParamsPtrOutput() EnvironmentUpdateQueryParamsPtrOutput
+	ToEnvironmentUpdateQueryParamsPtrOutputWithContext(context.Context) EnvironmentUpdateQueryParamsPtrOutput
+}
+
+type environmentUpdateQueryParamsPtrType EnvironmentUpdateQueryParamsArgs
+
+func EnvironmentUpdateQueryParamsPtr(v *EnvironmentUpdateQueryParamsArgs) EnvironmentUpdateQueryParamsPtrInput {
+	return (*environmentUpdateQueryParamsPtrType)(v)
+}
+
+func (*environmentUpdateQueryParamsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**EnvironmentUpdateQueryParams)(nil)).Elem()
+}
+
+func (i *environmentUpdateQueryParamsPtrType) ToEnvironmentUpdateQueryParamsPtrOutput() EnvironmentUpdateQueryParamsPtrOutput {
+	return i.ToEnvironmentUpdateQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i *environmentUpdateQueryParamsPtrType) ToEnvironmentUpdateQueryParamsPtrOutputWithContext(ctx context.Context) EnvironmentUpdateQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(EnvironmentUpdateQueryParamsPtrOutput)
+}
+
+// Query params for the API request.
+type EnvironmentUpdateQueryParamsOutput struct{ *pulumi.OutputState }
+
+func (EnvironmentUpdateQueryParamsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*EnvironmentUpdateQueryParams)(nil)).Elem()
+}
+
+func (o EnvironmentUpdateQueryParamsOutput) ToEnvironmentUpdateQueryParamsOutput() EnvironmentUpdateQueryParamsOutput {
+	return o
+}
+
+func (o EnvironmentUpdateQueryParamsOutput) ToEnvironmentUpdateQueryParamsOutputWithContext(ctx context.Context) EnvironmentUpdateQueryParamsOutput {
+	return o
+}
+
+func (o EnvironmentUpdateQueryParamsOutput) ToEnvironmentUpdateQueryParamsPtrOutput() EnvironmentUpdateQueryParamsPtrOutput {
+	return o.ToEnvironmentUpdateQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (o EnvironmentUpdateQueryParamsOutput) ToEnvironmentUpdateQueryParamsPtrOutputWithContext(ctx context.Context) EnvironmentUpdateQueryParamsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v EnvironmentUpdateQueryParams) *EnvironmentUpdateQueryParams {
+		return &v
+	}).(EnvironmentUpdateQueryParamsPtrOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o EnvironmentUpdateQueryParamsOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v EnvironmentUpdateQueryParams) map[string]string { return v.AdditionalParams }).(pulumi.StringMapOutput)
+}
+
+type EnvironmentUpdateQueryParamsPtrOutput struct{ *pulumi.OutputState }
+
+func (EnvironmentUpdateQueryParamsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**EnvironmentUpdateQueryParams)(nil)).Elem()
+}
+
+func (o EnvironmentUpdateQueryParamsPtrOutput) ToEnvironmentUpdateQueryParamsPtrOutput() EnvironmentUpdateQueryParamsPtrOutput {
+	return o
+}
+
+func (o EnvironmentUpdateQueryParamsPtrOutput) ToEnvironmentUpdateQueryParamsPtrOutputWithContext(ctx context.Context) EnvironmentUpdateQueryParamsPtrOutput {
+	return o
+}
+
+func (o EnvironmentUpdateQueryParamsPtrOutput) Elem() EnvironmentUpdateQueryParamsOutput {
+	return o.ApplyT(func(v *EnvironmentUpdateQueryParams) EnvironmentUpdateQueryParams {
+		if v != nil {
+			return *v
+		}
+		var ret EnvironmentUpdateQueryParams
+		return ret
+	}).(EnvironmentUpdateQueryParamsOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o EnvironmentUpdateQueryParamsPtrOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *EnvironmentUpdateQueryParams) map[string]string {
+		if v == nil {
+			return nil
+		}
+		return v.AdditionalParams
+	}).(pulumi.StringMapOutput)
+}
+
 // An environment with a cursor
 type EnvironmentWithCursor struct {
 	Cursor      string          `pulumi:"cursor"`
@@ -128,8 +885,631 @@ func (o EnvironmentWithCursorArrayOutput) Index(i pulumi.IntInput) EnvironmentWi
 	}).(EnvironmentWithCursorOutput)
 }
 
+// Query params for the API request.
+type GetEnvironmentQueryParams struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams map[string]string `pulumi:"additionalParams"`
+}
+
+// GetEnvironmentQueryParamsInput is an input type that accepts GetEnvironmentQueryParamsArgs and GetEnvironmentQueryParamsOutput values.
+// You can construct a concrete instance of `GetEnvironmentQueryParamsInput` via:
+//
+//	GetEnvironmentQueryParamsArgs{...}
+type GetEnvironmentQueryParamsInput interface {
+	pulumi.Input
+
+	ToGetEnvironmentQueryParamsOutput() GetEnvironmentQueryParamsOutput
+	ToGetEnvironmentQueryParamsOutputWithContext(context.Context) GetEnvironmentQueryParamsOutput
+}
+
+// Query params for the API request.
+type GetEnvironmentQueryParamsArgs struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams pulumi.StringMapInput `pulumi:"additionalParams"`
+}
+
+func (GetEnvironmentQueryParamsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetEnvironmentQueryParams)(nil)).Elem()
+}
+
+func (i GetEnvironmentQueryParamsArgs) ToGetEnvironmentQueryParamsOutput() GetEnvironmentQueryParamsOutput {
+	return i.ToGetEnvironmentQueryParamsOutputWithContext(context.Background())
+}
+
+func (i GetEnvironmentQueryParamsArgs) ToGetEnvironmentQueryParamsOutputWithContext(ctx context.Context) GetEnvironmentQueryParamsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetEnvironmentQueryParamsOutput)
+}
+
+func (i GetEnvironmentQueryParamsArgs) ToGetEnvironmentQueryParamsPtrOutput() GetEnvironmentQueryParamsPtrOutput {
+	return i.ToGetEnvironmentQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i GetEnvironmentQueryParamsArgs) ToGetEnvironmentQueryParamsPtrOutputWithContext(ctx context.Context) GetEnvironmentQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetEnvironmentQueryParamsOutput).ToGetEnvironmentQueryParamsPtrOutputWithContext(ctx)
+}
+
+// GetEnvironmentQueryParamsPtrInput is an input type that accepts GetEnvironmentQueryParamsArgs, GetEnvironmentQueryParamsPtr and GetEnvironmentQueryParamsPtrOutput values.
+// You can construct a concrete instance of `GetEnvironmentQueryParamsPtrInput` via:
+//
+//	        GetEnvironmentQueryParamsArgs{...}
+//
+//	or:
+//
+//	        nil
+type GetEnvironmentQueryParamsPtrInput interface {
+	pulumi.Input
+
+	ToGetEnvironmentQueryParamsPtrOutput() GetEnvironmentQueryParamsPtrOutput
+	ToGetEnvironmentQueryParamsPtrOutputWithContext(context.Context) GetEnvironmentQueryParamsPtrOutput
+}
+
+type getEnvironmentQueryParamsPtrType GetEnvironmentQueryParamsArgs
+
+func GetEnvironmentQueryParamsPtr(v *GetEnvironmentQueryParamsArgs) GetEnvironmentQueryParamsPtrInput {
+	return (*getEnvironmentQueryParamsPtrType)(v)
+}
+
+func (*getEnvironmentQueryParamsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**GetEnvironmentQueryParams)(nil)).Elem()
+}
+
+func (i *getEnvironmentQueryParamsPtrType) ToGetEnvironmentQueryParamsPtrOutput() GetEnvironmentQueryParamsPtrOutput {
+	return i.ToGetEnvironmentQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i *getEnvironmentQueryParamsPtrType) ToGetEnvironmentQueryParamsPtrOutputWithContext(ctx context.Context) GetEnvironmentQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetEnvironmentQueryParamsPtrOutput)
+}
+
+// Query params for the API request.
+type GetEnvironmentQueryParamsOutput struct{ *pulumi.OutputState }
+
+func (GetEnvironmentQueryParamsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetEnvironmentQueryParams)(nil)).Elem()
+}
+
+func (o GetEnvironmentQueryParamsOutput) ToGetEnvironmentQueryParamsOutput() GetEnvironmentQueryParamsOutput {
+	return o
+}
+
+func (o GetEnvironmentQueryParamsOutput) ToGetEnvironmentQueryParamsOutputWithContext(ctx context.Context) GetEnvironmentQueryParamsOutput {
+	return o
+}
+
+func (o GetEnvironmentQueryParamsOutput) ToGetEnvironmentQueryParamsPtrOutput() GetEnvironmentQueryParamsPtrOutput {
+	return o.ToGetEnvironmentQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (o GetEnvironmentQueryParamsOutput) ToGetEnvironmentQueryParamsPtrOutputWithContext(ctx context.Context) GetEnvironmentQueryParamsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v GetEnvironmentQueryParams) *GetEnvironmentQueryParams {
+		return &v
+	}).(GetEnvironmentQueryParamsPtrOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o GetEnvironmentQueryParamsOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v GetEnvironmentQueryParams) map[string]string { return v.AdditionalParams }).(pulumi.StringMapOutput)
+}
+
+type GetEnvironmentQueryParamsPtrOutput struct{ *pulumi.OutputState }
+
+func (GetEnvironmentQueryParamsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**GetEnvironmentQueryParams)(nil)).Elem()
+}
+
+func (o GetEnvironmentQueryParamsPtrOutput) ToGetEnvironmentQueryParamsPtrOutput() GetEnvironmentQueryParamsPtrOutput {
+	return o
+}
+
+func (o GetEnvironmentQueryParamsPtrOutput) ToGetEnvironmentQueryParamsPtrOutputWithContext(ctx context.Context) GetEnvironmentQueryParamsPtrOutput {
+	return o
+}
+
+func (o GetEnvironmentQueryParamsPtrOutput) Elem() GetEnvironmentQueryParamsOutput {
+	return o.ApplyT(func(v *GetEnvironmentQueryParams) GetEnvironmentQueryParams {
+		if v != nil {
+			return *v
+		}
+		var ret GetEnvironmentQueryParams
+		return ret
+	}).(GetEnvironmentQueryParamsOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o GetEnvironmentQueryParamsPtrOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *GetEnvironmentQueryParams) map[string]string {
+		if v == nil {
+			return nil
+		}
+		return v.AdditionalParams
+	}).(pulumi.StringMapOutput)
+}
+
+// Query params for the API request.
+type ListEnvironmentsQueryParams struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams map[string]string `pulumi:"additionalParams"`
+	// Filter for resources created after a certain time (specified as an ISO 8601 timestamp)
+	CreatedAfter *string `pulumi:"createdAfter"`
+	// Filter for resources created before a certain time (specified as an ISO 8601 timestamp)
+	CreatedBefore *string `pulumi:"createdBefore"`
+	// The position in the result list to start from when fetching paginated results. For details, see [Pagination](https://api-docs.render.com/reference/pagination).
+	Cursor *string `pulumi:"cursor"`
+	// Filter for resources that belong to an environment
+	EnvironmentId []string `pulumi:"environmentId"`
+	// The maximum number of items to return. For details, see [Pagination](https://api-docs.render.com/reference/pagination).
+	Limit *int `pulumi:"limit"`
+	// Filter by name
+	Name []string `pulumi:"name"`
+	// The ID of the workspaces to return resources for
+	OwnerId []string `pulumi:"ownerId"`
+	// Filter for resources that belong to a project
+	ProjectId []string `pulumi:"projectId"`
+	// Filter for resources updated after a certain time (specified as an ISO 8601 timestamp)
+	UpdatedAfter *string `pulumi:"updatedAfter"`
+	// Filter for resources updated before a certain time (specified as an ISO 8601 timestamp)
+	UpdatedBefore *string `pulumi:"updatedBefore"`
+}
+
+// Defaults sets the appropriate defaults for ListEnvironmentsQueryParams
+func (val *ListEnvironmentsQueryParams) Defaults() *ListEnvironmentsQueryParams {
+	if val == nil {
+		return nil
+	}
+	tmp := *val
+	if tmp.Limit == nil {
+		limit_ := 20
+		tmp.Limit = &limit_
+	}
+	return &tmp
+}
+
+// ListEnvironmentsQueryParamsInput is an input type that accepts ListEnvironmentsQueryParamsArgs and ListEnvironmentsQueryParamsOutput values.
+// You can construct a concrete instance of `ListEnvironmentsQueryParamsInput` via:
+//
+//	ListEnvironmentsQueryParamsArgs{...}
+type ListEnvironmentsQueryParamsInput interface {
+	pulumi.Input
+
+	ToListEnvironmentsQueryParamsOutput() ListEnvironmentsQueryParamsOutput
+	ToListEnvironmentsQueryParamsOutputWithContext(context.Context) ListEnvironmentsQueryParamsOutput
+}
+
+// Query params for the API request.
+type ListEnvironmentsQueryParamsArgs struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams pulumi.StringMapInput `pulumi:"additionalParams"`
+	// Filter for resources created after a certain time (specified as an ISO 8601 timestamp)
+	CreatedAfter pulumi.StringPtrInput `pulumi:"createdAfter"`
+	// Filter for resources created before a certain time (specified as an ISO 8601 timestamp)
+	CreatedBefore pulumi.StringPtrInput `pulumi:"createdBefore"`
+	// The position in the result list to start from when fetching paginated results. For details, see [Pagination](https://api-docs.render.com/reference/pagination).
+	Cursor pulumi.StringPtrInput `pulumi:"cursor"`
+	// Filter for resources that belong to an environment
+	EnvironmentId pulumi.StringArrayInput `pulumi:"environmentId"`
+	// The maximum number of items to return. For details, see [Pagination](https://api-docs.render.com/reference/pagination).
+	Limit pulumi.IntPtrInput `pulumi:"limit"`
+	// Filter by name
+	Name pulumi.StringArrayInput `pulumi:"name"`
+	// The ID of the workspaces to return resources for
+	OwnerId pulumi.StringArrayInput `pulumi:"ownerId"`
+	// Filter for resources that belong to a project
+	ProjectId pulumi.StringArrayInput `pulumi:"projectId"`
+	// Filter for resources updated after a certain time (specified as an ISO 8601 timestamp)
+	UpdatedAfter pulumi.StringPtrInput `pulumi:"updatedAfter"`
+	// Filter for resources updated before a certain time (specified as an ISO 8601 timestamp)
+	UpdatedBefore pulumi.StringPtrInput `pulumi:"updatedBefore"`
+}
+
+// Defaults sets the appropriate defaults for ListEnvironmentsQueryParamsArgs
+func (val *ListEnvironmentsQueryParamsArgs) Defaults() *ListEnvironmentsQueryParamsArgs {
+	if val == nil {
+		return nil
+	}
+	tmp := *val
+	if tmp.Limit == nil {
+		tmp.Limit = pulumi.IntPtr(20)
+	}
+	return &tmp
+}
+func (ListEnvironmentsQueryParamsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ListEnvironmentsQueryParams)(nil)).Elem()
+}
+
+func (i ListEnvironmentsQueryParamsArgs) ToListEnvironmentsQueryParamsOutput() ListEnvironmentsQueryParamsOutput {
+	return i.ToListEnvironmentsQueryParamsOutputWithContext(context.Background())
+}
+
+func (i ListEnvironmentsQueryParamsArgs) ToListEnvironmentsQueryParamsOutputWithContext(ctx context.Context) ListEnvironmentsQueryParamsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ListEnvironmentsQueryParamsOutput)
+}
+
+// Query params for the API request.
+type ListEnvironmentsQueryParamsOutput struct{ *pulumi.OutputState }
+
+func (ListEnvironmentsQueryParamsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ListEnvironmentsQueryParams)(nil)).Elem()
+}
+
+func (o ListEnvironmentsQueryParamsOutput) ToListEnvironmentsQueryParamsOutput() ListEnvironmentsQueryParamsOutput {
+	return o
+}
+
+func (o ListEnvironmentsQueryParamsOutput) ToListEnvironmentsQueryParamsOutputWithContext(ctx context.Context) ListEnvironmentsQueryParamsOutput {
+	return o
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o ListEnvironmentsQueryParamsOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v ListEnvironmentsQueryParams) map[string]string { return v.AdditionalParams }).(pulumi.StringMapOutput)
+}
+
+// Filter for resources created after a certain time (specified as an ISO 8601 timestamp)
+func (o ListEnvironmentsQueryParamsOutput) CreatedAfter() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ListEnvironmentsQueryParams) *string { return v.CreatedAfter }).(pulumi.StringPtrOutput)
+}
+
+// Filter for resources created before a certain time (specified as an ISO 8601 timestamp)
+func (o ListEnvironmentsQueryParamsOutput) CreatedBefore() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ListEnvironmentsQueryParams) *string { return v.CreatedBefore }).(pulumi.StringPtrOutput)
+}
+
+// The position in the result list to start from when fetching paginated results. For details, see [Pagination](https://api-docs.render.com/reference/pagination).
+func (o ListEnvironmentsQueryParamsOutput) Cursor() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ListEnvironmentsQueryParams) *string { return v.Cursor }).(pulumi.StringPtrOutput)
+}
+
+// Filter for resources that belong to an environment
+func (o ListEnvironmentsQueryParamsOutput) EnvironmentId() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v ListEnvironmentsQueryParams) []string { return v.EnvironmentId }).(pulumi.StringArrayOutput)
+}
+
+// The maximum number of items to return. For details, see [Pagination](https://api-docs.render.com/reference/pagination).
+func (o ListEnvironmentsQueryParamsOutput) Limit() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v ListEnvironmentsQueryParams) *int { return v.Limit }).(pulumi.IntPtrOutput)
+}
+
+// Filter by name
+func (o ListEnvironmentsQueryParamsOutput) Name() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v ListEnvironmentsQueryParams) []string { return v.Name }).(pulumi.StringArrayOutput)
+}
+
+// The ID of the workspaces to return resources for
+func (o ListEnvironmentsQueryParamsOutput) OwnerId() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v ListEnvironmentsQueryParams) []string { return v.OwnerId }).(pulumi.StringArrayOutput)
+}
+
+// Filter for resources that belong to a project
+func (o ListEnvironmentsQueryParamsOutput) ProjectId() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v ListEnvironmentsQueryParams) []string { return v.ProjectId }).(pulumi.StringArrayOutput)
+}
+
+// Filter for resources updated after a certain time (specified as an ISO 8601 timestamp)
+func (o ListEnvironmentsQueryParamsOutput) UpdatedAfter() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ListEnvironmentsQueryParams) *string { return v.UpdatedAfter }).(pulumi.StringPtrOutput)
+}
+
+// Filter for resources updated before a certain time (specified as an ISO 8601 timestamp)
+func (o ListEnvironmentsQueryParamsOutput) UpdatedBefore() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ListEnvironmentsQueryParams) *string { return v.UpdatedBefore }).(pulumi.StringPtrOutput)
+}
+
+// Query params for the API request.
+type ResourcesToEnvironmentCreateQueryParams struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams map[string]string `pulumi:"additionalParams"`
+}
+
+// ResourcesToEnvironmentCreateQueryParamsInput is an input type that accepts ResourcesToEnvironmentCreateQueryParamsArgs and ResourcesToEnvironmentCreateQueryParamsOutput values.
+// You can construct a concrete instance of `ResourcesToEnvironmentCreateQueryParamsInput` via:
+//
+//	ResourcesToEnvironmentCreateQueryParamsArgs{...}
+type ResourcesToEnvironmentCreateQueryParamsInput interface {
+	pulumi.Input
+
+	ToResourcesToEnvironmentCreateQueryParamsOutput() ResourcesToEnvironmentCreateQueryParamsOutput
+	ToResourcesToEnvironmentCreateQueryParamsOutputWithContext(context.Context) ResourcesToEnvironmentCreateQueryParamsOutput
+}
+
+// Query params for the API request.
+type ResourcesToEnvironmentCreateQueryParamsArgs struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams pulumi.StringMapInput `pulumi:"additionalParams"`
+}
+
+func (ResourcesToEnvironmentCreateQueryParamsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ResourcesToEnvironmentCreateQueryParams)(nil)).Elem()
+}
+
+func (i ResourcesToEnvironmentCreateQueryParamsArgs) ToResourcesToEnvironmentCreateQueryParamsOutput() ResourcesToEnvironmentCreateQueryParamsOutput {
+	return i.ToResourcesToEnvironmentCreateQueryParamsOutputWithContext(context.Background())
+}
+
+func (i ResourcesToEnvironmentCreateQueryParamsArgs) ToResourcesToEnvironmentCreateQueryParamsOutputWithContext(ctx context.Context) ResourcesToEnvironmentCreateQueryParamsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ResourcesToEnvironmentCreateQueryParamsOutput)
+}
+
+func (i ResourcesToEnvironmentCreateQueryParamsArgs) ToResourcesToEnvironmentCreateQueryParamsPtrOutput() ResourcesToEnvironmentCreateQueryParamsPtrOutput {
+	return i.ToResourcesToEnvironmentCreateQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i ResourcesToEnvironmentCreateQueryParamsArgs) ToResourcesToEnvironmentCreateQueryParamsPtrOutputWithContext(ctx context.Context) ResourcesToEnvironmentCreateQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ResourcesToEnvironmentCreateQueryParamsOutput).ToResourcesToEnvironmentCreateQueryParamsPtrOutputWithContext(ctx)
+}
+
+// ResourcesToEnvironmentCreateQueryParamsPtrInput is an input type that accepts ResourcesToEnvironmentCreateQueryParamsArgs, ResourcesToEnvironmentCreateQueryParamsPtr and ResourcesToEnvironmentCreateQueryParamsPtrOutput values.
+// You can construct a concrete instance of `ResourcesToEnvironmentCreateQueryParamsPtrInput` via:
+//
+//	        ResourcesToEnvironmentCreateQueryParamsArgs{...}
+//
+//	or:
+//
+//	        nil
+type ResourcesToEnvironmentCreateQueryParamsPtrInput interface {
+	pulumi.Input
+
+	ToResourcesToEnvironmentCreateQueryParamsPtrOutput() ResourcesToEnvironmentCreateQueryParamsPtrOutput
+	ToResourcesToEnvironmentCreateQueryParamsPtrOutputWithContext(context.Context) ResourcesToEnvironmentCreateQueryParamsPtrOutput
+}
+
+type resourcesToEnvironmentCreateQueryParamsPtrType ResourcesToEnvironmentCreateQueryParamsArgs
+
+func ResourcesToEnvironmentCreateQueryParamsPtr(v *ResourcesToEnvironmentCreateQueryParamsArgs) ResourcesToEnvironmentCreateQueryParamsPtrInput {
+	return (*resourcesToEnvironmentCreateQueryParamsPtrType)(v)
+}
+
+func (*resourcesToEnvironmentCreateQueryParamsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**ResourcesToEnvironmentCreateQueryParams)(nil)).Elem()
+}
+
+func (i *resourcesToEnvironmentCreateQueryParamsPtrType) ToResourcesToEnvironmentCreateQueryParamsPtrOutput() ResourcesToEnvironmentCreateQueryParamsPtrOutput {
+	return i.ToResourcesToEnvironmentCreateQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i *resourcesToEnvironmentCreateQueryParamsPtrType) ToResourcesToEnvironmentCreateQueryParamsPtrOutputWithContext(ctx context.Context) ResourcesToEnvironmentCreateQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ResourcesToEnvironmentCreateQueryParamsPtrOutput)
+}
+
+// Query params for the API request.
+type ResourcesToEnvironmentCreateQueryParamsOutput struct{ *pulumi.OutputState }
+
+func (ResourcesToEnvironmentCreateQueryParamsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ResourcesToEnvironmentCreateQueryParams)(nil)).Elem()
+}
+
+func (o ResourcesToEnvironmentCreateQueryParamsOutput) ToResourcesToEnvironmentCreateQueryParamsOutput() ResourcesToEnvironmentCreateQueryParamsOutput {
+	return o
+}
+
+func (o ResourcesToEnvironmentCreateQueryParamsOutput) ToResourcesToEnvironmentCreateQueryParamsOutputWithContext(ctx context.Context) ResourcesToEnvironmentCreateQueryParamsOutput {
+	return o
+}
+
+func (o ResourcesToEnvironmentCreateQueryParamsOutput) ToResourcesToEnvironmentCreateQueryParamsPtrOutput() ResourcesToEnvironmentCreateQueryParamsPtrOutput {
+	return o.ToResourcesToEnvironmentCreateQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (o ResourcesToEnvironmentCreateQueryParamsOutput) ToResourcesToEnvironmentCreateQueryParamsPtrOutputWithContext(ctx context.Context) ResourcesToEnvironmentCreateQueryParamsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v ResourcesToEnvironmentCreateQueryParams) *ResourcesToEnvironmentCreateQueryParams {
+		return &v
+	}).(ResourcesToEnvironmentCreateQueryParamsPtrOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o ResourcesToEnvironmentCreateQueryParamsOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v ResourcesToEnvironmentCreateQueryParams) map[string]string { return v.AdditionalParams }).(pulumi.StringMapOutput)
+}
+
+type ResourcesToEnvironmentCreateQueryParamsPtrOutput struct{ *pulumi.OutputState }
+
+func (ResourcesToEnvironmentCreateQueryParamsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ResourcesToEnvironmentCreateQueryParams)(nil)).Elem()
+}
+
+func (o ResourcesToEnvironmentCreateQueryParamsPtrOutput) ToResourcesToEnvironmentCreateQueryParamsPtrOutput() ResourcesToEnvironmentCreateQueryParamsPtrOutput {
+	return o
+}
+
+func (o ResourcesToEnvironmentCreateQueryParamsPtrOutput) ToResourcesToEnvironmentCreateQueryParamsPtrOutputWithContext(ctx context.Context) ResourcesToEnvironmentCreateQueryParamsPtrOutput {
+	return o
+}
+
+func (o ResourcesToEnvironmentCreateQueryParamsPtrOutput) Elem() ResourcesToEnvironmentCreateQueryParamsOutput {
+	return o.ApplyT(func(v *ResourcesToEnvironmentCreateQueryParams) ResourcesToEnvironmentCreateQueryParams {
+		if v != nil {
+			return *v
+		}
+		var ret ResourcesToEnvironmentCreateQueryParams
+		return ret
+	}).(ResourcesToEnvironmentCreateQueryParamsOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o ResourcesToEnvironmentCreateQueryParamsPtrOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *ResourcesToEnvironmentCreateQueryParams) map[string]string {
+		if v == nil {
+			return nil
+		}
+		return v.AdditionalParams
+	}).(pulumi.StringMapOutput)
+}
+
+// Query params for each of the operations of the resource.
+type ResourcesToEnvironmentQueryParams struct {
+	// Query params for the create operation.
+	Create *ResourcesToEnvironmentCreateQueryParams `pulumi:"create"`
+}
+
+// ResourcesToEnvironmentQueryParamsInput is an input type that accepts ResourcesToEnvironmentQueryParamsArgs and ResourcesToEnvironmentQueryParamsOutput values.
+// You can construct a concrete instance of `ResourcesToEnvironmentQueryParamsInput` via:
+//
+//	ResourcesToEnvironmentQueryParamsArgs{...}
+type ResourcesToEnvironmentQueryParamsInput interface {
+	pulumi.Input
+
+	ToResourcesToEnvironmentQueryParamsOutput() ResourcesToEnvironmentQueryParamsOutput
+	ToResourcesToEnvironmentQueryParamsOutputWithContext(context.Context) ResourcesToEnvironmentQueryParamsOutput
+}
+
+// Query params for each of the operations of the resource.
+type ResourcesToEnvironmentQueryParamsArgs struct {
+	// Query params for the create operation.
+	Create ResourcesToEnvironmentCreateQueryParamsPtrInput `pulumi:"create"`
+}
+
+func (ResourcesToEnvironmentQueryParamsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ResourcesToEnvironmentQueryParams)(nil)).Elem()
+}
+
+func (i ResourcesToEnvironmentQueryParamsArgs) ToResourcesToEnvironmentQueryParamsOutput() ResourcesToEnvironmentQueryParamsOutput {
+	return i.ToResourcesToEnvironmentQueryParamsOutputWithContext(context.Background())
+}
+
+func (i ResourcesToEnvironmentQueryParamsArgs) ToResourcesToEnvironmentQueryParamsOutputWithContext(ctx context.Context) ResourcesToEnvironmentQueryParamsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ResourcesToEnvironmentQueryParamsOutput)
+}
+
+func (i ResourcesToEnvironmentQueryParamsArgs) ToResourcesToEnvironmentQueryParamsPtrOutput() ResourcesToEnvironmentQueryParamsPtrOutput {
+	return i.ToResourcesToEnvironmentQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i ResourcesToEnvironmentQueryParamsArgs) ToResourcesToEnvironmentQueryParamsPtrOutputWithContext(ctx context.Context) ResourcesToEnvironmentQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ResourcesToEnvironmentQueryParamsOutput).ToResourcesToEnvironmentQueryParamsPtrOutputWithContext(ctx)
+}
+
+// ResourcesToEnvironmentQueryParamsPtrInput is an input type that accepts ResourcesToEnvironmentQueryParamsArgs, ResourcesToEnvironmentQueryParamsPtr and ResourcesToEnvironmentQueryParamsPtrOutput values.
+// You can construct a concrete instance of `ResourcesToEnvironmentQueryParamsPtrInput` via:
+//
+//	        ResourcesToEnvironmentQueryParamsArgs{...}
+//
+//	or:
+//
+//	        nil
+type ResourcesToEnvironmentQueryParamsPtrInput interface {
+	pulumi.Input
+
+	ToResourcesToEnvironmentQueryParamsPtrOutput() ResourcesToEnvironmentQueryParamsPtrOutput
+	ToResourcesToEnvironmentQueryParamsPtrOutputWithContext(context.Context) ResourcesToEnvironmentQueryParamsPtrOutput
+}
+
+type resourcesToEnvironmentQueryParamsPtrType ResourcesToEnvironmentQueryParamsArgs
+
+func ResourcesToEnvironmentQueryParamsPtr(v *ResourcesToEnvironmentQueryParamsArgs) ResourcesToEnvironmentQueryParamsPtrInput {
+	return (*resourcesToEnvironmentQueryParamsPtrType)(v)
+}
+
+func (*resourcesToEnvironmentQueryParamsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**ResourcesToEnvironmentQueryParams)(nil)).Elem()
+}
+
+func (i *resourcesToEnvironmentQueryParamsPtrType) ToResourcesToEnvironmentQueryParamsPtrOutput() ResourcesToEnvironmentQueryParamsPtrOutput {
+	return i.ToResourcesToEnvironmentQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i *resourcesToEnvironmentQueryParamsPtrType) ToResourcesToEnvironmentQueryParamsPtrOutputWithContext(ctx context.Context) ResourcesToEnvironmentQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ResourcesToEnvironmentQueryParamsPtrOutput)
+}
+
+// Query params for each of the operations of the resource.
+type ResourcesToEnvironmentQueryParamsOutput struct{ *pulumi.OutputState }
+
+func (ResourcesToEnvironmentQueryParamsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ResourcesToEnvironmentQueryParams)(nil)).Elem()
+}
+
+func (o ResourcesToEnvironmentQueryParamsOutput) ToResourcesToEnvironmentQueryParamsOutput() ResourcesToEnvironmentQueryParamsOutput {
+	return o
+}
+
+func (o ResourcesToEnvironmentQueryParamsOutput) ToResourcesToEnvironmentQueryParamsOutputWithContext(ctx context.Context) ResourcesToEnvironmentQueryParamsOutput {
+	return o
+}
+
+func (o ResourcesToEnvironmentQueryParamsOutput) ToResourcesToEnvironmentQueryParamsPtrOutput() ResourcesToEnvironmentQueryParamsPtrOutput {
+	return o.ToResourcesToEnvironmentQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (o ResourcesToEnvironmentQueryParamsOutput) ToResourcesToEnvironmentQueryParamsPtrOutputWithContext(ctx context.Context) ResourcesToEnvironmentQueryParamsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v ResourcesToEnvironmentQueryParams) *ResourcesToEnvironmentQueryParams {
+		return &v
+	}).(ResourcesToEnvironmentQueryParamsPtrOutput)
+}
+
+// Query params for the create operation.
+func (o ResourcesToEnvironmentQueryParamsOutput) Create() ResourcesToEnvironmentCreateQueryParamsPtrOutput {
+	return o.ApplyT(func(v ResourcesToEnvironmentQueryParams) *ResourcesToEnvironmentCreateQueryParams { return v.Create }).(ResourcesToEnvironmentCreateQueryParamsPtrOutput)
+}
+
+type ResourcesToEnvironmentQueryParamsPtrOutput struct{ *pulumi.OutputState }
+
+func (ResourcesToEnvironmentQueryParamsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ResourcesToEnvironmentQueryParams)(nil)).Elem()
+}
+
+func (o ResourcesToEnvironmentQueryParamsPtrOutput) ToResourcesToEnvironmentQueryParamsPtrOutput() ResourcesToEnvironmentQueryParamsPtrOutput {
+	return o
+}
+
+func (o ResourcesToEnvironmentQueryParamsPtrOutput) ToResourcesToEnvironmentQueryParamsPtrOutputWithContext(ctx context.Context) ResourcesToEnvironmentQueryParamsPtrOutput {
+	return o
+}
+
+func (o ResourcesToEnvironmentQueryParamsPtrOutput) Elem() ResourcesToEnvironmentQueryParamsOutput {
+	return o.ApplyT(func(v *ResourcesToEnvironmentQueryParams) ResourcesToEnvironmentQueryParams {
+		if v != nil {
+			return *v
+		}
+		var ret ResourcesToEnvironmentQueryParams
+		return ret
+	}).(ResourcesToEnvironmentQueryParamsOutput)
+}
+
+// Query params for the create operation.
+func (o ResourcesToEnvironmentQueryParamsPtrOutput) Create() ResourcesToEnvironmentCreateQueryParamsPtrOutput {
+	return o.ApplyT(func(v *ResourcesToEnvironmentQueryParams) *ResourcesToEnvironmentCreateQueryParams {
+		if v == nil {
+			return nil
+		}
+		return v.Create
+	}).(ResourcesToEnvironmentCreateQueryParamsPtrOutput)
+}
+
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*EnvironmentCreateQueryParamsInput)(nil)).Elem(), EnvironmentCreateQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*EnvironmentCreateQueryParamsPtrInput)(nil)).Elem(), EnvironmentCreateQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*EnvironmentDeleteQueryParamsInput)(nil)).Elem(), EnvironmentDeleteQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*EnvironmentDeleteQueryParamsPtrInput)(nil)).Elem(), EnvironmentDeleteQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*EnvironmentQueryParamsInput)(nil)).Elem(), EnvironmentQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*EnvironmentQueryParamsPtrInput)(nil)).Elem(), EnvironmentQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*EnvironmentReadQueryParamsInput)(nil)).Elem(), EnvironmentReadQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*EnvironmentReadQueryParamsPtrInput)(nil)).Elem(), EnvironmentReadQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*EnvironmentUpdateQueryParamsInput)(nil)).Elem(), EnvironmentUpdateQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*EnvironmentUpdateQueryParamsPtrInput)(nil)).Elem(), EnvironmentUpdateQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetEnvironmentQueryParamsInput)(nil)).Elem(), GetEnvironmentQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetEnvironmentQueryParamsPtrInput)(nil)).Elem(), GetEnvironmentQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ListEnvironmentsQueryParamsInput)(nil)).Elem(), ListEnvironmentsQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ResourcesToEnvironmentCreateQueryParamsInput)(nil)).Elem(), ResourcesToEnvironmentCreateQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ResourcesToEnvironmentCreateQueryParamsPtrInput)(nil)).Elem(), ResourcesToEnvironmentCreateQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ResourcesToEnvironmentQueryParamsInput)(nil)).Elem(), ResourcesToEnvironmentQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ResourcesToEnvironmentQueryParamsPtrInput)(nil)).Elem(), ResourcesToEnvironmentQueryParamsArgs{})
 	pulumi.RegisterOutputType(EnvironmentTypeOutput{})
+	pulumi.RegisterOutputType(EnvironmentCreateQueryParamsOutput{})
+	pulumi.RegisterOutputType(EnvironmentCreateQueryParamsPtrOutput{})
+	pulumi.RegisterOutputType(EnvironmentDeleteQueryParamsOutput{})
+	pulumi.RegisterOutputType(EnvironmentDeleteQueryParamsPtrOutput{})
+	pulumi.RegisterOutputType(EnvironmentQueryParamsOutput{})
+	pulumi.RegisterOutputType(EnvironmentQueryParamsPtrOutput{})
+	pulumi.RegisterOutputType(EnvironmentReadQueryParamsOutput{})
+	pulumi.RegisterOutputType(EnvironmentReadQueryParamsPtrOutput{})
+	pulumi.RegisterOutputType(EnvironmentUpdateQueryParamsOutput{})
+	pulumi.RegisterOutputType(EnvironmentUpdateQueryParamsPtrOutput{})
 	pulumi.RegisterOutputType(EnvironmentWithCursorOutput{})
 	pulumi.RegisterOutputType(EnvironmentWithCursorArrayOutput{})
+	pulumi.RegisterOutputType(GetEnvironmentQueryParamsOutput{})
+	pulumi.RegisterOutputType(GetEnvironmentQueryParamsPtrOutput{})
+	pulumi.RegisterOutputType(ListEnvironmentsQueryParamsOutput{})
+	pulumi.RegisterOutputType(ResourcesToEnvironmentCreateQueryParamsOutput{})
+	pulumi.RegisterOutputType(ResourcesToEnvironmentCreateQueryParamsPtrOutput{})
+	pulumi.RegisterOutputType(ResourcesToEnvironmentQueryParamsOutput{})
+	pulumi.RegisterOutputType(ResourcesToEnvironmentQueryParamsPtrOutput{})
 }

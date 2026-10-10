@@ -15,6 +15,7 @@ else:
 from .. import _utilities
 from . import outputs
 from ._enums import *
+from ._inputs import *
 
 __all__ = [
     'GetBlueprintResult',
@@ -112,14 +113,17 @@ class AwaitableGetBlueprintResult(GetBlueprintResult):
 
 
 def get_blueprint(blueprint_id: Optional[_builtins.str] = None,
+                  query_params: Optional[Union['GetBlueprintQueryParams', 'GetBlueprintQueryParamsDict']] = None,
                   opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetBlueprintResult:
     """
     Use this data source to access information about an existing resource.
 
     :param _builtins.str blueprint_id: The ID of the Blueprint
+    :param Union['GetBlueprintQueryParams', 'GetBlueprintQueryParamsDict'] query_params: Query params to send with the API request.
     """
     __args__ = dict()
     __args__['blueprintId'] = blueprint_id
+    __args__['queryParams'] = query_params
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke('render:blueprints:getBlueprint', __args__, opts=opts, typ=GetBlueprintResult).value
 
@@ -133,14 +137,17 @@ def get_blueprint(blueprint_id: Optional[_builtins.str] = None,
         resources=pulumi.get(__ret__, 'resources'),
         status=pulumi.get(__ret__, 'status'))
 def get_blueprint_output(blueprint_id: pulumi.Input[Optional[_builtins.str]] = None,
+                         query_params: pulumi.Input[Optional[Optional[Union['GetBlueprintQueryParams', 'GetBlueprintQueryParamsDict']]]] = None,
                          opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetBlueprintResult]:
     """
     Use this data source to access information about an existing resource.
 
     :param _builtins.str blueprint_id: The ID of the Blueprint
+    :param Union['GetBlueprintQueryParams', 'GetBlueprintQueryParamsDict'] query_params: Query params to send with the API request.
     """
     __args__ = dict()
     __args__['blueprintId'] = blueprint_id
+    __args__['queryParams'] = query_params
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('render:blueprints:getBlueprint', __args__, opts=opts, typ=GetBlueprintResult)
     return __ret__.apply(lambda __response__: GetBlueprintResult(

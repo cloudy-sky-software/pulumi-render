@@ -11,18 +11,31 @@ export function listReplicationLag(args?: ListReplicationLagArgs, opts?: pulumi.
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("render:metrics:listReplicationLag", {
+        "queryParams": args.queryParams ? inputs.metrics.listReplicationLagQueryParamsProvideDefaults(args.queryParams) : undefined,
     }, opts);
 }
 
 export interface ListReplicationLagArgs {
+    /**
+     * Query params to send with the API request.
+     */
+    queryParams?: inputs.metrics.ListReplicationLagQueryParams;
 }
 
 export interface ListReplicationLagResult {
     readonly items: outputs.metrics.ListReplicationLagItemProperties[];
 }
-export function listReplicationLagOutput(opts?: pulumi.InvokeOutputOptions): pulumi.Output<ListReplicationLagResult> {
+export function listReplicationLagOutput(args?: ListReplicationLagOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<ListReplicationLagResult> {
+    args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("render:metrics:listReplicationLag", {
+        "queryParams": pulumi.output(args.queryParams).apply(v => v === undefined ? undefined : inputs.metrics.listReplicationLagQueryParamsProvideDefaults(v)),
     }, opts);
 }
 
+export interface ListReplicationLagOutputArgs {
+    /**
+     * Query params to send with the API request.
+     */
+    queryParams?: pulumi.Input<inputs.metrics.ListReplicationLagQueryParamsArgs | undefined>;
+}

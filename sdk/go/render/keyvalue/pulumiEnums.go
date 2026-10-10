@@ -584,6 +584,223 @@ func (o KeyValueStatusPtrOutput) ToStringPtrOutputWithContext(ctx context.Contex
 	}).(pulumi.StringPtrOutput)
 }
 
+// Defaults to "oregon"
+type ListKeyValueQueryParamsRegionItem string
+
+const (
+	ListKeyValueQueryParamsRegionItemFrankfurt = ListKeyValueQueryParamsRegionItem("frankfurt")
+	ListKeyValueQueryParamsRegionItemOregon    = ListKeyValueQueryParamsRegionItem("oregon")
+	ListKeyValueQueryParamsRegionItemOhio      = ListKeyValueQueryParamsRegionItem("ohio")
+	ListKeyValueQueryParamsRegionItemSingapore = ListKeyValueQueryParamsRegionItem("singapore")
+	ListKeyValueQueryParamsRegionItemVirginia  = ListKeyValueQueryParamsRegionItem("virginia")
+)
+
+func (ListKeyValueQueryParamsRegionItem) ElementType() reflect.Type {
+	return reflect.TypeOf((*ListKeyValueQueryParamsRegionItem)(nil)).Elem()
+}
+
+func (e ListKeyValueQueryParamsRegionItem) ToListKeyValueQueryParamsRegionItemOutput() ListKeyValueQueryParamsRegionItemOutput {
+	return pulumi.ToOutput(e).(ListKeyValueQueryParamsRegionItemOutput)
+}
+
+func (e ListKeyValueQueryParamsRegionItem) ToListKeyValueQueryParamsRegionItemOutputWithContext(ctx context.Context) ListKeyValueQueryParamsRegionItemOutput {
+	return pulumi.ToOutputWithContext(ctx, e).(ListKeyValueQueryParamsRegionItemOutput)
+}
+
+func (e ListKeyValueQueryParamsRegionItem) ToListKeyValueQueryParamsRegionItemPtrOutput() ListKeyValueQueryParamsRegionItemPtrOutput {
+	return e.ToListKeyValueQueryParamsRegionItemPtrOutputWithContext(context.Background())
+}
+
+func (e ListKeyValueQueryParamsRegionItem) ToListKeyValueQueryParamsRegionItemPtrOutputWithContext(ctx context.Context) ListKeyValueQueryParamsRegionItemPtrOutput {
+	return ListKeyValueQueryParamsRegionItem(e).ToListKeyValueQueryParamsRegionItemOutputWithContext(ctx).ToListKeyValueQueryParamsRegionItemPtrOutputWithContext(ctx)
+}
+
+func (e ListKeyValueQueryParamsRegionItem) ToStringOutput() pulumi.StringOutput {
+	return pulumi.ToOutput(pulumi.String(e)).(pulumi.StringOutput)
+}
+
+func (e ListKeyValueQueryParamsRegionItem) ToStringOutputWithContext(ctx context.Context) pulumi.StringOutput {
+	return pulumi.ToOutputWithContext(ctx, pulumi.String(e)).(pulumi.StringOutput)
+}
+
+func (e ListKeyValueQueryParamsRegionItem) ToStringPtrOutput() pulumi.StringPtrOutput {
+	return pulumi.String(e).ToStringPtrOutputWithContext(context.Background())
+}
+
+func (e ListKeyValueQueryParamsRegionItem) ToStringPtrOutputWithContext(ctx context.Context) pulumi.StringPtrOutput {
+	return pulumi.String(e).ToStringOutputWithContext(ctx).ToStringPtrOutputWithContext(ctx)
+}
+
+type ListKeyValueQueryParamsRegionItemOutput struct{ *pulumi.OutputState }
+
+func (ListKeyValueQueryParamsRegionItemOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ListKeyValueQueryParamsRegionItem)(nil)).Elem()
+}
+
+func (o ListKeyValueQueryParamsRegionItemOutput) ToListKeyValueQueryParamsRegionItemOutput() ListKeyValueQueryParamsRegionItemOutput {
+	return o
+}
+
+func (o ListKeyValueQueryParamsRegionItemOutput) ToListKeyValueQueryParamsRegionItemOutputWithContext(ctx context.Context) ListKeyValueQueryParamsRegionItemOutput {
+	return o
+}
+
+func (o ListKeyValueQueryParamsRegionItemOutput) ToListKeyValueQueryParamsRegionItemPtrOutput() ListKeyValueQueryParamsRegionItemPtrOutput {
+	return o.ToListKeyValueQueryParamsRegionItemPtrOutputWithContext(context.Background())
+}
+
+func (o ListKeyValueQueryParamsRegionItemOutput) ToListKeyValueQueryParamsRegionItemPtrOutputWithContext(ctx context.Context) ListKeyValueQueryParamsRegionItemPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v ListKeyValueQueryParamsRegionItem) *ListKeyValueQueryParamsRegionItem {
+		return &v
+	}).(ListKeyValueQueryParamsRegionItemPtrOutput)
+}
+
+func (o ListKeyValueQueryParamsRegionItemOutput) ToStringOutput() pulumi.StringOutput {
+	return o.ToStringOutputWithContext(context.Background())
+}
+
+func (o ListKeyValueQueryParamsRegionItemOutput) ToStringOutputWithContext(ctx context.Context) pulumi.StringOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, e ListKeyValueQueryParamsRegionItem) string {
+		return string(e)
+	}).(pulumi.StringOutput)
+}
+
+func (o ListKeyValueQueryParamsRegionItemOutput) ToStringPtrOutput() pulumi.StringPtrOutput {
+	return o.ToStringPtrOutputWithContext(context.Background())
+}
+
+func (o ListKeyValueQueryParamsRegionItemOutput) ToStringPtrOutputWithContext(ctx context.Context) pulumi.StringPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, e ListKeyValueQueryParamsRegionItem) *string {
+		v := string(e)
+		return &v
+	}).(pulumi.StringPtrOutput)
+}
+
+type ListKeyValueQueryParamsRegionItemPtrOutput struct{ *pulumi.OutputState }
+
+func (ListKeyValueQueryParamsRegionItemPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ListKeyValueQueryParamsRegionItem)(nil)).Elem()
+}
+
+func (o ListKeyValueQueryParamsRegionItemPtrOutput) ToListKeyValueQueryParamsRegionItemPtrOutput() ListKeyValueQueryParamsRegionItemPtrOutput {
+	return o
+}
+
+func (o ListKeyValueQueryParamsRegionItemPtrOutput) ToListKeyValueQueryParamsRegionItemPtrOutputWithContext(ctx context.Context) ListKeyValueQueryParamsRegionItemPtrOutput {
+	return o
+}
+
+func (o ListKeyValueQueryParamsRegionItemPtrOutput) Elem() ListKeyValueQueryParamsRegionItemOutput {
+	return o.ApplyT(func(v *ListKeyValueQueryParamsRegionItem) ListKeyValueQueryParamsRegionItem {
+		if v != nil {
+			return *v
+		}
+		var ret ListKeyValueQueryParamsRegionItem
+		return ret
+	}).(ListKeyValueQueryParamsRegionItemOutput)
+}
+
+func (o ListKeyValueQueryParamsRegionItemPtrOutput) ToStringPtrOutput() pulumi.StringPtrOutput {
+	return o.ToStringPtrOutputWithContext(context.Background())
+}
+
+func (o ListKeyValueQueryParamsRegionItemPtrOutput) ToStringPtrOutputWithContext(ctx context.Context) pulumi.StringPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, e *ListKeyValueQueryParamsRegionItem) *string {
+		if e == nil {
+			return nil
+		}
+		v := string(*e)
+		return &v
+	}).(pulumi.StringPtrOutput)
+}
+
+// ListKeyValueQueryParamsRegionItemInput is an input type that accepts values of the ListKeyValueQueryParamsRegionItem enum
+// A concrete instance of `ListKeyValueQueryParamsRegionItemInput` can be one of the following:
+//
+//	ListKeyValueQueryParamsRegionItemFrankfurt
+//	ListKeyValueQueryParamsRegionItemOregon
+//	ListKeyValueQueryParamsRegionItemOhio
+//	ListKeyValueQueryParamsRegionItemSingapore
+//	ListKeyValueQueryParamsRegionItemVirginia
+type ListKeyValueQueryParamsRegionItemInput interface {
+	pulumi.Input
+
+	ToListKeyValueQueryParamsRegionItemOutput() ListKeyValueQueryParamsRegionItemOutput
+	ToListKeyValueQueryParamsRegionItemOutputWithContext(context.Context) ListKeyValueQueryParamsRegionItemOutput
+}
+
+var listKeyValueQueryParamsRegionItemPtrType = reflect.TypeOf((**ListKeyValueQueryParamsRegionItem)(nil)).Elem()
+
+type ListKeyValueQueryParamsRegionItemPtrInput interface {
+	pulumi.Input
+
+	ToListKeyValueQueryParamsRegionItemPtrOutput() ListKeyValueQueryParamsRegionItemPtrOutput
+	ToListKeyValueQueryParamsRegionItemPtrOutputWithContext(context.Context) ListKeyValueQueryParamsRegionItemPtrOutput
+}
+
+type listKeyValueQueryParamsRegionItemPtr string
+
+func ListKeyValueQueryParamsRegionItemPtr(v string) ListKeyValueQueryParamsRegionItemPtrInput {
+	return (*listKeyValueQueryParamsRegionItemPtr)(&v)
+}
+
+func (*listKeyValueQueryParamsRegionItemPtr) ElementType() reflect.Type {
+	return listKeyValueQueryParamsRegionItemPtrType
+}
+
+func (in *listKeyValueQueryParamsRegionItemPtr) ToListKeyValueQueryParamsRegionItemPtrOutput() ListKeyValueQueryParamsRegionItemPtrOutput {
+	return pulumi.ToOutput(in).(ListKeyValueQueryParamsRegionItemPtrOutput)
+}
+
+func (in *listKeyValueQueryParamsRegionItemPtr) ToListKeyValueQueryParamsRegionItemPtrOutputWithContext(ctx context.Context) ListKeyValueQueryParamsRegionItemPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, in).(ListKeyValueQueryParamsRegionItemPtrOutput)
+}
+
+// ListKeyValueQueryParamsRegionItemArrayInput is an input type that accepts ListKeyValueQueryParamsRegionItemArray and ListKeyValueQueryParamsRegionItemArrayOutput values.
+// You can construct a concrete instance of `ListKeyValueQueryParamsRegionItemArrayInput` via:
+//
+//	ListKeyValueQueryParamsRegionItemArray{ ListKeyValueQueryParamsRegionItemArgs{...} }
+type ListKeyValueQueryParamsRegionItemArrayInput interface {
+	pulumi.Input
+
+	ToListKeyValueQueryParamsRegionItemArrayOutput() ListKeyValueQueryParamsRegionItemArrayOutput
+	ToListKeyValueQueryParamsRegionItemArrayOutputWithContext(context.Context) ListKeyValueQueryParamsRegionItemArrayOutput
+}
+
+type ListKeyValueQueryParamsRegionItemArray []ListKeyValueQueryParamsRegionItem
+
+func (ListKeyValueQueryParamsRegionItemArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ListKeyValueQueryParamsRegionItem)(nil)).Elem()
+}
+
+func (i ListKeyValueQueryParamsRegionItemArray) ToListKeyValueQueryParamsRegionItemArrayOutput() ListKeyValueQueryParamsRegionItemArrayOutput {
+	return i.ToListKeyValueQueryParamsRegionItemArrayOutputWithContext(context.Background())
+}
+
+func (i ListKeyValueQueryParamsRegionItemArray) ToListKeyValueQueryParamsRegionItemArrayOutputWithContext(ctx context.Context) ListKeyValueQueryParamsRegionItemArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ListKeyValueQueryParamsRegionItemArrayOutput)
+}
+
+type ListKeyValueQueryParamsRegionItemArrayOutput struct{ *pulumi.OutputState }
+
+func (ListKeyValueQueryParamsRegionItemArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ListKeyValueQueryParamsRegionItem)(nil)).Elem()
+}
+
+func (o ListKeyValueQueryParamsRegionItemArrayOutput) ToListKeyValueQueryParamsRegionItemArrayOutput() ListKeyValueQueryParamsRegionItemArrayOutput {
+	return o
+}
+
+func (o ListKeyValueQueryParamsRegionItemArrayOutput) ToListKeyValueQueryParamsRegionItemArrayOutputWithContext(ctx context.Context) ListKeyValueQueryParamsRegionItemArrayOutput {
+	return o
+}
+
+func (o ListKeyValueQueryParamsRegionItemArrayOutput) Index(i pulumi.IntInput) ListKeyValueQueryParamsRegionItemOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ListKeyValueQueryParamsRegionItem {
+		return vs[0].([]ListKeyValueQueryParamsRegionItem)[vs[1].(int)]
+	}).(ListKeyValueQueryParamsRegionItemOutput)
+}
+
 // The eviction policy for the Key Value instance
 type MaxmemoryPolicy string
 
@@ -1313,6 +1530,9 @@ func (o StatusPtrOutput) ToStringPtrOutputWithContext(ctx context.Context) pulum
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*ListKeyValueQueryParamsRegionItemInput)(nil)).Elem(), ListKeyValueQueryParamsRegionItem("frankfurt"))
+	pulumi.RegisterInputType(reflect.TypeOf((*ListKeyValueQueryParamsRegionItemPtrInput)(nil)).Elem(), ListKeyValueQueryParamsRegionItem("frankfurt"))
+	pulumi.RegisterInputType(reflect.TypeOf((*ListKeyValueQueryParamsRegionItemArrayInput)(nil)).Elem(), ListKeyValueQueryParamsRegionItemArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*MaxmemoryPolicyInput)(nil)).Elem(), MaxmemoryPolicy("noeviction"))
 	pulumi.RegisterInputType(reflect.TypeOf((*MaxmemoryPolicyPtrInput)(nil)).Elem(), MaxmemoryPolicy("noeviction"))
 	pulumi.RegisterInputType(reflect.TypeOf((*PlanInput)(nil)).Elem(), Plan("free"))
@@ -1329,6 +1549,9 @@ func init() {
 	pulumi.RegisterOutputType(KeyValueRegionPtrOutput{})
 	pulumi.RegisterOutputType(KeyValueStatusOutput{})
 	pulumi.RegisterOutputType(KeyValueStatusPtrOutput{})
+	pulumi.RegisterOutputType(ListKeyValueQueryParamsRegionItemOutput{})
+	pulumi.RegisterOutputType(ListKeyValueQueryParamsRegionItemPtrOutput{})
+	pulumi.RegisterOutputType(ListKeyValueQueryParamsRegionItemArrayOutput{})
 	pulumi.RegisterOutputType(MaxmemoryPolicyOutput{})
 	pulumi.RegisterOutputType(MaxmemoryPolicyPtrOutput{})
 	pulumi.RegisterOutputType(OwnerTypeOutput{})

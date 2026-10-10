@@ -15,6 +15,7 @@ else:
 from .. import _utilities
 from . import outputs
 from ._enums import *
+from ._inputs import *
 
 __all__ = [
     'ListEnvironmentsResult',
@@ -45,21 +46,29 @@ class AwaitableListEnvironmentsResult(ListEnvironmentsResult):
             items=self.items)
 
 
-def list_environments(opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableListEnvironmentsResult:
+def list_environments(query_params: Optional[Union['ListEnvironmentsQueryParams', 'ListEnvironmentsQueryParamsDict']] = None,
+                      opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableListEnvironmentsResult:
     """
     Use this data source to access information about an existing resource.
+
+    :param Union['ListEnvironmentsQueryParams', 'ListEnvironmentsQueryParamsDict'] query_params: Query params to send with the API request.
     """
     __args__ = dict()
+    __args__['queryParams'] = query_params
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke('render:environments:listEnvironments', __args__, opts=opts, typ=ListEnvironmentsResult).value
 
     return AwaitableListEnvironmentsResult(
         items=pulumi.get(__ret__, 'items'))
-def list_environments_output(opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[ListEnvironmentsResult]:
+def list_environments_output(query_params: pulumi.Input[Optional[Union['ListEnvironmentsQueryParams', 'ListEnvironmentsQueryParamsDict']]] = None,
+                             opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[ListEnvironmentsResult]:
     """
     Use this data source to access information about an existing resource.
+
+    :param Union['ListEnvironmentsQueryParams', 'ListEnvironmentsQueryParamsDict'] query_params: Query params to send with the API request.
     """
     __args__ = dict()
+    __args__['queryParams'] = query_params
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('render:environments:listEnvironments', __args__, opts=opts, typ=ListEnvironmentsResult)
     return __ret__.apply(lambda __response__: ListEnvironmentsResult(

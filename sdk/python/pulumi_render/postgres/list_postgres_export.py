@@ -14,6 +14,7 @@ else:
     from typing_extensions import NotRequired, TypedDict, TypeAlias
 from .. import _utilities
 from . import outputs
+from ._inputs import *
 
 __all__ = [
     'ListPostgresExportResult',
@@ -45,24 +46,32 @@ class AwaitableListPostgresExportResult(ListPostgresExportResult):
 
 
 def list_postgres_export(postgres_id: Optional[_builtins.str] = None,
+                         query_params: Optional[Union['ListPostgresExportQueryParams', 'ListPostgresExportQueryParamsDict']] = None,
                          opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableListPostgresExportResult:
     """
     Use this data source to access information about an existing resource.
+
+    :param Union['ListPostgresExportQueryParams', 'ListPostgresExportQueryParamsDict'] query_params: Query params to send with the API request.
     """
     __args__ = dict()
     __args__['postgresId'] = postgres_id
+    __args__['queryParams'] = query_params
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke('render:postgres:listPostgresExport', __args__, opts=opts, typ=ListPostgresExportResult).value
 
     return AwaitableListPostgresExportResult(
         items=pulumi.get(__ret__, 'items'))
 def list_postgres_export_output(postgres_id: pulumi.Input[Optional[_builtins.str]] = None,
+                                query_params: pulumi.Input[Optional[Optional[Union['ListPostgresExportQueryParams', 'ListPostgresExportQueryParamsDict']]]] = None,
                                 opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[ListPostgresExportResult]:
     """
     Use this data source to access information about an existing resource.
+
+    :param Union['ListPostgresExportQueryParams', 'ListPostgresExportQueryParamsDict'] query_params: Query params to send with the API request.
     """
     __args__ = dict()
     __args__['postgresId'] = postgres_id
+    __args__['queryParams'] = query_params
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('render:postgres:listPostgresExport', __args__, opts=opts, typ=ListPostgresExportResult)
     return __ret__.apply(lambda __response__: ListPostgresExportResult(

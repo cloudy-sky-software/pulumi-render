@@ -51,6 +51,12 @@ namespace Pulumi.Render.Services
         [Output("ownerId")]
         public Output<string?> OwnerId { get; private set; } = null!;
 
+        /// <summary>
+        /// Query params to send with the API requests for this resource.
+        /// </summary>
+        [Output("queryParams")]
+        public Output<Outputs.WebServiceQueryParams?> QueryParams { get; private set; } = null!;
+
         [Output("registryCredential")]
         public Output<Outputs.RegistryCredentialSummary?> RegistryCredential { get; private set; } = null!;
 
@@ -161,6 +167,12 @@ namespace Pulumi.Render.Services
 
         [Input("ownerId", required: true)]
         public Input<string> OwnerId { get; set; } = null!;
+
+        /// <summary>
+        /// Query params to send with the API requests for this resource.
+        /// </summary>
+        [Input("queryParams")]
+        public Input<Inputs.WebServiceQueryParamsArgs>? QueryParams { get; set; }
 
         /// <summary>
         /// Do not include the branch in the repo string. You can instead supply a 'branch' parameter.

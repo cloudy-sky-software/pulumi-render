@@ -23,6 +23,8 @@ func GetPostgresConnectionInfo(ctx *pulumi.Context, args *GetPostgresConnectionI
 
 type GetPostgresConnectionInfoArgs struct {
 	PostgresId string `pulumi:"postgresId"`
+	// Query params to send with the API request.
+	QueryParams *GetPostgresConnectionInfoQueryParams `pulumi:"queryParams"`
 }
 
 type GetPostgresConnectionInfoResult struct {
@@ -39,6 +41,8 @@ func GetPostgresConnectionInfoOutput(ctx *pulumi.Context, args GetPostgresConnec
 
 type GetPostgresConnectionInfoOutputArgs struct {
 	PostgresId pulumi.StringInput `pulumi:"postgresId"`
+	// Query params to send with the API request.
+	QueryParams GetPostgresConnectionInfoQueryParamsPtrInput `pulumi:"queryParams"`
 }
 
 func (GetPostgresConnectionInfoOutputArgs) ElementType() reflect.Type {

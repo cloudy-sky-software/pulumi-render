@@ -30,6 +30,12 @@ namespace Pulumi.Render.Services
         [Output("min")]
         public Output<int> Min { get; private set; } = null!;
 
+        /// <summary>
+        /// Query params to send with the API requests for this resource.
+        /// </summary>
+        [Output("queryParams")]
+        public Output<Outputs.AutoscaleServiceQueryParams?> QueryParams { get; private set; } = null!;
+
 
         /// <summary>
         /// Create a AutoscaleService resource with the given unique name, arguments, and options.
@@ -93,6 +99,12 @@ namespace Pulumi.Render.Services
         /// </summary>
         [Input("min", required: true)]
         public Input<int> Min { get; set; } = null!;
+
+        /// <summary>
+        /// Query params to send with the API requests for this resource.
+        /// </summary>
+        [Input("queryParams")]
+        public Input<Inputs.AutoscaleServiceQueryParamsArgs>? QueryParams { get; set; }
 
         /// <summary>
         /// The ID of the service

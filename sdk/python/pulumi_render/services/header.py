@@ -14,6 +14,7 @@ else:
     from typing_extensions import NotRequired, TypedDict, TypeAlias
 from .. import _utilities
 from . import outputs
+from ._inputs import *
 
 __all__ = ['HeaderArgs', 'Header']
 
@@ -23,6 +24,7 @@ class HeaderArgs:
                  path: pulumi.Input[_builtins.str],
                  value: pulumi.Input[_builtins.str],
                  name: pulumi.Input[Optional[_builtins.str]] = None,
+                 query_params: pulumi.Input[Optional['HeaderQueryParamsArgs']] = None,
                  service_id: pulumi.Input[Optional[_builtins.str]] = None):
         """
         The set of arguments for constructing a Header resource.
@@ -30,12 +32,15 @@ class HeaderArgs:
         :param pulumi.Input[_builtins.str] path: The request path to add the header to. Wildcards will cause headers to be applied to all matching paths.
         :param pulumi.Input[_builtins.str] value: Header value
         :param pulumi.Input[_builtins.str] name: Header name
+        :param pulumi.Input['HeaderQueryParamsArgs'] query_params: Query params to send with the API requests for this resource.
         :param pulumi.Input[_builtins.str] service_id: The ID of the service
         """
         pulumi.set(__self__, "path", path)
         pulumi.set(__self__, "value", value)
         if name is not None:
             pulumi.set(__self__, "name", name)
+        if query_params is not None:
+            pulumi.set(__self__, "query_params", query_params)
         if service_id is not None:
             pulumi.set(__self__, "service_id", service_id)
 
@@ -76,6 +81,18 @@ class HeaderArgs:
         pulumi.set(self, "name", value)
 
     @_builtins.property
+    @pulumi.getter(name="queryParams")
+    def query_params(self) -> pulumi.Input[Optional['HeaderQueryParamsArgs']]:
+        """
+        Query params to send with the API requests for this resource.
+        """
+        return pulumi.get(self, "query_params")
+
+    @query_params.setter
+    def query_params(self, value: pulumi.Input[Optional['HeaderQueryParamsArgs']]):
+        pulumi.set(self, "query_params", value)
+
+    @_builtins.property
     @pulumi.getter(name="serviceId")
     def service_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
@@ -96,6 +113,7 @@ class Header(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  path: pulumi.Input[Optional[_builtins.str]] = None,
+                 query_params: pulumi.Input[Optional[Union['HeaderQueryParamsArgs', 'HeaderQueryParamsArgsDict', 'outputs.HeaderQueryParams']]] = None,
                  service_id: pulumi.Input[Optional[_builtins.str]] = None,
                  value: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
@@ -106,6 +124,7 @@ class Header(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] name: Header name
         :param pulumi.Input[_builtins.str] path: The request path to add the header to. Wildcards will cause headers to be applied to all matching paths.
+        :param pulumi.Input[Union['HeaderQueryParamsArgs', 'HeaderQueryParamsArgsDict', 'outputs.HeaderQueryParams']] query_params: Query params to send with the API requests for this resource.
         :param pulumi.Input[_builtins.str] service_id: The ID of the service
         :param pulumi.Input[_builtins.str] value: Header value
         """
@@ -135,6 +154,7 @@ class Header(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  path: pulumi.Input[Optional[_builtins.str]] = None,
+                 query_params: pulumi.Input[Optional[Union['HeaderQueryParamsArgs', 'HeaderQueryParamsArgsDict', 'outputs.HeaderQueryParams']]] = None,
                  service_id: pulumi.Input[Optional[_builtins.str]] = None,
                  value: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
@@ -150,6 +170,7 @@ class Header(pulumi.CustomResource):
             if path is None and not opts.urn:
                 raise TypeError("Missing required property 'path'")
             __props__.__dict__["path"] = path
+            __props__.__dict__["query_params"] = query_params
             __props__.__dict__["service_id"] = service_id
             if value is None and not opts.urn:
                 raise TypeError("Missing required property 'value'")
@@ -180,6 +201,7 @@ class Header(pulumi.CustomResource):
         __props__.__dict__["headers"] = None
         __props__.__dict__["name"] = None
         __props__.__dict__["path"] = None
+        __props__.__dict__["query_params"] = None
         __props__.__dict__["value"] = None
         return Header(resource_name, opts=opts, __props__=__props__)
 
@@ -203,6 +225,14 @@ class Header(pulumi.CustomResource):
         The request path to add the header to. Wildcards will cause headers to be applied to all matching paths.
         """
         return pulumi.get(self, "path")
+
+    @_builtins.property
+    @pulumi.getter(name="queryParams")
+    def query_params(self) -> pulumi.Output[Optional['outputs.HeaderQueryParams']]:
+        """
+        Query params to send with the API requests for this resource.
+        """
+        return pulumi.get(self, "query_params")
 
     @_builtins.property
     @pulumi.getter

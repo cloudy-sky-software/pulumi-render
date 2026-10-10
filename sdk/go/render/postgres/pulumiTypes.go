@@ -116,10 +116,710 @@ func (o CidrBlockAndDescriptionArrayOutput) Index(i pulumi.IntInput) CidrBlockAn
 	}).(CidrBlockAndDescriptionOutput)
 }
 
+// Query params for the API request.
+type FailoverPostgresCreateQueryParams struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams map[string]string `pulumi:"additionalParams"`
+}
+
+// FailoverPostgresCreateQueryParamsInput is an input type that accepts FailoverPostgresCreateQueryParamsArgs and FailoverPostgresCreateQueryParamsOutput values.
+// You can construct a concrete instance of `FailoverPostgresCreateQueryParamsInput` via:
+//
+//	FailoverPostgresCreateQueryParamsArgs{...}
+type FailoverPostgresCreateQueryParamsInput interface {
+	pulumi.Input
+
+	ToFailoverPostgresCreateQueryParamsOutput() FailoverPostgresCreateQueryParamsOutput
+	ToFailoverPostgresCreateQueryParamsOutputWithContext(context.Context) FailoverPostgresCreateQueryParamsOutput
+}
+
+// Query params for the API request.
+type FailoverPostgresCreateQueryParamsArgs struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams pulumi.StringMapInput `pulumi:"additionalParams"`
+}
+
+func (FailoverPostgresCreateQueryParamsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*FailoverPostgresCreateQueryParams)(nil)).Elem()
+}
+
+func (i FailoverPostgresCreateQueryParamsArgs) ToFailoverPostgresCreateQueryParamsOutput() FailoverPostgresCreateQueryParamsOutput {
+	return i.ToFailoverPostgresCreateQueryParamsOutputWithContext(context.Background())
+}
+
+func (i FailoverPostgresCreateQueryParamsArgs) ToFailoverPostgresCreateQueryParamsOutputWithContext(ctx context.Context) FailoverPostgresCreateQueryParamsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(FailoverPostgresCreateQueryParamsOutput)
+}
+
+func (i FailoverPostgresCreateQueryParamsArgs) ToFailoverPostgresCreateQueryParamsPtrOutput() FailoverPostgresCreateQueryParamsPtrOutput {
+	return i.ToFailoverPostgresCreateQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i FailoverPostgresCreateQueryParamsArgs) ToFailoverPostgresCreateQueryParamsPtrOutputWithContext(ctx context.Context) FailoverPostgresCreateQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(FailoverPostgresCreateQueryParamsOutput).ToFailoverPostgresCreateQueryParamsPtrOutputWithContext(ctx)
+}
+
+// FailoverPostgresCreateQueryParamsPtrInput is an input type that accepts FailoverPostgresCreateQueryParamsArgs, FailoverPostgresCreateQueryParamsPtr and FailoverPostgresCreateQueryParamsPtrOutput values.
+// You can construct a concrete instance of `FailoverPostgresCreateQueryParamsPtrInput` via:
+//
+//	        FailoverPostgresCreateQueryParamsArgs{...}
+//
+//	or:
+//
+//	        nil
+type FailoverPostgresCreateQueryParamsPtrInput interface {
+	pulumi.Input
+
+	ToFailoverPostgresCreateQueryParamsPtrOutput() FailoverPostgresCreateQueryParamsPtrOutput
+	ToFailoverPostgresCreateQueryParamsPtrOutputWithContext(context.Context) FailoverPostgresCreateQueryParamsPtrOutput
+}
+
+type failoverPostgresCreateQueryParamsPtrType FailoverPostgresCreateQueryParamsArgs
+
+func FailoverPostgresCreateQueryParamsPtr(v *FailoverPostgresCreateQueryParamsArgs) FailoverPostgresCreateQueryParamsPtrInput {
+	return (*failoverPostgresCreateQueryParamsPtrType)(v)
+}
+
+func (*failoverPostgresCreateQueryParamsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**FailoverPostgresCreateQueryParams)(nil)).Elem()
+}
+
+func (i *failoverPostgresCreateQueryParamsPtrType) ToFailoverPostgresCreateQueryParamsPtrOutput() FailoverPostgresCreateQueryParamsPtrOutput {
+	return i.ToFailoverPostgresCreateQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i *failoverPostgresCreateQueryParamsPtrType) ToFailoverPostgresCreateQueryParamsPtrOutputWithContext(ctx context.Context) FailoverPostgresCreateQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(FailoverPostgresCreateQueryParamsPtrOutput)
+}
+
+// Query params for the API request.
+type FailoverPostgresCreateQueryParamsOutput struct{ *pulumi.OutputState }
+
+func (FailoverPostgresCreateQueryParamsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*FailoverPostgresCreateQueryParams)(nil)).Elem()
+}
+
+func (o FailoverPostgresCreateQueryParamsOutput) ToFailoverPostgresCreateQueryParamsOutput() FailoverPostgresCreateQueryParamsOutput {
+	return o
+}
+
+func (o FailoverPostgresCreateQueryParamsOutput) ToFailoverPostgresCreateQueryParamsOutputWithContext(ctx context.Context) FailoverPostgresCreateQueryParamsOutput {
+	return o
+}
+
+func (o FailoverPostgresCreateQueryParamsOutput) ToFailoverPostgresCreateQueryParamsPtrOutput() FailoverPostgresCreateQueryParamsPtrOutput {
+	return o.ToFailoverPostgresCreateQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (o FailoverPostgresCreateQueryParamsOutput) ToFailoverPostgresCreateQueryParamsPtrOutputWithContext(ctx context.Context) FailoverPostgresCreateQueryParamsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v FailoverPostgresCreateQueryParams) *FailoverPostgresCreateQueryParams {
+		return &v
+	}).(FailoverPostgresCreateQueryParamsPtrOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o FailoverPostgresCreateQueryParamsOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v FailoverPostgresCreateQueryParams) map[string]string { return v.AdditionalParams }).(pulumi.StringMapOutput)
+}
+
+type FailoverPostgresCreateQueryParamsPtrOutput struct{ *pulumi.OutputState }
+
+func (FailoverPostgresCreateQueryParamsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**FailoverPostgresCreateQueryParams)(nil)).Elem()
+}
+
+func (o FailoverPostgresCreateQueryParamsPtrOutput) ToFailoverPostgresCreateQueryParamsPtrOutput() FailoverPostgresCreateQueryParamsPtrOutput {
+	return o
+}
+
+func (o FailoverPostgresCreateQueryParamsPtrOutput) ToFailoverPostgresCreateQueryParamsPtrOutputWithContext(ctx context.Context) FailoverPostgresCreateQueryParamsPtrOutput {
+	return o
+}
+
+func (o FailoverPostgresCreateQueryParamsPtrOutput) Elem() FailoverPostgresCreateQueryParamsOutput {
+	return o.ApplyT(func(v *FailoverPostgresCreateQueryParams) FailoverPostgresCreateQueryParams {
+		if v != nil {
+			return *v
+		}
+		var ret FailoverPostgresCreateQueryParams
+		return ret
+	}).(FailoverPostgresCreateQueryParamsOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o FailoverPostgresCreateQueryParamsPtrOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *FailoverPostgresCreateQueryParams) map[string]string {
+		if v == nil {
+			return nil
+		}
+		return v.AdditionalParams
+	}).(pulumi.StringMapOutput)
+}
+
+// Query params for each of the operations of the resource.
+type FailoverPostgresQueryParams struct {
+	// Query params for the create operation.
+	Create *FailoverPostgresCreateQueryParams `pulumi:"create"`
+}
+
+// FailoverPostgresQueryParamsInput is an input type that accepts FailoverPostgresQueryParamsArgs and FailoverPostgresQueryParamsOutput values.
+// You can construct a concrete instance of `FailoverPostgresQueryParamsInput` via:
+//
+//	FailoverPostgresQueryParamsArgs{...}
+type FailoverPostgresQueryParamsInput interface {
+	pulumi.Input
+
+	ToFailoverPostgresQueryParamsOutput() FailoverPostgresQueryParamsOutput
+	ToFailoverPostgresQueryParamsOutputWithContext(context.Context) FailoverPostgresQueryParamsOutput
+}
+
+// Query params for each of the operations of the resource.
+type FailoverPostgresQueryParamsArgs struct {
+	// Query params for the create operation.
+	Create FailoverPostgresCreateQueryParamsPtrInput `pulumi:"create"`
+}
+
+func (FailoverPostgresQueryParamsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*FailoverPostgresQueryParams)(nil)).Elem()
+}
+
+func (i FailoverPostgresQueryParamsArgs) ToFailoverPostgresQueryParamsOutput() FailoverPostgresQueryParamsOutput {
+	return i.ToFailoverPostgresQueryParamsOutputWithContext(context.Background())
+}
+
+func (i FailoverPostgresQueryParamsArgs) ToFailoverPostgresQueryParamsOutputWithContext(ctx context.Context) FailoverPostgresQueryParamsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(FailoverPostgresQueryParamsOutput)
+}
+
+func (i FailoverPostgresQueryParamsArgs) ToFailoverPostgresQueryParamsPtrOutput() FailoverPostgresQueryParamsPtrOutput {
+	return i.ToFailoverPostgresQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i FailoverPostgresQueryParamsArgs) ToFailoverPostgresQueryParamsPtrOutputWithContext(ctx context.Context) FailoverPostgresQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(FailoverPostgresQueryParamsOutput).ToFailoverPostgresQueryParamsPtrOutputWithContext(ctx)
+}
+
+// FailoverPostgresQueryParamsPtrInput is an input type that accepts FailoverPostgresQueryParamsArgs, FailoverPostgresQueryParamsPtr and FailoverPostgresQueryParamsPtrOutput values.
+// You can construct a concrete instance of `FailoverPostgresQueryParamsPtrInput` via:
+//
+//	        FailoverPostgresQueryParamsArgs{...}
+//
+//	or:
+//
+//	        nil
+type FailoverPostgresQueryParamsPtrInput interface {
+	pulumi.Input
+
+	ToFailoverPostgresQueryParamsPtrOutput() FailoverPostgresQueryParamsPtrOutput
+	ToFailoverPostgresQueryParamsPtrOutputWithContext(context.Context) FailoverPostgresQueryParamsPtrOutput
+}
+
+type failoverPostgresQueryParamsPtrType FailoverPostgresQueryParamsArgs
+
+func FailoverPostgresQueryParamsPtr(v *FailoverPostgresQueryParamsArgs) FailoverPostgresQueryParamsPtrInput {
+	return (*failoverPostgresQueryParamsPtrType)(v)
+}
+
+func (*failoverPostgresQueryParamsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**FailoverPostgresQueryParams)(nil)).Elem()
+}
+
+func (i *failoverPostgresQueryParamsPtrType) ToFailoverPostgresQueryParamsPtrOutput() FailoverPostgresQueryParamsPtrOutput {
+	return i.ToFailoverPostgresQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i *failoverPostgresQueryParamsPtrType) ToFailoverPostgresQueryParamsPtrOutputWithContext(ctx context.Context) FailoverPostgresQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(FailoverPostgresQueryParamsPtrOutput)
+}
+
+// Query params for each of the operations of the resource.
+type FailoverPostgresQueryParamsOutput struct{ *pulumi.OutputState }
+
+func (FailoverPostgresQueryParamsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*FailoverPostgresQueryParams)(nil)).Elem()
+}
+
+func (o FailoverPostgresQueryParamsOutput) ToFailoverPostgresQueryParamsOutput() FailoverPostgresQueryParamsOutput {
+	return o
+}
+
+func (o FailoverPostgresQueryParamsOutput) ToFailoverPostgresQueryParamsOutputWithContext(ctx context.Context) FailoverPostgresQueryParamsOutput {
+	return o
+}
+
+func (o FailoverPostgresQueryParamsOutput) ToFailoverPostgresQueryParamsPtrOutput() FailoverPostgresQueryParamsPtrOutput {
+	return o.ToFailoverPostgresQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (o FailoverPostgresQueryParamsOutput) ToFailoverPostgresQueryParamsPtrOutputWithContext(ctx context.Context) FailoverPostgresQueryParamsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v FailoverPostgresQueryParams) *FailoverPostgresQueryParams {
+		return &v
+	}).(FailoverPostgresQueryParamsPtrOutput)
+}
+
+// Query params for the create operation.
+func (o FailoverPostgresQueryParamsOutput) Create() FailoverPostgresCreateQueryParamsPtrOutput {
+	return o.ApplyT(func(v FailoverPostgresQueryParams) *FailoverPostgresCreateQueryParams { return v.Create }).(FailoverPostgresCreateQueryParamsPtrOutput)
+}
+
+type FailoverPostgresQueryParamsPtrOutput struct{ *pulumi.OutputState }
+
+func (FailoverPostgresQueryParamsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**FailoverPostgresQueryParams)(nil)).Elem()
+}
+
+func (o FailoverPostgresQueryParamsPtrOutput) ToFailoverPostgresQueryParamsPtrOutput() FailoverPostgresQueryParamsPtrOutput {
+	return o
+}
+
+func (o FailoverPostgresQueryParamsPtrOutput) ToFailoverPostgresQueryParamsPtrOutputWithContext(ctx context.Context) FailoverPostgresQueryParamsPtrOutput {
+	return o
+}
+
+func (o FailoverPostgresQueryParamsPtrOutput) Elem() FailoverPostgresQueryParamsOutput {
+	return o.ApplyT(func(v *FailoverPostgresQueryParams) FailoverPostgresQueryParams {
+		if v != nil {
+			return *v
+		}
+		var ret FailoverPostgresQueryParams
+		return ret
+	}).(FailoverPostgresQueryParamsOutput)
+}
+
+// Query params for the create operation.
+func (o FailoverPostgresQueryParamsPtrOutput) Create() FailoverPostgresCreateQueryParamsPtrOutput {
+	return o.ApplyT(func(v *FailoverPostgresQueryParams) *FailoverPostgresCreateQueryParams {
+		if v == nil {
+			return nil
+		}
+		return v.Create
+	}).(FailoverPostgresCreateQueryParamsPtrOutput)
+}
+
+// Query params for the API request.
+type GetPostgresConnectionInfoQueryParams struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams map[string]string `pulumi:"additionalParams"`
+}
+
+// GetPostgresConnectionInfoQueryParamsInput is an input type that accepts GetPostgresConnectionInfoQueryParamsArgs and GetPostgresConnectionInfoQueryParamsOutput values.
+// You can construct a concrete instance of `GetPostgresConnectionInfoQueryParamsInput` via:
+//
+//	GetPostgresConnectionInfoQueryParamsArgs{...}
+type GetPostgresConnectionInfoQueryParamsInput interface {
+	pulumi.Input
+
+	ToGetPostgresConnectionInfoQueryParamsOutput() GetPostgresConnectionInfoQueryParamsOutput
+	ToGetPostgresConnectionInfoQueryParamsOutputWithContext(context.Context) GetPostgresConnectionInfoQueryParamsOutput
+}
+
+// Query params for the API request.
+type GetPostgresConnectionInfoQueryParamsArgs struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams pulumi.StringMapInput `pulumi:"additionalParams"`
+}
+
+func (GetPostgresConnectionInfoQueryParamsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetPostgresConnectionInfoQueryParams)(nil)).Elem()
+}
+
+func (i GetPostgresConnectionInfoQueryParamsArgs) ToGetPostgresConnectionInfoQueryParamsOutput() GetPostgresConnectionInfoQueryParamsOutput {
+	return i.ToGetPostgresConnectionInfoQueryParamsOutputWithContext(context.Background())
+}
+
+func (i GetPostgresConnectionInfoQueryParamsArgs) ToGetPostgresConnectionInfoQueryParamsOutputWithContext(ctx context.Context) GetPostgresConnectionInfoQueryParamsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetPostgresConnectionInfoQueryParamsOutput)
+}
+
+func (i GetPostgresConnectionInfoQueryParamsArgs) ToGetPostgresConnectionInfoQueryParamsPtrOutput() GetPostgresConnectionInfoQueryParamsPtrOutput {
+	return i.ToGetPostgresConnectionInfoQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i GetPostgresConnectionInfoQueryParamsArgs) ToGetPostgresConnectionInfoQueryParamsPtrOutputWithContext(ctx context.Context) GetPostgresConnectionInfoQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetPostgresConnectionInfoQueryParamsOutput).ToGetPostgresConnectionInfoQueryParamsPtrOutputWithContext(ctx)
+}
+
+// GetPostgresConnectionInfoQueryParamsPtrInput is an input type that accepts GetPostgresConnectionInfoQueryParamsArgs, GetPostgresConnectionInfoQueryParamsPtr and GetPostgresConnectionInfoQueryParamsPtrOutput values.
+// You can construct a concrete instance of `GetPostgresConnectionInfoQueryParamsPtrInput` via:
+//
+//	        GetPostgresConnectionInfoQueryParamsArgs{...}
+//
+//	or:
+//
+//	        nil
+type GetPostgresConnectionInfoQueryParamsPtrInput interface {
+	pulumi.Input
+
+	ToGetPostgresConnectionInfoQueryParamsPtrOutput() GetPostgresConnectionInfoQueryParamsPtrOutput
+	ToGetPostgresConnectionInfoQueryParamsPtrOutputWithContext(context.Context) GetPostgresConnectionInfoQueryParamsPtrOutput
+}
+
+type getPostgresConnectionInfoQueryParamsPtrType GetPostgresConnectionInfoQueryParamsArgs
+
+func GetPostgresConnectionInfoQueryParamsPtr(v *GetPostgresConnectionInfoQueryParamsArgs) GetPostgresConnectionInfoQueryParamsPtrInput {
+	return (*getPostgresConnectionInfoQueryParamsPtrType)(v)
+}
+
+func (*getPostgresConnectionInfoQueryParamsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**GetPostgresConnectionInfoQueryParams)(nil)).Elem()
+}
+
+func (i *getPostgresConnectionInfoQueryParamsPtrType) ToGetPostgresConnectionInfoQueryParamsPtrOutput() GetPostgresConnectionInfoQueryParamsPtrOutput {
+	return i.ToGetPostgresConnectionInfoQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i *getPostgresConnectionInfoQueryParamsPtrType) ToGetPostgresConnectionInfoQueryParamsPtrOutputWithContext(ctx context.Context) GetPostgresConnectionInfoQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetPostgresConnectionInfoQueryParamsPtrOutput)
+}
+
+// Query params for the API request.
+type GetPostgresConnectionInfoQueryParamsOutput struct{ *pulumi.OutputState }
+
+func (GetPostgresConnectionInfoQueryParamsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetPostgresConnectionInfoQueryParams)(nil)).Elem()
+}
+
+func (o GetPostgresConnectionInfoQueryParamsOutput) ToGetPostgresConnectionInfoQueryParamsOutput() GetPostgresConnectionInfoQueryParamsOutput {
+	return o
+}
+
+func (o GetPostgresConnectionInfoQueryParamsOutput) ToGetPostgresConnectionInfoQueryParamsOutputWithContext(ctx context.Context) GetPostgresConnectionInfoQueryParamsOutput {
+	return o
+}
+
+func (o GetPostgresConnectionInfoQueryParamsOutput) ToGetPostgresConnectionInfoQueryParamsPtrOutput() GetPostgresConnectionInfoQueryParamsPtrOutput {
+	return o.ToGetPostgresConnectionInfoQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (o GetPostgresConnectionInfoQueryParamsOutput) ToGetPostgresConnectionInfoQueryParamsPtrOutputWithContext(ctx context.Context) GetPostgresConnectionInfoQueryParamsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v GetPostgresConnectionInfoQueryParams) *GetPostgresConnectionInfoQueryParams {
+		return &v
+	}).(GetPostgresConnectionInfoQueryParamsPtrOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o GetPostgresConnectionInfoQueryParamsOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v GetPostgresConnectionInfoQueryParams) map[string]string { return v.AdditionalParams }).(pulumi.StringMapOutput)
+}
+
+type GetPostgresConnectionInfoQueryParamsPtrOutput struct{ *pulumi.OutputState }
+
+func (GetPostgresConnectionInfoQueryParamsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**GetPostgresConnectionInfoQueryParams)(nil)).Elem()
+}
+
+func (o GetPostgresConnectionInfoQueryParamsPtrOutput) ToGetPostgresConnectionInfoQueryParamsPtrOutput() GetPostgresConnectionInfoQueryParamsPtrOutput {
+	return o
+}
+
+func (o GetPostgresConnectionInfoQueryParamsPtrOutput) ToGetPostgresConnectionInfoQueryParamsPtrOutputWithContext(ctx context.Context) GetPostgresConnectionInfoQueryParamsPtrOutput {
+	return o
+}
+
+func (o GetPostgresConnectionInfoQueryParamsPtrOutput) Elem() GetPostgresConnectionInfoQueryParamsOutput {
+	return o.ApplyT(func(v *GetPostgresConnectionInfoQueryParams) GetPostgresConnectionInfoQueryParams {
+		if v != nil {
+			return *v
+		}
+		var ret GetPostgresConnectionInfoQueryParams
+		return ret
+	}).(GetPostgresConnectionInfoQueryParamsOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o GetPostgresConnectionInfoQueryParamsPtrOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *GetPostgresConnectionInfoQueryParams) map[string]string {
+		if v == nil {
+			return nil
+		}
+		return v.AdditionalParams
+	}).(pulumi.StringMapOutput)
+}
+
+// Query params for the API request.
+type GetPostgresQueryParams struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams map[string]string `pulumi:"additionalParams"`
+}
+
+// GetPostgresQueryParamsInput is an input type that accepts GetPostgresQueryParamsArgs and GetPostgresQueryParamsOutput values.
+// You can construct a concrete instance of `GetPostgresQueryParamsInput` via:
+//
+//	GetPostgresQueryParamsArgs{...}
+type GetPostgresQueryParamsInput interface {
+	pulumi.Input
+
+	ToGetPostgresQueryParamsOutput() GetPostgresQueryParamsOutput
+	ToGetPostgresQueryParamsOutputWithContext(context.Context) GetPostgresQueryParamsOutput
+}
+
+// Query params for the API request.
+type GetPostgresQueryParamsArgs struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams pulumi.StringMapInput `pulumi:"additionalParams"`
+}
+
+func (GetPostgresQueryParamsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetPostgresQueryParams)(nil)).Elem()
+}
+
+func (i GetPostgresQueryParamsArgs) ToGetPostgresQueryParamsOutput() GetPostgresQueryParamsOutput {
+	return i.ToGetPostgresQueryParamsOutputWithContext(context.Background())
+}
+
+func (i GetPostgresQueryParamsArgs) ToGetPostgresQueryParamsOutputWithContext(ctx context.Context) GetPostgresQueryParamsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetPostgresQueryParamsOutput)
+}
+
+func (i GetPostgresQueryParamsArgs) ToGetPostgresQueryParamsPtrOutput() GetPostgresQueryParamsPtrOutput {
+	return i.ToGetPostgresQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i GetPostgresQueryParamsArgs) ToGetPostgresQueryParamsPtrOutputWithContext(ctx context.Context) GetPostgresQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetPostgresQueryParamsOutput).ToGetPostgresQueryParamsPtrOutputWithContext(ctx)
+}
+
+// GetPostgresQueryParamsPtrInput is an input type that accepts GetPostgresQueryParamsArgs, GetPostgresQueryParamsPtr and GetPostgresQueryParamsPtrOutput values.
+// You can construct a concrete instance of `GetPostgresQueryParamsPtrInput` via:
+//
+//	        GetPostgresQueryParamsArgs{...}
+//
+//	or:
+//
+//	        nil
+type GetPostgresQueryParamsPtrInput interface {
+	pulumi.Input
+
+	ToGetPostgresQueryParamsPtrOutput() GetPostgresQueryParamsPtrOutput
+	ToGetPostgresQueryParamsPtrOutputWithContext(context.Context) GetPostgresQueryParamsPtrOutput
+}
+
+type getPostgresQueryParamsPtrType GetPostgresQueryParamsArgs
+
+func GetPostgresQueryParamsPtr(v *GetPostgresQueryParamsArgs) GetPostgresQueryParamsPtrInput {
+	return (*getPostgresQueryParamsPtrType)(v)
+}
+
+func (*getPostgresQueryParamsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**GetPostgresQueryParams)(nil)).Elem()
+}
+
+func (i *getPostgresQueryParamsPtrType) ToGetPostgresQueryParamsPtrOutput() GetPostgresQueryParamsPtrOutput {
+	return i.ToGetPostgresQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i *getPostgresQueryParamsPtrType) ToGetPostgresQueryParamsPtrOutputWithContext(ctx context.Context) GetPostgresQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetPostgresQueryParamsPtrOutput)
+}
+
+// Query params for the API request.
+type GetPostgresQueryParamsOutput struct{ *pulumi.OutputState }
+
+func (GetPostgresQueryParamsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetPostgresQueryParams)(nil)).Elem()
+}
+
+func (o GetPostgresQueryParamsOutput) ToGetPostgresQueryParamsOutput() GetPostgresQueryParamsOutput {
+	return o
+}
+
+func (o GetPostgresQueryParamsOutput) ToGetPostgresQueryParamsOutputWithContext(ctx context.Context) GetPostgresQueryParamsOutput {
+	return o
+}
+
+func (o GetPostgresQueryParamsOutput) ToGetPostgresQueryParamsPtrOutput() GetPostgresQueryParamsPtrOutput {
+	return o.ToGetPostgresQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (o GetPostgresQueryParamsOutput) ToGetPostgresQueryParamsPtrOutputWithContext(ctx context.Context) GetPostgresQueryParamsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v GetPostgresQueryParams) *GetPostgresQueryParams {
+		return &v
+	}).(GetPostgresQueryParamsPtrOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o GetPostgresQueryParamsOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v GetPostgresQueryParams) map[string]string { return v.AdditionalParams }).(pulumi.StringMapOutput)
+}
+
+type GetPostgresQueryParamsPtrOutput struct{ *pulumi.OutputState }
+
+func (GetPostgresQueryParamsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**GetPostgresQueryParams)(nil)).Elem()
+}
+
+func (o GetPostgresQueryParamsPtrOutput) ToGetPostgresQueryParamsPtrOutput() GetPostgresQueryParamsPtrOutput {
+	return o
+}
+
+func (o GetPostgresQueryParamsPtrOutput) ToGetPostgresQueryParamsPtrOutputWithContext(ctx context.Context) GetPostgresQueryParamsPtrOutput {
+	return o
+}
+
+func (o GetPostgresQueryParamsPtrOutput) Elem() GetPostgresQueryParamsOutput {
+	return o.ApplyT(func(v *GetPostgresQueryParams) GetPostgresQueryParams {
+		if v != nil {
+			return *v
+		}
+		var ret GetPostgresQueryParams
+		return ret
+	}).(GetPostgresQueryParamsOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o GetPostgresQueryParamsPtrOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *GetPostgresQueryParams) map[string]string {
+		if v == nil {
+			return nil
+		}
+		return v.AdditionalParams
+	}).(pulumi.StringMapOutput)
+}
+
 type GetPostgresRecoveryInfoProperties struct {
 	// Availability of point-in-time recovery.
 	RecoveryStatus GetPostgresRecoveryInfoPropertiesRecoveryStatus `pulumi:"recoveryStatus"`
 	StartsAt       *string                                         `pulumi:"startsAt"`
+}
+
+// Query params for the API request.
+type GetPostgresRecoveryInfoQueryParams struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams map[string]string `pulumi:"additionalParams"`
+}
+
+// GetPostgresRecoveryInfoQueryParamsInput is an input type that accepts GetPostgresRecoveryInfoQueryParamsArgs and GetPostgresRecoveryInfoQueryParamsOutput values.
+// You can construct a concrete instance of `GetPostgresRecoveryInfoQueryParamsInput` via:
+//
+//	GetPostgresRecoveryInfoQueryParamsArgs{...}
+type GetPostgresRecoveryInfoQueryParamsInput interface {
+	pulumi.Input
+
+	ToGetPostgresRecoveryInfoQueryParamsOutput() GetPostgresRecoveryInfoQueryParamsOutput
+	ToGetPostgresRecoveryInfoQueryParamsOutputWithContext(context.Context) GetPostgresRecoveryInfoQueryParamsOutput
+}
+
+// Query params for the API request.
+type GetPostgresRecoveryInfoQueryParamsArgs struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams pulumi.StringMapInput `pulumi:"additionalParams"`
+}
+
+func (GetPostgresRecoveryInfoQueryParamsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetPostgresRecoveryInfoQueryParams)(nil)).Elem()
+}
+
+func (i GetPostgresRecoveryInfoQueryParamsArgs) ToGetPostgresRecoveryInfoQueryParamsOutput() GetPostgresRecoveryInfoQueryParamsOutput {
+	return i.ToGetPostgresRecoveryInfoQueryParamsOutputWithContext(context.Background())
+}
+
+func (i GetPostgresRecoveryInfoQueryParamsArgs) ToGetPostgresRecoveryInfoQueryParamsOutputWithContext(ctx context.Context) GetPostgresRecoveryInfoQueryParamsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetPostgresRecoveryInfoQueryParamsOutput)
+}
+
+func (i GetPostgresRecoveryInfoQueryParamsArgs) ToGetPostgresRecoveryInfoQueryParamsPtrOutput() GetPostgresRecoveryInfoQueryParamsPtrOutput {
+	return i.ToGetPostgresRecoveryInfoQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i GetPostgresRecoveryInfoQueryParamsArgs) ToGetPostgresRecoveryInfoQueryParamsPtrOutputWithContext(ctx context.Context) GetPostgresRecoveryInfoQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetPostgresRecoveryInfoQueryParamsOutput).ToGetPostgresRecoveryInfoQueryParamsPtrOutputWithContext(ctx)
+}
+
+// GetPostgresRecoveryInfoQueryParamsPtrInput is an input type that accepts GetPostgresRecoveryInfoQueryParamsArgs, GetPostgresRecoveryInfoQueryParamsPtr and GetPostgresRecoveryInfoQueryParamsPtrOutput values.
+// You can construct a concrete instance of `GetPostgresRecoveryInfoQueryParamsPtrInput` via:
+//
+//	        GetPostgresRecoveryInfoQueryParamsArgs{...}
+//
+//	or:
+//
+//	        nil
+type GetPostgresRecoveryInfoQueryParamsPtrInput interface {
+	pulumi.Input
+
+	ToGetPostgresRecoveryInfoQueryParamsPtrOutput() GetPostgresRecoveryInfoQueryParamsPtrOutput
+	ToGetPostgresRecoveryInfoQueryParamsPtrOutputWithContext(context.Context) GetPostgresRecoveryInfoQueryParamsPtrOutput
+}
+
+type getPostgresRecoveryInfoQueryParamsPtrType GetPostgresRecoveryInfoQueryParamsArgs
+
+func GetPostgresRecoveryInfoQueryParamsPtr(v *GetPostgresRecoveryInfoQueryParamsArgs) GetPostgresRecoveryInfoQueryParamsPtrInput {
+	return (*getPostgresRecoveryInfoQueryParamsPtrType)(v)
+}
+
+func (*getPostgresRecoveryInfoQueryParamsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**GetPostgresRecoveryInfoQueryParams)(nil)).Elem()
+}
+
+func (i *getPostgresRecoveryInfoQueryParamsPtrType) ToGetPostgresRecoveryInfoQueryParamsPtrOutput() GetPostgresRecoveryInfoQueryParamsPtrOutput {
+	return i.ToGetPostgresRecoveryInfoQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i *getPostgresRecoveryInfoQueryParamsPtrType) ToGetPostgresRecoveryInfoQueryParamsPtrOutputWithContext(ctx context.Context) GetPostgresRecoveryInfoQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetPostgresRecoveryInfoQueryParamsPtrOutput)
+}
+
+// Query params for the API request.
+type GetPostgresRecoveryInfoQueryParamsOutput struct{ *pulumi.OutputState }
+
+func (GetPostgresRecoveryInfoQueryParamsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetPostgresRecoveryInfoQueryParams)(nil)).Elem()
+}
+
+func (o GetPostgresRecoveryInfoQueryParamsOutput) ToGetPostgresRecoveryInfoQueryParamsOutput() GetPostgresRecoveryInfoQueryParamsOutput {
+	return o
+}
+
+func (o GetPostgresRecoveryInfoQueryParamsOutput) ToGetPostgresRecoveryInfoQueryParamsOutputWithContext(ctx context.Context) GetPostgresRecoveryInfoQueryParamsOutput {
+	return o
+}
+
+func (o GetPostgresRecoveryInfoQueryParamsOutput) ToGetPostgresRecoveryInfoQueryParamsPtrOutput() GetPostgresRecoveryInfoQueryParamsPtrOutput {
+	return o.ToGetPostgresRecoveryInfoQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (o GetPostgresRecoveryInfoQueryParamsOutput) ToGetPostgresRecoveryInfoQueryParamsPtrOutputWithContext(ctx context.Context) GetPostgresRecoveryInfoQueryParamsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v GetPostgresRecoveryInfoQueryParams) *GetPostgresRecoveryInfoQueryParams {
+		return &v
+	}).(GetPostgresRecoveryInfoQueryParamsPtrOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o GetPostgresRecoveryInfoQueryParamsOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v GetPostgresRecoveryInfoQueryParams) map[string]string { return v.AdditionalParams }).(pulumi.StringMapOutput)
+}
+
+type GetPostgresRecoveryInfoQueryParamsPtrOutput struct{ *pulumi.OutputState }
+
+func (GetPostgresRecoveryInfoQueryParamsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**GetPostgresRecoveryInfoQueryParams)(nil)).Elem()
+}
+
+func (o GetPostgresRecoveryInfoQueryParamsPtrOutput) ToGetPostgresRecoveryInfoQueryParamsPtrOutput() GetPostgresRecoveryInfoQueryParamsPtrOutput {
+	return o
+}
+
+func (o GetPostgresRecoveryInfoQueryParamsPtrOutput) ToGetPostgresRecoveryInfoQueryParamsPtrOutputWithContext(ctx context.Context) GetPostgresRecoveryInfoQueryParamsPtrOutput {
+	return o
+}
+
+func (o GetPostgresRecoveryInfoQueryParamsPtrOutput) Elem() GetPostgresRecoveryInfoQueryParamsOutput {
+	return o.ApplyT(func(v *GetPostgresRecoveryInfoQueryParams) GetPostgresRecoveryInfoQueryParams {
+		if v != nil {
+			return *v
+		}
+		var ret GetPostgresRecoveryInfoQueryParams
+		return ret
+	}).(GetPostgresRecoveryInfoQueryParamsOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o GetPostgresRecoveryInfoQueryParamsPtrOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *GetPostgresRecoveryInfoQueryParams) map[string]string {
+		if v == nil {
+			return nil
+		}
+		return v.AdditionalParams
+	}).(pulumi.StringMapOutput)
 }
 
 type ListPostgresExportItemProperties struct {
@@ -174,6 +874,545 @@ func (o ListPostgresExportItemPropertiesArrayOutput) Index(i pulumi.IntInput) Li
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ListPostgresExportItemProperties {
 		return vs[0].([]ListPostgresExportItemProperties)[vs[1].(int)]
 	}).(ListPostgresExportItemPropertiesOutput)
+}
+
+// Query params for the API request.
+type ListPostgresExportQueryParams struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams map[string]string `pulumi:"additionalParams"`
+}
+
+// ListPostgresExportQueryParamsInput is an input type that accepts ListPostgresExportQueryParamsArgs and ListPostgresExportQueryParamsOutput values.
+// You can construct a concrete instance of `ListPostgresExportQueryParamsInput` via:
+//
+//	ListPostgresExportQueryParamsArgs{...}
+type ListPostgresExportQueryParamsInput interface {
+	pulumi.Input
+
+	ToListPostgresExportQueryParamsOutput() ListPostgresExportQueryParamsOutput
+	ToListPostgresExportQueryParamsOutputWithContext(context.Context) ListPostgresExportQueryParamsOutput
+}
+
+// Query params for the API request.
+type ListPostgresExportQueryParamsArgs struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams pulumi.StringMapInput `pulumi:"additionalParams"`
+}
+
+func (ListPostgresExportQueryParamsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ListPostgresExportQueryParams)(nil)).Elem()
+}
+
+func (i ListPostgresExportQueryParamsArgs) ToListPostgresExportQueryParamsOutput() ListPostgresExportQueryParamsOutput {
+	return i.ToListPostgresExportQueryParamsOutputWithContext(context.Background())
+}
+
+func (i ListPostgresExportQueryParamsArgs) ToListPostgresExportQueryParamsOutputWithContext(ctx context.Context) ListPostgresExportQueryParamsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ListPostgresExportQueryParamsOutput)
+}
+
+func (i ListPostgresExportQueryParamsArgs) ToListPostgresExportQueryParamsPtrOutput() ListPostgresExportQueryParamsPtrOutput {
+	return i.ToListPostgresExportQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i ListPostgresExportQueryParamsArgs) ToListPostgresExportQueryParamsPtrOutputWithContext(ctx context.Context) ListPostgresExportQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ListPostgresExportQueryParamsOutput).ToListPostgresExportQueryParamsPtrOutputWithContext(ctx)
+}
+
+// ListPostgresExportQueryParamsPtrInput is an input type that accepts ListPostgresExportQueryParamsArgs, ListPostgresExportQueryParamsPtr and ListPostgresExportQueryParamsPtrOutput values.
+// You can construct a concrete instance of `ListPostgresExportQueryParamsPtrInput` via:
+//
+//	        ListPostgresExportQueryParamsArgs{...}
+//
+//	or:
+//
+//	        nil
+type ListPostgresExportQueryParamsPtrInput interface {
+	pulumi.Input
+
+	ToListPostgresExportQueryParamsPtrOutput() ListPostgresExportQueryParamsPtrOutput
+	ToListPostgresExportQueryParamsPtrOutputWithContext(context.Context) ListPostgresExportQueryParamsPtrOutput
+}
+
+type listPostgresExportQueryParamsPtrType ListPostgresExportQueryParamsArgs
+
+func ListPostgresExportQueryParamsPtr(v *ListPostgresExportQueryParamsArgs) ListPostgresExportQueryParamsPtrInput {
+	return (*listPostgresExportQueryParamsPtrType)(v)
+}
+
+func (*listPostgresExportQueryParamsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**ListPostgresExportQueryParams)(nil)).Elem()
+}
+
+func (i *listPostgresExportQueryParamsPtrType) ToListPostgresExportQueryParamsPtrOutput() ListPostgresExportQueryParamsPtrOutput {
+	return i.ToListPostgresExportQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i *listPostgresExportQueryParamsPtrType) ToListPostgresExportQueryParamsPtrOutputWithContext(ctx context.Context) ListPostgresExportQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ListPostgresExportQueryParamsPtrOutput)
+}
+
+// Query params for the API request.
+type ListPostgresExportQueryParamsOutput struct{ *pulumi.OutputState }
+
+func (ListPostgresExportQueryParamsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ListPostgresExportQueryParams)(nil)).Elem()
+}
+
+func (o ListPostgresExportQueryParamsOutput) ToListPostgresExportQueryParamsOutput() ListPostgresExportQueryParamsOutput {
+	return o
+}
+
+func (o ListPostgresExportQueryParamsOutput) ToListPostgresExportQueryParamsOutputWithContext(ctx context.Context) ListPostgresExportQueryParamsOutput {
+	return o
+}
+
+func (o ListPostgresExportQueryParamsOutput) ToListPostgresExportQueryParamsPtrOutput() ListPostgresExportQueryParamsPtrOutput {
+	return o.ToListPostgresExportQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (o ListPostgresExportQueryParamsOutput) ToListPostgresExportQueryParamsPtrOutputWithContext(ctx context.Context) ListPostgresExportQueryParamsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v ListPostgresExportQueryParams) *ListPostgresExportQueryParams {
+		return &v
+	}).(ListPostgresExportQueryParamsPtrOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o ListPostgresExportQueryParamsOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v ListPostgresExportQueryParams) map[string]string { return v.AdditionalParams }).(pulumi.StringMapOutput)
+}
+
+type ListPostgresExportQueryParamsPtrOutput struct{ *pulumi.OutputState }
+
+func (ListPostgresExportQueryParamsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ListPostgresExportQueryParams)(nil)).Elem()
+}
+
+func (o ListPostgresExportQueryParamsPtrOutput) ToListPostgresExportQueryParamsPtrOutput() ListPostgresExportQueryParamsPtrOutput {
+	return o
+}
+
+func (o ListPostgresExportQueryParamsPtrOutput) ToListPostgresExportQueryParamsPtrOutputWithContext(ctx context.Context) ListPostgresExportQueryParamsPtrOutput {
+	return o
+}
+
+func (o ListPostgresExportQueryParamsPtrOutput) Elem() ListPostgresExportQueryParamsOutput {
+	return o.ApplyT(func(v *ListPostgresExportQueryParams) ListPostgresExportQueryParams {
+		if v != nil {
+			return *v
+		}
+		var ret ListPostgresExportQueryParams
+		return ret
+	}).(ListPostgresExportQueryParamsOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o ListPostgresExportQueryParamsPtrOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *ListPostgresExportQueryParams) map[string]string {
+		if v == nil {
+			return nil
+		}
+		return v.AdditionalParams
+	}).(pulumi.StringMapOutput)
+}
+
+// Query params for the API request.
+type ListPostgresQueryParams struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams map[string]string `pulumi:"additionalParams"`
+	// Filter for resources created after a certain time (specified as an ISO 8601 timestamp)
+	CreatedAfter *string `pulumi:"createdAfter"`
+	// Filter for resources created before a certain time (specified as an ISO 8601 timestamp)
+	CreatedBefore *string `pulumi:"createdBefore"`
+	// The position in the result list to start from when fetching paginated results. For details, see [Pagination](https://api-docs.render.com/reference/pagination).
+	Cursor *string `pulumi:"cursor"`
+	// Filter for resources that belong to an environment
+	EnvironmentId []string `pulumi:"environmentId"`
+	// Include replicas in the response
+	IncludeReplicas *bool `pulumi:"includeReplicas"`
+	// The maximum number of items to return. For details, see [Pagination](https://api-docs.render.com/reference/pagination).
+	Limit *int `pulumi:"limit"`
+	// Filter by name
+	Name []string `pulumi:"name"`
+	// The ID of the workspaces to return resources for
+	OwnerId []string `pulumi:"ownerId"`
+	// Filter by resource region
+	Region []ListPostgresQueryParamsRegionItem `pulumi:"region"`
+	// Filter resources based on whether they're suspended or not suspended
+	Suspended []ListPostgresQueryParamsSuspendedItem `pulumi:"suspended"`
+	// Filter for resources updated after a certain time (specified as an ISO 8601 timestamp)
+	UpdatedAfter *string `pulumi:"updatedAfter"`
+	// Filter for resources updated before a certain time (specified as an ISO 8601 timestamp)
+	UpdatedBefore *string `pulumi:"updatedBefore"`
+}
+
+// Defaults sets the appropriate defaults for ListPostgresQueryParams
+func (val *ListPostgresQueryParams) Defaults() *ListPostgresQueryParams {
+	if val == nil {
+		return nil
+	}
+	tmp := *val
+	if tmp.IncludeReplicas == nil {
+		includeReplicas_ := true
+		tmp.IncludeReplicas = &includeReplicas_
+	}
+	if tmp.Limit == nil {
+		limit_ := 20
+		tmp.Limit = &limit_
+	}
+	return &tmp
+}
+
+// ListPostgresQueryParamsInput is an input type that accepts ListPostgresQueryParamsArgs and ListPostgresQueryParamsOutput values.
+// You can construct a concrete instance of `ListPostgresQueryParamsInput` via:
+//
+//	ListPostgresQueryParamsArgs{...}
+type ListPostgresQueryParamsInput interface {
+	pulumi.Input
+
+	ToListPostgresQueryParamsOutput() ListPostgresQueryParamsOutput
+	ToListPostgresQueryParamsOutputWithContext(context.Context) ListPostgresQueryParamsOutput
+}
+
+// Query params for the API request.
+type ListPostgresQueryParamsArgs struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams pulumi.StringMapInput `pulumi:"additionalParams"`
+	// Filter for resources created after a certain time (specified as an ISO 8601 timestamp)
+	CreatedAfter pulumi.StringPtrInput `pulumi:"createdAfter"`
+	// Filter for resources created before a certain time (specified as an ISO 8601 timestamp)
+	CreatedBefore pulumi.StringPtrInput `pulumi:"createdBefore"`
+	// The position in the result list to start from when fetching paginated results. For details, see [Pagination](https://api-docs.render.com/reference/pagination).
+	Cursor pulumi.StringPtrInput `pulumi:"cursor"`
+	// Filter for resources that belong to an environment
+	EnvironmentId pulumi.StringArrayInput `pulumi:"environmentId"`
+	// Include replicas in the response
+	IncludeReplicas pulumi.BoolPtrInput `pulumi:"includeReplicas"`
+	// The maximum number of items to return. For details, see [Pagination](https://api-docs.render.com/reference/pagination).
+	Limit pulumi.IntPtrInput `pulumi:"limit"`
+	// Filter by name
+	Name pulumi.StringArrayInput `pulumi:"name"`
+	// The ID of the workspaces to return resources for
+	OwnerId pulumi.StringArrayInput `pulumi:"ownerId"`
+	// Filter by resource region
+	Region ListPostgresQueryParamsRegionItemArrayInput `pulumi:"region"`
+	// Filter resources based on whether they're suspended or not suspended
+	Suspended ListPostgresQueryParamsSuspendedItemArrayInput `pulumi:"suspended"`
+	// Filter for resources updated after a certain time (specified as an ISO 8601 timestamp)
+	UpdatedAfter pulumi.StringPtrInput `pulumi:"updatedAfter"`
+	// Filter for resources updated before a certain time (specified as an ISO 8601 timestamp)
+	UpdatedBefore pulumi.StringPtrInput `pulumi:"updatedBefore"`
+}
+
+// Defaults sets the appropriate defaults for ListPostgresQueryParamsArgs
+func (val *ListPostgresQueryParamsArgs) Defaults() *ListPostgresQueryParamsArgs {
+	if val == nil {
+		return nil
+	}
+	tmp := *val
+	if tmp.IncludeReplicas == nil {
+		tmp.IncludeReplicas = pulumi.BoolPtr(true)
+	}
+	if tmp.Limit == nil {
+		tmp.Limit = pulumi.IntPtr(20)
+	}
+	return &tmp
+}
+func (ListPostgresQueryParamsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ListPostgresQueryParams)(nil)).Elem()
+}
+
+func (i ListPostgresQueryParamsArgs) ToListPostgresQueryParamsOutput() ListPostgresQueryParamsOutput {
+	return i.ToListPostgresQueryParamsOutputWithContext(context.Background())
+}
+
+func (i ListPostgresQueryParamsArgs) ToListPostgresQueryParamsOutputWithContext(ctx context.Context) ListPostgresQueryParamsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ListPostgresQueryParamsOutput)
+}
+
+func (i ListPostgresQueryParamsArgs) ToListPostgresQueryParamsPtrOutput() ListPostgresQueryParamsPtrOutput {
+	return i.ToListPostgresQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i ListPostgresQueryParamsArgs) ToListPostgresQueryParamsPtrOutputWithContext(ctx context.Context) ListPostgresQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ListPostgresQueryParamsOutput).ToListPostgresQueryParamsPtrOutputWithContext(ctx)
+}
+
+// ListPostgresQueryParamsPtrInput is an input type that accepts ListPostgresQueryParamsArgs, ListPostgresQueryParamsPtr and ListPostgresQueryParamsPtrOutput values.
+// You can construct a concrete instance of `ListPostgresQueryParamsPtrInput` via:
+//
+//	        ListPostgresQueryParamsArgs{...}
+//
+//	or:
+//
+//	        nil
+type ListPostgresQueryParamsPtrInput interface {
+	pulumi.Input
+
+	ToListPostgresQueryParamsPtrOutput() ListPostgresQueryParamsPtrOutput
+	ToListPostgresQueryParamsPtrOutputWithContext(context.Context) ListPostgresQueryParamsPtrOutput
+}
+
+type listPostgresQueryParamsPtrType ListPostgresQueryParamsArgs
+
+func ListPostgresQueryParamsPtr(v *ListPostgresQueryParamsArgs) ListPostgresQueryParamsPtrInput {
+	return (*listPostgresQueryParamsPtrType)(v)
+}
+
+func (*listPostgresQueryParamsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**ListPostgresQueryParams)(nil)).Elem()
+}
+
+func (i *listPostgresQueryParamsPtrType) ToListPostgresQueryParamsPtrOutput() ListPostgresQueryParamsPtrOutput {
+	return i.ToListPostgresQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i *listPostgresQueryParamsPtrType) ToListPostgresQueryParamsPtrOutputWithContext(ctx context.Context) ListPostgresQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ListPostgresQueryParamsPtrOutput)
+}
+
+// Query params for the API request.
+type ListPostgresQueryParamsOutput struct{ *pulumi.OutputState }
+
+func (ListPostgresQueryParamsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ListPostgresQueryParams)(nil)).Elem()
+}
+
+func (o ListPostgresQueryParamsOutput) ToListPostgresQueryParamsOutput() ListPostgresQueryParamsOutput {
+	return o
+}
+
+func (o ListPostgresQueryParamsOutput) ToListPostgresQueryParamsOutputWithContext(ctx context.Context) ListPostgresQueryParamsOutput {
+	return o
+}
+
+func (o ListPostgresQueryParamsOutput) ToListPostgresQueryParamsPtrOutput() ListPostgresQueryParamsPtrOutput {
+	return o.ToListPostgresQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (o ListPostgresQueryParamsOutput) ToListPostgresQueryParamsPtrOutputWithContext(ctx context.Context) ListPostgresQueryParamsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v ListPostgresQueryParams) *ListPostgresQueryParams {
+		return &v
+	}).(ListPostgresQueryParamsPtrOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o ListPostgresQueryParamsOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v ListPostgresQueryParams) map[string]string { return v.AdditionalParams }).(pulumi.StringMapOutput)
+}
+
+// Filter for resources created after a certain time (specified as an ISO 8601 timestamp)
+func (o ListPostgresQueryParamsOutput) CreatedAfter() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ListPostgresQueryParams) *string { return v.CreatedAfter }).(pulumi.StringPtrOutput)
+}
+
+// Filter for resources created before a certain time (specified as an ISO 8601 timestamp)
+func (o ListPostgresQueryParamsOutput) CreatedBefore() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ListPostgresQueryParams) *string { return v.CreatedBefore }).(pulumi.StringPtrOutput)
+}
+
+// The position in the result list to start from when fetching paginated results. For details, see [Pagination](https://api-docs.render.com/reference/pagination).
+func (o ListPostgresQueryParamsOutput) Cursor() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ListPostgresQueryParams) *string { return v.Cursor }).(pulumi.StringPtrOutput)
+}
+
+// Filter for resources that belong to an environment
+func (o ListPostgresQueryParamsOutput) EnvironmentId() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v ListPostgresQueryParams) []string { return v.EnvironmentId }).(pulumi.StringArrayOutput)
+}
+
+// Include replicas in the response
+func (o ListPostgresQueryParamsOutput) IncludeReplicas() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v ListPostgresQueryParams) *bool { return v.IncludeReplicas }).(pulumi.BoolPtrOutput)
+}
+
+// The maximum number of items to return. For details, see [Pagination](https://api-docs.render.com/reference/pagination).
+func (o ListPostgresQueryParamsOutput) Limit() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v ListPostgresQueryParams) *int { return v.Limit }).(pulumi.IntPtrOutput)
+}
+
+// Filter by name
+func (o ListPostgresQueryParamsOutput) Name() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v ListPostgresQueryParams) []string { return v.Name }).(pulumi.StringArrayOutput)
+}
+
+// The ID of the workspaces to return resources for
+func (o ListPostgresQueryParamsOutput) OwnerId() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v ListPostgresQueryParams) []string { return v.OwnerId }).(pulumi.StringArrayOutput)
+}
+
+// Filter by resource region
+func (o ListPostgresQueryParamsOutput) Region() ListPostgresQueryParamsRegionItemArrayOutput {
+	return o.ApplyT(func(v ListPostgresQueryParams) []ListPostgresQueryParamsRegionItem { return v.Region }).(ListPostgresQueryParamsRegionItemArrayOutput)
+}
+
+// Filter resources based on whether they're suspended or not suspended
+func (o ListPostgresQueryParamsOutput) Suspended() ListPostgresQueryParamsSuspendedItemArrayOutput {
+	return o.ApplyT(func(v ListPostgresQueryParams) []ListPostgresQueryParamsSuspendedItem { return v.Suspended }).(ListPostgresQueryParamsSuspendedItemArrayOutput)
+}
+
+// Filter for resources updated after a certain time (specified as an ISO 8601 timestamp)
+func (o ListPostgresQueryParamsOutput) UpdatedAfter() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ListPostgresQueryParams) *string { return v.UpdatedAfter }).(pulumi.StringPtrOutput)
+}
+
+// Filter for resources updated before a certain time (specified as an ISO 8601 timestamp)
+func (o ListPostgresQueryParamsOutput) UpdatedBefore() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ListPostgresQueryParams) *string { return v.UpdatedBefore }).(pulumi.StringPtrOutput)
+}
+
+type ListPostgresQueryParamsPtrOutput struct{ *pulumi.OutputState }
+
+func (ListPostgresQueryParamsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ListPostgresQueryParams)(nil)).Elem()
+}
+
+func (o ListPostgresQueryParamsPtrOutput) ToListPostgresQueryParamsPtrOutput() ListPostgresQueryParamsPtrOutput {
+	return o
+}
+
+func (o ListPostgresQueryParamsPtrOutput) ToListPostgresQueryParamsPtrOutputWithContext(ctx context.Context) ListPostgresQueryParamsPtrOutput {
+	return o
+}
+
+func (o ListPostgresQueryParamsPtrOutput) Elem() ListPostgresQueryParamsOutput {
+	return o.ApplyT(func(v *ListPostgresQueryParams) ListPostgresQueryParams {
+		if v != nil {
+			return *v
+		}
+		var ret ListPostgresQueryParams
+		return ret
+	}).(ListPostgresQueryParamsOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o ListPostgresQueryParamsPtrOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *ListPostgresQueryParams) map[string]string {
+		if v == nil {
+			return nil
+		}
+		return v.AdditionalParams
+	}).(pulumi.StringMapOutput)
+}
+
+// Filter for resources created after a certain time (specified as an ISO 8601 timestamp)
+func (o ListPostgresQueryParamsPtrOutput) CreatedAfter() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ListPostgresQueryParams) *string {
+		if v == nil {
+			return nil
+		}
+		return v.CreatedAfter
+	}).(pulumi.StringPtrOutput)
+}
+
+// Filter for resources created before a certain time (specified as an ISO 8601 timestamp)
+func (o ListPostgresQueryParamsPtrOutput) CreatedBefore() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ListPostgresQueryParams) *string {
+		if v == nil {
+			return nil
+		}
+		return v.CreatedBefore
+	}).(pulumi.StringPtrOutput)
+}
+
+// The position in the result list to start from when fetching paginated results. For details, see [Pagination](https://api-docs.render.com/reference/pagination).
+func (o ListPostgresQueryParamsPtrOutput) Cursor() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ListPostgresQueryParams) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Cursor
+	}).(pulumi.StringPtrOutput)
+}
+
+// Filter for resources that belong to an environment
+func (o ListPostgresQueryParamsPtrOutput) EnvironmentId() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *ListPostgresQueryParams) []string {
+		if v == nil {
+			return nil
+		}
+		return v.EnvironmentId
+	}).(pulumi.StringArrayOutput)
+}
+
+// Include replicas in the response
+func (o ListPostgresQueryParamsPtrOutput) IncludeReplicas() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *ListPostgresQueryParams) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.IncludeReplicas
+	}).(pulumi.BoolPtrOutput)
+}
+
+// The maximum number of items to return. For details, see [Pagination](https://api-docs.render.com/reference/pagination).
+func (o ListPostgresQueryParamsPtrOutput) Limit() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *ListPostgresQueryParams) *int {
+		if v == nil {
+			return nil
+		}
+		return v.Limit
+	}).(pulumi.IntPtrOutput)
+}
+
+// Filter by name
+func (o ListPostgresQueryParamsPtrOutput) Name() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *ListPostgresQueryParams) []string {
+		if v == nil {
+			return nil
+		}
+		return v.Name
+	}).(pulumi.StringArrayOutput)
+}
+
+// The ID of the workspaces to return resources for
+func (o ListPostgresQueryParamsPtrOutput) OwnerId() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *ListPostgresQueryParams) []string {
+		if v == nil {
+			return nil
+		}
+		return v.OwnerId
+	}).(pulumi.StringArrayOutput)
+}
+
+// Filter by resource region
+func (o ListPostgresQueryParamsPtrOutput) Region() ListPostgresQueryParamsRegionItemArrayOutput {
+	return o.ApplyT(func(v *ListPostgresQueryParams) []ListPostgresQueryParamsRegionItem {
+		if v == nil {
+			return nil
+		}
+		return v.Region
+	}).(ListPostgresQueryParamsRegionItemArrayOutput)
+}
+
+// Filter resources based on whether they're suspended or not suspended
+func (o ListPostgresQueryParamsPtrOutput) Suspended() ListPostgresQueryParamsSuspendedItemArrayOutput {
+	return o.ApplyT(func(v *ListPostgresQueryParams) []ListPostgresQueryParamsSuspendedItem {
+		if v == nil {
+			return nil
+		}
+		return v.Suspended
+	}).(ListPostgresQueryParamsSuspendedItemArrayOutput)
+}
+
+// Filter for resources updated after a certain time (specified as an ISO 8601 timestamp)
+func (o ListPostgresQueryParamsPtrOutput) UpdatedAfter() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ListPostgresQueryParams) *string {
+		if v == nil {
+			return nil
+		}
+		return v.UpdatedAfter
+	}).(pulumi.StringPtrOutput)
+}
+
+// Filter for resources updated before a certain time (specified as an ISO 8601 timestamp)
+func (o ListPostgresQueryParamsPtrOutput) UpdatedBefore() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ListPostgresQueryParams) *string {
+		if v == nil {
+			return nil
+		}
+		return v.UpdatedBefore
+	}).(pulumi.StringPtrOutput)
 }
 
 type Owner struct {
@@ -374,6 +1613,286 @@ type PostgresConnectionInfo struct {
 	PsqlCommand              string `pulumi:"psqlCommand"`
 }
 
+// Query params for the API request.
+type PostgresCreateQueryParams struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams map[string]string `pulumi:"additionalParams"`
+}
+
+// PostgresCreateQueryParamsInput is an input type that accepts PostgresCreateQueryParamsArgs and PostgresCreateQueryParamsOutput values.
+// You can construct a concrete instance of `PostgresCreateQueryParamsInput` via:
+//
+//	PostgresCreateQueryParamsArgs{...}
+type PostgresCreateQueryParamsInput interface {
+	pulumi.Input
+
+	ToPostgresCreateQueryParamsOutput() PostgresCreateQueryParamsOutput
+	ToPostgresCreateQueryParamsOutputWithContext(context.Context) PostgresCreateQueryParamsOutput
+}
+
+// Query params for the API request.
+type PostgresCreateQueryParamsArgs struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams pulumi.StringMapInput `pulumi:"additionalParams"`
+}
+
+func (PostgresCreateQueryParamsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*PostgresCreateQueryParams)(nil)).Elem()
+}
+
+func (i PostgresCreateQueryParamsArgs) ToPostgresCreateQueryParamsOutput() PostgresCreateQueryParamsOutput {
+	return i.ToPostgresCreateQueryParamsOutputWithContext(context.Background())
+}
+
+func (i PostgresCreateQueryParamsArgs) ToPostgresCreateQueryParamsOutputWithContext(ctx context.Context) PostgresCreateQueryParamsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(PostgresCreateQueryParamsOutput)
+}
+
+func (i PostgresCreateQueryParamsArgs) ToPostgresCreateQueryParamsPtrOutput() PostgresCreateQueryParamsPtrOutput {
+	return i.ToPostgresCreateQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i PostgresCreateQueryParamsArgs) ToPostgresCreateQueryParamsPtrOutputWithContext(ctx context.Context) PostgresCreateQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(PostgresCreateQueryParamsOutput).ToPostgresCreateQueryParamsPtrOutputWithContext(ctx)
+}
+
+// PostgresCreateQueryParamsPtrInput is an input type that accepts PostgresCreateQueryParamsArgs, PostgresCreateQueryParamsPtr and PostgresCreateQueryParamsPtrOutput values.
+// You can construct a concrete instance of `PostgresCreateQueryParamsPtrInput` via:
+//
+//	        PostgresCreateQueryParamsArgs{...}
+//
+//	or:
+//
+//	        nil
+type PostgresCreateQueryParamsPtrInput interface {
+	pulumi.Input
+
+	ToPostgresCreateQueryParamsPtrOutput() PostgresCreateQueryParamsPtrOutput
+	ToPostgresCreateQueryParamsPtrOutputWithContext(context.Context) PostgresCreateQueryParamsPtrOutput
+}
+
+type postgresCreateQueryParamsPtrType PostgresCreateQueryParamsArgs
+
+func PostgresCreateQueryParamsPtr(v *PostgresCreateQueryParamsArgs) PostgresCreateQueryParamsPtrInput {
+	return (*postgresCreateQueryParamsPtrType)(v)
+}
+
+func (*postgresCreateQueryParamsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**PostgresCreateQueryParams)(nil)).Elem()
+}
+
+func (i *postgresCreateQueryParamsPtrType) ToPostgresCreateQueryParamsPtrOutput() PostgresCreateQueryParamsPtrOutput {
+	return i.ToPostgresCreateQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i *postgresCreateQueryParamsPtrType) ToPostgresCreateQueryParamsPtrOutputWithContext(ctx context.Context) PostgresCreateQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(PostgresCreateQueryParamsPtrOutput)
+}
+
+// Query params for the API request.
+type PostgresCreateQueryParamsOutput struct{ *pulumi.OutputState }
+
+func (PostgresCreateQueryParamsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*PostgresCreateQueryParams)(nil)).Elem()
+}
+
+func (o PostgresCreateQueryParamsOutput) ToPostgresCreateQueryParamsOutput() PostgresCreateQueryParamsOutput {
+	return o
+}
+
+func (o PostgresCreateQueryParamsOutput) ToPostgresCreateQueryParamsOutputWithContext(ctx context.Context) PostgresCreateQueryParamsOutput {
+	return o
+}
+
+func (o PostgresCreateQueryParamsOutput) ToPostgresCreateQueryParamsPtrOutput() PostgresCreateQueryParamsPtrOutput {
+	return o.ToPostgresCreateQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (o PostgresCreateQueryParamsOutput) ToPostgresCreateQueryParamsPtrOutputWithContext(ctx context.Context) PostgresCreateQueryParamsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v PostgresCreateQueryParams) *PostgresCreateQueryParams {
+		return &v
+	}).(PostgresCreateQueryParamsPtrOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o PostgresCreateQueryParamsOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v PostgresCreateQueryParams) map[string]string { return v.AdditionalParams }).(pulumi.StringMapOutput)
+}
+
+type PostgresCreateQueryParamsPtrOutput struct{ *pulumi.OutputState }
+
+func (PostgresCreateQueryParamsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**PostgresCreateQueryParams)(nil)).Elem()
+}
+
+func (o PostgresCreateQueryParamsPtrOutput) ToPostgresCreateQueryParamsPtrOutput() PostgresCreateQueryParamsPtrOutput {
+	return o
+}
+
+func (o PostgresCreateQueryParamsPtrOutput) ToPostgresCreateQueryParamsPtrOutputWithContext(ctx context.Context) PostgresCreateQueryParamsPtrOutput {
+	return o
+}
+
+func (o PostgresCreateQueryParamsPtrOutput) Elem() PostgresCreateQueryParamsOutput {
+	return o.ApplyT(func(v *PostgresCreateQueryParams) PostgresCreateQueryParams {
+		if v != nil {
+			return *v
+		}
+		var ret PostgresCreateQueryParams
+		return ret
+	}).(PostgresCreateQueryParamsOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o PostgresCreateQueryParamsPtrOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *PostgresCreateQueryParams) map[string]string {
+		if v == nil {
+			return nil
+		}
+		return v.AdditionalParams
+	}).(pulumi.StringMapOutput)
+}
+
+// Query params for the API request.
+type PostgresDeleteQueryParams struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams map[string]string `pulumi:"additionalParams"`
+}
+
+// PostgresDeleteQueryParamsInput is an input type that accepts PostgresDeleteQueryParamsArgs and PostgresDeleteQueryParamsOutput values.
+// You can construct a concrete instance of `PostgresDeleteQueryParamsInput` via:
+//
+//	PostgresDeleteQueryParamsArgs{...}
+type PostgresDeleteQueryParamsInput interface {
+	pulumi.Input
+
+	ToPostgresDeleteQueryParamsOutput() PostgresDeleteQueryParamsOutput
+	ToPostgresDeleteQueryParamsOutputWithContext(context.Context) PostgresDeleteQueryParamsOutput
+}
+
+// Query params for the API request.
+type PostgresDeleteQueryParamsArgs struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams pulumi.StringMapInput `pulumi:"additionalParams"`
+}
+
+func (PostgresDeleteQueryParamsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*PostgresDeleteQueryParams)(nil)).Elem()
+}
+
+func (i PostgresDeleteQueryParamsArgs) ToPostgresDeleteQueryParamsOutput() PostgresDeleteQueryParamsOutput {
+	return i.ToPostgresDeleteQueryParamsOutputWithContext(context.Background())
+}
+
+func (i PostgresDeleteQueryParamsArgs) ToPostgresDeleteQueryParamsOutputWithContext(ctx context.Context) PostgresDeleteQueryParamsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(PostgresDeleteQueryParamsOutput)
+}
+
+func (i PostgresDeleteQueryParamsArgs) ToPostgresDeleteQueryParamsPtrOutput() PostgresDeleteQueryParamsPtrOutput {
+	return i.ToPostgresDeleteQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i PostgresDeleteQueryParamsArgs) ToPostgresDeleteQueryParamsPtrOutputWithContext(ctx context.Context) PostgresDeleteQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(PostgresDeleteQueryParamsOutput).ToPostgresDeleteQueryParamsPtrOutputWithContext(ctx)
+}
+
+// PostgresDeleteQueryParamsPtrInput is an input type that accepts PostgresDeleteQueryParamsArgs, PostgresDeleteQueryParamsPtr and PostgresDeleteQueryParamsPtrOutput values.
+// You can construct a concrete instance of `PostgresDeleteQueryParamsPtrInput` via:
+//
+//	        PostgresDeleteQueryParamsArgs{...}
+//
+//	or:
+//
+//	        nil
+type PostgresDeleteQueryParamsPtrInput interface {
+	pulumi.Input
+
+	ToPostgresDeleteQueryParamsPtrOutput() PostgresDeleteQueryParamsPtrOutput
+	ToPostgresDeleteQueryParamsPtrOutputWithContext(context.Context) PostgresDeleteQueryParamsPtrOutput
+}
+
+type postgresDeleteQueryParamsPtrType PostgresDeleteQueryParamsArgs
+
+func PostgresDeleteQueryParamsPtr(v *PostgresDeleteQueryParamsArgs) PostgresDeleteQueryParamsPtrInput {
+	return (*postgresDeleteQueryParamsPtrType)(v)
+}
+
+func (*postgresDeleteQueryParamsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**PostgresDeleteQueryParams)(nil)).Elem()
+}
+
+func (i *postgresDeleteQueryParamsPtrType) ToPostgresDeleteQueryParamsPtrOutput() PostgresDeleteQueryParamsPtrOutput {
+	return i.ToPostgresDeleteQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i *postgresDeleteQueryParamsPtrType) ToPostgresDeleteQueryParamsPtrOutputWithContext(ctx context.Context) PostgresDeleteQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(PostgresDeleteQueryParamsPtrOutput)
+}
+
+// Query params for the API request.
+type PostgresDeleteQueryParamsOutput struct{ *pulumi.OutputState }
+
+func (PostgresDeleteQueryParamsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*PostgresDeleteQueryParams)(nil)).Elem()
+}
+
+func (o PostgresDeleteQueryParamsOutput) ToPostgresDeleteQueryParamsOutput() PostgresDeleteQueryParamsOutput {
+	return o
+}
+
+func (o PostgresDeleteQueryParamsOutput) ToPostgresDeleteQueryParamsOutputWithContext(ctx context.Context) PostgresDeleteQueryParamsOutput {
+	return o
+}
+
+func (o PostgresDeleteQueryParamsOutput) ToPostgresDeleteQueryParamsPtrOutput() PostgresDeleteQueryParamsPtrOutput {
+	return o.ToPostgresDeleteQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (o PostgresDeleteQueryParamsOutput) ToPostgresDeleteQueryParamsPtrOutputWithContext(ctx context.Context) PostgresDeleteQueryParamsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v PostgresDeleteQueryParams) *PostgresDeleteQueryParams {
+		return &v
+	}).(PostgresDeleteQueryParamsPtrOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o PostgresDeleteQueryParamsOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v PostgresDeleteQueryParams) map[string]string { return v.AdditionalParams }).(pulumi.StringMapOutput)
+}
+
+type PostgresDeleteQueryParamsPtrOutput struct{ *pulumi.OutputState }
+
+func (PostgresDeleteQueryParamsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**PostgresDeleteQueryParams)(nil)).Elem()
+}
+
+func (o PostgresDeleteQueryParamsPtrOutput) ToPostgresDeleteQueryParamsPtrOutput() PostgresDeleteQueryParamsPtrOutput {
+	return o
+}
+
+func (o PostgresDeleteQueryParamsPtrOutput) ToPostgresDeleteQueryParamsPtrOutputWithContext(ctx context.Context) PostgresDeleteQueryParamsPtrOutput {
+	return o
+}
+
+func (o PostgresDeleteQueryParamsPtrOutput) Elem() PostgresDeleteQueryParamsOutput {
+	return o.ApplyT(func(v *PostgresDeleteQueryParams) PostgresDeleteQueryParams {
+		if v != nil {
+			return *v
+		}
+		var ret PostgresDeleteQueryParams
+		return ret
+	}).(PostgresDeleteQueryParamsOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o PostgresDeleteQueryParamsPtrOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *PostgresDeleteQueryParams) map[string]string {
+		if v == nil {
+			return nil
+		}
+		return v.AdditionalParams
+	}).(pulumi.StringMapOutput)
+}
+
 type PostgresDetail struct {
 	CreatedAt string `pulumi:"createdAt"`
 	// The URL to view the Postgres instance in the Render Dashboard
@@ -414,6 +1933,763 @@ func (val *PostgresDetail) Defaults() *PostgresDetail {
 		tmp.Region = PostgresDetailRegion("oregon")
 	}
 	return &tmp
+}
+
+// Query params for the API request.
+type PostgresExportCreateQueryParams struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams map[string]string `pulumi:"additionalParams"`
+}
+
+// PostgresExportCreateQueryParamsInput is an input type that accepts PostgresExportCreateQueryParamsArgs and PostgresExportCreateQueryParamsOutput values.
+// You can construct a concrete instance of `PostgresExportCreateQueryParamsInput` via:
+//
+//	PostgresExportCreateQueryParamsArgs{...}
+type PostgresExportCreateQueryParamsInput interface {
+	pulumi.Input
+
+	ToPostgresExportCreateQueryParamsOutput() PostgresExportCreateQueryParamsOutput
+	ToPostgresExportCreateQueryParamsOutputWithContext(context.Context) PostgresExportCreateQueryParamsOutput
+}
+
+// Query params for the API request.
+type PostgresExportCreateQueryParamsArgs struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams pulumi.StringMapInput `pulumi:"additionalParams"`
+}
+
+func (PostgresExportCreateQueryParamsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*PostgresExportCreateQueryParams)(nil)).Elem()
+}
+
+func (i PostgresExportCreateQueryParamsArgs) ToPostgresExportCreateQueryParamsOutput() PostgresExportCreateQueryParamsOutput {
+	return i.ToPostgresExportCreateQueryParamsOutputWithContext(context.Background())
+}
+
+func (i PostgresExportCreateQueryParamsArgs) ToPostgresExportCreateQueryParamsOutputWithContext(ctx context.Context) PostgresExportCreateQueryParamsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(PostgresExportCreateQueryParamsOutput)
+}
+
+func (i PostgresExportCreateQueryParamsArgs) ToPostgresExportCreateQueryParamsPtrOutput() PostgresExportCreateQueryParamsPtrOutput {
+	return i.ToPostgresExportCreateQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i PostgresExportCreateQueryParamsArgs) ToPostgresExportCreateQueryParamsPtrOutputWithContext(ctx context.Context) PostgresExportCreateQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(PostgresExportCreateQueryParamsOutput).ToPostgresExportCreateQueryParamsPtrOutputWithContext(ctx)
+}
+
+// PostgresExportCreateQueryParamsPtrInput is an input type that accepts PostgresExportCreateQueryParamsArgs, PostgresExportCreateQueryParamsPtr and PostgresExportCreateQueryParamsPtrOutput values.
+// You can construct a concrete instance of `PostgresExportCreateQueryParamsPtrInput` via:
+//
+//	        PostgresExportCreateQueryParamsArgs{...}
+//
+//	or:
+//
+//	        nil
+type PostgresExportCreateQueryParamsPtrInput interface {
+	pulumi.Input
+
+	ToPostgresExportCreateQueryParamsPtrOutput() PostgresExportCreateQueryParamsPtrOutput
+	ToPostgresExportCreateQueryParamsPtrOutputWithContext(context.Context) PostgresExportCreateQueryParamsPtrOutput
+}
+
+type postgresExportCreateQueryParamsPtrType PostgresExportCreateQueryParamsArgs
+
+func PostgresExportCreateQueryParamsPtr(v *PostgresExportCreateQueryParamsArgs) PostgresExportCreateQueryParamsPtrInput {
+	return (*postgresExportCreateQueryParamsPtrType)(v)
+}
+
+func (*postgresExportCreateQueryParamsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**PostgresExportCreateQueryParams)(nil)).Elem()
+}
+
+func (i *postgresExportCreateQueryParamsPtrType) ToPostgresExportCreateQueryParamsPtrOutput() PostgresExportCreateQueryParamsPtrOutput {
+	return i.ToPostgresExportCreateQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i *postgresExportCreateQueryParamsPtrType) ToPostgresExportCreateQueryParamsPtrOutputWithContext(ctx context.Context) PostgresExportCreateQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(PostgresExportCreateQueryParamsPtrOutput)
+}
+
+// Query params for the API request.
+type PostgresExportCreateQueryParamsOutput struct{ *pulumi.OutputState }
+
+func (PostgresExportCreateQueryParamsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*PostgresExportCreateQueryParams)(nil)).Elem()
+}
+
+func (o PostgresExportCreateQueryParamsOutput) ToPostgresExportCreateQueryParamsOutput() PostgresExportCreateQueryParamsOutput {
+	return o
+}
+
+func (o PostgresExportCreateQueryParamsOutput) ToPostgresExportCreateQueryParamsOutputWithContext(ctx context.Context) PostgresExportCreateQueryParamsOutput {
+	return o
+}
+
+func (o PostgresExportCreateQueryParamsOutput) ToPostgresExportCreateQueryParamsPtrOutput() PostgresExportCreateQueryParamsPtrOutput {
+	return o.ToPostgresExportCreateQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (o PostgresExportCreateQueryParamsOutput) ToPostgresExportCreateQueryParamsPtrOutputWithContext(ctx context.Context) PostgresExportCreateQueryParamsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v PostgresExportCreateQueryParams) *PostgresExportCreateQueryParams {
+		return &v
+	}).(PostgresExportCreateQueryParamsPtrOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o PostgresExportCreateQueryParamsOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v PostgresExportCreateQueryParams) map[string]string { return v.AdditionalParams }).(pulumi.StringMapOutput)
+}
+
+type PostgresExportCreateQueryParamsPtrOutput struct{ *pulumi.OutputState }
+
+func (PostgresExportCreateQueryParamsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**PostgresExportCreateQueryParams)(nil)).Elem()
+}
+
+func (o PostgresExportCreateQueryParamsPtrOutput) ToPostgresExportCreateQueryParamsPtrOutput() PostgresExportCreateQueryParamsPtrOutput {
+	return o
+}
+
+func (o PostgresExportCreateQueryParamsPtrOutput) ToPostgresExportCreateQueryParamsPtrOutputWithContext(ctx context.Context) PostgresExportCreateQueryParamsPtrOutput {
+	return o
+}
+
+func (o PostgresExportCreateQueryParamsPtrOutput) Elem() PostgresExportCreateQueryParamsOutput {
+	return o.ApplyT(func(v *PostgresExportCreateQueryParams) PostgresExportCreateQueryParams {
+		if v != nil {
+			return *v
+		}
+		var ret PostgresExportCreateQueryParams
+		return ret
+	}).(PostgresExportCreateQueryParamsOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o PostgresExportCreateQueryParamsPtrOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *PostgresExportCreateQueryParams) map[string]string {
+		if v == nil {
+			return nil
+		}
+		return v.AdditionalParams
+	}).(pulumi.StringMapOutput)
+}
+
+// Query params for each of the operations of the resource.
+type PostgresExportQueryParams struct {
+	// Query params for the create operation.
+	Create *PostgresExportCreateQueryParams `pulumi:"create"`
+}
+
+// PostgresExportQueryParamsInput is an input type that accepts PostgresExportQueryParamsArgs and PostgresExportQueryParamsOutput values.
+// You can construct a concrete instance of `PostgresExportQueryParamsInput` via:
+//
+//	PostgresExportQueryParamsArgs{...}
+type PostgresExportQueryParamsInput interface {
+	pulumi.Input
+
+	ToPostgresExportQueryParamsOutput() PostgresExportQueryParamsOutput
+	ToPostgresExportQueryParamsOutputWithContext(context.Context) PostgresExportQueryParamsOutput
+}
+
+// Query params for each of the operations of the resource.
+type PostgresExportQueryParamsArgs struct {
+	// Query params for the create operation.
+	Create PostgresExportCreateQueryParamsPtrInput `pulumi:"create"`
+}
+
+func (PostgresExportQueryParamsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*PostgresExportQueryParams)(nil)).Elem()
+}
+
+func (i PostgresExportQueryParamsArgs) ToPostgresExportQueryParamsOutput() PostgresExportQueryParamsOutput {
+	return i.ToPostgresExportQueryParamsOutputWithContext(context.Background())
+}
+
+func (i PostgresExportQueryParamsArgs) ToPostgresExportQueryParamsOutputWithContext(ctx context.Context) PostgresExportQueryParamsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(PostgresExportQueryParamsOutput)
+}
+
+func (i PostgresExportQueryParamsArgs) ToPostgresExportQueryParamsPtrOutput() PostgresExportQueryParamsPtrOutput {
+	return i.ToPostgresExportQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i PostgresExportQueryParamsArgs) ToPostgresExportQueryParamsPtrOutputWithContext(ctx context.Context) PostgresExportQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(PostgresExportQueryParamsOutput).ToPostgresExportQueryParamsPtrOutputWithContext(ctx)
+}
+
+// PostgresExportQueryParamsPtrInput is an input type that accepts PostgresExportQueryParamsArgs, PostgresExportQueryParamsPtr and PostgresExportQueryParamsPtrOutput values.
+// You can construct a concrete instance of `PostgresExportQueryParamsPtrInput` via:
+//
+//	        PostgresExportQueryParamsArgs{...}
+//
+//	or:
+//
+//	        nil
+type PostgresExportQueryParamsPtrInput interface {
+	pulumi.Input
+
+	ToPostgresExportQueryParamsPtrOutput() PostgresExportQueryParamsPtrOutput
+	ToPostgresExportQueryParamsPtrOutputWithContext(context.Context) PostgresExportQueryParamsPtrOutput
+}
+
+type postgresExportQueryParamsPtrType PostgresExportQueryParamsArgs
+
+func PostgresExportQueryParamsPtr(v *PostgresExportQueryParamsArgs) PostgresExportQueryParamsPtrInput {
+	return (*postgresExportQueryParamsPtrType)(v)
+}
+
+func (*postgresExportQueryParamsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**PostgresExportQueryParams)(nil)).Elem()
+}
+
+func (i *postgresExportQueryParamsPtrType) ToPostgresExportQueryParamsPtrOutput() PostgresExportQueryParamsPtrOutput {
+	return i.ToPostgresExportQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i *postgresExportQueryParamsPtrType) ToPostgresExportQueryParamsPtrOutputWithContext(ctx context.Context) PostgresExportQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(PostgresExportQueryParamsPtrOutput)
+}
+
+// Query params for each of the operations of the resource.
+type PostgresExportQueryParamsOutput struct{ *pulumi.OutputState }
+
+func (PostgresExportQueryParamsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*PostgresExportQueryParams)(nil)).Elem()
+}
+
+func (o PostgresExportQueryParamsOutput) ToPostgresExportQueryParamsOutput() PostgresExportQueryParamsOutput {
+	return o
+}
+
+func (o PostgresExportQueryParamsOutput) ToPostgresExportQueryParamsOutputWithContext(ctx context.Context) PostgresExportQueryParamsOutput {
+	return o
+}
+
+func (o PostgresExportQueryParamsOutput) ToPostgresExportQueryParamsPtrOutput() PostgresExportQueryParamsPtrOutput {
+	return o.ToPostgresExportQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (o PostgresExportQueryParamsOutput) ToPostgresExportQueryParamsPtrOutputWithContext(ctx context.Context) PostgresExportQueryParamsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v PostgresExportQueryParams) *PostgresExportQueryParams {
+		return &v
+	}).(PostgresExportQueryParamsPtrOutput)
+}
+
+// Query params for the create operation.
+func (o PostgresExportQueryParamsOutput) Create() PostgresExportCreateQueryParamsPtrOutput {
+	return o.ApplyT(func(v PostgresExportQueryParams) *PostgresExportCreateQueryParams { return v.Create }).(PostgresExportCreateQueryParamsPtrOutput)
+}
+
+type PostgresExportQueryParamsPtrOutput struct{ *pulumi.OutputState }
+
+func (PostgresExportQueryParamsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**PostgresExportQueryParams)(nil)).Elem()
+}
+
+func (o PostgresExportQueryParamsPtrOutput) ToPostgresExportQueryParamsPtrOutput() PostgresExportQueryParamsPtrOutput {
+	return o
+}
+
+func (o PostgresExportQueryParamsPtrOutput) ToPostgresExportQueryParamsPtrOutputWithContext(ctx context.Context) PostgresExportQueryParamsPtrOutput {
+	return o
+}
+
+func (o PostgresExportQueryParamsPtrOutput) Elem() PostgresExportQueryParamsOutput {
+	return o.ApplyT(func(v *PostgresExportQueryParams) PostgresExportQueryParams {
+		if v != nil {
+			return *v
+		}
+		var ret PostgresExportQueryParams
+		return ret
+	}).(PostgresExportQueryParamsOutput)
+}
+
+// Query params for the create operation.
+func (o PostgresExportQueryParamsPtrOutput) Create() PostgresExportCreateQueryParamsPtrOutput {
+	return o.ApplyT(func(v *PostgresExportQueryParams) *PostgresExportCreateQueryParams {
+		if v == nil {
+			return nil
+		}
+		return v.Create
+	}).(PostgresExportCreateQueryParamsPtrOutput)
+}
+
+// Query params for each of the operations of the resource.
+type PostgresQueryParams struct {
+	// Query params for the create operation.
+	Create *PostgresCreateQueryParams `pulumi:"create"`
+	// Query params for the delete operation.
+	Delete *PostgresDeleteQueryParams `pulumi:"delete"`
+	// Query params for the read operation.
+	Read *PostgresReadQueryParams `pulumi:"read"`
+	// Query params for the update operation.
+	Update *PostgresUpdateQueryParams `pulumi:"update"`
+}
+
+// PostgresQueryParamsInput is an input type that accepts PostgresQueryParamsArgs and PostgresQueryParamsOutput values.
+// You can construct a concrete instance of `PostgresQueryParamsInput` via:
+//
+//	PostgresQueryParamsArgs{...}
+type PostgresQueryParamsInput interface {
+	pulumi.Input
+
+	ToPostgresQueryParamsOutput() PostgresQueryParamsOutput
+	ToPostgresQueryParamsOutputWithContext(context.Context) PostgresQueryParamsOutput
+}
+
+// Query params for each of the operations of the resource.
+type PostgresQueryParamsArgs struct {
+	// Query params for the create operation.
+	Create PostgresCreateQueryParamsPtrInput `pulumi:"create"`
+	// Query params for the delete operation.
+	Delete PostgresDeleteQueryParamsPtrInput `pulumi:"delete"`
+	// Query params for the read operation.
+	Read PostgresReadQueryParamsPtrInput `pulumi:"read"`
+	// Query params for the update operation.
+	Update PostgresUpdateQueryParamsPtrInput `pulumi:"update"`
+}
+
+func (PostgresQueryParamsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*PostgresQueryParams)(nil)).Elem()
+}
+
+func (i PostgresQueryParamsArgs) ToPostgresQueryParamsOutput() PostgresQueryParamsOutput {
+	return i.ToPostgresQueryParamsOutputWithContext(context.Background())
+}
+
+func (i PostgresQueryParamsArgs) ToPostgresQueryParamsOutputWithContext(ctx context.Context) PostgresQueryParamsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(PostgresQueryParamsOutput)
+}
+
+func (i PostgresQueryParamsArgs) ToPostgresQueryParamsPtrOutput() PostgresQueryParamsPtrOutput {
+	return i.ToPostgresQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i PostgresQueryParamsArgs) ToPostgresQueryParamsPtrOutputWithContext(ctx context.Context) PostgresQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(PostgresQueryParamsOutput).ToPostgresQueryParamsPtrOutputWithContext(ctx)
+}
+
+// PostgresQueryParamsPtrInput is an input type that accepts PostgresQueryParamsArgs, PostgresQueryParamsPtr and PostgresQueryParamsPtrOutput values.
+// You can construct a concrete instance of `PostgresQueryParamsPtrInput` via:
+//
+//	        PostgresQueryParamsArgs{...}
+//
+//	or:
+//
+//	        nil
+type PostgresQueryParamsPtrInput interface {
+	pulumi.Input
+
+	ToPostgresQueryParamsPtrOutput() PostgresQueryParamsPtrOutput
+	ToPostgresQueryParamsPtrOutputWithContext(context.Context) PostgresQueryParamsPtrOutput
+}
+
+type postgresQueryParamsPtrType PostgresQueryParamsArgs
+
+func PostgresQueryParamsPtr(v *PostgresQueryParamsArgs) PostgresQueryParamsPtrInput {
+	return (*postgresQueryParamsPtrType)(v)
+}
+
+func (*postgresQueryParamsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**PostgresQueryParams)(nil)).Elem()
+}
+
+func (i *postgresQueryParamsPtrType) ToPostgresQueryParamsPtrOutput() PostgresQueryParamsPtrOutput {
+	return i.ToPostgresQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i *postgresQueryParamsPtrType) ToPostgresQueryParamsPtrOutputWithContext(ctx context.Context) PostgresQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(PostgresQueryParamsPtrOutput)
+}
+
+// Query params for each of the operations of the resource.
+type PostgresQueryParamsOutput struct{ *pulumi.OutputState }
+
+func (PostgresQueryParamsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*PostgresQueryParams)(nil)).Elem()
+}
+
+func (o PostgresQueryParamsOutput) ToPostgresQueryParamsOutput() PostgresQueryParamsOutput {
+	return o
+}
+
+func (o PostgresQueryParamsOutput) ToPostgresQueryParamsOutputWithContext(ctx context.Context) PostgresQueryParamsOutput {
+	return o
+}
+
+func (o PostgresQueryParamsOutput) ToPostgresQueryParamsPtrOutput() PostgresQueryParamsPtrOutput {
+	return o.ToPostgresQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (o PostgresQueryParamsOutput) ToPostgresQueryParamsPtrOutputWithContext(ctx context.Context) PostgresQueryParamsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v PostgresQueryParams) *PostgresQueryParams {
+		return &v
+	}).(PostgresQueryParamsPtrOutput)
+}
+
+// Query params for the create operation.
+func (o PostgresQueryParamsOutput) Create() PostgresCreateQueryParamsPtrOutput {
+	return o.ApplyT(func(v PostgresQueryParams) *PostgresCreateQueryParams { return v.Create }).(PostgresCreateQueryParamsPtrOutput)
+}
+
+// Query params for the delete operation.
+func (o PostgresQueryParamsOutput) Delete() PostgresDeleteQueryParamsPtrOutput {
+	return o.ApplyT(func(v PostgresQueryParams) *PostgresDeleteQueryParams { return v.Delete }).(PostgresDeleteQueryParamsPtrOutput)
+}
+
+// Query params for the read operation.
+func (o PostgresQueryParamsOutput) Read() PostgresReadQueryParamsPtrOutput {
+	return o.ApplyT(func(v PostgresQueryParams) *PostgresReadQueryParams { return v.Read }).(PostgresReadQueryParamsPtrOutput)
+}
+
+// Query params for the update operation.
+func (o PostgresQueryParamsOutput) Update() PostgresUpdateQueryParamsPtrOutput {
+	return o.ApplyT(func(v PostgresQueryParams) *PostgresUpdateQueryParams { return v.Update }).(PostgresUpdateQueryParamsPtrOutput)
+}
+
+type PostgresQueryParamsPtrOutput struct{ *pulumi.OutputState }
+
+func (PostgresQueryParamsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**PostgresQueryParams)(nil)).Elem()
+}
+
+func (o PostgresQueryParamsPtrOutput) ToPostgresQueryParamsPtrOutput() PostgresQueryParamsPtrOutput {
+	return o
+}
+
+func (o PostgresQueryParamsPtrOutput) ToPostgresQueryParamsPtrOutputWithContext(ctx context.Context) PostgresQueryParamsPtrOutput {
+	return o
+}
+
+func (o PostgresQueryParamsPtrOutput) Elem() PostgresQueryParamsOutput {
+	return o.ApplyT(func(v *PostgresQueryParams) PostgresQueryParams {
+		if v != nil {
+			return *v
+		}
+		var ret PostgresQueryParams
+		return ret
+	}).(PostgresQueryParamsOutput)
+}
+
+// Query params for the create operation.
+func (o PostgresQueryParamsPtrOutput) Create() PostgresCreateQueryParamsPtrOutput {
+	return o.ApplyT(func(v *PostgresQueryParams) *PostgresCreateQueryParams {
+		if v == nil {
+			return nil
+		}
+		return v.Create
+	}).(PostgresCreateQueryParamsPtrOutput)
+}
+
+// Query params for the delete operation.
+func (o PostgresQueryParamsPtrOutput) Delete() PostgresDeleteQueryParamsPtrOutput {
+	return o.ApplyT(func(v *PostgresQueryParams) *PostgresDeleteQueryParams {
+		if v == nil {
+			return nil
+		}
+		return v.Delete
+	}).(PostgresDeleteQueryParamsPtrOutput)
+}
+
+// Query params for the read operation.
+func (o PostgresQueryParamsPtrOutput) Read() PostgresReadQueryParamsPtrOutput {
+	return o.ApplyT(func(v *PostgresQueryParams) *PostgresReadQueryParams {
+		if v == nil {
+			return nil
+		}
+		return v.Read
+	}).(PostgresReadQueryParamsPtrOutput)
+}
+
+// Query params for the update operation.
+func (o PostgresQueryParamsPtrOutput) Update() PostgresUpdateQueryParamsPtrOutput {
+	return o.ApplyT(func(v *PostgresQueryParams) *PostgresUpdateQueryParams {
+		if v == nil {
+			return nil
+		}
+		return v.Update
+	}).(PostgresUpdateQueryParamsPtrOutput)
+}
+
+// Query params for the API request.
+type PostgresReadQueryParams struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams map[string]string `pulumi:"additionalParams"`
+}
+
+// PostgresReadQueryParamsInput is an input type that accepts PostgresReadQueryParamsArgs and PostgresReadQueryParamsOutput values.
+// You can construct a concrete instance of `PostgresReadQueryParamsInput` via:
+//
+//	PostgresReadQueryParamsArgs{...}
+type PostgresReadQueryParamsInput interface {
+	pulumi.Input
+
+	ToPostgresReadQueryParamsOutput() PostgresReadQueryParamsOutput
+	ToPostgresReadQueryParamsOutputWithContext(context.Context) PostgresReadQueryParamsOutput
+}
+
+// Query params for the API request.
+type PostgresReadQueryParamsArgs struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams pulumi.StringMapInput `pulumi:"additionalParams"`
+}
+
+func (PostgresReadQueryParamsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*PostgresReadQueryParams)(nil)).Elem()
+}
+
+func (i PostgresReadQueryParamsArgs) ToPostgresReadQueryParamsOutput() PostgresReadQueryParamsOutput {
+	return i.ToPostgresReadQueryParamsOutputWithContext(context.Background())
+}
+
+func (i PostgresReadQueryParamsArgs) ToPostgresReadQueryParamsOutputWithContext(ctx context.Context) PostgresReadQueryParamsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(PostgresReadQueryParamsOutput)
+}
+
+func (i PostgresReadQueryParamsArgs) ToPostgresReadQueryParamsPtrOutput() PostgresReadQueryParamsPtrOutput {
+	return i.ToPostgresReadQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i PostgresReadQueryParamsArgs) ToPostgresReadQueryParamsPtrOutputWithContext(ctx context.Context) PostgresReadQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(PostgresReadQueryParamsOutput).ToPostgresReadQueryParamsPtrOutputWithContext(ctx)
+}
+
+// PostgresReadQueryParamsPtrInput is an input type that accepts PostgresReadQueryParamsArgs, PostgresReadQueryParamsPtr and PostgresReadQueryParamsPtrOutput values.
+// You can construct a concrete instance of `PostgresReadQueryParamsPtrInput` via:
+//
+//	        PostgresReadQueryParamsArgs{...}
+//
+//	or:
+//
+//	        nil
+type PostgresReadQueryParamsPtrInput interface {
+	pulumi.Input
+
+	ToPostgresReadQueryParamsPtrOutput() PostgresReadQueryParamsPtrOutput
+	ToPostgresReadQueryParamsPtrOutputWithContext(context.Context) PostgresReadQueryParamsPtrOutput
+}
+
+type postgresReadQueryParamsPtrType PostgresReadQueryParamsArgs
+
+func PostgresReadQueryParamsPtr(v *PostgresReadQueryParamsArgs) PostgresReadQueryParamsPtrInput {
+	return (*postgresReadQueryParamsPtrType)(v)
+}
+
+func (*postgresReadQueryParamsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**PostgresReadQueryParams)(nil)).Elem()
+}
+
+func (i *postgresReadQueryParamsPtrType) ToPostgresReadQueryParamsPtrOutput() PostgresReadQueryParamsPtrOutput {
+	return i.ToPostgresReadQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i *postgresReadQueryParamsPtrType) ToPostgresReadQueryParamsPtrOutputWithContext(ctx context.Context) PostgresReadQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(PostgresReadQueryParamsPtrOutput)
+}
+
+// Query params for the API request.
+type PostgresReadQueryParamsOutput struct{ *pulumi.OutputState }
+
+func (PostgresReadQueryParamsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*PostgresReadQueryParams)(nil)).Elem()
+}
+
+func (o PostgresReadQueryParamsOutput) ToPostgresReadQueryParamsOutput() PostgresReadQueryParamsOutput {
+	return o
+}
+
+func (o PostgresReadQueryParamsOutput) ToPostgresReadQueryParamsOutputWithContext(ctx context.Context) PostgresReadQueryParamsOutput {
+	return o
+}
+
+func (o PostgresReadQueryParamsOutput) ToPostgresReadQueryParamsPtrOutput() PostgresReadQueryParamsPtrOutput {
+	return o.ToPostgresReadQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (o PostgresReadQueryParamsOutput) ToPostgresReadQueryParamsPtrOutputWithContext(ctx context.Context) PostgresReadQueryParamsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v PostgresReadQueryParams) *PostgresReadQueryParams {
+		return &v
+	}).(PostgresReadQueryParamsPtrOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o PostgresReadQueryParamsOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v PostgresReadQueryParams) map[string]string { return v.AdditionalParams }).(pulumi.StringMapOutput)
+}
+
+type PostgresReadQueryParamsPtrOutput struct{ *pulumi.OutputState }
+
+func (PostgresReadQueryParamsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**PostgresReadQueryParams)(nil)).Elem()
+}
+
+func (o PostgresReadQueryParamsPtrOutput) ToPostgresReadQueryParamsPtrOutput() PostgresReadQueryParamsPtrOutput {
+	return o
+}
+
+func (o PostgresReadQueryParamsPtrOutput) ToPostgresReadQueryParamsPtrOutputWithContext(ctx context.Context) PostgresReadQueryParamsPtrOutput {
+	return o
+}
+
+func (o PostgresReadQueryParamsPtrOutput) Elem() PostgresReadQueryParamsOutput {
+	return o.ApplyT(func(v *PostgresReadQueryParams) PostgresReadQueryParams {
+		if v != nil {
+			return *v
+		}
+		var ret PostgresReadQueryParams
+		return ret
+	}).(PostgresReadQueryParamsOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o PostgresReadQueryParamsPtrOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *PostgresReadQueryParams) map[string]string {
+		if v == nil {
+			return nil
+		}
+		return v.AdditionalParams
+	}).(pulumi.StringMapOutput)
+}
+
+// Query params for the API request.
+type PostgresUpdateQueryParams struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams map[string]string `pulumi:"additionalParams"`
+}
+
+// PostgresUpdateQueryParamsInput is an input type that accepts PostgresUpdateQueryParamsArgs and PostgresUpdateQueryParamsOutput values.
+// You can construct a concrete instance of `PostgresUpdateQueryParamsInput` via:
+//
+//	PostgresUpdateQueryParamsArgs{...}
+type PostgresUpdateQueryParamsInput interface {
+	pulumi.Input
+
+	ToPostgresUpdateQueryParamsOutput() PostgresUpdateQueryParamsOutput
+	ToPostgresUpdateQueryParamsOutputWithContext(context.Context) PostgresUpdateQueryParamsOutput
+}
+
+// Query params for the API request.
+type PostgresUpdateQueryParamsArgs struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams pulumi.StringMapInput `pulumi:"additionalParams"`
+}
+
+func (PostgresUpdateQueryParamsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*PostgresUpdateQueryParams)(nil)).Elem()
+}
+
+func (i PostgresUpdateQueryParamsArgs) ToPostgresUpdateQueryParamsOutput() PostgresUpdateQueryParamsOutput {
+	return i.ToPostgresUpdateQueryParamsOutputWithContext(context.Background())
+}
+
+func (i PostgresUpdateQueryParamsArgs) ToPostgresUpdateQueryParamsOutputWithContext(ctx context.Context) PostgresUpdateQueryParamsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(PostgresUpdateQueryParamsOutput)
+}
+
+func (i PostgresUpdateQueryParamsArgs) ToPostgresUpdateQueryParamsPtrOutput() PostgresUpdateQueryParamsPtrOutput {
+	return i.ToPostgresUpdateQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i PostgresUpdateQueryParamsArgs) ToPostgresUpdateQueryParamsPtrOutputWithContext(ctx context.Context) PostgresUpdateQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(PostgresUpdateQueryParamsOutput).ToPostgresUpdateQueryParamsPtrOutputWithContext(ctx)
+}
+
+// PostgresUpdateQueryParamsPtrInput is an input type that accepts PostgresUpdateQueryParamsArgs, PostgresUpdateQueryParamsPtr and PostgresUpdateQueryParamsPtrOutput values.
+// You can construct a concrete instance of `PostgresUpdateQueryParamsPtrInput` via:
+//
+//	        PostgresUpdateQueryParamsArgs{...}
+//
+//	or:
+//
+//	        nil
+type PostgresUpdateQueryParamsPtrInput interface {
+	pulumi.Input
+
+	ToPostgresUpdateQueryParamsPtrOutput() PostgresUpdateQueryParamsPtrOutput
+	ToPostgresUpdateQueryParamsPtrOutputWithContext(context.Context) PostgresUpdateQueryParamsPtrOutput
+}
+
+type postgresUpdateQueryParamsPtrType PostgresUpdateQueryParamsArgs
+
+func PostgresUpdateQueryParamsPtr(v *PostgresUpdateQueryParamsArgs) PostgresUpdateQueryParamsPtrInput {
+	return (*postgresUpdateQueryParamsPtrType)(v)
+}
+
+func (*postgresUpdateQueryParamsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**PostgresUpdateQueryParams)(nil)).Elem()
+}
+
+func (i *postgresUpdateQueryParamsPtrType) ToPostgresUpdateQueryParamsPtrOutput() PostgresUpdateQueryParamsPtrOutput {
+	return i.ToPostgresUpdateQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i *postgresUpdateQueryParamsPtrType) ToPostgresUpdateQueryParamsPtrOutputWithContext(ctx context.Context) PostgresUpdateQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(PostgresUpdateQueryParamsPtrOutput)
+}
+
+// Query params for the API request.
+type PostgresUpdateQueryParamsOutput struct{ *pulumi.OutputState }
+
+func (PostgresUpdateQueryParamsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*PostgresUpdateQueryParams)(nil)).Elem()
+}
+
+func (o PostgresUpdateQueryParamsOutput) ToPostgresUpdateQueryParamsOutput() PostgresUpdateQueryParamsOutput {
+	return o
+}
+
+func (o PostgresUpdateQueryParamsOutput) ToPostgresUpdateQueryParamsOutputWithContext(ctx context.Context) PostgresUpdateQueryParamsOutput {
+	return o
+}
+
+func (o PostgresUpdateQueryParamsOutput) ToPostgresUpdateQueryParamsPtrOutput() PostgresUpdateQueryParamsPtrOutput {
+	return o.ToPostgresUpdateQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (o PostgresUpdateQueryParamsOutput) ToPostgresUpdateQueryParamsPtrOutputWithContext(ctx context.Context) PostgresUpdateQueryParamsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v PostgresUpdateQueryParams) *PostgresUpdateQueryParams {
+		return &v
+	}).(PostgresUpdateQueryParamsPtrOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o PostgresUpdateQueryParamsOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v PostgresUpdateQueryParams) map[string]string { return v.AdditionalParams }).(pulumi.StringMapOutput)
+}
+
+type PostgresUpdateQueryParamsPtrOutput struct{ *pulumi.OutputState }
+
+func (PostgresUpdateQueryParamsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**PostgresUpdateQueryParams)(nil)).Elem()
+}
+
+func (o PostgresUpdateQueryParamsPtrOutput) ToPostgresUpdateQueryParamsPtrOutput() PostgresUpdateQueryParamsPtrOutput {
+	return o
+}
+
+func (o PostgresUpdateQueryParamsPtrOutput) ToPostgresUpdateQueryParamsPtrOutputWithContext(ctx context.Context) PostgresUpdateQueryParamsPtrOutput {
+	return o
+}
+
+func (o PostgresUpdateQueryParamsPtrOutput) Elem() PostgresUpdateQueryParamsOutput {
+	return o.ApplyT(func(v *PostgresUpdateQueryParams) PostgresUpdateQueryParams {
+		if v != nil {
+			return *v
+		}
+		var ret PostgresUpdateQueryParams
+		return ret
+	}).(PostgresUpdateQueryParamsOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o PostgresUpdateQueryParamsPtrOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *PostgresUpdateQueryParams) map[string]string {
+		if v == nil {
+			return nil
+		}
+		return v.AdditionalParams
+	}).(pulumi.StringMapOutput)
 }
 
 type PostgresWithCursor struct {
@@ -622,6 +2898,286 @@ func (o ReadReplicaInputTypeArrayOutput) Index(i pulumi.IntInput) ReadReplicaInp
 	}).(ReadReplicaInputTypeOutput)
 }
 
+// Query params for the API request.
+type RecoverPostgresCreateQueryParams struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams map[string]string `pulumi:"additionalParams"`
+}
+
+// RecoverPostgresCreateQueryParamsInput is an input type that accepts RecoverPostgresCreateQueryParamsArgs and RecoverPostgresCreateQueryParamsOutput values.
+// You can construct a concrete instance of `RecoverPostgresCreateQueryParamsInput` via:
+//
+//	RecoverPostgresCreateQueryParamsArgs{...}
+type RecoverPostgresCreateQueryParamsInput interface {
+	pulumi.Input
+
+	ToRecoverPostgresCreateQueryParamsOutput() RecoverPostgresCreateQueryParamsOutput
+	ToRecoverPostgresCreateQueryParamsOutputWithContext(context.Context) RecoverPostgresCreateQueryParamsOutput
+}
+
+// Query params for the API request.
+type RecoverPostgresCreateQueryParamsArgs struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams pulumi.StringMapInput `pulumi:"additionalParams"`
+}
+
+func (RecoverPostgresCreateQueryParamsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*RecoverPostgresCreateQueryParams)(nil)).Elem()
+}
+
+func (i RecoverPostgresCreateQueryParamsArgs) ToRecoverPostgresCreateQueryParamsOutput() RecoverPostgresCreateQueryParamsOutput {
+	return i.ToRecoverPostgresCreateQueryParamsOutputWithContext(context.Background())
+}
+
+func (i RecoverPostgresCreateQueryParamsArgs) ToRecoverPostgresCreateQueryParamsOutputWithContext(ctx context.Context) RecoverPostgresCreateQueryParamsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RecoverPostgresCreateQueryParamsOutput)
+}
+
+func (i RecoverPostgresCreateQueryParamsArgs) ToRecoverPostgresCreateQueryParamsPtrOutput() RecoverPostgresCreateQueryParamsPtrOutput {
+	return i.ToRecoverPostgresCreateQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i RecoverPostgresCreateQueryParamsArgs) ToRecoverPostgresCreateQueryParamsPtrOutputWithContext(ctx context.Context) RecoverPostgresCreateQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RecoverPostgresCreateQueryParamsOutput).ToRecoverPostgresCreateQueryParamsPtrOutputWithContext(ctx)
+}
+
+// RecoverPostgresCreateQueryParamsPtrInput is an input type that accepts RecoverPostgresCreateQueryParamsArgs, RecoverPostgresCreateQueryParamsPtr and RecoverPostgresCreateQueryParamsPtrOutput values.
+// You can construct a concrete instance of `RecoverPostgresCreateQueryParamsPtrInput` via:
+//
+//	        RecoverPostgresCreateQueryParamsArgs{...}
+//
+//	or:
+//
+//	        nil
+type RecoverPostgresCreateQueryParamsPtrInput interface {
+	pulumi.Input
+
+	ToRecoverPostgresCreateQueryParamsPtrOutput() RecoverPostgresCreateQueryParamsPtrOutput
+	ToRecoverPostgresCreateQueryParamsPtrOutputWithContext(context.Context) RecoverPostgresCreateQueryParamsPtrOutput
+}
+
+type recoverPostgresCreateQueryParamsPtrType RecoverPostgresCreateQueryParamsArgs
+
+func RecoverPostgresCreateQueryParamsPtr(v *RecoverPostgresCreateQueryParamsArgs) RecoverPostgresCreateQueryParamsPtrInput {
+	return (*recoverPostgresCreateQueryParamsPtrType)(v)
+}
+
+func (*recoverPostgresCreateQueryParamsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**RecoverPostgresCreateQueryParams)(nil)).Elem()
+}
+
+func (i *recoverPostgresCreateQueryParamsPtrType) ToRecoverPostgresCreateQueryParamsPtrOutput() RecoverPostgresCreateQueryParamsPtrOutput {
+	return i.ToRecoverPostgresCreateQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i *recoverPostgresCreateQueryParamsPtrType) ToRecoverPostgresCreateQueryParamsPtrOutputWithContext(ctx context.Context) RecoverPostgresCreateQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RecoverPostgresCreateQueryParamsPtrOutput)
+}
+
+// Query params for the API request.
+type RecoverPostgresCreateQueryParamsOutput struct{ *pulumi.OutputState }
+
+func (RecoverPostgresCreateQueryParamsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*RecoverPostgresCreateQueryParams)(nil)).Elem()
+}
+
+func (o RecoverPostgresCreateQueryParamsOutput) ToRecoverPostgresCreateQueryParamsOutput() RecoverPostgresCreateQueryParamsOutput {
+	return o
+}
+
+func (o RecoverPostgresCreateQueryParamsOutput) ToRecoverPostgresCreateQueryParamsOutputWithContext(ctx context.Context) RecoverPostgresCreateQueryParamsOutput {
+	return o
+}
+
+func (o RecoverPostgresCreateQueryParamsOutput) ToRecoverPostgresCreateQueryParamsPtrOutput() RecoverPostgresCreateQueryParamsPtrOutput {
+	return o.ToRecoverPostgresCreateQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (o RecoverPostgresCreateQueryParamsOutput) ToRecoverPostgresCreateQueryParamsPtrOutputWithContext(ctx context.Context) RecoverPostgresCreateQueryParamsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v RecoverPostgresCreateQueryParams) *RecoverPostgresCreateQueryParams {
+		return &v
+	}).(RecoverPostgresCreateQueryParamsPtrOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o RecoverPostgresCreateQueryParamsOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v RecoverPostgresCreateQueryParams) map[string]string { return v.AdditionalParams }).(pulumi.StringMapOutput)
+}
+
+type RecoverPostgresCreateQueryParamsPtrOutput struct{ *pulumi.OutputState }
+
+func (RecoverPostgresCreateQueryParamsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**RecoverPostgresCreateQueryParams)(nil)).Elem()
+}
+
+func (o RecoverPostgresCreateQueryParamsPtrOutput) ToRecoverPostgresCreateQueryParamsPtrOutput() RecoverPostgresCreateQueryParamsPtrOutput {
+	return o
+}
+
+func (o RecoverPostgresCreateQueryParamsPtrOutput) ToRecoverPostgresCreateQueryParamsPtrOutputWithContext(ctx context.Context) RecoverPostgresCreateQueryParamsPtrOutput {
+	return o
+}
+
+func (o RecoverPostgresCreateQueryParamsPtrOutput) Elem() RecoverPostgresCreateQueryParamsOutput {
+	return o.ApplyT(func(v *RecoverPostgresCreateQueryParams) RecoverPostgresCreateQueryParams {
+		if v != nil {
+			return *v
+		}
+		var ret RecoverPostgresCreateQueryParams
+		return ret
+	}).(RecoverPostgresCreateQueryParamsOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o RecoverPostgresCreateQueryParamsPtrOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *RecoverPostgresCreateQueryParams) map[string]string {
+		if v == nil {
+			return nil
+		}
+		return v.AdditionalParams
+	}).(pulumi.StringMapOutput)
+}
+
+// Query params for each of the operations of the resource.
+type RecoverPostgresQueryParams struct {
+	// Query params for the create operation.
+	Create *RecoverPostgresCreateQueryParams `pulumi:"create"`
+}
+
+// RecoverPostgresQueryParamsInput is an input type that accepts RecoverPostgresQueryParamsArgs and RecoverPostgresQueryParamsOutput values.
+// You can construct a concrete instance of `RecoverPostgresQueryParamsInput` via:
+//
+//	RecoverPostgresQueryParamsArgs{...}
+type RecoverPostgresQueryParamsInput interface {
+	pulumi.Input
+
+	ToRecoverPostgresQueryParamsOutput() RecoverPostgresQueryParamsOutput
+	ToRecoverPostgresQueryParamsOutputWithContext(context.Context) RecoverPostgresQueryParamsOutput
+}
+
+// Query params for each of the operations of the resource.
+type RecoverPostgresQueryParamsArgs struct {
+	// Query params for the create operation.
+	Create RecoverPostgresCreateQueryParamsPtrInput `pulumi:"create"`
+}
+
+func (RecoverPostgresQueryParamsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*RecoverPostgresQueryParams)(nil)).Elem()
+}
+
+func (i RecoverPostgresQueryParamsArgs) ToRecoverPostgresQueryParamsOutput() RecoverPostgresQueryParamsOutput {
+	return i.ToRecoverPostgresQueryParamsOutputWithContext(context.Background())
+}
+
+func (i RecoverPostgresQueryParamsArgs) ToRecoverPostgresQueryParamsOutputWithContext(ctx context.Context) RecoverPostgresQueryParamsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RecoverPostgresQueryParamsOutput)
+}
+
+func (i RecoverPostgresQueryParamsArgs) ToRecoverPostgresQueryParamsPtrOutput() RecoverPostgresQueryParamsPtrOutput {
+	return i.ToRecoverPostgresQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i RecoverPostgresQueryParamsArgs) ToRecoverPostgresQueryParamsPtrOutputWithContext(ctx context.Context) RecoverPostgresQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RecoverPostgresQueryParamsOutput).ToRecoverPostgresQueryParamsPtrOutputWithContext(ctx)
+}
+
+// RecoverPostgresQueryParamsPtrInput is an input type that accepts RecoverPostgresQueryParamsArgs, RecoverPostgresQueryParamsPtr and RecoverPostgresQueryParamsPtrOutput values.
+// You can construct a concrete instance of `RecoverPostgresQueryParamsPtrInput` via:
+//
+//	        RecoverPostgresQueryParamsArgs{...}
+//
+//	or:
+//
+//	        nil
+type RecoverPostgresQueryParamsPtrInput interface {
+	pulumi.Input
+
+	ToRecoverPostgresQueryParamsPtrOutput() RecoverPostgresQueryParamsPtrOutput
+	ToRecoverPostgresQueryParamsPtrOutputWithContext(context.Context) RecoverPostgresQueryParamsPtrOutput
+}
+
+type recoverPostgresQueryParamsPtrType RecoverPostgresQueryParamsArgs
+
+func RecoverPostgresQueryParamsPtr(v *RecoverPostgresQueryParamsArgs) RecoverPostgresQueryParamsPtrInput {
+	return (*recoverPostgresQueryParamsPtrType)(v)
+}
+
+func (*recoverPostgresQueryParamsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**RecoverPostgresQueryParams)(nil)).Elem()
+}
+
+func (i *recoverPostgresQueryParamsPtrType) ToRecoverPostgresQueryParamsPtrOutput() RecoverPostgresQueryParamsPtrOutput {
+	return i.ToRecoverPostgresQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i *recoverPostgresQueryParamsPtrType) ToRecoverPostgresQueryParamsPtrOutputWithContext(ctx context.Context) RecoverPostgresQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RecoverPostgresQueryParamsPtrOutput)
+}
+
+// Query params for each of the operations of the resource.
+type RecoverPostgresQueryParamsOutput struct{ *pulumi.OutputState }
+
+func (RecoverPostgresQueryParamsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*RecoverPostgresQueryParams)(nil)).Elem()
+}
+
+func (o RecoverPostgresQueryParamsOutput) ToRecoverPostgresQueryParamsOutput() RecoverPostgresQueryParamsOutput {
+	return o
+}
+
+func (o RecoverPostgresQueryParamsOutput) ToRecoverPostgresQueryParamsOutputWithContext(ctx context.Context) RecoverPostgresQueryParamsOutput {
+	return o
+}
+
+func (o RecoverPostgresQueryParamsOutput) ToRecoverPostgresQueryParamsPtrOutput() RecoverPostgresQueryParamsPtrOutput {
+	return o.ToRecoverPostgresQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (o RecoverPostgresQueryParamsOutput) ToRecoverPostgresQueryParamsPtrOutputWithContext(ctx context.Context) RecoverPostgresQueryParamsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v RecoverPostgresQueryParams) *RecoverPostgresQueryParams {
+		return &v
+	}).(RecoverPostgresQueryParamsPtrOutput)
+}
+
+// Query params for the create operation.
+func (o RecoverPostgresQueryParamsOutput) Create() RecoverPostgresCreateQueryParamsPtrOutput {
+	return o.ApplyT(func(v RecoverPostgresQueryParams) *RecoverPostgresCreateQueryParams { return v.Create }).(RecoverPostgresCreateQueryParamsPtrOutput)
+}
+
+type RecoverPostgresQueryParamsPtrOutput struct{ *pulumi.OutputState }
+
+func (RecoverPostgresQueryParamsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**RecoverPostgresQueryParams)(nil)).Elem()
+}
+
+func (o RecoverPostgresQueryParamsPtrOutput) ToRecoverPostgresQueryParamsPtrOutput() RecoverPostgresQueryParamsPtrOutput {
+	return o
+}
+
+func (o RecoverPostgresQueryParamsPtrOutput) ToRecoverPostgresQueryParamsPtrOutputWithContext(ctx context.Context) RecoverPostgresQueryParamsPtrOutput {
+	return o
+}
+
+func (o RecoverPostgresQueryParamsPtrOutput) Elem() RecoverPostgresQueryParamsOutput {
+	return o.ApplyT(func(v *RecoverPostgresQueryParams) RecoverPostgresQueryParams {
+		if v != nil {
+			return *v
+		}
+		var ret RecoverPostgresQueryParams
+		return ret
+	}).(RecoverPostgresQueryParamsOutput)
+}
+
+// Query params for the create operation.
+func (o RecoverPostgresQueryParamsPtrOutput) Create() RecoverPostgresCreateQueryParamsPtrOutput {
+	return o.ApplyT(func(v *RecoverPostgresQueryParams) *RecoverPostgresCreateQueryParams {
+		if v == nil {
+			return nil
+		}
+		return v.Create
+	}).(RecoverPostgresCreateQueryParamsPtrOutput)
+}
+
 type RedisDetailpropertiesmaintenance struct {
 	Id string `pulumi:"id"`
 	// If present, the maintenance run cannot be scheduled for later than this date-time.
@@ -736,23 +3292,951 @@ func (o RedisDetailpropertiesmaintenancePtrOutput) Type() pulumi.StringPtrOutput
 	}).(pulumi.StringPtrOutput)
 }
 
+// Query params for the API request.
+type RestartPostgresCreateQueryParams struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams map[string]string `pulumi:"additionalParams"`
+}
+
+// RestartPostgresCreateQueryParamsInput is an input type that accepts RestartPostgresCreateQueryParamsArgs and RestartPostgresCreateQueryParamsOutput values.
+// You can construct a concrete instance of `RestartPostgresCreateQueryParamsInput` via:
+//
+//	RestartPostgresCreateQueryParamsArgs{...}
+type RestartPostgresCreateQueryParamsInput interface {
+	pulumi.Input
+
+	ToRestartPostgresCreateQueryParamsOutput() RestartPostgresCreateQueryParamsOutput
+	ToRestartPostgresCreateQueryParamsOutputWithContext(context.Context) RestartPostgresCreateQueryParamsOutput
+}
+
+// Query params for the API request.
+type RestartPostgresCreateQueryParamsArgs struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams pulumi.StringMapInput `pulumi:"additionalParams"`
+}
+
+func (RestartPostgresCreateQueryParamsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*RestartPostgresCreateQueryParams)(nil)).Elem()
+}
+
+func (i RestartPostgresCreateQueryParamsArgs) ToRestartPostgresCreateQueryParamsOutput() RestartPostgresCreateQueryParamsOutput {
+	return i.ToRestartPostgresCreateQueryParamsOutputWithContext(context.Background())
+}
+
+func (i RestartPostgresCreateQueryParamsArgs) ToRestartPostgresCreateQueryParamsOutputWithContext(ctx context.Context) RestartPostgresCreateQueryParamsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RestartPostgresCreateQueryParamsOutput)
+}
+
+func (i RestartPostgresCreateQueryParamsArgs) ToRestartPostgresCreateQueryParamsPtrOutput() RestartPostgresCreateQueryParamsPtrOutput {
+	return i.ToRestartPostgresCreateQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i RestartPostgresCreateQueryParamsArgs) ToRestartPostgresCreateQueryParamsPtrOutputWithContext(ctx context.Context) RestartPostgresCreateQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RestartPostgresCreateQueryParamsOutput).ToRestartPostgresCreateQueryParamsPtrOutputWithContext(ctx)
+}
+
+// RestartPostgresCreateQueryParamsPtrInput is an input type that accepts RestartPostgresCreateQueryParamsArgs, RestartPostgresCreateQueryParamsPtr and RestartPostgresCreateQueryParamsPtrOutput values.
+// You can construct a concrete instance of `RestartPostgresCreateQueryParamsPtrInput` via:
+//
+//	        RestartPostgresCreateQueryParamsArgs{...}
+//
+//	or:
+//
+//	        nil
+type RestartPostgresCreateQueryParamsPtrInput interface {
+	pulumi.Input
+
+	ToRestartPostgresCreateQueryParamsPtrOutput() RestartPostgresCreateQueryParamsPtrOutput
+	ToRestartPostgresCreateQueryParamsPtrOutputWithContext(context.Context) RestartPostgresCreateQueryParamsPtrOutput
+}
+
+type restartPostgresCreateQueryParamsPtrType RestartPostgresCreateQueryParamsArgs
+
+func RestartPostgresCreateQueryParamsPtr(v *RestartPostgresCreateQueryParamsArgs) RestartPostgresCreateQueryParamsPtrInput {
+	return (*restartPostgresCreateQueryParamsPtrType)(v)
+}
+
+func (*restartPostgresCreateQueryParamsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**RestartPostgresCreateQueryParams)(nil)).Elem()
+}
+
+func (i *restartPostgresCreateQueryParamsPtrType) ToRestartPostgresCreateQueryParamsPtrOutput() RestartPostgresCreateQueryParamsPtrOutput {
+	return i.ToRestartPostgresCreateQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i *restartPostgresCreateQueryParamsPtrType) ToRestartPostgresCreateQueryParamsPtrOutputWithContext(ctx context.Context) RestartPostgresCreateQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RestartPostgresCreateQueryParamsPtrOutput)
+}
+
+// Query params for the API request.
+type RestartPostgresCreateQueryParamsOutput struct{ *pulumi.OutputState }
+
+func (RestartPostgresCreateQueryParamsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*RestartPostgresCreateQueryParams)(nil)).Elem()
+}
+
+func (o RestartPostgresCreateQueryParamsOutput) ToRestartPostgresCreateQueryParamsOutput() RestartPostgresCreateQueryParamsOutput {
+	return o
+}
+
+func (o RestartPostgresCreateQueryParamsOutput) ToRestartPostgresCreateQueryParamsOutputWithContext(ctx context.Context) RestartPostgresCreateQueryParamsOutput {
+	return o
+}
+
+func (o RestartPostgresCreateQueryParamsOutput) ToRestartPostgresCreateQueryParamsPtrOutput() RestartPostgresCreateQueryParamsPtrOutput {
+	return o.ToRestartPostgresCreateQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (o RestartPostgresCreateQueryParamsOutput) ToRestartPostgresCreateQueryParamsPtrOutputWithContext(ctx context.Context) RestartPostgresCreateQueryParamsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v RestartPostgresCreateQueryParams) *RestartPostgresCreateQueryParams {
+		return &v
+	}).(RestartPostgresCreateQueryParamsPtrOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o RestartPostgresCreateQueryParamsOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v RestartPostgresCreateQueryParams) map[string]string { return v.AdditionalParams }).(pulumi.StringMapOutput)
+}
+
+type RestartPostgresCreateQueryParamsPtrOutput struct{ *pulumi.OutputState }
+
+func (RestartPostgresCreateQueryParamsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**RestartPostgresCreateQueryParams)(nil)).Elem()
+}
+
+func (o RestartPostgresCreateQueryParamsPtrOutput) ToRestartPostgresCreateQueryParamsPtrOutput() RestartPostgresCreateQueryParamsPtrOutput {
+	return o
+}
+
+func (o RestartPostgresCreateQueryParamsPtrOutput) ToRestartPostgresCreateQueryParamsPtrOutputWithContext(ctx context.Context) RestartPostgresCreateQueryParamsPtrOutput {
+	return o
+}
+
+func (o RestartPostgresCreateQueryParamsPtrOutput) Elem() RestartPostgresCreateQueryParamsOutput {
+	return o.ApplyT(func(v *RestartPostgresCreateQueryParams) RestartPostgresCreateQueryParams {
+		if v != nil {
+			return *v
+		}
+		var ret RestartPostgresCreateQueryParams
+		return ret
+	}).(RestartPostgresCreateQueryParamsOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o RestartPostgresCreateQueryParamsPtrOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *RestartPostgresCreateQueryParams) map[string]string {
+		if v == nil {
+			return nil
+		}
+		return v.AdditionalParams
+	}).(pulumi.StringMapOutput)
+}
+
+// Query params for each of the operations of the resource.
+type RestartPostgresQueryParams struct {
+	// Query params for the create operation.
+	Create *RestartPostgresCreateQueryParams `pulumi:"create"`
+}
+
+// RestartPostgresQueryParamsInput is an input type that accepts RestartPostgresQueryParamsArgs and RestartPostgresQueryParamsOutput values.
+// You can construct a concrete instance of `RestartPostgresQueryParamsInput` via:
+//
+//	RestartPostgresQueryParamsArgs{...}
+type RestartPostgresQueryParamsInput interface {
+	pulumi.Input
+
+	ToRestartPostgresQueryParamsOutput() RestartPostgresQueryParamsOutput
+	ToRestartPostgresQueryParamsOutputWithContext(context.Context) RestartPostgresQueryParamsOutput
+}
+
+// Query params for each of the operations of the resource.
+type RestartPostgresQueryParamsArgs struct {
+	// Query params for the create operation.
+	Create RestartPostgresCreateQueryParamsPtrInput `pulumi:"create"`
+}
+
+func (RestartPostgresQueryParamsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*RestartPostgresQueryParams)(nil)).Elem()
+}
+
+func (i RestartPostgresQueryParamsArgs) ToRestartPostgresQueryParamsOutput() RestartPostgresQueryParamsOutput {
+	return i.ToRestartPostgresQueryParamsOutputWithContext(context.Background())
+}
+
+func (i RestartPostgresQueryParamsArgs) ToRestartPostgresQueryParamsOutputWithContext(ctx context.Context) RestartPostgresQueryParamsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RestartPostgresQueryParamsOutput)
+}
+
+func (i RestartPostgresQueryParamsArgs) ToRestartPostgresQueryParamsPtrOutput() RestartPostgresQueryParamsPtrOutput {
+	return i.ToRestartPostgresQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i RestartPostgresQueryParamsArgs) ToRestartPostgresQueryParamsPtrOutputWithContext(ctx context.Context) RestartPostgresQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RestartPostgresQueryParamsOutput).ToRestartPostgresQueryParamsPtrOutputWithContext(ctx)
+}
+
+// RestartPostgresQueryParamsPtrInput is an input type that accepts RestartPostgresQueryParamsArgs, RestartPostgresQueryParamsPtr and RestartPostgresQueryParamsPtrOutput values.
+// You can construct a concrete instance of `RestartPostgresQueryParamsPtrInput` via:
+//
+//	        RestartPostgresQueryParamsArgs{...}
+//
+//	or:
+//
+//	        nil
+type RestartPostgresQueryParamsPtrInput interface {
+	pulumi.Input
+
+	ToRestartPostgresQueryParamsPtrOutput() RestartPostgresQueryParamsPtrOutput
+	ToRestartPostgresQueryParamsPtrOutputWithContext(context.Context) RestartPostgresQueryParamsPtrOutput
+}
+
+type restartPostgresQueryParamsPtrType RestartPostgresQueryParamsArgs
+
+func RestartPostgresQueryParamsPtr(v *RestartPostgresQueryParamsArgs) RestartPostgresQueryParamsPtrInput {
+	return (*restartPostgresQueryParamsPtrType)(v)
+}
+
+func (*restartPostgresQueryParamsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**RestartPostgresQueryParams)(nil)).Elem()
+}
+
+func (i *restartPostgresQueryParamsPtrType) ToRestartPostgresQueryParamsPtrOutput() RestartPostgresQueryParamsPtrOutput {
+	return i.ToRestartPostgresQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i *restartPostgresQueryParamsPtrType) ToRestartPostgresQueryParamsPtrOutputWithContext(ctx context.Context) RestartPostgresQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RestartPostgresQueryParamsPtrOutput)
+}
+
+// Query params for each of the operations of the resource.
+type RestartPostgresQueryParamsOutput struct{ *pulumi.OutputState }
+
+func (RestartPostgresQueryParamsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*RestartPostgresQueryParams)(nil)).Elem()
+}
+
+func (o RestartPostgresQueryParamsOutput) ToRestartPostgresQueryParamsOutput() RestartPostgresQueryParamsOutput {
+	return o
+}
+
+func (o RestartPostgresQueryParamsOutput) ToRestartPostgresQueryParamsOutputWithContext(ctx context.Context) RestartPostgresQueryParamsOutput {
+	return o
+}
+
+func (o RestartPostgresQueryParamsOutput) ToRestartPostgresQueryParamsPtrOutput() RestartPostgresQueryParamsPtrOutput {
+	return o.ToRestartPostgresQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (o RestartPostgresQueryParamsOutput) ToRestartPostgresQueryParamsPtrOutputWithContext(ctx context.Context) RestartPostgresQueryParamsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v RestartPostgresQueryParams) *RestartPostgresQueryParams {
+		return &v
+	}).(RestartPostgresQueryParamsPtrOutput)
+}
+
+// Query params for the create operation.
+func (o RestartPostgresQueryParamsOutput) Create() RestartPostgresCreateQueryParamsPtrOutput {
+	return o.ApplyT(func(v RestartPostgresQueryParams) *RestartPostgresCreateQueryParams { return v.Create }).(RestartPostgresCreateQueryParamsPtrOutput)
+}
+
+type RestartPostgresQueryParamsPtrOutput struct{ *pulumi.OutputState }
+
+func (RestartPostgresQueryParamsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**RestartPostgresQueryParams)(nil)).Elem()
+}
+
+func (o RestartPostgresQueryParamsPtrOutput) ToRestartPostgresQueryParamsPtrOutput() RestartPostgresQueryParamsPtrOutput {
+	return o
+}
+
+func (o RestartPostgresQueryParamsPtrOutput) ToRestartPostgresQueryParamsPtrOutputWithContext(ctx context.Context) RestartPostgresQueryParamsPtrOutput {
+	return o
+}
+
+func (o RestartPostgresQueryParamsPtrOutput) Elem() RestartPostgresQueryParamsOutput {
+	return o.ApplyT(func(v *RestartPostgresQueryParams) RestartPostgresQueryParams {
+		if v != nil {
+			return *v
+		}
+		var ret RestartPostgresQueryParams
+		return ret
+	}).(RestartPostgresQueryParamsOutput)
+}
+
+// Query params for the create operation.
+func (o RestartPostgresQueryParamsPtrOutput) Create() RestartPostgresCreateQueryParamsPtrOutput {
+	return o.ApplyT(func(v *RestartPostgresQueryParams) *RestartPostgresCreateQueryParams {
+		if v == nil {
+			return nil
+		}
+		return v.Create
+	}).(RestartPostgresCreateQueryParamsPtrOutput)
+}
+
+// Query params for the API request.
+type ResumePostgresCreateQueryParams struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams map[string]string `pulumi:"additionalParams"`
+}
+
+// ResumePostgresCreateQueryParamsInput is an input type that accepts ResumePostgresCreateQueryParamsArgs and ResumePostgresCreateQueryParamsOutput values.
+// You can construct a concrete instance of `ResumePostgresCreateQueryParamsInput` via:
+//
+//	ResumePostgresCreateQueryParamsArgs{...}
+type ResumePostgresCreateQueryParamsInput interface {
+	pulumi.Input
+
+	ToResumePostgresCreateQueryParamsOutput() ResumePostgresCreateQueryParamsOutput
+	ToResumePostgresCreateQueryParamsOutputWithContext(context.Context) ResumePostgresCreateQueryParamsOutput
+}
+
+// Query params for the API request.
+type ResumePostgresCreateQueryParamsArgs struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams pulumi.StringMapInput `pulumi:"additionalParams"`
+}
+
+func (ResumePostgresCreateQueryParamsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ResumePostgresCreateQueryParams)(nil)).Elem()
+}
+
+func (i ResumePostgresCreateQueryParamsArgs) ToResumePostgresCreateQueryParamsOutput() ResumePostgresCreateQueryParamsOutput {
+	return i.ToResumePostgresCreateQueryParamsOutputWithContext(context.Background())
+}
+
+func (i ResumePostgresCreateQueryParamsArgs) ToResumePostgresCreateQueryParamsOutputWithContext(ctx context.Context) ResumePostgresCreateQueryParamsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ResumePostgresCreateQueryParamsOutput)
+}
+
+func (i ResumePostgresCreateQueryParamsArgs) ToResumePostgresCreateQueryParamsPtrOutput() ResumePostgresCreateQueryParamsPtrOutput {
+	return i.ToResumePostgresCreateQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i ResumePostgresCreateQueryParamsArgs) ToResumePostgresCreateQueryParamsPtrOutputWithContext(ctx context.Context) ResumePostgresCreateQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ResumePostgresCreateQueryParamsOutput).ToResumePostgresCreateQueryParamsPtrOutputWithContext(ctx)
+}
+
+// ResumePostgresCreateQueryParamsPtrInput is an input type that accepts ResumePostgresCreateQueryParamsArgs, ResumePostgresCreateQueryParamsPtr and ResumePostgresCreateQueryParamsPtrOutput values.
+// You can construct a concrete instance of `ResumePostgresCreateQueryParamsPtrInput` via:
+//
+//	        ResumePostgresCreateQueryParamsArgs{...}
+//
+//	or:
+//
+//	        nil
+type ResumePostgresCreateQueryParamsPtrInput interface {
+	pulumi.Input
+
+	ToResumePostgresCreateQueryParamsPtrOutput() ResumePostgresCreateQueryParamsPtrOutput
+	ToResumePostgresCreateQueryParamsPtrOutputWithContext(context.Context) ResumePostgresCreateQueryParamsPtrOutput
+}
+
+type resumePostgresCreateQueryParamsPtrType ResumePostgresCreateQueryParamsArgs
+
+func ResumePostgresCreateQueryParamsPtr(v *ResumePostgresCreateQueryParamsArgs) ResumePostgresCreateQueryParamsPtrInput {
+	return (*resumePostgresCreateQueryParamsPtrType)(v)
+}
+
+func (*resumePostgresCreateQueryParamsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**ResumePostgresCreateQueryParams)(nil)).Elem()
+}
+
+func (i *resumePostgresCreateQueryParamsPtrType) ToResumePostgresCreateQueryParamsPtrOutput() ResumePostgresCreateQueryParamsPtrOutput {
+	return i.ToResumePostgresCreateQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i *resumePostgresCreateQueryParamsPtrType) ToResumePostgresCreateQueryParamsPtrOutputWithContext(ctx context.Context) ResumePostgresCreateQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ResumePostgresCreateQueryParamsPtrOutput)
+}
+
+// Query params for the API request.
+type ResumePostgresCreateQueryParamsOutput struct{ *pulumi.OutputState }
+
+func (ResumePostgresCreateQueryParamsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ResumePostgresCreateQueryParams)(nil)).Elem()
+}
+
+func (o ResumePostgresCreateQueryParamsOutput) ToResumePostgresCreateQueryParamsOutput() ResumePostgresCreateQueryParamsOutput {
+	return o
+}
+
+func (o ResumePostgresCreateQueryParamsOutput) ToResumePostgresCreateQueryParamsOutputWithContext(ctx context.Context) ResumePostgresCreateQueryParamsOutput {
+	return o
+}
+
+func (o ResumePostgresCreateQueryParamsOutput) ToResumePostgresCreateQueryParamsPtrOutput() ResumePostgresCreateQueryParamsPtrOutput {
+	return o.ToResumePostgresCreateQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (o ResumePostgresCreateQueryParamsOutput) ToResumePostgresCreateQueryParamsPtrOutputWithContext(ctx context.Context) ResumePostgresCreateQueryParamsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v ResumePostgresCreateQueryParams) *ResumePostgresCreateQueryParams {
+		return &v
+	}).(ResumePostgresCreateQueryParamsPtrOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o ResumePostgresCreateQueryParamsOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v ResumePostgresCreateQueryParams) map[string]string { return v.AdditionalParams }).(pulumi.StringMapOutput)
+}
+
+type ResumePostgresCreateQueryParamsPtrOutput struct{ *pulumi.OutputState }
+
+func (ResumePostgresCreateQueryParamsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ResumePostgresCreateQueryParams)(nil)).Elem()
+}
+
+func (o ResumePostgresCreateQueryParamsPtrOutput) ToResumePostgresCreateQueryParamsPtrOutput() ResumePostgresCreateQueryParamsPtrOutput {
+	return o
+}
+
+func (o ResumePostgresCreateQueryParamsPtrOutput) ToResumePostgresCreateQueryParamsPtrOutputWithContext(ctx context.Context) ResumePostgresCreateQueryParamsPtrOutput {
+	return o
+}
+
+func (o ResumePostgresCreateQueryParamsPtrOutput) Elem() ResumePostgresCreateQueryParamsOutput {
+	return o.ApplyT(func(v *ResumePostgresCreateQueryParams) ResumePostgresCreateQueryParams {
+		if v != nil {
+			return *v
+		}
+		var ret ResumePostgresCreateQueryParams
+		return ret
+	}).(ResumePostgresCreateQueryParamsOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o ResumePostgresCreateQueryParamsPtrOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *ResumePostgresCreateQueryParams) map[string]string {
+		if v == nil {
+			return nil
+		}
+		return v.AdditionalParams
+	}).(pulumi.StringMapOutput)
+}
+
+// Query params for each of the operations of the resource.
+type ResumePostgresQueryParams struct {
+	// Query params for the create operation.
+	Create *ResumePostgresCreateQueryParams `pulumi:"create"`
+}
+
+// ResumePostgresQueryParamsInput is an input type that accepts ResumePostgresQueryParamsArgs and ResumePostgresQueryParamsOutput values.
+// You can construct a concrete instance of `ResumePostgresQueryParamsInput` via:
+//
+//	ResumePostgresQueryParamsArgs{...}
+type ResumePostgresQueryParamsInput interface {
+	pulumi.Input
+
+	ToResumePostgresQueryParamsOutput() ResumePostgresQueryParamsOutput
+	ToResumePostgresQueryParamsOutputWithContext(context.Context) ResumePostgresQueryParamsOutput
+}
+
+// Query params for each of the operations of the resource.
+type ResumePostgresQueryParamsArgs struct {
+	// Query params for the create operation.
+	Create ResumePostgresCreateQueryParamsPtrInput `pulumi:"create"`
+}
+
+func (ResumePostgresQueryParamsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ResumePostgresQueryParams)(nil)).Elem()
+}
+
+func (i ResumePostgresQueryParamsArgs) ToResumePostgresQueryParamsOutput() ResumePostgresQueryParamsOutput {
+	return i.ToResumePostgresQueryParamsOutputWithContext(context.Background())
+}
+
+func (i ResumePostgresQueryParamsArgs) ToResumePostgresQueryParamsOutputWithContext(ctx context.Context) ResumePostgresQueryParamsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ResumePostgresQueryParamsOutput)
+}
+
+func (i ResumePostgresQueryParamsArgs) ToResumePostgresQueryParamsPtrOutput() ResumePostgresQueryParamsPtrOutput {
+	return i.ToResumePostgresQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i ResumePostgresQueryParamsArgs) ToResumePostgresQueryParamsPtrOutputWithContext(ctx context.Context) ResumePostgresQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ResumePostgresQueryParamsOutput).ToResumePostgresQueryParamsPtrOutputWithContext(ctx)
+}
+
+// ResumePostgresQueryParamsPtrInput is an input type that accepts ResumePostgresQueryParamsArgs, ResumePostgresQueryParamsPtr and ResumePostgresQueryParamsPtrOutput values.
+// You can construct a concrete instance of `ResumePostgresQueryParamsPtrInput` via:
+//
+//	        ResumePostgresQueryParamsArgs{...}
+//
+//	or:
+//
+//	        nil
+type ResumePostgresQueryParamsPtrInput interface {
+	pulumi.Input
+
+	ToResumePostgresQueryParamsPtrOutput() ResumePostgresQueryParamsPtrOutput
+	ToResumePostgresQueryParamsPtrOutputWithContext(context.Context) ResumePostgresQueryParamsPtrOutput
+}
+
+type resumePostgresQueryParamsPtrType ResumePostgresQueryParamsArgs
+
+func ResumePostgresQueryParamsPtr(v *ResumePostgresQueryParamsArgs) ResumePostgresQueryParamsPtrInput {
+	return (*resumePostgresQueryParamsPtrType)(v)
+}
+
+func (*resumePostgresQueryParamsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**ResumePostgresQueryParams)(nil)).Elem()
+}
+
+func (i *resumePostgresQueryParamsPtrType) ToResumePostgresQueryParamsPtrOutput() ResumePostgresQueryParamsPtrOutput {
+	return i.ToResumePostgresQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i *resumePostgresQueryParamsPtrType) ToResumePostgresQueryParamsPtrOutputWithContext(ctx context.Context) ResumePostgresQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ResumePostgresQueryParamsPtrOutput)
+}
+
+// Query params for each of the operations of the resource.
+type ResumePostgresQueryParamsOutput struct{ *pulumi.OutputState }
+
+func (ResumePostgresQueryParamsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ResumePostgresQueryParams)(nil)).Elem()
+}
+
+func (o ResumePostgresQueryParamsOutput) ToResumePostgresQueryParamsOutput() ResumePostgresQueryParamsOutput {
+	return o
+}
+
+func (o ResumePostgresQueryParamsOutput) ToResumePostgresQueryParamsOutputWithContext(ctx context.Context) ResumePostgresQueryParamsOutput {
+	return o
+}
+
+func (o ResumePostgresQueryParamsOutput) ToResumePostgresQueryParamsPtrOutput() ResumePostgresQueryParamsPtrOutput {
+	return o.ToResumePostgresQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (o ResumePostgresQueryParamsOutput) ToResumePostgresQueryParamsPtrOutputWithContext(ctx context.Context) ResumePostgresQueryParamsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v ResumePostgresQueryParams) *ResumePostgresQueryParams {
+		return &v
+	}).(ResumePostgresQueryParamsPtrOutput)
+}
+
+// Query params for the create operation.
+func (o ResumePostgresQueryParamsOutput) Create() ResumePostgresCreateQueryParamsPtrOutput {
+	return o.ApplyT(func(v ResumePostgresQueryParams) *ResumePostgresCreateQueryParams { return v.Create }).(ResumePostgresCreateQueryParamsPtrOutput)
+}
+
+type ResumePostgresQueryParamsPtrOutput struct{ *pulumi.OutputState }
+
+func (ResumePostgresQueryParamsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ResumePostgresQueryParams)(nil)).Elem()
+}
+
+func (o ResumePostgresQueryParamsPtrOutput) ToResumePostgresQueryParamsPtrOutput() ResumePostgresQueryParamsPtrOutput {
+	return o
+}
+
+func (o ResumePostgresQueryParamsPtrOutput) ToResumePostgresQueryParamsPtrOutputWithContext(ctx context.Context) ResumePostgresQueryParamsPtrOutput {
+	return o
+}
+
+func (o ResumePostgresQueryParamsPtrOutput) Elem() ResumePostgresQueryParamsOutput {
+	return o.ApplyT(func(v *ResumePostgresQueryParams) ResumePostgresQueryParams {
+		if v != nil {
+			return *v
+		}
+		var ret ResumePostgresQueryParams
+		return ret
+	}).(ResumePostgresQueryParamsOutput)
+}
+
+// Query params for the create operation.
+func (o ResumePostgresQueryParamsPtrOutput) Create() ResumePostgresCreateQueryParamsPtrOutput {
+	return o.ApplyT(func(v *ResumePostgresQueryParams) *ResumePostgresCreateQueryParams {
+		if v == nil {
+			return nil
+		}
+		return v.Create
+	}).(ResumePostgresCreateQueryParamsPtrOutput)
+}
+
+// Query params for the API request.
+type SuspendPostgresCreateQueryParams struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams map[string]string `pulumi:"additionalParams"`
+}
+
+// SuspendPostgresCreateQueryParamsInput is an input type that accepts SuspendPostgresCreateQueryParamsArgs and SuspendPostgresCreateQueryParamsOutput values.
+// You can construct a concrete instance of `SuspendPostgresCreateQueryParamsInput` via:
+//
+//	SuspendPostgresCreateQueryParamsArgs{...}
+type SuspendPostgresCreateQueryParamsInput interface {
+	pulumi.Input
+
+	ToSuspendPostgresCreateQueryParamsOutput() SuspendPostgresCreateQueryParamsOutput
+	ToSuspendPostgresCreateQueryParamsOutputWithContext(context.Context) SuspendPostgresCreateQueryParamsOutput
+}
+
+// Query params for the API request.
+type SuspendPostgresCreateQueryParamsArgs struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams pulumi.StringMapInput `pulumi:"additionalParams"`
+}
+
+func (SuspendPostgresCreateQueryParamsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*SuspendPostgresCreateQueryParams)(nil)).Elem()
+}
+
+func (i SuspendPostgresCreateQueryParamsArgs) ToSuspendPostgresCreateQueryParamsOutput() SuspendPostgresCreateQueryParamsOutput {
+	return i.ToSuspendPostgresCreateQueryParamsOutputWithContext(context.Background())
+}
+
+func (i SuspendPostgresCreateQueryParamsArgs) ToSuspendPostgresCreateQueryParamsOutputWithContext(ctx context.Context) SuspendPostgresCreateQueryParamsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SuspendPostgresCreateQueryParamsOutput)
+}
+
+func (i SuspendPostgresCreateQueryParamsArgs) ToSuspendPostgresCreateQueryParamsPtrOutput() SuspendPostgresCreateQueryParamsPtrOutput {
+	return i.ToSuspendPostgresCreateQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i SuspendPostgresCreateQueryParamsArgs) ToSuspendPostgresCreateQueryParamsPtrOutputWithContext(ctx context.Context) SuspendPostgresCreateQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SuspendPostgresCreateQueryParamsOutput).ToSuspendPostgresCreateQueryParamsPtrOutputWithContext(ctx)
+}
+
+// SuspendPostgresCreateQueryParamsPtrInput is an input type that accepts SuspendPostgresCreateQueryParamsArgs, SuspendPostgresCreateQueryParamsPtr and SuspendPostgresCreateQueryParamsPtrOutput values.
+// You can construct a concrete instance of `SuspendPostgresCreateQueryParamsPtrInput` via:
+//
+//	        SuspendPostgresCreateQueryParamsArgs{...}
+//
+//	or:
+//
+//	        nil
+type SuspendPostgresCreateQueryParamsPtrInput interface {
+	pulumi.Input
+
+	ToSuspendPostgresCreateQueryParamsPtrOutput() SuspendPostgresCreateQueryParamsPtrOutput
+	ToSuspendPostgresCreateQueryParamsPtrOutputWithContext(context.Context) SuspendPostgresCreateQueryParamsPtrOutput
+}
+
+type suspendPostgresCreateQueryParamsPtrType SuspendPostgresCreateQueryParamsArgs
+
+func SuspendPostgresCreateQueryParamsPtr(v *SuspendPostgresCreateQueryParamsArgs) SuspendPostgresCreateQueryParamsPtrInput {
+	return (*suspendPostgresCreateQueryParamsPtrType)(v)
+}
+
+func (*suspendPostgresCreateQueryParamsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**SuspendPostgresCreateQueryParams)(nil)).Elem()
+}
+
+func (i *suspendPostgresCreateQueryParamsPtrType) ToSuspendPostgresCreateQueryParamsPtrOutput() SuspendPostgresCreateQueryParamsPtrOutput {
+	return i.ToSuspendPostgresCreateQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i *suspendPostgresCreateQueryParamsPtrType) ToSuspendPostgresCreateQueryParamsPtrOutputWithContext(ctx context.Context) SuspendPostgresCreateQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SuspendPostgresCreateQueryParamsPtrOutput)
+}
+
+// Query params for the API request.
+type SuspendPostgresCreateQueryParamsOutput struct{ *pulumi.OutputState }
+
+func (SuspendPostgresCreateQueryParamsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*SuspendPostgresCreateQueryParams)(nil)).Elem()
+}
+
+func (o SuspendPostgresCreateQueryParamsOutput) ToSuspendPostgresCreateQueryParamsOutput() SuspendPostgresCreateQueryParamsOutput {
+	return o
+}
+
+func (o SuspendPostgresCreateQueryParamsOutput) ToSuspendPostgresCreateQueryParamsOutputWithContext(ctx context.Context) SuspendPostgresCreateQueryParamsOutput {
+	return o
+}
+
+func (o SuspendPostgresCreateQueryParamsOutput) ToSuspendPostgresCreateQueryParamsPtrOutput() SuspendPostgresCreateQueryParamsPtrOutput {
+	return o.ToSuspendPostgresCreateQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (o SuspendPostgresCreateQueryParamsOutput) ToSuspendPostgresCreateQueryParamsPtrOutputWithContext(ctx context.Context) SuspendPostgresCreateQueryParamsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v SuspendPostgresCreateQueryParams) *SuspendPostgresCreateQueryParams {
+		return &v
+	}).(SuspendPostgresCreateQueryParamsPtrOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o SuspendPostgresCreateQueryParamsOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v SuspendPostgresCreateQueryParams) map[string]string { return v.AdditionalParams }).(pulumi.StringMapOutput)
+}
+
+type SuspendPostgresCreateQueryParamsPtrOutput struct{ *pulumi.OutputState }
+
+func (SuspendPostgresCreateQueryParamsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**SuspendPostgresCreateQueryParams)(nil)).Elem()
+}
+
+func (o SuspendPostgresCreateQueryParamsPtrOutput) ToSuspendPostgresCreateQueryParamsPtrOutput() SuspendPostgresCreateQueryParamsPtrOutput {
+	return o
+}
+
+func (o SuspendPostgresCreateQueryParamsPtrOutput) ToSuspendPostgresCreateQueryParamsPtrOutputWithContext(ctx context.Context) SuspendPostgresCreateQueryParamsPtrOutput {
+	return o
+}
+
+func (o SuspendPostgresCreateQueryParamsPtrOutput) Elem() SuspendPostgresCreateQueryParamsOutput {
+	return o.ApplyT(func(v *SuspendPostgresCreateQueryParams) SuspendPostgresCreateQueryParams {
+		if v != nil {
+			return *v
+		}
+		var ret SuspendPostgresCreateQueryParams
+		return ret
+	}).(SuspendPostgresCreateQueryParamsOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o SuspendPostgresCreateQueryParamsPtrOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *SuspendPostgresCreateQueryParams) map[string]string {
+		if v == nil {
+			return nil
+		}
+		return v.AdditionalParams
+	}).(pulumi.StringMapOutput)
+}
+
+// Query params for each of the operations of the resource.
+type SuspendPostgresQueryParams struct {
+	// Query params for the create operation.
+	Create *SuspendPostgresCreateQueryParams `pulumi:"create"`
+}
+
+// SuspendPostgresQueryParamsInput is an input type that accepts SuspendPostgresQueryParamsArgs and SuspendPostgresQueryParamsOutput values.
+// You can construct a concrete instance of `SuspendPostgresQueryParamsInput` via:
+//
+//	SuspendPostgresQueryParamsArgs{...}
+type SuspendPostgresQueryParamsInput interface {
+	pulumi.Input
+
+	ToSuspendPostgresQueryParamsOutput() SuspendPostgresQueryParamsOutput
+	ToSuspendPostgresQueryParamsOutputWithContext(context.Context) SuspendPostgresQueryParamsOutput
+}
+
+// Query params for each of the operations of the resource.
+type SuspendPostgresQueryParamsArgs struct {
+	// Query params for the create operation.
+	Create SuspendPostgresCreateQueryParamsPtrInput `pulumi:"create"`
+}
+
+func (SuspendPostgresQueryParamsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*SuspendPostgresQueryParams)(nil)).Elem()
+}
+
+func (i SuspendPostgresQueryParamsArgs) ToSuspendPostgresQueryParamsOutput() SuspendPostgresQueryParamsOutput {
+	return i.ToSuspendPostgresQueryParamsOutputWithContext(context.Background())
+}
+
+func (i SuspendPostgresQueryParamsArgs) ToSuspendPostgresQueryParamsOutputWithContext(ctx context.Context) SuspendPostgresQueryParamsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SuspendPostgresQueryParamsOutput)
+}
+
+func (i SuspendPostgresQueryParamsArgs) ToSuspendPostgresQueryParamsPtrOutput() SuspendPostgresQueryParamsPtrOutput {
+	return i.ToSuspendPostgresQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i SuspendPostgresQueryParamsArgs) ToSuspendPostgresQueryParamsPtrOutputWithContext(ctx context.Context) SuspendPostgresQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SuspendPostgresQueryParamsOutput).ToSuspendPostgresQueryParamsPtrOutputWithContext(ctx)
+}
+
+// SuspendPostgresQueryParamsPtrInput is an input type that accepts SuspendPostgresQueryParamsArgs, SuspendPostgresQueryParamsPtr and SuspendPostgresQueryParamsPtrOutput values.
+// You can construct a concrete instance of `SuspendPostgresQueryParamsPtrInput` via:
+//
+//	        SuspendPostgresQueryParamsArgs{...}
+//
+//	or:
+//
+//	        nil
+type SuspendPostgresQueryParamsPtrInput interface {
+	pulumi.Input
+
+	ToSuspendPostgresQueryParamsPtrOutput() SuspendPostgresQueryParamsPtrOutput
+	ToSuspendPostgresQueryParamsPtrOutputWithContext(context.Context) SuspendPostgresQueryParamsPtrOutput
+}
+
+type suspendPostgresQueryParamsPtrType SuspendPostgresQueryParamsArgs
+
+func SuspendPostgresQueryParamsPtr(v *SuspendPostgresQueryParamsArgs) SuspendPostgresQueryParamsPtrInput {
+	return (*suspendPostgresQueryParamsPtrType)(v)
+}
+
+func (*suspendPostgresQueryParamsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**SuspendPostgresQueryParams)(nil)).Elem()
+}
+
+func (i *suspendPostgresQueryParamsPtrType) ToSuspendPostgresQueryParamsPtrOutput() SuspendPostgresQueryParamsPtrOutput {
+	return i.ToSuspendPostgresQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i *suspendPostgresQueryParamsPtrType) ToSuspendPostgresQueryParamsPtrOutputWithContext(ctx context.Context) SuspendPostgresQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SuspendPostgresQueryParamsPtrOutput)
+}
+
+// Query params for each of the operations of the resource.
+type SuspendPostgresQueryParamsOutput struct{ *pulumi.OutputState }
+
+func (SuspendPostgresQueryParamsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*SuspendPostgresQueryParams)(nil)).Elem()
+}
+
+func (o SuspendPostgresQueryParamsOutput) ToSuspendPostgresQueryParamsOutput() SuspendPostgresQueryParamsOutput {
+	return o
+}
+
+func (o SuspendPostgresQueryParamsOutput) ToSuspendPostgresQueryParamsOutputWithContext(ctx context.Context) SuspendPostgresQueryParamsOutput {
+	return o
+}
+
+func (o SuspendPostgresQueryParamsOutput) ToSuspendPostgresQueryParamsPtrOutput() SuspendPostgresQueryParamsPtrOutput {
+	return o.ToSuspendPostgresQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (o SuspendPostgresQueryParamsOutput) ToSuspendPostgresQueryParamsPtrOutputWithContext(ctx context.Context) SuspendPostgresQueryParamsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v SuspendPostgresQueryParams) *SuspendPostgresQueryParams {
+		return &v
+	}).(SuspendPostgresQueryParamsPtrOutput)
+}
+
+// Query params for the create operation.
+func (o SuspendPostgresQueryParamsOutput) Create() SuspendPostgresCreateQueryParamsPtrOutput {
+	return o.ApplyT(func(v SuspendPostgresQueryParams) *SuspendPostgresCreateQueryParams { return v.Create }).(SuspendPostgresCreateQueryParamsPtrOutput)
+}
+
+type SuspendPostgresQueryParamsPtrOutput struct{ *pulumi.OutputState }
+
+func (SuspendPostgresQueryParamsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**SuspendPostgresQueryParams)(nil)).Elem()
+}
+
+func (o SuspendPostgresQueryParamsPtrOutput) ToSuspendPostgresQueryParamsPtrOutput() SuspendPostgresQueryParamsPtrOutput {
+	return o
+}
+
+func (o SuspendPostgresQueryParamsPtrOutput) ToSuspendPostgresQueryParamsPtrOutputWithContext(ctx context.Context) SuspendPostgresQueryParamsPtrOutput {
+	return o
+}
+
+func (o SuspendPostgresQueryParamsPtrOutput) Elem() SuspendPostgresQueryParamsOutput {
+	return o.ApplyT(func(v *SuspendPostgresQueryParams) SuspendPostgresQueryParams {
+		if v != nil {
+			return *v
+		}
+		var ret SuspendPostgresQueryParams
+		return ret
+	}).(SuspendPostgresQueryParamsOutput)
+}
+
+// Query params for the create operation.
+func (o SuspendPostgresQueryParamsPtrOutput) Create() SuspendPostgresCreateQueryParamsPtrOutput {
+	return o.ApplyT(func(v *SuspendPostgresQueryParams) *SuspendPostgresCreateQueryParams {
+		if v == nil {
+			return nil
+		}
+		return v.Create
+	}).(SuspendPostgresCreateQueryParamsPtrOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*CidrBlockAndDescriptionInput)(nil)).Elem(), CidrBlockAndDescriptionArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*CidrBlockAndDescriptionArrayInput)(nil)).Elem(), CidrBlockAndDescriptionArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*FailoverPostgresCreateQueryParamsInput)(nil)).Elem(), FailoverPostgresCreateQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*FailoverPostgresCreateQueryParamsPtrInput)(nil)).Elem(), FailoverPostgresCreateQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*FailoverPostgresQueryParamsInput)(nil)).Elem(), FailoverPostgresQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*FailoverPostgresQueryParamsPtrInput)(nil)).Elem(), FailoverPostgresQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetPostgresConnectionInfoQueryParamsInput)(nil)).Elem(), GetPostgresConnectionInfoQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetPostgresConnectionInfoQueryParamsPtrInput)(nil)).Elem(), GetPostgresConnectionInfoQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetPostgresQueryParamsInput)(nil)).Elem(), GetPostgresQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetPostgresQueryParamsPtrInput)(nil)).Elem(), GetPostgresQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetPostgresRecoveryInfoQueryParamsInput)(nil)).Elem(), GetPostgresRecoveryInfoQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetPostgresRecoveryInfoQueryParamsPtrInput)(nil)).Elem(), GetPostgresRecoveryInfoQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ListPostgresExportQueryParamsInput)(nil)).Elem(), ListPostgresExportQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ListPostgresExportQueryParamsPtrInput)(nil)).Elem(), ListPostgresExportQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ListPostgresQueryParamsInput)(nil)).Elem(), ListPostgresQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ListPostgresQueryParamsPtrInput)(nil)).Elem(), ListPostgresQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*PostgresCreateQueryParamsInput)(nil)).Elem(), PostgresCreateQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*PostgresCreateQueryParamsPtrInput)(nil)).Elem(), PostgresCreateQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*PostgresDeleteQueryParamsInput)(nil)).Elem(), PostgresDeleteQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*PostgresDeleteQueryParamsPtrInput)(nil)).Elem(), PostgresDeleteQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*PostgresExportCreateQueryParamsInput)(nil)).Elem(), PostgresExportCreateQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*PostgresExportCreateQueryParamsPtrInput)(nil)).Elem(), PostgresExportCreateQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*PostgresExportQueryParamsInput)(nil)).Elem(), PostgresExportQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*PostgresExportQueryParamsPtrInput)(nil)).Elem(), PostgresExportQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*PostgresQueryParamsInput)(nil)).Elem(), PostgresQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*PostgresQueryParamsPtrInput)(nil)).Elem(), PostgresQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*PostgresReadQueryParamsInput)(nil)).Elem(), PostgresReadQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*PostgresReadQueryParamsPtrInput)(nil)).Elem(), PostgresReadQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*PostgresUpdateQueryParamsInput)(nil)).Elem(), PostgresUpdateQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*PostgresUpdateQueryParamsPtrInput)(nil)).Elem(), PostgresUpdateQueryParamsArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ReadReplicaInputTypeInput)(nil)).Elem(), ReadReplicaInputTypeArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ReadReplicaInputTypeArrayInput)(nil)).Elem(), ReadReplicaInputTypeArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RecoverPostgresCreateQueryParamsInput)(nil)).Elem(), RecoverPostgresCreateQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RecoverPostgresCreateQueryParamsPtrInput)(nil)).Elem(), RecoverPostgresCreateQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RecoverPostgresQueryParamsInput)(nil)).Elem(), RecoverPostgresQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RecoverPostgresQueryParamsPtrInput)(nil)).Elem(), RecoverPostgresQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RestartPostgresCreateQueryParamsInput)(nil)).Elem(), RestartPostgresCreateQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RestartPostgresCreateQueryParamsPtrInput)(nil)).Elem(), RestartPostgresCreateQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RestartPostgresQueryParamsInput)(nil)).Elem(), RestartPostgresQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RestartPostgresQueryParamsPtrInput)(nil)).Elem(), RestartPostgresQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ResumePostgresCreateQueryParamsInput)(nil)).Elem(), ResumePostgresCreateQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ResumePostgresCreateQueryParamsPtrInput)(nil)).Elem(), ResumePostgresCreateQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ResumePostgresQueryParamsInput)(nil)).Elem(), ResumePostgresQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ResumePostgresQueryParamsPtrInput)(nil)).Elem(), ResumePostgresQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SuspendPostgresCreateQueryParamsInput)(nil)).Elem(), SuspendPostgresCreateQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SuspendPostgresCreateQueryParamsPtrInput)(nil)).Elem(), SuspendPostgresCreateQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SuspendPostgresQueryParamsInput)(nil)).Elem(), SuspendPostgresQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SuspendPostgresQueryParamsPtrInput)(nil)).Elem(), SuspendPostgresQueryParamsArgs{})
 	pulumi.RegisterOutputType(CidrBlockAndDescriptionOutput{})
 	pulumi.RegisterOutputType(CidrBlockAndDescriptionArrayOutput{})
+	pulumi.RegisterOutputType(FailoverPostgresCreateQueryParamsOutput{})
+	pulumi.RegisterOutputType(FailoverPostgresCreateQueryParamsPtrOutput{})
+	pulumi.RegisterOutputType(FailoverPostgresQueryParamsOutput{})
+	pulumi.RegisterOutputType(FailoverPostgresQueryParamsPtrOutput{})
+	pulumi.RegisterOutputType(GetPostgresConnectionInfoQueryParamsOutput{})
+	pulumi.RegisterOutputType(GetPostgresConnectionInfoQueryParamsPtrOutput{})
+	pulumi.RegisterOutputType(GetPostgresQueryParamsOutput{})
+	pulumi.RegisterOutputType(GetPostgresQueryParamsPtrOutput{})
+	pulumi.RegisterOutputType(GetPostgresRecoveryInfoQueryParamsOutput{})
+	pulumi.RegisterOutputType(GetPostgresRecoveryInfoQueryParamsPtrOutput{})
 	pulumi.RegisterOutputType(ListPostgresExportItemPropertiesOutput{})
 	pulumi.RegisterOutputType(ListPostgresExportItemPropertiesArrayOutput{})
+	pulumi.RegisterOutputType(ListPostgresExportQueryParamsOutput{})
+	pulumi.RegisterOutputType(ListPostgresExportQueryParamsPtrOutput{})
+	pulumi.RegisterOutputType(ListPostgresQueryParamsOutput{})
+	pulumi.RegisterOutputType(ListPostgresQueryParamsPtrOutput{})
 	pulumi.RegisterOutputType(OwnerOutput{})
 	pulumi.RegisterOutputType(PostgresTypeOutput{})
+	pulumi.RegisterOutputType(PostgresCreateQueryParamsOutput{})
+	pulumi.RegisterOutputType(PostgresCreateQueryParamsPtrOutput{})
+	pulumi.RegisterOutputType(PostgresDeleteQueryParamsOutput{})
+	pulumi.RegisterOutputType(PostgresDeleteQueryParamsPtrOutput{})
+	pulumi.RegisterOutputType(PostgresExportCreateQueryParamsOutput{})
+	pulumi.RegisterOutputType(PostgresExportCreateQueryParamsPtrOutput{})
+	pulumi.RegisterOutputType(PostgresExportQueryParamsOutput{})
+	pulumi.RegisterOutputType(PostgresExportQueryParamsPtrOutput{})
+	pulumi.RegisterOutputType(PostgresQueryParamsOutput{})
+	pulumi.RegisterOutputType(PostgresQueryParamsPtrOutput{})
+	pulumi.RegisterOutputType(PostgresReadQueryParamsOutput{})
+	pulumi.RegisterOutputType(PostgresReadQueryParamsPtrOutput{})
+	pulumi.RegisterOutputType(PostgresUpdateQueryParamsOutput{})
+	pulumi.RegisterOutputType(PostgresUpdateQueryParamsPtrOutput{})
 	pulumi.RegisterOutputType(PostgresWithCursorOutput{})
 	pulumi.RegisterOutputType(PostgresWithCursorArrayOutput{})
 	pulumi.RegisterOutputType(ReadReplicaOutput{})
 	pulumi.RegisterOutputType(ReadReplicaArrayOutput{})
 	pulumi.RegisterOutputType(ReadReplicaInputTypeOutput{})
 	pulumi.RegisterOutputType(ReadReplicaInputTypeArrayOutput{})
+	pulumi.RegisterOutputType(RecoverPostgresCreateQueryParamsOutput{})
+	pulumi.RegisterOutputType(RecoverPostgresCreateQueryParamsPtrOutput{})
+	pulumi.RegisterOutputType(RecoverPostgresQueryParamsOutput{})
+	pulumi.RegisterOutputType(RecoverPostgresQueryParamsPtrOutput{})
 	pulumi.RegisterOutputType(RedisDetailpropertiesmaintenanceOutput{})
 	pulumi.RegisterOutputType(RedisDetailpropertiesmaintenancePtrOutput{})
+	pulumi.RegisterOutputType(RestartPostgresCreateQueryParamsOutput{})
+	pulumi.RegisterOutputType(RestartPostgresCreateQueryParamsPtrOutput{})
+	pulumi.RegisterOutputType(RestartPostgresQueryParamsOutput{})
+	pulumi.RegisterOutputType(RestartPostgresQueryParamsPtrOutput{})
+	pulumi.RegisterOutputType(ResumePostgresCreateQueryParamsOutput{})
+	pulumi.RegisterOutputType(ResumePostgresCreateQueryParamsPtrOutput{})
+	pulumi.RegisterOutputType(ResumePostgresQueryParamsOutput{})
+	pulumi.RegisterOutputType(ResumePostgresQueryParamsPtrOutput{})
+	pulumi.RegisterOutputType(SuspendPostgresCreateQueryParamsOutput{})
+	pulumi.RegisterOutputType(SuspendPostgresCreateQueryParamsPtrOutput{})
+	pulumi.RegisterOutputType(SuspendPostgresQueryParamsOutput{})
+	pulumi.RegisterOutputType(SuspendPostgresQueryParamsPtrOutput{})
 }

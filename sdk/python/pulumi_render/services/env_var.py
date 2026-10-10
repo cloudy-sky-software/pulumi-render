@@ -13,6 +13,8 @@ if sys.version_info >= (3, 11):
 else:
     from typing_extensions import NotRequired, TypedDict, TypeAlias
 from .. import _utilities
+from . import outputs
+from ._inputs import *
 
 __all__ = ['EnvVarArgs', 'EnvVar']
 
@@ -21,18 +23,22 @@ class EnvVarArgs:
     def __init__(__self__, *,
                  env_var_key: pulumi.Input[Optional[_builtins.str]] = None,
                  generate_value: pulumi.Input[Optional[_builtins.bool]] = None,
+                 query_params: pulumi.Input[Optional['EnvVarQueryParamsArgs']] = None,
                  service_id: pulumi.Input[Optional[_builtins.str]] = None,
                  value: pulumi.Input[Optional[_builtins.str]] = None):
         """
         The set of arguments for constructing a EnvVar resource.
 
         :param pulumi.Input[_builtins.str] env_var_key: The name of the environment variable
+        :param pulumi.Input['EnvVarQueryParamsArgs'] query_params: Query params to send with the API requests for this resource.
         :param pulumi.Input[_builtins.str] service_id: The ID of the service
         """
         if env_var_key is not None:
             pulumi.set(__self__, "env_var_key", env_var_key)
         if generate_value is not None:
             pulumi.set(__self__, "generate_value", generate_value)
+        if query_params is not None:
+            pulumi.set(__self__, "query_params", query_params)
         if service_id is not None:
             pulumi.set(__self__, "service_id", service_id)
         if value is not None:
@@ -58,6 +64,18 @@ class EnvVarArgs:
     @generate_value.setter
     def generate_value(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "generate_value", value)
+
+    @_builtins.property
+    @pulumi.getter(name="queryParams")
+    def query_params(self) -> pulumi.Input[Optional['EnvVarQueryParamsArgs']]:
+        """
+        Query params to send with the API requests for this resource.
+        """
+        return pulumi.get(self, "query_params")
+
+    @query_params.setter
+    def query_params(self, value: pulumi.Input[Optional['EnvVarQueryParamsArgs']]):
+        pulumi.set(self, "query_params", value)
 
     @_builtins.property
     @pulumi.getter(name="serviceId")
@@ -89,6 +107,7 @@ class EnvVar(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  env_var_key: pulumi.Input[Optional[_builtins.str]] = None,
                  generate_value: pulumi.Input[Optional[_builtins.bool]] = None,
+                 query_params: pulumi.Input[Optional[Union['EnvVarQueryParamsArgs', 'EnvVarQueryParamsArgsDict', 'outputs.EnvVarQueryParams']]] = None,
                  service_id: pulumi.Input[Optional[_builtins.str]] = None,
                  value: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
@@ -98,6 +117,7 @@ class EnvVar(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] env_var_key: The name of the environment variable
+        :param pulumi.Input[Union['EnvVarQueryParamsArgs', 'EnvVarQueryParamsArgsDict', 'outputs.EnvVarQueryParams']] query_params: Query params to send with the API requests for this resource.
         :param pulumi.Input[_builtins.str] service_id: The ID of the service
         """
         ...
@@ -126,6 +146,7 @@ class EnvVar(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  env_var_key: pulumi.Input[Optional[_builtins.str]] = None,
                  generate_value: pulumi.Input[Optional[_builtins.bool]] = None,
+                 query_params: pulumi.Input[Optional[Union['EnvVarQueryParamsArgs', 'EnvVarQueryParamsArgsDict', 'outputs.EnvVarQueryParams']]] = None,
                  service_id: pulumi.Input[Optional[_builtins.str]] = None,
                  value: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
@@ -139,6 +160,7 @@ class EnvVar(pulumi.CustomResource):
 
             __props__.__dict__["env_var_key"] = env_var_key
             __props__.__dict__["generate_value"] = generate_value
+            __props__.__dict__["query_params"] = query_params
             __props__.__dict__["service_id"] = service_id
             __props__.__dict__["value"] = value
             __props__.__dict__["key"] = None
@@ -166,6 +188,7 @@ class EnvVar(pulumi.CustomResource):
 
         __props__.__dict__["generate_value"] = None
         __props__.__dict__["key"] = None
+        __props__.__dict__["query_params"] = None
         __props__.__dict__["value"] = None
         return EnvVar(resource_name, opts=opts, __props__=__props__)
 
@@ -178,6 +201,14 @@ class EnvVar(pulumi.CustomResource):
     @pulumi.getter
     def key(self) -> pulumi.Output[_builtins.str]:
         return pulumi.get(self, "key")
+
+    @_builtins.property
+    @pulumi.getter(name="queryParams")
+    def query_params(self) -> pulumi.Output[Optional['outputs.EnvVarQueryParams']]:
+        """
+        Query params to send with the API requests for this resource.
+        """
+        return pulumi.get(self, "query_params")
 
     @_builtins.property
     @pulumi.getter

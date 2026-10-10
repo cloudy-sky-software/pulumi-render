@@ -10,11 +10,16 @@ import * as utilities from "../utilities";
 export function listJob(args: ListJobArgs, opts?: pulumi.InvokeOptions): Promise<ListJobResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("render:services:listJob", {
+        "queryParams": args.queryParams ? inputs.services.listJobQueryParamsProvideDefaults(args.queryParams) : undefined,
         "serviceId": args.serviceId,
     }, opts);
 }
 
 export interface ListJobArgs {
+    /**
+     * Query params to send with the API request.
+     */
+    queryParams?: inputs.services.ListJobQueryParams;
     /**
      * The ID of the service
      */
@@ -27,11 +32,16 @@ export interface ListJobResult {
 export function listJobOutput(args: ListJobOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<ListJobResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("render:services:listJob", {
+        "queryParams": pulumi.output(args.queryParams).apply(v => v === undefined ? undefined : inputs.services.listJobQueryParamsProvideDefaults(v)),
         "serviceId": args.serviceId,
     }, opts);
 }
 
 export interface ListJobOutputArgs {
+    /**
+     * Query params to send with the API request.
+     */
+    queryParams?: pulumi.Input<inputs.services.ListJobQueryParamsArgs | undefined>;
     /**
      * The ID of the service
      */

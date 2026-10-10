@@ -21,10 +21,530 @@ type GetOwnerNotificationSettingProperties struct {
 	SlackEnabled                bool                                                     `pulumi:"slackEnabled"`
 }
 
+// Query params for the API request.
+type GetOwnerNotificationSettingQueryParams struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams map[string]string `pulumi:"additionalParams"`
+}
+
+// GetOwnerNotificationSettingQueryParamsInput is an input type that accepts GetOwnerNotificationSettingQueryParamsArgs and GetOwnerNotificationSettingQueryParamsOutput values.
+// You can construct a concrete instance of `GetOwnerNotificationSettingQueryParamsInput` via:
+//
+//	GetOwnerNotificationSettingQueryParamsArgs{...}
+type GetOwnerNotificationSettingQueryParamsInput interface {
+	pulumi.Input
+
+	ToGetOwnerNotificationSettingQueryParamsOutput() GetOwnerNotificationSettingQueryParamsOutput
+	ToGetOwnerNotificationSettingQueryParamsOutputWithContext(context.Context) GetOwnerNotificationSettingQueryParamsOutput
+}
+
+// Query params for the API request.
+type GetOwnerNotificationSettingQueryParamsArgs struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams pulumi.StringMapInput `pulumi:"additionalParams"`
+}
+
+func (GetOwnerNotificationSettingQueryParamsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetOwnerNotificationSettingQueryParams)(nil)).Elem()
+}
+
+func (i GetOwnerNotificationSettingQueryParamsArgs) ToGetOwnerNotificationSettingQueryParamsOutput() GetOwnerNotificationSettingQueryParamsOutput {
+	return i.ToGetOwnerNotificationSettingQueryParamsOutputWithContext(context.Background())
+}
+
+func (i GetOwnerNotificationSettingQueryParamsArgs) ToGetOwnerNotificationSettingQueryParamsOutputWithContext(ctx context.Context) GetOwnerNotificationSettingQueryParamsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetOwnerNotificationSettingQueryParamsOutput)
+}
+
+func (i GetOwnerNotificationSettingQueryParamsArgs) ToGetOwnerNotificationSettingQueryParamsPtrOutput() GetOwnerNotificationSettingQueryParamsPtrOutput {
+	return i.ToGetOwnerNotificationSettingQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i GetOwnerNotificationSettingQueryParamsArgs) ToGetOwnerNotificationSettingQueryParamsPtrOutputWithContext(ctx context.Context) GetOwnerNotificationSettingQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetOwnerNotificationSettingQueryParamsOutput).ToGetOwnerNotificationSettingQueryParamsPtrOutputWithContext(ctx)
+}
+
+// GetOwnerNotificationSettingQueryParamsPtrInput is an input type that accepts GetOwnerNotificationSettingQueryParamsArgs, GetOwnerNotificationSettingQueryParamsPtr and GetOwnerNotificationSettingQueryParamsPtrOutput values.
+// You can construct a concrete instance of `GetOwnerNotificationSettingQueryParamsPtrInput` via:
+//
+//	        GetOwnerNotificationSettingQueryParamsArgs{...}
+//
+//	or:
+//
+//	        nil
+type GetOwnerNotificationSettingQueryParamsPtrInput interface {
+	pulumi.Input
+
+	ToGetOwnerNotificationSettingQueryParamsPtrOutput() GetOwnerNotificationSettingQueryParamsPtrOutput
+	ToGetOwnerNotificationSettingQueryParamsPtrOutputWithContext(context.Context) GetOwnerNotificationSettingQueryParamsPtrOutput
+}
+
+type getOwnerNotificationSettingQueryParamsPtrType GetOwnerNotificationSettingQueryParamsArgs
+
+func GetOwnerNotificationSettingQueryParamsPtr(v *GetOwnerNotificationSettingQueryParamsArgs) GetOwnerNotificationSettingQueryParamsPtrInput {
+	return (*getOwnerNotificationSettingQueryParamsPtrType)(v)
+}
+
+func (*getOwnerNotificationSettingQueryParamsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**GetOwnerNotificationSettingQueryParams)(nil)).Elem()
+}
+
+func (i *getOwnerNotificationSettingQueryParamsPtrType) ToGetOwnerNotificationSettingQueryParamsPtrOutput() GetOwnerNotificationSettingQueryParamsPtrOutput {
+	return i.ToGetOwnerNotificationSettingQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i *getOwnerNotificationSettingQueryParamsPtrType) ToGetOwnerNotificationSettingQueryParamsPtrOutputWithContext(ctx context.Context) GetOwnerNotificationSettingQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetOwnerNotificationSettingQueryParamsPtrOutput)
+}
+
+// Query params for the API request.
+type GetOwnerNotificationSettingQueryParamsOutput struct{ *pulumi.OutputState }
+
+func (GetOwnerNotificationSettingQueryParamsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetOwnerNotificationSettingQueryParams)(nil)).Elem()
+}
+
+func (o GetOwnerNotificationSettingQueryParamsOutput) ToGetOwnerNotificationSettingQueryParamsOutput() GetOwnerNotificationSettingQueryParamsOutput {
+	return o
+}
+
+func (o GetOwnerNotificationSettingQueryParamsOutput) ToGetOwnerNotificationSettingQueryParamsOutputWithContext(ctx context.Context) GetOwnerNotificationSettingQueryParamsOutput {
+	return o
+}
+
+func (o GetOwnerNotificationSettingQueryParamsOutput) ToGetOwnerNotificationSettingQueryParamsPtrOutput() GetOwnerNotificationSettingQueryParamsPtrOutput {
+	return o.ToGetOwnerNotificationSettingQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (o GetOwnerNotificationSettingQueryParamsOutput) ToGetOwnerNotificationSettingQueryParamsPtrOutputWithContext(ctx context.Context) GetOwnerNotificationSettingQueryParamsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v GetOwnerNotificationSettingQueryParams) *GetOwnerNotificationSettingQueryParams {
+		return &v
+	}).(GetOwnerNotificationSettingQueryParamsPtrOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o GetOwnerNotificationSettingQueryParamsOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v GetOwnerNotificationSettingQueryParams) map[string]string { return v.AdditionalParams }).(pulumi.StringMapOutput)
+}
+
+type GetOwnerNotificationSettingQueryParamsPtrOutput struct{ *pulumi.OutputState }
+
+func (GetOwnerNotificationSettingQueryParamsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**GetOwnerNotificationSettingQueryParams)(nil)).Elem()
+}
+
+func (o GetOwnerNotificationSettingQueryParamsPtrOutput) ToGetOwnerNotificationSettingQueryParamsPtrOutput() GetOwnerNotificationSettingQueryParamsPtrOutput {
+	return o
+}
+
+func (o GetOwnerNotificationSettingQueryParamsPtrOutput) ToGetOwnerNotificationSettingQueryParamsPtrOutputWithContext(ctx context.Context) GetOwnerNotificationSettingQueryParamsPtrOutput {
+	return o
+}
+
+func (o GetOwnerNotificationSettingQueryParamsPtrOutput) Elem() GetOwnerNotificationSettingQueryParamsOutput {
+	return o.ApplyT(func(v *GetOwnerNotificationSettingQueryParams) GetOwnerNotificationSettingQueryParams {
+		if v != nil {
+			return *v
+		}
+		var ret GetOwnerNotificationSettingQueryParams
+		return ret
+	}).(GetOwnerNotificationSettingQueryParamsOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o GetOwnerNotificationSettingQueryParamsPtrOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *GetOwnerNotificationSettingQueryParams) map[string]string {
+		if v == nil {
+			return nil
+		}
+		return v.AdditionalParams
+	}).(pulumi.StringMapOutput)
+}
+
 type GetServiceNotificationOverrideProperties struct {
 	NotificationsToSend         GetServiceNotificationOverridePropertiesNotificationsToSend         `pulumi:"notificationsToSend"`
 	PreviewNotificationsEnabled GetServiceNotificationOverridePropertiesPreviewNotificationsEnabled `pulumi:"previewNotificationsEnabled"`
 	ServiceId                   string                                                              `pulumi:"serviceId"`
+}
+
+// Query params for the API request.
+type GetServiceNotificationOverrideQueryParams struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams map[string]string `pulumi:"additionalParams"`
+}
+
+// GetServiceNotificationOverrideQueryParamsInput is an input type that accepts GetServiceNotificationOverrideQueryParamsArgs and GetServiceNotificationOverrideQueryParamsOutput values.
+// You can construct a concrete instance of `GetServiceNotificationOverrideQueryParamsInput` via:
+//
+//	GetServiceNotificationOverrideQueryParamsArgs{...}
+type GetServiceNotificationOverrideQueryParamsInput interface {
+	pulumi.Input
+
+	ToGetServiceNotificationOverrideQueryParamsOutput() GetServiceNotificationOverrideQueryParamsOutput
+	ToGetServiceNotificationOverrideQueryParamsOutputWithContext(context.Context) GetServiceNotificationOverrideQueryParamsOutput
+}
+
+// Query params for the API request.
+type GetServiceNotificationOverrideQueryParamsArgs struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams pulumi.StringMapInput `pulumi:"additionalParams"`
+}
+
+func (GetServiceNotificationOverrideQueryParamsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetServiceNotificationOverrideQueryParams)(nil)).Elem()
+}
+
+func (i GetServiceNotificationOverrideQueryParamsArgs) ToGetServiceNotificationOverrideQueryParamsOutput() GetServiceNotificationOverrideQueryParamsOutput {
+	return i.ToGetServiceNotificationOverrideQueryParamsOutputWithContext(context.Background())
+}
+
+func (i GetServiceNotificationOverrideQueryParamsArgs) ToGetServiceNotificationOverrideQueryParamsOutputWithContext(ctx context.Context) GetServiceNotificationOverrideQueryParamsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetServiceNotificationOverrideQueryParamsOutput)
+}
+
+func (i GetServiceNotificationOverrideQueryParamsArgs) ToGetServiceNotificationOverrideQueryParamsPtrOutput() GetServiceNotificationOverrideQueryParamsPtrOutput {
+	return i.ToGetServiceNotificationOverrideQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i GetServiceNotificationOverrideQueryParamsArgs) ToGetServiceNotificationOverrideQueryParamsPtrOutputWithContext(ctx context.Context) GetServiceNotificationOverrideQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetServiceNotificationOverrideQueryParamsOutput).ToGetServiceNotificationOverrideQueryParamsPtrOutputWithContext(ctx)
+}
+
+// GetServiceNotificationOverrideQueryParamsPtrInput is an input type that accepts GetServiceNotificationOverrideQueryParamsArgs, GetServiceNotificationOverrideQueryParamsPtr and GetServiceNotificationOverrideQueryParamsPtrOutput values.
+// You can construct a concrete instance of `GetServiceNotificationOverrideQueryParamsPtrInput` via:
+//
+//	        GetServiceNotificationOverrideQueryParamsArgs{...}
+//
+//	or:
+//
+//	        nil
+type GetServiceNotificationOverrideQueryParamsPtrInput interface {
+	pulumi.Input
+
+	ToGetServiceNotificationOverrideQueryParamsPtrOutput() GetServiceNotificationOverrideQueryParamsPtrOutput
+	ToGetServiceNotificationOverrideQueryParamsPtrOutputWithContext(context.Context) GetServiceNotificationOverrideQueryParamsPtrOutput
+}
+
+type getServiceNotificationOverrideQueryParamsPtrType GetServiceNotificationOverrideQueryParamsArgs
+
+func GetServiceNotificationOverrideQueryParamsPtr(v *GetServiceNotificationOverrideQueryParamsArgs) GetServiceNotificationOverrideQueryParamsPtrInput {
+	return (*getServiceNotificationOverrideQueryParamsPtrType)(v)
+}
+
+func (*getServiceNotificationOverrideQueryParamsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**GetServiceNotificationOverrideQueryParams)(nil)).Elem()
+}
+
+func (i *getServiceNotificationOverrideQueryParamsPtrType) ToGetServiceNotificationOverrideQueryParamsPtrOutput() GetServiceNotificationOverrideQueryParamsPtrOutput {
+	return i.ToGetServiceNotificationOverrideQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i *getServiceNotificationOverrideQueryParamsPtrType) ToGetServiceNotificationOverrideQueryParamsPtrOutputWithContext(ctx context.Context) GetServiceNotificationOverrideQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetServiceNotificationOverrideQueryParamsPtrOutput)
+}
+
+// Query params for the API request.
+type GetServiceNotificationOverrideQueryParamsOutput struct{ *pulumi.OutputState }
+
+func (GetServiceNotificationOverrideQueryParamsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetServiceNotificationOverrideQueryParams)(nil)).Elem()
+}
+
+func (o GetServiceNotificationOverrideQueryParamsOutput) ToGetServiceNotificationOverrideQueryParamsOutput() GetServiceNotificationOverrideQueryParamsOutput {
+	return o
+}
+
+func (o GetServiceNotificationOverrideQueryParamsOutput) ToGetServiceNotificationOverrideQueryParamsOutputWithContext(ctx context.Context) GetServiceNotificationOverrideQueryParamsOutput {
+	return o
+}
+
+func (o GetServiceNotificationOverrideQueryParamsOutput) ToGetServiceNotificationOverrideQueryParamsPtrOutput() GetServiceNotificationOverrideQueryParamsPtrOutput {
+	return o.ToGetServiceNotificationOverrideQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (o GetServiceNotificationOverrideQueryParamsOutput) ToGetServiceNotificationOverrideQueryParamsPtrOutputWithContext(ctx context.Context) GetServiceNotificationOverrideQueryParamsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v GetServiceNotificationOverrideQueryParams) *GetServiceNotificationOverrideQueryParams {
+		return &v
+	}).(GetServiceNotificationOverrideQueryParamsPtrOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o GetServiceNotificationOverrideQueryParamsOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v GetServiceNotificationOverrideQueryParams) map[string]string { return v.AdditionalParams }).(pulumi.StringMapOutput)
+}
+
+type GetServiceNotificationOverrideQueryParamsPtrOutput struct{ *pulumi.OutputState }
+
+func (GetServiceNotificationOverrideQueryParamsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**GetServiceNotificationOverrideQueryParams)(nil)).Elem()
+}
+
+func (o GetServiceNotificationOverrideQueryParamsPtrOutput) ToGetServiceNotificationOverrideQueryParamsPtrOutput() GetServiceNotificationOverrideQueryParamsPtrOutput {
+	return o
+}
+
+func (o GetServiceNotificationOverrideQueryParamsPtrOutput) ToGetServiceNotificationOverrideQueryParamsPtrOutputWithContext(ctx context.Context) GetServiceNotificationOverrideQueryParamsPtrOutput {
+	return o
+}
+
+func (o GetServiceNotificationOverrideQueryParamsPtrOutput) Elem() GetServiceNotificationOverrideQueryParamsOutput {
+	return o.ApplyT(func(v *GetServiceNotificationOverrideQueryParams) GetServiceNotificationOverrideQueryParams {
+		if v != nil {
+			return *v
+		}
+		var ret GetServiceNotificationOverrideQueryParams
+		return ret
+	}).(GetServiceNotificationOverrideQueryParamsOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o GetServiceNotificationOverrideQueryParamsPtrOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *GetServiceNotificationOverrideQueryParams) map[string]string {
+		if v == nil {
+			return nil
+		}
+		return v.AdditionalParams
+	}).(pulumi.StringMapOutput)
+}
+
+// Query params for the API request.
+type ListNotificationOverridesQueryParams struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams map[string]string `pulumi:"additionalParams"`
+	// The position in the result list to start from when fetching paginated results. For details, see [Pagination](https://api-docs.render.com/reference/pagination).
+	Cursor *string `pulumi:"cursor"`
+	// The maximum number of items to return. For details, see [Pagination](https://api-docs.render.com/reference/pagination).
+	Limit *int `pulumi:"limit"`
+	// The ID of the workspaces to return resources for
+	OwnerId []string `pulumi:"ownerId"`
+	// Filter for resources by service ID
+	ServiceId []string `pulumi:"serviceId"`
+}
+
+// Defaults sets the appropriate defaults for ListNotificationOverridesQueryParams
+func (val *ListNotificationOverridesQueryParams) Defaults() *ListNotificationOverridesQueryParams {
+	if val == nil {
+		return nil
+	}
+	tmp := *val
+	if tmp.Limit == nil {
+		limit_ := 20
+		tmp.Limit = &limit_
+	}
+	return &tmp
+}
+
+// ListNotificationOverridesQueryParamsInput is an input type that accepts ListNotificationOverridesQueryParamsArgs and ListNotificationOverridesQueryParamsOutput values.
+// You can construct a concrete instance of `ListNotificationOverridesQueryParamsInput` via:
+//
+//	ListNotificationOverridesQueryParamsArgs{...}
+type ListNotificationOverridesQueryParamsInput interface {
+	pulumi.Input
+
+	ToListNotificationOverridesQueryParamsOutput() ListNotificationOverridesQueryParamsOutput
+	ToListNotificationOverridesQueryParamsOutputWithContext(context.Context) ListNotificationOverridesQueryParamsOutput
+}
+
+// Query params for the API request.
+type ListNotificationOverridesQueryParamsArgs struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams pulumi.StringMapInput `pulumi:"additionalParams"`
+	// The position in the result list to start from when fetching paginated results. For details, see [Pagination](https://api-docs.render.com/reference/pagination).
+	Cursor pulumi.StringPtrInput `pulumi:"cursor"`
+	// The maximum number of items to return. For details, see [Pagination](https://api-docs.render.com/reference/pagination).
+	Limit pulumi.IntPtrInput `pulumi:"limit"`
+	// The ID of the workspaces to return resources for
+	OwnerId pulumi.StringArrayInput `pulumi:"ownerId"`
+	// Filter for resources by service ID
+	ServiceId pulumi.StringArrayInput `pulumi:"serviceId"`
+}
+
+// Defaults sets the appropriate defaults for ListNotificationOverridesQueryParamsArgs
+func (val *ListNotificationOverridesQueryParamsArgs) Defaults() *ListNotificationOverridesQueryParamsArgs {
+	if val == nil {
+		return nil
+	}
+	tmp := *val
+	if tmp.Limit == nil {
+		tmp.Limit = pulumi.IntPtr(20)
+	}
+	return &tmp
+}
+func (ListNotificationOverridesQueryParamsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ListNotificationOverridesQueryParams)(nil)).Elem()
+}
+
+func (i ListNotificationOverridesQueryParamsArgs) ToListNotificationOverridesQueryParamsOutput() ListNotificationOverridesQueryParamsOutput {
+	return i.ToListNotificationOverridesQueryParamsOutputWithContext(context.Background())
+}
+
+func (i ListNotificationOverridesQueryParamsArgs) ToListNotificationOverridesQueryParamsOutputWithContext(ctx context.Context) ListNotificationOverridesQueryParamsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ListNotificationOverridesQueryParamsOutput)
+}
+
+func (i ListNotificationOverridesQueryParamsArgs) ToListNotificationOverridesQueryParamsPtrOutput() ListNotificationOverridesQueryParamsPtrOutput {
+	return i.ToListNotificationOverridesQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i ListNotificationOverridesQueryParamsArgs) ToListNotificationOverridesQueryParamsPtrOutputWithContext(ctx context.Context) ListNotificationOverridesQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ListNotificationOverridesQueryParamsOutput).ToListNotificationOverridesQueryParamsPtrOutputWithContext(ctx)
+}
+
+// ListNotificationOverridesQueryParamsPtrInput is an input type that accepts ListNotificationOverridesQueryParamsArgs, ListNotificationOverridesQueryParamsPtr and ListNotificationOverridesQueryParamsPtrOutput values.
+// You can construct a concrete instance of `ListNotificationOverridesQueryParamsPtrInput` via:
+//
+//	        ListNotificationOverridesQueryParamsArgs{...}
+//
+//	or:
+//
+//	        nil
+type ListNotificationOverridesQueryParamsPtrInput interface {
+	pulumi.Input
+
+	ToListNotificationOverridesQueryParamsPtrOutput() ListNotificationOverridesQueryParamsPtrOutput
+	ToListNotificationOverridesQueryParamsPtrOutputWithContext(context.Context) ListNotificationOverridesQueryParamsPtrOutput
+}
+
+type listNotificationOverridesQueryParamsPtrType ListNotificationOverridesQueryParamsArgs
+
+func ListNotificationOverridesQueryParamsPtr(v *ListNotificationOverridesQueryParamsArgs) ListNotificationOverridesQueryParamsPtrInput {
+	return (*listNotificationOverridesQueryParamsPtrType)(v)
+}
+
+func (*listNotificationOverridesQueryParamsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**ListNotificationOverridesQueryParams)(nil)).Elem()
+}
+
+func (i *listNotificationOverridesQueryParamsPtrType) ToListNotificationOverridesQueryParamsPtrOutput() ListNotificationOverridesQueryParamsPtrOutput {
+	return i.ToListNotificationOverridesQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i *listNotificationOverridesQueryParamsPtrType) ToListNotificationOverridesQueryParamsPtrOutputWithContext(ctx context.Context) ListNotificationOverridesQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ListNotificationOverridesQueryParamsPtrOutput)
+}
+
+// Query params for the API request.
+type ListNotificationOverridesQueryParamsOutput struct{ *pulumi.OutputState }
+
+func (ListNotificationOverridesQueryParamsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ListNotificationOverridesQueryParams)(nil)).Elem()
+}
+
+func (o ListNotificationOverridesQueryParamsOutput) ToListNotificationOverridesQueryParamsOutput() ListNotificationOverridesQueryParamsOutput {
+	return o
+}
+
+func (o ListNotificationOverridesQueryParamsOutput) ToListNotificationOverridesQueryParamsOutputWithContext(ctx context.Context) ListNotificationOverridesQueryParamsOutput {
+	return o
+}
+
+func (o ListNotificationOverridesQueryParamsOutput) ToListNotificationOverridesQueryParamsPtrOutput() ListNotificationOverridesQueryParamsPtrOutput {
+	return o.ToListNotificationOverridesQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (o ListNotificationOverridesQueryParamsOutput) ToListNotificationOverridesQueryParamsPtrOutputWithContext(ctx context.Context) ListNotificationOverridesQueryParamsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v ListNotificationOverridesQueryParams) *ListNotificationOverridesQueryParams {
+		return &v
+	}).(ListNotificationOverridesQueryParamsPtrOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o ListNotificationOverridesQueryParamsOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v ListNotificationOverridesQueryParams) map[string]string { return v.AdditionalParams }).(pulumi.StringMapOutput)
+}
+
+// The position in the result list to start from when fetching paginated results. For details, see [Pagination](https://api-docs.render.com/reference/pagination).
+func (o ListNotificationOverridesQueryParamsOutput) Cursor() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ListNotificationOverridesQueryParams) *string { return v.Cursor }).(pulumi.StringPtrOutput)
+}
+
+// The maximum number of items to return. For details, see [Pagination](https://api-docs.render.com/reference/pagination).
+func (o ListNotificationOverridesQueryParamsOutput) Limit() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v ListNotificationOverridesQueryParams) *int { return v.Limit }).(pulumi.IntPtrOutput)
+}
+
+// The ID of the workspaces to return resources for
+func (o ListNotificationOverridesQueryParamsOutput) OwnerId() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v ListNotificationOverridesQueryParams) []string { return v.OwnerId }).(pulumi.StringArrayOutput)
+}
+
+// Filter for resources by service ID
+func (o ListNotificationOverridesQueryParamsOutput) ServiceId() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v ListNotificationOverridesQueryParams) []string { return v.ServiceId }).(pulumi.StringArrayOutput)
+}
+
+type ListNotificationOverridesQueryParamsPtrOutput struct{ *pulumi.OutputState }
+
+func (ListNotificationOverridesQueryParamsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ListNotificationOverridesQueryParams)(nil)).Elem()
+}
+
+func (o ListNotificationOverridesQueryParamsPtrOutput) ToListNotificationOverridesQueryParamsPtrOutput() ListNotificationOverridesQueryParamsPtrOutput {
+	return o
+}
+
+func (o ListNotificationOverridesQueryParamsPtrOutput) ToListNotificationOverridesQueryParamsPtrOutputWithContext(ctx context.Context) ListNotificationOverridesQueryParamsPtrOutput {
+	return o
+}
+
+func (o ListNotificationOverridesQueryParamsPtrOutput) Elem() ListNotificationOverridesQueryParamsOutput {
+	return o.ApplyT(func(v *ListNotificationOverridesQueryParams) ListNotificationOverridesQueryParams {
+		if v != nil {
+			return *v
+		}
+		var ret ListNotificationOverridesQueryParams
+		return ret
+	}).(ListNotificationOverridesQueryParamsOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o ListNotificationOverridesQueryParamsPtrOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *ListNotificationOverridesQueryParams) map[string]string {
+		if v == nil {
+			return nil
+		}
+		return v.AdditionalParams
+	}).(pulumi.StringMapOutput)
+}
+
+// The position in the result list to start from when fetching paginated results. For details, see [Pagination](https://api-docs.render.com/reference/pagination).
+func (o ListNotificationOverridesQueryParamsPtrOutput) Cursor() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ListNotificationOverridesQueryParams) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Cursor
+	}).(pulumi.StringPtrOutput)
+}
+
+// The maximum number of items to return. For details, see [Pagination](https://api-docs.render.com/reference/pagination).
+func (o ListNotificationOverridesQueryParamsPtrOutput) Limit() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *ListNotificationOverridesQueryParams) *int {
+		if v == nil {
+			return nil
+		}
+		return v.Limit
+	}).(pulumi.IntPtrOutput)
+}
+
+// The ID of the workspaces to return resources for
+func (o ListNotificationOverridesQueryParamsPtrOutput) OwnerId() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *ListNotificationOverridesQueryParams) []string {
+		if v == nil {
+			return nil
+		}
+		return v.OwnerId
+	}).(pulumi.StringArrayOutput)
+}
+
+// Filter for resources by service ID
+func (o ListNotificationOverridesQueryParamsPtrOutput) ServiceId() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *ListNotificationOverridesQueryParams) []string {
+		if v == nil {
+			return nil
+		}
+		return v.ServiceId
+	}).(pulumi.StringArrayOutput)
 }
 
 type NotificationOverrideWithCursor struct {
@@ -113,6 +633,18 @@ func (o NotificationOverrideWithCursorOverridePropertiesOutput) ServiceId() pulu
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*GetOwnerNotificationSettingQueryParamsInput)(nil)).Elem(), GetOwnerNotificationSettingQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetOwnerNotificationSettingQueryParamsPtrInput)(nil)).Elem(), GetOwnerNotificationSettingQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetServiceNotificationOverrideQueryParamsInput)(nil)).Elem(), GetServiceNotificationOverrideQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetServiceNotificationOverrideQueryParamsPtrInput)(nil)).Elem(), GetServiceNotificationOverrideQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ListNotificationOverridesQueryParamsInput)(nil)).Elem(), ListNotificationOverridesQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ListNotificationOverridesQueryParamsPtrInput)(nil)).Elem(), ListNotificationOverridesQueryParamsArgs{})
+	pulumi.RegisterOutputType(GetOwnerNotificationSettingQueryParamsOutput{})
+	pulumi.RegisterOutputType(GetOwnerNotificationSettingQueryParamsPtrOutput{})
+	pulumi.RegisterOutputType(GetServiceNotificationOverrideQueryParamsOutput{})
+	pulumi.RegisterOutputType(GetServiceNotificationOverrideQueryParamsPtrOutput{})
+	pulumi.RegisterOutputType(ListNotificationOverridesQueryParamsOutput{})
+	pulumi.RegisterOutputType(ListNotificationOverridesQueryParamsPtrOutput{})
 	pulumi.RegisterOutputType(NotificationOverrideWithCursorOutput{})
 	pulumi.RegisterOutputType(NotificationOverrideWithCursorArrayOutput{})
 	pulumi.RegisterOutputType(NotificationOverrideWithCursorOverridePropertiesOutput{})

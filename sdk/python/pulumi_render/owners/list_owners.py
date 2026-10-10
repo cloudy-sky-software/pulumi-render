@@ -15,6 +15,7 @@ else:
 from .. import _utilities
 from . import outputs
 from ._enums import *
+from ._inputs import *
 
 __all__ = [
     'ListOwnersResult',
@@ -45,21 +46,29 @@ class AwaitableListOwnersResult(ListOwnersResult):
             items=self.items)
 
 
-def list_owners(opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableListOwnersResult:
+def list_owners(query_params: Optional[Union['ListOwnersQueryParams', 'ListOwnersQueryParamsDict']] = None,
+                opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableListOwnersResult:
     """
     Use this data source to access information about an existing resource.
+
+    :param Union['ListOwnersQueryParams', 'ListOwnersQueryParamsDict'] query_params: Query params to send with the API request.
     """
     __args__ = dict()
+    __args__['queryParams'] = query_params
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke('render:owners:listOwners', __args__, opts=opts, typ=ListOwnersResult).value
 
     return AwaitableListOwnersResult(
         items=pulumi.get(__ret__, 'items'))
-def list_owners_output(opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[ListOwnersResult]:
+def list_owners_output(query_params: pulumi.Input[Optional[Optional[Union['ListOwnersQueryParams', 'ListOwnersQueryParamsDict']]]] = None,
+                       opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[ListOwnersResult]:
     """
     Use this data source to access information about an existing resource.
+
+    :param Union['ListOwnersQueryParams', 'ListOwnersQueryParamsDict'] query_params: Query params to send with the API request.
     """
     __args__ = dict()
+    __args__['queryParams'] = query_params
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('render:owners:listOwners', __args__, opts=opts, typ=ListOwnersResult)
     return __ret__.apply(lambda __response__: ListOwnersResult(

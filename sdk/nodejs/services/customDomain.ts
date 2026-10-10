@@ -2,6 +2,9 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
+import * as inputs from "../types/input";
+import * as outputs from "../types/output";
+import * as enums from "../types/enums";
 import * as utilities from "../utilities";
 
 export class CustomDomain extends pulumi.CustomResource {
@@ -32,6 +35,10 @@ export class CustomDomain extends pulumi.CustomResource {
     }
 
     declare public readonly name: pulumi.Output<string>;
+    /**
+     * Query params to send with the API requests for this resource.
+     */
+    declare public readonly queryParams: pulumi.Output<outputs.services.CustomDomainQueryParams | undefined>;
 
     /**
      * Create a CustomDomain resource with the given unique name, arguments, and options.
@@ -45,9 +52,11 @@ export class CustomDomain extends pulumi.CustomResource {
         opts = opts || {};
         if (!opts.id) {
             resourceInputs["name"] = args?.name;
+            resourceInputs["queryParams"] = args?.queryParams;
             resourceInputs["serviceId"] = args?.serviceId;
         } else {
             resourceInputs["name"] = undefined /*out*/;
+            resourceInputs["queryParams"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(CustomDomain.__pulumiType, name, resourceInputs, opts);
@@ -59,6 +68,10 @@ export class CustomDomain extends pulumi.CustomResource {
  */
 export interface CustomDomainArgs {
     name?: pulumi.Input<string | undefined>;
+    /**
+     * Query params to send with the API requests for this resource.
+     */
+    queryParams?: pulumi.Input<inputs.services.CustomDomainQueryParamsArgs | undefined>;
     /**
      * The ID of the service
      */

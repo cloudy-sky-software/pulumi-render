@@ -22,6 +22,8 @@ func LookupSecretFile(ctx *pulumi.Context, args *LookupSecretFileArgs, opts ...p
 }
 
 type LookupSecretFileArgs struct {
+	// Query params to send with the API request.
+	QueryParams *GetSecretFileQueryParams `pulumi:"queryParams"`
 	// The file name of the secret file
 	SecretFileName string `pulumi:"secretFileName"`
 	// The ID of the service
@@ -39,6 +41,8 @@ func LookupSecretFileOutput(ctx *pulumi.Context, args LookupSecretFileOutputArgs
 }
 
 type LookupSecretFileOutputArgs struct {
+	// Query params to send with the API request.
+	QueryParams GetSecretFileQueryParamsPtrInput `pulumi:"queryParams"`
 	// The file name of the secret file
 	SecretFileName pulumi.StringInput `pulumi:"secretFileName"`
 	// The ID of the service

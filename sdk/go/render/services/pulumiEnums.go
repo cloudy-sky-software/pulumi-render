@@ -3354,6 +3354,1856 @@ func (o JobStatusPtrOutput) ToStringPtrOutputWithContext(ctx context.Context) pu
 	}).(pulumi.StringPtrOutput)
 }
 
+type ListCustomDomainsQueryParamsDomainType string
+
+const (
+	ListCustomDomainsQueryParamsDomainTypeApex      = ListCustomDomainsQueryParamsDomainType("apex")
+	ListCustomDomainsQueryParamsDomainTypeSubdomain = ListCustomDomainsQueryParamsDomainType("subdomain")
+)
+
+func (ListCustomDomainsQueryParamsDomainType) ElementType() reflect.Type {
+	return reflect.TypeOf((*ListCustomDomainsQueryParamsDomainType)(nil)).Elem()
+}
+
+func (e ListCustomDomainsQueryParamsDomainType) ToListCustomDomainsQueryParamsDomainTypeOutput() ListCustomDomainsQueryParamsDomainTypeOutput {
+	return pulumi.ToOutput(e).(ListCustomDomainsQueryParamsDomainTypeOutput)
+}
+
+func (e ListCustomDomainsQueryParamsDomainType) ToListCustomDomainsQueryParamsDomainTypeOutputWithContext(ctx context.Context) ListCustomDomainsQueryParamsDomainTypeOutput {
+	return pulumi.ToOutputWithContext(ctx, e).(ListCustomDomainsQueryParamsDomainTypeOutput)
+}
+
+func (e ListCustomDomainsQueryParamsDomainType) ToListCustomDomainsQueryParamsDomainTypePtrOutput() ListCustomDomainsQueryParamsDomainTypePtrOutput {
+	return e.ToListCustomDomainsQueryParamsDomainTypePtrOutputWithContext(context.Background())
+}
+
+func (e ListCustomDomainsQueryParamsDomainType) ToListCustomDomainsQueryParamsDomainTypePtrOutputWithContext(ctx context.Context) ListCustomDomainsQueryParamsDomainTypePtrOutput {
+	return ListCustomDomainsQueryParamsDomainType(e).ToListCustomDomainsQueryParamsDomainTypeOutputWithContext(ctx).ToListCustomDomainsQueryParamsDomainTypePtrOutputWithContext(ctx)
+}
+
+func (e ListCustomDomainsQueryParamsDomainType) ToStringOutput() pulumi.StringOutput {
+	return pulumi.ToOutput(pulumi.String(e)).(pulumi.StringOutput)
+}
+
+func (e ListCustomDomainsQueryParamsDomainType) ToStringOutputWithContext(ctx context.Context) pulumi.StringOutput {
+	return pulumi.ToOutputWithContext(ctx, pulumi.String(e)).(pulumi.StringOutput)
+}
+
+func (e ListCustomDomainsQueryParamsDomainType) ToStringPtrOutput() pulumi.StringPtrOutput {
+	return pulumi.String(e).ToStringPtrOutputWithContext(context.Background())
+}
+
+func (e ListCustomDomainsQueryParamsDomainType) ToStringPtrOutputWithContext(ctx context.Context) pulumi.StringPtrOutput {
+	return pulumi.String(e).ToStringOutputWithContext(ctx).ToStringPtrOutputWithContext(ctx)
+}
+
+type ListCustomDomainsQueryParamsDomainTypeOutput struct{ *pulumi.OutputState }
+
+func (ListCustomDomainsQueryParamsDomainTypeOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ListCustomDomainsQueryParamsDomainType)(nil)).Elem()
+}
+
+func (o ListCustomDomainsQueryParamsDomainTypeOutput) ToListCustomDomainsQueryParamsDomainTypeOutput() ListCustomDomainsQueryParamsDomainTypeOutput {
+	return o
+}
+
+func (o ListCustomDomainsQueryParamsDomainTypeOutput) ToListCustomDomainsQueryParamsDomainTypeOutputWithContext(ctx context.Context) ListCustomDomainsQueryParamsDomainTypeOutput {
+	return o
+}
+
+func (o ListCustomDomainsQueryParamsDomainTypeOutput) ToListCustomDomainsQueryParamsDomainTypePtrOutput() ListCustomDomainsQueryParamsDomainTypePtrOutput {
+	return o.ToListCustomDomainsQueryParamsDomainTypePtrOutputWithContext(context.Background())
+}
+
+func (o ListCustomDomainsQueryParamsDomainTypeOutput) ToListCustomDomainsQueryParamsDomainTypePtrOutputWithContext(ctx context.Context) ListCustomDomainsQueryParamsDomainTypePtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v ListCustomDomainsQueryParamsDomainType) *ListCustomDomainsQueryParamsDomainType {
+		return &v
+	}).(ListCustomDomainsQueryParamsDomainTypePtrOutput)
+}
+
+func (o ListCustomDomainsQueryParamsDomainTypeOutput) ToStringOutput() pulumi.StringOutput {
+	return o.ToStringOutputWithContext(context.Background())
+}
+
+func (o ListCustomDomainsQueryParamsDomainTypeOutput) ToStringOutputWithContext(ctx context.Context) pulumi.StringOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, e ListCustomDomainsQueryParamsDomainType) string {
+		return string(e)
+	}).(pulumi.StringOutput)
+}
+
+func (o ListCustomDomainsQueryParamsDomainTypeOutput) ToStringPtrOutput() pulumi.StringPtrOutput {
+	return o.ToStringPtrOutputWithContext(context.Background())
+}
+
+func (o ListCustomDomainsQueryParamsDomainTypeOutput) ToStringPtrOutputWithContext(ctx context.Context) pulumi.StringPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, e ListCustomDomainsQueryParamsDomainType) *string {
+		v := string(e)
+		return &v
+	}).(pulumi.StringPtrOutput)
+}
+
+type ListCustomDomainsQueryParamsDomainTypePtrOutput struct{ *pulumi.OutputState }
+
+func (ListCustomDomainsQueryParamsDomainTypePtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ListCustomDomainsQueryParamsDomainType)(nil)).Elem()
+}
+
+func (o ListCustomDomainsQueryParamsDomainTypePtrOutput) ToListCustomDomainsQueryParamsDomainTypePtrOutput() ListCustomDomainsQueryParamsDomainTypePtrOutput {
+	return o
+}
+
+func (o ListCustomDomainsQueryParamsDomainTypePtrOutput) ToListCustomDomainsQueryParamsDomainTypePtrOutputWithContext(ctx context.Context) ListCustomDomainsQueryParamsDomainTypePtrOutput {
+	return o
+}
+
+func (o ListCustomDomainsQueryParamsDomainTypePtrOutput) Elem() ListCustomDomainsQueryParamsDomainTypeOutput {
+	return o.ApplyT(func(v *ListCustomDomainsQueryParamsDomainType) ListCustomDomainsQueryParamsDomainType {
+		if v != nil {
+			return *v
+		}
+		var ret ListCustomDomainsQueryParamsDomainType
+		return ret
+	}).(ListCustomDomainsQueryParamsDomainTypeOutput)
+}
+
+func (o ListCustomDomainsQueryParamsDomainTypePtrOutput) ToStringPtrOutput() pulumi.StringPtrOutput {
+	return o.ToStringPtrOutputWithContext(context.Background())
+}
+
+func (o ListCustomDomainsQueryParamsDomainTypePtrOutput) ToStringPtrOutputWithContext(ctx context.Context) pulumi.StringPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, e *ListCustomDomainsQueryParamsDomainType) *string {
+		if e == nil {
+			return nil
+		}
+		v := string(*e)
+		return &v
+	}).(pulumi.StringPtrOutput)
+}
+
+// ListCustomDomainsQueryParamsDomainTypeInput is an input type that accepts values of the ListCustomDomainsQueryParamsDomainType enum
+// A concrete instance of `ListCustomDomainsQueryParamsDomainTypeInput` can be one of the following:
+//
+//	ListCustomDomainsQueryParamsDomainTypeApex
+//	ListCustomDomainsQueryParamsDomainTypeSubdomain
+type ListCustomDomainsQueryParamsDomainTypeInput interface {
+	pulumi.Input
+
+	ToListCustomDomainsQueryParamsDomainTypeOutput() ListCustomDomainsQueryParamsDomainTypeOutput
+	ToListCustomDomainsQueryParamsDomainTypeOutputWithContext(context.Context) ListCustomDomainsQueryParamsDomainTypeOutput
+}
+
+var listCustomDomainsQueryParamsDomainTypePtrType = reflect.TypeOf((**ListCustomDomainsQueryParamsDomainType)(nil)).Elem()
+
+type ListCustomDomainsQueryParamsDomainTypePtrInput interface {
+	pulumi.Input
+
+	ToListCustomDomainsQueryParamsDomainTypePtrOutput() ListCustomDomainsQueryParamsDomainTypePtrOutput
+	ToListCustomDomainsQueryParamsDomainTypePtrOutputWithContext(context.Context) ListCustomDomainsQueryParamsDomainTypePtrOutput
+}
+
+type listCustomDomainsQueryParamsDomainTypePtr string
+
+func ListCustomDomainsQueryParamsDomainTypePtr(v string) ListCustomDomainsQueryParamsDomainTypePtrInput {
+	return (*listCustomDomainsQueryParamsDomainTypePtr)(&v)
+}
+
+func (*listCustomDomainsQueryParamsDomainTypePtr) ElementType() reflect.Type {
+	return listCustomDomainsQueryParamsDomainTypePtrType
+}
+
+func (in *listCustomDomainsQueryParamsDomainTypePtr) ToListCustomDomainsQueryParamsDomainTypePtrOutput() ListCustomDomainsQueryParamsDomainTypePtrOutput {
+	return pulumi.ToOutput(in).(ListCustomDomainsQueryParamsDomainTypePtrOutput)
+}
+
+func (in *listCustomDomainsQueryParamsDomainTypePtr) ToListCustomDomainsQueryParamsDomainTypePtrOutputWithContext(ctx context.Context) ListCustomDomainsQueryParamsDomainTypePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, in).(ListCustomDomainsQueryParamsDomainTypePtrOutput)
+}
+
+type ListCustomDomainsQueryParamsVerificationStatus string
+
+const (
+	ListCustomDomainsQueryParamsVerificationStatusVerified   = ListCustomDomainsQueryParamsVerificationStatus("verified")
+	ListCustomDomainsQueryParamsVerificationStatusUnverified = ListCustomDomainsQueryParamsVerificationStatus("unverified")
+)
+
+func (ListCustomDomainsQueryParamsVerificationStatus) ElementType() reflect.Type {
+	return reflect.TypeOf((*ListCustomDomainsQueryParamsVerificationStatus)(nil)).Elem()
+}
+
+func (e ListCustomDomainsQueryParamsVerificationStatus) ToListCustomDomainsQueryParamsVerificationStatusOutput() ListCustomDomainsQueryParamsVerificationStatusOutput {
+	return pulumi.ToOutput(e).(ListCustomDomainsQueryParamsVerificationStatusOutput)
+}
+
+func (e ListCustomDomainsQueryParamsVerificationStatus) ToListCustomDomainsQueryParamsVerificationStatusOutputWithContext(ctx context.Context) ListCustomDomainsQueryParamsVerificationStatusOutput {
+	return pulumi.ToOutputWithContext(ctx, e).(ListCustomDomainsQueryParamsVerificationStatusOutput)
+}
+
+func (e ListCustomDomainsQueryParamsVerificationStatus) ToListCustomDomainsQueryParamsVerificationStatusPtrOutput() ListCustomDomainsQueryParamsVerificationStatusPtrOutput {
+	return e.ToListCustomDomainsQueryParamsVerificationStatusPtrOutputWithContext(context.Background())
+}
+
+func (e ListCustomDomainsQueryParamsVerificationStatus) ToListCustomDomainsQueryParamsVerificationStatusPtrOutputWithContext(ctx context.Context) ListCustomDomainsQueryParamsVerificationStatusPtrOutput {
+	return ListCustomDomainsQueryParamsVerificationStatus(e).ToListCustomDomainsQueryParamsVerificationStatusOutputWithContext(ctx).ToListCustomDomainsQueryParamsVerificationStatusPtrOutputWithContext(ctx)
+}
+
+func (e ListCustomDomainsQueryParamsVerificationStatus) ToStringOutput() pulumi.StringOutput {
+	return pulumi.ToOutput(pulumi.String(e)).(pulumi.StringOutput)
+}
+
+func (e ListCustomDomainsQueryParamsVerificationStatus) ToStringOutputWithContext(ctx context.Context) pulumi.StringOutput {
+	return pulumi.ToOutputWithContext(ctx, pulumi.String(e)).(pulumi.StringOutput)
+}
+
+func (e ListCustomDomainsQueryParamsVerificationStatus) ToStringPtrOutput() pulumi.StringPtrOutput {
+	return pulumi.String(e).ToStringPtrOutputWithContext(context.Background())
+}
+
+func (e ListCustomDomainsQueryParamsVerificationStatus) ToStringPtrOutputWithContext(ctx context.Context) pulumi.StringPtrOutput {
+	return pulumi.String(e).ToStringOutputWithContext(ctx).ToStringPtrOutputWithContext(ctx)
+}
+
+type ListCustomDomainsQueryParamsVerificationStatusOutput struct{ *pulumi.OutputState }
+
+func (ListCustomDomainsQueryParamsVerificationStatusOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ListCustomDomainsQueryParamsVerificationStatus)(nil)).Elem()
+}
+
+func (o ListCustomDomainsQueryParamsVerificationStatusOutput) ToListCustomDomainsQueryParamsVerificationStatusOutput() ListCustomDomainsQueryParamsVerificationStatusOutput {
+	return o
+}
+
+func (o ListCustomDomainsQueryParamsVerificationStatusOutput) ToListCustomDomainsQueryParamsVerificationStatusOutputWithContext(ctx context.Context) ListCustomDomainsQueryParamsVerificationStatusOutput {
+	return o
+}
+
+func (o ListCustomDomainsQueryParamsVerificationStatusOutput) ToListCustomDomainsQueryParamsVerificationStatusPtrOutput() ListCustomDomainsQueryParamsVerificationStatusPtrOutput {
+	return o.ToListCustomDomainsQueryParamsVerificationStatusPtrOutputWithContext(context.Background())
+}
+
+func (o ListCustomDomainsQueryParamsVerificationStatusOutput) ToListCustomDomainsQueryParamsVerificationStatusPtrOutputWithContext(ctx context.Context) ListCustomDomainsQueryParamsVerificationStatusPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v ListCustomDomainsQueryParamsVerificationStatus) *ListCustomDomainsQueryParamsVerificationStatus {
+		return &v
+	}).(ListCustomDomainsQueryParamsVerificationStatusPtrOutput)
+}
+
+func (o ListCustomDomainsQueryParamsVerificationStatusOutput) ToStringOutput() pulumi.StringOutput {
+	return o.ToStringOutputWithContext(context.Background())
+}
+
+func (o ListCustomDomainsQueryParamsVerificationStatusOutput) ToStringOutputWithContext(ctx context.Context) pulumi.StringOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, e ListCustomDomainsQueryParamsVerificationStatus) string {
+		return string(e)
+	}).(pulumi.StringOutput)
+}
+
+func (o ListCustomDomainsQueryParamsVerificationStatusOutput) ToStringPtrOutput() pulumi.StringPtrOutput {
+	return o.ToStringPtrOutputWithContext(context.Background())
+}
+
+func (o ListCustomDomainsQueryParamsVerificationStatusOutput) ToStringPtrOutputWithContext(ctx context.Context) pulumi.StringPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, e ListCustomDomainsQueryParamsVerificationStatus) *string {
+		v := string(e)
+		return &v
+	}).(pulumi.StringPtrOutput)
+}
+
+type ListCustomDomainsQueryParamsVerificationStatusPtrOutput struct{ *pulumi.OutputState }
+
+func (ListCustomDomainsQueryParamsVerificationStatusPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ListCustomDomainsQueryParamsVerificationStatus)(nil)).Elem()
+}
+
+func (o ListCustomDomainsQueryParamsVerificationStatusPtrOutput) ToListCustomDomainsQueryParamsVerificationStatusPtrOutput() ListCustomDomainsQueryParamsVerificationStatusPtrOutput {
+	return o
+}
+
+func (o ListCustomDomainsQueryParamsVerificationStatusPtrOutput) ToListCustomDomainsQueryParamsVerificationStatusPtrOutputWithContext(ctx context.Context) ListCustomDomainsQueryParamsVerificationStatusPtrOutput {
+	return o
+}
+
+func (o ListCustomDomainsQueryParamsVerificationStatusPtrOutput) Elem() ListCustomDomainsQueryParamsVerificationStatusOutput {
+	return o.ApplyT(func(v *ListCustomDomainsQueryParamsVerificationStatus) ListCustomDomainsQueryParamsVerificationStatus {
+		if v != nil {
+			return *v
+		}
+		var ret ListCustomDomainsQueryParamsVerificationStatus
+		return ret
+	}).(ListCustomDomainsQueryParamsVerificationStatusOutput)
+}
+
+func (o ListCustomDomainsQueryParamsVerificationStatusPtrOutput) ToStringPtrOutput() pulumi.StringPtrOutput {
+	return o.ToStringPtrOutputWithContext(context.Background())
+}
+
+func (o ListCustomDomainsQueryParamsVerificationStatusPtrOutput) ToStringPtrOutputWithContext(ctx context.Context) pulumi.StringPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, e *ListCustomDomainsQueryParamsVerificationStatus) *string {
+		if e == nil {
+			return nil
+		}
+		v := string(*e)
+		return &v
+	}).(pulumi.StringPtrOutput)
+}
+
+// ListCustomDomainsQueryParamsVerificationStatusInput is an input type that accepts values of the ListCustomDomainsQueryParamsVerificationStatus enum
+// A concrete instance of `ListCustomDomainsQueryParamsVerificationStatusInput` can be one of the following:
+//
+//	ListCustomDomainsQueryParamsVerificationStatusVerified
+//	ListCustomDomainsQueryParamsVerificationStatusUnverified
+type ListCustomDomainsQueryParamsVerificationStatusInput interface {
+	pulumi.Input
+
+	ToListCustomDomainsQueryParamsVerificationStatusOutput() ListCustomDomainsQueryParamsVerificationStatusOutput
+	ToListCustomDomainsQueryParamsVerificationStatusOutputWithContext(context.Context) ListCustomDomainsQueryParamsVerificationStatusOutput
+}
+
+var listCustomDomainsQueryParamsVerificationStatusPtrType = reflect.TypeOf((**ListCustomDomainsQueryParamsVerificationStatus)(nil)).Elem()
+
+type ListCustomDomainsQueryParamsVerificationStatusPtrInput interface {
+	pulumi.Input
+
+	ToListCustomDomainsQueryParamsVerificationStatusPtrOutput() ListCustomDomainsQueryParamsVerificationStatusPtrOutput
+	ToListCustomDomainsQueryParamsVerificationStatusPtrOutputWithContext(context.Context) ListCustomDomainsQueryParamsVerificationStatusPtrOutput
+}
+
+type listCustomDomainsQueryParamsVerificationStatusPtr string
+
+func ListCustomDomainsQueryParamsVerificationStatusPtr(v string) ListCustomDomainsQueryParamsVerificationStatusPtrInput {
+	return (*listCustomDomainsQueryParamsVerificationStatusPtr)(&v)
+}
+
+func (*listCustomDomainsQueryParamsVerificationStatusPtr) ElementType() reflect.Type {
+	return listCustomDomainsQueryParamsVerificationStatusPtrType
+}
+
+func (in *listCustomDomainsQueryParamsVerificationStatusPtr) ToListCustomDomainsQueryParamsVerificationStatusPtrOutput() ListCustomDomainsQueryParamsVerificationStatusPtrOutput {
+	return pulumi.ToOutput(in).(ListCustomDomainsQueryParamsVerificationStatusPtrOutput)
+}
+
+func (in *listCustomDomainsQueryParamsVerificationStatusPtr) ToListCustomDomainsQueryParamsVerificationStatusPtrOutputWithContext(ctx context.Context) ListCustomDomainsQueryParamsVerificationStatusPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, in).(ListCustomDomainsQueryParamsVerificationStatusPtrOutput)
+}
+
+type ListDeploysQueryParamsStatusItem string
+
+const (
+	ListDeploysQueryParamsStatusItemCreated             = ListDeploysQueryParamsStatusItem("created")
+	ListDeploysQueryParamsStatusItemQueued              = ListDeploysQueryParamsStatusItem("queued")
+	ListDeploysQueryParamsStatusItemBuildInProgress     = ListDeploysQueryParamsStatusItem("build_in_progress")
+	ListDeploysQueryParamsStatusItemUpdateInProgress    = ListDeploysQueryParamsStatusItem("update_in_progress")
+	ListDeploysQueryParamsStatusItemLive                = ListDeploysQueryParamsStatusItem("live")
+	ListDeploysQueryParamsStatusItemDeactivated         = ListDeploysQueryParamsStatusItem("deactivated")
+	ListDeploysQueryParamsStatusItemBuildFailed         = ListDeploysQueryParamsStatusItem("build_failed")
+	ListDeploysQueryParamsStatusItemUpdateFailed        = ListDeploysQueryParamsStatusItem("update_failed")
+	ListDeploysQueryParamsStatusItemCanceled            = ListDeploysQueryParamsStatusItem("canceled")
+	ListDeploysQueryParamsStatusItemPreDeployInProgress = ListDeploysQueryParamsStatusItem("pre_deploy_in_progress")
+	ListDeploysQueryParamsStatusItemPreDeployFailed     = ListDeploysQueryParamsStatusItem("pre_deploy_failed")
+)
+
+func (ListDeploysQueryParamsStatusItem) ElementType() reflect.Type {
+	return reflect.TypeOf((*ListDeploysQueryParamsStatusItem)(nil)).Elem()
+}
+
+func (e ListDeploysQueryParamsStatusItem) ToListDeploysQueryParamsStatusItemOutput() ListDeploysQueryParamsStatusItemOutput {
+	return pulumi.ToOutput(e).(ListDeploysQueryParamsStatusItemOutput)
+}
+
+func (e ListDeploysQueryParamsStatusItem) ToListDeploysQueryParamsStatusItemOutputWithContext(ctx context.Context) ListDeploysQueryParamsStatusItemOutput {
+	return pulumi.ToOutputWithContext(ctx, e).(ListDeploysQueryParamsStatusItemOutput)
+}
+
+func (e ListDeploysQueryParamsStatusItem) ToListDeploysQueryParamsStatusItemPtrOutput() ListDeploysQueryParamsStatusItemPtrOutput {
+	return e.ToListDeploysQueryParamsStatusItemPtrOutputWithContext(context.Background())
+}
+
+func (e ListDeploysQueryParamsStatusItem) ToListDeploysQueryParamsStatusItemPtrOutputWithContext(ctx context.Context) ListDeploysQueryParamsStatusItemPtrOutput {
+	return ListDeploysQueryParamsStatusItem(e).ToListDeploysQueryParamsStatusItemOutputWithContext(ctx).ToListDeploysQueryParamsStatusItemPtrOutputWithContext(ctx)
+}
+
+func (e ListDeploysQueryParamsStatusItem) ToStringOutput() pulumi.StringOutput {
+	return pulumi.ToOutput(pulumi.String(e)).(pulumi.StringOutput)
+}
+
+func (e ListDeploysQueryParamsStatusItem) ToStringOutputWithContext(ctx context.Context) pulumi.StringOutput {
+	return pulumi.ToOutputWithContext(ctx, pulumi.String(e)).(pulumi.StringOutput)
+}
+
+func (e ListDeploysQueryParamsStatusItem) ToStringPtrOutput() pulumi.StringPtrOutput {
+	return pulumi.String(e).ToStringPtrOutputWithContext(context.Background())
+}
+
+func (e ListDeploysQueryParamsStatusItem) ToStringPtrOutputWithContext(ctx context.Context) pulumi.StringPtrOutput {
+	return pulumi.String(e).ToStringOutputWithContext(ctx).ToStringPtrOutputWithContext(ctx)
+}
+
+type ListDeploysQueryParamsStatusItemOutput struct{ *pulumi.OutputState }
+
+func (ListDeploysQueryParamsStatusItemOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ListDeploysQueryParamsStatusItem)(nil)).Elem()
+}
+
+func (o ListDeploysQueryParamsStatusItemOutput) ToListDeploysQueryParamsStatusItemOutput() ListDeploysQueryParamsStatusItemOutput {
+	return o
+}
+
+func (o ListDeploysQueryParamsStatusItemOutput) ToListDeploysQueryParamsStatusItemOutputWithContext(ctx context.Context) ListDeploysQueryParamsStatusItemOutput {
+	return o
+}
+
+func (o ListDeploysQueryParamsStatusItemOutput) ToListDeploysQueryParamsStatusItemPtrOutput() ListDeploysQueryParamsStatusItemPtrOutput {
+	return o.ToListDeploysQueryParamsStatusItemPtrOutputWithContext(context.Background())
+}
+
+func (o ListDeploysQueryParamsStatusItemOutput) ToListDeploysQueryParamsStatusItemPtrOutputWithContext(ctx context.Context) ListDeploysQueryParamsStatusItemPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v ListDeploysQueryParamsStatusItem) *ListDeploysQueryParamsStatusItem {
+		return &v
+	}).(ListDeploysQueryParamsStatusItemPtrOutput)
+}
+
+func (o ListDeploysQueryParamsStatusItemOutput) ToStringOutput() pulumi.StringOutput {
+	return o.ToStringOutputWithContext(context.Background())
+}
+
+func (o ListDeploysQueryParamsStatusItemOutput) ToStringOutputWithContext(ctx context.Context) pulumi.StringOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, e ListDeploysQueryParamsStatusItem) string {
+		return string(e)
+	}).(pulumi.StringOutput)
+}
+
+func (o ListDeploysQueryParamsStatusItemOutput) ToStringPtrOutput() pulumi.StringPtrOutput {
+	return o.ToStringPtrOutputWithContext(context.Background())
+}
+
+func (o ListDeploysQueryParamsStatusItemOutput) ToStringPtrOutputWithContext(ctx context.Context) pulumi.StringPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, e ListDeploysQueryParamsStatusItem) *string {
+		v := string(e)
+		return &v
+	}).(pulumi.StringPtrOutput)
+}
+
+type ListDeploysQueryParamsStatusItemPtrOutput struct{ *pulumi.OutputState }
+
+func (ListDeploysQueryParamsStatusItemPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ListDeploysQueryParamsStatusItem)(nil)).Elem()
+}
+
+func (o ListDeploysQueryParamsStatusItemPtrOutput) ToListDeploysQueryParamsStatusItemPtrOutput() ListDeploysQueryParamsStatusItemPtrOutput {
+	return o
+}
+
+func (o ListDeploysQueryParamsStatusItemPtrOutput) ToListDeploysQueryParamsStatusItemPtrOutputWithContext(ctx context.Context) ListDeploysQueryParamsStatusItemPtrOutput {
+	return o
+}
+
+func (o ListDeploysQueryParamsStatusItemPtrOutput) Elem() ListDeploysQueryParamsStatusItemOutput {
+	return o.ApplyT(func(v *ListDeploysQueryParamsStatusItem) ListDeploysQueryParamsStatusItem {
+		if v != nil {
+			return *v
+		}
+		var ret ListDeploysQueryParamsStatusItem
+		return ret
+	}).(ListDeploysQueryParamsStatusItemOutput)
+}
+
+func (o ListDeploysQueryParamsStatusItemPtrOutput) ToStringPtrOutput() pulumi.StringPtrOutput {
+	return o.ToStringPtrOutputWithContext(context.Background())
+}
+
+func (o ListDeploysQueryParamsStatusItemPtrOutput) ToStringPtrOutputWithContext(ctx context.Context) pulumi.StringPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, e *ListDeploysQueryParamsStatusItem) *string {
+		if e == nil {
+			return nil
+		}
+		v := string(*e)
+		return &v
+	}).(pulumi.StringPtrOutput)
+}
+
+// ListDeploysQueryParamsStatusItemInput is an input type that accepts values of the ListDeploysQueryParamsStatusItem enum
+// A concrete instance of `ListDeploysQueryParamsStatusItemInput` can be one of the following:
+//
+//	ListDeploysQueryParamsStatusItemCreated
+//	ListDeploysQueryParamsStatusItemQueued
+//	ListDeploysQueryParamsStatusItemBuildInProgress
+//	ListDeploysQueryParamsStatusItemUpdateInProgress
+//	ListDeploysQueryParamsStatusItemLive
+//	ListDeploysQueryParamsStatusItemDeactivated
+//	ListDeploysQueryParamsStatusItemBuildFailed
+//	ListDeploysQueryParamsStatusItemUpdateFailed
+//	ListDeploysQueryParamsStatusItemCanceled
+//	ListDeploysQueryParamsStatusItemPreDeployInProgress
+//	ListDeploysQueryParamsStatusItemPreDeployFailed
+type ListDeploysQueryParamsStatusItemInput interface {
+	pulumi.Input
+
+	ToListDeploysQueryParamsStatusItemOutput() ListDeploysQueryParamsStatusItemOutput
+	ToListDeploysQueryParamsStatusItemOutputWithContext(context.Context) ListDeploysQueryParamsStatusItemOutput
+}
+
+var listDeploysQueryParamsStatusItemPtrType = reflect.TypeOf((**ListDeploysQueryParamsStatusItem)(nil)).Elem()
+
+type ListDeploysQueryParamsStatusItemPtrInput interface {
+	pulumi.Input
+
+	ToListDeploysQueryParamsStatusItemPtrOutput() ListDeploysQueryParamsStatusItemPtrOutput
+	ToListDeploysQueryParamsStatusItemPtrOutputWithContext(context.Context) ListDeploysQueryParamsStatusItemPtrOutput
+}
+
+type listDeploysQueryParamsStatusItemPtr string
+
+func ListDeploysQueryParamsStatusItemPtr(v string) ListDeploysQueryParamsStatusItemPtrInput {
+	return (*listDeploysQueryParamsStatusItemPtr)(&v)
+}
+
+func (*listDeploysQueryParamsStatusItemPtr) ElementType() reflect.Type {
+	return listDeploysQueryParamsStatusItemPtrType
+}
+
+func (in *listDeploysQueryParamsStatusItemPtr) ToListDeploysQueryParamsStatusItemPtrOutput() ListDeploysQueryParamsStatusItemPtrOutput {
+	return pulumi.ToOutput(in).(ListDeploysQueryParamsStatusItemPtrOutput)
+}
+
+func (in *listDeploysQueryParamsStatusItemPtr) ToListDeploysQueryParamsStatusItemPtrOutputWithContext(ctx context.Context) ListDeploysQueryParamsStatusItemPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, in).(ListDeploysQueryParamsStatusItemPtrOutput)
+}
+
+// ListDeploysQueryParamsStatusItemArrayInput is an input type that accepts ListDeploysQueryParamsStatusItemArray and ListDeploysQueryParamsStatusItemArrayOutput values.
+// You can construct a concrete instance of `ListDeploysQueryParamsStatusItemArrayInput` via:
+//
+//	ListDeploysQueryParamsStatusItemArray{ ListDeploysQueryParamsStatusItemArgs{...} }
+type ListDeploysQueryParamsStatusItemArrayInput interface {
+	pulumi.Input
+
+	ToListDeploysQueryParamsStatusItemArrayOutput() ListDeploysQueryParamsStatusItemArrayOutput
+	ToListDeploysQueryParamsStatusItemArrayOutputWithContext(context.Context) ListDeploysQueryParamsStatusItemArrayOutput
+}
+
+type ListDeploysQueryParamsStatusItemArray []ListDeploysQueryParamsStatusItem
+
+func (ListDeploysQueryParamsStatusItemArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ListDeploysQueryParamsStatusItem)(nil)).Elem()
+}
+
+func (i ListDeploysQueryParamsStatusItemArray) ToListDeploysQueryParamsStatusItemArrayOutput() ListDeploysQueryParamsStatusItemArrayOutput {
+	return i.ToListDeploysQueryParamsStatusItemArrayOutputWithContext(context.Background())
+}
+
+func (i ListDeploysQueryParamsStatusItemArray) ToListDeploysQueryParamsStatusItemArrayOutputWithContext(ctx context.Context) ListDeploysQueryParamsStatusItemArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ListDeploysQueryParamsStatusItemArrayOutput)
+}
+
+type ListDeploysQueryParamsStatusItemArrayOutput struct{ *pulumi.OutputState }
+
+func (ListDeploysQueryParamsStatusItemArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ListDeploysQueryParamsStatusItem)(nil)).Elem()
+}
+
+func (o ListDeploysQueryParamsStatusItemArrayOutput) ToListDeploysQueryParamsStatusItemArrayOutput() ListDeploysQueryParamsStatusItemArrayOutput {
+	return o
+}
+
+func (o ListDeploysQueryParamsStatusItemArrayOutput) ToListDeploysQueryParamsStatusItemArrayOutputWithContext(ctx context.Context) ListDeploysQueryParamsStatusItemArrayOutput {
+	return o
+}
+
+func (o ListDeploysQueryParamsStatusItemArrayOutput) Index(i pulumi.IntInput) ListDeploysQueryParamsStatusItemOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ListDeploysQueryParamsStatusItem {
+		return vs[0].([]ListDeploysQueryParamsStatusItem)[vs[1].(int)]
+	}).(ListDeploysQueryParamsStatusItemOutput)
+}
+
+type ListJobQueryParamsStatusItem string
+
+const (
+	ListJobQueryParamsStatusItemPending   = ListJobQueryParamsStatusItem("pending")
+	ListJobQueryParamsStatusItemRunning   = ListJobQueryParamsStatusItem("running")
+	ListJobQueryParamsStatusItemSucceeded = ListJobQueryParamsStatusItem("succeeded")
+	ListJobQueryParamsStatusItemFailed    = ListJobQueryParamsStatusItem("failed")
+	ListJobQueryParamsStatusItemCanceled  = ListJobQueryParamsStatusItem("canceled")
+)
+
+func (ListJobQueryParamsStatusItem) ElementType() reflect.Type {
+	return reflect.TypeOf((*ListJobQueryParamsStatusItem)(nil)).Elem()
+}
+
+func (e ListJobQueryParamsStatusItem) ToListJobQueryParamsStatusItemOutput() ListJobQueryParamsStatusItemOutput {
+	return pulumi.ToOutput(e).(ListJobQueryParamsStatusItemOutput)
+}
+
+func (e ListJobQueryParamsStatusItem) ToListJobQueryParamsStatusItemOutputWithContext(ctx context.Context) ListJobQueryParamsStatusItemOutput {
+	return pulumi.ToOutputWithContext(ctx, e).(ListJobQueryParamsStatusItemOutput)
+}
+
+func (e ListJobQueryParamsStatusItem) ToListJobQueryParamsStatusItemPtrOutput() ListJobQueryParamsStatusItemPtrOutput {
+	return e.ToListJobQueryParamsStatusItemPtrOutputWithContext(context.Background())
+}
+
+func (e ListJobQueryParamsStatusItem) ToListJobQueryParamsStatusItemPtrOutputWithContext(ctx context.Context) ListJobQueryParamsStatusItemPtrOutput {
+	return ListJobQueryParamsStatusItem(e).ToListJobQueryParamsStatusItemOutputWithContext(ctx).ToListJobQueryParamsStatusItemPtrOutputWithContext(ctx)
+}
+
+func (e ListJobQueryParamsStatusItem) ToStringOutput() pulumi.StringOutput {
+	return pulumi.ToOutput(pulumi.String(e)).(pulumi.StringOutput)
+}
+
+func (e ListJobQueryParamsStatusItem) ToStringOutputWithContext(ctx context.Context) pulumi.StringOutput {
+	return pulumi.ToOutputWithContext(ctx, pulumi.String(e)).(pulumi.StringOutput)
+}
+
+func (e ListJobQueryParamsStatusItem) ToStringPtrOutput() pulumi.StringPtrOutput {
+	return pulumi.String(e).ToStringPtrOutputWithContext(context.Background())
+}
+
+func (e ListJobQueryParamsStatusItem) ToStringPtrOutputWithContext(ctx context.Context) pulumi.StringPtrOutput {
+	return pulumi.String(e).ToStringOutputWithContext(ctx).ToStringPtrOutputWithContext(ctx)
+}
+
+type ListJobQueryParamsStatusItemOutput struct{ *pulumi.OutputState }
+
+func (ListJobQueryParamsStatusItemOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ListJobQueryParamsStatusItem)(nil)).Elem()
+}
+
+func (o ListJobQueryParamsStatusItemOutput) ToListJobQueryParamsStatusItemOutput() ListJobQueryParamsStatusItemOutput {
+	return o
+}
+
+func (o ListJobQueryParamsStatusItemOutput) ToListJobQueryParamsStatusItemOutputWithContext(ctx context.Context) ListJobQueryParamsStatusItemOutput {
+	return o
+}
+
+func (o ListJobQueryParamsStatusItemOutput) ToListJobQueryParamsStatusItemPtrOutput() ListJobQueryParamsStatusItemPtrOutput {
+	return o.ToListJobQueryParamsStatusItemPtrOutputWithContext(context.Background())
+}
+
+func (o ListJobQueryParamsStatusItemOutput) ToListJobQueryParamsStatusItemPtrOutputWithContext(ctx context.Context) ListJobQueryParamsStatusItemPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v ListJobQueryParamsStatusItem) *ListJobQueryParamsStatusItem {
+		return &v
+	}).(ListJobQueryParamsStatusItemPtrOutput)
+}
+
+func (o ListJobQueryParamsStatusItemOutput) ToStringOutput() pulumi.StringOutput {
+	return o.ToStringOutputWithContext(context.Background())
+}
+
+func (o ListJobQueryParamsStatusItemOutput) ToStringOutputWithContext(ctx context.Context) pulumi.StringOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, e ListJobQueryParamsStatusItem) string {
+		return string(e)
+	}).(pulumi.StringOutput)
+}
+
+func (o ListJobQueryParamsStatusItemOutput) ToStringPtrOutput() pulumi.StringPtrOutput {
+	return o.ToStringPtrOutputWithContext(context.Background())
+}
+
+func (o ListJobQueryParamsStatusItemOutput) ToStringPtrOutputWithContext(ctx context.Context) pulumi.StringPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, e ListJobQueryParamsStatusItem) *string {
+		v := string(e)
+		return &v
+	}).(pulumi.StringPtrOutput)
+}
+
+type ListJobQueryParamsStatusItemPtrOutput struct{ *pulumi.OutputState }
+
+func (ListJobQueryParamsStatusItemPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ListJobQueryParamsStatusItem)(nil)).Elem()
+}
+
+func (o ListJobQueryParamsStatusItemPtrOutput) ToListJobQueryParamsStatusItemPtrOutput() ListJobQueryParamsStatusItemPtrOutput {
+	return o
+}
+
+func (o ListJobQueryParamsStatusItemPtrOutput) ToListJobQueryParamsStatusItemPtrOutputWithContext(ctx context.Context) ListJobQueryParamsStatusItemPtrOutput {
+	return o
+}
+
+func (o ListJobQueryParamsStatusItemPtrOutput) Elem() ListJobQueryParamsStatusItemOutput {
+	return o.ApplyT(func(v *ListJobQueryParamsStatusItem) ListJobQueryParamsStatusItem {
+		if v != nil {
+			return *v
+		}
+		var ret ListJobQueryParamsStatusItem
+		return ret
+	}).(ListJobQueryParamsStatusItemOutput)
+}
+
+func (o ListJobQueryParamsStatusItemPtrOutput) ToStringPtrOutput() pulumi.StringPtrOutput {
+	return o.ToStringPtrOutputWithContext(context.Background())
+}
+
+func (o ListJobQueryParamsStatusItemPtrOutput) ToStringPtrOutputWithContext(ctx context.Context) pulumi.StringPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, e *ListJobQueryParamsStatusItem) *string {
+		if e == nil {
+			return nil
+		}
+		v := string(*e)
+		return &v
+	}).(pulumi.StringPtrOutput)
+}
+
+// ListJobQueryParamsStatusItemInput is an input type that accepts values of the ListJobQueryParamsStatusItem enum
+// A concrete instance of `ListJobQueryParamsStatusItemInput` can be one of the following:
+//
+//	ListJobQueryParamsStatusItemPending
+//	ListJobQueryParamsStatusItemRunning
+//	ListJobQueryParamsStatusItemSucceeded
+//	ListJobQueryParamsStatusItemFailed
+//	ListJobQueryParamsStatusItemCanceled
+type ListJobQueryParamsStatusItemInput interface {
+	pulumi.Input
+
+	ToListJobQueryParamsStatusItemOutput() ListJobQueryParamsStatusItemOutput
+	ToListJobQueryParamsStatusItemOutputWithContext(context.Context) ListJobQueryParamsStatusItemOutput
+}
+
+var listJobQueryParamsStatusItemPtrType = reflect.TypeOf((**ListJobQueryParamsStatusItem)(nil)).Elem()
+
+type ListJobQueryParamsStatusItemPtrInput interface {
+	pulumi.Input
+
+	ToListJobQueryParamsStatusItemPtrOutput() ListJobQueryParamsStatusItemPtrOutput
+	ToListJobQueryParamsStatusItemPtrOutputWithContext(context.Context) ListJobQueryParamsStatusItemPtrOutput
+}
+
+type listJobQueryParamsStatusItemPtr string
+
+func ListJobQueryParamsStatusItemPtr(v string) ListJobQueryParamsStatusItemPtrInput {
+	return (*listJobQueryParamsStatusItemPtr)(&v)
+}
+
+func (*listJobQueryParamsStatusItemPtr) ElementType() reflect.Type {
+	return listJobQueryParamsStatusItemPtrType
+}
+
+func (in *listJobQueryParamsStatusItemPtr) ToListJobQueryParamsStatusItemPtrOutput() ListJobQueryParamsStatusItemPtrOutput {
+	return pulumi.ToOutput(in).(ListJobQueryParamsStatusItemPtrOutput)
+}
+
+func (in *listJobQueryParamsStatusItemPtr) ToListJobQueryParamsStatusItemPtrOutputWithContext(ctx context.Context) ListJobQueryParamsStatusItemPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, in).(ListJobQueryParamsStatusItemPtrOutput)
+}
+
+// ListJobQueryParamsStatusItemArrayInput is an input type that accepts ListJobQueryParamsStatusItemArray and ListJobQueryParamsStatusItemArrayOutput values.
+// You can construct a concrete instance of `ListJobQueryParamsStatusItemArrayInput` via:
+//
+//	ListJobQueryParamsStatusItemArray{ ListJobQueryParamsStatusItemArgs{...} }
+type ListJobQueryParamsStatusItemArrayInput interface {
+	pulumi.Input
+
+	ToListJobQueryParamsStatusItemArrayOutput() ListJobQueryParamsStatusItemArrayOutput
+	ToListJobQueryParamsStatusItemArrayOutputWithContext(context.Context) ListJobQueryParamsStatusItemArrayOutput
+}
+
+type ListJobQueryParamsStatusItemArray []ListJobQueryParamsStatusItem
+
+func (ListJobQueryParamsStatusItemArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ListJobQueryParamsStatusItem)(nil)).Elem()
+}
+
+func (i ListJobQueryParamsStatusItemArray) ToListJobQueryParamsStatusItemArrayOutput() ListJobQueryParamsStatusItemArrayOutput {
+	return i.ToListJobQueryParamsStatusItemArrayOutputWithContext(context.Background())
+}
+
+func (i ListJobQueryParamsStatusItemArray) ToListJobQueryParamsStatusItemArrayOutputWithContext(ctx context.Context) ListJobQueryParamsStatusItemArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ListJobQueryParamsStatusItemArrayOutput)
+}
+
+type ListJobQueryParamsStatusItemArrayOutput struct{ *pulumi.OutputState }
+
+func (ListJobQueryParamsStatusItemArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ListJobQueryParamsStatusItem)(nil)).Elem()
+}
+
+func (o ListJobQueryParamsStatusItemArrayOutput) ToListJobQueryParamsStatusItemArrayOutput() ListJobQueryParamsStatusItemArrayOutput {
+	return o
+}
+
+func (o ListJobQueryParamsStatusItemArrayOutput) ToListJobQueryParamsStatusItemArrayOutputWithContext(ctx context.Context) ListJobQueryParamsStatusItemArrayOutput {
+	return o
+}
+
+func (o ListJobQueryParamsStatusItemArrayOutput) Index(i pulumi.IntInput) ListJobQueryParamsStatusItemOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ListJobQueryParamsStatusItem {
+		return vs[0].([]ListJobQueryParamsStatusItem)[vs[1].(int)]
+	}).(ListJobQueryParamsStatusItemOutput)
+}
+
+type ListRoutesQueryParamsTypeItem string
+
+const (
+	ListRoutesQueryParamsTypeItemRedirect = ListRoutesQueryParamsTypeItem("redirect")
+	ListRoutesQueryParamsTypeItemRewrite  = ListRoutesQueryParamsTypeItem("rewrite")
+)
+
+func (ListRoutesQueryParamsTypeItem) ElementType() reflect.Type {
+	return reflect.TypeOf((*ListRoutesQueryParamsTypeItem)(nil)).Elem()
+}
+
+func (e ListRoutesQueryParamsTypeItem) ToListRoutesQueryParamsTypeItemOutput() ListRoutesQueryParamsTypeItemOutput {
+	return pulumi.ToOutput(e).(ListRoutesQueryParamsTypeItemOutput)
+}
+
+func (e ListRoutesQueryParamsTypeItem) ToListRoutesQueryParamsTypeItemOutputWithContext(ctx context.Context) ListRoutesQueryParamsTypeItemOutput {
+	return pulumi.ToOutputWithContext(ctx, e).(ListRoutesQueryParamsTypeItemOutput)
+}
+
+func (e ListRoutesQueryParamsTypeItem) ToListRoutesQueryParamsTypeItemPtrOutput() ListRoutesQueryParamsTypeItemPtrOutput {
+	return e.ToListRoutesQueryParamsTypeItemPtrOutputWithContext(context.Background())
+}
+
+func (e ListRoutesQueryParamsTypeItem) ToListRoutesQueryParamsTypeItemPtrOutputWithContext(ctx context.Context) ListRoutesQueryParamsTypeItemPtrOutput {
+	return ListRoutesQueryParamsTypeItem(e).ToListRoutesQueryParamsTypeItemOutputWithContext(ctx).ToListRoutesQueryParamsTypeItemPtrOutputWithContext(ctx)
+}
+
+func (e ListRoutesQueryParamsTypeItem) ToStringOutput() pulumi.StringOutput {
+	return pulumi.ToOutput(pulumi.String(e)).(pulumi.StringOutput)
+}
+
+func (e ListRoutesQueryParamsTypeItem) ToStringOutputWithContext(ctx context.Context) pulumi.StringOutput {
+	return pulumi.ToOutputWithContext(ctx, pulumi.String(e)).(pulumi.StringOutput)
+}
+
+func (e ListRoutesQueryParamsTypeItem) ToStringPtrOutput() pulumi.StringPtrOutput {
+	return pulumi.String(e).ToStringPtrOutputWithContext(context.Background())
+}
+
+func (e ListRoutesQueryParamsTypeItem) ToStringPtrOutputWithContext(ctx context.Context) pulumi.StringPtrOutput {
+	return pulumi.String(e).ToStringOutputWithContext(ctx).ToStringPtrOutputWithContext(ctx)
+}
+
+type ListRoutesQueryParamsTypeItemOutput struct{ *pulumi.OutputState }
+
+func (ListRoutesQueryParamsTypeItemOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ListRoutesQueryParamsTypeItem)(nil)).Elem()
+}
+
+func (o ListRoutesQueryParamsTypeItemOutput) ToListRoutesQueryParamsTypeItemOutput() ListRoutesQueryParamsTypeItemOutput {
+	return o
+}
+
+func (o ListRoutesQueryParamsTypeItemOutput) ToListRoutesQueryParamsTypeItemOutputWithContext(ctx context.Context) ListRoutesQueryParamsTypeItemOutput {
+	return o
+}
+
+func (o ListRoutesQueryParamsTypeItemOutput) ToListRoutesQueryParamsTypeItemPtrOutput() ListRoutesQueryParamsTypeItemPtrOutput {
+	return o.ToListRoutesQueryParamsTypeItemPtrOutputWithContext(context.Background())
+}
+
+func (o ListRoutesQueryParamsTypeItemOutput) ToListRoutesQueryParamsTypeItemPtrOutputWithContext(ctx context.Context) ListRoutesQueryParamsTypeItemPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v ListRoutesQueryParamsTypeItem) *ListRoutesQueryParamsTypeItem {
+		return &v
+	}).(ListRoutesQueryParamsTypeItemPtrOutput)
+}
+
+func (o ListRoutesQueryParamsTypeItemOutput) ToStringOutput() pulumi.StringOutput {
+	return o.ToStringOutputWithContext(context.Background())
+}
+
+func (o ListRoutesQueryParamsTypeItemOutput) ToStringOutputWithContext(ctx context.Context) pulumi.StringOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, e ListRoutesQueryParamsTypeItem) string {
+		return string(e)
+	}).(pulumi.StringOutput)
+}
+
+func (o ListRoutesQueryParamsTypeItemOutput) ToStringPtrOutput() pulumi.StringPtrOutput {
+	return o.ToStringPtrOutputWithContext(context.Background())
+}
+
+func (o ListRoutesQueryParamsTypeItemOutput) ToStringPtrOutputWithContext(ctx context.Context) pulumi.StringPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, e ListRoutesQueryParamsTypeItem) *string {
+		v := string(e)
+		return &v
+	}).(pulumi.StringPtrOutput)
+}
+
+type ListRoutesQueryParamsTypeItemPtrOutput struct{ *pulumi.OutputState }
+
+func (ListRoutesQueryParamsTypeItemPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ListRoutesQueryParamsTypeItem)(nil)).Elem()
+}
+
+func (o ListRoutesQueryParamsTypeItemPtrOutput) ToListRoutesQueryParamsTypeItemPtrOutput() ListRoutesQueryParamsTypeItemPtrOutput {
+	return o
+}
+
+func (o ListRoutesQueryParamsTypeItemPtrOutput) ToListRoutesQueryParamsTypeItemPtrOutputWithContext(ctx context.Context) ListRoutesQueryParamsTypeItemPtrOutput {
+	return o
+}
+
+func (o ListRoutesQueryParamsTypeItemPtrOutput) Elem() ListRoutesQueryParamsTypeItemOutput {
+	return o.ApplyT(func(v *ListRoutesQueryParamsTypeItem) ListRoutesQueryParamsTypeItem {
+		if v != nil {
+			return *v
+		}
+		var ret ListRoutesQueryParamsTypeItem
+		return ret
+	}).(ListRoutesQueryParamsTypeItemOutput)
+}
+
+func (o ListRoutesQueryParamsTypeItemPtrOutput) ToStringPtrOutput() pulumi.StringPtrOutput {
+	return o.ToStringPtrOutputWithContext(context.Background())
+}
+
+func (o ListRoutesQueryParamsTypeItemPtrOutput) ToStringPtrOutputWithContext(ctx context.Context) pulumi.StringPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, e *ListRoutesQueryParamsTypeItem) *string {
+		if e == nil {
+			return nil
+		}
+		v := string(*e)
+		return &v
+	}).(pulumi.StringPtrOutput)
+}
+
+// ListRoutesQueryParamsTypeItemInput is an input type that accepts values of the ListRoutesQueryParamsTypeItem enum
+// A concrete instance of `ListRoutesQueryParamsTypeItemInput` can be one of the following:
+//
+//	ListRoutesQueryParamsTypeItemRedirect
+//	ListRoutesQueryParamsTypeItemRewrite
+type ListRoutesQueryParamsTypeItemInput interface {
+	pulumi.Input
+
+	ToListRoutesQueryParamsTypeItemOutput() ListRoutesQueryParamsTypeItemOutput
+	ToListRoutesQueryParamsTypeItemOutputWithContext(context.Context) ListRoutesQueryParamsTypeItemOutput
+}
+
+var listRoutesQueryParamsTypeItemPtrType = reflect.TypeOf((**ListRoutesQueryParamsTypeItem)(nil)).Elem()
+
+type ListRoutesQueryParamsTypeItemPtrInput interface {
+	pulumi.Input
+
+	ToListRoutesQueryParamsTypeItemPtrOutput() ListRoutesQueryParamsTypeItemPtrOutput
+	ToListRoutesQueryParamsTypeItemPtrOutputWithContext(context.Context) ListRoutesQueryParamsTypeItemPtrOutput
+}
+
+type listRoutesQueryParamsTypeItemPtr string
+
+func ListRoutesQueryParamsTypeItemPtr(v string) ListRoutesQueryParamsTypeItemPtrInput {
+	return (*listRoutesQueryParamsTypeItemPtr)(&v)
+}
+
+func (*listRoutesQueryParamsTypeItemPtr) ElementType() reflect.Type {
+	return listRoutesQueryParamsTypeItemPtrType
+}
+
+func (in *listRoutesQueryParamsTypeItemPtr) ToListRoutesQueryParamsTypeItemPtrOutput() ListRoutesQueryParamsTypeItemPtrOutput {
+	return pulumi.ToOutput(in).(ListRoutesQueryParamsTypeItemPtrOutput)
+}
+
+func (in *listRoutesQueryParamsTypeItemPtr) ToListRoutesQueryParamsTypeItemPtrOutputWithContext(ctx context.Context) ListRoutesQueryParamsTypeItemPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, in).(ListRoutesQueryParamsTypeItemPtrOutput)
+}
+
+// ListRoutesQueryParamsTypeItemArrayInput is an input type that accepts ListRoutesQueryParamsTypeItemArray and ListRoutesQueryParamsTypeItemArrayOutput values.
+// You can construct a concrete instance of `ListRoutesQueryParamsTypeItemArrayInput` via:
+//
+//	ListRoutesQueryParamsTypeItemArray{ ListRoutesQueryParamsTypeItemArgs{...} }
+type ListRoutesQueryParamsTypeItemArrayInput interface {
+	pulumi.Input
+
+	ToListRoutesQueryParamsTypeItemArrayOutput() ListRoutesQueryParamsTypeItemArrayOutput
+	ToListRoutesQueryParamsTypeItemArrayOutputWithContext(context.Context) ListRoutesQueryParamsTypeItemArrayOutput
+}
+
+type ListRoutesQueryParamsTypeItemArray []ListRoutesQueryParamsTypeItem
+
+func (ListRoutesQueryParamsTypeItemArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ListRoutesQueryParamsTypeItem)(nil)).Elem()
+}
+
+func (i ListRoutesQueryParamsTypeItemArray) ToListRoutesQueryParamsTypeItemArrayOutput() ListRoutesQueryParamsTypeItemArrayOutput {
+	return i.ToListRoutesQueryParamsTypeItemArrayOutputWithContext(context.Background())
+}
+
+func (i ListRoutesQueryParamsTypeItemArray) ToListRoutesQueryParamsTypeItemArrayOutputWithContext(ctx context.Context) ListRoutesQueryParamsTypeItemArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ListRoutesQueryParamsTypeItemArrayOutput)
+}
+
+type ListRoutesQueryParamsTypeItemArrayOutput struct{ *pulumi.OutputState }
+
+func (ListRoutesQueryParamsTypeItemArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ListRoutesQueryParamsTypeItem)(nil)).Elem()
+}
+
+func (o ListRoutesQueryParamsTypeItemArrayOutput) ToListRoutesQueryParamsTypeItemArrayOutput() ListRoutesQueryParamsTypeItemArrayOutput {
+	return o
+}
+
+func (o ListRoutesQueryParamsTypeItemArrayOutput) ToListRoutesQueryParamsTypeItemArrayOutputWithContext(ctx context.Context) ListRoutesQueryParamsTypeItemArrayOutput {
+	return o
+}
+
+func (o ListRoutesQueryParamsTypeItemArrayOutput) Index(i pulumi.IntInput) ListRoutesQueryParamsTypeItemOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ListRoutesQueryParamsTypeItem {
+		return vs[0].([]ListRoutesQueryParamsTypeItem)[vs[1].(int)]
+	}).(ListRoutesQueryParamsTypeItemOutput)
+}
+
+// Runtime
+type ListServicesQueryParamsEnvItem string
+
+const (
+	ListServicesQueryParamsEnvItemDocker = ListServicesQueryParamsEnvItem("docker")
+	ListServicesQueryParamsEnvItemElixir = ListServicesQueryParamsEnvItem("elixir")
+	ListServicesQueryParamsEnvItemGo     = ListServicesQueryParamsEnvItem("go")
+	ListServicesQueryParamsEnvItemNode   = ListServicesQueryParamsEnvItem("node")
+	ListServicesQueryParamsEnvItemPython = ListServicesQueryParamsEnvItem("python")
+	ListServicesQueryParamsEnvItemRuby   = ListServicesQueryParamsEnvItem("ruby")
+	ListServicesQueryParamsEnvItemRust   = ListServicesQueryParamsEnvItem("rust")
+	ListServicesQueryParamsEnvItemImage  = ListServicesQueryParamsEnvItem("image")
+)
+
+func (ListServicesQueryParamsEnvItem) ElementType() reflect.Type {
+	return reflect.TypeOf((*ListServicesQueryParamsEnvItem)(nil)).Elem()
+}
+
+func (e ListServicesQueryParamsEnvItem) ToListServicesQueryParamsEnvItemOutput() ListServicesQueryParamsEnvItemOutput {
+	return pulumi.ToOutput(e).(ListServicesQueryParamsEnvItemOutput)
+}
+
+func (e ListServicesQueryParamsEnvItem) ToListServicesQueryParamsEnvItemOutputWithContext(ctx context.Context) ListServicesQueryParamsEnvItemOutput {
+	return pulumi.ToOutputWithContext(ctx, e).(ListServicesQueryParamsEnvItemOutput)
+}
+
+func (e ListServicesQueryParamsEnvItem) ToListServicesQueryParamsEnvItemPtrOutput() ListServicesQueryParamsEnvItemPtrOutput {
+	return e.ToListServicesQueryParamsEnvItemPtrOutputWithContext(context.Background())
+}
+
+func (e ListServicesQueryParamsEnvItem) ToListServicesQueryParamsEnvItemPtrOutputWithContext(ctx context.Context) ListServicesQueryParamsEnvItemPtrOutput {
+	return ListServicesQueryParamsEnvItem(e).ToListServicesQueryParamsEnvItemOutputWithContext(ctx).ToListServicesQueryParamsEnvItemPtrOutputWithContext(ctx)
+}
+
+func (e ListServicesQueryParamsEnvItem) ToStringOutput() pulumi.StringOutput {
+	return pulumi.ToOutput(pulumi.String(e)).(pulumi.StringOutput)
+}
+
+func (e ListServicesQueryParamsEnvItem) ToStringOutputWithContext(ctx context.Context) pulumi.StringOutput {
+	return pulumi.ToOutputWithContext(ctx, pulumi.String(e)).(pulumi.StringOutput)
+}
+
+func (e ListServicesQueryParamsEnvItem) ToStringPtrOutput() pulumi.StringPtrOutput {
+	return pulumi.String(e).ToStringPtrOutputWithContext(context.Background())
+}
+
+func (e ListServicesQueryParamsEnvItem) ToStringPtrOutputWithContext(ctx context.Context) pulumi.StringPtrOutput {
+	return pulumi.String(e).ToStringOutputWithContext(ctx).ToStringPtrOutputWithContext(ctx)
+}
+
+type ListServicesQueryParamsEnvItemOutput struct{ *pulumi.OutputState }
+
+func (ListServicesQueryParamsEnvItemOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ListServicesQueryParamsEnvItem)(nil)).Elem()
+}
+
+func (o ListServicesQueryParamsEnvItemOutput) ToListServicesQueryParamsEnvItemOutput() ListServicesQueryParamsEnvItemOutput {
+	return o
+}
+
+func (o ListServicesQueryParamsEnvItemOutput) ToListServicesQueryParamsEnvItemOutputWithContext(ctx context.Context) ListServicesQueryParamsEnvItemOutput {
+	return o
+}
+
+func (o ListServicesQueryParamsEnvItemOutput) ToListServicesQueryParamsEnvItemPtrOutput() ListServicesQueryParamsEnvItemPtrOutput {
+	return o.ToListServicesQueryParamsEnvItemPtrOutputWithContext(context.Background())
+}
+
+func (o ListServicesQueryParamsEnvItemOutput) ToListServicesQueryParamsEnvItemPtrOutputWithContext(ctx context.Context) ListServicesQueryParamsEnvItemPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v ListServicesQueryParamsEnvItem) *ListServicesQueryParamsEnvItem {
+		return &v
+	}).(ListServicesQueryParamsEnvItemPtrOutput)
+}
+
+func (o ListServicesQueryParamsEnvItemOutput) ToStringOutput() pulumi.StringOutput {
+	return o.ToStringOutputWithContext(context.Background())
+}
+
+func (o ListServicesQueryParamsEnvItemOutput) ToStringOutputWithContext(ctx context.Context) pulumi.StringOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, e ListServicesQueryParamsEnvItem) string {
+		return string(e)
+	}).(pulumi.StringOutput)
+}
+
+func (o ListServicesQueryParamsEnvItemOutput) ToStringPtrOutput() pulumi.StringPtrOutput {
+	return o.ToStringPtrOutputWithContext(context.Background())
+}
+
+func (o ListServicesQueryParamsEnvItemOutput) ToStringPtrOutputWithContext(ctx context.Context) pulumi.StringPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, e ListServicesQueryParamsEnvItem) *string {
+		v := string(e)
+		return &v
+	}).(pulumi.StringPtrOutput)
+}
+
+type ListServicesQueryParamsEnvItemPtrOutput struct{ *pulumi.OutputState }
+
+func (ListServicesQueryParamsEnvItemPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ListServicesQueryParamsEnvItem)(nil)).Elem()
+}
+
+func (o ListServicesQueryParamsEnvItemPtrOutput) ToListServicesQueryParamsEnvItemPtrOutput() ListServicesQueryParamsEnvItemPtrOutput {
+	return o
+}
+
+func (o ListServicesQueryParamsEnvItemPtrOutput) ToListServicesQueryParamsEnvItemPtrOutputWithContext(ctx context.Context) ListServicesQueryParamsEnvItemPtrOutput {
+	return o
+}
+
+func (o ListServicesQueryParamsEnvItemPtrOutput) Elem() ListServicesQueryParamsEnvItemOutput {
+	return o.ApplyT(func(v *ListServicesQueryParamsEnvItem) ListServicesQueryParamsEnvItem {
+		if v != nil {
+			return *v
+		}
+		var ret ListServicesQueryParamsEnvItem
+		return ret
+	}).(ListServicesQueryParamsEnvItemOutput)
+}
+
+func (o ListServicesQueryParamsEnvItemPtrOutput) ToStringPtrOutput() pulumi.StringPtrOutput {
+	return o.ToStringPtrOutputWithContext(context.Background())
+}
+
+func (o ListServicesQueryParamsEnvItemPtrOutput) ToStringPtrOutputWithContext(ctx context.Context) pulumi.StringPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, e *ListServicesQueryParamsEnvItem) *string {
+		if e == nil {
+			return nil
+		}
+		v := string(*e)
+		return &v
+	}).(pulumi.StringPtrOutput)
+}
+
+// ListServicesQueryParamsEnvItemInput is an input type that accepts values of the ListServicesQueryParamsEnvItem enum
+// A concrete instance of `ListServicesQueryParamsEnvItemInput` can be one of the following:
+//
+//	ListServicesQueryParamsEnvItemDocker
+//	ListServicesQueryParamsEnvItemElixir
+//	ListServicesQueryParamsEnvItemGo
+//	ListServicesQueryParamsEnvItemNode
+//	ListServicesQueryParamsEnvItemPython
+//	ListServicesQueryParamsEnvItemRuby
+//	ListServicesQueryParamsEnvItemRust
+//	ListServicesQueryParamsEnvItemImage
+type ListServicesQueryParamsEnvItemInput interface {
+	pulumi.Input
+
+	ToListServicesQueryParamsEnvItemOutput() ListServicesQueryParamsEnvItemOutput
+	ToListServicesQueryParamsEnvItemOutputWithContext(context.Context) ListServicesQueryParamsEnvItemOutput
+}
+
+var listServicesQueryParamsEnvItemPtrType = reflect.TypeOf((**ListServicesQueryParamsEnvItem)(nil)).Elem()
+
+type ListServicesQueryParamsEnvItemPtrInput interface {
+	pulumi.Input
+
+	ToListServicesQueryParamsEnvItemPtrOutput() ListServicesQueryParamsEnvItemPtrOutput
+	ToListServicesQueryParamsEnvItemPtrOutputWithContext(context.Context) ListServicesQueryParamsEnvItemPtrOutput
+}
+
+type listServicesQueryParamsEnvItemPtr string
+
+func ListServicesQueryParamsEnvItemPtr(v string) ListServicesQueryParamsEnvItemPtrInput {
+	return (*listServicesQueryParamsEnvItemPtr)(&v)
+}
+
+func (*listServicesQueryParamsEnvItemPtr) ElementType() reflect.Type {
+	return listServicesQueryParamsEnvItemPtrType
+}
+
+func (in *listServicesQueryParamsEnvItemPtr) ToListServicesQueryParamsEnvItemPtrOutput() ListServicesQueryParamsEnvItemPtrOutput {
+	return pulumi.ToOutput(in).(ListServicesQueryParamsEnvItemPtrOutput)
+}
+
+func (in *listServicesQueryParamsEnvItemPtr) ToListServicesQueryParamsEnvItemPtrOutputWithContext(ctx context.Context) ListServicesQueryParamsEnvItemPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, in).(ListServicesQueryParamsEnvItemPtrOutput)
+}
+
+// ListServicesQueryParamsEnvItemArrayInput is an input type that accepts ListServicesQueryParamsEnvItemArray and ListServicesQueryParamsEnvItemArrayOutput values.
+// You can construct a concrete instance of `ListServicesQueryParamsEnvItemArrayInput` via:
+//
+//	ListServicesQueryParamsEnvItemArray{ ListServicesQueryParamsEnvItemArgs{...} }
+type ListServicesQueryParamsEnvItemArrayInput interface {
+	pulumi.Input
+
+	ToListServicesQueryParamsEnvItemArrayOutput() ListServicesQueryParamsEnvItemArrayOutput
+	ToListServicesQueryParamsEnvItemArrayOutputWithContext(context.Context) ListServicesQueryParamsEnvItemArrayOutput
+}
+
+type ListServicesQueryParamsEnvItemArray []ListServicesQueryParamsEnvItem
+
+func (ListServicesQueryParamsEnvItemArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ListServicesQueryParamsEnvItem)(nil)).Elem()
+}
+
+func (i ListServicesQueryParamsEnvItemArray) ToListServicesQueryParamsEnvItemArrayOutput() ListServicesQueryParamsEnvItemArrayOutput {
+	return i.ToListServicesQueryParamsEnvItemArrayOutputWithContext(context.Background())
+}
+
+func (i ListServicesQueryParamsEnvItemArray) ToListServicesQueryParamsEnvItemArrayOutputWithContext(ctx context.Context) ListServicesQueryParamsEnvItemArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ListServicesQueryParamsEnvItemArrayOutput)
+}
+
+type ListServicesQueryParamsEnvItemArrayOutput struct{ *pulumi.OutputState }
+
+func (ListServicesQueryParamsEnvItemArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ListServicesQueryParamsEnvItem)(nil)).Elem()
+}
+
+func (o ListServicesQueryParamsEnvItemArrayOutput) ToListServicesQueryParamsEnvItemArrayOutput() ListServicesQueryParamsEnvItemArrayOutput {
+	return o
+}
+
+func (o ListServicesQueryParamsEnvItemArrayOutput) ToListServicesQueryParamsEnvItemArrayOutputWithContext(ctx context.Context) ListServicesQueryParamsEnvItemArrayOutput {
+	return o
+}
+
+func (o ListServicesQueryParamsEnvItemArrayOutput) Index(i pulumi.IntInput) ListServicesQueryParamsEnvItemOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ListServicesQueryParamsEnvItem {
+		return vs[0].([]ListServicesQueryParamsEnvItem)[vs[1].(int)]
+	}).(ListServicesQueryParamsEnvItemOutput)
+}
+
+// Defaults to "oregon"
+type ListServicesQueryParamsRegionItem string
+
+const (
+	ListServicesQueryParamsRegionItemFrankfurt = ListServicesQueryParamsRegionItem("frankfurt")
+	ListServicesQueryParamsRegionItemOregon    = ListServicesQueryParamsRegionItem("oregon")
+	ListServicesQueryParamsRegionItemOhio      = ListServicesQueryParamsRegionItem("ohio")
+	ListServicesQueryParamsRegionItemSingapore = ListServicesQueryParamsRegionItem("singapore")
+	ListServicesQueryParamsRegionItemVirginia  = ListServicesQueryParamsRegionItem("virginia")
+)
+
+func (ListServicesQueryParamsRegionItem) ElementType() reflect.Type {
+	return reflect.TypeOf((*ListServicesQueryParamsRegionItem)(nil)).Elem()
+}
+
+func (e ListServicesQueryParamsRegionItem) ToListServicesQueryParamsRegionItemOutput() ListServicesQueryParamsRegionItemOutput {
+	return pulumi.ToOutput(e).(ListServicesQueryParamsRegionItemOutput)
+}
+
+func (e ListServicesQueryParamsRegionItem) ToListServicesQueryParamsRegionItemOutputWithContext(ctx context.Context) ListServicesQueryParamsRegionItemOutput {
+	return pulumi.ToOutputWithContext(ctx, e).(ListServicesQueryParamsRegionItemOutput)
+}
+
+func (e ListServicesQueryParamsRegionItem) ToListServicesQueryParamsRegionItemPtrOutput() ListServicesQueryParamsRegionItemPtrOutput {
+	return e.ToListServicesQueryParamsRegionItemPtrOutputWithContext(context.Background())
+}
+
+func (e ListServicesQueryParamsRegionItem) ToListServicesQueryParamsRegionItemPtrOutputWithContext(ctx context.Context) ListServicesQueryParamsRegionItemPtrOutput {
+	return ListServicesQueryParamsRegionItem(e).ToListServicesQueryParamsRegionItemOutputWithContext(ctx).ToListServicesQueryParamsRegionItemPtrOutputWithContext(ctx)
+}
+
+func (e ListServicesQueryParamsRegionItem) ToStringOutput() pulumi.StringOutput {
+	return pulumi.ToOutput(pulumi.String(e)).(pulumi.StringOutput)
+}
+
+func (e ListServicesQueryParamsRegionItem) ToStringOutputWithContext(ctx context.Context) pulumi.StringOutput {
+	return pulumi.ToOutputWithContext(ctx, pulumi.String(e)).(pulumi.StringOutput)
+}
+
+func (e ListServicesQueryParamsRegionItem) ToStringPtrOutput() pulumi.StringPtrOutput {
+	return pulumi.String(e).ToStringPtrOutputWithContext(context.Background())
+}
+
+func (e ListServicesQueryParamsRegionItem) ToStringPtrOutputWithContext(ctx context.Context) pulumi.StringPtrOutput {
+	return pulumi.String(e).ToStringOutputWithContext(ctx).ToStringPtrOutputWithContext(ctx)
+}
+
+type ListServicesQueryParamsRegionItemOutput struct{ *pulumi.OutputState }
+
+func (ListServicesQueryParamsRegionItemOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ListServicesQueryParamsRegionItem)(nil)).Elem()
+}
+
+func (o ListServicesQueryParamsRegionItemOutput) ToListServicesQueryParamsRegionItemOutput() ListServicesQueryParamsRegionItemOutput {
+	return o
+}
+
+func (o ListServicesQueryParamsRegionItemOutput) ToListServicesQueryParamsRegionItemOutputWithContext(ctx context.Context) ListServicesQueryParamsRegionItemOutput {
+	return o
+}
+
+func (o ListServicesQueryParamsRegionItemOutput) ToListServicesQueryParamsRegionItemPtrOutput() ListServicesQueryParamsRegionItemPtrOutput {
+	return o.ToListServicesQueryParamsRegionItemPtrOutputWithContext(context.Background())
+}
+
+func (o ListServicesQueryParamsRegionItemOutput) ToListServicesQueryParamsRegionItemPtrOutputWithContext(ctx context.Context) ListServicesQueryParamsRegionItemPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v ListServicesQueryParamsRegionItem) *ListServicesQueryParamsRegionItem {
+		return &v
+	}).(ListServicesQueryParamsRegionItemPtrOutput)
+}
+
+func (o ListServicesQueryParamsRegionItemOutput) ToStringOutput() pulumi.StringOutput {
+	return o.ToStringOutputWithContext(context.Background())
+}
+
+func (o ListServicesQueryParamsRegionItemOutput) ToStringOutputWithContext(ctx context.Context) pulumi.StringOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, e ListServicesQueryParamsRegionItem) string {
+		return string(e)
+	}).(pulumi.StringOutput)
+}
+
+func (o ListServicesQueryParamsRegionItemOutput) ToStringPtrOutput() pulumi.StringPtrOutput {
+	return o.ToStringPtrOutputWithContext(context.Background())
+}
+
+func (o ListServicesQueryParamsRegionItemOutput) ToStringPtrOutputWithContext(ctx context.Context) pulumi.StringPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, e ListServicesQueryParamsRegionItem) *string {
+		v := string(e)
+		return &v
+	}).(pulumi.StringPtrOutput)
+}
+
+type ListServicesQueryParamsRegionItemPtrOutput struct{ *pulumi.OutputState }
+
+func (ListServicesQueryParamsRegionItemPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ListServicesQueryParamsRegionItem)(nil)).Elem()
+}
+
+func (o ListServicesQueryParamsRegionItemPtrOutput) ToListServicesQueryParamsRegionItemPtrOutput() ListServicesQueryParamsRegionItemPtrOutput {
+	return o
+}
+
+func (o ListServicesQueryParamsRegionItemPtrOutput) ToListServicesQueryParamsRegionItemPtrOutputWithContext(ctx context.Context) ListServicesQueryParamsRegionItemPtrOutput {
+	return o
+}
+
+func (o ListServicesQueryParamsRegionItemPtrOutput) Elem() ListServicesQueryParamsRegionItemOutput {
+	return o.ApplyT(func(v *ListServicesQueryParamsRegionItem) ListServicesQueryParamsRegionItem {
+		if v != nil {
+			return *v
+		}
+		var ret ListServicesQueryParamsRegionItem
+		return ret
+	}).(ListServicesQueryParamsRegionItemOutput)
+}
+
+func (o ListServicesQueryParamsRegionItemPtrOutput) ToStringPtrOutput() pulumi.StringPtrOutput {
+	return o.ToStringPtrOutputWithContext(context.Background())
+}
+
+func (o ListServicesQueryParamsRegionItemPtrOutput) ToStringPtrOutputWithContext(ctx context.Context) pulumi.StringPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, e *ListServicesQueryParamsRegionItem) *string {
+		if e == nil {
+			return nil
+		}
+		v := string(*e)
+		return &v
+	}).(pulumi.StringPtrOutput)
+}
+
+// ListServicesQueryParamsRegionItemInput is an input type that accepts values of the ListServicesQueryParamsRegionItem enum
+// A concrete instance of `ListServicesQueryParamsRegionItemInput` can be one of the following:
+//
+//	ListServicesQueryParamsRegionItemFrankfurt
+//	ListServicesQueryParamsRegionItemOregon
+//	ListServicesQueryParamsRegionItemOhio
+//	ListServicesQueryParamsRegionItemSingapore
+//	ListServicesQueryParamsRegionItemVirginia
+type ListServicesQueryParamsRegionItemInput interface {
+	pulumi.Input
+
+	ToListServicesQueryParamsRegionItemOutput() ListServicesQueryParamsRegionItemOutput
+	ToListServicesQueryParamsRegionItemOutputWithContext(context.Context) ListServicesQueryParamsRegionItemOutput
+}
+
+var listServicesQueryParamsRegionItemPtrType = reflect.TypeOf((**ListServicesQueryParamsRegionItem)(nil)).Elem()
+
+type ListServicesQueryParamsRegionItemPtrInput interface {
+	pulumi.Input
+
+	ToListServicesQueryParamsRegionItemPtrOutput() ListServicesQueryParamsRegionItemPtrOutput
+	ToListServicesQueryParamsRegionItemPtrOutputWithContext(context.Context) ListServicesQueryParamsRegionItemPtrOutput
+}
+
+type listServicesQueryParamsRegionItemPtr string
+
+func ListServicesQueryParamsRegionItemPtr(v string) ListServicesQueryParamsRegionItemPtrInput {
+	return (*listServicesQueryParamsRegionItemPtr)(&v)
+}
+
+func (*listServicesQueryParamsRegionItemPtr) ElementType() reflect.Type {
+	return listServicesQueryParamsRegionItemPtrType
+}
+
+func (in *listServicesQueryParamsRegionItemPtr) ToListServicesQueryParamsRegionItemPtrOutput() ListServicesQueryParamsRegionItemPtrOutput {
+	return pulumi.ToOutput(in).(ListServicesQueryParamsRegionItemPtrOutput)
+}
+
+func (in *listServicesQueryParamsRegionItemPtr) ToListServicesQueryParamsRegionItemPtrOutputWithContext(ctx context.Context) ListServicesQueryParamsRegionItemPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, in).(ListServicesQueryParamsRegionItemPtrOutput)
+}
+
+// ListServicesQueryParamsRegionItemArrayInput is an input type that accepts ListServicesQueryParamsRegionItemArray and ListServicesQueryParamsRegionItemArrayOutput values.
+// You can construct a concrete instance of `ListServicesQueryParamsRegionItemArrayInput` via:
+//
+//	ListServicesQueryParamsRegionItemArray{ ListServicesQueryParamsRegionItemArgs{...} }
+type ListServicesQueryParamsRegionItemArrayInput interface {
+	pulumi.Input
+
+	ToListServicesQueryParamsRegionItemArrayOutput() ListServicesQueryParamsRegionItemArrayOutput
+	ToListServicesQueryParamsRegionItemArrayOutputWithContext(context.Context) ListServicesQueryParamsRegionItemArrayOutput
+}
+
+type ListServicesQueryParamsRegionItemArray []ListServicesQueryParamsRegionItem
+
+func (ListServicesQueryParamsRegionItemArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ListServicesQueryParamsRegionItem)(nil)).Elem()
+}
+
+func (i ListServicesQueryParamsRegionItemArray) ToListServicesQueryParamsRegionItemArrayOutput() ListServicesQueryParamsRegionItemArrayOutput {
+	return i.ToListServicesQueryParamsRegionItemArrayOutputWithContext(context.Background())
+}
+
+func (i ListServicesQueryParamsRegionItemArray) ToListServicesQueryParamsRegionItemArrayOutputWithContext(ctx context.Context) ListServicesQueryParamsRegionItemArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ListServicesQueryParamsRegionItemArrayOutput)
+}
+
+type ListServicesQueryParamsRegionItemArrayOutput struct{ *pulumi.OutputState }
+
+func (ListServicesQueryParamsRegionItemArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ListServicesQueryParamsRegionItem)(nil)).Elem()
+}
+
+func (o ListServicesQueryParamsRegionItemArrayOutput) ToListServicesQueryParamsRegionItemArrayOutput() ListServicesQueryParamsRegionItemArrayOutput {
+	return o
+}
+
+func (o ListServicesQueryParamsRegionItemArrayOutput) ToListServicesQueryParamsRegionItemArrayOutputWithContext(ctx context.Context) ListServicesQueryParamsRegionItemArrayOutput {
+	return o
+}
+
+func (o ListServicesQueryParamsRegionItemArrayOutput) Index(i pulumi.IntInput) ListServicesQueryParamsRegionItemOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ListServicesQueryParamsRegionItem {
+		return vs[0].([]ListServicesQueryParamsRegionItem)[vs[1].(int)]
+	}).(ListServicesQueryParamsRegionItemOutput)
+}
+
+type ListServicesQueryParamsSuspendedItem string
+
+const (
+	ListServicesQueryParamsSuspendedItemSuspended    = ListServicesQueryParamsSuspendedItem("suspended")
+	ListServicesQueryParamsSuspendedItemNotSuspended = ListServicesQueryParamsSuspendedItem("not_suspended")
+)
+
+func (ListServicesQueryParamsSuspendedItem) ElementType() reflect.Type {
+	return reflect.TypeOf((*ListServicesQueryParamsSuspendedItem)(nil)).Elem()
+}
+
+func (e ListServicesQueryParamsSuspendedItem) ToListServicesQueryParamsSuspendedItemOutput() ListServicesQueryParamsSuspendedItemOutput {
+	return pulumi.ToOutput(e).(ListServicesQueryParamsSuspendedItemOutput)
+}
+
+func (e ListServicesQueryParamsSuspendedItem) ToListServicesQueryParamsSuspendedItemOutputWithContext(ctx context.Context) ListServicesQueryParamsSuspendedItemOutput {
+	return pulumi.ToOutputWithContext(ctx, e).(ListServicesQueryParamsSuspendedItemOutput)
+}
+
+func (e ListServicesQueryParamsSuspendedItem) ToListServicesQueryParamsSuspendedItemPtrOutput() ListServicesQueryParamsSuspendedItemPtrOutput {
+	return e.ToListServicesQueryParamsSuspendedItemPtrOutputWithContext(context.Background())
+}
+
+func (e ListServicesQueryParamsSuspendedItem) ToListServicesQueryParamsSuspendedItemPtrOutputWithContext(ctx context.Context) ListServicesQueryParamsSuspendedItemPtrOutput {
+	return ListServicesQueryParamsSuspendedItem(e).ToListServicesQueryParamsSuspendedItemOutputWithContext(ctx).ToListServicesQueryParamsSuspendedItemPtrOutputWithContext(ctx)
+}
+
+func (e ListServicesQueryParamsSuspendedItem) ToStringOutput() pulumi.StringOutput {
+	return pulumi.ToOutput(pulumi.String(e)).(pulumi.StringOutput)
+}
+
+func (e ListServicesQueryParamsSuspendedItem) ToStringOutputWithContext(ctx context.Context) pulumi.StringOutput {
+	return pulumi.ToOutputWithContext(ctx, pulumi.String(e)).(pulumi.StringOutput)
+}
+
+func (e ListServicesQueryParamsSuspendedItem) ToStringPtrOutput() pulumi.StringPtrOutput {
+	return pulumi.String(e).ToStringPtrOutputWithContext(context.Background())
+}
+
+func (e ListServicesQueryParamsSuspendedItem) ToStringPtrOutputWithContext(ctx context.Context) pulumi.StringPtrOutput {
+	return pulumi.String(e).ToStringOutputWithContext(ctx).ToStringPtrOutputWithContext(ctx)
+}
+
+type ListServicesQueryParamsSuspendedItemOutput struct{ *pulumi.OutputState }
+
+func (ListServicesQueryParamsSuspendedItemOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ListServicesQueryParamsSuspendedItem)(nil)).Elem()
+}
+
+func (o ListServicesQueryParamsSuspendedItemOutput) ToListServicesQueryParamsSuspendedItemOutput() ListServicesQueryParamsSuspendedItemOutput {
+	return o
+}
+
+func (o ListServicesQueryParamsSuspendedItemOutput) ToListServicesQueryParamsSuspendedItemOutputWithContext(ctx context.Context) ListServicesQueryParamsSuspendedItemOutput {
+	return o
+}
+
+func (o ListServicesQueryParamsSuspendedItemOutput) ToListServicesQueryParamsSuspendedItemPtrOutput() ListServicesQueryParamsSuspendedItemPtrOutput {
+	return o.ToListServicesQueryParamsSuspendedItemPtrOutputWithContext(context.Background())
+}
+
+func (o ListServicesQueryParamsSuspendedItemOutput) ToListServicesQueryParamsSuspendedItemPtrOutputWithContext(ctx context.Context) ListServicesQueryParamsSuspendedItemPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v ListServicesQueryParamsSuspendedItem) *ListServicesQueryParamsSuspendedItem {
+		return &v
+	}).(ListServicesQueryParamsSuspendedItemPtrOutput)
+}
+
+func (o ListServicesQueryParamsSuspendedItemOutput) ToStringOutput() pulumi.StringOutput {
+	return o.ToStringOutputWithContext(context.Background())
+}
+
+func (o ListServicesQueryParamsSuspendedItemOutput) ToStringOutputWithContext(ctx context.Context) pulumi.StringOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, e ListServicesQueryParamsSuspendedItem) string {
+		return string(e)
+	}).(pulumi.StringOutput)
+}
+
+func (o ListServicesQueryParamsSuspendedItemOutput) ToStringPtrOutput() pulumi.StringPtrOutput {
+	return o.ToStringPtrOutputWithContext(context.Background())
+}
+
+func (o ListServicesQueryParamsSuspendedItemOutput) ToStringPtrOutputWithContext(ctx context.Context) pulumi.StringPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, e ListServicesQueryParamsSuspendedItem) *string {
+		v := string(e)
+		return &v
+	}).(pulumi.StringPtrOutput)
+}
+
+type ListServicesQueryParamsSuspendedItemPtrOutput struct{ *pulumi.OutputState }
+
+func (ListServicesQueryParamsSuspendedItemPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ListServicesQueryParamsSuspendedItem)(nil)).Elem()
+}
+
+func (o ListServicesQueryParamsSuspendedItemPtrOutput) ToListServicesQueryParamsSuspendedItemPtrOutput() ListServicesQueryParamsSuspendedItemPtrOutput {
+	return o
+}
+
+func (o ListServicesQueryParamsSuspendedItemPtrOutput) ToListServicesQueryParamsSuspendedItemPtrOutputWithContext(ctx context.Context) ListServicesQueryParamsSuspendedItemPtrOutput {
+	return o
+}
+
+func (o ListServicesQueryParamsSuspendedItemPtrOutput) Elem() ListServicesQueryParamsSuspendedItemOutput {
+	return o.ApplyT(func(v *ListServicesQueryParamsSuspendedItem) ListServicesQueryParamsSuspendedItem {
+		if v != nil {
+			return *v
+		}
+		var ret ListServicesQueryParamsSuspendedItem
+		return ret
+	}).(ListServicesQueryParamsSuspendedItemOutput)
+}
+
+func (o ListServicesQueryParamsSuspendedItemPtrOutput) ToStringPtrOutput() pulumi.StringPtrOutput {
+	return o.ToStringPtrOutputWithContext(context.Background())
+}
+
+func (o ListServicesQueryParamsSuspendedItemPtrOutput) ToStringPtrOutputWithContext(ctx context.Context) pulumi.StringPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, e *ListServicesQueryParamsSuspendedItem) *string {
+		if e == nil {
+			return nil
+		}
+		v := string(*e)
+		return &v
+	}).(pulumi.StringPtrOutput)
+}
+
+// ListServicesQueryParamsSuspendedItemInput is an input type that accepts values of the ListServicesQueryParamsSuspendedItem enum
+// A concrete instance of `ListServicesQueryParamsSuspendedItemInput` can be one of the following:
+//
+//	ListServicesQueryParamsSuspendedItemSuspended
+//	ListServicesQueryParamsSuspendedItemNotSuspended
+type ListServicesQueryParamsSuspendedItemInput interface {
+	pulumi.Input
+
+	ToListServicesQueryParamsSuspendedItemOutput() ListServicesQueryParamsSuspendedItemOutput
+	ToListServicesQueryParamsSuspendedItemOutputWithContext(context.Context) ListServicesQueryParamsSuspendedItemOutput
+}
+
+var listServicesQueryParamsSuspendedItemPtrType = reflect.TypeOf((**ListServicesQueryParamsSuspendedItem)(nil)).Elem()
+
+type ListServicesQueryParamsSuspendedItemPtrInput interface {
+	pulumi.Input
+
+	ToListServicesQueryParamsSuspendedItemPtrOutput() ListServicesQueryParamsSuspendedItemPtrOutput
+	ToListServicesQueryParamsSuspendedItemPtrOutputWithContext(context.Context) ListServicesQueryParamsSuspendedItemPtrOutput
+}
+
+type listServicesQueryParamsSuspendedItemPtr string
+
+func ListServicesQueryParamsSuspendedItemPtr(v string) ListServicesQueryParamsSuspendedItemPtrInput {
+	return (*listServicesQueryParamsSuspendedItemPtr)(&v)
+}
+
+func (*listServicesQueryParamsSuspendedItemPtr) ElementType() reflect.Type {
+	return listServicesQueryParamsSuspendedItemPtrType
+}
+
+func (in *listServicesQueryParamsSuspendedItemPtr) ToListServicesQueryParamsSuspendedItemPtrOutput() ListServicesQueryParamsSuspendedItemPtrOutput {
+	return pulumi.ToOutput(in).(ListServicesQueryParamsSuspendedItemPtrOutput)
+}
+
+func (in *listServicesQueryParamsSuspendedItemPtr) ToListServicesQueryParamsSuspendedItemPtrOutputWithContext(ctx context.Context) ListServicesQueryParamsSuspendedItemPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, in).(ListServicesQueryParamsSuspendedItemPtrOutput)
+}
+
+// ListServicesQueryParamsSuspendedItemArrayInput is an input type that accepts ListServicesQueryParamsSuspendedItemArray and ListServicesQueryParamsSuspendedItemArrayOutput values.
+// You can construct a concrete instance of `ListServicesQueryParamsSuspendedItemArrayInput` via:
+//
+//	ListServicesQueryParamsSuspendedItemArray{ ListServicesQueryParamsSuspendedItemArgs{...} }
+type ListServicesQueryParamsSuspendedItemArrayInput interface {
+	pulumi.Input
+
+	ToListServicesQueryParamsSuspendedItemArrayOutput() ListServicesQueryParamsSuspendedItemArrayOutput
+	ToListServicesQueryParamsSuspendedItemArrayOutputWithContext(context.Context) ListServicesQueryParamsSuspendedItemArrayOutput
+}
+
+type ListServicesQueryParamsSuspendedItemArray []ListServicesQueryParamsSuspendedItem
+
+func (ListServicesQueryParamsSuspendedItemArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ListServicesQueryParamsSuspendedItem)(nil)).Elem()
+}
+
+func (i ListServicesQueryParamsSuspendedItemArray) ToListServicesQueryParamsSuspendedItemArrayOutput() ListServicesQueryParamsSuspendedItemArrayOutput {
+	return i.ToListServicesQueryParamsSuspendedItemArrayOutputWithContext(context.Background())
+}
+
+func (i ListServicesQueryParamsSuspendedItemArray) ToListServicesQueryParamsSuspendedItemArrayOutputWithContext(ctx context.Context) ListServicesQueryParamsSuspendedItemArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ListServicesQueryParamsSuspendedItemArrayOutput)
+}
+
+type ListServicesQueryParamsSuspendedItemArrayOutput struct{ *pulumi.OutputState }
+
+func (ListServicesQueryParamsSuspendedItemArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ListServicesQueryParamsSuspendedItem)(nil)).Elem()
+}
+
+func (o ListServicesQueryParamsSuspendedItemArrayOutput) ToListServicesQueryParamsSuspendedItemArrayOutput() ListServicesQueryParamsSuspendedItemArrayOutput {
+	return o
+}
+
+func (o ListServicesQueryParamsSuspendedItemArrayOutput) ToListServicesQueryParamsSuspendedItemArrayOutputWithContext(ctx context.Context) ListServicesQueryParamsSuspendedItemArrayOutput {
+	return o
+}
+
+func (o ListServicesQueryParamsSuspendedItemArrayOutput) Index(i pulumi.IntInput) ListServicesQueryParamsSuspendedItemOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ListServicesQueryParamsSuspendedItem {
+		return vs[0].([]ListServicesQueryParamsSuspendedItem)[vs[1].(int)]
+	}).(ListServicesQueryParamsSuspendedItemOutput)
+}
+
+type ListServicesQueryParamsTypeItem string
+
+const (
+	ListServicesQueryParamsTypeItemStaticSite       = ListServicesQueryParamsTypeItem("static_site")
+	ListServicesQueryParamsTypeItemWebService       = ListServicesQueryParamsTypeItem("web_service")
+	ListServicesQueryParamsTypeItemPrivateService   = ListServicesQueryParamsTypeItem("private_service")
+	ListServicesQueryParamsTypeItemBackgroundWorker = ListServicesQueryParamsTypeItem("background_worker")
+	ListServicesQueryParamsTypeItemCronJob          = ListServicesQueryParamsTypeItem("cron_job")
+)
+
+func (ListServicesQueryParamsTypeItem) ElementType() reflect.Type {
+	return reflect.TypeOf((*ListServicesQueryParamsTypeItem)(nil)).Elem()
+}
+
+func (e ListServicesQueryParamsTypeItem) ToListServicesQueryParamsTypeItemOutput() ListServicesQueryParamsTypeItemOutput {
+	return pulumi.ToOutput(e).(ListServicesQueryParamsTypeItemOutput)
+}
+
+func (e ListServicesQueryParamsTypeItem) ToListServicesQueryParamsTypeItemOutputWithContext(ctx context.Context) ListServicesQueryParamsTypeItemOutput {
+	return pulumi.ToOutputWithContext(ctx, e).(ListServicesQueryParamsTypeItemOutput)
+}
+
+func (e ListServicesQueryParamsTypeItem) ToListServicesQueryParamsTypeItemPtrOutput() ListServicesQueryParamsTypeItemPtrOutput {
+	return e.ToListServicesQueryParamsTypeItemPtrOutputWithContext(context.Background())
+}
+
+func (e ListServicesQueryParamsTypeItem) ToListServicesQueryParamsTypeItemPtrOutputWithContext(ctx context.Context) ListServicesQueryParamsTypeItemPtrOutput {
+	return ListServicesQueryParamsTypeItem(e).ToListServicesQueryParamsTypeItemOutputWithContext(ctx).ToListServicesQueryParamsTypeItemPtrOutputWithContext(ctx)
+}
+
+func (e ListServicesQueryParamsTypeItem) ToStringOutput() pulumi.StringOutput {
+	return pulumi.ToOutput(pulumi.String(e)).(pulumi.StringOutput)
+}
+
+func (e ListServicesQueryParamsTypeItem) ToStringOutputWithContext(ctx context.Context) pulumi.StringOutput {
+	return pulumi.ToOutputWithContext(ctx, pulumi.String(e)).(pulumi.StringOutput)
+}
+
+func (e ListServicesQueryParamsTypeItem) ToStringPtrOutput() pulumi.StringPtrOutput {
+	return pulumi.String(e).ToStringPtrOutputWithContext(context.Background())
+}
+
+func (e ListServicesQueryParamsTypeItem) ToStringPtrOutputWithContext(ctx context.Context) pulumi.StringPtrOutput {
+	return pulumi.String(e).ToStringOutputWithContext(ctx).ToStringPtrOutputWithContext(ctx)
+}
+
+type ListServicesQueryParamsTypeItemOutput struct{ *pulumi.OutputState }
+
+func (ListServicesQueryParamsTypeItemOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ListServicesQueryParamsTypeItem)(nil)).Elem()
+}
+
+func (o ListServicesQueryParamsTypeItemOutput) ToListServicesQueryParamsTypeItemOutput() ListServicesQueryParamsTypeItemOutput {
+	return o
+}
+
+func (o ListServicesQueryParamsTypeItemOutput) ToListServicesQueryParamsTypeItemOutputWithContext(ctx context.Context) ListServicesQueryParamsTypeItemOutput {
+	return o
+}
+
+func (o ListServicesQueryParamsTypeItemOutput) ToListServicesQueryParamsTypeItemPtrOutput() ListServicesQueryParamsTypeItemPtrOutput {
+	return o.ToListServicesQueryParamsTypeItemPtrOutputWithContext(context.Background())
+}
+
+func (o ListServicesQueryParamsTypeItemOutput) ToListServicesQueryParamsTypeItemPtrOutputWithContext(ctx context.Context) ListServicesQueryParamsTypeItemPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v ListServicesQueryParamsTypeItem) *ListServicesQueryParamsTypeItem {
+		return &v
+	}).(ListServicesQueryParamsTypeItemPtrOutput)
+}
+
+func (o ListServicesQueryParamsTypeItemOutput) ToStringOutput() pulumi.StringOutput {
+	return o.ToStringOutputWithContext(context.Background())
+}
+
+func (o ListServicesQueryParamsTypeItemOutput) ToStringOutputWithContext(ctx context.Context) pulumi.StringOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, e ListServicesQueryParamsTypeItem) string {
+		return string(e)
+	}).(pulumi.StringOutput)
+}
+
+func (o ListServicesQueryParamsTypeItemOutput) ToStringPtrOutput() pulumi.StringPtrOutput {
+	return o.ToStringPtrOutputWithContext(context.Background())
+}
+
+func (o ListServicesQueryParamsTypeItemOutput) ToStringPtrOutputWithContext(ctx context.Context) pulumi.StringPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, e ListServicesQueryParamsTypeItem) *string {
+		v := string(e)
+		return &v
+	}).(pulumi.StringPtrOutput)
+}
+
+type ListServicesQueryParamsTypeItemPtrOutput struct{ *pulumi.OutputState }
+
+func (ListServicesQueryParamsTypeItemPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ListServicesQueryParamsTypeItem)(nil)).Elem()
+}
+
+func (o ListServicesQueryParamsTypeItemPtrOutput) ToListServicesQueryParamsTypeItemPtrOutput() ListServicesQueryParamsTypeItemPtrOutput {
+	return o
+}
+
+func (o ListServicesQueryParamsTypeItemPtrOutput) ToListServicesQueryParamsTypeItemPtrOutputWithContext(ctx context.Context) ListServicesQueryParamsTypeItemPtrOutput {
+	return o
+}
+
+func (o ListServicesQueryParamsTypeItemPtrOutput) Elem() ListServicesQueryParamsTypeItemOutput {
+	return o.ApplyT(func(v *ListServicesQueryParamsTypeItem) ListServicesQueryParamsTypeItem {
+		if v != nil {
+			return *v
+		}
+		var ret ListServicesQueryParamsTypeItem
+		return ret
+	}).(ListServicesQueryParamsTypeItemOutput)
+}
+
+func (o ListServicesQueryParamsTypeItemPtrOutput) ToStringPtrOutput() pulumi.StringPtrOutput {
+	return o.ToStringPtrOutputWithContext(context.Background())
+}
+
+func (o ListServicesQueryParamsTypeItemPtrOutput) ToStringPtrOutputWithContext(ctx context.Context) pulumi.StringPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, e *ListServicesQueryParamsTypeItem) *string {
+		if e == nil {
+			return nil
+		}
+		v := string(*e)
+		return &v
+	}).(pulumi.StringPtrOutput)
+}
+
+// ListServicesQueryParamsTypeItemInput is an input type that accepts values of the ListServicesQueryParamsTypeItem enum
+// A concrete instance of `ListServicesQueryParamsTypeItemInput` can be one of the following:
+//
+//	ListServicesQueryParamsTypeItemStaticSite
+//	ListServicesQueryParamsTypeItemWebService
+//	ListServicesQueryParamsTypeItemPrivateService
+//	ListServicesQueryParamsTypeItemBackgroundWorker
+//	ListServicesQueryParamsTypeItemCronJob
+type ListServicesQueryParamsTypeItemInput interface {
+	pulumi.Input
+
+	ToListServicesQueryParamsTypeItemOutput() ListServicesQueryParamsTypeItemOutput
+	ToListServicesQueryParamsTypeItemOutputWithContext(context.Context) ListServicesQueryParamsTypeItemOutput
+}
+
+var listServicesQueryParamsTypeItemPtrType = reflect.TypeOf((**ListServicesQueryParamsTypeItem)(nil)).Elem()
+
+type ListServicesQueryParamsTypeItemPtrInput interface {
+	pulumi.Input
+
+	ToListServicesQueryParamsTypeItemPtrOutput() ListServicesQueryParamsTypeItemPtrOutput
+	ToListServicesQueryParamsTypeItemPtrOutputWithContext(context.Context) ListServicesQueryParamsTypeItemPtrOutput
+}
+
+type listServicesQueryParamsTypeItemPtr string
+
+func ListServicesQueryParamsTypeItemPtr(v string) ListServicesQueryParamsTypeItemPtrInput {
+	return (*listServicesQueryParamsTypeItemPtr)(&v)
+}
+
+func (*listServicesQueryParamsTypeItemPtr) ElementType() reflect.Type {
+	return listServicesQueryParamsTypeItemPtrType
+}
+
+func (in *listServicesQueryParamsTypeItemPtr) ToListServicesQueryParamsTypeItemPtrOutput() ListServicesQueryParamsTypeItemPtrOutput {
+	return pulumi.ToOutput(in).(ListServicesQueryParamsTypeItemPtrOutput)
+}
+
+func (in *listServicesQueryParamsTypeItemPtr) ToListServicesQueryParamsTypeItemPtrOutputWithContext(ctx context.Context) ListServicesQueryParamsTypeItemPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, in).(ListServicesQueryParamsTypeItemPtrOutput)
+}
+
+// ListServicesQueryParamsTypeItemArrayInput is an input type that accepts ListServicesQueryParamsTypeItemArray and ListServicesQueryParamsTypeItemArrayOutput values.
+// You can construct a concrete instance of `ListServicesQueryParamsTypeItemArrayInput` via:
+//
+//	ListServicesQueryParamsTypeItemArray{ ListServicesQueryParamsTypeItemArgs{...} }
+type ListServicesQueryParamsTypeItemArrayInput interface {
+	pulumi.Input
+
+	ToListServicesQueryParamsTypeItemArrayOutput() ListServicesQueryParamsTypeItemArrayOutput
+	ToListServicesQueryParamsTypeItemArrayOutputWithContext(context.Context) ListServicesQueryParamsTypeItemArrayOutput
+}
+
+type ListServicesQueryParamsTypeItemArray []ListServicesQueryParamsTypeItem
+
+func (ListServicesQueryParamsTypeItemArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ListServicesQueryParamsTypeItem)(nil)).Elem()
+}
+
+func (i ListServicesQueryParamsTypeItemArray) ToListServicesQueryParamsTypeItemArrayOutput() ListServicesQueryParamsTypeItemArrayOutput {
+	return i.ToListServicesQueryParamsTypeItemArrayOutputWithContext(context.Background())
+}
+
+func (i ListServicesQueryParamsTypeItemArray) ToListServicesQueryParamsTypeItemArrayOutputWithContext(ctx context.Context) ListServicesQueryParamsTypeItemArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ListServicesQueryParamsTypeItemArrayOutput)
+}
+
+type ListServicesQueryParamsTypeItemArrayOutput struct{ *pulumi.OutputState }
+
+func (ListServicesQueryParamsTypeItemArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ListServicesQueryParamsTypeItem)(nil)).Elem()
+}
+
+func (o ListServicesQueryParamsTypeItemArrayOutput) ToListServicesQueryParamsTypeItemArrayOutput() ListServicesQueryParamsTypeItemArrayOutput {
+	return o
+}
+
+func (o ListServicesQueryParamsTypeItemArrayOutput) ToListServicesQueryParamsTypeItemArrayOutputWithContext(ctx context.Context) ListServicesQueryParamsTypeItemArrayOutput {
+	return o
+}
+
+func (o ListServicesQueryParamsTypeItemArrayOutput) Index(i pulumi.IntInput) ListServicesQueryParamsTypeItemOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ListServicesQueryParamsTypeItem {
+		return vs[0].([]ListServicesQueryParamsTypeItem)[vs[1].(int)]
+	}).(ListServicesQueryParamsTypeItemOutput)
+}
+
 // The instance type to use for the preview instance. Note that base services with any paid instance type can't create preview instances with the `free` instance type.
 type Plan string
 
@@ -8888,6 +10738,31 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*CronJobDetailsCreateRegionPtrInput)(nil)).Elem(), CronJobDetailsCreateRegion("frankfurt"))
 	pulumi.RegisterInputType(reflect.TypeOf((*CronJobDetailsCreateRuntimeInput)(nil)).Elem(), CronJobDetailsCreateRuntime("docker"))
 	pulumi.RegisterInputType(reflect.TypeOf((*CronJobDetailsCreateRuntimePtrInput)(nil)).Elem(), CronJobDetailsCreateRuntime("docker"))
+	pulumi.RegisterInputType(reflect.TypeOf((*ListCustomDomainsQueryParamsDomainTypeInput)(nil)).Elem(), ListCustomDomainsQueryParamsDomainType("apex"))
+	pulumi.RegisterInputType(reflect.TypeOf((*ListCustomDomainsQueryParamsDomainTypePtrInput)(nil)).Elem(), ListCustomDomainsQueryParamsDomainType("apex"))
+	pulumi.RegisterInputType(reflect.TypeOf((*ListCustomDomainsQueryParamsVerificationStatusInput)(nil)).Elem(), ListCustomDomainsQueryParamsVerificationStatus("verified"))
+	pulumi.RegisterInputType(reflect.TypeOf((*ListCustomDomainsQueryParamsVerificationStatusPtrInput)(nil)).Elem(), ListCustomDomainsQueryParamsVerificationStatus("verified"))
+	pulumi.RegisterInputType(reflect.TypeOf((*ListDeploysQueryParamsStatusItemInput)(nil)).Elem(), ListDeploysQueryParamsStatusItem("created"))
+	pulumi.RegisterInputType(reflect.TypeOf((*ListDeploysQueryParamsStatusItemPtrInput)(nil)).Elem(), ListDeploysQueryParamsStatusItem("created"))
+	pulumi.RegisterInputType(reflect.TypeOf((*ListDeploysQueryParamsStatusItemArrayInput)(nil)).Elem(), ListDeploysQueryParamsStatusItemArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ListJobQueryParamsStatusItemInput)(nil)).Elem(), ListJobQueryParamsStatusItem("pending"))
+	pulumi.RegisterInputType(reflect.TypeOf((*ListJobQueryParamsStatusItemPtrInput)(nil)).Elem(), ListJobQueryParamsStatusItem("pending"))
+	pulumi.RegisterInputType(reflect.TypeOf((*ListJobQueryParamsStatusItemArrayInput)(nil)).Elem(), ListJobQueryParamsStatusItemArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ListRoutesQueryParamsTypeItemInput)(nil)).Elem(), ListRoutesQueryParamsTypeItem("redirect"))
+	pulumi.RegisterInputType(reflect.TypeOf((*ListRoutesQueryParamsTypeItemPtrInput)(nil)).Elem(), ListRoutesQueryParamsTypeItem("redirect"))
+	pulumi.RegisterInputType(reflect.TypeOf((*ListRoutesQueryParamsTypeItemArrayInput)(nil)).Elem(), ListRoutesQueryParamsTypeItemArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ListServicesQueryParamsEnvItemInput)(nil)).Elem(), ListServicesQueryParamsEnvItem("docker"))
+	pulumi.RegisterInputType(reflect.TypeOf((*ListServicesQueryParamsEnvItemPtrInput)(nil)).Elem(), ListServicesQueryParamsEnvItem("docker"))
+	pulumi.RegisterInputType(reflect.TypeOf((*ListServicesQueryParamsEnvItemArrayInput)(nil)).Elem(), ListServicesQueryParamsEnvItemArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ListServicesQueryParamsRegionItemInput)(nil)).Elem(), ListServicesQueryParamsRegionItem("frankfurt"))
+	pulumi.RegisterInputType(reflect.TypeOf((*ListServicesQueryParamsRegionItemPtrInput)(nil)).Elem(), ListServicesQueryParamsRegionItem("frankfurt"))
+	pulumi.RegisterInputType(reflect.TypeOf((*ListServicesQueryParamsRegionItemArrayInput)(nil)).Elem(), ListServicesQueryParamsRegionItemArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ListServicesQueryParamsSuspendedItemInput)(nil)).Elem(), ListServicesQueryParamsSuspendedItem("suspended"))
+	pulumi.RegisterInputType(reflect.TypeOf((*ListServicesQueryParamsSuspendedItemPtrInput)(nil)).Elem(), ListServicesQueryParamsSuspendedItem("suspended"))
+	pulumi.RegisterInputType(reflect.TypeOf((*ListServicesQueryParamsSuspendedItemArrayInput)(nil)).Elem(), ListServicesQueryParamsSuspendedItemArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ListServicesQueryParamsTypeItemInput)(nil)).Elem(), ListServicesQueryParamsTypeItem("static_site"))
+	pulumi.RegisterInputType(reflect.TypeOf((*ListServicesQueryParamsTypeItemPtrInput)(nil)).Elem(), ListServicesQueryParamsTypeItem("static_site"))
+	pulumi.RegisterInputType(reflect.TypeOf((*ListServicesQueryParamsTypeItemArrayInput)(nil)).Elem(), ListServicesQueryParamsTypeItemArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*PlanInput)(nil)).Elem(), Plan("starter"))
 	pulumi.RegisterInputType(reflect.TypeOf((*PlanPtrInput)(nil)).Elem(), Plan("starter"))
 	pulumi.RegisterInputType(reflect.TypeOf((*PreviewsGenerationInput)(nil)).Elem(), PreviewsGeneration("off"))
@@ -8980,6 +10855,31 @@ func init() {
 	pulumi.RegisterOutputType(DeployTriggerPtrOutput{})
 	pulumi.RegisterOutputType(JobStatusOutput{})
 	pulumi.RegisterOutputType(JobStatusPtrOutput{})
+	pulumi.RegisterOutputType(ListCustomDomainsQueryParamsDomainTypeOutput{})
+	pulumi.RegisterOutputType(ListCustomDomainsQueryParamsDomainTypePtrOutput{})
+	pulumi.RegisterOutputType(ListCustomDomainsQueryParamsVerificationStatusOutput{})
+	pulumi.RegisterOutputType(ListCustomDomainsQueryParamsVerificationStatusPtrOutput{})
+	pulumi.RegisterOutputType(ListDeploysQueryParamsStatusItemOutput{})
+	pulumi.RegisterOutputType(ListDeploysQueryParamsStatusItemPtrOutput{})
+	pulumi.RegisterOutputType(ListDeploysQueryParamsStatusItemArrayOutput{})
+	pulumi.RegisterOutputType(ListJobQueryParamsStatusItemOutput{})
+	pulumi.RegisterOutputType(ListJobQueryParamsStatusItemPtrOutput{})
+	pulumi.RegisterOutputType(ListJobQueryParamsStatusItemArrayOutput{})
+	pulumi.RegisterOutputType(ListRoutesQueryParamsTypeItemOutput{})
+	pulumi.RegisterOutputType(ListRoutesQueryParamsTypeItemPtrOutput{})
+	pulumi.RegisterOutputType(ListRoutesQueryParamsTypeItemArrayOutput{})
+	pulumi.RegisterOutputType(ListServicesQueryParamsEnvItemOutput{})
+	pulumi.RegisterOutputType(ListServicesQueryParamsEnvItemPtrOutput{})
+	pulumi.RegisterOutputType(ListServicesQueryParamsEnvItemArrayOutput{})
+	pulumi.RegisterOutputType(ListServicesQueryParamsRegionItemOutput{})
+	pulumi.RegisterOutputType(ListServicesQueryParamsRegionItemPtrOutput{})
+	pulumi.RegisterOutputType(ListServicesQueryParamsRegionItemArrayOutput{})
+	pulumi.RegisterOutputType(ListServicesQueryParamsSuspendedItemOutput{})
+	pulumi.RegisterOutputType(ListServicesQueryParamsSuspendedItemPtrOutput{})
+	pulumi.RegisterOutputType(ListServicesQueryParamsSuspendedItemArrayOutput{})
+	pulumi.RegisterOutputType(ListServicesQueryParamsTypeItemOutput{})
+	pulumi.RegisterOutputType(ListServicesQueryParamsTypeItemPtrOutput{})
+	pulumi.RegisterOutputType(ListServicesQueryParamsTypeItemArrayOutput{})
 	pulumi.RegisterOutputType(PlanOutput{})
 	pulumi.RegisterOutputType(PlanPtrOutput{})
 	pulumi.RegisterOutputType(PreviewsGenerationOutput{})

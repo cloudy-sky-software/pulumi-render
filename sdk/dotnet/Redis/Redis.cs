@@ -67,6 +67,12 @@ namespace Pulumi.Render.Redis
         public Output<Pulumi.Render.Redis.Plan> Plan { get; private set; } = null!;
 
         /// <summary>
+        /// Query params to send with the API requests for this resource.
+        /// </summary>
+        [Output("queryParams")]
+        public Output<Outputs.RedisQueryParams?> QueryParams { get; private set; } = null!;
+
+        /// <summary>
         /// Defaults to "oregon"
         /// </summary>
         [Output("region")]
@@ -164,6 +170,12 @@ namespace Pulumi.Render.Redis
 
         [Input("plan", required: true)]
         public Input<Pulumi.Render.Redis.Plan> Plan { get; set; } = null!;
+
+        /// <summary>
+        /// Query params to send with the API requests for this resource.
+        /// </summary>
+        [Input("queryParams")]
+        public Input<Inputs.RedisQueryParamsArgs>? QueryParams { get; set; }
 
         /// <summary>
         /// The region where the Redis instance is located

@@ -61,7 +61,92 @@ export namespace blueprints {
 
 }
 
+export namespace cronjobs {
+    /**
+     * Query params for the API request.
+     */
+    export interface RunCronJobCreateQueryParams {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: {[key: string]: string};
+    }
+
+    /**
+     * Query params for each of the operations of the resource.
+     */
+    export interface RunCronJobQueryParams {
+        /**
+         * Query params for the create operation.
+         */
+        create?: outputs.cronjobs.RunCronJobCreateQueryParams;
+    }
+
+}
+
 export namespace disks {
+    /**
+     * Query params for the API request.
+     */
+    export interface DiskCreateQueryParams {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: {[key: string]: string};
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface DiskDeleteQueryParams {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: {[key: string]: string};
+    }
+
+    /**
+     * Query params for each of the operations of the resource.
+     */
+    export interface DiskQueryParams {
+        /**
+         * Query params for the create operation.
+         */
+        create?: outputs.disks.DiskCreateQueryParams;
+        /**
+         * Query params for the delete operation.
+         */
+        delete?: outputs.disks.DiskDeleteQueryParams;
+        /**
+         * Query params for the read operation.
+         */
+        read?: outputs.disks.DiskReadQueryParams;
+        /**
+         * Query params for the update operation.
+         */
+        update?: outputs.disks.DiskUpdateQueryParams;
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface DiskReadQueryParams {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: {[key: string]: string};
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface DiskUpdateQueryParams {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: {[key: string]: string};
+    }
+
     export interface DiskWithCursor {
         cursor: string;
         disk: outputs.disks.DiskWithCursorDiskProperties;
@@ -77,9 +162,111 @@ export namespace disks {
         updatedAt: string;
     }
 
+    /**
+     * Query params for the API request.
+     */
+    export interface RestoreSnapshotCreateQueryParams {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: {[key: string]: string};
+    }
+
+    /**
+     * Query params for each of the operations of the resource.
+     */
+    export interface RestoreSnapshotQueryParams {
+        /**
+         * Query params for the create operation.
+         */
+        create?: outputs.disks.RestoreSnapshotCreateQueryParams;
+    }
+
 }
 
 export namespace envgroups {
+    /**
+     * Query params for the API request.
+     */
+    export interface EnvGroupCreateQueryParams {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: {[key: string]: string};
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface EnvGroupDeleteQueryParams {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: {[key: string]: string};
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface EnvGroupEnvVarCreateQueryParams {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: {[key: string]: string};
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface EnvGroupEnvVarDeleteQueryParams {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: {[key: string]: string};
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface EnvGroupEnvVarPutQueryParams {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: {[key: string]: string};
+    }
+
+    /**
+     * Query params for each of the operations of the resource.
+     */
+    export interface EnvGroupEnvVarQueryParams {
+        /**
+         * Query params for the create operation.
+         */
+        create?: outputs.envgroups.EnvGroupEnvVarCreateQueryParams;
+        /**
+         * Query params for the delete operation.
+         */
+        delete?: outputs.envgroups.EnvGroupEnvVarDeleteQueryParams;
+        /**
+         * Query params for the put operation.
+         */
+        put?: outputs.envgroups.EnvGroupEnvVarPutQueryParams;
+        /**
+         * Query params for the read operation.
+         */
+        read?: outputs.envgroups.EnvGroupEnvVarReadQueryParams;
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface EnvGroupEnvVarReadQueryParams {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: {[key: string]: string};
+    }
+
     export interface EnvGroupLink {
         id: string;
         name: string;
@@ -99,9 +286,133 @@ export namespace envgroups {
         updatedAt: string;
     }
 
+    /**
+     * Query params for each of the operations of the resource.
+     */
+    export interface EnvGroupQueryParams {
+        /**
+         * Query params for the create operation.
+         */
+        create?: outputs.envgroups.EnvGroupCreateQueryParams;
+        /**
+         * Query params for the delete operation.
+         */
+        delete?: outputs.envgroups.EnvGroupDeleteQueryParams;
+        /**
+         * Query params for the read operation.
+         */
+        read?: outputs.envgroups.EnvGroupReadQueryParams;
+        /**
+         * Query params for the update operation.
+         */
+        update?: outputs.envgroups.EnvGroupUpdateQueryParams;
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface EnvGroupReadQueryParams {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: {[key: string]: string};
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface EnvGroupSecretFileCreateQueryParams {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: {[key: string]: string};
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface EnvGroupSecretFileDeleteQueryParams {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: {[key: string]: string};
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface EnvGroupSecretFilePutQueryParams {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: {[key: string]: string};
+    }
+
+    /**
+     * Query params for each of the operations of the resource.
+     */
+    export interface EnvGroupSecretFileQueryParams {
+        /**
+         * Query params for the create operation.
+         */
+        create?: outputs.envgroups.EnvGroupSecretFileCreateQueryParams;
+        /**
+         * Query params for the delete operation.
+         */
+        delete?: outputs.envgroups.EnvGroupSecretFileDeleteQueryParams;
+        /**
+         * Query params for the put operation.
+         */
+        put?: outputs.envgroups.EnvGroupSecretFilePutQueryParams;
+        /**
+         * Query params for the read operation.
+         */
+        read?: outputs.envgroups.EnvGroupSecretFileReadQueryParams;
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface EnvGroupSecretFileReadQueryParams {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: {[key: string]: string};
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface EnvGroupUpdateQueryParams {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: {[key: string]: string};
+    }
+
     export interface EnvVar {
         key: string;
         value: string;
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface LinkServiceToEnvGroupCreateQueryParams {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: {[key: string]: string};
+    }
+
+    /**
+     * Query params for each of the operations of the resource.
+     */
+    export interface LinkServiceToEnvGroupQueryParams {
+        /**
+         * Query params for the create operation.
+         */
+        create?: outputs.envgroups.LinkServiceToEnvGroupCreateQueryParams;
     }
 
     export interface SecretFile {
@@ -131,11 +442,93 @@ export namespace environments {
     }
 
     /**
+     * Query params for the API request.
+     */
+    export interface EnvironmentCreateQueryParams {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: {[key: string]: string};
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface EnvironmentDeleteQueryParams {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: {[key: string]: string};
+    }
+
+    /**
+     * Query params for each of the operations of the resource.
+     */
+    export interface EnvironmentQueryParams {
+        /**
+         * Query params for the create operation.
+         */
+        create?: outputs.environments.EnvironmentCreateQueryParams;
+        /**
+         * Query params for the delete operation.
+         */
+        delete?: outputs.environments.EnvironmentDeleteQueryParams;
+        /**
+         * Query params for the read operation.
+         */
+        read?: outputs.environments.EnvironmentReadQueryParams;
+        /**
+         * Query params for the update operation.
+         */
+        update?: outputs.environments.EnvironmentUpdateQueryParams;
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface EnvironmentReadQueryParams {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: {[key: string]: string};
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface EnvironmentUpdateQueryParams {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: {[key: string]: string};
+    }
+
+    /**
      * An environment with a cursor
      */
     export interface EnvironmentWithCursor {
         cursor: string;
         environment: outputs.environments.Environment;
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface ResourcesToEnvironmentCreateQueryParams {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: {[key: string]: string};
+    }
+
+    /**
+     * Query params for each of the operations of the resource.
+     */
+    export interface ResourcesToEnvironmentQueryParams {
+        /**
+         * Query params for the create operation.
+         */
+        create?: outputs.environments.ResourcesToEnvironmentCreateQueryParams;
     }
 
 }
@@ -208,10 +601,72 @@ export namespace keyvalue {
     }
 
     /**
+     * Query params for the API request.
+     */
+    export interface KeyValueCreateQueryParams {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: {[key: string]: string};
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface KeyValueDeleteQueryParams {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: {[key: string]: string};
+    }
+
+    /**
      * Options for a Key Value instance
      */
     export interface KeyValueOptions {
         maxmemoryPolicy?: string;
+    }
+
+    /**
+     * Query params for each of the operations of the resource.
+     */
+    export interface KeyValueQueryParams {
+        /**
+         * Query params for the create operation.
+         */
+        create?: outputs.keyvalue.KeyValueCreateQueryParams;
+        /**
+         * Query params for the delete operation.
+         */
+        delete?: outputs.keyvalue.KeyValueDeleteQueryParams;
+        /**
+         * Query params for the read operation.
+         */
+        read?: outputs.keyvalue.KeyValueReadQueryParams;
+        /**
+         * Query params for the update operation.
+         */
+        update?: outputs.keyvalue.KeyValueUpdateQueryParams;
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface KeyValueReadQueryParams {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: {[key: string]: string};
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface KeyValueUpdateQueryParams {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: {[key: string]: string};
     }
 
     export interface KeyValueWithCursor {
@@ -386,6 +841,26 @@ export namespace postgres {
         description: string;
     }
 
+    /**
+     * Query params for the API request.
+     */
+    export interface FailoverPostgresCreateQueryParams {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: {[key: string]: string};
+    }
+
+    /**
+     * Query params for each of the operations of the resource.
+     */
+    export interface FailoverPostgresQueryParams {
+        /**
+         * Query params for the create operation.
+         */
+        create?: outputs.postgres.FailoverPostgresCreateQueryParams;
+    }
+
     export interface ListPostgresExportItemProperties {
         createdAt: string;
         id: string;
@@ -452,6 +927,88 @@ export namespace postgres {
         };
     }
 
+    /**
+     * Query params for the API request.
+     */
+    export interface PostgresCreateQueryParams {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: {[key: string]: string};
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface PostgresDeleteQueryParams {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: {[key: string]: string};
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface PostgresExportCreateQueryParams {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: {[key: string]: string};
+    }
+
+    /**
+     * Query params for each of the operations of the resource.
+     */
+    export interface PostgresExportQueryParams {
+        /**
+         * Query params for the create operation.
+         */
+        create?: outputs.postgres.PostgresExportCreateQueryParams;
+    }
+
+    /**
+     * Query params for each of the operations of the resource.
+     */
+    export interface PostgresQueryParams {
+        /**
+         * Query params for the create operation.
+         */
+        create?: outputs.postgres.PostgresCreateQueryParams;
+        /**
+         * Query params for the delete operation.
+         */
+        delete?: outputs.postgres.PostgresDeleteQueryParams;
+        /**
+         * Query params for the read operation.
+         */
+        read?: outputs.postgres.PostgresReadQueryParams;
+        /**
+         * Query params for the update operation.
+         */
+        update?: outputs.postgres.PostgresUpdateQueryParams;
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface PostgresReadQueryParams {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: {[key: string]: string};
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface PostgresUpdateQueryParams {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: {[key: string]: string};
+    }
+
     export interface PostgresWithCursor {
         cursor: string;
         postgres: outputs.postgres.Postgres;
@@ -477,6 +1034,26 @@ export namespace postgres {
         name: string;
     }
 
+    /**
+     * Query params for the API request.
+     */
+    export interface RecoverPostgresCreateQueryParams {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: {[key: string]: string};
+    }
+
+    /**
+     * Query params for each of the operations of the resource.
+     */
+    export interface RecoverPostgresQueryParams {
+        /**
+         * Query params for the create operation.
+         */
+        create?: outputs.postgres.RecoverPostgresCreateQueryParams;
+    }
+
     export interface RedisDetailpropertiesmaintenance {
         id: string;
         /**
@@ -486,6 +1063,66 @@ export namespace postgres {
         scheduledAt: string;
         state: enums.postgres.RedisDetailpropertiesmaintenanceState;
         type: string;
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface RestartPostgresCreateQueryParams {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: {[key: string]: string};
+    }
+
+    /**
+     * Query params for each of the operations of the resource.
+     */
+    export interface RestartPostgresQueryParams {
+        /**
+         * Query params for the create operation.
+         */
+        create?: outputs.postgres.RestartPostgresCreateQueryParams;
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface ResumePostgresCreateQueryParams {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: {[key: string]: string};
+    }
+
+    /**
+     * Query params for each of the operations of the resource.
+     */
+    export interface ResumePostgresQueryParams {
+        /**
+         * Query params for the create operation.
+         */
+        create?: outputs.postgres.ResumePostgresCreateQueryParams;
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface SuspendPostgresCreateQueryParams {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: {[key: string]: string};
+    }
+
+    /**
+     * Query params for each of the operations of the resource.
+     */
+    export interface SuspendPostgresQueryParams {
+        /**
+         * Query params for the create operation.
+         */
+        create?: outputs.postgres.SuspendPostgresCreateQueryParams;
     }
 
 }
@@ -533,6 +1170,68 @@ export namespace projects {
          * Indicates whether an environment is `unprotected` or `protected`. Only admin users can perform destructive actions in `protected` environments.
          */
         protectedStatus?: enums.projects.ProjectCreateEnvironmentInputProtectedStatus;
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface ProjectCreateQueryParams {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: {[key: string]: string};
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface ProjectDeleteQueryParams {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: {[key: string]: string};
+    }
+
+    /**
+     * Query params for each of the operations of the resource.
+     */
+    export interface ProjectQueryParams {
+        /**
+         * Query params for the create operation.
+         */
+        create?: outputs.projects.ProjectCreateQueryParams;
+        /**
+         * Query params for the delete operation.
+         */
+        delete?: outputs.projects.ProjectDeleteQueryParams;
+        /**
+         * Query params for the read operation.
+         */
+        read?: outputs.projects.ProjectReadQueryParams;
+        /**
+         * Query params for the update operation.
+         */
+        update?: outputs.projects.ProjectUpdateQueryParams;
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface ProjectReadQueryParams {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: {[key: string]: string};
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface ProjectUpdateQueryParams {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: {[key: string]: string};
     }
 
     export interface ProjectWithCursor {
@@ -634,6 +1333,26 @@ export namespace redis {
         };
     }
 
+    /**
+     * Query params for the API request.
+     */
+    export interface RedisCreateQueryParams {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: {[key: string]: string};
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface RedisDeleteQueryParams {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: {[key: string]: string};
+    }
+
     export interface RedisDetailMaintenanceProperties {
         id: string;
         /**
@@ -650,6 +1369,48 @@ export namespace redis {
      */
     export interface RedisOptions {
         maxmemoryPolicy?: string;
+    }
+
+    /**
+     * Query params for each of the operations of the resource.
+     */
+    export interface RedisQueryParams {
+        /**
+         * Query params for the create operation.
+         */
+        create?: outputs.redis.RedisCreateQueryParams;
+        /**
+         * Query params for the delete operation.
+         */
+        delete?: outputs.redis.RedisDeleteQueryParams;
+        /**
+         * Query params for the read operation.
+         */
+        read?: outputs.redis.RedisReadQueryParams;
+        /**
+         * Query params for the update operation.
+         */
+        update?: outputs.redis.RedisUpdateQueryParams;
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface RedisReadQueryParams {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: {[key: string]: string};
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface RedisUpdateQueryParams {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: {[key: string]: string};
     }
 
     export interface RedisWithCursor {
@@ -695,9 +1456,125 @@ export namespace registrycredentials {
         username: string;
     }
 
+    /**
+     * Query params for the API request.
+     */
+    export interface RegistryCredentialCreateQueryParams {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: {[key: string]: string};
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface RegistryCredentialDeleteQueryParams {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: {[key: string]: string};
+    }
+
+    /**
+     * Query params for each of the operations of the resource.
+     */
+    export interface RegistryCredentialQueryParams {
+        /**
+         * Query params for the create operation.
+         */
+        create?: outputs.registrycredentials.RegistryCredentialCreateQueryParams;
+        /**
+         * Query params for the delete operation.
+         */
+        delete?: outputs.registrycredentials.RegistryCredentialDeleteQueryParams;
+        /**
+         * Query params for the read operation.
+         */
+        read?: outputs.registrycredentials.RegistryCredentialReadQueryParams;
+        /**
+         * Query params for the update operation.
+         */
+        update?: outputs.registrycredentials.RegistryCredentialUpdateQueryParams;
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface RegistryCredentialReadQueryParams {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: {[key: string]: string};
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface RegistryCredentialUpdateQueryParams {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: {[key: string]: string};
+    }
+
 }
 
 export namespace services {
+    /**
+     * Query params for the API request.
+     */
+    export interface AutoscaleServiceCreateQueryParams {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: {[key: string]: string};
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface AutoscaleServicePutQueryParams {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: {[key: string]: string};
+    }
+
+    /**
+     * Query params for each of the operations of the resource.
+     */
+    export interface AutoscaleServiceQueryParams {
+        /**
+         * Query params for the create operation.
+         */
+        create?: outputs.services.AutoscaleServiceCreateQueryParams;
+        /**
+         * Query params for the put operation.
+         */
+        put?: outputs.services.AutoscaleServicePutQueryParams;
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface BackgroundWorkerCreateQueryParams {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: {[key: string]: string};
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface BackgroundWorkerDeleteQueryParams {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: {[key: string]: string};
+    }
+
     export interface BackgroundWorkerDetailsOutput {
         autoscaling?: outputs.services.WebServiceDetailspropertiesautoscaling;
         buildPlan: enums.services.BackgroundWorkerDetailsOutputBuildPlan;
@@ -790,6 +1667,48 @@ export namespace services {
         };
     }
 
+    /**
+     * Query params for each of the operations of the resource.
+     */
+    export interface BackgroundWorkerQueryParams {
+        /**
+         * Query params for the create operation.
+         */
+        create?: outputs.services.BackgroundWorkerCreateQueryParams;
+        /**
+         * Query params for the delete operation.
+         */
+        delete?: outputs.services.BackgroundWorkerDeleteQueryParams;
+        /**
+         * Query params for the read operation.
+         */
+        read?: outputs.services.BackgroundWorkerReadQueryParams;
+        /**
+         * Query params for the update operation.
+         */
+        update?: outputs.services.BackgroundWorkerUpdateQueryParams;
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface BackgroundWorkerReadQueryParams {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: {[key: string]: string};
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface BackgroundWorkerUpdateQueryParams {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: {[key: string]: string};
+    }
+
     export interface BuildFilter {
         ignoredPaths: string[];
         paths: string[];
@@ -797,6 +1716,46 @@ export namespace services {
 
     export interface Cache {
         profile: string;
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface CancelDeployCreateQueryParams {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: {[key: string]: string};
+    }
+
+    /**
+     * Query params for each of the operations of the resource.
+     */
+    export interface CancelDeployQueryParams {
+        /**
+         * Query params for the create operation.
+         */
+        create?: outputs.services.CancelDeployCreateQueryParams;
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface CancelJobCreateQueryParams {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: {[key: string]: string};
+    }
+
+    /**
+     * Query params for each of the operations of the resource.
+     */
+    export interface CancelJobQueryParams {
+        /**
+         * Query params for the create operation.
+         */
+        create?: outputs.services.CancelJobCreateQueryParams;
     }
 
     export interface CommitProperties {
@@ -835,6 +1794,26 @@ export namespace services {
             ...val,
             enabled: (val.enabled) ?? false,
         };
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface CronJobCreateQueryParams {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: {[key: string]: string};
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface CronJobDeleteQueryParams {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: {[key: string]: string};
     }
 
     export interface CronJobDetailsOutput {
@@ -907,6 +1886,48 @@ export namespace services {
         };
     }
 
+    /**
+     * Query params for each of the operations of the resource.
+     */
+    export interface CronJobQueryParams {
+        /**
+         * Query params for the create operation.
+         */
+        create?: outputs.services.CronJobCreateQueryParams;
+        /**
+         * Query params for the delete operation.
+         */
+        delete?: outputs.services.CronJobDeleteQueryParams;
+        /**
+         * Query params for the read operation.
+         */
+        read?: outputs.services.CronJobReadQueryParams;
+        /**
+         * Query params for the update operation.
+         */
+        update?: outputs.services.CronJobUpdateQueryParams;
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface CronJobReadQueryParams {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: {[key: string]: string};
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface CronJobUpdateQueryParams {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: {[key: string]: string};
+    }
+
     export interface CustomDomain {
         createdAt: string;
         domainType: enums.services.CustomDomainDomainType;
@@ -916,6 +1937,54 @@ export namespace services {
         redirectForName: string;
         server?: outputs.services.CustomDomainServerProperties;
         verificationStatus: enums.services.CustomDomainVerificationStatus;
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface CustomDomainCreateQueryParams {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: {[key: string]: string};
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface CustomDomainDeleteQueryParams {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: {[key: string]: string};
+    }
+
+    /**
+     * Query params for each of the operations of the resource.
+     */
+    export interface CustomDomainQueryParams {
+        /**
+         * Query params for the create operation.
+         */
+        create?: outputs.services.CustomDomainCreateQueryParams;
+        /**
+         * Query params for the delete operation.
+         */
+        delete?: outputs.services.CustomDomainDeleteQueryParams;
+        /**
+         * Query params for the read operation.
+         */
+        read?: outputs.services.CustomDomainReadQueryParams;
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface CustomDomainReadQueryParams {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: {[key: string]: string};
     }
 
     export interface CustomDomainServerProperties {
@@ -950,6 +2019,16 @@ export namespace services {
     }
 
     /**
+     * Query params for the API request.
+     */
+    export interface DeployCreateQueryParams {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: {[key: string]: string};
+    }
+
+    /**
      * Image information used when creating the deploy. Not present for Git-backed deploys
      */
     export interface DeployImageProperties {
@@ -965,6 +2044,30 @@ export namespace services {
          * SHA that the image reference was resolved to when creating the deploy
          */
         sha?: string;
+    }
+
+    /**
+     * Query params for each of the operations of the resource.
+     */
+    export interface DeployQueryParams {
+        /**
+         * Query params for the create operation.
+         */
+        create?: outputs.services.DeployCreateQueryParams;
+        /**
+         * Query params for the read operation.
+         */
+        read?: outputs.services.DeployReadQueryParams;
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface DeployReadQueryParams {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: {[key: string]: string};
     }
 
     export interface DeployWithCursor {
@@ -987,10 +2090,72 @@ export namespace services {
         value: string;
     }
 
+    /**
+     * Query params for the API request.
+     */
+    export interface EnvVarCreateQueryParams {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: {[key: string]: string};
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface EnvVarDeleteQueryParams {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: {[key: string]: string};
+    }
+
     export interface EnvVarInput {
         generateValue?: boolean;
         key?: string;
         value?: string;
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface EnvVarPutQueryParams {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: {[key: string]: string};
+    }
+
+    /**
+     * Query params for each of the operations of the resource.
+     */
+    export interface EnvVarQueryParams {
+        /**
+         * Query params for the create operation.
+         */
+        create?: outputs.services.EnvVarCreateQueryParams;
+        /**
+         * Query params for the delete operation.
+         */
+        delete?: outputs.services.EnvVarDeleteQueryParams;
+        /**
+         * Query params for the put operation.
+         */
+        put?: outputs.services.EnvVarPutQueryParams;
+        /**
+         * Query params for the read operation.
+         */
+        read?: outputs.services.EnvVarReadQueryParams;
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface EnvVarReadQueryParams {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: {[key: string]: string};
     }
 
     export interface EnvVarWithCursor {
@@ -998,11 +2163,79 @@ export namespace services {
         envVar: outputs.services.EnvVar;
     }
 
+    /**
+     * Query params for the API request.
+     */
+    export interface EnvVarsForServiceCreateQueryParams {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: {[key: string]: string};
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface EnvVarsForServicePutQueryParams {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: {[key: string]: string};
+    }
+
+    /**
+     * Query params for each of the operations of the resource.
+     */
+    export interface EnvVarsForServiceQueryParams {
+        /**
+         * Query params for the create operation.
+         */
+        create?: outputs.services.EnvVarsForServiceCreateQueryParams;
+        /**
+         * Query params for the put operation.
+         */
+        put?: outputs.services.EnvVarsForServicePutQueryParams;
+    }
+
     export interface Header {
         id: string;
         name: string;
         path: string;
         value: string;
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface HeaderCreateQueryParams {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: {[key: string]: string};
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface HeaderDeleteQueryParams {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: {[key: string]: string};
+    }
+
+    /**
+     * Query params for each of the operations of the resource.
+     */
+    export interface HeaderQueryParams {
+        /**
+         * Query params for the create operation.
+         */
+        create?: outputs.services.HeaderCreateQueryParams;
+        /**
+         * Query params for the delete operation.
+         */
+        delete?: outputs.services.HeaderDeleteQueryParams;
     }
 
     export interface HeaderWithCursor {
@@ -1054,6 +2287,40 @@ export namespace services {
         status?: enums.services.JobStatus;
     }
 
+    /**
+     * Query params for the API request.
+     */
+    export interface JobCreateQueryParams {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: {[key: string]: string};
+    }
+
+    /**
+     * Query params for each of the operations of the resource.
+     */
+    export interface JobQueryParams {
+        /**
+         * Query params for the create operation.
+         */
+        create?: outputs.services.JobCreateQueryParams;
+        /**
+         * Query params for the read operation.
+         */
+        read?: outputs.services.JobReadQueryParams;
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface JobReadQueryParams {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: {[key: string]: string};
+    }
+
     export interface JobWithCursor {
         cursor: string;
         job: outputs.services.Job;
@@ -1072,6 +2339,26 @@ export namespace services {
         uri: string;
     }
 
+    /**
+     * Query params for the API request.
+     */
+    export interface PreviewServiceCreateQueryParams {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: {[key: string]: string};
+    }
+
+    /**
+     * Query params for each of the operations of the resource.
+     */
+    export interface PreviewServiceQueryParams {
+        /**
+         * Query params for the create operation.
+         */
+        create?: outputs.services.PreviewServiceCreateQueryParams;
+    }
+
     export interface Previews {
         /**
          * Defaults to "off"
@@ -1086,6 +2373,26 @@ export namespace services {
             ...val,
             generation: (val.generation) ?? "off",
         };
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface PrivateServiceCreateQueryParams {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: {[key: string]: string};
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface PrivateServiceDeleteQueryParams {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: {[key: string]: string};
     }
 
     export interface PrivateServiceDetailsOutput {
@@ -1182,6 +2489,68 @@ export namespace services {
         };
     }
 
+    /**
+     * Query params for each of the operations of the resource.
+     */
+    export interface PrivateServiceQueryParams {
+        /**
+         * Query params for the create operation.
+         */
+        create?: outputs.services.PrivateServiceCreateQueryParams;
+        /**
+         * Query params for the delete operation.
+         */
+        delete?: outputs.services.PrivateServiceDeleteQueryParams;
+        /**
+         * Query params for the read operation.
+         */
+        read?: outputs.services.PrivateServiceReadQueryParams;
+        /**
+         * Query params for the update operation.
+         */
+        update?: outputs.services.PrivateServiceUpdateQueryParams;
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface PrivateServiceReadQueryParams {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: {[key: string]: string};
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface PrivateServiceUpdateQueryParams {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: {[key: string]: string};
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface RefreshCustomDomainCreateQueryParams {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: {[key: string]: string};
+    }
+
+    /**
+     * Query params for each of the operations of the resource.
+     */
+    export interface RefreshCustomDomainQueryParams {
+        /**
+         * Query params for the create operation.
+         */
+        create?: outputs.services.RefreshCustomDomainCreateQueryParams;
+    }
+
     export interface RegistryCredential {
         /**
          * Unique identifier for this credential
@@ -1215,6 +2584,46 @@ export namespace services {
         name: string;
     }
 
+    /**
+     * Query params for the API request.
+     */
+    export interface RestartServiceCreateQueryParams {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: {[key: string]: string};
+    }
+
+    /**
+     * Query params for each of the operations of the resource.
+     */
+    export interface RestartServiceQueryParams {
+        /**
+         * Query params for the create operation.
+         */
+        create?: outputs.services.RestartServiceCreateQueryParams;
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface RollbackDeployCreateQueryParams {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: {[key: string]: string};
+    }
+
+    /**
+     * Query params for each of the operations of the resource.
+     */
+    export interface RollbackDeployQueryParams {
+        /**
+         * Query params for the create operation.
+         */
+        create?: outputs.services.RollbackDeployCreateQueryParams;
+    }
+
     export interface Route {
         destination: string;
         id: string;
@@ -1226,9 +2635,77 @@ export namespace services {
         type: enums.services.RouteType;
     }
 
+    /**
+     * Query params for the API request.
+     */
+    export interface RouteCreateQueryParams {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: {[key: string]: string};
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface RouteDeleteQueryParams {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: {[key: string]: string};
+    }
+
+    /**
+     * Query params for each of the operations of the resource.
+     */
+    export interface RouteQueryParams {
+        /**
+         * Query params for the create operation.
+         */
+        create?: outputs.services.RouteCreateQueryParams;
+        /**
+         * Query params for the delete operation.
+         */
+        delete?: outputs.services.RouteDeleteQueryParams;
+        /**
+         * Query params for the update operation.
+         */
+        update?: outputs.services.RouteUpdateQueryParams;
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface RouteUpdateQueryParams {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: {[key: string]: string};
+    }
+
     export interface RouteWithCursor {
         cursor: string;
         route: outputs.services.Route;
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface ScaleServiceCreateQueryParams {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: {[key: string]: string};
+    }
+
+    /**
+     * Query params for each of the operations of the resource.
+     */
+    export interface ScaleServiceQueryParams {
+        /**
+         * Query params for the create operation.
+         */
+        create?: outputs.services.ScaleServiceCreateQueryParams;
     }
 
     export interface SecretFile {
@@ -1236,14 +2713,110 @@ export namespace services {
         name: string;
     }
 
+    /**
+     * Query params for the API request.
+     */
+    export interface SecretFileCreateQueryParams {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: {[key: string]: string};
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface SecretFileDeleteQueryParams {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: {[key: string]: string};
+    }
+
     export interface SecretFileInput {
         content: string;
         name: string;
     }
 
+    /**
+     * Query params for the API request.
+     */
+    export interface SecretFilePutQueryParams {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: {[key: string]: string};
+    }
+
+    /**
+     * Query params for each of the operations of the resource.
+     */
+    export interface SecretFileQueryParams {
+        /**
+         * Query params for the create operation.
+         */
+        create?: outputs.services.SecretFileCreateQueryParams;
+        /**
+         * Query params for the delete operation.
+         */
+        delete?: outputs.services.SecretFileDeleteQueryParams;
+        /**
+         * Query params for the put operation.
+         */
+        put?: outputs.services.SecretFilePutQueryParams;
+        /**
+         * Query params for the read operation.
+         */
+        read?: outputs.services.SecretFileReadQueryParams;
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface SecretFileReadQueryParams {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: {[key: string]: string};
+    }
+
     export interface SecretFileWithCursor {
         cursor: string;
         secretFile: outputs.services.SecretFile;
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface SecretFilesForServiceCreateQueryParams {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: {[key: string]: string};
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface SecretFilesForServicePutQueryParams {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: {[key: string]: string};
+    }
+
+    /**
+     * Query params for each of the operations of the resource.
+     */
+    export interface SecretFilesForServiceQueryParams {
+        /**
+         * Query params for the create operation.
+         */
+        create?: outputs.services.SecretFilesForServiceCreateQueryParams;
+        /**
+         * Query params for the put operation.
+         */
+        put?: outputs.services.SecretFilesForServicePutQueryParams;
     }
 
     export interface ServerPort {
@@ -1287,6 +2860,26 @@ export namespace services {
     export interface ServiceInstance {
         createdAt: string;
         id: string;
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface StaticSiteCreateQueryParams {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: {[key: string]: string};
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface StaticSiteDeleteQueryParams {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: {[key: string]: string};
     }
 
     export interface StaticSiteDetailsOutput {
@@ -1352,6 +2945,88 @@ export namespace services {
             serviceDetails: (val.serviceDetails ? outputs.services.staticSiteDetailsOutputProvideDefaults(val.serviceDetails) : undefined),
             type: (val.type) ?? "static_site",
         };
+    }
+
+    /**
+     * Query params for each of the operations of the resource.
+     */
+    export interface StaticSiteQueryParams {
+        /**
+         * Query params for the create operation.
+         */
+        create?: outputs.services.StaticSiteCreateQueryParams;
+        /**
+         * Query params for the delete operation.
+         */
+        delete?: outputs.services.StaticSiteDeleteQueryParams;
+        /**
+         * Query params for the read operation.
+         */
+        read?: outputs.services.StaticSiteReadQueryParams;
+        /**
+         * Query params for the update operation.
+         */
+        update?: outputs.services.StaticSiteUpdateQueryParams;
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface StaticSiteReadQueryParams {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: {[key: string]: string};
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface StaticSiteUpdateQueryParams {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: {[key: string]: string};
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface SuspendServiceCreateQueryParams {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: {[key: string]: string};
+    }
+
+    /**
+     * Query params for each of the operations of the resource.
+     */
+    export interface SuspendServiceQueryParams {
+        /**
+         * Query params for the create operation.
+         */
+        create?: outputs.services.SuspendServiceCreateQueryParams;
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface WebServiceCreateQueryParams {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: {[key: string]: string};
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface WebServiceDeleteQueryParams {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: {[key: string]: string};
     }
 
     export interface WebServiceDetailsOutput {
@@ -1596,12 +3271,116 @@ export namespace services {
         };
     }
 
+    /**
+     * Query params for each of the operations of the resource.
+     */
+    export interface WebServiceQueryParams {
+        /**
+         * Query params for the create operation.
+         */
+        create?: outputs.services.WebServiceCreateQueryParams;
+        /**
+         * Query params for the delete operation.
+         */
+        delete?: outputs.services.WebServiceDeleteQueryParams;
+        /**
+         * Query params for the read operation.
+         */
+        read?: outputs.services.WebServiceReadQueryParams;
+        /**
+         * Query params for the update operation.
+         */
+        update?: outputs.services.WebServiceUpdateQueryParams;
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface WebServiceReadQueryParams {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: {[key: string]: string};
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface WebServiceUpdateQueryParams {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: {[key: string]: string};
+    }
+
 }
 
 export namespace users {
 }
 
 export namespace webhooks {
+    /**
+     * Query params for the API request.
+     */
+    export interface WebhookCreateQueryParams {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: {[key: string]: string};
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface WebhookDeleteQueryParams {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: {[key: string]: string};
+    }
+
+    /**
+     * Query params for each of the operations of the resource.
+     */
+    export interface WebhookQueryParams {
+        /**
+         * Query params for the create operation.
+         */
+        create?: outputs.webhooks.WebhookCreateQueryParams;
+        /**
+         * Query params for the delete operation.
+         */
+        delete?: outputs.webhooks.WebhookDeleteQueryParams;
+        /**
+         * Query params for the read operation.
+         */
+        read?: outputs.webhooks.WebhookReadQueryParams;
+        /**
+         * Query params for the update operation.
+         */
+        update?: outputs.webhooks.WebhookUpdateQueryParams;
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface WebhookReadQueryParams {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: {[key: string]: string};
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface WebhookUpdateQueryParams {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: {[key: string]: string};
+    }
+
     export interface WebhookWithCursor {
         cursor: string;
         webhook: outputs.webhooks.WebhookWithCursorWebhookProperties;

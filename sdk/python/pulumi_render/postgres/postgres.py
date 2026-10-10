@@ -34,6 +34,7 @@ class PostgresArgs:
                  environment_id: pulumi.Input[Optional[_builtins.str]] = None,
                  ip_allow_list: pulumi.Input[Optional[Sequence[pulumi.Input['CidrBlockAndDescriptionArgs']]]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
+                 query_params: pulumi.Input[Optional['PostgresQueryParamsArgs']] = None,
                  read_replicas: pulumi.Input[Optional[Sequence[pulumi.Input['ReadReplicaInputArgs']]]] = None,
                  region: pulumi.Input[Optional[_builtins.str]] = None):
         """
@@ -45,6 +46,7 @@ class PostgresArgs:
         :param pulumi.Input[_builtins.str] datadog_site: Datadog region to use for monitoring the new database. Defaults to 'US1'.
         :param pulumi.Input[_builtins.int] disk_size_gb: The number of gigabytes of disk space to allocate for the database
         :param pulumi.Input[_builtins.str] name: The name of the database as it will appear in the Render Dashboard
+        :param pulumi.Input['PostgresQueryParamsArgs'] query_params: Query params to send with the API requests for this resource.
         """
         pulumi.set(__self__, "owner_id", owner_id)
         pulumi.set(__self__, "plan", plan)
@@ -73,6 +75,8 @@ class PostgresArgs:
             pulumi.set(__self__, "ip_allow_list", ip_allow_list)
         if name is not None:
             pulumi.set(__self__, "name", name)
+        if query_params is not None:
+            pulumi.set(__self__, "query_params", query_params)
         if read_replicas is not None:
             pulumi.set(__self__, "read_replicas", read_replicas)
         if region is not None:
@@ -205,6 +209,18 @@ class PostgresArgs:
         pulumi.set(self, "name", value)
 
     @_builtins.property
+    @pulumi.getter(name="queryParams")
+    def query_params(self) -> pulumi.Input[Optional['PostgresQueryParamsArgs']]:
+        """
+        Query params to send with the API requests for this resource.
+        """
+        return pulumi.get(self, "query_params")
+
+    @query_params.setter
+    def query_params(self, value: pulumi.Input[Optional['PostgresQueryParamsArgs']]):
+        pulumi.set(self, "query_params", value)
+
+    @_builtins.property
     @pulumi.getter(name="readReplicas")
     def read_replicas(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['ReadReplicaInputArgs']]]]:
         return pulumi.get(self, "read_replicas")
@@ -240,6 +256,7 @@ class Postgres(pulumi.CustomResource):
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  owner_id: pulumi.Input[Optional[_builtins.str]] = None,
                  plan: pulumi.Input[Optional['Plan']] = None,
+                 query_params: pulumi.Input[Optional[Union['PostgresQueryParamsArgs', 'PostgresQueryParamsArgsDict', 'outputs.PostgresQueryParams']]] = None,
                  read_replicas: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ReadReplicaInputArgs', 'ReadReplicaInputArgsDict']]]]] = None,
                  region: pulumi.Input[Optional[_builtins.str]] = None,
                  version: pulumi.Input[Optional['Version']] = None,
@@ -254,6 +271,7 @@ class Postgres(pulumi.CustomResource):
         :param pulumi.Input[_builtins.int] disk_size_gb: The number of gigabytes of disk space to allocate for the database
         :param pulumi.Input[_builtins.str] name: The name of the database as it will appear in the Render Dashboard
         :param pulumi.Input[_builtins.str] owner_id: The ID of the workspace to create the database for
+        :param pulumi.Input[Union['PostgresQueryParamsArgs', 'PostgresQueryParamsArgsDict', 'outputs.PostgresQueryParams']] query_params: Query params to send with the API requests for this resource.
         :param pulumi.Input['Version'] version: The PostgreSQL version
         """
         ...
@@ -291,6 +309,7 @@ class Postgres(pulumi.CustomResource):
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  owner_id: pulumi.Input[Optional[_builtins.str]] = None,
                  plan: pulumi.Input[Optional['Plan']] = None,
+                 query_params: pulumi.Input[Optional[Union['PostgresQueryParamsArgs', 'PostgresQueryParamsArgsDict', 'outputs.PostgresQueryParams']]] = None,
                  read_replicas: pulumi.Input[Optional[Sequence[pulumi.Input[Union['ReadReplicaInputArgs', 'ReadReplicaInputArgsDict']]]]] = None,
                  region: pulumi.Input[Optional[_builtins.str]] = None,
                  version: pulumi.Input[Optional['Version']] = None,
@@ -324,6 +343,7 @@ class Postgres(pulumi.CustomResource):
             if plan is None and not opts.urn:
                 raise TypeError("Missing required property 'plan'")
             __props__.__dict__["plan"] = plan
+            __props__.__dict__["query_params"] = query_params
             __props__.__dict__["read_replicas"] = read_replicas
             __props__.__dict__["region"] = region
             if version is None and not opts.urn:
@@ -381,6 +401,7 @@ class Postgres(pulumi.CustomResource):
         __props__.__dict__["owner_id"] = None
         __props__.__dict__["plan"] = None
         __props__.__dict__["primary_postgres_id"] = None
+        __props__.__dict__["query_params"] = None
         __props__.__dict__["read_replicas"] = None
         __props__.__dict__["region"] = None
         __props__.__dict__["role"] = None
@@ -495,6 +516,14 @@ class Postgres(pulumi.CustomResource):
     @pulumi.getter(name="primaryPostgresID")
     def primary_postgres_id(self) -> pulumi.Output[Optional[_builtins.str]]:
         return pulumi.get(self, "primary_postgres_id")
+
+    @_builtins.property
+    @pulumi.getter(name="queryParams")
+    def query_params(self) -> pulumi.Output[Optional['outputs.PostgresQueryParams']]:
+        """
+        Query params to send with the API requests for this resource.
+        """
+        return pulumi.get(self, "query_params")
 
     @_builtins.property
     @pulumi.getter(name="readReplicas")

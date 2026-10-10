@@ -2,17 +2,25 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
+import * as inputs from "../types/input";
+import * as outputs from "../types/output";
+import * as enums from "../types/enums";
 import * as utilities from "../utilities";
 
 export function getPostgresConnectionInfo(args: GetPostgresConnectionInfoArgs, opts?: pulumi.InvokeOptions): Promise<GetPostgresConnectionInfoResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("render:postgres:getPostgresConnectionInfo", {
         "postgresId": args.postgresId,
+        "queryParams": args.queryParams,
     }, opts);
 }
 
 export interface GetPostgresConnectionInfoArgs {
     postgresId: string;
+    /**
+     * Query params to send with the API request.
+     */
+    queryParams?: inputs.postgres.GetPostgresConnectionInfoQueryParams;
 }
 
 export interface GetPostgresConnectionInfoResult {
@@ -25,9 +33,14 @@ export function getPostgresConnectionInfoOutput(args: GetPostgresConnectionInfoO
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("render:postgres:getPostgresConnectionInfo", {
         "postgresId": args.postgresId,
+        "queryParams": args.queryParams,
     }, opts);
 }
 
 export interface GetPostgresConnectionInfoOutputArgs {
     postgresId: pulumi.Input<string>;
+    /**
+     * Query params to send with the API request.
+     */
+    queryParams?: pulumi.Input<inputs.postgres.GetPostgresConnectionInfoQueryParamsArgs | undefined>;
 }

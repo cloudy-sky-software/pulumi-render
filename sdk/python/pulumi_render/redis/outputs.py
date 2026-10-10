@@ -21,8 +21,13 @@ __all__ = [
     'MaintenanceProperties',
     'Owner',
     'Redis',
+    'RedisCreateQueryParams',
+    'RedisDeleteQueryParams',
     'RedisDetailMaintenanceProperties',
     'RedisOptions',
+    'RedisQueryParams',
+    'RedisReadQueryParams',
+    'RedisUpdateQueryParams',
     'RedisWithCursor',
 ]
 
@@ -345,6 +350,88 @@ class Redis(dict):
 
 
 @pulumi.output_type
+class RedisCreateQueryParams(dict):
+    """
+    Query params for the API request.
+    """
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "additionalParams":
+            suggest = "additional_params"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in RedisCreateQueryParams. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        RedisCreateQueryParams.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        RedisCreateQueryParams.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 additional_params: Optional[Mapping[str, _builtins.str]] = None):
+        """
+        Query params for the API request.
+
+        :param Mapping[str, _builtins.str] additional_params: Additional query params to send with the request that are not defined in the API spec.
+        """
+        if additional_params is not None:
+            pulumi.set(__self__, "additional_params", additional_params)
+
+    @_builtins.property
+    @pulumi.getter(name="additionalParams")
+    def additional_params(self) -> Optional[Mapping[str, _builtins.str]]:
+        """
+        Additional query params to send with the request that are not defined in the API spec.
+        """
+        return pulumi.get(self, "additional_params")
+
+
+@pulumi.output_type
+class RedisDeleteQueryParams(dict):
+    """
+    Query params for the API request.
+    """
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "additionalParams":
+            suggest = "additional_params"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in RedisDeleteQueryParams. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        RedisDeleteQueryParams.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        RedisDeleteQueryParams.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 additional_params: Optional[Mapping[str, _builtins.str]] = None):
+        """
+        Query params for the API request.
+
+        :param Mapping[str, _builtins.str] additional_params: Additional query params to send with the request that are not defined in the API spec.
+        """
+        if additional_params is not None:
+            pulumi.set(__self__, "additional_params", additional_params)
+
+    @_builtins.property
+    @pulumi.getter(name="additionalParams")
+    def additional_params(self) -> Optional[Mapping[str, _builtins.str]]:
+        """
+        Additional query params to send with the request that are not defined in the API spec.
+        """
+        return pulumi.get(self, "additional_params")
+
+
+@pulumi.output_type
 class RedisDetailMaintenanceProperties(dict):
     def __init__(__self__, *,
                  id: _builtins.str,
@@ -425,6 +512,148 @@ class RedisOptions(dict):
     @pulumi.getter(name="maxmemoryPolicy")
     def maxmemory_policy(self) -> Optional[_builtins.str]:
         return pulumi.get(self, "maxmemory_policy")
+
+
+@pulumi.output_type
+class RedisQueryParams(dict):
+    """
+    Query params for each of the operations of the resource.
+    """
+    def __init__(__self__, *,
+                 create: Optional['outputs.RedisCreateQueryParams'] = None,
+                 delete: Optional['outputs.RedisDeleteQueryParams'] = None,
+                 read: Optional['outputs.RedisReadQueryParams'] = None,
+                 update: Optional['outputs.RedisUpdateQueryParams'] = None):
+        """
+        Query params for each of the operations of the resource.
+
+        :param 'RedisCreateQueryParams' create: Query params for the create operation.
+        :param 'RedisDeleteQueryParams' delete: Query params for the delete operation.
+        :param 'RedisReadQueryParams' read: Query params for the read operation.
+        :param 'RedisUpdateQueryParams' update: Query params for the update operation.
+        """
+        if create is not None:
+            pulumi.set(__self__, "create", create)
+        if delete is not None:
+            pulumi.set(__self__, "delete", delete)
+        if read is not None:
+            pulumi.set(__self__, "read", read)
+        if update is not None:
+            pulumi.set(__self__, "update", update)
+
+    @_builtins.property
+    @pulumi.getter
+    def create(self) -> Optional['outputs.RedisCreateQueryParams']:
+        """
+        Query params for the create operation.
+        """
+        return pulumi.get(self, "create")
+
+    @_builtins.property
+    @pulumi.getter
+    def delete(self) -> Optional['outputs.RedisDeleteQueryParams']:
+        """
+        Query params for the delete operation.
+        """
+        return pulumi.get(self, "delete")
+
+    @_builtins.property
+    @pulumi.getter
+    def read(self) -> Optional['outputs.RedisReadQueryParams']:
+        """
+        Query params for the read operation.
+        """
+        return pulumi.get(self, "read")
+
+    @_builtins.property
+    @pulumi.getter
+    def update(self) -> Optional['outputs.RedisUpdateQueryParams']:
+        """
+        Query params for the update operation.
+        """
+        return pulumi.get(self, "update")
+
+
+@pulumi.output_type
+class RedisReadQueryParams(dict):
+    """
+    Query params for the API request.
+    """
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "additionalParams":
+            suggest = "additional_params"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in RedisReadQueryParams. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        RedisReadQueryParams.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        RedisReadQueryParams.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 additional_params: Optional[Mapping[str, _builtins.str]] = None):
+        """
+        Query params for the API request.
+
+        :param Mapping[str, _builtins.str] additional_params: Additional query params to send with the request that are not defined in the API spec.
+        """
+        if additional_params is not None:
+            pulumi.set(__self__, "additional_params", additional_params)
+
+    @_builtins.property
+    @pulumi.getter(name="additionalParams")
+    def additional_params(self) -> Optional[Mapping[str, _builtins.str]]:
+        """
+        Additional query params to send with the request that are not defined in the API spec.
+        """
+        return pulumi.get(self, "additional_params")
+
+
+@pulumi.output_type
+class RedisUpdateQueryParams(dict):
+    """
+    Query params for the API request.
+    """
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "additionalParams":
+            suggest = "additional_params"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in RedisUpdateQueryParams. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        RedisUpdateQueryParams.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        RedisUpdateQueryParams.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 additional_params: Optional[Mapping[str, _builtins.str]] = None):
+        """
+        Query params for the API request.
+
+        :param Mapping[str, _builtins.str] additional_params: Additional query params to send with the request that are not defined in the API spec.
+        """
+        if additional_params is not None:
+            pulumi.set(__self__, "additional_params", additional_params)
+
+    @_builtins.property
+    @pulumi.getter(name="additionalParams")
+    def additional_params(self) -> Optional[Mapping[str, _builtins.str]]:
+        """
+        Additional query params to send with the request that are not defined in the API spec.
+        """
+        return pulumi.get(self, "additional_params")
 
 
 @pulumi.output_type

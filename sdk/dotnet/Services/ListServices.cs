@@ -14,20 +14,40 @@ namespace Pulumi.Render.Services
         public static Task<ListServicesResult> InvokeAsync(ListServicesArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<ListServicesResult>("render:services:listServices", args ?? new ListServicesArgs(), options.WithDefaults());
 
-        public static Output<ListServicesResult> Invoke(InvokeOptions? options = null)
-            => global::Pulumi.Deployment.Instance.Invoke<ListServicesResult>("render:services:listServices", InvokeArgs.Empty, options.WithDefaults());
+        public static Output<ListServicesResult> Invoke(ListServicesInvokeArgs? args = null, InvokeOptions? options = null)
+            => global::Pulumi.Deployment.Instance.Invoke<ListServicesResult>("render:services:listServices", args ?? new ListServicesInvokeArgs(), options.WithDefaults());
 
-        public static Output<ListServicesResult> Invoke(InvokeOutputOptions options)
-            => global::Pulumi.Deployment.Instance.Invoke<ListServicesResult>("render:services:listServices", InvokeArgs.Empty, options.WithDefaults());
+        public static Output<ListServicesResult> Invoke(ListServicesInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<ListServicesResult>("render:services:listServices", args ?? new ListServicesInvokeArgs(), options.WithDefaults());
     }
 
 
     public sealed class ListServicesArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// Query params to send with the API request.
+        /// </summary>
+        [Input("queryParams")]
+        public Inputs.ListServicesQueryParams? QueryParams { get; set; }
+
         public ListServicesArgs()
         {
         }
         public static new ListServicesArgs Empty => new ListServicesArgs();
+    }
+
+    public sealed class ListServicesInvokeArgs : global::Pulumi.InvokeArgs
+    {
+        /// <summary>
+        /// Query params to send with the API request.
+        /// </summary>
+        [Input("queryParams")]
+        public Input<Inputs.ListServicesQueryParamsArgs>? QueryParams { get; set; }
+
+        public ListServicesInvokeArgs()
+        {
+        }
+        public static new ListServicesInvokeArgs Empty => new ListServicesInvokeArgs();
     }
 
 

@@ -11,6 +11,7 @@ export function getOwner(args: GetOwnerArgs, opts?: pulumi.InvokeOptions): Promi
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("render:owners:getOwner", {
         "ownerId": args.ownerId,
+        "queryParams": args.queryParams,
     }, opts);
 }
 
@@ -19,6 +20,10 @@ export interface GetOwnerArgs {
      * The ID of the user or team
      */
     ownerId: string;
+    /**
+     * Query params to send with the API request.
+     */
+    queryParams?: inputs.owners.GetOwnerQueryParams;
 }
 
 export interface GetOwnerResult {
@@ -35,6 +40,7 @@ export function getOwnerOutput(args: GetOwnerOutputArgs, opts?: pulumi.InvokeOut
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("render:owners:getOwner", {
         "ownerId": args.ownerId,
+        "queryParams": args.queryParams,
     }, opts);
 }
 
@@ -43,4 +49,8 @@ export interface GetOwnerOutputArgs {
      * The ID of the user or team
      */
     ownerId: pulumi.Input<string>;
+    /**
+     * Query params to send with the API request.
+     */
+    queryParams?: pulumi.Input<inputs.owners.GetOwnerQueryParamsArgs | undefined>;
 }

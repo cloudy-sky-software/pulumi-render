@@ -10,11 +10,16 @@ import * as utilities from "../utilities";
 export function getWebhook(args: GetWebhookArgs, opts?: pulumi.InvokeOptions): Promise<GetWebhookResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("render:webhooks:getWebhook", {
+        "queryParams": args.queryParams,
         "webhookId": args.webhookId,
     }, opts);
 }
 
 export interface GetWebhookArgs {
+    /**
+     * Query params to send with the API request.
+     */
+    queryParams?: inputs.webhooks.GetWebhookQueryParams;
     /**
      * Unique identifier for the webhook
      */
@@ -35,11 +40,16 @@ export interface GetWebhookResult {
 export function getWebhookOutput(args: GetWebhookOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetWebhookResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("render:webhooks:getWebhook", {
+        "queryParams": args.queryParams,
         "webhookId": args.webhookId,
     }, opts);
 }
 
 export interface GetWebhookOutputArgs {
+    /**
+     * Query params to send with the API request.
+     */
+    queryParams?: pulumi.Input<inputs.webhooks.GetWebhookQueryParamsArgs | undefined>;
     /**
      * Unique identifier for the webhook
      */

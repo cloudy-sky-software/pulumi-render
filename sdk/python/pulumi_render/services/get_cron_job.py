@@ -15,6 +15,7 @@ else:
 from .. import _utilities
 from . import outputs
 from ._enums import *
+from ._inputs import *
 
 __all__ = [
     'GetCronJobResult',
@@ -219,14 +220,17 @@ class AwaitableGetCronJobResult(GetCronJobResult):
             updated_at=self.updated_at)
 
 
-def get_cron_job(service_id: Optional[_builtins.str] = None,
+def get_cron_job(query_params: Optional[Union['GetCronJobQueryParams', 'GetCronJobQueryParamsDict']] = None,
+                 service_id: Optional[_builtins.str] = None,
                  opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetCronJobResult:
     """
     Use this data source to access information about an existing resource.
 
+    :param Union['GetCronJobQueryParams', 'GetCronJobQueryParamsDict'] query_params: Query params to send with the API request.
     :param _builtins.str service_id: The ID of the service
     """
     __args__ = dict()
+    __args__['queryParams'] = query_params
     __args__['serviceId'] = service_id
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke('render:services:getCronJob', __args__, opts=opts, typ=GetCronJobResult).value
@@ -252,14 +256,17 @@ def get_cron_job(service_id: Optional[_builtins.str] = None,
         suspenders=pulumi.get(__ret__, 'suspenders'),
         type=pulumi.get(__ret__, 'type'),
         updated_at=pulumi.get(__ret__, 'updated_at'))
-def get_cron_job_output(service_id: pulumi.Input[Optional[_builtins.str]] = None,
+def get_cron_job_output(query_params: pulumi.Input[Optional[Optional[Union['GetCronJobQueryParams', 'GetCronJobQueryParamsDict']]]] = None,
+                        service_id: pulumi.Input[Optional[_builtins.str]] = None,
                         opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetCronJobResult]:
     """
     Use this data source to access information about an existing resource.
 
+    :param Union['GetCronJobQueryParams', 'GetCronJobQueryParamsDict'] query_params: Query params to send with the API request.
     :param _builtins.str service_id: The ID of the service
     """
     __args__ = dict()
+    __args__['queryParams'] = query_params
     __args__['serviceId'] = service_id
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('render:services:getCronJob', __args__, opts=opts, typ=GetCronJobResult)

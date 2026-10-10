@@ -2,6 +2,9 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
+import * as inputs from "../types/input";
+import * as outputs from "../types/output";
+import * as enums from "../types/enums";
 import * as utilities from "../utilities";
 
 export class EnvVar extends pulumi.CustomResource {
@@ -33,6 +36,10 @@ export class EnvVar extends pulumi.CustomResource {
 
     declare public readonly generateValue: pulumi.Output<boolean | undefined>;
     declare public /*out*/ readonly key: pulumi.Output<string>;
+    /**
+     * Query params to send with the API requests for this resource.
+     */
+    declare public readonly queryParams: pulumi.Output<outputs.services.EnvVarQueryParams | undefined>;
     declare public readonly value: pulumi.Output<string>;
 
     /**
@@ -48,12 +55,14 @@ export class EnvVar extends pulumi.CustomResource {
         if (!opts.id) {
             resourceInputs["envVarKey"] = args?.envVarKey;
             resourceInputs["generateValue"] = args?.generateValue;
+            resourceInputs["queryParams"] = args?.queryParams;
             resourceInputs["serviceId"] = args?.serviceId;
             resourceInputs["value"] = args?.value;
             resourceInputs["key"] = undefined /*out*/;
         } else {
             resourceInputs["generateValue"] = undefined /*out*/;
             resourceInputs["key"] = undefined /*out*/;
+            resourceInputs["queryParams"] = undefined /*out*/;
             resourceInputs["value"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
@@ -70,6 +79,10 @@ export interface EnvVarArgs {
      */
     envVarKey?: pulumi.Input<string | undefined>;
     generateValue?: pulumi.Input<boolean | undefined>;
+    /**
+     * Query params to send with the API requests for this resource.
+     */
+    queryParams?: pulumi.Input<inputs.services.EnvVarQueryParamsArgs | undefined>;
     /**
      * The ID of the service
      */

@@ -2,6 +2,9 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
+import * as inputs from "../types/input";
+import * as outputs from "../types/output";
+import * as enums from "../types/enums";
 import * as utilities from "../utilities";
 
 export class SecretFile extends pulumi.CustomResource {
@@ -33,6 +36,10 @@ export class SecretFile extends pulumi.CustomResource {
 
     declare public readonly content: pulumi.Output<string>;
     declare public /*out*/ readonly name: pulumi.Output<string>;
+    /**
+     * Query params to send with the API requests for this resource.
+     */
+    declare public readonly queryParams: pulumi.Output<outputs.services.SecretFileQueryParams | undefined>;
 
     /**
      * Create a SecretFile resource with the given unique name, arguments, and options.
@@ -46,12 +53,14 @@ export class SecretFile extends pulumi.CustomResource {
         opts = opts || {};
         if (!opts.id) {
             resourceInputs["content"] = args?.content;
+            resourceInputs["queryParams"] = args?.queryParams;
             resourceInputs["secretFileName"] = args?.secretFileName;
             resourceInputs["serviceId"] = args?.serviceId;
             resourceInputs["name"] = undefined /*out*/;
         } else {
             resourceInputs["content"] = undefined /*out*/;
             resourceInputs["name"] = undefined /*out*/;
+            resourceInputs["queryParams"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(SecretFile.__pulumiType, name, resourceInputs, opts);
@@ -63,6 +72,10 @@ export class SecretFile extends pulumi.CustomResource {
  */
 export interface SecretFileArgs {
     content?: pulumi.Input<string | undefined>;
+    /**
+     * Query params to send with the API requests for this resource.
+     */
+    queryParams?: pulumi.Input<inputs.services.SecretFileQueryParamsArgs | undefined>;
     /**
      * The file name of the secret file
      */

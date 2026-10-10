@@ -13,7 +13,9 @@ if sys.version_info >= (3, 11):
 else:
     from typing_extensions import NotRequired, TypedDict, TypeAlias
 from .. import _utilities
+from . import outputs
 from ._enums import *
+from ._inputs import *
 
 __all__ = ['ResourcesToEnvironmentArgs', 'ResourcesToEnvironment']
 
@@ -21,13 +23,18 @@ __all__ = ['ResourcesToEnvironmentArgs', 'ResourcesToEnvironment']
 class ResourcesToEnvironmentArgs:
     def __init__(__self__, *,
                  resource_ids: pulumi.Input[Sequence[pulumi.Input[_builtins.str]]],
-                 environment_id: pulumi.Input[Optional[_builtins.str]] = None):
+                 environment_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 query_params: pulumi.Input[Optional['ResourcesToEnvironmentQueryParamsArgs']] = None):
         """
         The set of arguments for constructing a ResourcesToEnvironment resource.
+
+        :param pulumi.Input['ResourcesToEnvironmentQueryParamsArgs'] query_params: Query params to send with the API requests for this resource.
         """
         pulumi.set(__self__, "resource_ids", resource_ids)
         if environment_id is not None:
             pulumi.set(__self__, "environment_id", environment_id)
+        if query_params is not None:
+            pulumi.set(__self__, "query_params", query_params)
 
     @_builtins.property
     @pulumi.getter(name="resourceIds")
@@ -47,6 +54,18 @@ class ResourcesToEnvironmentArgs:
     def environment_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "environment_id", value)
 
+    @_builtins.property
+    @pulumi.getter(name="queryParams")
+    def query_params(self) -> pulumi.Input[Optional['ResourcesToEnvironmentQueryParamsArgs']]:
+        """
+        Query params to send with the API requests for this resource.
+        """
+        return pulumi.get(self, "query_params")
+
+    @query_params.setter
+    def query_params(self, value: pulumi.Input[Optional['ResourcesToEnvironmentQueryParamsArgs']]):
+        pulumi.set(self, "query_params", value)
+
 
 @pulumi.type_token("render:environments:ResourcesToEnvironment")
 class ResourcesToEnvironment(pulumi.CustomResource):
@@ -55,6 +74,7 @@ class ResourcesToEnvironment(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  environment_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 query_params: pulumi.Input[Optional[Union['ResourcesToEnvironmentQueryParamsArgs', 'ResourcesToEnvironmentQueryParamsArgsDict', 'outputs.ResourcesToEnvironmentQueryParams']]] = None,
                  resource_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  __props__=None):
         """
@@ -62,6 +82,7 @@ class ResourcesToEnvironment(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[Union['ResourcesToEnvironmentQueryParamsArgs', 'ResourcesToEnvironmentQueryParamsArgsDict', 'outputs.ResourcesToEnvironmentQueryParams']] query_params: Query params to send with the API requests for this resource.
         """
         ...
     @overload
@@ -88,6 +109,7 @@ class ResourcesToEnvironment(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  environment_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 query_params: pulumi.Input[Optional[Union['ResourcesToEnvironmentQueryParamsArgs', 'ResourcesToEnvironmentQueryParamsArgsDict', 'outputs.ResourcesToEnvironmentQueryParams']]] = None,
                  resource_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -99,6 +121,7 @@ class ResourcesToEnvironment(pulumi.CustomResource):
             __props__ = ResourcesToEnvironmentArgs.__new__(ResourcesToEnvironmentArgs)
 
             __props__.__dict__["environment_id"] = environment_id
+            __props__.__dict__["query_params"] = query_params
             if resource_ids is None and not opts.urn:
                 raise TypeError("Missing required property 'resource_ids'")
             __props__.__dict__["resource_ids"] = resource_ids
@@ -138,6 +161,7 @@ class ResourcesToEnvironment(pulumi.CustomResource):
         __props__.__dict__["network_isolation_enabled"] = None
         __props__.__dict__["project_id"] = None
         __props__.__dict__["protected_status"] = None
+        __props__.__dict__["query_params"] = None
         __props__.__dict__["redis_ids"] = None
         __props__.__dict__["resource_ids"] = None
         __props__.__dict__["service_ids"] = None
@@ -178,6 +202,14 @@ class ResourcesToEnvironment(pulumi.CustomResource):
         Indicates whether an environment is `unprotected` or `protected`. Only admin users can perform destructive actions in `protected` environments.
         """
         return pulumi.get(self, "protected_status")
+
+    @_builtins.property
+    @pulumi.getter(name="queryParams")
+    def query_params(self) -> pulumi.Output[Optional['outputs.ResourcesToEnvironmentQueryParams']]:
+        """
+        Query params to send with the API requests for this resource.
+        """
+        return pulumi.get(self, "query_params")
 
     @_builtins.property
     @pulumi.getter(name="redisIds")

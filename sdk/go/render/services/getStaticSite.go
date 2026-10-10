@@ -22,6 +22,8 @@ func LookupStaticSite(ctx *pulumi.Context, args *LookupStaticSiteArgs, opts ...p
 }
 
 type LookupStaticSiteArgs struct {
+	// Query params to send with the API request.
+	QueryParams *GetStaticSiteQueryParams `pulumi:"queryParams"`
 	// The ID of the service
 	ServiceId string `pulumi:"serviceId"`
 }
@@ -73,6 +75,8 @@ func LookupStaticSiteOutput(ctx *pulumi.Context, args LookupStaticSiteOutputArgs
 }
 
 type LookupStaticSiteOutputArgs struct {
+	// Query params to send with the API request.
+	QueryParams GetStaticSiteQueryParamsPtrInput `pulumi:"queryParams"`
 	// The ID of the service
 	ServiceId pulumi.StringInput `pulumi:"serviceId"`
 }

@@ -13,6 +13,9 @@ import (
 
 type SuspendService struct {
 	pulumi.CustomResourceState
+
+	// Query params to send with the API requests for this resource.
+	QueryParams SuspendServiceQueryParamsPtrOutput `pulumi:"queryParams"`
 }
 
 // NewSuspendService registers a new resource with the given unique name, arguments, and options.
@@ -55,12 +58,16 @@ func (SuspendServiceState) ElementType() reflect.Type {
 }
 
 type suspendServiceArgs struct {
+	// Query params to send with the API requests for this resource.
+	QueryParams *SuspendServiceQueryParams `pulumi:"queryParams"`
 	// The ID of the service
 	ServiceId *string `pulumi:"serviceId"`
 }
 
 // The set of arguments for constructing a SuspendService resource.
 type SuspendServiceArgs struct {
+	// Query params to send with the API requests for this resource.
+	QueryParams SuspendServiceQueryParamsPtrInput
 	// The ID of the service
 	ServiceId pulumi.StringPtrInput
 }
@@ -100,6 +107,11 @@ func (o SuspendServiceOutput) ToSuspendServiceOutput() SuspendServiceOutput {
 
 func (o SuspendServiceOutput) ToSuspendServiceOutputWithContext(ctx context.Context) SuspendServiceOutput {
 	return o
+}
+
+// Query params to send with the API requests for this resource.
+func (o SuspendServiceOutput) QueryParams() SuspendServiceQueryParamsPtrOutput {
+	return o.ApplyT(func(v *SuspendService) SuspendServiceQueryParamsPtrOutput { return v.QueryParams }).(SuspendServiceQueryParamsPtrOutput)
 }
 
 func init() {

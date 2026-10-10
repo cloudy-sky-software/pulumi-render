@@ -14,20 +14,40 @@ namespace Pulumi.Render.Projects
         public static Task<ListProjectsResult> InvokeAsync(ListProjectsArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<ListProjectsResult>("render:projects:listProjects", args ?? new ListProjectsArgs(), options.WithDefaults());
 
-        public static Output<ListProjectsResult> Invoke(InvokeOptions? options = null)
-            => global::Pulumi.Deployment.Instance.Invoke<ListProjectsResult>("render:projects:listProjects", InvokeArgs.Empty, options.WithDefaults());
+        public static Output<ListProjectsResult> Invoke(ListProjectsInvokeArgs? args = null, InvokeOptions? options = null)
+            => global::Pulumi.Deployment.Instance.Invoke<ListProjectsResult>("render:projects:listProjects", args ?? new ListProjectsInvokeArgs(), options.WithDefaults());
 
-        public static Output<ListProjectsResult> Invoke(InvokeOutputOptions options)
-            => global::Pulumi.Deployment.Instance.Invoke<ListProjectsResult>("render:projects:listProjects", InvokeArgs.Empty, options.WithDefaults());
+        public static Output<ListProjectsResult> Invoke(ListProjectsInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<ListProjectsResult>("render:projects:listProjects", args ?? new ListProjectsInvokeArgs(), options.WithDefaults());
     }
 
 
     public sealed class ListProjectsArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// Query params to send with the API request.
+        /// </summary>
+        [Input("queryParams")]
+        public Inputs.ListProjectsQueryParams? QueryParams { get; set; }
+
         public ListProjectsArgs()
         {
         }
         public static new ListProjectsArgs Empty => new ListProjectsArgs();
+    }
+
+    public sealed class ListProjectsInvokeArgs : global::Pulumi.InvokeArgs
+    {
+        /// <summary>
+        /// Query params to send with the API request.
+        /// </summary>
+        [Input("queryParams")]
+        public Input<Inputs.ListProjectsQueryParamsArgs>? QueryParams { get; set; }
+
+        public ListProjectsInvokeArgs()
+        {
+        }
+        public static new ListProjectsInvokeArgs Empty => new ListProjectsInvokeArgs();
     }
 
 

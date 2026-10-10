@@ -13,6 +13,7 @@ if sys.version_info >= (3, 11):
 else:
     from typing_extensions import NotRequired, TypedDict, TypeAlias
 from .. import _utilities
+from ._inputs import *
 
 __all__ = [
     'GetEnvGroupEnvVarResult',
@@ -54,16 +55,19 @@ class AwaitableGetEnvGroupEnvVarResult(GetEnvGroupEnvVarResult):
 
 def get_env_group_env_var(env_group_id: Optional[_builtins.str] = None,
                           env_var_key: Optional[_builtins.str] = None,
+                          query_params: Optional[Union['GetEnvGroupEnvVarQueryParams', 'GetEnvGroupEnvVarQueryParamsDict']] = None,
                           opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetEnvGroupEnvVarResult:
     """
     Use this data source to access information about an existing resource.
 
     :param _builtins.str env_group_id: Filter for resources that belong to an environment group
     :param _builtins.str env_var_key: The name of the environment variable
+    :param Union['GetEnvGroupEnvVarQueryParams', 'GetEnvGroupEnvVarQueryParamsDict'] query_params: Query params to send with the API request.
     """
     __args__ = dict()
     __args__['envGroupId'] = env_group_id
     __args__['envVarKey'] = env_var_key
+    __args__['queryParams'] = query_params
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke('render:env-groups:getEnvGroupEnvVar', __args__, opts=opts, typ=GetEnvGroupEnvVarResult).value
 
@@ -72,16 +76,19 @@ def get_env_group_env_var(env_group_id: Optional[_builtins.str] = None,
         value=pulumi.get(__ret__, 'value'))
 def get_env_group_env_var_output(env_group_id: pulumi.Input[Optional[_builtins.str]] = None,
                                  env_var_key: pulumi.Input[Optional[_builtins.str]] = None,
+                                 query_params: pulumi.Input[Optional[Optional[Union['GetEnvGroupEnvVarQueryParams', 'GetEnvGroupEnvVarQueryParamsDict']]]] = None,
                                  opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetEnvGroupEnvVarResult]:
     """
     Use this data source to access information about an existing resource.
 
     :param _builtins.str env_group_id: Filter for resources that belong to an environment group
     :param _builtins.str env_var_key: The name of the environment variable
+    :param Union['GetEnvGroupEnvVarQueryParams', 'GetEnvGroupEnvVarQueryParamsDict'] query_params: Query params to send with the API request.
     """
     __args__ = dict()
     __args__['envGroupId'] = env_group_id
     __args__['envVarKey'] = env_var_key
+    __args__['queryParams'] = query_params
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('render:env-groups:getEnvGroupEnvVar', __args__, opts=opts, typ=GetEnvGroupEnvVarResult)
     return __ret__.apply(lambda __response__: GetEnvGroupEnvVarResult(

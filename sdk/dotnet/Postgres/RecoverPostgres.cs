@@ -72,6 +72,12 @@ namespace Pulumi.Render.Postgres
         [Output("primaryPostgresID")]
         public Output<string?> PrimaryPostgresID { get; private set; } = null!;
 
+        /// <summary>
+        /// Query params to send with the API requests for this resource.
+        /// </summary>
+        [Output("queryParams")]
+        public Output<Outputs.RecoverPostgresQueryParams?> QueryParams { get; private set; } = null!;
+
         [Output("readReplicas")]
         public Output<ImmutableArray<Outputs.ReadReplica>> ReadReplicas { get; private set; } = null!;
 
@@ -186,6 +192,12 @@ namespace Pulumi.Render.Postgres
 
         [Input("postgresId")]
         public Input<string>? PostgresId { get; set; }
+
+        /// <summary>
+        /// Query params to send with the API requests for this resource.
+        /// </summary>
+        [Input("queryParams")]
+        public Input<Inputs.RecoverPostgresQueryParamsArgs>? QueryParams { get; set; }
 
         /// <summary>
         /// Name of the new database.

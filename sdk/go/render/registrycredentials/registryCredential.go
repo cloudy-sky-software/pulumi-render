@@ -19,6 +19,8 @@ type RegistryCredential struct {
 	// Descriptive name for this credential
 	Name    pulumi.StringOutput `pulumi:"name"`
 	OwnerId pulumi.StringOutput `pulumi:"ownerId"`
+	// Query params to send with the API requests for this resource.
+	QueryParams RegistryCredentialQueryParamsPtrOutput `pulumi:"queryParams"`
 	// The registry to use this credential with
 	Registry RegistryOutput `pulumi:"registry"`
 	// Last updated time for the credential
@@ -82,6 +84,8 @@ type registryCredentialArgs struct {
 	AuthToken string  `pulumi:"authToken"`
 	Name      *string `pulumi:"name"`
 	OwnerId   string  `pulumi:"ownerId"`
+	// Query params to send with the API requests for this resource.
+	QueryParams *RegistryCredentialQueryParams `pulumi:"queryParams"`
 	// The registry to use this credential with
 	Registry Registry `pulumi:"registry"`
 	Username string   `pulumi:"username"`
@@ -92,6 +96,8 @@ type RegistryCredentialArgs struct {
 	AuthToken pulumi.StringInput
 	Name      pulumi.StringPtrInput
 	OwnerId   pulumi.StringInput
+	// Query params to send with the API requests for this resource.
+	QueryParams RegistryCredentialQueryParamsPtrInput
 	// The registry to use this credential with
 	Registry RegistryInput
 	Username pulumi.StringInput
@@ -145,6 +151,11 @@ func (o RegistryCredentialOutput) Name() pulumi.StringOutput {
 
 func (o RegistryCredentialOutput) OwnerId() pulumi.StringOutput {
 	return o.ApplyT(func(v *RegistryCredential) pulumi.StringOutput { return v.OwnerId }).(pulumi.StringOutput)
+}
+
+// Query params to send with the API requests for this resource.
+func (o RegistryCredentialOutput) QueryParams() RegistryCredentialQueryParamsPtrOutput {
+	return o.ApplyT(func(v *RegistryCredential) RegistryCredentialQueryParamsPtrOutput { return v.QueryParams }).(RegistryCredentialQueryParamsPtrOutput)
 }
 
 // The registry to use this credential with

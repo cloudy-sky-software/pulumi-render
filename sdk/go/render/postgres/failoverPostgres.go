@@ -13,6 +13,9 @@ import (
 
 type FailoverPostgres struct {
 	pulumi.CustomResourceState
+
+	// Query params to send with the API requests for this resource.
+	QueryParams FailoverPostgresQueryParamsPtrOutput `pulumi:"queryParams"`
 }
 
 // NewFailoverPostgres registers a new resource with the given unique name, arguments, and options.
@@ -56,11 +59,15 @@ func (FailoverPostgresState) ElementType() reflect.Type {
 
 type failoverPostgresArgs struct {
 	PostgresId *string `pulumi:"postgresId"`
+	// Query params to send with the API requests for this resource.
+	QueryParams *FailoverPostgresQueryParams `pulumi:"queryParams"`
 }
 
 // The set of arguments for constructing a FailoverPostgres resource.
 type FailoverPostgresArgs struct {
 	PostgresId pulumi.StringPtrInput
+	// Query params to send with the API requests for this resource.
+	QueryParams FailoverPostgresQueryParamsPtrInput
 }
 
 func (FailoverPostgresArgs) ElementType() reflect.Type {
@@ -98,6 +105,11 @@ func (o FailoverPostgresOutput) ToFailoverPostgresOutput() FailoverPostgresOutpu
 
 func (o FailoverPostgresOutput) ToFailoverPostgresOutputWithContext(ctx context.Context) FailoverPostgresOutput {
 	return o
+}
+
+// Query params to send with the API requests for this resource.
+func (o FailoverPostgresOutput) QueryParams() FailoverPostgresQueryParamsPtrOutput {
+	return o.ApplyT(func(v *FailoverPostgres) FailoverPostgresQueryParamsPtrOutput { return v.QueryParams }).(FailoverPostgresQueryParamsPtrOutput)
 }
 
 func init() {

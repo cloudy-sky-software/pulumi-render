@@ -17,13 +17,15 @@ type RestoreSnapshot struct {
 
 	CreatedAt pulumi.StringOutput `pulumi:"createdAt"`
 	// When a service with a disk is scaled, the instanceId is used to identify the instance that the disk is attached to. Each instance's disks get their own snapshots, and can be restored separately.
-	InstanceId  pulumi.StringPtrOutput `pulumi:"instanceId"`
-	MountPath   pulumi.StringOutput    `pulumi:"mountPath"`
-	Name        pulumi.StringOutput    `pulumi:"name"`
-	ServiceId   pulumi.StringPtrOutput `pulumi:"serviceId"`
-	SizeGB      pulumi.IntOutput       `pulumi:"sizeGB"`
-	SnapshotKey pulumi.StringOutput    `pulumi:"snapshotKey"`
-	UpdatedAt   pulumi.StringOutput    `pulumi:"updatedAt"`
+	InstanceId pulumi.StringPtrOutput `pulumi:"instanceId"`
+	MountPath  pulumi.StringOutput    `pulumi:"mountPath"`
+	Name       pulumi.StringOutput    `pulumi:"name"`
+	// Query params to send with the API requests for this resource.
+	QueryParams RestoreSnapshotQueryParamsPtrOutput `pulumi:"queryParams"`
+	ServiceId   pulumi.StringPtrOutput              `pulumi:"serviceId"`
+	SizeGB      pulumi.IntOutput                    `pulumi:"sizeGB"`
+	SnapshotKey pulumi.StringOutput                 `pulumi:"snapshotKey"`
+	UpdatedAt   pulumi.StringOutput                 `pulumi:"updatedAt"`
 }
 
 // NewRestoreSnapshot registers a new resource with the given unique name, arguments, and options.
@@ -72,8 +74,10 @@ type restoreSnapshotArgs struct {
 	// The ID of the disk
 	DiskId *string `pulumi:"diskId"`
 	// When a service with a disk is scaled, the instanceId is used to identify the instance that the disk is attached to. Each instance's disks get their own snapshots, and can be restored separately.
-	InstanceId  *string `pulumi:"instanceId"`
-	SnapshotKey string  `pulumi:"snapshotKey"`
+	InstanceId *string `pulumi:"instanceId"`
+	// Query params to send with the API requests for this resource.
+	QueryParams *RestoreSnapshotQueryParams `pulumi:"queryParams"`
+	SnapshotKey string                      `pulumi:"snapshotKey"`
 }
 
 // The set of arguments for constructing a RestoreSnapshot resource.
@@ -81,7 +85,9 @@ type RestoreSnapshotArgs struct {
 	// The ID of the disk
 	DiskId pulumi.StringPtrInput
 	// When a service with a disk is scaled, the instanceId is used to identify the instance that the disk is attached to. Each instance's disks get their own snapshots, and can be restored separately.
-	InstanceId  pulumi.StringPtrInput
+	InstanceId pulumi.StringPtrInput
+	// Query params to send with the API requests for this resource.
+	QueryParams RestoreSnapshotQueryParamsPtrInput
 	SnapshotKey pulumi.StringInput
 }
 
@@ -137,6 +143,11 @@ func (o RestoreSnapshotOutput) MountPath() pulumi.StringOutput {
 
 func (o RestoreSnapshotOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *RestoreSnapshot) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+// Query params to send with the API requests for this resource.
+func (o RestoreSnapshotOutput) QueryParams() RestoreSnapshotQueryParamsPtrOutput {
+	return o.ApplyT(func(v *RestoreSnapshot) RestoreSnapshotQueryParamsPtrOutput { return v.QueryParams }).(RestoreSnapshotQueryParamsPtrOutput)
 }
 
 func (o RestoreSnapshotOutput) ServiceId() pulumi.StringPtrOutput {

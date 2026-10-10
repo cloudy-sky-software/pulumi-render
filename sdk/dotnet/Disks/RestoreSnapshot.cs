@@ -27,6 +27,12 @@ namespace Pulumi.Render.Disks
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
 
+        /// <summary>
+        /// Query params to send with the API requests for this resource.
+        /// </summary>
+        [Output("queryParams")]
+        public Output<Outputs.RestoreSnapshotQueryParams?> QueryParams { get; private set; } = null!;
+
         [Output("serviceId")]
         public Output<string?> ServiceId { get; private set; } = null!;
 
@@ -96,6 +102,12 @@ namespace Pulumi.Render.Disks
         /// </summary>
         [Input("instanceId")]
         public Input<string>? InstanceId { get; set; }
+
+        /// <summary>
+        /// Query params to send with the API requests for this resource.
+        /// </summary>
+        [Input("queryParams")]
+        public Input<Inputs.RestoreSnapshotQueryParamsArgs>? QueryParams { get; set; }
 
         [Input("snapshotKey", required: true)]
         public Input<string> SnapshotKey { get; set; } = null!;

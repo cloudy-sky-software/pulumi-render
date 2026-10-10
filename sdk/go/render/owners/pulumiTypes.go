@@ -13,6 +13,526 @@ import (
 
 var _ = internal.GetEnvOrDefault
 
+// Query params for the API request.
+type GetOwnerQueryParams struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams map[string]string `pulumi:"additionalParams"`
+}
+
+// GetOwnerQueryParamsInput is an input type that accepts GetOwnerQueryParamsArgs and GetOwnerQueryParamsOutput values.
+// You can construct a concrete instance of `GetOwnerQueryParamsInput` via:
+//
+//	GetOwnerQueryParamsArgs{...}
+type GetOwnerQueryParamsInput interface {
+	pulumi.Input
+
+	ToGetOwnerQueryParamsOutput() GetOwnerQueryParamsOutput
+	ToGetOwnerQueryParamsOutputWithContext(context.Context) GetOwnerQueryParamsOutput
+}
+
+// Query params for the API request.
+type GetOwnerQueryParamsArgs struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams pulumi.StringMapInput `pulumi:"additionalParams"`
+}
+
+func (GetOwnerQueryParamsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetOwnerQueryParams)(nil)).Elem()
+}
+
+func (i GetOwnerQueryParamsArgs) ToGetOwnerQueryParamsOutput() GetOwnerQueryParamsOutput {
+	return i.ToGetOwnerQueryParamsOutputWithContext(context.Background())
+}
+
+func (i GetOwnerQueryParamsArgs) ToGetOwnerQueryParamsOutputWithContext(ctx context.Context) GetOwnerQueryParamsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetOwnerQueryParamsOutput)
+}
+
+func (i GetOwnerQueryParamsArgs) ToGetOwnerQueryParamsPtrOutput() GetOwnerQueryParamsPtrOutput {
+	return i.ToGetOwnerQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i GetOwnerQueryParamsArgs) ToGetOwnerQueryParamsPtrOutputWithContext(ctx context.Context) GetOwnerQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetOwnerQueryParamsOutput).ToGetOwnerQueryParamsPtrOutputWithContext(ctx)
+}
+
+// GetOwnerQueryParamsPtrInput is an input type that accepts GetOwnerQueryParamsArgs, GetOwnerQueryParamsPtr and GetOwnerQueryParamsPtrOutput values.
+// You can construct a concrete instance of `GetOwnerQueryParamsPtrInput` via:
+//
+//	        GetOwnerQueryParamsArgs{...}
+//
+//	or:
+//
+//	        nil
+type GetOwnerQueryParamsPtrInput interface {
+	pulumi.Input
+
+	ToGetOwnerQueryParamsPtrOutput() GetOwnerQueryParamsPtrOutput
+	ToGetOwnerQueryParamsPtrOutputWithContext(context.Context) GetOwnerQueryParamsPtrOutput
+}
+
+type getOwnerQueryParamsPtrType GetOwnerQueryParamsArgs
+
+func GetOwnerQueryParamsPtr(v *GetOwnerQueryParamsArgs) GetOwnerQueryParamsPtrInput {
+	return (*getOwnerQueryParamsPtrType)(v)
+}
+
+func (*getOwnerQueryParamsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**GetOwnerQueryParams)(nil)).Elem()
+}
+
+func (i *getOwnerQueryParamsPtrType) ToGetOwnerQueryParamsPtrOutput() GetOwnerQueryParamsPtrOutput {
+	return i.ToGetOwnerQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i *getOwnerQueryParamsPtrType) ToGetOwnerQueryParamsPtrOutputWithContext(ctx context.Context) GetOwnerQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetOwnerQueryParamsPtrOutput)
+}
+
+// Query params for the API request.
+type GetOwnerQueryParamsOutput struct{ *pulumi.OutputState }
+
+func (GetOwnerQueryParamsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetOwnerQueryParams)(nil)).Elem()
+}
+
+func (o GetOwnerQueryParamsOutput) ToGetOwnerQueryParamsOutput() GetOwnerQueryParamsOutput {
+	return o
+}
+
+func (o GetOwnerQueryParamsOutput) ToGetOwnerQueryParamsOutputWithContext(ctx context.Context) GetOwnerQueryParamsOutput {
+	return o
+}
+
+func (o GetOwnerQueryParamsOutput) ToGetOwnerQueryParamsPtrOutput() GetOwnerQueryParamsPtrOutput {
+	return o.ToGetOwnerQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (o GetOwnerQueryParamsOutput) ToGetOwnerQueryParamsPtrOutputWithContext(ctx context.Context) GetOwnerQueryParamsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v GetOwnerQueryParams) *GetOwnerQueryParams {
+		return &v
+	}).(GetOwnerQueryParamsPtrOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o GetOwnerQueryParamsOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v GetOwnerQueryParams) map[string]string { return v.AdditionalParams }).(pulumi.StringMapOutput)
+}
+
+type GetOwnerQueryParamsPtrOutput struct{ *pulumi.OutputState }
+
+func (GetOwnerQueryParamsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**GetOwnerQueryParams)(nil)).Elem()
+}
+
+func (o GetOwnerQueryParamsPtrOutput) ToGetOwnerQueryParamsPtrOutput() GetOwnerQueryParamsPtrOutput {
+	return o
+}
+
+func (o GetOwnerQueryParamsPtrOutput) ToGetOwnerQueryParamsPtrOutputWithContext(ctx context.Context) GetOwnerQueryParamsPtrOutput {
+	return o
+}
+
+func (o GetOwnerQueryParamsPtrOutput) Elem() GetOwnerQueryParamsOutput {
+	return o.ApplyT(func(v *GetOwnerQueryParams) GetOwnerQueryParams {
+		if v != nil {
+			return *v
+		}
+		var ret GetOwnerQueryParams
+		return ret
+	}).(GetOwnerQueryParamsOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o GetOwnerQueryParamsPtrOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *GetOwnerQueryParams) map[string]string {
+		if v == nil {
+			return nil
+		}
+		return v.AdditionalParams
+	}).(pulumi.StringMapOutput)
+}
+
+// Query params for the API request.
+type ListOwnerMembersQueryParams struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams map[string]string `pulumi:"additionalParams"`
+}
+
+// ListOwnerMembersQueryParamsInput is an input type that accepts ListOwnerMembersQueryParamsArgs and ListOwnerMembersQueryParamsOutput values.
+// You can construct a concrete instance of `ListOwnerMembersQueryParamsInput` via:
+//
+//	ListOwnerMembersQueryParamsArgs{...}
+type ListOwnerMembersQueryParamsInput interface {
+	pulumi.Input
+
+	ToListOwnerMembersQueryParamsOutput() ListOwnerMembersQueryParamsOutput
+	ToListOwnerMembersQueryParamsOutputWithContext(context.Context) ListOwnerMembersQueryParamsOutput
+}
+
+// Query params for the API request.
+type ListOwnerMembersQueryParamsArgs struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams pulumi.StringMapInput `pulumi:"additionalParams"`
+}
+
+func (ListOwnerMembersQueryParamsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ListOwnerMembersQueryParams)(nil)).Elem()
+}
+
+func (i ListOwnerMembersQueryParamsArgs) ToListOwnerMembersQueryParamsOutput() ListOwnerMembersQueryParamsOutput {
+	return i.ToListOwnerMembersQueryParamsOutputWithContext(context.Background())
+}
+
+func (i ListOwnerMembersQueryParamsArgs) ToListOwnerMembersQueryParamsOutputWithContext(ctx context.Context) ListOwnerMembersQueryParamsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ListOwnerMembersQueryParamsOutput)
+}
+
+func (i ListOwnerMembersQueryParamsArgs) ToListOwnerMembersQueryParamsPtrOutput() ListOwnerMembersQueryParamsPtrOutput {
+	return i.ToListOwnerMembersQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i ListOwnerMembersQueryParamsArgs) ToListOwnerMembersQueryParamsPtrOutputWithContext(ctx context.Context) ListOwnerMembersQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ListOwnerMembersQueryParamsOutput).ToListOwnerMembersQueryParamsPtrOutputWithContext(ctx)
+}
+
+// ListOwnerMembersQueryParamsPtrInput is an input type that accepts ListOwnerMembersQueryParamsArgs, ListOwnerMembersQueryParamsPtr and ListOwnerMembersQueryParamsPtrOutput values.
+// You can construct a concrete instance of `ListOwnerMembersQueryParamsPtrInput` via:
+//
+//	        ListOwnerMembersQueryParamsArgs{...}
+//
+//	or:
+//
+//	        nil
+type ListOwnerMembersQueryParamsPtrInput interface {
+	pulumi.Input
+
+	ToListOwnerMembersQueryParamsPtrOutput() ListOwnerMembersQueryParamsPtrOutput
+	ToListOwnerMembersQueryParamsPtrOutputWithContext(context.Context) ListOwnerMembersQueryParamsPtrOutput
+}
+
+type listOwnerMembersQueryParamsPtrType ListOwnerMembersQueryParamsArgs
+
+func ListOwnerMembersQueryParamsPtr(v *ListOwnerMembersQueryParamsArgs) ListOwnerMembersQueryParamsPtrInput {
+	return (*listOwnerMembersQueryParamsPtrType)(v)
+}
+
+func (*listOwnerMembersQueryParamsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**ListOwnerMembersQueryParams)(nil)).Elem()
+}
+
+func (i *listOwnerMembersQueryParamsPtrType) ToListOwnerMembersQueryParamsPtrOutput() ListOwnerMembersQueryParamsPtrOutput {
+	return i.ToListOwnerMembersQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i *listOwnerMembersQueryParamsPtrType) ToListOwnerMembersQueryParamsPtrOutputWithContext(ctx context.Context) ListOwnerMembersQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ListOwnerMembersQueryParamsPtrOutput)
+}
+
+// Query params for the API request.
+type ListOwnerMembersQueryParamsOutput struct{ *pulumi.OutputState }
+
+func (ListOwnerMembersQueryParamsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ListOwnerMembersQueryParams)(nil)).Elem()
+}
+
+func (o ListOwnerMembersQueryParamsOutput) ToListOwnerMembersQueryParamsOutput() ListOwnerMembersQueryParamsOutput {
+	return o
+}
+
+func (o ListOwnerMembersQueryParamsOutput) ToListOwnerMembersQueryParamsOutputWithContext(ctx context.Context) ListOwnerMembersQueryParamsOutput {
+	return o
+}
+
+func (o ListOwnerMembersQueryParamsOutput) ToListOwnerMembersQueryParamsPtrOutput() ListOwnerMembersQueryParamsPtrOutput {
+	return o.ToListOwnerMembersQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (o ListOwnerMembersQueryParamsOutput) ToListOwnerMembersQueryParamsPtrOutputWithContext(ctx context.Context) ListOwnerMembersQueryParamsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v ListOwnerMembersQueryParams) *ListOwnerMembersQueryParams {
+		return &v
+	}).(ListOwnerMembersQueryParamsPtrOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o ListOwnerMembersQueryParamsOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v ListOwnerMembersQueryParams) map[string]string { return v.AdditionalParams }).(pulumi.StringMapOutput)
+}
+
+type ListOwnerMembersQueryParamsPtrOutput struct{ *pulumi.OutputState }
+
+func (ListOwnerMembersQueryParamsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ListOwnerMembersQueryParams)(nil)).Elem()
+}
+
+func (o ListOwnerMembersQueryParamsPtrOutput) ToListOwnerMembersQueryParamsPtrOutput() ListOwnerMembersQueryParamsPtrOutput {
+	return o
+}
+
+func (o ListOwnerMembersQueryParamsPtrOutput) ToListOwnerMembersQueryParamsPtrOutputWithContext(ctx context.Context) ListOwnerMembersQueryParamsPtrOutput {
+	return o
+}
+
+func (o ListOwnerMembersQueryParamsPtrOutput) Elem() ListOwnerMembersQueryParamsOutput {
+	return o.ApplyT(func(v *ListOwnerMembersQueryParams) ListOwnerMembersQueryParams {
+		if v != nil {
+			return *v
+		}
+		var ret ListOwnerMembersQueryParams
+		return ret
+	}).(ListOwnerMembersQueryParamsOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o ListOwnerMembersQueryParamsPtrOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *ListOwnerMembersQueryParams) map[string]string {
+		if v == nil {
+			return nil
+		}
+		return v.AdditionalParams
+	}).(pulumi.StringMapOutput)
+}
+
+// Query params for the API request.
+type ListOwnersQueryParams struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams map[string]string `pulumi:"additionalParams"`
+	// The position in the result list to start from when fetching paginated results. For details, see [Pagination](https://api-docs.render.com/reference/pagination).
+	Cursor *string `pulumi:"cursor"`
+	// Only return workspaces owned by one of the provided email addresses.
+	Email []string `pulumi:"email"`
+	// The maximum number of items to return. For details, see [Pagination](https://api-docs.render.com/reference/pagination).
+	Limit *int `pulumi:"limit"`
+	// Only return workspaces with one of the provided names. Only exact matches are returned.
+	Name []string `pulumi:"name"`
+}
+
+// Defaults sets the appropriate defaults for ListOwnersQueryParams
+func (val *ListOwnersQueryParams) Defaults() *ListOwnersQueryParams {
+	if val == nil {
+		return nil
+	}
+	tmp := *val
+	if tmp.Limit == nil {
+		limit_ := 20
+		tmp.Limit = &limit_
+	}
+	return &tmp
+}
+
+// ListOwnersQueryParamsInput is an input type that accepts ListOwnersQueryParamsArgs and ListOwnersQueryParamsOutput values.
+// You can construct a concrete instance of `ListOwnersQueryParamsInput` via:
+//
+//	ListOwnersQueryParamsArgs{...}
+type ListOwnersQueryParamsInput interface {
+	pulumi.Input
+
+	ToListOwnersQueryParamsOutput() ListOwnersQueryParamsOutput
+	ToListOwnersQueryParamsOutputWithContext(context.Context) ListOwnersQueryParamsOutput
+}
+
+// Query params for the API request.
+type ListOwnersQueryParamsArgs struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams pulumi.StringMapInput `pulumi:"additionalParams"`
+	// The position in the result list to start from when fetching paginated results. For details, see [Pagination](https://api-docs.render.com/reference/pagination).
+	Cursor pulumi.StringPtrInput `pulumi:"cursor"`
+	// Only return workspaces owned by one of the provided email addresses.
+	Email pulumi.StringArrayInput `pulumi:"email"`
+	// The maximum number of items to return. For details, see [Pagination](https://api-docs.render.com/reference/pagination).
+	Limit pulumi.IntPtrInput `pulumi:"limit"`
+	// Only return workspaces with one of the provided names. Only exact matches are returned.
+	Name pulumi.StringArrayInput `pulumi:"name"`
+}
+
+// Defaults sets the appropriate defaults for ListOwnersQueryParamsArgs
+func (val *ListOwnersQueryParamsArgs) Defaults() *ListOwnersQueryParamsArgs {
+	if val == nil {
+		return nil
+	}
+	tmp := *val
+	if tmp.Limit == nil {
+		tmp.Limit = pulumi.IntPtr(20)
+	}
+	return &tmp
+}
+func (ListOwnersQueryParamsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ListOwnersQueryParams)(nil)).Elem()
+}
+
+func (i ListOwnersQueryParamsArgs) ToListOwnersQueryParamsOutput() ListOwnersQueryParamsOutput {
+	return i.ToListOwnersQueryParamsOutputWithContext(context.Background())
+}
+
+func (i ListOwnersQueryParamsArgs) ToListOwnersQueryParamsOutputWithContext(ctx context.Context) ListOwnersQueryParamsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ListOwnersQueryParamsOutput)
+}
+
+func (i ListOwnersQueryParamsArgs) ToListOwnersQueryParamsPtrOutput() ListOwnersQueryParamsPtrOutput {
+	return i.ToListOwnersQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i ListOwnersQueryParamsArgs) ToListOwnersQueryParamsPtrOutputWithContext(ctx context.Context) ListOwnersQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ListOwnersQueryParamsOutput).ToListOwnersQueryParamsPtrOutputWithContext(ctx)
+}
+
+// ListOwnersQueryParamsPtrInput is an input type that accepts ListOwnersQueryParamsArgs, ListOwnersQueryParamsPtr and ListOwnersQueryParamsPtrOutput values.
+// You can construct a concrete instance of `ListOwnersQueryParamsPtrInput` via:
+//
+//	        ListOwnersQueryParamsArgs{...}
+//
+//	or:
+//
+//	        nil
+type ListOwnersQueryParamsPtrInput interface {
+	pulumi.Input
+
+	ToListOwnersQueryParamsPtrOutput() ListOwnersQueryParamsPtrOutput
+	ToListOwnersQueryParamsPtrOutputWithContext(context.Context) ListOwnersQueryParamsPtrOutput
+}
+
+type listOwnersQueryParamsPtrType ListOwnersQueryParamsArgs
+
+func ListOwnersQueryParamsPtr(v *ListOwnersQueryParamsArgs) ListOwnersQueryParamsPtrInput {
+	return (*listOwnersQueryParamsPtrType)(v)
+}
+
+func (*listOwnersQueryParamsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**ListOwnersQueryParams)(nil)).Elem()
+}
+
+func (i *listOwnersQueryParamsPtrType) ToListOwnersQueryParamsPtrOutput() ListOwnersQueryParamsPtrOutput {
+	return i.ToListOwnersQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i *listOwnersQueryParamsPtrType) ToListOwnersQueryParamsPtrOutputWithContext(ctx context.Context) ListOwnersQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ListOwnersQueryParamsPtrOutput)
+}
+
+// Query params for the API request.
+type ListOwnersQueryParamsOutput struct{ *pulumi.OutputState }
+
+func (ListOwnersQueryParamsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ListOwnersQueryParams)(nil)).Elem()
+}
+
+func (o ListOwnersQueryParamsOutput) ToListOwnersQueryParamsOutput() ListOwnersQueryParamsOutput {
+	return o
+}
+
+func (o ListOwnersQueryParamsOutput) ToListOwnersQueryParamsOutputWithContext(ctx context.Context) ListOwnersQueryParamsOutput {
+	return o
+}
+
+func (o ListOwnersQueryParamsOutput) ToListOwnersQueryParamsPtrOutput() ListOwnersQueryParamsPtrOutput {
+	return o.ToListOwnersQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (o ListOwnersQueryParamsOutput) ToListOwnersQueryParamsPtrOutputWithContext(ctx context.Context) ListOwnersQueryParamsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v ListOwnersQueryParams) *ListOwnersQueryParams {
+		return &v
+	}).(ListOwnersQueryParamsPtrOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o ListOwnersQueryParamsOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v ListOwnersQueryParams) map[string]string { return v.AdditionalParams }).(pulumi.StringMapOutput)
+}
+
+// The position in the result list to start from when fetching paginated results. For details, see [Pagination](https://api-docs.render.com/reference/pagination).
+func (o ListOwnersQueryParamsOutput) Cursor() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ListOwnersQueryParams) *string { return v.Cursor }).(pulumi.StringPtrOutput)
+}
+
+// Only return workspaces owned by one of the provided email addresses.
+func (o ListOwnersQueryParamsOutput) Email() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v ListOwnersQueryParams) []string { return v.Email }).(pulumi.StringArrayOutput)
+}
+
+// The maximum number of items to return. For details, see [Pagination](https://api-docs.render.com/reference/pagination).
+func (o ListOwnersQueryParamsOutput) Limit() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v ListOwnersQueryParams) *int { return v.Limit }).(pulumi.IntPtrOutput)
+}
+
+// Only return workspaces with one of the provided names. Only exact matches are returned.
+func (o ListOwnersQueryParamsOutput) Name() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v ListOwnersQueryParams) []string { return v.Name }).(pulumi.StringArrayOutput)
+}
+
+type ListOwnersQueryParamsPtrOutput struct{ *pulumi.OutputState }
+
+func (ListOwnersQueryParamsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ListOwnersQueryParams)(nil)).Elem()
+}
+
+func (o ListOwnersQueryParamsPtrOutput) ToListOwnersQueryParamsPtrOutput() ListOwnersQueryParamsPtrOutput {
+	return o
+}
+
+func (o ListOwnersQueryParamsPtrOutput) ToListOwnersQueryParamsPtrOutputWithContext(ctx context.Context) ListOwnersQueryParamsPtrOutput {
+	return o
+}
+
+func (o ListOwnersQueryParamsPtrOutput) Elem() ListOwnersQueryParamsOutput {
+	return o.ApplyT(func(v *ListOwnersQueryParams) ListOwnersQueryParams {
+		if v != nil {
+			return *v
+		}
+		var ret ListOwnersQueryParams
+		return ret
+	}).(ListOwnersQueryParamsOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o ListOwnersQueryParamsPtrOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *ListOwnersQueryParams) map[string]string {
+		if v == nil {
+			return nil
+		}
+		return v.AdditionalParams
+	}).(pulumi.StringMapOutput)
+}
+
+// The position in the result list to start from when fetching paginated results. For details, see [Pagination](https://api-docs.render.com/reference/pagination).
+func (o ListOwnersQueryParamsPtrOutput) Cursor() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ListOwnersQueryParams) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Cursor
+	}).(pulumi.StringPtrOutput)
+}
+
+// Only return workspaces owned by one of the provided email addresses.
+func (o ListOwnersQueryParamsPtrOutput) Email() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *ListOwnersQueryParams) []string {
+		if v == nil {
+			return nil
+		}
+		return v.Email
+	}).(pulumi.StringArrayOutput)
+}
+
+// The maximum number of items to return. For details, see [Pagination](https://api-docs.render.com/reference/pagination).
+func (o ListOwnersQueryParamsPtrOutput) Limit() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *ListOwnersQueryParams) *int {
+		if v == nil {
+			return nil
+		}
+		return v.Limit
+	}).(pulumi.IntPtrOutput)
+}
+
+// Only return workspaces with one of the provided names. Only exact matches are returned.
+func (o ListOwnersQueryParamsPtrOutput) Name() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *ListOwnersQueryParams) []string {
+		if v == nil {
+			return nil
+		}
+		return v.Name
+	}).(pulumi.StringArrayOutput)
+}
+
 type Owner struct {
 	Email string `pulumi:"email"`
 	Id    string `pulumi:"id"`
@@ -242,6 +762,18 @@ func (o TeamMemberArrayOutput) Index(i pulumi.IntInput) TeamMemberOutput {
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*GetOwnerQueryParamsInput)(nil)).Elem(), GetOwnerQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetOwnerQueryParamsPtrInput)(nil)).Elem(), GetOwnerQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ListOwnerMembersQueryParamsInput)(nil)).Elem(), ListOwnerMembersQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ListOwnerMembersQueryParamsPtrInput)(nil)).Elem(), ListOwnerMembersQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ListOwnersQueryParamsInput)(nil)).Elem(), ListOwnersQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ListOwnersQueryParamsPtrInput)(nil)).Elem(), ListOwnersQueryParamsArgs{})
+	pulumi.RegisterOutputType(GetOwnerQueryParamsOutput{})
+	pulumi.RegisterOutputType(GetOwnerQueryParamsPtrOutput{})
+	pulumi.RegisterOutputType(ListOwnerMembersQueryParamsOutput{})
+	pulumi.RegisterOutputType(ListOwnerMembersQueryParamsPtrOutput{})
+	pulumi.RegisterOutputType(ListOwnersQueryParamsOutput{})
+	pulumi.RegisterOutputType(ListOwnersQueryParamsPtrOutput{})
 	pulumi.RegisterOutputType(OwnerOutput{})
 	pulumi.RegisterOutputType(OwnerPtrOutput{})
 	pulumi.RegisterOutputType(OwnerWithCursorOutput{})

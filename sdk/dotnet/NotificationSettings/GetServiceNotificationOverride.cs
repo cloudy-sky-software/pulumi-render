@@ -25,6 +25,12 @@ namespace Pulumi.Render.NotificationSettings
     public sealed class GetServiceNotificationOverrideArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
+        /// Query params to send with the API request.
+        /// </summary>
+        [Input("queryParams")]
+        public Inputs.GetServiceNotificationOverrideQueryParams? QueryParams { get; set; }
+
+        /// <summary>
         /// The ID of the service
         /// </summary>
         [Input("serviceId", required: true)]
@@ -38,6 +44,12 @@ namespace Pulumi.Render.NotificationSettings
 
     public sealed class GetServiceNotificationOverrideInvokeArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// Query params to send with the API request.
+        /// </summary>
+        [Input("queryParams")]
+        public Input<Inputs.GetServiceNotificationOverrideQueryParamsArgs>? QueryParams { get; set; }
+
         /// <summary>
         /// The ID of the service
         /// </summary>

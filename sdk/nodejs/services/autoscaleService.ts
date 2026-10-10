@@ -44,6 +44,10 @@ export class AutoscaleService extends pulumi.CustomResource {
      * The minimum number of instances for the service
      */
     declare public readonly min: pulumi.Output<number>;
+    /**
+     * Query params to send with the API requests for this resource.
+     */
+    declare public readonly queryParams: pulumi.Output<outputs.services.AutoscaleServiceQueryParams | undefined>;
 
     /**
      * Create a AutoscaleService resource with the given unique name, arguments, and options.
@@ -72,12 +76,14 @@ export class AutoscaleService extends pulumi.CustomResource {
             resourceInputs["enabled"] = (args?.enabled) ?? false;
             resourceInputs["max"] = args?.max;
             resourceInputs["min"] = args?.min;
+            resourceInputs["queryParams"] = args?.queryParams;
             resourceInputs["serviceId"] = args?.serviceId;
         } else {
             resourceInputs["criteria"] = undefined /*out*/;
             resourceInputs["enabled"] = undefined /*out*/;
             resourceInputs["max"] = undefined /*out*/;
             resourceInputs["min"] = undefined /*out*/;
+            resourceInputs["queryParams"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(AutoscaleService.__pulumiType, name, resourceInputs, opts);
@@ -98,6 +104,10 @@ export interface AutoscaleServiceArgs {
      * The minimum number of instances for the service
      */
     min: pulumi.Input<number>;
+    /**
+     * Query params to send with the API requests for this resource.
+     */
+    queryParams?: pulumi.Input<inputs.services.AutoscaleServiceQueryParamsArgs | undefined>;
     /**
      * The ID of the service
      */

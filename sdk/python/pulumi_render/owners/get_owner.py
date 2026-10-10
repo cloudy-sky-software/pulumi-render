@@ -14,6 +14,7 @@ else:
     from typing_extensions import NotRequired, TypedDict, TypeAlias
 from .. import _utilities
 from ._enums import *
+from ._inputs import *
 
 __all__ = [
     'GetOwnerResult',
@@ -84,14 +85,17 @@ class AwaitableGetOwnerResult(GetOwnerResult):
 
 
 def get_owner(owner_id: Optional[_builtins.str] = None,
+              query_params: Optional[Union['GetOwnerQueryParams', 'GetOwnerQueryParamsDict']] = None,
               opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetOwnerResult:
     """
     Use this data source to access information about an existing resource.
 
     :param _builtins.str owner_id: The ID of the user or team
+    :param Union['GetOwnerQueryParams', 'GetOwnerQueryParamsDict'] query_params: Query params to send with the API request.
     """
     __args__ = dict()
     __args__['ownerId'] = owner_id
+    __args__['queryParams'] = query_params
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke('render:owners:getOwner', __args__, opts=opts, typ=GetOwnerResult).value
 
@@ -102,14 +106,17 @@ def get_owner(owner_id: Optional[_builtins.str] = None,
         two_factor_auth_enabled=pulumi.get(__ret__, 'two_factor_auth_enabled'),
         type=pulumi.get(__ret__, 'type'))
 def get_owner_output(owner_id: pulumi.Input[Optional[_builtins.str]] = None,
+                     query_params: pulumi.Input[Optional[Optional[Union['GetOwnerQueryParams', 'GetOwnerQueryParamsDict']]]] = None,
                      opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetOwnerResult]:
     """
     Use this data source to access information about an existing resource.
 
     :param _builtins.str owner_id: The ID of the user or team
+    :param Union['GetOwnerQueryParams', 'GetOwnerQueryParamsDict'] query_params: Query params to send with the API request.
     """
     __args__ = dict()
     __args__['ownerId'] = owner_id
+    __args__['queryParams'] = query_params
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('render:owners:getOwner', __args__, opts=opts, typ=GetOwnerResult)
     return __ret__.apply(lambda __response__: GetOwnerResult(

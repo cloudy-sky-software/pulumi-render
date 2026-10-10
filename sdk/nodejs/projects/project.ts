@@ -52,6 +52,10 @@ export class Project extends pulumi.CustomResource {
      * The ID of the owner that the project belongs to
      */
     declare public readonly ownerId: pulumi.Output<string>;
+    /**
+     * Query params to send with the API requests for this resource.
+     */
+    declare public readonly queryParams: pulumi.Output<outputs.projects.ProjectQueryParams | undefined>;
     declare public /*out*/ readonly updatedAt: pulumi.Output<string>;
 
     /**
@@ -74,6 +78,7 @@ export class Project extends pulumi.CustomResource {
             resourceInputs["environments"] = args?.environments;
             resourceInputs["name"] = args?.name;
             resourceInputs["ownerId"] = args?.ownerId;
+            resourceInputs["queryParams"] = args?.queryParams;
             resourceInputs["createdAt"] = undefined /*out*/;
             resourceInputs["environmentIds"] = undefined /*out*/;
             resourceInputs["owner"] = undefined /*out*/;
@@ -85,6 +90,7 @@ export class Project extends pulumi.CustomResource {
             resourceInputs["name"] = undefined /*out*/;
             resourceInputs["owner"] = undefined /*out*/;
             resourceInputs["ownerId"] = undefined /*out*/;
+            resourceInputs["queryParams"] = undefined /*out*/;
             resourceInputs["updatedAt"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
@@ -108,4 +114,8 @@ export interface ProjectArgs {
      * The ID of the owner that the project belongs to
      */
     ownerId: pulumi.Input<string>;
+    /**
+     * Query params to send with the API requests for this resource.
+     */
+    queryParams?: pulumi.Input<inputs.projects.ProjectQueryParamsArgs | undefined>;
 }

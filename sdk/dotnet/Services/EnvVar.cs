@@ -18,6 +18,12 @@ namespace Pulumi.Render.Services
         [Output("key")]
         public Output<string> Key { get; private set; } = null!;
 
+        /// <summary>
+        /// Query params to send with the API requests for this resource.
+        /// </summary>
+        [Output("queryParams")]
+        public Output<Outputs.EnvVarQueryParams?> QueryParams { get; private set; } = null!;
+
         [Output("value")]
         public Output<string> Value { get; private set; } = null!;
 
@@ -75,6 +81,12 @@ namespace Pulumi.Render.Services
 
         [Input("generateValue")]
         public Input<bool>? GenerateValue { get; set; }
+
+        /// <summary>
+        /// Query params to send with the API requests for this resource.
+        /// </summary>
+        [Input("queryParams")]
+        public Input<Inputs.EnvVarQueryParamsArgs>? QueryParams { get; set; }
 
         /// <summary>
         /// The ID of the service

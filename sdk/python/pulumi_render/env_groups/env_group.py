@@ -26,10 +26,13 @@ class EnvGroupArgs:
                  owner_id: pulumi.Input[_builtins.str],
                  environment_id: pulumi.Input[Optional[_builtins.str]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
+                 query_params: pulumi.Input[Optional['EnvGroupQueryParamsArgs']] = None,
                  secret_files: pulumi.Input[Optional[Sequence[pulumi.Input['SecretFileInputArgs']]]] = None,
                  service_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None):
         """
         The set of arguments for constructing a EnvGroup resource.
+
+        :param pulumi.Input['EnvGroupQueryParamsArgs'] query_params: Query params to send with the API requests for this resource.
         """
         pulumi.set(__self__, "env_vars", env_vars)
         pulumi.set(__self__, "owner_id", owner_id)
@@ -37,6 +40,8 @@ class EnvGroupArgs:
             pulumi.set(__self__, "environment_id", environment_id)
         if name is not None:
             pulumi.set(__self__, "name", name)
+        if query_params is not None:
+            pulumi.set(__self__, "query_params", query_params)
         if secret_files is not None:
             pulumi.set(__self__, "secret_files", secret_files)
         if service_ids is not None:
@@ -79,6 +84,18 @@ class EnvGroupArgs:
         pulumi.set(self, "name", value)
 
     @_builtins.property
+    @pulumi.getter(name="queryParams")
+    def query_params(self) -> pulumi.Input[Optional['EnvGroupQueryParamsArgs']]:
+        """
+        Query params to send with the API requests for this resource.
+        """
+        return pulumi.get(self, "query_params")
+
+    @query_params.setter
+    def query_params(self, value: pulumi.Input[Optional['EnvGroupQueryParamsArgs']]):
+        pulumi.set(self, "query_params", value)
+
+    @_builtins.property
     @pulumi.getter(name="secretFiles")
     def secret_files(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['SecretFileInputArgs']]]]:
         return pulumi.get(self, "secret_files")
@@ -107,6 +124,7 @@ class EnvGroup(pulumi.CustomResource):
                  environment_id: pulumi.Input[Optional[_builtins.str]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  owner_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 query_params: pulumi.Input[Optional[Union['EnvGroupQueryParamsArgs', 'EnvGroupQueryParamsArgsDict', 'outputs.EnvGroupQueryParams']]] = None,
                  secret_files: pulumi.Input[Optional[Sequence[pulumi.Input[Union['SecretFileInputArgs', 'SecretFileInputArgsDict']]]]] = None,
                  service_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  __props__=None):
@@ -115,6 +133,7 @@ class EnvGroup(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[Union['EnvGroupQueryParamsArgs', 'EnvGroupQueryParamsArgsDict', 'outputs.EnvGroupQueryParams']] query_params: Query params to send with the API requests for this resource.
         """
         ...
     @overload
@@ -144,6 +163,7 @@ class EnvGroup(pulumi.CustomResource):
                  environment_id: pulumi.Input[Optional[_builtins.str]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  owner_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 query_params: pulumi.Input[Optional[Union['EnvGroupQueryParamsArgs', 'EnvGroupQueryParamsArgsDict', 'outputs.EnvGroupQueryParams']]] = None,
                  secret_files: pulumi.Input[Optional[Sequence[pulumi.Input[Union['SecretFileInputArgs', 'SecretFileInputArgsDict']]]]] = None,
                  service_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  __props__=None):
@@ -163,6 +183,7 @@ class EnvGroup(pulumi.CustomResource):
             if owner_id is None and not opts.urn:
                 raise TypeError("Missing required property 'owner_id'")
             __props__.__dict__["owner_id"] = owner_id
+            __props__.__dict__["query_params"] = query_params
             __props__.__dict__["secret_files"] = secret_files
             __props__.__dict__["service_ids"] = service_ids
             __props__.__dict__["created_at"] = None
@@ -195,6 +216,7 @@ class EnvGroup(pulumi.CustomResource):
         __props__.__dict__["environment_id"] = None
         __props__.__dict__["name"] = None
         __props__.__dict__["owner_id"] = None
+        __props__.__dict__["query_params"] = None
         __props__.__dict__["secret_files"] = None
         __props__.__dict__["service_ids"] = None
         __props__.__dict__["service_links"] = None
@@ -225,6 +247,14 @@ class EnvGroup(pulumi.CustomResource):
     @pulumi.getter(name="ownerId")
     def owner_id(self) -> pulumi.Output[_builtins.str]:
         return pulumi.get(self, "owner_id")
+
+    @_builtins.property
+    @pulumi.getter(name="queryParams")
+    def query_params(self) -> pulumi.Output[Optional['outputs.EnvGroupQueryParams']]:
+        """
+        Query params to send with the API requests for this resource.
+        """
+        return pulumi.get(self, "query_params")
 
     @_builtins.property
     @pulumi.getter(name="secretFiles")

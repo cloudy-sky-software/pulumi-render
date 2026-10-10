@@ -15,6 +15,7 @@ else:
 from .. import _utilities
 from . import outputs
 from ._enums import *
+from ._inputs import *
 
 __all__ = ['LinkServiceToEnvGroupArgs', 'LinkServiceToEnvGroup']
 
@@ -22,15 +23,19 @@ __all__ = ['LinkServiceToEnvGroupArgs', 'LinkServiceToEnvGroup']
 class LinkServiceToEnvGroupArgs:
     def __init__(__self__, *,
                  env_group_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 query_params: pulumi.Input[Optional['LinkServiceToEnvGroupQueryParamsArgs']] = None,
                  service_id: pulumi.Input[Optional[_builtins.str]] = None):
         """
         The set of arguments for constructing a LinkServiceToEnvGroup resource.
 
         :param pulumi.Input[_builtins.str] env_group_id: Filter for resources that belong to an environment group
+        :param pulumi.Input['LinkServiceToEnvGroupQueryParamsArgs'] query_params: Query params to send with the API requests for this resource.
         :param pulumi.Input[_builtins.str] service_id: The ID of the service
         """
         if env_group_id is not None:
             pulumi.set(__self__, "env_group_id", env_group_id)
+        if query_params is not None:
+            pulumi.set(__self__, "query_params", query_params)
         if service_id is not None:
             pulumi.set(__self__, "service_id", service_id)
 
@@ -45,6 +50,18 @@ class LinkServiceToEnvGroupArgs:
     @env_group_id.setter
     def env_group_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "env_group_id", value)
+
+    @_builtins.property
+    @pulumi.getter(name="queryParams")
+    def query_params(self) -> pulumi.Input[Optional['LinkServiceToEnvGroupQueryParamsArgs']]:
+        """
+        Query params to send with the API requests for this resource.
+        """
+        return pulumi.get(self, "query_params")
+
+    @query_params.setter
+    def query_params(self, value: pulumi.Input[Optional['LinkServiceToEnvGroupQueryParamsArgs']]):
+        pulumi.set(self, "query_params", value)
 
     @_builtins.property
     @pulumi.getter(name="serviceId")
@@ -66,6 +83,7 @@ class LinkServiceToEnvGroup(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  env_group_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 query_params: pulumi.Input[Optional[Union['LinkServiceToEnvGroupQueryParamsArgs', 'LinkServiceToEnvGroupQueryParamsArgsDict', 'outputs.LinkServiceToEnvGroupQueryParams']]] = None,
                  service_id: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
@@ -74,6 +92,7 @@ class LinkServiceToEnvGroup(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] env_group_id: Filter for resources that belong to an environment group
+        :param pulumi.Input[Union['LinkServiceToEnvGroupQueryParamsArgs', 'LinkServiceToEnvGroupQueryParamsArgsDict', 'outputs.LinkServiceToEnvGroupQueryParams']] query_params: Query params to send with the API requests for this resource.
         :param pulumi.Input[_builtins.str] service_id: The ID of the service
         """
         ...
@@ -101,6 +120,7 @@ class LinkServiceToEnvGroup(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  env_group_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 query_params: pulumi.Input[Optional[Union['LinkServiceToEnvGroupQueryParamsArgs', 'LinkServiceToEnvGroupQueryParamsArgsDict', 'outputs.LinkServiceToEnvGroupQueryParams']]] = None,
                  service_id: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -112,6 +132,7 @@ class LinkServiceToEnvGroup(pulumi.CustomResource):
             __props__ = LinkServiceToEnvGroupArgs.__new__(LinkServiceToEnvGroupArgs)
 
             __props__.__dict__["env_group_id"] = env_group_id
+            __props__.__dict__["query_params"] = query_params
             __props__.__dict__["service_id"] = service_id
             __props__.__dict__["created_at"] = None
             __props__.__dict__["env_vars"] = None
@@ -148,6 +169,7 @@ class LinkServiceToEnvGroup(pulumi.CustomResource):
         __props__.__dict__["environment_id"] = None
         __props__.__dict__["name"] = None
         __props__.__dict__["owner_id"] = None
+        __props__.__dict__["query_params"] = None
         __props__.__dict__["secret_files"] = None
         __props__.__dict__["service_links"] = None
         __props__.__dict__["updated_at"] = None
@@ -177,6 +199,14 @@ class LinkServiceToEnvGroup(pulumi.CustomResource):
     @pulumi.getter(name="ownerId")
     def owner_id(self) -> pulumi.Output[Optional[_builtins.str]]:
         return pulumi.get(self, "owner_id")
+
+    @_builtins.property
+    @pulumi.getter(name="queryParams")
+    def query_params(self) -> pulumi.Output[Optional['outputs.LinkServiceToEnvGroupQueryParams']]:
+        """
+        Query params to send with the API requests for this resource.
+        """
+        return pulumi.get(self, "query_params")
 
     @_builtins.property
     @pulumi.getter(name="secretFiles")

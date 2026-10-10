@@ -11,6 +11,40 @@ namespace Pulumi.Render.RegistryCredentials
     /// The registry to use this credential with
     /// </summary>
     [EnumType]
+    public readonly struct ListRegistryCredentialsQueryParamsTypeItem : IEquatable<ListRegistryCredentialsQueryParamsTypeItem>
+    {
+        private readonly string _value;
+
+        private ListRegistryCredentialsQueryParamsTypeItem(string value)
+        {
+            _value = value ?? throw new ArgumentNullException(nameof(value));
+        }
+
+        public static ListRegistryCredentialsQueryParamsTypeItem Github { get; } = new ListRegistryCredentialsQueryParamsTypeItem("GITHUB");
+        public static ListRegistryCredentialsQueryParamsTypeItem Gitlab { get; } = new ListRegistryCredentialsQueryParamsTypeItem("GITLAB");
+        public static ListRegistryCredentialsQueryParamsTypeItem Docker { get; } = new ListRegistryCredentialsQueryParamsTypeItem("DOCKER");
+        public static ListRegistryCredentialsQueryParamsTypeItem GoogleArtifact { get; } = new ListRegistryCredentialsQueryParamsTypeItem("GOOGLE_ARTIFACT");
+        public static ListRegistryCredentialsQueryParamsTypeItem AwsEcr { get; } = new ListRegistryCredentialsQueryParamsTypeItem("AWS_ECR");
+
+        public static bool operator ==(ListRegistryCredentialsQueryParamsTypeItem left, ListRegistryCredentialsQueryParamsTypeItem right) => left.Equals(right);
+        public static bool operator !=(ListRegistryCredentialsQueryParamsTypeItem left, ListRegistryCredentialsQueryParamsTypeItem right) => !left.Equals(right);
+
+        public static explicit operator string(ListRegistryCredentialsQueryParamsTypeItem value) => value._value;
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override bool Equals(object? obj) => obj is ListRegistryCredentialsQueryParamsTypeItem other && Equals(other);
+        public bool Equals(ListRegistryCredentialsQueryParamsTypeItem other) => string.Equals(_value, other._value, StringComparison.Ordinal);
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override int GetHashCode() => _value?.GetHashCode() ?? 0;
+
+        public override string ToString() => _value;
+    }
+
+    /// <summary>
+    /// The registry to use this credential with
+    /// </summary>
+    [EnumType]
     public readonly struct Registry : IEquatable<Registry>
     {
         private readonly string _value;

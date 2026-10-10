@@ -24,6 +24,8 @@ func GetOwnerNotificationSetting(ctx *pulumi.Context, args *GetOwnerNotification
 type GetOwnerNotificationSettingArgs struct {
 	// The ID of the workspace to return resources for
 	OwnerId string `pulumi:"ownerId"`
+	// Query params to send with the API request.
+	QueryParams *GetOwnerNotificationSettingQueryParams `pulumi:"queryParams"`
 }
 
 type GetOwnerNotificationSettingResult struct {
@@ -42,6 +44,8 @@ func GetOwnerNotificationSettingOutput(ctx *pulumi.Context, args GetOwnerNotific
 type GetOwnerNotificationSettingOutputArgs struct {
 	// The ID of the workspace to return resources for
 	OwnerId pulumi.StringInput `pulumi:"ownerId"`
+	// Query params to send with the API request.
+	QueryParams GetOwnerNotificationSettingQueryParamsPtrInput `pulumi:"queryParams"`
 }
 
 func (GetOwnerNotificationSettingOutputArgs) ElementType() reflect.Type {

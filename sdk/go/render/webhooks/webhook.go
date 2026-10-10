@@ -21,8 +21,10 @@ type Webhook struct {
 	Name        pulumi.StringOutput        `pulumi:"name"`
 	// The ID of the owner (team or personal user) whose resources should be returned
 	OwnerId pulumi.StringOutput `pulumi:"ownerId"`
-	Secret  pulumi.StringOutput `pulumi:"secret"`
-	Url     pulumi.StringOutput `pulumi:"url"`
+	// Query params to send with the API requests for this resource.
+	QueryParams WebhookQueryParamsPtrOutput `pulumi:"queryParams"`
+	Secret      pulumi.StringOutput         `pulumi:"secret"`
+	Url         pulumi.StringOutput         `pulumi:"url"`
 }
 
 // NewWebhook registers a new resource with the given unique name, arguments, and options.
@@ -83,7 +85,9 @@ type webhookArgs struct {
 	Name        *string           `pulumi:"name"`
 	// The ID of the owner (team or personal user) whose resources should be returned
 	OwnerId string `pulumi:"ownerId"`
-	Url     string `pulumi:"url"`
+	// Query params to send with the API requests for this resource.
+	QueryParams *WebhookQueryParams `pulumi:"queryParams"`
+	Url         string              `pulumi:"url"`
 }
 
 // The set of arguments for constructing a Webhook resource.
@@ -94,7 +98,9 @@ type WebhookArgs struct {
 	Name        pulumi.StringPtrInput
 	// The ID of the owner (team or personal user) whose resources should be returned
 	OwnerId pulumi.StringInput
-	Url     pulumi.StringInput
+	// Query params to send with the API requests for this resource.
+	QueryParams WebhookQueryParamsPtrInput
+	Url         pulumi.StringInput
 }
 
 func (WebhookArgs) ElementType() reflect.Type {
@@ -150,6 +156,11 @@ func (o WebhookOutput) Name() pulumi.StringOutput {
 // The ID of the owner (team or personal user) whose resources should be returned
 func (o WebhookOutput) OwnerId() pulumi.StringOutput {
 	return o.ApplyT(func(v *Webhook) pulumi.StringOutput { return v.OwnerId }).(pulumi.StringOutput)
+}
+
+// Query params to send with the API requests for this resource.
+func (o WebhookOutput) QueryParams() WebhookQueryParamsPtrOutput {
+	return o.ApplyT(func(v *Webhook) WebhookQueryParamsPtrOutput { return v.QueryParams }).(WebhookQueryParamsPtrOutput)
 }
 
 func (o WebhookOutput) Secret() pulumi.StringOutput {

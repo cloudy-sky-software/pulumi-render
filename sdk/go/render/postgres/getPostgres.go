@@ -23,6 +23,8 @@ func LookupPostgres(ctx *pulumi.Context, args *LookupPostgresArgs, opts ...pulum
 
 type LookupPostgresArgs struct {
 	PostgresId string `pulumi:"postgresId"`
+	// Query params to send with the API request.
+	QueryParams *GetPostgresQueryParams `pulumi:"queryParams"`
 }
 
 type LookupPostgresResult struct {
@@ -73,6 +75,8 @@ func LookupPostgresOutput(ctx *pulumi.Context, args LookupPostgresOutputArgs, op
 
 type LookupPostgresOutputArgs struct {
 	PostgresId pulumi.StringInput `pulumi:"postgresId"`
+	// Query params to send with the API request.
+	QueryParams GetPostgresQueryParamsPtrInput `pulumi:"queryParams"`
 }
 
 func (LookupPostgresOutputArgs) ElementType() reflect.Type {

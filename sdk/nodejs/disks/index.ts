@@ -15,7 +15,7 @@ export const getDisk: typeof import("./getDisk").getDisk = null as any;
 export const getDiskOutput: typeof import("./getDisk").getDiskOutput = null as any;
 utilities.lazyLoad(exports, ["getDisk","getDiskOutput"], () => require("./getDisk"));
 
-export { ListDisksArgs, ListDisksResult } from "./listDisks";
+export { ListDisksArgs, ListDisksResult, ListDisksOutputArgs } from "./listDisks";
 export const listDisks: typeof import("./listDisks").listDisks = null as any;
 export const listDisksOutput: typeof import("./listDisks").listDisksOutput = null as any;
 utilities.lazyLoad(exports, ["listDisks","listDisksOutput"], () => require("./listDisks"));

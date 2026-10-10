@@ -14,20 +14,40 @@ namespace Pulumi.Render.Postgres
         public static Task<ListPostgresResult> InvokeAsync(ListPostgresArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<ListPostgresResult>("render:postgres:listPostgres", args ?? new ListPostgresArgs(), options.WithDefaults());
 
-        public static Output<ListPostgresResult> Invoke(InvokeOptions? options = null)
-            => global::Pulumi.Deployment.Instance.Invoke<ListPostgresResult>("render:postgres:listPostgres", InvokeArgs.Empty, options.WithDefaults());
+        public static Output<ListPostgresResult> Invoke(ListPostgresInvokeArgs? args = null, InvokeOptions? options = null)
+            => global::Pulumi.Deployment.Instance.Invoke<ListPostgresResult>("render:postgres:listPostgres", args ?? new ListPostgresInvokeArgs(), options.WithDefaults());
 
-        public static Output<ListPostgresResult> Invoke(InvokeOutputOptions options)
-            => global::Pulumi.Deployment.Instance.Invoke<ListPostgresResult>("render:postgres:listPostgres", InvokeArgs.Empty, options.WithDefaults());
+        public static Output<ListPostgresResult> Invoke(ListPostgresInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<ListPostgresResult>("render:postgres:listPostgres", args ?? new ListPostgresInvokeArgs(), options.WithDefaults());
     }
 
 
     public sealed class ListPostgresArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// Query params to send with the API request.
+        /// </summary>
+        [Input("queryParams")]
+        public Inputs.ListPostgresQueryParams? QueryParams { get; set; }
+
         public ListPostgresArgs()
         {
         }
         public static new ListPostgresArgs Empty => new ListPostgresArgs();
+    }
+
+    public sealed class ListPostgresInvokeArgs : global::Pulumi.InvokeArgs
+    {
+        /// <summary>
+        /// Query params to send with the API request.
+        /// </summary>
+        [Input("queryParams")]
+        public Input<Inputs.ListPostgresQueryParamsArgs>? QueryParams { get; set; }
+
+        public ListPostgresInvokeArgs()
+        {
+        }
+        public static new ListPostgresInvokeArgs Empty => new ListPostgresInvokeArgs();
     }
 
 

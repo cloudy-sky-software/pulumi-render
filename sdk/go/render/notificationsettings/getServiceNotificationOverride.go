@@ -22,6 +22,8 @@ func GetServiceNotificationOverride(ctx *pulumi.Context, args *GetServiceNotific
 }
 
 type GetServiceNotificationOverrideArgs struct {
+	// Query params to send with the API request.
+	QueryParams *GetServiceNotificationOverrideQueryParams `pulumi:"queryParams"`
 	// The ID of the service
 	ServiceId string `pulumi:"serviceId"`
 }
@@ -38,6 +40,8 @@ func GetServiceNotificationOverrideOutput(ctx *pulumi.Context, args GetServiceNo
 }
 
 type GetServiceNotificationOverrideOutputArgs struct {
+	// Query params to send with the API request.
+	QueryParams GetServiceNotificationOverrideQueryParamsPtrInput `pulumi:"queryParams"`
 	// The ID of the service
 	ServiceId pulumi.StringInput `pulumi:"serviceId"`
 }

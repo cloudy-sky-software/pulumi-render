@@ -24,6 +24,8 @@ func LookupEnvGroupSecretFile(ctx *pulumi.Context, args *LookupEnvGroupSecretFil
 type LookupEnvGroupSecretFileArgs struct {
 	// Filter for resources that belong to an environment group
 	EnvGroupId string `pulumi:"envGroupId"`
+	// Query params to send with the API request.
+	QueryParams *GetEnvGroupSecretFileQueryParams `pulumi:"queryParams"`
 	// The name of the secret file
 	SecretFileName string `pulumi:"secretFileName"`
 }
@@ -41,6 +43,8 @@ func LookupEnvGroupSecretFileOutput(ctx *pulumi.Context, args LookupEnvGroupSecr
 type LookupEnvGroupSecretFileOutputArgs struct {
 	// Filter for resources that belong to an environment group
 	EnvGroupId pulumi.StringInput `pulumi:"envGroupId"`
+	// Query params to send with the API request.
+	QueryParams GetEnvGroupSecretFileQueryParamsPtrInput `pulumi:"queryParams"`
 	// The name of the secret file
 	SecretFileName pulumi.StringInput `pulumi:"secretFileName"`
 }

@@ -21,11 +21,13 @@ type RollbackDeploy struct {
 	DeployId   pulumi.StringOutput    `pulumi:"deployId"`
 	FinishedAt pulumi.StringPtrOutput `pulumi:"finishedAt"`
 	// Image information used when creating the deploy. Not present for Git-backed deploys
-	Image     ImagePropertiesPtrOutput `pulumi:"image"`
-	StartedAt pulumi.StringPtrOutput   `pulumi:"startedAt"`
-	Status    StatusPtrOutput          `pulumi:"status"`
-	Trigger   TriggerPtrOutput         `pulumi:"trigger"`
-	UpdatedAt pulumi.StringPtrOutput   `pulumi:"updatedAt"`
+	Image ImagePropertiesPtrOutput `pulumi:"image"`
+	// Query params to send with the API requests for this resource.
+	QueryParams RollbackDeployQueryParamsPtrOutput `pulumi:"queryParams"`
+	StartedAt   pulumi.StringPtrOutput             `pulumi:"startedAt"`
+	Status      StatusPtrOutput                    `pulumi:"status"`
+	Trigger     TriggerPtrOutput                   `pulumi:"trigger"`
+	UpdatedAt   pulumi.StringPtrOutput             `pulumi:"updatedAt"`
 }
 
 // NewRollbackDeploy registers a new resource with the given unique name, arguments, and options.
@@ -73,6 +75,8 @@ func (RollbackDeployState) ElementType() reflect.Type {
 type rollbackDeployArgs struct {
 	// The ID of the deploy to roll back to
 	DeployId string `pulumi:"deployId"`
+	// Query params to send with the API requests for this resource.
+	QueryParams *RollbackDeployQueryParams `pulumi:"queryParams"`
 	// The ID of the service
 	ServiceId *string `pulumi:"serviceId"`
 }
@@ -81,6 +85,8 @@ type rollbackDeployArgs struct {
 type RollbackDeployArgs struct {
 	// The ID of the deploy to roll back to
 	DeployId pulumi.StringInput
+	// Query params to send with the API requests for this resource.
+	QueryParams RollbackDeployQueryParamsPtrInput
 	// The ID of the service
 	ServiceId pulumi.StringPtrInput
 }
@@ -142,6 +148,11 @@ func (o RollbackDeployOutput) FinishedAt() pulumi.StringPtrOutput {
 // Image information used when creating the deploy. Not present for Git-backed deploys
 func (o RollbackDeployOutput) Image() ImagePropertiesPtrOutput {
 	return o.ApplyT(func(v *RollbackDeploy) ImagePropertiesPtrOutput { return v.Image }).(ImagePropertiesPtrOutput)
+}
+
+// Query params to send with the API requests for this resource.
+func (o RollbackDeployOutput) QueryParams() RollbackDeployQueryParamsPtrOutput {
+	return o.ApplyT(func(v *RollbackDeploy) RollbackDeployQueryParamsPtrOutput { return v.QueryParams }).(RollbackDeployQueryParamsPtrOutput)
 }
 
 func (o RollbackDeployOutput) StartedAt() pulumi.StringPtrOutput {

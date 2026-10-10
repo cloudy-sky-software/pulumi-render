@@ -2,12 +2,16 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
+import * as inputs from "../types/input";
+import * as outputs from "../types/output";
+import * as enums from "../types/enums";
 import * as utilities from "../utilities";
 
 export function getDisk(args: GetDiskArgs, opts?: pulumi.InvokeOptions): Promise<GetDiskResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("render:disks:getDisk", {
         "diskId": args.diskId,
+        "queryParams": args.queryParams,
     }, opts);
 }
 
@@ -16,6 +20,10 @@ export interface GetDiskArgs {
      * The ID of the disk
      */
     diskId: string;
+    /**
+     * Query params to send with the API request.
+     */
+    queryParams?: inputs.disks.GetDiskQueryParams;
 }
 
 export interface GetDiskResult {
@@ -31,6 +39,7 @@ export function getDiskOutput(args: GetDiskOutputArgs, opts?: pulumi.InvokeOutpu
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("render:disks:getDisk", {
         "diskId": args.diskId,
+        "queryParams": args.queryParams,
     }, opts);
 }
 
@@ -39,4 +48,8 @@ export interface GetDiskOutputArgs {
      * The ID of the disk
      */
     diskId: pulumi.Input<string>;
+    /**
+     * Query params to send with the API request.
+     */
+    queryParams?: pulumi.Input<inputs.disks.GetDiskQueryParamsArgs | undefined>;
 }

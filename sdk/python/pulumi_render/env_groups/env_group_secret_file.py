@@ -15,6 +15,7 @@ else:
 from .. import _utilities
 from . import outputs
 from ._enums import *
+from ._inputs import *
 
 __all__ = ['EnvGroupSecretFileArgs', 'EnvGroupSecretFile']
 
@@ -23,14 +24,19 @@ class EnvGroupSecretFileArgs:
     def __init__(__self__, *,
                  content: pulumi.Input[Optional[_builtins.str]] = None,
                  env_group_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 query_params: pulumi.Input[Optional['EnvGroupSecretFileQueryParamsArgs']] = None,
                  secret_file_name: pulumi.Input[Optional[_builtins.str]] = None):
         """
         The set of arguments for constructing a EnvGroupSecretFile resource.
+
+        :param pulumi.Input['EnvGroupSecretFileQueryParamsArgs'] query_params: Query params to send with the API requests for this resource.
         """
         if content is not None:
             pulumi.set(__self__, "content", content)
         if env_group_id is not None:
             pulumi.set(__self__, "env_group_id", env_group_id)
+        if query_params is not None:
+            pulumi.set(__self__, "query_params", query_params)
         if secret_file_name is not None:
             pulumi.set(__self__, "secret_file_name", secret_file_name)
 
@@ -53,6 +59,18 @@ class EnvGroupSecretFileArgs:
         pulumi.set(self, "env_group_id", value)
 
     @_builtins.property
+    @pulumi.getter(name="queryParams")
+    def query_params(self) -> pulumi.Input[Optional['EnvGroupSecretFileQueryParamsArgs']]:
+        """
+        Query params to send with the API requests for this resource.
+        """
+        return pulumi.get(self, "query_params")
+
+    @query_params.setter
+    def query_params(self, value: pulumi.Input[Optional['EnvGroupSecretFileQueryParamsArgs']]):
+        pulumi.set(self, "query_params", value)
+
+    @_builtins.property
     @pulumi.getter(name="secretFileName")
     def secret_file_name(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "secret_file_name")
@@ -70,6 +88,7 @@ class EnvGroupSecretFile(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  content: pulumi.Input[Optional[_builtins.str]] = None,
                  env_group_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 query_params: pulumi.Input[Optional[Union['EnvGroupSecretFileQueryParamsArgs', 'EnvGroupSecretFileQueryParamsArgsDict', 'outputs.EnvGroupSecretFileQueryParams']]] = None,
                  secret_file_name: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
@@ -77,6 +96,7 @@ class EnvGroupSecretFile(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[Union['EnvGroupSecretFileQueryParamsArgs', 'EnvGroupSecretFileQueryParamsArgsDict', 'outputs.EnvGroupSecretFileQueryParams']] query_params: Query params to send with the API requests for this resource.
         """
         ...
     @overload
@@ -104,6 +124,7 @@ class EnvGroupSecretFile(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  content: pulumi.Input[Optional[_builtins.str]] = None,
                  env_group_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 query_params: pulumi.Input[Optional[Union['EnvGroupSecretFileQueryParamsArgs', 'EnvGroupSecretFileQueryParamsArgsDict', 'outputs.EnvGroupSecretFileQueryParams']]] = None,
                  secret_file_name: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -116,6 +137,7 @@ class EnvGroupSecretFile(pulumi.CustomResource):
 
             __props__.__dict__["content"] = content
             __props__.__dict__["env_group_id"] = env_group_id
+            __props__.__dict__["query_params"] = query_params
             __props__.__dict__["secret_file_name"] = secret_file_name
             __props__.__dict__["created_at"] = None
             __props__.__dict__["env_vars"] = None
@@ -153,6 +175,7 @@ class EnvGroupSecretFile(pulumi.CustomResource):
         __props__.__dict__["environment_id"] = None
         __props__.__dict__["name"] = None
         __props__.__dict__["owner_id"] = None
+        __props__.__dict__["query_params"] = None
         __props__.__dict__["secret_files"] = None
         __props__.__dict__["service_links"] = None
         __props__.__dict__["updated_at"] = None
@@ -187,6 +210,14 @@ class EnvGroupSecretFile(pulumi.CustomResource):
     @pulumi.getter(name="ownerId")
     def owner_id(self) -> pulumi.Output[Optional[_builtins.str]]:
         return pulumi.get(self, "owner_id")
+
+    @_builtins.property
+    @pulumi.getter(name="queryParams")
+    def query_params(self) -> pulumi.Output[Optional['outputs.EnvGroupSecretFileQueryParams']]:
+        """
+        Query params to send with the API requests for this resource.
+        """
+        return pulumi.get(self, "query_params")
 
     @_builtins.property
     @pulumi.getter(name="secretFiles")

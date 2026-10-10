@@ -25,6 +25,12 @@ namespace Pulumi.Render.Services
     public sealed class ListJobArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
+        /// Query params to send with the API request.
+        /// </summary>
+        [Input("queryParams")]
+        public Inputs.ListJobQueryParams? QueryParams { get; set; }
+
+        /// <summary>
         /// The ID of the service
         /// </summary>
         [Input("serviceId", required: true)]
@@ -38,6 +44,12 @@ namespace Pulumi.Render.Services
 
     public sealed class ListJobInvokeArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// Query params to send with the API request.
+        /// </summary>
+        [Input("queryParams")]
+        public Input<Inputs.ListJobQueryParamsArgs>? QueryParams { get; set; }
+
         /// <summary>
         /// The ID of the service
         /// </summary>

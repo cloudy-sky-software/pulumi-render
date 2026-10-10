@@ -20,6 +20,8 @@ type Header struct {
 	Name pulumi.StringOutput `pulumi:"name"`
 	// The request path to add the header to. Wildcards will cause headers to be applied to all matching paths.
 	Path pulumi.StringOutput `pulumi:"path"`
+	// Query params to send with the API requests for this resource.
+	QueryParams HeaderQueryParamsPtrOutput `pulumi:"queryParams"`
 	// Header value
 	Value pulumi.StringOutput `pulumi:"value"`
 }
@@ -74,6 +76,8 @@ type headerArgs struct {
 	Name *string `pulumi:"name"`
 	// The request path to add the header to. Wildcards will cause headers to be applied to all matching paths.
 	Path string `pulumi:"path"`
+	// Query params to send with the API requests for this resource.
+	QueryParams *HeaderQueryParams `pulumi:"queryParams"`
 	// The ID of the service
 	ServiceId *string `pulumi:"serviceId"`
 	// Header value
@@ -86,6 +90,8 @@ type HeaderArgs struct {
 	Name pulumi.StringPtrInput
 	// The request path to add the header to. Wildcards will cause headers to be applied to all matching paths.
 	Path pulumi.StringInput
+	// Query params to send with the API requests for this resource.
+	QueryParams HeaderQueryParamsPtrInput
 	// The ID of the service
 	ServiceId pulumi.StringPtrInput
 	// Header value
@@ -141,6 +147,11 @@ func (o HeaderOutput) Name() pulumi.StringOutput {
 // The request path to add the header to. Wildcards will cause headers to be applied to all matching paths.
 func (o HeaderOutput) Path() pulumi.StringOutput {
 	return o.ApplyT(func(v *Header) pulumi.StringOutput { return v.Path }).(pulumi.StringOutput)
+}
+
+// Query params to send with the API requests for this resource.
+func (o HeaderOutput) QueryParams() HeaderQueryParamsPtrOutput {
+	return o.ApplyT(func(v *Header) HeaderQueryParamsPtrOutput { return v.QueryParams }).(HeaderQueryParamsPtrOutput)
 }
 
 // Header value

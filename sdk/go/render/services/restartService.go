@@ -13,6 +13,9 @@ import (
 
 type RestartService struct {
 	pulumi.CustomResourceState
+
+	// Query params to send with the API requests for this resource.
+	QueryParams RestartServiceQueryParamsPtrOutput `pulumi:"queryParams"`
 }
 
 // NewRestartService registers a new resource with the given unique name, arguments, and options.
@@ -55,12 +58,16 @@ func (RestartServiceState) ElementType() reflect.Type {
 }
 
 type restartServiceArgs struct {
+	// Query params to send with the API requests for this resource.
+	QueryParams *RestartServiceQueryParams `pulumi:"queryParams"`
 	// The ID of the service
 	ServiceId *string `pulumi:"serviceId"`
 }
 
 // The set of arguments for constructing a RestartService resource.
 type RestartServiceArgs struct {
+	// Query params to send with the API requests for this resource.
+	QueryParams RestartServiceQueryParamsPtrInput
 	// The ID of the service
 	ServiceId pulumi.StringPtrInput
 }
@@ -100,6 +107,11 @@ func (o RestartServiceOutput) ToRestartServiceOutput() RestartServiceOutput {
 
 func (o RestartServiceOutput) ToRestartServiceOutputWithContext(ctx context.Context) RestartServiceOutput {
 	return o
+}
+
+// Query params to send with the API requests for this resource.
+func (o RestartServiceOutput) QueryParams() RestartServiceQueryParamsPtrOutput {
+	return o.ApplyT(func(v *RestartService) RestartServiceQueryParamsPtrOutput { return v.QueryParams }).(RestartServiceQueryParamsPtrOutput)
 }
 
 func init() {

@@ -15,13 +15,15 @@ import (
 type Job struct {
 	pulumi.CustomResourceState
 
-	CreatedAt    pulumi.StringOutput    `pulumi:"createdAt"`
-	FinishedAt   pulumi.StringPtrOutput `pulumi:"finishedAt"`
-	PlanId       pulumi.StringOutput    `pulumi:"planId"`
-	ServiceId    pulumi.StringOutput    `pulumi:"serviceId"`
-	StartCommand pulumi.StringOutput    `pulumi:"startCommand"`
-	StartedAt    pulumi.StringPtrOutput `pulumi:"startedAt"`
-	Status       JobStatusPtrOutput     `pulumi:"status"`
+	CreatedAt  pulumi.StringOutput    `pulumi:"createdAt"`
+	FinishedAt pulumi.StringPtrOutput `pulumi:"finishedAt"`
+	PlanId     pulumi.StringOutput    `pulumi:"planId"`
+	// Query params to send with the API requests for this resource.
+	QueryParams  JobQueryParamsPtrOutput `pulumi:"queryParams"`
+	ServiceId    pulumi.StringOutput     `pulumi:"serviceId"`
+	StartCommand pulumi.StringOutput     `pulumi:"startCommand"`
+	StartedAt    pulumi.StringPtrOutput  `pulumi:"startedAt"`
+	Status       JobStatusPtrOutput      `pulumi:"status"`
 }
 
 // NewJob registers a new resource with the given unique name, arguments, and options.
@@ -68,6 +70,8 @@ func (JobState) ElementType() reflect.Type {
 
 type jobArgs struct {
 	PlanId *string `pulumi:"planId"`
+	// Query params to send with the API requests for this resource.
+	QueryParams *JobQueryParams `pulumi:"queryParams"`
 	// The ID of the service
 	ServiceId    *string `pulumi:"serviceId"`
 	StartCommand string  `pulumi:"startCommand"`
@@ -76,6 +80,8 @@ type jobArgs struct {
 // The set of arguments for constructing a Job resource.
 type JobArgs struct {
 	PlanId pulumi.StringPtrInput
+	// Query params to send with the API requests for this resource.
+	QueryParams JobQueryParamsPtrInput
 	// The ID of the service
 	ServiceId    pulumi.StringPtrInput
 	StartCommand pulumi.StringInput
@@ -128,6 +134,11 @@ func (o JobOutput) FinishedAt() pulumi.StringPtrOutput {
 
 func (o JobOutput) PlanId() pulumi.StringOutput {
 	return o.ApplyT(func(v *Job) pulumi.StringOutput { return v.PlanId }).(pulumi.StringOutput)
+}
+
+// Query params to send with the API requests for this resource.
+func (o JobOutput) QueryParams() JobQueryParamsPtrOutput {
+	return o.ApplyT(func(v *Job) JobQueryParamsPtrOutput { return v.QueryParams }).(JobQueryParamsPtrOutput)
 }
 
 func (o JobOutput) ServiceId() pulumi.StringOutput {

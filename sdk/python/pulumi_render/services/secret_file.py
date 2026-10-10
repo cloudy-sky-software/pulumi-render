@@ -13,6 +13,8 @@ if sys.version_info >= (3, 11):
 else:
     from typing_extensions import NotRequired, TypedDict, TypeAlias
 from .. import _utilities
+from . import outputs
+from ._inputs import *
 
 __all__ = ['SecretFileArgs', 'SecretFile']
 
@@ -20,16 +22,20 @@ __all__ = ['SecretFileArgs', 'SecretFile']
 class SecretFileArgs:
     def __init__(__self__, *,
                  content: pulumi.Input[Optional[_builtins.str]] = None,
+                 query_params: pulumi.Input[Optional['SecretFileQueryParamsArgs']] = None,
                  secret_file_name: pulumi.Input[Optional[_builtins.str]] = None,
                  service_id: pulumi.Input[Optional[_builtins.str]] = None):
         """
         The set of arguments for constructing a SecretFile resource.
 
+        :param pulumi.Input['SecretFileQueryParamsArgs'] query_params: Query params to send with the API requests for this resource.
         :param pulumi.Input[_builtins.str] secret_file_name: The file name of the secret file
         :param pulumi.Input[_builtins.str] service_id: The ID of the service
         """
         if content is not None:
             pulumi.set(__self__, "content", content)
+        if query_params is not None:
+            pulumi.set(__self__, "query_params", query_params)
         if secret_file_name is not None:
             pulumi.set(__self__, "secret_file_name", secret_file_name)
         if service_id is not None:
@@ -43,6 +49,18 @@ class SecretFileArgs:
     @content.setter
     def content(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "content", value)
+
+    @_builtins.property
+    @pulumi.getter(name="queryParams")
+    def query_params(self) -> pulumi.Input[Optional['SecretFileQueryParamsArgs']]:
+        """
+        Query params to send with the API requests for this resource.
+        """
+        return pulumi.get(self, "query_params")
+
+    @query_params.setter
+    def query_params(self, value: pulumi.Input[Optional['SecretFileQueryParamsArgs']]):
+        pulumi.set(self, "query_params", value)
 
     @_builtins.property
     @pulumi.getter(name="secretFileName")
@@ -76,6 +94,7 @@ class SecretFile(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  content: pulumi.Input[Optional[_builtins.str]] = None,
+                 query_params: pulumi.Input[Optional[Union['SecretFileQueryParamsArgs', 'SecretFileQueryParamsArgsDict', 'outputs.SecretFileQueryParams']]] = None,
                  secret_file_name: pulumi.Input[Optional[_builtins.str]] = None,
                  service_id: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
@@ -84,6 +103,7 @@ class SecretFile(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[Union['SecretFileQueryParamsArgs', 'SecretFileQueryParamsArgsDict', 'outputs.SecretFileQueryParams']] query_params: Query params to send with the API requests for this resource.
         :param pulumi.Input[_builtins.str] secret_file_name: The file name of the secret file
         :param pulumi.Input[_builtins.str] service_id: The ID of the service
         """
@@ -112,6 +132,7 @@ class SecretFile(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  content: pulumi.Input[Optional[_builtins.str]] = None,
+                 query_params: pulumi.Input[Optional[Union['SecretFileQueryParamsArgs', 'SecretFileQueryParamsArgsDict', 'outputs.SecretFileQueryParams']]] = None,
                  secret_file_name: pulumi.Input[Optional[_builtins.str]] = None,
                  service_id: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
@@ -124,6 +145,7 @@ class SecretFile(pulumi.CustomResource):
             __props__ = SecretFileArgs.__new__(SecretFileArgs)
 
             __props__.__dict__["content"] = content
+            __props__.__dict__["query_params"] = query_params
             __props__.__dict__["secret_file_name"] = secret_file_name
             __props__.__dict__["service_id"] = service_id
             __props__.__dict__["name"] = None
@@ -151,6 +173,7 @@ class SecretFile(pulumi.CustomResource):
 
         __props__.__dict__["content"] = None
         __props__.__dict__["name"] = None
+        __props__.__dict__["query_params"] = None
         return SecretFile(resource_name, opts=opts, __props__=__props__)
 
     @_builtins.property
@@ -162,4 +185,12 @@ class SecretFile(pulumi.CustomResource):
     @pulumi.getter
     def name(self) -> pulumi.Output[_builtins.str]:
         return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter(name="queryParams")
+    def query_params(self) -> pulumi.Output[Optional['outputs.SecretFileQueryParams']]:
+        """
+        Query params to send with the API requests for this resource.
+        """
+        return pulumi.get(self, "query_params")
 

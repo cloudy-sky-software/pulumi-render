@@ -13,18 +13,25 @@ if sys.version_info >= (3, 11):
 else:
     from typing_extensions import NotRequired, TypedDict, TypeAlias
 from .. import _utilities
+from . import outputs
+from ._inputs import *
 
 __all__ = ['ResumePostgresArgs', 'ResumePostgres']
 
 @pulumi.input_type
 class ResumePostgresArgs:
     def __init__(__self__, *,
-                 postgres_id: pulumi.Input[Optional[_builtins.str]] = None):
+                 postgres_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 query_params: pulumi.Input[Optional['ResumePostgresQueryParamsArgs']] = None):
         """
         The set of arguments for constructing a ResumePostgres resource.
+
+        :param pulumi.Input['ResumePostgresQueryParamsArgs'] query_params: Query params to send with the API requests for this resource.
         """
         if postgres_id is not None:
             pulumi.set(__self__, "postgres_id", postgres_id)
+        if query_params is not None:
+            pulumi.set(__self__, "query_params", query_params)
 
     @_builtins.property
     @pulumi.getter(name="postgresId")
@@ -35,6 +42,18 @@ class ResumePostgresArgs:
     def postgres_id(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "postgres_id", value)
 
+    @_builtins.property
+    @pulumi.getter(name="queryParams")
+    def query_params(self) -> pulumi.Input[Optional['ResumePostgresQueryParamsArgs']]:
+        """
+        Query params to send with the API requests for this resource.
+        """
+        return pulumi.get(self, "query_params")
+
+    @query_params.setter
+    def query_params(self, value: pulumi.Input[Optional['ResumePostgresQueryParamsArgs']]):
+        pulumi.set(self, "query_params", value)
+
 
 @pulumi.type_token("render:postgres:ResumePostgres")
 class ResumePostgres(pulumi.CustomResource):
@@ -43,12 +62,14 @@ class ResumePostgres(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  postgres_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 query_params: pulumi.Input[Optional[Union['ResumePostgresQueryParamsArgs', 'ResumePostgresQueryParamsArgsDict', 'outputs.ResumePostgresQueryParams']]] = None,
                  __props__=None):
         """
         Create a ResumePostgres resource with the given unique name, props, and options.
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[Union['ResumePostgresQueryParamsArgs', 'ResumePostgresQueryParamsArgsDict', 'outputs.ResumePostgresQueryParams']] query_params: Query params to send with the API requests for this resource.
         """
         ...
     @overload
@@ -75,6 +96,7 @@ class ResumePostgres(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  postgres_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 query_params: pulumi.Input[Optional[Union['ResumePostgresQueryParamsArgs', 'ResumePostgresQueryParamsArgsDict', 'outputs.ResumePostgresQueryParams']]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
         if not isinstance(opts, pulumi.ResourceOptions):
@@ -85,6 +107,7 @@ class ResumePostgres(pulumi.CustomResource):
             __props__ = ResumePostgresArgs.__new__(ResumePostgresArgs)
 
             __props__.__dict__["postgres_id"] = postgres_id
+            __props__.__dict__["query_params"] = query_params
         super(ResumePostgres, __self__).__init__(
             'render:postgres:ResumePostgres',
             resource_name,
@@ -107,5 +130,14 @@ class ResumePostgres(pulumi.CustomResource):
 
         __props__ = ResumePostgresArgs.__new__(ResumePostgresArgs)
 
+        __props__.__dict__["query_params"] = None
         return ResumePostgres(resource_name, opts=opts, __props__=__props__)
+
+    @_builtins.property
+    @pulumi.getter(name="queryParams")
+    def query_params(self) -> pulumi.Output[Optional['outputs.ResumePostgresQueryParams']]:
+        """
+        Query params to send with the API requests for this resource.
+        """
+        return pulumi.get(self, "query_params")
 

@@ -41,6 +41,10 @@ export class CancelDeploy extends pulumi.CustomResource {
      * Image information used when creating the deploy. Not present for Git-backed deploys
      */
     declare public /*out*/ readonly image: pulumi.Output<outputs.services.ImageProperties | undefined>;
+    /**
+     * Query params to send with the API requests for this resource.
+     */
+    declare public readonly queryParams: pulumi.Output<outputs.services.CancelDeployQueryParams | undefined>;
     declare public /*out*/ readonly startedAt: pulumi.Output<string | undefined>;
     declare public /*out*/ readonly status: pulumi.Output<enums.services.Status | undefined>;
     declare public /*out*/ readonly trigger: pulumi.Output<enums.services.Trigger | undefined>;
@@ -58,6 +62,7 @@ export class CancelDeploy extends pulumi.CustomResource {
         opts = opts || {};
         if (!opts.id) {
             resourceInputs["deployId"] = args?.deployId;
+            resourceInputs["queryParams"] = args?.queryParams;
             resourceInputs["serviceId"] = args?.serviceId;
             resourceInputs["commit"] = undefined /*out*/;
             resourceInputs["createdAt"] = undefined /*out*/;
@@ -72,6 +77,7 @@ export class CancelDeploy extends pulumi.CustomResource {
             resourceInputs["createdAt"] = undefined /*out*/;
             resourceInputs["finishedAt"] = undefined /*out*/;
             resourceInputs["image"] = undefined /*out*/;
+            resourceInputs["queryParams"] = undefined /*out*/;
             resourceInputs["startedAt"] = undefined /*out*/;
             resourceInputs["status"] = undefined /*out*/;
             resourceInputs["trigger"] = undefined /*out*/;
@@ -90,6 +96,10 @@ export interface CancelDeployArgs {
      * The ID of the deploy
      */
     deployId?: pulumi.Input<string | undefined>;
+    /**
+     * Query params to send with the API requests for this resource.
+     */
+    queryParams?: pulumi.Input<inputs.services.CancelDeployQueryParamsArgs | undefined>;
     /**
      * The ID of the service
      */

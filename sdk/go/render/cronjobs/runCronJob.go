@@ -17,8 +17,10 @@ type RunCronJob struct {
 	// user who cancelled the cron job run
 	CanceledBy pulumi.StringPtrOutput `pulumi:"canceledBy"`
 	FinishedAt pulumi.StringPtrOutput `pulumi:"finishedAt"`
-	StartedAt  pulumi.StringPtrOutput `pulumi:"startedAt"`
-	Status     StatusOutput           `pulumi:"status"`
+	// Query params to send with the API requests for this resource.
+	QueryParams RunCronJobQueryParamsPtrOutput `pulumi:"queryParams"`
+	StartedAt   pulumi.StringPtrOutput         `pulumi:"startedAt"`
+	Status      StatusOutput                   `pulumi:"status"`
 	// user who triggered the cron job run
 	TriggeredBy pulumi.StringPtrOutput `pulumi:"triggeredBy"`
 }
@@ -65,12 +67,16 @@ func (RunCronJobState) ElementType() reflect.Type {
 type runCronJobArgs struct {
 	// The ID of the cron job
 	CronJobId *string `pulumi:"cronJobId"`
+	// Query params to send with the API requests for this resource.
+	QueryParams *RunCronJobQueryParams `pulumi:"queryParams"`
 }
 
 // The set of arguments for constructing a RunCronJob resource.
 type RunCronJobArgs struct {
 	// The ID of the cron job
 	CronJobId pulumi.StringPtrInput
+	// Query params to send with the API requests for this resource.
+	QueryParams RunCronJobQueryParamsPtrInput
 }
 
 func (RunCronJobArgs) ElementType() reflect.Type {
@@ -117,6 +123,11 @@ func (o RunCronJobOutput) CanceledBy() pulumi.StringPtrOutput {
 
 func (o RunCronJobOutput) FinishedAt() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *RunCronJob) pulumi.StringPtrOutput { return v.FinishedAt }).(pulumi.StringPtrOutput)
+}
+
+// Query params to send with the API requests for this resource.
+func (o RunCronJobOutput) QueryParams() RunCronJobQueryParamsPtrOutput {
+	return o.ApplyT(func(v *RunCronJob) RunCronJobQueryParamsPtrOutput { return v.QueryParams }).(RunCronJobQueryParamsPtrOutput)
 }
 
 func (o RunCronJobOutput) StartedAt() pulumi.StringPtrOutput {

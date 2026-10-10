@@ -15,6 +15,7 @@ else:
 from .. import _utilities
 from . import outputs
 from ._enums import *
+from ._inputs import *
 
 __all__ = [
     'GetEnvGroupResult',
@@ -121,14 +122,17 @@ class AwaitableGetEnvGroupResult(GetEnvGroupResult):
 
 
 def get_env_group(env_group_id: Optional[_builtins.str] = None,
+                  query_params: Optional[Union['GetEnvGroupQueryParams', 'GetEnvGroupQueryParamsDict']] = None,
                   opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetEnvGroupResult:
     """
     Use this data source to access information about an existing resource.
 
     :param _builtins.str env_group_id: Filter for resources that belong to an environment group
+    :param Union['GetEnvGroupQueryParams', 'GetEnvGroupQueryParamsDict'] query_params: Query params to send with the API request.
     """
     __args__ = dict()
     __args__['envGroupId'] = env_group_id
+    __args__['queryParams'] = query_params
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke('render:env-groups:getEnvGroup', __args__, opts=opts, typ=GetEnvGroupResult).value
 
@@ -143,14 +147,17 @@ def get_env_group(env_group_id: Optional[_builtins.str] = None,
         service_links=pulumi.get(__ret__, 'service_links'),
         updated_at=pulumi.get(__ret__, 'updated_at'))
 def get_env_group_output(env_group_id: pulumi.Input[Optional[_builtins.str]] = None,
+                         query_params: pulumi.Input[Optional[Optional[Union['GetEnvGroupQueryParams', 'GetEnvGroupQueryParamsDict']]]] = None,
                          opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetEnvGroupResult]:
     """
     Use this data source to access information about an existing resource.
 
     :param _builtins.str env_group_id: Filter for resources that belong to an environment group
+    :param Union['GetEnvGroupQueryParams', 'GetEnvGroupQueryParamsDict'] query_params: Query params to send with the API request.
     """
     __args__ = dict()
     __args__['envGroupId'] = env_group_id
+    __args__['queryParams'] = query_params
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('render:env-groups:getEnvGroup', __args__, opts=opts, typ=GetEnvGroupResult)
     return __ret__.apply(lambda __response__: GetEnvGroupResult(

@@ -36,6 +36,12 @@ namespace Pulumi.Render.Environments
         [Output("protectedStatus")]
         public Output<Pulumi.Render.Environments.ProtectedStatus> ProtectedStatus { get; private set; } = null!;
 
+        /// <summary>
+        /// Query params to send with the API requests for this resource.
+        /// </summary>
+        [Output("queryParams")]
+        public Output<Outputs.ResourcesToEnvironmentQueryParams?> QueryParams { get; private set; } = null!;
+
         [Output("redisIds")]
         public Output<ImmutableArray<string>> RedisIds { get; private set; } = null!;
 
@@ -93,6 +99,12 @@ namespace Pulumi.Render.Environments
     {
         [Input("environmentId")]
         public Input<string>? EnvironmentId { get; set; }
+
+        /// <summary>
+        /// Query params to send with the API requests for this resource.
+        /// </summary>
+        [Input("queryParams")]
+        public Input<Inputs.ResourcesToEnvironmentQueryParamsArgs>? QueryParams { get; set; }
 
         [Input("resourceIds", required: true)]
         private InputList<string>? _resourceIds;

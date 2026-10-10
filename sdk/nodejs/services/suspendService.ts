@@ -2,6 +2,9 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
+import * as inputs from "../types/input";
+import * as outputs from "../types/output";
+import * as enums from "../types/enums";
 import * as utilities from "../utilities";
 
 export class SuspendService extends pulumi.CustomResource {
@@ -31,6 +34,10 @@ export class SuspendService extends pulumi.CustomResource {
         return obj['__pulumiType'] === SuspendService.__pulumiType;
     }
 
+    /**
+     * Query params to send with the API requests for this resource.
+     */
+    declare public readonly queryParams: pulumi.Output<outputs.services.SuspendServiceQueryParams | undefined>;
 
     /**
      * Create a SuspendService resource with the given unique name, arguments, and options.
@@ -43,8 +50,10 @@ export class SuspendService extends pulumi.CustomResource {
         let resourceInputs: pulumi.Inputs = {};
         opts = opts || {};
         if (!opts.id) {
+            resourceInputs["queryParams"] = args?.queryParams;
             resourceInputs["serviceId"] = args?.serviceId;
         } else {
+            resourceInputs["queryParams"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(SuspendService.__pulumiType, name, resourceInputs, opts);
@@ -55,6 +64,10 @@ export class SuspendService extends pulumi.CustomResource {
  * The set of arguments for constructing a SuspendService resource.
  */
 export interface SuspendServiceArgs {
+    /**
+     * Query params to send with the API requests for this resource.
+     */
+    queryParams?: pulumi.Input<inputs.services.SuspendServiceQueryParamsArgs | undefined>;
     /**
      * The ID of the service
      */

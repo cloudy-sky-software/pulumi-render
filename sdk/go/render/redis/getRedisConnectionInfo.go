@@ -22,7 +22,9 @@ func GetRedisConnectionInfo(ctx *pulumi.Context, args *GetRedisConnectionInfoArg
 }
 
 type GetRedisConnectionInfoArgs struct {
-	RedisId string `pulumi:"redisId"`
+	// Query params to send with the API request.
+	QueryParams *GetRedisConnectionInfoQueryParams `pulumi:"queryParams"`
+	RedisId     string                             `pulumi:"redisId"`
 }
 
 // A Redis instance
@@ -41,7 +43,9 @@ func GetRedisConnectionInfoOutput(ctx *pulumi.Context, args GetRedisConnectionIn
 }
 
 type GetRedisConnectionInfoOutputArgs struct {
-	RedisId pulumi.StringInput `pulumi:"redisId"`
+	// Query params to send with the API request.
+	QueryParams GetRedisConnectionInfoQueryParamsPtrInput `pulumi:"queryParams"`
+	RedisId     pulumi.StringInput                        `pulumi:"redisId"`
 }
 
 func (GetRedisConnectionInfoOutputArgs) ElementType() reflect.Type {

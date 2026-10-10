@@ -11,18 +11,31 @@ export function listPostgres(args?: ListPostgresArgs, opts?: pulumi.InvokeOption
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("render:postgres:listPostgres", {
+        "queryParams": args.queryParams ? inputs.postgres.listPostgresQueryParamsProvideDefaults(args.queryParams) : undefined,
     }, opts);
 }
 
 export interface ListPostgresArgs {
+    /**
+     * Query params to send with the API request.
+     */
+    queryParams?: inputs.postgres.ListPostgresQueryParams;
 }
 
 export interface ListPostgresResult {
     readonly items: outputs.postgres.PostgresWithCursor[];
 }
-export function listPostgresOutput(opts?: pulumi.InvokeOutputOptions): pulumi.Output<ListPostgresResult> {
+export function listPostgresOutput(args?: ListPostgresOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<ListPostgresResult> {
+    args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("render:postgres:listPostgres", {
+        "queryParams": pulumi.output(args.queryParams).apply(v => v === undefined ? undefined : inputs.postgres.listPostgresQueryParamsProvideDefaults(v)),
     }, opts);
 }
 
+export interface ListPostgresOutputArgs {
+    /**
+     * Query params to send with the API request.
+     */
+    queryParams?: pulumi.Input<inputs.postgres.ListPostgresQueryParamsArgs | undefined>;
+}

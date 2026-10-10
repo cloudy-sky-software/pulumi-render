@@ -10,11 +10,16 @@ import * as utilities from "../utilities";
 export function getBackgroundWorker(args: GetBackgroundWorkerArgs, opts?: pulumi.InvokeOptions): Promise<GetBackgroundWorkerResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("render:services:getBackgroundWorker", {
+        "queryParams": args.queryParams,
         "serviceId": args.serviceId,
     }, opts);
 }
 
 export interface GetBackgroundWorkerArgs {
+    /**
+     * Query params to send with the API request.
+     */
+    queryParams?: inputs.services.GetBackgroundWorkerQueryParams;
     /**
      * The ID of the service
      */
@@ -49,11 +54,16 @@ export interface GetBackgroundWorkerResult {
 export function getBackgroundWorkerOutput(args: GetBackgroundWorkerOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetBackgroundWorkerResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("render:services:getBackgroundWorker", {
+        "queryParams": args.queryParams,
         "serviceId": args.serviceId,
     }, opts);
 }
 
 export interface GetBackgroundWorkerOutputArgs {
+    /**
+     * Query params to send with the API request.
+     */
+    queryParams?: pulumi.Input<inputs.services.GetBackgroundWorkerQueryParamsArgs | undefined>;
     /**
      * The ID of the service
      */

@@ -32,11 +32,13 @@ type Deploy struct {
 	// The URL of the image to deploy for an image-backed service.
 	//
 	// The host, repository, and image name all must match the currently configured image for the service.
-	ImageUrl  pulumi.StringPtrOutput `pulumi:"imageUrl"`
-	StartedAt pulumi.StringPtrOutput `pulumi:"startedAt"`
-	Status    StatusPtrOutput        `pulumi:"status"`
-	Trigger   TriggerPtrOutput       `pulumi:"trigger"`
-	UpdatedAt pulumi.StringPtrOutput `pulumi:"updatedAt"`
+	ImageUrl pulumi.StringPtrOutput `pulumi:"imageUrl"`
+	// Query params to send with the API requests for this resource.
+	QueryParams DeployQueryParamsPtrOutput `pulumi:"queryParams"`
+	StartedAt   pulumi.StringPtrOutput     `pulumi:"startedAt"`
+	Status      StatusPtrOutput            `pulumi:"status"`
+	Trigger     TriggerPtrOutput           `pulumi:"trigger"`
+	UpdatedAt   pulumi.StringPtrOutput     `pulumi:"updatedAt"`
 }
 
 // NewDeploy registers a new resource with the given unique name, arguments, and options.
@@ -96,6 +98,8 @@ type deployArgs struct {
 	//
 	// The host, repository, and image name all must match the currently configured image for the service.
 	ImageUrl *string `pulumi:"imageUrl"`
+	// Query params to send with the API requests for this resource.
+	QueryParams *DeployQueryParams `pulumi:"queryParams"`
 	// The ID of the service
 	ServiceId *string `pulumi:"serviceId"`
 }
@@ -116,6 +120,8 @@ type DeployArgs struct {
 	//
 	// The host, repository, and image name all must match the currently configured image for the service.
 	ImageUrl pulumi.StringPtrInput
+	// Query params to send with the API requests for this resource.
+	QueryParams DeployQueryParamsPtrInput
 	// The ID of the service
 	ServiceId pulumi.StringPtrInput
 }
@@ -195,6 +201,11 @@ func (o DeployOutput) Image() ImagePropertiesPtrOutput {
 // The host, repository, and image name all must match the currently configured image for the service.
 func (o DeployOutput) ImageUrl() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Deploy) pulumi.StringPtrOutput { return v.ImageUrl }).(pulumi.StringPtrOutput)
+}
+
+// Query params to send with the API requests for this resource.
+func (o DeployOutput) QueryParams() DeployQueryParamsPtrOutput {
+	return o.ApplyT(func(v *Deploy) DeployQueryParamsPtrOutput { return v.QueryParams }).(DeployQueryParamsPtrOutput)
 }
 
 func (o DeployOutput) StartedAt() pulumi.StringPtrOutput {

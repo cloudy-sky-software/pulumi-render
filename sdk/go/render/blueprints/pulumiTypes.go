@@ -186,6 +186,569 @@ func (o GetBlueprintPropertiesResourcesItemPropertiesArrayOutput) Index(i pulumi
 	}).(GetBlueprintPropertiesResourcesItemPropertiesOutput)
 }
 
+// Query params for the API request.
+type GetBlueprintQueryParams struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams map[string]string `pulumi:"additionalParams"`
+}
+
+// GetBlueprintQueryParamsInput is an input type that accepts GetBlueprintQueryParamsArgs and GetBlueprintQueryParamsOutput values.
+// You can construct a concrete instance of `GetBlueprintQueryParamsInput` via:
+//
+//	GetBlueprintQueryParamsArgs{...}
+type GetBlueprintQueryParamsInput interface {
+	pulumi.Input
+
+	ToGetBlueprintQueryParamsOutput() GetBlueprintQueryParamsOutput
+	ToGetBlueprintQueryParamsOutputWithContext(context.Context) GetBlueprintQueryParamsOutput
+}
+
+// Query params for the API request.
+type GetBlueprintQueryParamsArgs struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams pulumi.StringMapInput `pulumi:"additionalParams"`
+}
+
+func (GetBlueprintQueryParamsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetBlueprintQueryParams)(nil)).Elem()
+}
+
+func (i GetBlueprintQueryParamsArgs) ToGetBlueprintQueryParamsOutput() GetBlueprintQueryParamsOutput {
+	return i.ToGetBlueprintQueryParamsOutputWithContext(context.Background())
+}
+
+func (i GetBlueprintQueryParamsArgs) ToGetBlueprintQueryParamsOutputWithContext(ctx context.Context) GetBlueprintQueryParamsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetBlueprintQueryParamsOutput)
+}
+
+func (i GetBlueprintQueryParamsArgs) ToGetBlueprintQueryParamsPtrOutput() GetBlueprintQueryParamsPtrOutput {
+	return i.ToGetBlueprintQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i GetBlueprintQueryParamsArgs) ToGetBlueprintQueryParamsPtrOutputWithContext(ctx context.Context) GetBlueprintQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetBlueprintQueryParamsOutput).ToGetBlueprintQueryParamsPtrOutputWithContext(ctx)
+}
+
+// GetBlueprintQueryParamsPtrInput is an input type that accepts GetBlueprintQueryParamsArgs, GetBlueprintQueryParamsPtr and GetBlueprintQueryParamsPtrOutput values.
+// You can construct a concrete instance of `GetBlueprintQueryParamsPtrInput` via:
+//
+//	        GetBlueprintQueryParamsArgs{...}
+//
+//	or:
+//
+//	        nil
+type GetBlueprintQueryParamsPtrInput interface {
+	pulumi.Input
+
+	ToGetBlueprintQueryParamsPtrOutput() GetBlueprintQueryParamsPtrOutput
+	ToGetBlueprintQueryParamsPtrOutputWithContext(context.Context) GetBlueprintQueryParamsPtrOutput
+}
+
+type getBlueprintQueryParamsPtrType GetBlueprintQueryParamsArgs
+
+func GetBlueprintQueryParamsPtr(v *GetBlueprintQueryParamsArgs) GetBlueprintQueryParamsPtrInput {
+	return (*getBlueprintQueryParamsPtrType)(v)
+}
+
+func (*getBlueprintQueryParamsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**GetBlueprintQueryParams)(nil)).Elem()
+}
+
+func (i *getBlueprintQueryParamsPtrType) ToGetBlueprintQueryParamsPtrOutput() GetBlueprintQueryParamsPtrOutput {
+	return i.ToGetBlueprintQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i *getBlueprintQueryParamsPtrType) ToGetBlueprintQueryParamsPtrOutputWithContext(ctx context.Context) GetBlueprintQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetBlueprintQueryParamsPtrOutput)
+}
+
+// Query params for the API request.
+type GetBlueprintQueryParamsOutput struct{ *pulumi.OutputState }
+
+func (GetBlueprintQueryParamsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetBlueprintQueryParams)(nil)).Elem()
+}
+
+func (o GetBlueprintQueryParamsOutput) ToGetBlueprintQueryParamsOutput() GetBlueprintQueryParamsOutput {
+	return o
+}
+
+func (o GetBlueprintQueryParamsOutput) ToGetBlueprintQueryParamsOutputWithContext(ctx context.Context) GetBlueprintQueryParamsOutput {
+	return o
+}
+
+func (o GetBlueprintQueryParamsOutput) ToGetBlueprintQueryParamsPtrOutput() GetBlueprintQueryParamsPtrOutput {
+	return o.ToGetBlueprintQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (o GetBlueprintQueryParamsOutput) ToGetBlueprintQueryParamsPtrOutputWithContext(ctx context.Context) GetBlueprintQueryParamsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v GetBlueprintQueryParams) *GetBlueprintQueryParams {
+		return &v
+	}).(GetBlueprintQueryParamsPtrOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o GetBlueprintQueryParamsOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v GetBlueprintQueryParams) map[string]string { return v.AdditionalParams }).(pulumi.StringMapOutput)
+}
+
+type GetBlueprintQueryParamsPtrOutput struct{ *pulumi.OutputState }
+
+func (GetBlueprintQueryParamsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**GetBlueprintQueryParams)(nil)).Elem()
+}
+
+func (o GetBlueprintQueryParamsPtrOutput) ToGetBlueprintQueryParamsPtrOutput() GetBlueprintQueryParamsPtrOutput {
+	return o
+}
+
+func (o GetBlueprintQueryParamsPtrOutput) ToGetBlueprintQueryParamsPtrOutputWithContext(ctx context.Context) GetBlueprintQueryParamsPtrOutput {
+	return o
+}
+
+func (o GetBlueprintQueryParamsPtrOutput) Elem() GetBlueprintQueryParamsOutput {
+	return o.ApplyT(func(v *GetBlueprintQueryParams) GetBlueprintQueryParams {
+		if v != nil {
+			return *v
+		}
+		var ret GetBlueprintQueryParams
+		return ret
+	}).(GetBlueprintQueryParamsOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o GetBlueprintQueryParamsPtrOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *GetBlueprintQueryParams) map[string]string {
+		if v == nil {
+			return nil
+		}
+		return v.AdditionalParams
+	}).(pulumi.StringMapOutput)
+}
+
+// Query params for the API request.
+type ListBlueprintSyncsQueryParams struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams map[string]string `pulumi:"additionalParams"`
+	// The position in the result list to start from when fetching paginated results. For details, see [Pagination](https://api-docs.render.com/reference/pagination).
+	Cursor *string `pulumi:"cursor"`
+	// The maximum number of items to return. For details, see [Pagination](https://api-docs.render.com/reference/pagination).
+	Limit *int `pulumi:"limit"`
+}
+
+// Defaults sets the appropriate defaults for ListBlueprintSyncsQueryParams
+func (val *ListBlueprintSyncsQueryParams) Defaults() *ListBlueprintSyncsQueryParams {
+	if val == nil {
+		return nil
+	}
+	tmp := *val
+	if tmp.Limit == nil {
+		limit_ := 20
+		tmp.Limit = &limit_
+	}
+	return &tmp
+}
+
+// ListBlueprintSyncsQueryParamsInput is an input type that accepts ListBlueprintSyncsQueryParamsArgs and ListBlueprintSyncsQueryParamsOutput values.
+// You can construct a concrete instance of `ListBlueprintSyncsQueryParamsInput` via:
+//
+//	ListBlueprintSyncsQueryParamsArgs{...}
+type ListBlueprintSyncsQueryParamsInput interface {
+	pulumi.Input
+
+	ToListBlueprintSyncsQueryParamsOutput() ListBlueprintSyncsQueryParamsOutput
+	ToListBlueprintSyncsQueryParamsOutputWithContext(context.Context) ListBlueprintSyncsQueryParamsOutput
+}
+
+// Query params for the API request.
+type ListBlueprintSyncsQueryParamsArgs struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams pulumi.StringMapInput `pulumi:"additionalParams"`
+	// The position in the result list to start from when fetching paginated results. For details, see [Pagination](https://api-docs.render.com/reference/pagination).
+	Cursor pulumi.StringPtrInput `pulumi:"cursor"`
+	// The maximum number of items to return. For details, see [Pagination](https://api-docs.render.com/reference/pagination).
+	Limit pulumi.IntPtrInput `pulumi:"limit"`
+}
+
+// Defaults sets the appropriate defaults for ListBlueprintSyncsQueryParamsArgs
+func (val *ListBlueprintSyncsQueryParamsArgs) Defaults() *ListBlueprintSyncsQueryParamsArgs {
+	if val == nil {
+		return nil
+	}
+	tmp := *val
+	if tmp.Limit == nil {
+		tmp.Limit = pulumi.IntPtr(20)
+	}
+	return &tmp
+}
+func (ListBlueprintSyncsQueryParamsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ListBlueprintSyncsQueryParams)(nil)).Elem()
+}
+
+func (i ListBlueprintSyncsQueryParamsArgs) ToListBlueprintSyncsQueryParamsOutput() ListBlueprintSyncsQueryParamsOutput {
+	return i.ToListBlueprintSyncsQueryParamsOutputWithContext(context.Background())
+}
+
+func (i ListBlueprintSyncsQueryParamsArgs) ToListBlueprintSyncsQueryParamsOutputWithContext(ctx context.Context) ListBlueprintSyncsQueryParamsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ListBlueprintSyncsQueryParamsOutput)
+}
+
+func (i ListBlueprintSyncsQueryParamsArgs) ToListBlueprintSyncsQueryParamsPtrOutput() ListBlueprintSyncsQueryParamsPtrOutput {
+	return i.ToListBlueprintSyncsQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i ListBlueprintSyncsQueryParamsArgs) ToListBlueprintSyncsQueryParamsPtrOutputWithContext(ctx context.Context) ListBlueprintSyncsQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ListBlueprintSyncsQueryParamsOutput).ToListBlueprintSyncsQueryParamsPtrOutputWithContext(ctx)
+}
+
+// ListBlueprintSyncsQueryParamsPtrInput is an input type that accepts ListBlueprintSyncsQueryParamsArgs, ListBlueprintSyncsQueryParamsPtr and ListBlueprintSyncsQueryParamsPtrOutput values.
+// You can construct a concrete instance of `ListBlueprintSyncsQueryParamsPtrInput` via:
+//
+//	        ListBlueprintSyncsQueryParamsArgs{...}
+//
+//	or:
+//
+//	        nil
+type ListBlueprintSyncsQueryParamsPtrInput interface {
+	pulumi.Input
+
+	ToListBlueprintSyncsQueryParamsPtrOutput() ListBlueprintSyncsQueryParamsPtrOutput
+	ToListBlueprintSyncsQueryParamsPtrOutputWithContext(context.Context) ListBlueprintSyncsQueryParamsPtrOutput
+}
+
+type listBlueprintSyncsQueryParamsPtrType ListBlueprintSyncsQueryParamsArgs
+
+func ListBlueprintSyncsQueryParamsPtr(v *ListBlueprintSyncsQueryParamsArgs) ListBlueprintSyncsQueryParamsPtrInput {
+	return (*listBlueprintSyncsQueryParamsPtrType)(v)
+}
+
+func (*listBlueprintSyncsQueryParamsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**ListBlueprintSyncsQueryParams)(nil)).Elem()
+}
+
+func (i *listBlueprintSyncsQueryParamsPtrType) ToListBlueprintSyncsQueryParamsPtrOutput() ListBlueprintSyncsQueryParamsPtrOutput {
+	return i.ToListBlueprintSyncsQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i *listBlueprintSyncsQueryParamsPtrType) ToListBlueprintSyncsQueryParamsPtrOutputWithContext(ctx context.Context) ListBlueprintSyncsQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ListBlueprintSyncsQueryParamsPtrOutput)
+}
+
+// Query params for the API request.
+type ListBlueprintSyncsQueryParamsOutput struct{ *pulumi.OutputState }
+
+func (ListBlueprintSyncsQueryParamsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ListBlueprintSyncsQueryParams)(nil)).Elem()
+}
+
+func (o ListBlueprintSyncsQueryParamsOutput) ToListBlueprintSyncsQueryParamsOutput() ListBlueprintSyncsQueryParamsOutput {
+	return o
+}
+
+func (o ListBlueprintSyncsQueryParamsOutput) ToListBlueprintSyncsQueryParamsOutputWithContext(ctx context.Context) ListBlueprintSyncsQueryParamsOutput {
+	return o
+}
+
+func (o ListBlueprintSyncsQueryParamsOutput) ToListBlueprintSyncsQueryParamsPtrOutput() ListBlueprintSyncsQueryParamsPtrOutput {
+	return o.ToListBlueprintSyncsQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (o ListBlueprintSyncsQueryParamsOutput) ToListBlueprintSyncsQueryParamsPtrOutputWithContext(ctx context.Context) ListBlueprintSyncsQueryParamsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v ListBlueprintSyncsQueryParams) *ListBlueprintSyncsQueryParams {
+		return &v
+	}).(ListBlueprintSyncsQueryParamsPtrOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o ListBlueprintSyncsQueryParamsOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v ListBlueprintSyncsQueryParams) map[string]string { return v.AdditionalParams }).(pulumi.StringMapOutput)
+}
+
+// The position in the result list to start from when fetching paginated results. For details, see [Pagination](https://api-docs.render.com/reference/pagination).
+func (o ListBlueprintSyncsQueryParamsOutput) Cursor() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ListBlueprintSyncsQueryParams) *string { return v.Cursor }).(pulumi.StringPtrOutput)
+}
+
+// The maximum number of items to return. For details, see [Pagination](https://api-docs.render.com/reference/pagination).
+func (o ListBlueprintSyncsQueryParamsOutput) Limit() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v ListBlueprintSyncsQueryParams) *int { return v.Limit }).(pulumi.IntPtrOutput)
+}
+
+type ListBlueprintSyncsQueryParamsPtrOutput struct{ *pulumi.OutputState }
+
+func (ListBlueprintSyncsQueryParamsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ListBlueprintSyncsQueryParams)(nil)).Elem()
+}
+
+func (o ListBlueprintSyncsQueryParamsPtrOutput) ToListBlueprintSyncsQueryParamsPtrOutput() ListBlueprintSyncsQueryParamsPtrOutput {
+	return o
+}
+
+func (o ListBlueprintSyncsQueryParamsPtrOutput) ToListBlueprintSyncsQueryParamsPtrOutputWithContext(ctx context.Context) ListBlueprintSyncsQueryParamsPtrOutput {
+	return o
+}
+
+func (o ListBlueprintSyncsQueryParamsPtrOutput) Elem() ListBlueprintSyncsQueryParamsOutput {
+	return o.ApplyT(func(v *ListBlueprintSyncsQueryParams) ListBlueprintSyncsQueryParams {
+		if v != nil {
+			return *v
+		}
+		var ret ListBlueprintSyncsQueryParams
+		return ret
+	}).(ListBlueprintSyncsQueryParamsOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o ListBlueprintSyncsQueryParamsPtrOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *ListBlueprintSyncsQueryParams) map[string]string {
+		if v == nil {
+			return nil
+		}
+		return v.AdditionalParams
+	}).(pulumi.StringMapOutput)
+}
+
+// The position in the result list to start from when fetching paginated results. For details, see [Pagination](https://api-docs.render.com/reference/pagination).
+func (o ListBlueprintSyncsQueryParamsPtrOutput) Cursor() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ListBlueprintSyncsQueryParams) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Cursor
+	}).(pulumi.StringPtrOutput)
+}
+
+// The maximum number of items to return. For details, see [Pagination](https://api-docs.render.com/reference/pagination).
+func (o ListBlueprintSyncsQueryParamsPtrOutput) Limit() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *ListBlueprintSyncsQueryParams) *int {
+		if v == nil {
+			return nil
+		}
+		return v.Limit
+	}).(pulumi.IntPtrOutput)
+}
+
+// Query params for the API request.
+type ListBlueprintsQueryParams struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams map[string]string `pulumi:"additionalParams"`
+	// The position in the result list to start from when fetching paginated results. For details, see [Pagination](https://api-docs.render.com/reference/pagination).
+	Cursor *string `pulumi:"cursor"`
+	// The maximum number of items to return. For details, see [Pagination](https://api-docs.render.com/reference/pagination).
+	Limit *int `pulumi:"limit"`
+	// The ID of the workspaces to return resources for
+	OwnerId []string `pulumi:"ownerId"`
+}
+
+// Defaults sets the appropriate defaults for ListBlueprintsQueryParams
+func (val *ListBlueprintsQueryParams) Defaults() *ListBlueprintsQueryParams {
+	if val == nil {
+		return nil
+	}
+	tmp := *val
+	if tmp.Limit == nil {
+		limit_ := 20
+		tmp.Limit = &limit_
+	}
+	return &tmp
+}
+
+// ListBlueprintsQueryParamsInput is an input type that accepts ListBlueprintsQueryParamsArgs and ListBlueprintsQueryParamsOutput values.
+// You can construct a concrete instance of `ListBlueprintsQueryParamsInput` via:
+//
+//	ListBlueprintsQueryParamsArgs{...}
+type ListBlueprintsQueryParamsInput interface {
+	pulumi.Input
+
+	ToListBlueprintsQueryParamsOutput() ListBlueprintsQueryParamsOutput
+	ToListBlueprintsQueryParamsOutputWithContext(context.Context) ListBlueprintsQueryParamsOutput
+}
+
+// Query params for the API request.
+type ListBlueprintsQueryParamsArgs struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams pulumi.StringMapInput `pulumi:"additionalParams"`
+	// The position in the result list to start from when fetching paginated results. For details, see [Pagination](https://api-docs.render.com/reference/pagination).
+	Cursor pulumi.StringPtrInput `pulumi:"cursor"`
+	// The maximum number of items to return. For details, see [Pagination](https://api-docs.render.com/reference/pagination).
+	Limit pulumi.IntPtrInput `pulumi:"limit"`
+	// The ID of the workspaces to return resources for
+	OwnerId pulumi.StringArrayInput `pulumi:"ownerId"`
+}
+
+// Defaults sets the appropriate defaults for ListBlueprintsQueryParamsArgs
+func (val *ListBlueprintsQueryParamsArgs) Defaults() *ListBlueprintsQueryParamsArgs {
+	if val == nil {
+		return nil
+	}
+	tmp := *val
+	if tmp.Limit == nil {
+		tmp.Limit = pulumi.IntPtr(20)
+	}
+	return &tmp
+}
+func (ListBlueprintsQueryParamsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ListBlueprintsQueryParams)(nil)).Elem()
+}
+
+func (i ListBlueprintsQueryParamsArgs) ToListBlueprintsQueryParamsOutput() ListBlueprintsQueryParamsOutput {
+	return i.ToListBlueprintsQueryParamsOutputWithContext(context.Background())
+}
+
+func (i ListBlueprintsQueryParamsArgs) ToListBlueprintsQueryParamsOutputWithContext(ctx context.Context) ListBlueprintsQueryParamsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ListBlueprintsQueryParamsOutput)
+}
+
+func (i ListBlueprintsQueryParamsArgs) ToListBlueprintsQueryParamsPtrOutput() ListBlueprintsQueryParamsPtrOutput {
+	return i.ToListBlueprintsQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i ListBlueprintsQueryParamsArgs) ToListBlueprintsQueryParamsPtrOutputWithContext(ctx context.Context) ListBlueprintsQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ListBlueprintsQueryParamsOutput).ToListBlueprintsQueryParamsPtrOutputWithContext(ctx)
+}
+
+// ListBlueprintsQueryParamsPtrInput is an input type that accepts ListBlueprintsQueryParamsArgs, ListBlueprintsQueryParamsPtr and ListBlueprintsQueryParamsPtrOutput values.
+// You can construct a concrete instance of `ListBlueprintsQueryParamsPtrInput` via:
+//
+//	        ListBlueprintsQueryParamsArgs{...}
+//
+//	or:
+//
+//	        nil
+type ListBlueprintsQueryParamsPtrInput interface {
+	pulumi.Input
+
+	ToListBlueprintsQueryParamsPtrOutput() ListBlueprintsQueryParamsPtrOutput
+	ToListBlueprintsQueryParamsPtrOutputWithContext(context.Context) ListBlueprintsQueryParamsPtrOutput
+}
+
+type listBlueprintsQueryParamsPtrType ListBlueprintsQueryParamsArgs
+
+func ListBlueprintsQueryParamsPtr(v *ListBlueprintsQueryParamsArgs) ListBlueprintsQueryParamsPtrInput {
+	return (*listBlueprintsQueryParamsPtrType)(v)
+}
+
+func (*listBlueprintsQueryParamsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**ListBlueprintsQueryParams)(nil)).Elem()
+}
+
+func (i *listBlueprintsQueryParamsPtrType) ToListBlueprintsQueryParamsPtrOutput() ListBlueprintsQueryParamsPtrOutput {
+	return i.ToListBlueprintsQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i *listBlueprintsQueryParamsPtrType) ToListBlueprintsQueryParamsPtrOutputWithContext(ctx context.Context) ListBlueprintsQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ListBlueprintsQueryParamsPtrOutput)
+}
+
+// Query params for the API request.
+type ListBlueprintsQueryParamsOutput struct{ *pulumi.OutputState }
+
+func (ListBlueprintsQueryParamsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ListBlueprintsQueryParams)(nil)).Elem()
+}
+
+func (o ListBlueprintsQueryParamsOutput) ToListBlueprintsQueryParamsOutput() ListBlueprintsQueryParamsOutput {
+	return o
+}
+
+func (o ListBlueprintsQueryParamsOutput) ToListBlueprintsQueryParamsOutputWithContext(ctx context.Context) ListBlueprintsQueryParamsOutput {
+	return o
+}
+
+func (o ListBlueprintsQueryParamsOutput) ToListBlueprintsQueryParamsPtrOutput() ListBlueprintsQueryParamsPtrOutput {
+	return o.ToListBlueprintsQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (o ListBlueprintsQueryParamsOutput) ToListBlueprintsQueryParamsPtrOutputWithContext(ctx context.Context) ListBlueprintsQueryParamsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v ListBlueprintsQueryParams) *ListBlueprintsQueryParams {
+		return &v
+	}).(ListBlueprintsQueryParamsPtrOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o ListBlueprintsQueryParamsOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v ListBlueprintsQueryParams) map[string]string { return v.AdditionalParams }).(pulumi.StringMapOutput)
+}
+
+// The position in the result list to start from when fetching paginated results. For details, see [Pagination](https://api-docs.render.com/reference/pagination).
+func (o ListBlueprintsQueryParamsOutput) Cursor() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ListBlueprintsQueryParams) *string { return v.Cursor }).(pulumi.StringPtrOutput)
+}
+
+// The maximum number of items to return. For details, see [Pagination](https://api-docs.render.com/reference/pagination).
+func (o ListBlueprintsQueryParamsOutput) Limit() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v ListBlueprintsQueryParams) *int { return v.Limit }).(pulumi.IntPtrOutput)
+}
+
+// The ID of the workspaces to return resources for
+func (o ListBlueprintsQueryParamsOutput) OwnerId() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v ListBlueprintsQueryParams) []string { return v.OwnerId }).(pulumi.StringArrayOutput)
+}
+
+type ListBlueprintsQueryParamsPtrOutput struct{ *pulumi.OutputState }
+
+func (ListBlueprintsQueryParamsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ListBlueprintsQueryParams)(nil)).Elem()
+}
+
+func (o ListBlueprintsQueryParamsPtrOutput) ToListBlueprintsQueryParamsPtrOutput() ListBlueprintsQueryParamsPtrOutput {
+	return o
+}
+
+func (o ListBlueprintsQueryParamsPtrOutput) ToListBlueprintsQueryParamsPtrOutputWithContext(ctx context.Context) ListBlueprintsQueryParamsPtrOutput {
+	return o
+}
+
+func (o ListBlueprintsQueryParamsPtrOutput) Elem() ListBlueprintsQueryParamsOutput {
+	return o.ApplyT(func(v *ListBlueprintsQueryParams) ListBlueprintsQueryParams {
+		if v != nil {
+			return *v
+		}
+		var ret ListBlueprintsQueryParams
+		return ret
+	}).(ListBlueprintsQueryParamsOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o ListBlueprintsQueryParamsPtrOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *ListBlueprintsQueryParams) map[string]string {
+		if v == nil {
+			return nil
+		}
+		return v.AdditionalParams
+	}).(pulumi.StringMapOutput)
+}
+
+// The position in the result list to start from when fetching paginated results. For details, see [Pagination](https://api-docs.render.com/reference/pagination).
+func (o ListBlueprintsQueryParamsPtrOutput) Cursor() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ListBlueprintsQueryParams) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Cursor
+	}).(pulumi.StringPtrOutput)
+}
+
+// The maximum number of items to return. For details, see [Pagination](https://api-docs.render.com/reference/pagination).
+func (o ListBlueprintsQueryParamsPtrOutput) Limit() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *ListBlueprintsQueryParams) *int {
+		if v == nil {
+			return nil
+		}
+		return v.Limit
+	}).(pulumi.IntPtrOutput)
+}
+
+// The ID of the workspaces to return resources for
+func (o ListBlueprintsQueryParamsPtrOutput) OwnerId() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *ListBlueprintsQueryParams) []string {
+		if v == nil {
+			return nil
+		}
+		return v.OwnerId
+	}).(pulumi.StringArrayOutput)
+}
+
 // A Blueprint sync with a cursor
 type SyncWithCursor struct {
 	Cursor string                       `pulumi:"cursor"`
@@ -300,11 +863,23 @@ func (o SyncWithCursorSyncPropertiesCommitPropertiesOutput) Id() pulumi.StringOu
 }
 
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*GetBlueprintQueryParamsInput)(nil)).Elem(), GetBlueprintQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetBlueprintQueryParamsPtrInput)(nil)).Elem(), GetBlueprintQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ListBlueprintSyncsQueryParamsInput)(nil)).Elem(), ListBlueprintSyncsQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ListBlueprintSyncsQueryParamsPtrInput)(nil)).Elem(), ListBlueprintSyncsQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ListBlueprintsQueryParamsInput)(nil)).Elem(), ListBlueprintsQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ListBlueprintsQueryParamsPtrInput)(nil)).Elem(), ListBlueprintsQueryParamsArgs{})
 	pulumi.RegisterOutputType(BlueprintWithCursorOutput{})
 	pulumi.RegisterOutputType(BlueprintWithCursorArrayOutput{})
 	pulumi.RegisterOutputType(BlueprintWithCursorBlueprintPropertiesOutput{})
 	pulumi.RegisterOutputType(GetBlueprintPropertiesResourcesItemPropertiesOutput{})
 	pulumi.RegisterOutputType(GetBlueprintPropertiesResourcesItemPropertiesArrayOutput{})
+	pulumi.RegisterOutputType(GetBlueprintQueryParamsOutput{})
+	pulumi.RegisterOutputType(GetBlueprintQueryParamsPtrOutput{})
+	pulumi.RegisterOutputType(ListBlueprintSyncsQueryParamsOutput{})
+	pulumi.RegisterOutputType(ListBlueprintSyncsQueryParamsPtrOutput{})
+	pulumi.RegisterOutputType(ListBlueprintsQueryParamsOutput{})
+	pulumi.RegisterOutputType(ListBlueprintsQueryParamsPtrOutput{})
 	pulumi.RegisterOutputType(SyncWithCursorOutput{})
 	pulumi.RegisterOutputType(SyncWithCursorArrayOutput{})
 	pulumi.RegisterOutputType(SyncWithCursorSyncPropertiesOutput{})

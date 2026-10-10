@@ -15,6 +15,7 @@ else:
 from .. import _utilities
 from . import outputs
 from ._enums import *
+from ._inputs import *
 
 __all__ = ['PreviewServiceArgs', 'PreviewService']
 
@@ -24,6 +25,7 @@ class PreviewServiceArgs:
                  image_path: pulumi.Input[_builtins.str],
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  plan: pulumi.Input[Optional['Plan']] = None,
+                 query_params: pulumi.Input[Optional['PreviewServiceQueryParamsArgs']] = None,
                  service_id: pulumi.Input[Optional[_builtins.str]] = None):
         """
         The set of arguments for constructing a PreviewService resource.
@@ -31,6 +33,7 @@ class PreviewServiceArgs:
         :param pulumi.Input[_builtins.str] image_path: Must be either a full URL or the relative path to an image. If a relative path, Render uses the base service's image URL as its root. For example, if the base service's image URL is `docker.io/library/nginx:latest`, then valid values are: `docker.io/library/nginx:<any tag or SHA>`, `library/nginx:<any tag or SHA>`, or `nginx:<any tag or SHA>`. Note that the path must match (only the tag or SHA can vary).
         :param pulumi.Input[_builtins.str] name: A name for the service preview instance. If not specified, Render generates the name using the base service's name and the specified tag or SHA.
         :param pulumi.Input['Plan'] plan: The instance type to use for the preview instance. Note that base services with any paid instance type can't create preview instances with the `free` instance type.
+        :param pulumi.Input['PreviewServiceQueryParamsArgs'] query_params: Query params to send with the API requests for this resource.
         :param pulumi.Input[_builtins.str] service_id: The ID of the service
         """
         pulumi.set(__self__, "image_path", image_path)
@@ -38,6 +41,8 @@ class PreviewServiceArgs:
             pulumi.set(__self__, "name", name)
         if plan is not None:
             pulumi.set(__self__, "plan", plan)
+        if query_params is not None:
+            pulumi.set(__self__, "query_params", query_params)
         if service_id is not None:
             pulumi.set(__self__, "service_id", service_id)
 
@@ -78,6 +83,18 @@ class PreviewServiceArgs:
         pulumi.set(self, "plan", value)
 
     @_builtins.property
+    @pulumi.getter(name="queryParams")
+    def query_params(self) -> pulumi.Input[Optional['PreviewServiceQueryParamsArgs']]:
+        """
+        Query params to send with the API requests for this resource.
+        """
+        return pulumi.get(self, "query_params")
+
+    @query_params.setter
+    def query_params(self, value: pulumi.Input[Optional['PreviewServiceQueryParamsArgs']]):
+        pulumi.set(self, "query_params", value)
+
+    @_builtins.property
     @pulumi.getter(name="serviceId")
     def service_id(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
@@ -99,6 +116,7 @@ class PreviewService(pulumi.CustomResource):
                  image_path: pulumi.Input[Optional[_builtins.str]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  plan: pulumi.Input[Optional['Plan']] = None,
+                 query_params: pulumi.Input[Optional[Union['PreviewServiceQueryParamsArgs', 'PreviewServiceQueryParamsArgsDict', 'outputs.PreviewServiceQueryParams']]] = None,
                  service_id: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
@@ -109,6 +127,7 @@ class PreviewService(pulumi.CustomResource):
         :param pulumi.Input[_builtins.str] image_path: Must be either a full URL or the relative path to an image. If a relative path, Render uses the base service's image URL as its root. For example, if the base service's image URL is `docker.io/library/nginx:latest`, then valid values are: `docker.io/library/nginx:<any tag or SHA>`, `library/nginx:<any tag or SHA>`, or `nginx:<any tag or SHA>`. Note that the path must match (only the tag or SHA can vary).
         :param pulumi.Input[_builtins.str] name: A name for the service preview instance. If not specified, Render generates the name using the base service's name and the specified tag or SHA.
         :param pulumi.Input['Plan'] plan: The instance type to use for the preview instance. Note that base services with any paid instance type can't create preview instances with the `free` instance type.
+        :param pulumi.Input[Union['PreviewServiceQueryParamsArgs', 'PreviewServiceQueryParamsArgsDict', 'outputs.PreviewServiceQueryParams']] query_params: Query params to send with the API requests for this resource.
         :param pulumi.Input[_builtins.str] service_id: The ID of the service
         """
         ...
@@ -138,6 +157,7 @@ class PreviewService(pulumi.CustomResource):
                  image_path: pulumi.Input[Optional[_builtins.str]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  plan: pulumi.Input[Optional['Plan']] = None,
+                 query_params: pulumi.Input[Optional[Union['PreviewServiceQueryParamsArgs', 'PreviewServiceQueryParamsArgsDict', 'outputs.PreviewServiceQueryParams']]] = None,
                  service_id: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -153,6 +173,7 @@ class PreviewService(pulumi.CustomResource):
             __props__.__dict__["image_path"] = image_path
             __props__.__dict__["name"] = name
             __props__.__dict__["plan"] = plan
+            __props__.__dict__["query_params"] = query_params
             __props__.__dict__["service_id"] = service_id
             __props__.__dict__["deploy_id"] = None
             __props__.__dict__["service"] = None
@@ -182,6 +203,7 @@ class PreviewService(pulumi.CustomResource):
         __props__.__dict__["image_path"] = None
         __props__.__dict__["name"] = None
         __props__.__dict__["plan"] = None
+        __props__.__dict__["query_params"] = None
         __props__.__dict__["service"] = None
         return PreviewService(resource_name, opts=opts, __props__=__props__)
 
@@ -213,6 +235,14 @@ class PreviewService(pulumi.CustomResource):
         The instance type to use for the preview instance. Note that base services with any paid instance type can't create preview instances with the `free` instance type.
         """
         return pulumi.get(self, "plan")
+
+    @_builtins.property
+    @pulumi.getter(name="queryParams")
+    def query_params(self) -> pulumi.Output[Optional['outputs.PreviewServiceQueryParams']]:
+        """
+        Query params to send with the API requests for this resource.
+        """
+        return pulumi.get(self, "query_params")
 
     @_builtins.property
     @pulumi.getter

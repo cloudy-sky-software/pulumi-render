@@ -25,6 +25,12 @@ namespace Pulumi.Render.Services
     public sealed class ListSecretFilesForServiceArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
+        /// Query params to send with the API request.
+        /// </summary>
+        [Input("queryParams")]
+        public Inputs.ListSecretFilesForServiceQueryParams? QueryParams { get; set; }
+
+        /// <summary>
         /// The ID of the service
         /// </summary>
         [Input("serviceId", required: true)]
@@ -38,6 +44,12 @@ namespace Pulumi.Render.Services
 
     public sealed class ListSecretFilesForServiceInvokeArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// Query params to send with the API request.
+        /// </summary>
+        [Input("queryParams")]
+        public Input<Inputs.ListSecretFilesForServiceQueryParamsArgs>? QueryParams { get; set; }
+
         /// <summary>
         /// The ID of the service
         /// </summary>

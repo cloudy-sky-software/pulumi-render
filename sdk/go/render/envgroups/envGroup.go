@@ -15,13 +15,15 @@ import (
 type EnvGroup struct {
 	pulumi.CustomResourceState
 
-	CreatedAt     pulumi.StringPtrOutput   `pulumi:"createdAt"`
-	EnvVars       EnvVarArrayOutput        `pulumi:"envVars"`
-	EnvironmentId pulumi.StringPtrOutput   `pulumi:"environmentId"`
-	Name          pulumi.StringOutput      `pulumi:"name"`
-	OwnerId       pulumi.StringOutput      `pulumi:"ownerId"`
-	SecretFiles   SecretFileArrayOutput    `pulumi:"secretFiles"`
-	ServiceIds    pulumi.StringArrayOutput `pulumi:"serviceIds"`
+	CreatedAt     pulumi.StringPtrOutput `pulumi:"createdAt"`
+	EnvVars       EnvVarArrayOutput      `pulumi:"envVars"`
+	EnvironmentId pulumi.StringPtrOutput `pulumi:"environmentId"`
+	Name          pulumi.StringOutput    `pulumi:"name"`
+	OwnerId       pulumi.StringOutput    `pulumi:"ownerId"`
+	// Query params to send with the API requests for this resource.
+	QueryParams EnvGroupQueryParamsPtrOutput `pulumi:"queryParams"`
+	SecretFiles SecretFileArrayOutput        `pulumi:"secretFiles"`
+	ServiceIds  pulumi.StringArrayOutput     `pulumi:"serviceIds"`
 	// List of serviceIds linked to the envGroup
 	ServiceLinks EnvGroupLinkArrayOutput `pulumi:"serviceLinks"`
 	UpdatedAt    pulumi.StringPtrOutput  `pulumi:"updatedAt"`
@@ -73,12 +75,14 @@ func (EnvGroupState) ElementType() reflect.Type {
 }
 
 type envGroupArgs struct {
-	EnvVars       []EnvVarInputType     `pulumi:"envVars"`
-	EnvironmentId *string               `pulumi:"environmentId"`
-	Name          *string               `pulumi:"name"`
-	OwnerId       string                `pulumi:"ownerId"`
-	SecretFiles   []SecretFileInputType `pulumi:"secretFiles"`
-	ServiceIds    []string              `pulumi:"serviceIds"`
+	EnvVars       []EnvVarInputType `pulumi:"envVars"`
+	EnvironmentId *string           `pulumi:"environmentId"`
+	Name          *string           `pulumi:"name"`
+	OwnerId       string            `pulumi:"ownerId"`
+	// Query params to send with the API requests for this resource.
+	QueryParams *EnvGroupQueryParams  `pulumi:"queryParams"`
+	SecretFiles []SecretFileInputType `pulumi:"secretFiles"`
+	ServiceIds  []string              `pulumi:"serviceIds"`
 }
 
 // The set of arguments for constructing a EnvGroup resource.
@@ -87,8 +91,10 @@ type EnvGroupArgs struct {
 	EnvironmentId pulumi.StringPtrInput
 	Name          pulumi.StringPtrInput
 	OwnerId       pulumi.StringInput
-	SecretFiles   SecretFileInputTypeArrayInput
-	ServiceIds    pulumi.StringArrayInput
+	// Query params to send with the API requests for this resource.
+	QueryParams EnvGroupQueryParamsPtrInput
+	SecretFiles SecretFileInputTypeArrayInput
+	ServiceIds  pulumi.StringArrayInput
 }
 
 func (EnvGroupArgs) ElementType() reflect.Type {
@@ -146,6 +152,11 @@ func (o EnvGroupOutput) Name() pulumi.StringOutput {
 
 func (o EnvGroupOutput) OwnerId() pulumi.StringOutput {
 	return o.ApplyT(func(v *EnvGroup) pulumi.StringOutput { return v.OwnerId }).(pulumi.StringOutput)
+}
+
+// Query params to send with the API requests for this resource.
+func (o EnvGroupOutput) QueryParams() EnvGroupQueryParamsPtrOutput {
+	return o.ApplyT(func(v *EnvGroup) EnvGroupQueryParamsPtrOutput { return v.QueryParams }).(EnvGroupQueryParamsPtrOutput)
 }
 
 func (o EnvGroupOutput) SecretFiles() SecretFileArrayOutput {

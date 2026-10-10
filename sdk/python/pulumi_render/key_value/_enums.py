@@ -13,6 +13,7 @@ __all__ = [
     'KeyValuePlan',
     'KeyValueRegion',
     'KeyValueStatus',
+    'ListKeyValueQueryParamsRegionItem',
     'MaxmemoryPolicy',
     'OwnerType',
     'Plan',
@@ -94,6 +95,18 @@ class KeyValueStatus(_builtins.str, Enum):
     RECOVERY_IN_PROGRESS = "recovery_in_progress"
     UNKNOWN = "unknown"
     UPDATING_INSTANCE = "updating_instance"
+
+
+@pulumi.type_token("render:key-value:ListKeyValueQueryParamsRegionItem")
+class ListKeyValueQueryParamsRegionItem(_builtins.str, Enum):
+    """
+    Defaults to "oregon"
+    """
+    FRANKFURT = "frankfurt"
+    OREGON = "oregon"
+    OHIO = "ohio"
+    SINGAPORE = "singapore"
+    VIRGINIA = "virginia"
 
 
 @pulumi.type_token("render:key-value:MaxmemoryPolicy")

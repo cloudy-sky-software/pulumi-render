@@ -11,18 +11,31 @@ export function listKeyValue(args?: ListKeyValueArgs, opts?: pulumi.InvokeOption
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("render:key-value:listKeyValue", {
+        "queryParams": args.queryParams ? inputs.keyvalue.listKeyValueQueryParamsProvideDefaults(args.queryParams) : undefined,
     }, opts);
 }
 
 export interface ListKeyValueArgs {
+    /**
+     * Query params to send with the API request.
+     */
+    queryParams?: inputs.keyvalue.ListKeyValueQueryParams;
 }
 
 export interface ListKeyValueResult {
     readonly items: outputs.keyvalue.KeyValueWithCursor[];
 }
-export function listKeyValueOutput(opts?: pulumi.InvokeOutputOptions): pulumi.Output<ListKeyValueResult> {
+export function listKeyValueOutput(args?: ListKeyValueOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<ListKeyValueResult> {
+    args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("render:key-value:listKeyValue", {
+        "queryParams": pulumi.output(args.queryParams).apply(v => v === undefined ? undefined : inputs.keyvalue.listKeyValueQueryParamsProvideDefaults(v)),
     }, opts);
 }
 
+export interface ListKeyValueOutputArgs {
+    /**
+     * Query params to send with the API request.
+     */
+    queryParams?: pulumi.Input<inputs.keyvalue.ListKeyValueQueryParamsArgs | undefined>;
+}

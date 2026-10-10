@@ -21,6 +21,12 @@ namespace Pulumi.Render.Services
         [Output("priority")]
         public Output<int> Priority { get; private set; } = null!;
 
+        /// <summary>
+        /// Query params to send with the API requests for this resource.
+        /// </summary>
+        [Output("queryParams")]
+        public Output<Outputs.RouteQueryParams?> QueryParams { get; private set; } = null!;
+
         [Output("source")]
         public Output<string> Source { get; private set; } = null!;
 
@@ -81,6 +87,12 @@ namespace Pulumi.Render.Services
         /// </summary>
         [Input("priority")]
         public Input<int>? Priority { get; set; }
+
+        /// <summary>
+        /// Query params to send with the API requests for this resource.
+        /// </summary>
+        [Input("queryParams")]
+        public Input<Inputs.RouteQueryParamsArgs>? QueryParams { get; set; }
 
         /// <summary>
         /// The ID of the service

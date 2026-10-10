@@ -11,6 +11,7 @@ export function getEnvGroup(args: GetEnvGroupArgs, opts?: pulumi.InvokeOptions):
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("render:env-groups:getEnvGroup", {
         "envGroupId": args.envGroupId,
+        "queryParams": args.queryParams,
     }, opts);
 }
 
@@ -19,6 +20,10 @@ export interface GetEnvGroupArgs {
      * Filter for resources that belong to an environment group
      */
     envGroupId: string;
+    /**
+     * Query params to send with the API request.
+     */
+    queryParams?: inputs.envgroups.GetEnvGroupQueryParams;
 }
 
 export interface GetEnvGroupResult {
@@ -39,6 +44,7 @@ export function getEnvGroupOutput(args: GetEnvGroupOutputArgs, opts?: pulumi.Inv
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("render:env-groups:getEnvGroup", {
         "envGroupId": args.envGroupId,
+        "queryParams": args.queryParams,
     }, opts);
 }
 
@@ -47,4 +53,8 @@ export interface GetEnvGroupOutputArgs {
      * Filter for resources that belong to an environment group
      */
     envGroupId: pulumi.Input<string>;
+    /**
+     * Query params to send with the API request.
+     */
+    queryParams?: pulumi.Input<inputs.envgroups.GetEnvGroupQueryParamsArgs | undefined>;
 }

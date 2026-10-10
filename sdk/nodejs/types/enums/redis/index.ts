@@ -2,6 +2,19 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 
+export const ListRedisQueryParamsRegionItem = {
+    Frankfurt: "frankfurt",
+    Oregon: "oregon",
+    Ohio: "ohio",
+    Singapore: "singapore",
+    Virginia: "virginia",
+} as const;
+
+/**
+ * Defaults to "oregon"
+ */
+export type ListRedisQueryParamsRegionItem = (typeof ListRedisQueryParamsRegionItem)[keyof typeof ListRedisQueryParamsRegionItem];
+
 export const MaintenancePropertiesState = {
     Scheduled: "scheduled",
     InProgress: "in_progress",

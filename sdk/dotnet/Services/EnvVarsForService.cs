@@ -15,6 +15,12 @@ namespace Pulumi.Render.Services
         [Output("envVars")]
         public Output<ImmutableArray<Outputs.EnvVarInput>> EnvVars { get; private set; } = null!;
 
+        /// <summary>
+        /// Query params to send with the API requests for this resource.
+        /// </summary>
+        [Output("queryParams")]
+        public Output<Outputs.EnvVarsForServiceQueryParams?> QueryParams { get; private set; } = null!;
+
 
         /// <summary>
         /// Create a EnvVarsForService resource with the given unique name, arguments, and options.
@@ -68,6 +74,12 @@ namespace Pulumi.Render.Services
             get => _envVars ?? (_envVars = new InputList<Inputs.EnvVarInputArgs>());
             set => _envVars = value;
         }
+
+        /// <summary>
+        /// Query params to send with the API requests for this resource.
+        /// </summary>
+        [Input("queryParams")]
+        public Input<Inputs.EnvVarsForServiceQueryParamsArgs>? QueryParams { get; set; }
 
         /// <summary>
         /// The ID of the service

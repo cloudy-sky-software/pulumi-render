@@ -15,6 +15,7 @@ else:
 from .. import _utilities
 from . import outputs
 from ._enums import *
+from ._inputs import *
 
 __all__ = [
     'ListBlueprintSyncsResult',
@@ -46,28 +47,34 @@ class AwaitableListBlueprintSyncsResult(ListBlueprintSyncsResult):
 
 
 def list_blueprint_syncs(blueprint_id: Optional[_builtins.str] = None,
+                         query_params: Optional[Union['ListBlueprintSyncsQueryParams', 'ListBlueprintSyncsQueryParamsDict']] = None,
                          opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableListBlueprintSyncsResult:
     """
     Use this data source to access information about an existing resource.
 
     :param _builtins.str blueprint_id: The ID of the Blueprint
+    :param Union['ListBlueprintSyncsQueryParams', 'ListBlueprintSyncsQueryParamsDict'] query_params: Query params to send with the API request.
     """
     __args__ = dict()
     __args__['blueprintId'] = blueprint_id
+    __args__['queryParams'] = query_params
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke('render:blueprints:listBlueprintSyncs', __args__, opts=opts, typ=ListBlueprintSyncsResult).value
 
     return AwaitableListBlueprintSyncsResult(
         items=pulumi.get(__ret__, 'items'))
 def list_blueprint_syncs_output(blueprint_id: pulumi.Input[Optional[_builtins.str]] = None,
+                                query_params: pulumi.Input[Optional[Optional[Union['ListBlueprintSyncsQueryParams', 'ListBlueprintSyncsQueryParamsDict']]]] = None,
                                 opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[ListBlueprintSyncsResult]:
     """
     Use this data source to access information about an existing resource.
 
     :param _builtins.str blueprint_id: The ID of the Blueprint
+    :param Union['ListBlueprintSyncsQueryParams', 'ListBlueprintSyncsQueryParamsDict'] query_params: Query params to send with the API request.
     """
     __args__ = dict()
     __args__['blueprintId'] = blueprint_id
+    __args__['queryParams'] = query_params
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('render:blueprints:listBlueprintSyncs', __args__, opts=opts, typ=ListBlueprintSyncsResult)
     return __ret__.apply(lambda __response__: ListBlueprintSyncsResult(

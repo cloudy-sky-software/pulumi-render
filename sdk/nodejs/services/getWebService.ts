@@ -10,11 +10,16 @@ import * as utilities from "../utilities";
 export function getWebService(args: GetWebServiceArgs, opts?: pulumi.InvokeOptions): Promise<GetWebServiceResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("render:services:getWebService", {
+        "queryParams": args.queryParams,
         "serviceId": args.serviceId,
     }, opts);
 }
 
 export interface GetWebServiceArgs {
+    /**
+     * Query params to send with the API request.
+     */
+    queryParams?: inputs.services.GetWebServiceQueryParams;
     /**
      * The ID of the service
      */
@@ -49,11 +54,16 @@ export interface GetWebServiceResult {
 export function getWebServiceOutput(args: GetWebServiceOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetWebServiceResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("render:services:getWebService", {
+        "queryParams": args.queryParams,
         "serviceId": args.serviceId,
     }, opts);
 }
 
 export interface GetWebServiceOutputArgs {
+    /**
+     * Query params to send with the API request.
+     */
+    queryParams?: pulumi.Input<inputs.services.GetWebServiceQueryParamsArgs | undefined>;
     /**
      * The ID of the service
      */

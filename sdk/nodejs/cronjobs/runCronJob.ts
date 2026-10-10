@@ -39,6 +39,10 @@ export class RunCronJob extends pulumi.CustomResource {
      */
     declare public /*out*/ readonly canceledBy: pulumi.Output<string | undefined>;
     declare public /*out*/ readonly finishedAt: pulumi.Output<string | undefined>;
+    /**
+     * Query params to send with the API requests for this resource.
+     */
+    declare public readonly queryParams: pulumi.Output<outputs.cronjobs.RunCronJobQueryParams | undefined>;
     declare public /*out*/ readonly startedAt: pulumi.Output<string | undefined>;
     declare public /*out*/ readonly status: pulumi.Output<enums.cronjobs.Status>;
     /**
@@ -58,6 +62,7 @@ export class RunCronJob extends pulumi.CustomResource {
         opts = opts || {};
         if (!opts.id) {
             resourceInputs["cronJobId"] = args?.cronJobId;
+            resourceInputs["queryParams"] = args?.queryParams;
             resourceInputs["canceledBy"] = undefined /*out*/;
             resourceInputs["finishedAt"] = undefined /*out*/;
             resourceInputs["startedAt"] = undefined /*out*/;
@@ -66,6 +71,7 @@ export class RunCronJob extends pulumi.CustomResource {
         } else {
             resourceInputs["canceledBy"] = undefined /*out*/;
             resourceInputs["finishedAt"] = undefined /*out*/;
+            resourceInputs["queryParams"] = undefined /*out*/;
             resourceInputs["startedAt"] = undefined /*out*/;
             resourceInputs["status"] = undefined /*out*/;
             resourceInputs["triggeredBy"] = undefined /*out*/;
@@ -83,4 +89,8 @@ export interface RunCronJobArgs {
      * The ID of the cron job
      */
     cronJobId?: pulumi.Input<string | undefined>;
+    /**
+     * Query params to send with the API requests for this resource.
+     */
+    queryParams?: pulumi.Input<inputs.cronjobs.RunCronJobQueryParamsArgs | undefined>;
 }

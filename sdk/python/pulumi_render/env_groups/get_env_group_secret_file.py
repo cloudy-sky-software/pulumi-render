@@ -13,6 +13,7 @@ if sys.version_info >= (3, 11):
 else:
     from typing_extensions import NotRequired, TypedDict, TypeAlias
 from .. import _utilities
+from ._inputs import *
 
 __all__ = [
     'GetEnvGroupSecretFileResult',
@@ -53,16 +54,19 @@ class AwaitableGetEnvGroupSecretFileResult(GetEnvGroupSecretFileResult):
 
 
 def get_env_group_secret_file(env_group_id: Optional[_builtins.str] = None,
+                              query_params: Optional[Union['GetEnvGroupSecretFileQueryParams', 'GetEnvGroupSecretFileQueryParamsDict']] = None,
                               secret_file_name: Optional[_builtins.str] = None,
                               opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetEnvGroupSecretFileResult:
     """
     Use this data source to access information about an existing resource.
 
     :param _builtins.str env_group_id: Filter for resources that belong to an environment group
+    :param Union['GetEnvGroupSecretFileQueryParams', 'GetEnvGroupSecretFileQueryParamsDict'] query_params: Query params to send with the API request.
     :param _builtins.str secret_file_name: The name of the secret file
     """
     __args__ = dict()
     __args__['envGroupId'] = env_group_id
+    __args__['queryParams'] = query_params
     __args__['secretFileName'] = secret_file_name
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke('render:env-groups:getEnvGroupSecretFile', __args__, opts=opts, typ=GetEnvGroupSecretFileResult).value
@@ -71,16 +75,19 @@ def get_env_group_secret_file(env_group_id: Optional[_builtins.str] = None,
         content=pulumi.get(__ret__, 'content'),
         name=pulumi.get(__ret__, 'name'))
 def get_env_group_secret_file_output(env_group_id: pulumi.Input[Optional[_builtins.str]] = None,
+                                     query_params: pulumi.Input[Optional[Optional[Union['GetEnvGroupSecretFileQueryParams', 'GetEnvGroupSecretFileQueryParamsDict']]]] = None,
                                      secret_file_name: pulumi.Input[Optional[_builtins.str]] = None,
                                      opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetEnvGroupSecretFileResult]:
     """
     Use this data source to access information about an existing resource.
 
     :param _builtins.str env_group_id: Filter for resources that belong to an environment group
+    :param Union['GetEnvGroupSecretFileQueryParams', 'GetEnvGroupSecretFileQueryParamsDict'] query_params: Query params to send with the API request.
     :param _builtins.str secret_file_name: The name of the secret file
     """
     __args__ = dict()
     __args__['envGroupId'] = env_group_id
+    __args__['queryParams'] = query_params
     __args__['secretFileName'] = secret_file_name
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('render:env-groups:getEnvGroupSecretFile', __args__, opts=opts, typ=GetEnvGroupSecretFileResult)

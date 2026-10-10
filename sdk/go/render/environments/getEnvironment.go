@@ -23,6 +23,8 @@ func LookupEnvironment(ctx *pulumi.Context, args *LookupEnvironmentArgs, opts ..
 
 type LookupEnvironmentArgs struct {
 	EnvironmentId string `pulumi:"environmentId"`
+	// Query params to send with the API request.
+	QueryParams *GetEnvironmentQueryParams `pulumi:"queryParams"`
 }
 
 type LookupEnvironmentResult struct {
@@ -46,6 +48,8 @@ func LookupEnvironmentOutput(ctx *pulumi.Context, args LookupEnvironmentOutputAr
 
 type LookupEnvironmentOutputArgs struct {
 	EnvironmentId pulumi.StringInput `pulumi:"environmentId"`
+	// Query params to send with the API request.
+	QueryParams GetEnvironmentQueryParamsPtrInput `pulumi:"queryParams"`
 }
 
 func (LookupEnvironmentOutputArgs) ElementType() reflect.Type {

@@ -23,6 +23,8 @@ func LookupProject(ctx *pulumi.Context, args *LookupProjectArgs, opts ...pulumi.
 
 type LookupProjectArgs struct {
 	ProjectId string `pulumi:"projectId"`
+	// Query params to send with the API request.
+	QueryParams *GetProjectQueryParams `pulumi:"queryParams"`
 }
 
 // A project is a collection of environments
@@ -45,6 +47,8 @@ func LookupProjectOutput(ctx *pulumi.Context, args LookupProjectOutputArgs, opts
 
 type LookupProjectOutputArgs struct {
 	ProjectId pulumi.StringInput `pulumi:"projectId"`
+	// Query params to send with the API request.
+	QueryParams GetProjectQueryParamsPtrInput `pulumi:"queryParams"`
 }
 
 func (LookupProjectOutputArgs) ElementType() reflect.Type {

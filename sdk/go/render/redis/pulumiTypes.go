@@ -116,6 +116,640 @@ func (o CidrBlockAndDescriptionArrayOutput) Index(i pulumi.IntInput) CidrBlockAn
 	}).(CidrBlockAndDescriptionOutput)
 }
 
+// Query params for the API request.
+type GetRedisConnectionInfoQueryParams struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams map[string]string `pulumi:"additionalParams"`
+}
+
+// GetRedisConnectionInfoQueryParamsInput is an input type that accepts GetRedisConnectionInfoQueryParamsArgs and GetRedisConnectionInfoQueryParamsOutput values.
+// You can construct a concrete instance of `GetRedisConnectionInfoQueryParamsInput` via:
+//
+//	GetRedisConnectionInfoQueryParamsArgs{...}
+type GetRedisConnectionInfoQueryParamsInput interface {
+	pulumi.Input
+
+	ToGetRedisConnectionInfoQueryParamsOutput() GetRedisConnectionInfoQueryParamsOutput
+	ToGetRedisConnectionInfoQueryParamsOutputWithContext(context.Context) GetRedisConnectionInfoQueryParamsOutput
+}
+
+// Query params for the API request.
+type GetRedisConnectionInfoQueryParamsArgs struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams pulumi.StringMapInput `pulumi:"additionalParams"`
+}
+
+func (GetRedisConnectionInfoQueryParamsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetRedisConnectionInfoQueryParams)(nil)).Elem()
+}
+
+func (i GetRedisConnectionInfoQueryParamsArgs) ToGetRedisConnectionInfoQueryParamsOutput() GetRedisConnectionInfoQueryParamsOutput {
+	return i.ToGetRedisConnectionInfoQueryParamsOutputWithContext(context.Background())
+}
+
+func (i GetRedisConnectionInfoQueryParamsArgs) ToGetRedisConnectionInfoQueryParamsOutputWithContext(ctx context.Context) GetRedisConnectionInfoQueryParamsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetRedisConnectionInfoQueryParamsOutput)
+}
+
+func (i GetRedisConnectionInfoQueryParamsArgs) ToGetRedisConnectionInfoQueryParamsPtrOutput() GetRedisConnectionInfoQueryParamsPtrOutput {
+	return i.ToGetRedisConnectionInfoQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i GetRedisConnectionInfoQueryParamsArgs) ToGetRedisConnectionInfoQueryParamsPtrOutputWithContext(ctx context.Context) GetRedisConnectionInfoQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetRedisConnectionInfoQueryParamsOutput).ToGetRedisConnectionInfoQueryParamsPtrOutputWithContext(ctx)
+}
+
+// GetRedisConnectionInfoQueryParamsPtrInput is an input type that accepts GetRedisConnectionInfoQueryParamsArgs, GetRedisConnectionInfoQueryParamsPtr and GetRedisConnectionInfoQueryParamsPtrOutput values.
+// You can construct a concrete instance of `GetRedisConnectionInfoQueryParamsPtrInput` via:
+//
+//	        GetRedisConnectionInfoQueryParamsArgs{...}
+//
+//	or:
+//
+//	        nil
+type GetRedisConnectionInfoQueryParamsPtrInput interface {
+	pulumi.Input
+
+	ToGetRedisConnectionInfoQueryParamsPtrOutput() GetRedisConnectionInfoQueryParamsPtrOutput
+	ToGetRedisConnectionInfoQueryParamsPtrOutputWithContext(context.Context) GetRedisConnectionInfoQueryParamsPtrOutput
+}
+
+type getRedisConnectionInfoQueryParamsPtrType GetRedisConnectionInfoQueryParamsArgs
+
+func GetRedisConnectionInfoQueryParamsPtr(v *GetRedisConnectionInfoQueryParamsArgs) GetRedisConnectionInfoQueryParamsPtrInput {
+	return (*getRedisConnectionInfoQueryParamsPtrType)(v)
+}
+
+func (*getRedisConnectionInfoQueryParamsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**GetRedisConnectionInfoQueryParams)(nil)).Elem()
+}
+
+func (i *getRedisConnectionInfoQueryParamsPtrType) ToGetRedisConnectionInfoQueryParamsPtrOutput() GetRedisConnectionInfoQueryParamsPtrOutput {
+	return i.ToGetRedisConnectionInfoQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i *getRedisConnectionInfoQueryParamsPtrType) ToGetRedisConnectionInfoQueryParamsPtrOutputWithContext(ctx context.Context) GetRedisConnectionInfoQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetRedisConnectionInfoQueryParamsPtrOutput)
+}
+
+// Query params for the API request.
+type GetRedisConnectionInfoQueryParamsOutput struct{ *pulumi.OutputState }
+
+func (GetRedisConnectionInfoQueryParamsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetRedisConnectionInfoQueryParams)(nil)).Elem()
+}
+
+func (o GetRedisConnectionInfoQueryParamsOutput) ToGetRedisConnectionInfoQueryParamsOutput() GetRedisConnectionInfoQueryParamsOutput {
+	return o
+}
+
+func (o GetRedisConnectionInfoQueryParamsOutput) ToGetRedisConnectionInfoQueryParamsOutputWithContext(ctx context.Context) GetRedisConnectionInfoQueryParamsOutput {
+	return o
+}
+
+func (o GetRedisConnectionInfoQueryParamsOutput) ToGetRedisConnectionInfoQueryParamsPtrOutput() GetRedisConnectionInfoQueryParamsPtrOutput {
+	return o.ToGetRedisConnectionInfoQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (o GetRedisConnectionInfoQueryParamsOutput) ToGetRedisConnectionInfoQueryParamsPtrOutputWithContext(ctx context.Context) GetRedisConnectionInfoQueryParamsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v GetRedisConnectionInfoQueryParams) *GetRedisConnectionInfoQueryParams {
+		return &v
+	}).(GetRedisConnectionInfoQueryParamsPtrOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o GetRedisConnectionInfoQueryParamsOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v GetRedisConnectionInfoQueryParams) map[string]string { return v.AdditionalParams }).(pulumi.StringMapOutput)
+}
+
+type GetRedisConnectionInfoQueryParamsPtrOutput struct{ *pulumi.OutputState }
+
+func (GetRedisConnectionInfoQueryParamsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**GetRedisConnectionInfoQueryParams)(nil)).Elem()
+}
+
+func (o GetRedisConnectionInfoQueryParamsPtrOutput) ToGetRedisConnectionInfoQueryParamsPtrOutput() GetRedisConnectionInfoQueryParamsPtrOutput {
+	return o
+}
+
+func (o GetRedisConnectionInfoQueryParamsPtrOutput) ToGetRedisConnectionInfoQueryParamsPtrOutputWithContext(ctx context.Context) GetRedisConnectionInfoQueryParamsPtrOutput {
+	return o
+}
+
+func (o GetRedisConnectionInfoQueryParamsPtrOutput) Elem() GetRedisConnectionInfoQueryParamsOutput {
+	return o.ApplyT(func(v *GetRedisConnectionInfoQueryParams) GetRedisConnectionInfoQueryParams {
+		if v != nil {
+			return *v
+		}
+		var ret GetRedisConnectionInfoQueryParams
+		return ret
+	}).(GetRedisConnectionInfoQueryParamsOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o GetRedisConnectionInfoQueryParamsPtrOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *GetRedisConnectionInfoQueryParams) map[string]string {
+		if v == nil {
+			return nil
+		}
+		return v.AdditionalParams
+	}).(pulumi.StringMapOutput)
+}
+
+// Query params for the API request.
+type GetRedisQueryParams struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams map[string]string `pulumi:"additionalParams"`
+}
+
+// GetRedisQueryParamsInput is an input type that accepts GetRedisQueryParamsArgs and GetRedisQueryParamsOutput values.
+// You can construct a concrete instance of `GetRedisQueryParamsInput` via:
+//
+//	GetRedisQueryParamsArgs{...}
+type GetRedisQueryParamsInput interface {
+	pulumi.Input
+
+	ToGetRedisQueryParamsOutput() GetRedisQueryParamsOutput
+	ToGetRedisQueryParamsOutputWithContext(context.Context) GetRedisQueryParamsOutput
+}
+
+// Query params for the API request.
+type GetRedisQueryParamsArgs struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams pulumi.StringMapInput `pulumi:"additionalParams"`
+}
+
+func (GetRedisQueryParamsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetRedisQueryParams)(nil)).Elem()
+}
+
+func (i GetRedisQueryParamsArgs) ToGetRedisQueryParamsOutput() GetRedisQueryParamsOutput {
+	return i.ToGetRedisQueryParamsOutputWithContext(context.Background())
+}
+
+func (i GetRedisQueryParamsArgs) ToGetRedisQueryParamsOutputWithContext(ctx context.Context) GetRedisQueryParamsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetRedisQueryParamsOutput)
+}
+
+func (i GetRedisQueryParamsArgs) ToGetRedisQueryParamsPtrOutput() GetRedisQueryParamsPtrOutput {
+	return i.ToGetRedisQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i GetRedisQueryParamsArgs) ToGetRedisQueryParamsPtrOutputWithContext(ctx context.Context) GetRedisQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetRedisQueryParamsOutput).ToGetRedisQueryParamsPtrOutputWithContext(ctx)
+}
+
+// GetRedisQueryParamsPtrInput is an input type that accepts GetRedisQueryParamsArgs, GetRedisQueryParamsPtr and GetRedisQueryParamsPtrOutput values.
+// You can construct a concrete instance of `GetRedisQueryParamsPtrInput` via:
+//
+//	        GetRedisQueryParamsArgs{...}
+//
+//	or:
+//
+//	        nil
+type GetRedisQueryParamsPtrInput interface {
+	pulumi.Input
+
+	ToGetRedisQueryParamsPtrOutput() GetRedisQueryParamsPtrOutput
+	ToGetRedisQueryParamsPtrOutputWithContext(context.Context) GetRedisQueryParamsPtrOutput
+}
+
+type getRedisQueryParamsPtrType GetRedisQueryParamsArgs
+
+func GetRedisQueryParamsPtr(v *GetRedisQueryParamsArgs) GetRedisQueryParamsPtrInput {
+	return (*getRedisQueryParamsPtrType)(v)
+}
+
+func (*getRedisQueryParamsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**GetRedisQueryParams)(nil)).Elem()
+}
+
+func (i *getRedisQueryParamsPtrType) ToGetRedisQueryParamsPtrOutput() GetRedisQueryParamsPtrOutput {
+	return i.ToGetRedisQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i *getRedisQueryParamsPtrType) ToGetRedisQueryParamsPtrOutputWithContext(ctx context.Context) GetRedisQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetRedisQueryParamsPtrOutput)
+}
+
+// Query params for the API request.
+type GetRedisQueryParamsOutput struct{ *pulumi.OutputState }
+
+func (GetRedisQueryParamsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetRedisQueryParams)(nil)).Elem()
+}
+
+func (o GetRedisQueryParamsOutput) ToGetRedisQueryParamsOutput() GetRedisQueryParamsOutput {
+	return o
+}
+
+func (o GetRedisQueryParamsOutput) ToGetRedisQueryParamsOutputWithContext(ctx context.Context) GetRedisQueryParamsOutput {
+	return o
+}
+
+func (o GetRedisQueryParamsOutput) ToGetRedisQueryParamsPtrOutput() GetRedisQueryParamsPtrOutput {
+	return o.ToGetRedisQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (o GetRedisQueryParamsOutput) ToGetRedisQueryParamsPtrOutputWithContext(ctx context.Context) GetRedisQueryParamsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v GetRedisQueryParams) *GetRedisQueryParams {
+		return &v
+	}).(GetRedisQueryParamsPtrOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o GetRedisQueryParamsOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v GetRedisQueryParams) map[string]string { return v.AdditionalParams }).(pulumi.StringMapOutput)
+}
+
+type GetRedisQueryParamsPtrOutput struct{ *pulumi.OutputState }
+
+func (GetRedisQueryParamsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**GetRedisQueryParams)(nil)).Elem()
+}
+
+func (o GetRedisQueryParamsPtrOutput) ToGetRedisQueryParamsPtrOutput() GetRedisQueryParamsPtrOutput {
+	return o
+}
+
+func (o GetRedisQueryParamsPtrOutput) ToGetRedisQueryParamsPtrOutputWithContext(ctx context.Context) GetRedisQueryParamsPtrOutput {
+	return o
+}
+
+func (o GetRedisQueryParamsPtrOutput) Elem() GetRedisQueryParamsOutput {
+	return o.ApplyT(func(v *GetRedisQueryParams) GetRedisQueryParams {
+		if v != nil {
+			return *v
+		}
+		var ret GetRedisQueryParams
+		return ret
+	}).(GetRedisQueryParamsOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o GetRedisQueryParamsPtrOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *GetRedisQueryParams) map[string]string {
+		if v == nil {
+			return nil
+		}
+		return v.AdditionalParams
+	}).(pulumi.StringMapOutput)
+}
+
+// Query params for the API request.
+type ListRedisQueryParams struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams map[string]string `pulumi:"additionalParams"`
+	// Filter for resources created after a certain time (specified as an ISO 8601 timestamp)
+	CreatedAfter *string `pulumi:"createdAfter"`
+	// Filter for resources created before a certain time (specified as an ISO 8601 timestamp)
+	CreatedBefore *string `pulumi:"createdBefore"`
+	// The position in the result list to start from when fetching paginated results. For details, see [Pagination](https://api-docs.render.com/reference/pagination).
+	Cursor *string `pulumi:"cursor"`
+	// Filter for resources that belong to an environment
+	EnvironmentId []string `pulumi:"environmentId"`
+	// The maximum number of items to return. For details, see [Pagination](https://api-docs.render.com/reference/pagination).
+	Limit *int `pulumi:"limit"`
+	// Filter by name
+	Name []string `pulumi:"name"`
+	// The ID of the workspaces to return resources for
+	OwnerId []string `pulumi:"ownerId"`
+	// Filter by resource region
+	Region []ListRedisQueryParamsRegionItem `pulumi:"region"`
+	// Filter for resources updated after a certain time (specified as an ISO 8601 timestamp)
+	UpdatedAfter *string `pulumi:"updatedAfter"`
+	// Filter for resources updated before a certain time (specified as an ISO 8601 timestamp)
+	UpdatedBefore *string `pulumi:"updatedBefore"`
+}
+
+// Defaults sets the appropriate defaults for ListRedisQueryParams
+func (val *ListRedisQueryParams) Defaults() *ListRedisQueryParams {
+	if val == nil {
+		return nil
+	}
+	tmp := *val
+	if tmp.Limit == nil {
+		limit_ := 20
+		tmp.Limit = &limit_
+	}
+	return &tmp
+}
+
+// ListRedisQueryParamsInput is an input type that accepts ListRedisQueryParamsArgs and ListRedisQueryParamsOutput values.
+// You can construct a concrete instance of `ListRedisQueryParamsInput` via:
+//
+//	ListRedisQueryParamsArgs{...}
+type ListRedisQueryParamsInput interface {
+	pulumi.Input
+
+	ToListRedisQueryParamsOutput() ListRedisQueryParamsOutput
+	ToListRedisQueryParamsOutputWithContext(context.Context) ListRedisQueryParamsOutput
+}
+
+// Query params for the API request.
+type ListRedisQueryParamsArgs struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams pulumi.StringMapInput `pulumi:"additionalParams"`
+	// Filter for resources created after a certain time (specified as an ISO 8601 timestamp)
+	CreatedAfter pulumi.StringPtrInput `pulumi:"createdAfter"`
+	// Filter for resources created before a certain time (specified as an ISO 8601 timestamp)
+	CreatedBefore pulumi.StringPtrInput `pulumi:"createdBefore"`
+	// The position in the result list to start from when fetching paginated results. For details, see [Pagination](https://api-docs.render.com/reference/pagination).
+	Cursor pulumi.StringPtrInput `pulumi:"cursor"`
+	// Filter for resources that belong to an environment
+	EnvironmentId pulumi.StringArrayInput `pulumi:"environmentId"`
+	// The maximum number of items to return. For details, see [Pagination](https://api-docs.render.com/reference/pagination).
+	Limit pulumi.IntPtrInput `pulumi:"limit"`
+	// Filter by name
+	Name pulumi.StringArrayInput `pulumi:"name"`
+	// The ID of the workspaces to return resources for
+	OwnerId pulumi.StringArrayInput `pulumi:"ownerId"`
+	// Filter by resource region
+	Region ListRedisQueryParamsRegionItemArrayInput `pulumi:"region"`
+	// Filter for resources updated after a certain time (specified as an ISO 8601 timestamp)
+	UpdatedAfter pulumi.StringPtrInput `pulumi:"updatedAfter"`
+	// Filter for resources updated before a certain time (specified as an ISO 8601 timestamp)
+	UpdatedBefore pulumi.StringPtrInput `pulumi:"updatedBefore"`
+}
+
+// Defaults sets the appropriate defaults for ListRedisQueryParamsArgs
+func (val *ListRedisQueryParamsArgs) Defaults() *ListRedisQueryParamsArgs {
+	if val == nil {
+		return nil
+	}
+	tmp := *val
+	if tmp.Limit == nil {
+		tmp.Limit = pulumi.IntPtr(20)
+	}
+	return &tmp
+}
+func (ListRedisQueryParamsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ListRedisQueryParams)(nil)).Elem()
+}
+
+func (i ListRedisQueryParamsArgs) ToListRedisQueryParamsOutput() ListRedisQueryParamsOutput {
+	return i.ToListRedisQueryParamsOutputWithContext(context.Background())
+}
+
+func (i ListRedisQueryParamsArgs) ToListRedisQueryParamsOutputWithContext(ctx context.Context) ListRedisQueryParamsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ListRedisQueryParamsOutput)
+}
+
+func (i ListRedisQueryParamsArgs) ToListRedisQueryParamsPtrOutput() ListRedisQueryParamsPtrOutput {
+	return i.ToListRedisQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i ListRedisQueryParamsArgs) ToListRedisQueryParamsPtrOutputWithContext(ctx context.Context) ListRedisQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ListRedisQueryParamsOutput).ToListRedisQueryParamsPtrOutputWithContext(ctx)
+}
+
+// ListRedisQueryParamsPtrInput is an input type that accepts ListRedisQueryParamsArgs, ListRedisQueryParamsPtr and ListRedisQueryParamsPtrOutput values.
+// You can construct a concrete instance of `ListRedisQueryParamsPtrInput` via:
+//
+//	        ListRedisQueryParamsArgs{...}
+//
+//	or:
+//
+//	        nil
+type ListRedisQueryParamsPtrInput interface {
+	pulumi.Input
+
+	ToListRedisQueryParamsPtrOutput() ListRedisQueryParamsPtrOutput
+	ToListRedisQueryParamsPtrOutputWithContext(context.Context) ListRedisQueryParamsPtrOutput
+}
+
+type listRedisQueryParamsPtrType ListRedisQueryParamsArgs
+
+func ListRedisQueryParamsPtr(v *ListRedisQueryParamsArgs) ListRedisQueryParamsPtrInput {
+	return (*listRedisQueryParamsPtrType)(v)
+}
+
+func (*listRedisQueryParamsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**ListRedisQueryParams)(nil)).Elem()
+}
+
+func (i *listRedisQueryParamsPtrType) ToListRedisQueryParamsPtrOutput() ListRedisQueryParamsPtrOutput {
+	return i.ToListRedisQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i *listRedisQueryParamsPtrType) ToListRedisQueryParamsPtrOutputWithContext(ctx context.Context) ListRedisQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ListRedisQueryParamsPtrOutput)
+}
+
+// Query params for the API request.
+type ListRedisQueryParamsOutput struct{ *pulumi.OutputState }
+
+func (ListRedisQueryParamsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ListRedisQueryParams)(nil)).Elem()
+}
+
+func (o ListRedisQueryParamsOutput) ToListRedisQueryParamsOutput() ListRedisQueryParamsOutput {
+	return o
+}
+
+func (o ListRedisQueryParamsOutput) ToListRedisQueryParamsOutputWithContext(ctx context.Context) ListRedisQueryParamsOutput {
+	return o
+}
+
+func (o ListRedisQueryParamsOutput) ToListRedisQueryParamsPtrOutput() ListRedisQueryParamsPtrOutput {
+	return o.ToListRedisQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (o ListRedisQueryParamsOutput) ToListRedisQueryParamsPtrOutputWithContext(ctx context.Context) ListRedisQueryParamsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v ListRedisQueryParams) *ListRedisQueryParams {
+		return &v
+	}).(ListRedisQueryParamsPtrOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o ListRedisQueryParamsOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v ListRedisQueryParams) map[string]string { return v.AdditionalParams }).(pulumi.StringMapOutput)
+}
+
+// Filter for resources created after a certain time (specified as an ISO 8601 timestamp)
+func (o ListRedisQueryParamsOutput) CreatedAfter() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ListRedisQueryParams) *string { return v.CreatedAfter }).(pulumi.StringPtrOutput)
+}
+
+// Filter for resources created before a certain time (specified as an ISO 8601 timestamp)
+func (o ListRedisQueryParamsOutput) CreatedBefore() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ListRedisQueryParams) *string { return v.CreatedBefore }).(pulumi.StringPtrOutput)
+}
+
+// The position in the result list to start from when fetching paginated results. For details, see [Pagination](https://api-docs.render.com/reference/pagination).
+func (o ListRedisQueryParamsOutput) Cursor() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ListRedisQueryParams) *string { return v.Cursor }).(pulumi.StringPtrOutput)
+}
+
+// Filter for resources that belong to an environment
+func (o ListRedisQueryParamsOutput) EnvironmentId() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v ListRedisQueryParams) []string { return v.EnvironmentId }).(pulumi.StringArrayOutput)
+}
+
+// The maximum number of items to return. For details, see [Pagination](https://api-docs.render.com/reference/pagination).
+func (o ListRedisQueryParamsOutput) Limit() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v ListRedisQueryParams) *int { return v.Limit }).(pulumi.IntPtrOutput)
+}
+
+// Filter by name
+func (o ListRedisQueryParamsOutput) Name() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v ListRedisQueryParams) []string { return v.Name }).(pulumi.StringArrayOutput)
+}
+
+// The ID of the workspaces to return resources for
+func (o ListRedisQueryParamsOutput) OwnerId() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v ListRedisQueryParams) []string { return v.OwnerId }).(pulumi.StringArrayOutput)
+}
+
+// Filter by resource region
+func (o ListRedisQueryParamsOutput) Region() ListRedisQueryParamsRegionItemArrayOutput {
+	return o.ApplyT(func(v ListRedisQueryParams) []ListRedisQueryParamsRegionItem { return v.Region }).(ListRedisQueryParamsRegionItemArrayOutput)
+}
+
+// Filter for resources updated after a certain time (specified as an ISO 8601 timestamp)
+func (o ListRedisQueryParamsOutput) UpdatedAfter() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ListRedisQueryParams) *string { return v.UpdatedAfter }).(pulumi.StringPtrOutput)
+}
+
+// Filter for resources updated before a certain time (specified as an ISO 8601 timestamp)
+func (o ListRedisQueryParamsOutput) UpdatedBefore() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ListRedisQueryParams) *string { return v.UpdatedBefore }).(pulumi.StringPtrOutput)
+}
+
+type ListRedisQueryParamsPtrOutput struct{ *pulumi.OutputState }
+
+func (ListRedisQueryParamsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ListRedisQueryParams)(nil)).Elem()
+}
+
+func (o ListRedisQueryParamsPtrOutput) ToListRedisQueryParamsPtrOutput() ListRedisQueryParamsPtrOutput {
+	return o
+}
+
+func (o ListRedisQueryParamsPtrOutput) ToListRedisQueryParamsPtrOutputWithContext(ctx context.Context) ListRedisQueryParamsPtrOutput {
+	return o
+}
+
+func (o ListRedisQueryParamsPtrOutput) Elem() ListRedisQueryParamsOutput {
+	return o.ApplyT(func(v *ListRedisQueryParams) ListRedisQueryParams {
+		if v != nil {
+			return *v
+		}
+		var ret ListRedisQueryParams
+		return ret
+	}).(ListRedisQueryParamsOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o ListRedisQueryParamsPtrOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *ListRedisQueryParams) map[string]string {
+		if v == nil {
+			return nil
+		}
+		return v.AdditionalParams
+	}).(pulumi.StringMapOutput)
+}
+
+// Filter for resources created after a certain time (specified as an ISO 8601 timestamp)
+func (o ListRedisQueryParamsPtrOutput) CreatedAfter() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ListRedisQueryParams) *string {
+		if v == nil {
+			return nil
+		}
+		return v.CreatedAfter
+	}).(pulumi.StringPtrOutput)
+}
+
+// Filter for resources created before a certain time (specified as an ISO 8601 timestamp)
+func (o ListRedisQueryParamsPtrOutput) CreatedBefore() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ListRedisQueryParams) *string {
+		if v == nil {
+			return nil
+		}
+		return v.CreatedBefore
+	}).(pulumi.StringPtrOutput)
+}
+
+// The position in the result list to start from when fetching paginated results. For details, see [Pagination](https://api-docs.render.com/reference/pagination).
+func (o ListRedisQueryParamsPtrOutput) Cursor() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ListRedisQueryParams) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Cursor
+	}).(pulumi.StringPtrOutput)
+}
+
+// Filter for resources that belong to an environment
+func (o ListRedisQueryParamsPtrOutput) EnvironmentId() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *ListRedisQueryParams) []string {
+		if v == nil {
+			return nil
+		}
+		return v.EnvironmentId
+	}).(pulumi.StringArrayOutput)
+}
+
+// The maximum number of items to return. For details, see [Pagination](https://api-docs.render.com/reference/pagination).
+func (o ListRedisQueryParamsPtrOutput) Limit() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *ListRedisQueryParams) *int {
+		if v == nil {
+			return nil
+		}
+		return v.Limit
+	}).(pulumi.IntPtrOutput)
+}
+
+// Filter by name
+func (o ListRedisQueryParamsPtrOutput) Name() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *ListRedisQueryParams) []string {
+		if v == nil {
+			return nil
+		}
+		return v.Name
+	}).(pulumi.StringArrayOutput)
+}
+
+// The ID of the workspaces to return resources for
+func (o ListRedisQueryParamsPtrOutput) OwnerId() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *ListRedisQueryParams) []string {
+		if v == nil {
+			return nil
+		}
+		return v.OwnerId
+	}).(pulumi.StringArrayOutput)
+}
+
+// Filter by resource region
+func (o ListRedisQueryParamsPtrOutput) Region() ListRedisQueryParamsRegionItemArrayOutput {
+	return o.ApplyT(func(v *ListRedisQueryParams) []ListRedisQueryParamsRegionItem {
+		if v == nil {
+			return nil
+		}
+		return v.Region
+	}).(ListRedisQueryParamsRegionItemArrayOutput)
+}
+
+// Filter for resources updated after a certain time (specified as an ISO 8601 timestamp)
+func (o ListRedisQueryParamsPtrOutput) UpdatedAfter() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ListRedisQueryParams) *string {
+		if v == nil {
+			return nil
+		}
+		return v.UpdatedAfter
+	}).(pulumi.StringPtrOutput)
+}
+
+// Filter for resources updated before a certain time (specified as an ISO 8601 timestamp)
+func (o ListRedisQueryParamsPtrOutput) UpdatedBefore() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ListRedisQueryParams) *string {
+		if v == nil {
+			return nil
+		}
+		return v.UpdatedBefore
+	}).(pulumi.StringPtrOutput)
+}
+
 type MaintenanceProperties struct {
 	Id string `pulumi:"id"`
 	// If present, the maintenance run cannot be scheduled for later than this date-time.
@@ -400,6 +1034,286 @@ type RedisConnectionInfo struct {
 	RedisCLICommand string `pulumi:"redisCLICommand"`
 }
 
+// Query params for the API request.
+type RedisCreateQueryParams struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams map[string]string `pulumi:"additionalParams"`
+}
+
+// RedisCreateQueryParamsInput is an input type that accepts RedisCreateQueryParamsArgs and RedisCreateQueryParamsOutput values.
+// You can construct a concrete instance of `RedisCreateQueryParamsInput` via:
+//
+//	RedisCreateQueryParamsArgs{...}
+type RedisCreateQueryParamsInput interface {
+	pulumi.Input
+
+	ToRedisCreateQueryParamsOutput() RedisCreateQueryParamsOutput
+	ToRedisCreateQueryParamsOutputWithContext(context.Context) RedisCreateQueryParamsOutput
+}
+
+// Query params for the API request.
+type RedisCreateQueryParamsArgs struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams pulumi.StringMapInput `pulumi:"additionalParams"`
+}
+
+func (RedisCreateQueryParamsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*RedisCreateQueryParams)(nil)).Elem()
+}
+
+func (i RedisCreateQueryParamsArgs) ToRedisCreateQueryParamsOutput() RedisCreateQueryParamsOutput {
+	return i.ToRedisCreateQueryParamsOutputWithContext(context.Background())
+}
+
+func (i RedisCreateQueryParamsArgs) ToRedisCreateQueryParamsOutputWithContext(ctx context.Context) RedisCreateQueryParamsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RedisCreateQueryParamsOutput)
+}
+
+func (i RedisCreateQueryParamsArgs) ToRedisCreateQueryParamsPtrOutput() RedisCreateQueryParamsPtrOutput {
+	return i.ToRedisCreateQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i RedisCreateQueryParamsArgs) ToRedisCreateQueryParamsPtrOutputWithContext(ctx context.Context) RedisCreateQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RedisCreateQueryParamsOutput).ToRedisCreateQueryParamsPtrOutputWithContext(ctx)
+}
+
+// RedisCreateQueryParamsPtrInput is an input type that accepts RedisCreateQueryParamsArgs, RedisCreateQueryParamsPtr and RedisCreateQueryParamsPtrOutput values.
+// You can construct a concrete instance of `RedisCreateQueryParamsPtrInput` via:
+//
+//	        RedisCreateQueryParamsArgs{...}
+//
+//	or:
+//
+//	        nil
+type RedisCreateQueryParamsPtrInput interface {
+	pulumi.Input
+
+	ToRedisCreateQueryParamsPtrOutput() RedisCreateQueryParamsPtrOutput
+	ToRedisCreateQueryParamsPtrOutputWithContext(context.Context) RedisCreateQueryParamsPtrOutput
+}
+
+type redisCreateQueryParamsPtrType RedisCreateQueryParamsArgs
+
+func RedisCreateQueryParamsPtr(v *RedisCreateQueryParamsArgs) RedisCreateQueryParamsPtrInput {
+	return (*redisCreateQueryParamsPtrType)(v)
+}
+
+func (*redisCreateQueryParamsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**RedisCreateQueryParams)(nil)).Elem()
+}
+
+func (i *redisCreateQueryParamsPtrType) ToRedisCreateQueryParamsPtrOutput() RedisCreateQueryParamsPtrOutput {
+	return i.ToRedisCreateQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i *redisCreateQueryParamsPtrType) ToRedisCreateQueryParamsPtrOutputWithContext(ctx context.Context) RedisCreateQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RedisCreateQueryParamsPtrOutput)
+}
+
+// Query params for the API request.
+type RedisCreateQueryParamsOutput struct{ *pulumi.OutputState }
+
+func (RedisCreateQueryParamsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*RedisCreateQueryParams)(nil)).Elem()
+}
+
+func (o RedisCreateQueryParamsOutput) ToRedisCreateQueryParamsOutput() RedisCreateQueryParamsOutput {
+	return o
+}
+
+func (o RedisCreateQueryParamsOutput) ToRedisCreateQueryParamsOutputWithContext(ctx context.Context) RedisCreateQueryParamsOutput {
+	return o
+}
+
+func (o RedisCreateQueryParamsOutput) ToRedisCreateQueryParamsPtrOutput() RedisCreateQueryParamsPtrOutput {
+	return o.ToRedisCreateQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (o RedisCreateQueryParamsOutput) ToRedisCreateQueryParamsPtrOutputWithContext(ctx context.Context) RedisCreateQueryParamsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v RedisCreateQueryParams) *RedisCreateQueryParams {
+		return &v
+	}).(RedisCreateQueryParamsPtrOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o RedisCreateQueryParamsOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v RedisCreateQueryParams) map[string]string { return v.AdditionalParams }).(pulumi.StringMapOutput)
+}
+
+type RedisCreateQueryParamsPtrOutput struct{ *pulumi.OutputState }
+
+func (RedisCreateQueryParamsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**RedisCreateQueryParams)(nil)).Elem()
+}
+
+func (o RedisCreateQueryParamsPtrOutput) ToRedisCreateQueryParamsPtrOutput() RedisCreateQueryParamsPtrOutput {
+	return o
+}
+
+func (o RedisCreateQueryParamsPtrOutput) ToRedisCreateQueryParamsPtrOutputWithContext(ctx context.Context) RedisCreateQueryParamsPtrOutput {
+	return o
+}
+
+func (o RedisCreateQueryParamsPtrOutput) Elem() RedisCreateQueryParamsOutput {
+	return o.ApplyT(func(v *RedisCreateQueryParams) RedisCreateQueryParams {
+		if v != nil {
+			return *v
+		}
+		var ret RedisCreateQueryParams
+		return ret
+	}).(RedisCreateQueryParamsOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o RedisCreateQueryParamsPtrOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *RedisCreateQueryParams) map[string]string {
+		if v == nil {
+			return nil
+		}
+		return v.AdditionalParams
+	}).(pulumi.StringMapOutput)
+}
+
+// Query params for the API request.
+type RedisDeleteQueryParams struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams map[string]string `pulumi:"additionalParams"`
+}
+
+// RedisDeleteQueryParamsInput is an input type that accepts RedisDeleteQueryParamsArgs and RedisDeleteQueryParamsOutput values.
+// You can construct a concrete instance of `RedisDeleteQueryParamsInput` via:
+//
+//	RedisDeleteQueryParamsArgs{...}
+type RedisDeleteQueryParamsInput interface {
+	pulumi.Input
+
+	ToRedisDeleteQueryParamsOutput() RedisDeleteQueryParamsOutput
+	ToRedisDeleteQueryParamsOutputWithContext(context.Context) RedisDeleteQueryParamsOutput
+}
+
+// Query params for the API request.
+type RedisDeleteQueryParamsArgs struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams pulumi.StringMapInput `pulumi:"additionalParams"`
+}
+
+func (RedisDeleteQueryParamsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*RedisDeleteQueryParams)(nil)).Elem()
+}
+
+func (i RedisDeleteQueryParamsArgs) ToRedisDeleteQueryParamsOutput() RedisDeleteQueryParamsOutput {
+	return i.ToRedisDeleteQueryParamsOutputWithContext(context.Background())
+}
+
+func (i RedisDeleteQueryParamsArgs) ToRedisDeleteQueryParamsOutputWithContext(ctx context.Context) RedisDeleteQueryParamsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RedisDeleteQueryParamsOutput)
+}
+
+func (i RedisDeleteQueryParamsArgs) ToRedisDeleteQueryParamsPtrOutput() RedisDeleteQueryParamsPtrOutput {
+	return i.ToRedisDeleteQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i RedisDeleteQueryParamsArgs) ToRedisDeleteQueryParamsPtrOutputWithContext(ctx context.Context) RedisDeleteQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RedisDeleteQueryParamsOutput).ToRedisDeleteQueryParamsPtrOutputWithContext(ctx)
+}
+
+// RedisDeleteQueryParamsPtrInput is an input type that accepts RedisDeleteQueryParamsArgs, RedisDeleteQueryParamsPtr and RedisDeleteQueryParamsPtrOutput values.
+// You can construct a concrete instance of `RedisDeleteQueryParamsPtrInput` via:
+//
+//	        RedisDeleteQueryParamsArgs{...}
+//
+//	or:
+//
+//	        nil
+type RedisDeleteQueryParamsPtrInput interface {
+	pulumi.Input
+
+	ToRedisDeleteQueryParamsPtrOutput() RedisDeleteQueryParamsPtrOutput
+	ToRedisDeleteQueryParamsPtrOutputWithContext(context.Context) RedisDeleteQueryParamsPtrOutput
+}
+
+type redisDeleteQueryParamsPtrType RedisDeleteQueryParamsArgs
+
+func RedisDeleteQueryParamsPtr(v *RedisDeleteQueryParamsArgs) RedisDeleteQueryParamsPtrInput {
+	return (*redisDeleteQueryParamsPtrType)(v)
+}
+
+func (*redisDeleteQueryParamsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**RedisDeleteQueryParams)(nil)).Elem()
+}
+
+func (i *redisDeleteQueryParamsPtrType) ToRedisDeleteQueryParamsPtrOutput() RedisDeleteQueryParamsPtrOutput {
+	return i.ToRedisDeleteQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i *redisDeleteQueryParamsPtrType) ToRedisDeleteQueryParamsPtrOutputWithContext(ctx context.Context) RedisDeleteQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RedisDeleteQueryParamsPtrOutput)
+}
+
+// Query params for the API request.
+type RedisDeleteQueryParamsOutput struct{ *pulumi.OutputState }
+
+func (RedisDeleteQueryParamsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*RedisDeleteQueryParams)(nil)).Elem()
+}
+
+func (o RedisDeleteQueryParamsOutput) ToRedisDeleteQueryParamsOutput() RedisDeleteQueryParamsOutput {
+	return o
+}
+
+func (o RedisDeleteQueryParamsOutput) ToRedisDeleteQueryParamsOutputWithContext(ctx context.Context) RedisDeleteQueryParamsOutput {
+	return o
+}
+
+func (o RedisDeleteQueryParamsOutput) ToRedisDeleteQueryParamsPtrOutput() RedisDeleteQueryParamsPtrOutput {
+	return o.ToRedisDeleteQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (o RedisDeleteQueryParamsOutput) ToRedisDeleteQueryParamsPtrOutputWithContext(ctx context.Context) RedisDeleteQueryParamsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v RedisDeleteQueryParams) *RedisDeleteQueryParams {
+		return &v
+	}).(RedisDeleteQueryParamsPtrOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o RedisDeleteQueryParamsOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v RedisDeleteQueryParams) map[string]string { return v.AdditionalParams }).(pulumi.StringMapOutput)
+}
+
+type RedisDeleteQueryParamsPtrOutput struct{ *pulumi.OutputState }
+
+func (RedisDeleteQueryParamsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**RedisDeleteQueryParams)(nil)).Elem()
+}
+
+func (o RedisDeleteQueryParamsPtrOutput) ToRedisDeleteQueryParamsPtrOutput() RedisDeleteQueryParamsPtrOutput {
+	return o
+}
+
+func (o RedisDeleteQueryParamsPtrOutput) ToRedisDeleteQueryParamsPtrOutputWithContext(ctx context.Context) RedisDeleteQueryParamsPtrOutput {
+	return o
+}
+
+func (o RedisDeleteQueryParamsPtrOutput) Elem() RedisDeleteQueryParamsOutput {
+	return o.ApplyT(func(v *RedisDeleteQueryParams) RedisDeleteQueryParams {
+		if v != nil {
+			return *v
+		}
+		var ret RedisDeleteQueryParams
+		return ret
+	}).(RedisDeleteQueryParamsOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o RedisDeleteQueryParamsPtrOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *RedisDeleteQueryParams) map[string]string {
+		if v == nil {
+			return nil
+		}
+		return v.AdditionalParams
+	}).(pulumi.StringMapOutput)
+}
+
 // A Redis instance
 type RedisDetail struct {
 	// The creation time of the Redis instance
@@ -576,6 +1490,483 @@ func (o RedisOptionsOutput) MaxmemoryPolicy() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v RedisOptions) *string { return v.MaxmemoryPolicy }).(pulumi.StringPtrOutput)
 }
 
+// Query params for each of the operations of the resource.
+type RedisQueryParams struct {
+	// Query params for the create operation.
+	Create *RedisCreateQueryParams `pulumi:"create"`
+	// Query params for the delete operation.
+	Delete *RedisDeleteQueryParams `pulumi:"delete"`
+	// Query params for the read operation.
+	Read *RedisReadQueryParams `pulumi:"read"`
+	// Query params for the update operation.
+	Update *RedisUpdateQueryParams `pulumi:"update"`
+}
+
+// RedisQueryParamsInput is an input type that accepts RedisQueryParamsArgs and RedisQueryParamsOutput values.
+// You can construct a concrete instance of `RedisQueryParamsInput` via:
+//
+//	RedisQueryParamsArgs{...}
+type RedisQueryParamsInput interface {
+	pulumi.Input
+
+	ToRedisQueryParamsOutput() RedisQueryParamsOutput
+	ToRedisQueryParamsOutputWithContext(context.Context) RedisQueryParamsOutput
+}
+
+// Query params for each of the operations of the resource.
+type RedisQueryParamsArgs struct {
+	// Query params for the create operation.
+	Create RedisCreateQueryParamsPtrInput `pulumi:"create"`
+	// Query params for the delete operation.
+	Delete RedisDeleteQueryParamsPtrInput `pulumi:"delete"`
+	// Query params for the read operation.
+	Read RedisReadQueryParamsPtrInput `pulumi:"read"`
+	// Query params for the update operation.
+	Update RedisUpdateQueryParamsPtrInput `pulumi:"update"`
+}
+
+func (RedisQueryParamsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*RedisQueryParams)(nil)).Elem()
+}
+
+func (i RedisQueryParamsArgs) ToRedisQueryParamsOutput() RedisQueryParamsOutput {
+	return i.ToRedisQueryParamsOutputWithContext(context.Background())
+}
+
+func (i RedisQueryParamsArgs) ToRedisQueryParamsOutputWithContext(ctx context.Context) RedisQueryParamsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RedisQueryParamsOutput)
+}
+
+func (i RedisQueryParamsArgs) ToRedisQueryParamsPtrOutput() RedisQueryParamsPtrOutput {
+	return i.ToRedisQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i RedisQueryParamsArgs) ToRedisQueryParamsPtrOutputWithContext(ctx context.Context) RedisQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RedisQueryParamsOutput).ToRedisQueryParamsPtrOutputWithContext(ctx)
+}
+
+// RedisQueryParamsPtrInput is an input type that accepts RedisQueryParamsArgs, RedisQueryParamsPtr and RedisQueryParamsPtrOutput values.
+// You can construct a concrete instance of `RedisQueryParamsPtrInput` via:
+//
+//	        RedisQueryParamsArgs{...}
+//
+//	or:
+//
+//	        nil
+type RedisQueryParamsPtrInput interface {
+	pulumi.Input
+
+	ToRedisQueryParamsPtrOutput() RedisQueryParamsPtrOutput
+	ToRedisQueryParamsPtrOutputWithContext(context.Context) RedisQueryParamsPtrOutput
+}
+
+type redisQueryParamsPtrType RedisQueryParamsArgs
+
+func RedisQueryParamsPtr(v *RedisQueryParamsArgs) RedisQueryParamsPtrInput {
+	return (*redisQueryParamsPtrType)(v)
+}
+
+func (*redisQueryParamsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**RedisQueryParams)(nil)).Elem()
+}
+
+func (i *redisQueryParamsPtrType) ToRedisQueryParamsPtrOutput() RedisQueryParamsPtrOutput {
+	return i.ToRedisQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i *redisQueryParamsPtrType) ToRedisQueryParamsPtrOutputWithContext(ctx context.Context) RedisQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RedisQueryParamsPtrOutput)
+}
+
+// Query params for each of the operations of the resource.
+type RedisQueryParamsOutput struct{ *pulumi.OutputState }
+
+func (RedisQueryParamsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*RedisQueryParams)(nil)).Elem()
+}
+
+func (o RedisQueryParamsOutput) ToRedisQueryParamsOutput() RedisQueryParamsOutput {
+	return o
+}
+
+func (o RedisQueryParamsOutput) ToRedisQueryParamsOutputWithContext(ctx context.Context) RedisQueryParamsOutput {
+	return o
+}
+
+func (o RedisQueryParamsOutput) ToRedisQueryParamsPtrOutput() RedisQueryParamsPtrOutput {
+	return o.ToRedisQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (o RedisQueryParamsOutput) ToRedisQueryParamsPtrOutputWithContext(ctx context.Context) RedisQueryParamsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v RedisQueryParams) *RedisQueryParams {
+		return &v
+	}).(RedisQueryParamsPtrOutput)
+}
+
+// Query params for the create operation.
+func (o RedisQueryParamsOutput) Create() RedisCreateQueryParamsPtrOutput {
+	return o.ApplyT(func(v RedisQueryParams) *RedisCreateQueryParams { return v.Create }).(RedisCreateQueryParamsPtrOutput)
+}
+
+// Query params for the delete operation.
+func (o RedisQueryParamsOutput) Delete() RedisDeleteQueryParamsPtrOutput {
+	return o.ApplyT(func(v RedisQueryParams) *RedisDeleteQueryParams { return v.Delete }).(RedisDeleteQueryParamsPtrOutput)
+}
+
+// Query params for the read operation.
+func (o RedisQueryParamsOutput) Read() RedisReadQueryParamsPtrOutput {
+	return o.ApplyT(func(v RedisQueryParams) *RedisReadQueryParams { return v.Read }).(RedisReadQueryParamsPtrOutput)
+}
+
+// Query params for the update operation.
+func (o RedisQueryParamsOutput) Update() RedisUpdateQueryParamsPtrOutput {
+	return o.ApplyT(func(v RedisQueryParams) *RedisUpdateQueryParams { return v.Update }).(RedisUpdateQueryParamsPtrOutput)
+}
+
+type RedisQueryParamsPtrOutput struct{ *pulumi.OutputState }
+
+func (RedisQueryParamsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**RedisQueryParams)(nil)).Elem()
+}
+
+func (o RedisQueryParamsPtrOutput) ToRedisQueryParamsPtrOutput() RedisQueryParamsPtrOutput {
+	return o
+}
+
+func (o RedisQueryParamsPtrOutput) ToRedisQueryParamsPtrOutputWithContext(ctx context.Context) RedisQueryParamsPtrOutput {
+	return o
+}
+
+func (o RedisQueryParamsPtrOutput) Elem() RedisQueryParamsOutput {
+	return o.ApplyT(func(v *RedisQueryParams) RedisQueryParams {
+		if v != nil {
+			return *v
+		}
+		var ret RedisQueryParams
+		return ret
+	}).(RedisQueryParamsOutput)
+}
+
+// Query params for the create operation.
+func (o RedisQueryParamsPtrOutput) Create() RedisCreateQueryParamsPtrOutput {
+	return o.ApplyT(func(v *RedisQueryParams) *RedisCreateQueryParams {
+		if v == nil {
+			return nil
+		}
+		return v.Create
+	}).(RedisCreateQueryParamsPtrOutput)
+}
+
+// Query params for the delete operation.
+func (o RedisQueryParamsPtrOutput) Delete() RedisDeleteQueryParamsPtrOutput {
+	return o.ApplyT(func(v *RedisQueryParams) *RedisDeleteQueryParams {
+		if v == nil {
+			return nil
+		}
+		return v.Delete
+	}).(RedisDeleteQueryParamsPtrOutput)
+}
+
+// Query params for the read operation.
+func (o RedisQueryParamsPtrOutput) Read() RedisReadQueryParamsPtrOutput {
+	return o.ApplyT(func(v *RedisQueryParams) *RedisReadQueryParams {
+		if v == nil {
+			return nil
+		}
+		return v.Read
+	}).(RedisReadQueryParamsPtrOutput)
+}
+
+// Query params for the update operation.
+func (o RedisQueryParamsPtrOutput) Update() RedisUpdateQueryParamsPtrOutput {
+	return o.ApplyT(func(v *RedisQueryParams) *RedisUpdateQueryParams {
+		if v == nil {
+			return nil
+		}
+		return v.Update
+	}).(RedisUpdateQueryParamsPtrOutput)
+}
+
+// Query params for the API request.
+type RedisReadQueryParams struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams map[string]string `pulumi:"additionalParams"`
+}
+
+// RedisReadQueryParamsInput is an input type that accepts RedisReadQueryParamsArgs and RedisReadQueryParamsOutput values.
+// You can construct a concrete instance of `RedisReadQueryParamsInput` via:
+//
+//	RedisReadQueryParamsArgs{...}
+type RedisReadQueryParamsInput interface {
+	pulumi.Input
+
+	ToRedisReadQueryParamsOutput() RedisReadQueryParamsOutput
+	ToRedisReadQueryParamsOutputWithContext(context.Context) RedisReadQueryParamsOutput
+}
+
+// Query params for the API request.
+type RedisReadQueryParamsArgs struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams pulumi.StringMapInput `pulumi:"additionalParams"`
+}
+
+func (RedisReadQueryParamsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*RedisReadQueryParams)(nil)).Elem()
+}
+
+func (i RedisReadQueryParamsArgs) ToRedisReadQueryParamsOutput() RedisReadQueryParamsOutput {
+	return i.ToRedisReadQueryParamsOutputWithContext(context.Background())
+}
+
+func (i RedisReadQueryParamsArgs) ToRedisReadQueryParamsOutputWithContext(ctx context.Context) RedisReadQueryParamsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RedisReadQueryParamsOutput)
+}
+
+func (i RedisReadQueryParamsArgs) ToRedisReadQueryParamsPtrOutput() RedisReadQueryParamsPtrOutput {
+	return i.ToRedisReadQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i RedisReadQueryParamsArgs) ToRedisReadQueryParamsPtrOutputWithContext(ctx context.Context) RedisReadQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RedisReadQueryParamsOutput).ToRedisReadQueryParamsPtrOutputWithContext(ctx)
+}
+
+// RedisReadQueryParamsPtrInput is an input type that accepts RedisReadQueryParamsArgs, RedisReadQueryParamsPtr and RedisReadQueryParamsPtrOutput values.
+// You can construct a concrete instance of `RedisReadQueryParamsPtrInput` via:
+//
+//	        RedisReadQueryParamsArgs{...}
+//
+//	or:
+//
+//	        nil
+type RedisReadQueryParamsPtrInput interface {
+	pulumi.Input
+
+	ToRedisReadQueryParamsPtrOutput() RedisReadQueryParamsPtrOutput
+	ToRedisReadQueryParamsPtrOutputWithContext(context.Context) RedisReadQueryParamsPtrOutput
+}
+
+type redisReadQueryParamsPtrType RedisReadQueryParamsArgs
+
+func RedisReadQueryParamsPtr(v *RedisReadQueryParamsArgs) RedisReadQueryParamsPtrInput {
+	return (*redisReadQueryParamsPtrType)(v)
+}
+
+func (*redisReadQueryParamsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**RedisReadQueryParams)(nil)).Elem()
+}
+
+func (i *redisReadQueryParamsPtrType) ToRedisReadQueryParamsPtrOutput() RedisReadQueryParamsPtrOutput {
+	return i.ToRedisReadQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i *redisReadQueryParamsPtrType) ToRedisReadQueryParamsPtrOutputWithContext(ctx context.Context) RedisReadQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RedisReadQueryParamsPtrOutput)
+}
+
+// Query params for the API request.
+type RedisReadQueryParamsOutput struct{ *pulumi.OutputState }
+
+func (RedisReadQueryParamsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*RedisReadQueryParams)(nil)).Elem()
+}
+
+func (o RedisReadQueryParamsOutput) ToRedisReadQueryParamsOutput() RedisReadQueryParamsOutput {
+	return o
+}
+
+func (o RedisReadQueryParamsOutput) ToRedisReadQueryParamsOutputWithContext(ctx context.Context) RedisReadQueryParamsOutput {
+	return o
+}
+
+func (o RedisReadQueryParamsOutput) ToRedisReadQueryParamsPtrOutput() RedisReadQueryParamsPtrOutput {
+	return o.ToRedisReadQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (o RedisReadQueryParamsOutput) ToRedisReadQueryParamsPtrOutputWithContext(ctx context.Context) RedisReadQueryParamsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v RedisReadQueryParams) *RedisReadQueryParams {
+		return &v
+	}).(RedisReadQueryParamsPtrOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o RedisReadQueryParamsOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v RedisReadQueryParams) map[string]string { return v.AdditionalParams }).(pulumi.StringMapOutput)
+}
+
+type RedisReadQueryParamsPtrOutput struct{ *pulumi.OutputState }
+
+func (RedisReadQueryParamsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**RedisReadQueryParams)(nil)).Elem()
+}
+
+func (o RedisReadQueryParamsPtrOutput) ToRedisReadQueryParamsPtrOutput() RedisReadQueryParamsPtrOutput {
+	return o
+}
+
+func (o RedisReadQueryParamsPtrOutput) ToRedisReadQueryParamsPtrOutputWithContext(ctx context.Context) RedisReadQueryParamsPtrOutput {
+	return o
+}
+
+func (o RedisReadQueryParamsPtrOutput) Elem() RedisReadQueryParamsOutput {
+	return o.ApplyT(func(v *RedisReadQueryParams) RedisReadQueryParams {
+		if v != nil {
+			return *v
+		}
+		var ret RedisReadQueryParams
+		return ret
+	}).(RedisReadQueryParamsOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o RedisReadQueryParamsPtrOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *RedisReadQueryParams) map[string]string {
+		if v == nil {
+			return nil
+		}
+		return v.AdditionalParams
+	}).(pulumi.StringMapOutput)
+}
+
+// Query params for the API request.
+type RedisUpdateQueryParams struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams map[string]string `pulumi:"additionalParams"`
+}
+
+// RedisUpdateQueryParamsInput is an input type that accepts RedisUpdateQueryParamsArgs and RedisUpdateQueryParamsOutput values.
+// You can construct a concrete instance of `RedisUpdateQueryParamsInput` via:
+//
+//	RedisUpdateQueryParamsArgs{...}
+type RedisUpdateQueryParamsInput interface {
+	pulumi.Input
+
+	ToRedisUpdateQueryParamsOutput() RedisUpdateQueryParamsOutput
+	ToRedisUpdateQueryParamsOutputWithContext(context.Context) RedisUpdateQueryParamsOutput
+}
+
+// Query params for the API request.
+type RedisUpdateQueryParamsArgs struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams pulumi.StringMapInput `pulumi:"additionalParams"`
+}
+
+func (RedisUpdateQueryParamsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*RedisUpdateQueryParams)(nil)).Elem()
+}
+
+func (i RedisUpdateQueryParamsArgs) ToRedisUpdateQueryParamsOutput() RedisUpdateQueryParamsOutput {
+	return i.ToRedisUpdateQueryParamsOutputWithContext(context.Background())
+}
+
+func (i RedisUpdateQueryParamsArgs) ToRedisUpdateQueryParamsOutputWithContext(ctx context.Context) RedisUpdateQueryParamsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RedisUpdateQueryParamsOutput)
+}
+
+func (i RedisUpdateQueryParamsArgs) ToRedisUpdateQueryParamsPtrOutput() RedisUpdateQueryParamsPtrOutput {
+	return i.ToRedisUpdateQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i RedisUpdateQueryParamsArgs) ToRedisUpdateQueryParamsPtrOutputWithContext(ctx context.Context) RedisUpdateQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RedisUpdateQueryParamsOutput).ToRedisUpdateQueryParamsPtrOutputWithContext(ctx)
+}
+
+// RedisUpdateQueryParamsPtrInput is an input type that accepts RedisUpdateQueryParamsArgs, RedisUpdateQueryParamsPtr and RedisUpdateQueryParamsPtrOutput values.
+// You can construct a concrete instance of `RedisUpdateQueryParamsPtrInput` via:
+//
+//	        RedisUpdateQueryParamsArgs{...}
+//
+//	or:
+//
+//	        nil
+type RedisUpdateQueryParamsPtrInput interface {
+	pulumi.Input
+
+	ToRedisUpdateQueryParamsPtrOutput() RedisUpdateQueryParamsPtrOutput
+	ToRedisUpdateQueryParamsPtrOutputWithContext(context.Context) RedisUpdateQueryParamsPtrOutput
+}
+
+type redisUpdateQueryParamsPtrType RedisUpdateQueryParamsArgs
+
+func RedisUpdateQueryParamsPtr(v *RedisUpdateQueryParamsArgs) RedisUpdateQueryParamsPtrInput {
+	return (*redisUpdateQueryParamsPtrType)(v)
+}
+
+func (*redisUpdateQueryParamsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**RedisUpdateQueryParams)(nil)).Elem()
+}
+
+func (i *redisUpdateQueryParamsPtrType) ToRedisUpdateQueryParamsPtrOutput() RedisUpdateQueryParamsPtrOutput {
+	return i.ToRedisUpdateQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i *redisUpdateQueryParamsPtrType) ToRedisUpdateQueryParamsPtrOutputWithContext(ctx context.Context) RedisUpdateQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RedisUpdateQueryParamsPtrOutput)
+}
+
+// Query params for the API request.
+type RedisUpdateQueryParamsOutput struct{ *pulumi.OutputState }
+
+func (RedisUpdateQueryParamsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*RedisUpdateQueryParams)(nil)).Elem()
+}
+
+func (o RedisUpdateQueryParamsOutput) ToRedisUpdateQueryParamsOutput() RedisUpdateQueryParamsOutput {
+	return o
+}
+
+func (o RedisUpdateQueryParamsOutput) ToRedisUpdateQueryParamsOutputWithContext(ctx context.Context) RedisUpdateQueryParamsOutput {
+	return o
+}
+
+func (o RedisUpdateQueryParamsOutput) ToRedisUpdateQueryParamsPtrOutput() RedisUpdateQueryParamsPtrOutput {
+	return o.ToRedisUpdateQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (o RedisUpdateQueryParamsOutput) ToRedisUpdateQueryParamsPtrOutputWithContext(ctx context.Context) RedisUpdateQueryParamsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v RedisUpdateQueryParams) *RedisUpdateQueryParams {
+		return &v
+	}).(RedisUpdateQueryParamsPtrOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o RedisUpdateQueryParamsOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v RedisUpdateQueryParams) map[string]string { return v.AdditionalParams }).(pulumi.StringMapOutput)
+}
+
+type RedisUpdateQueryParamsPtrOutput struct{ *pulumi.OutputState }
+
+func (RedisUpdateQueryParamsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**RedisUpdateQueryParams)(nil)).Elem()
+}
+
+func (o RedisUpdateQueryParamsPtrOutput) ToRedisUpdateQueryParamsPtrOutput() RedisUpdateQueryParamsPtrOutput {
+	return o
+}
+
+func (o RedisUpdateQueryParamsPtrOutput) ToRedisUpdateQueryParamsPtrOutputWithContext(ctx context.Context) RedisUpdateQueryParamsPtrOutput {
+	return o
+}
+
+func (o RedisUpdateQueryParamsPtrOutput) Elem() RedisUpdateQueryParamsOutput {
+	return o.ApplyT(func(v *RedisUpdateQueryParams) RedisUpdateQueryParams {
+		if v != nil {
+			return *v
+		}
+		var ret RedisUpdateQueryParams
+		return ret
+	}).(RedisUpdateQueryParamsOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o RedisUpdateQueryParamsPtrOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *RedisUpdateQueryParams) map[string]string {
+		if v == nil {
+			return nil
+		}
+		return v.AdditionalParams
+	}).(pulumi.StringMapOutput)
+}
+
 type RedisWithCursor struct {
 	Cursor string `pulumi:"cursor"`
 	// A Redis instance
@@ -639,15 +2030,47 @@ func (o RedisWithCursorArrayOutput) Index(i pulumi.IntInput) RedisWithCursorOutp
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*CidrBlockAndDescriptionInput)(nil)).Elem(), CidrBlockAndDescriptionArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*CidrBlockAndDescriptionArrayInput)(nil)).Elem(), CidrBlockAndDescriptionArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetRedisConnectionInfoQueryParamsInput)(nil)).Elem(), GetRedisConnectionInfoQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetRedisConnectionInfoQueryParamsPtrInput)(nil)).Elem(), GetRedisConnectionInfoQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetRedisQueryParamsInput)(nil)).Elem(), GetRedisQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetRedisQueryParamsPtrInput)(nil)).Elem(), GetRedisQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ListRedisQueryParamsInput)(nil)).Elem(), ListRedisQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ListRedisQueryParamsPtrInput)(nil)).Elem(), ListRedisQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RedisCreateQueryParamsInput)(nil)).Elem(), RedisCreateQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RedisCreateQueryParamsPtrInput)(nil)).Elem(), RedisCreateQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RedisDeleteQueryParamsInput)(nil)).Elem(), RedisDeleteQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RedisDeleteQueryParamsPtrInput)(nil)).Elem(), RedisDeleteQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RedisQueryParamsInput)(nil)).Elem(), RedisQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RedisQueryParamsPtrInput)(nil)).Elem(), RedisQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RedisReadQueryParamsInput)(nil)).Elem(), RedisReadQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RedisReadQueryParamsPtrInput)(nil)).Elem(), RedisReadQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RedisUpdateQueryParamsInput)(nil)).Elem(), RedisUpdateQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RedisUpdateQueryParamsPtrInput)(nil)).Elem(), RedisUpdateQueryParamsArgs{})
 	pulumi.RegisterOutputType(CidrBlockAndDescriptionOutput{})
 	pulumi.RegisterOutputType(CidrBlockAndDescriptionArrayOutput{})
+	pulumi.RegisterOutputType(GetRedisConnectionInfoQueryParamsOutput{})
+	pulumi.RegisterOutputType(GetRedisConnectionInfoQueryParamsPtrOutput{})
+	pulumi.RegisterOutputType(GetRedisQueryParamsOutput{})
+	pulumi.RegisterOutputType(GetRedisQueryParamsPtrOutput{})
+	pulumi.RegisterOutputType(ListRedisQueryParamsOutput{})
+	pulumi.RegisterOutputType(ListRedisQueryParamsPtrOutput{})
 	pulumi.RegisterOutputType(MaintenancePropertiesOutput{})
 	pulumi.RegisterOutputType(MaintenancePropertiesPtrOutput{})
 	pulumi.RegisterOutputType(OwnerOutput{})
 	pulumi.RegisterOutputType(RedisTypeOutput{})
+	pulumi.RegisterOutputType(RedisCreateQueryParamsOutput{})
+	pulumi.RegisterOutputType(RedisCreateQueryParamsPtrOutput{})
+	pulumi.RegisterOutputType(RedisDeleteQueryParamsOutput{})
+	pulumi.RegisterOutputType(RedisDeleteQueryParamsPtrOutput{})
 	pulumi.RegisterOutputType(RedisDetailMaintenancePropertiesOutput{})
 	pulumi.RegisterOutputType(RedisDetailMaintenancePropertiesPtrOutput{})
 	pulumi.RegisterOutputType(RedisOptionsOutput{})
+	pulumi.RegisterOutputType(RedisQueryParamsOutput{})
+	pulumi.RegisterOutputType(RedisQueryParamsPtrOutput{})
+	pulumi.RegisterOutputType(RedisReadQueryParamsOutput{})
+	pulumi.RegisterOutputType(RedisReadQueryParamsPtrOutput{})
+	pulumi.RegisterOutputType(RedisUpdateQueryParamsOutput{})
+	pulumi.RegisterOutputType(RedisUpdateQueryParamsPtrOutput{})
 	pulumi.RegisterOutputType(RedisWithCursorOutput{})
 	pulumi.RegisterOutputType(RedisWithCursorArrayOutput{})
 }

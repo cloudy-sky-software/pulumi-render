@@ -30,6 +30,7 @@ class StaticSiteArgs:
                  env_vars: pulumi.Input[Optional[Sequence[pulumi.Input['EnvVarInputArgs']]]] = None,
                  environment_id: pulumi.Input[Optional[_builtins.str]] = None,
                  image: pulumi.Input[Optional['ImageArgs']] = None,
+                 query_params: pulumi.Input[Optional['StaticSiteQueryParamsArgs']] = None,
                  repo: pulumi.Input[Optional[_builtins.str]] = None,
                  root_dir: pulumi.Input[Optional[_builtins.str]] = None,
                  secret_files: pulumi.Input[Optional[Sequence[pulumi.Input['SecretFileInputArgs']]]] = None,
@@ -40,6 +41,7 @@ class StaticSiteArgs:
 
         :param pulumi.Input[_builtins.str] branch: If left empty, this will fall back to the default branch of the repository
         :param pulumi.Input[_builtins.str] environment_id: The ID of the environment the service is associated with
+        :param pulumi.Input['StaticSiteQueryParamsArgs'] query_params: Query params to send with the API requests for this resource.
         :param pulumi.Input[_builtins.str] repo: Do not include the branch in the repo string. You can instead supply a 'branch' parameter.
         """
         pulumi.set(__self__, "name", name)
@@ -58,6 +60,8 @@ class StaticSiteArgs:
             pulumi.set(__self__, "environment_id", environment_id)
         if image is not None:
             pulumi.set(__self__, "image", image)
+        if query_params is not None:
+            pulumi.set(__self__, "query_params", query_params)
         if repo is not None:
             pulumi.set(__self__, "repo", repo)
         if root_dir is not None:
@@ -150,6 +154,18 @@ class StaticSiteArgs:
         pulumi.set(self, "image", value)
 
     @_builtins.property
+    @pulumi.getter(name="queryParams")
+    def query_params(self) -> pulumi.Input[Optional['StaticSiteQueryParamsArgs']]:
+        """
+        Query params to send with the API requests for this resource.
+        """
+        return pulumi.get(self, "query_params")
+
+    @query_params.setter
+    def query_params(self, value: pulumi.Input[Optional['StaticSiteQueryParamsArgs']]):
+        pulumi.set(self, "query_params", value)
+
+    @_builtins.property
     @pulumi.getter
     def repo(self) -> pulumi.Input[Optional[_builtins.str]]:
         """
@@ -212,6 +228,7 @@ class StaticSite(pulumi.CustomResource):
                  image: pulumi.Input[Optional[Union['ImageArgs', 'ImageArgsDict', 'outputs.Image']]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  owner_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 query_params: pulumi.Input[Optional[Union['StaticSiteQueryParamsArgs', 'StaticSiteQueryParamsArgsDict', 'outputs.StaticSiteQueryParams']]] = None,
                  repo: pulumi.Input[Optional[_builtins.str]] = None,
                  root_dir: pulumi.Input[Optional[_builtins.str]] = None,
                  secret_files: pulumi.Input[Optional[Sequence[pulumi.Input[Union['SecretFileInputArgs', 'SecretFileInputArgsDict', 'outputs.SecretFileInput']]]]] = None,
@@ -226,6 +243,7 @@ class StaticSite(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] branch: If left empty, this will fall back to the default branch of the repository
         :param pulumi.Input[_builtins.str] environment_id: The ID of the environment the service is associated with
+        :param pulumi.Input[Union['StaticSiteQueryParamsArgs', 'StaticSiteQueryParamsArgsDict', 'outputs.StaticSiteQueryParams']] query_params: Query params to send with the API requests for this resource.
         :param pulumi.Input[_builtins.str] repo: Do not include the branch in the repo string. You can instead supply a 'branch' parameter.
         """
         ...
@@ -261,6 +279,7 @@ class StaticSite(pulumi.CustomResource):
                  image: pulumi.Input[Optional[Union['ImageArgs', 'ImageArgsDict', 'outputs.Image']]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  owner_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 query_params: pulumi.Input[Optional[Union['StaticSiteQueryParamsArgs', 'StaticSiteQueryParamsArgsDict', 'outputs.StaticSiteQueryParams']]] = None,
                  repo: pulumi.Input[Optional[_builtins.str]] = None,
                  root_dir: pulumi.Input[Optional[_builtins.str]] = None,
                  secret_files: pulumi.Input[Optional[Sequence[pulumi.Input[Union['SecretFileInputArgs', 'SecretFileInputArgsDict', 'outputs.SecretFileInput']]]]] = None,
@@ -289,6 +308,7 @@ class StaticSite(pulumi.CustomResource):
             if owner_id is None and not opts.urn:
                 raise TypeError("Missing required property 'owner_id'")
             __props__.__dict__["owner_id"] = owner_id
+            __props__.__dict__["query_params"] = query_params
             __props__.__dict__["repo"] = repo
             __props__.__dict__["root_dir"] = root_dir
             __props__.__dict__["secret_files"] = secret_files
@@ -339,6 +359,7 @@ class StaticSite(pulumi.CustomResource):
         __props__.__dict__["name"] = None
         __props__.__dict__["notify_on_fail"] = None
         __props__.__dict__["owner_id"] = None
+        __props__.__dict__["query_params"] = None
         __props__.__dict__["registry_credential"] = None
         __props__.__dict__["repo"] = None
         __props__.__dict__["root_dir"] = None
@@ -413,6 +434,14 @@ class StaticSite(pulumi.CustomResource):
     @pulumi.getter(name="ownerId")
     def owner_id(self) -> pulumi.Output[Optional[_builtins.str]]:
         return pulumi.get(self, "owner_id")
+
+    @_builtins.property
+    @pulumi.getter(name="queryParams")
+    def query_params(self) -> pulumi.Output[Optional['outputs.StaticSiteQueryParams']]:
+        """
+        Query params to send with the API requests for this resource.
+        """
+        return pulumi.get(self, "query_params")
 
     @_builtins.property
     @pulumi.getter(name="registryCredential")

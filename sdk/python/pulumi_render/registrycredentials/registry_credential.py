@@ -13,7 +13,9 @@ if sys.version_info >= (3, 11):
 else:
     from typing_extensions import NotRequired, TypedDict, TypeAlias
 from .. import _utilities
+from . import outputs
 from ._enums import *
+from ._inputs import *
 
 __all__ = ['RegistryCredentialArgs', 'RegistryCredential']
 
@@ -24,11 +26,13 @@ class RegistryCredentialArgs:
                  owner_id: pulumi.Input[_builtins.str],
                  registry: pulumi.Input['Registry'],
                  username: pulumi.Input[_builtins.str],
-                 name: pulumi.Input[Optional[_builtins.str]] = None):
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 query_params: pulumi.Input[Optional['RegistryCredentialQueryParamsArgs']] = None):
         """
         The set of arguments for constructing a RegistryCredential resource.
 
         :param pulumi.Input['Registry'] registry: The registry to use this credential with
+        :param pulumi.Input['RegistryCredentialQueryParamsArgs'] query_params: Query params to send with the API requests for this resource.
         """
         pulumi.set(__self__, "auth_token", auth_token)
         pulumi.set(__self__, "owner_id", owner_id)
@@ -36,6 +40,8 @@ class RegistryCredentialArgs:
         pulumi.set(__self__, "username", username)
         if name is not None:
             pulumi.set(__self__, "name", name)
+        if query_params is not None:
+            pulumi.set(__self__, "query_params", query_params)
 
     @_builtins.property
     @pulumi.getter(name="authToken")
@@ -85,6 +91,18 @@ class RegistryCredentialArgs:
     def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
+    @_builtins.property
+    @pulumi.getter(name="queryParams")
+    def query_params(self) -> pulumi.Input[Optional['RegistryCredentialQueryParamsArgs']]:
+        """
+        Query params to send with the API requests for this resource.
+        """
+        return pulumi.get(self, "query_params")
+
+    @query_params.setter
+    def query_params(self, value: pulumi.Input[Optional['RegistryCredentialQueryParamsArgs']]):
+        pulumi.set(self, "query_params", value)
+
 
 @pulumi.type_token("render:registrycredentials:RegistryCredential")
 class RegistryCredential(pulumi.CustomResource):
@@ -95,6 +113,7 @@ class RegistryCredential(pulumi.CustomResource):
                  auth_token: pulumi.Input[Optional[_builtins.str]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  owner_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 query_params: pulumi.Input[Optional[Union['RegistryCredentialQueryParamsArgs', 'RegistryCredentialQueryParamsArgsDict', 'outputs.RegistryCredentialQueryParams']]] = None,
                  registry: pulumi.Input[Optional['Registry']] = None,
                  username: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
@@ -103,6 +122,7 @@ class RegistryCredential(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[Union['RegistryCredentialQueryParamsArgs', 'RegistryCredentialQueryParamsArgsDict', 'outputs.RegistryCredentialQueryParams']] query_params: Query params to send with the API requests for this resource.
         :param pulumi.Input['Registry'] registry: The registry to use this credential with
         """
         ...
@@ -132,6 +152,7 @@ class RegistryCredential(pulumi.CustomResource):
                  auth_token: pulumi.Input[Optional[_builtins.str]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  owner_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 query_params: pulumi.Input[Optional[Union['RegistryCredentialQueryParamsArgs', 'RegistryCredentialQueryParamsArgsDict', 'outputs.RegistryCredentialQueryParams']]] = None,
                  registry: pulumi.Input[Optional['Registry']] = None,
                  username: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
@@ -150,6 +171,7 @@ class RegistryCredential(pulumi.CustomResource):
             if owner_id is None and not opts.urn:
                 raise TypeError("Missing required property 'owner_id'")
             __props__.__dict__["owner_id"] = owner_id
+            __props__.__dict__["query_params"] = query_params
             if registry is None and not opts.urn:
                 raise TypeError("Missing required property 'registry'")
             __props__.__dict__["registry"] = registry
@@ -182,6 +204,7 @@ class RegistryCredential(pulumi.CustomResource):
         __props__.__dict__["auth_token"] = None
         __props__.__dict__["name"] = None
         __props__.__dict__["owner_id"] = None
+        __props__.__dict__["query_params"] = None
         __props__.__dict__["registry"] = None
         __props__.__dict__["updated_at"] = None
         __props__.__dict__["username"] = None
@@ -204,6 +227,14 @@ class RegistryCredential(pulumi.CustomResource):
     @pulumi.getter(name="ownerId")
     def owner_id(self) -> pulumi.Output[_builtins.str]:
         return pulumi.get(self, "owner_id")
+
+    @_builtins.property
+    @pulumi.getter(name="queryParams")
+    def query_params(self) -> pulumi.Output[Optional['outputs.RegistryCredentialQueryParams']]:
+        """
+        Query params to send with the API requests for this resource.
+        """
+        return pulumi.get(self, "query_params")
 
     @_builtins.property
     @pulumi.getter

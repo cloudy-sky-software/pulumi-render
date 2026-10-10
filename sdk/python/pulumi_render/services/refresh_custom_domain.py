@@ -13,6 +13,8 @@ if sys.version_info >= (3, 11):
 else:
     from typing_extensions import NotRequired, TypedDict, TypeAlias
 from .. import _utilities
+from . import outputs
+from ._inputs import *
 
 __all__ = ['RefreshCustomDomainArgs', 'RefreshCustomDomain']
 
@@ -20,15 +22,19 @@ __all__ = ['RefreshCustomDomainArgs', 'RefreshCustomDomain']
 class RefreshCustomDomainArgs:
     def __init__(__self__, *,
                  custom_domain_id_or_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 query_params: pulumi.Input[Optional['RefreshCustomDomainQueryParamsArgs']] = None,
                  service_id: pulumi.Input[Optional[_builtins.str]] = None):
         """
         The set of arguments for constructing a RefreshCustomDomain resource.
 
         :param pulumi.Input[_builtins.str] custom_domain_id_or_name: The ID or name of the custom domain
+        :param pulumi.Input['RefreshCustomDomainQueryParamsArgs'] query_params: Query params to send with the API requests for this resource.
         :param pulumi.Input[_builtins.str] service_id: The ID of the service
         """
         if custom_domain_id_or_name is not None:
             pulumi.set(__self__, "custom_domain_id_or_name", custom_domain_id_or_name)
+        if query_params is not None:
+            pulumi.set(__self__, "query_params", query_params)
         if service_id is not None:
             pulumi.set(__self__, "service_id", service_id)
 
@@ -43,6 +49,18 @@ class RefreshCustomDomainArgs:
     @custom_domain_id_or_name.setter
     def custom_domain_id_or_name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "custom_domain_id_or_name", value)
+
+    @_builtins.property
+    @pulumi.getter(name="queryParams")
+    def query_params(self) -> pulumi.Input[Optional['RefreshCustomDomainQueryParamsArgs']]:
+        """
+        Query params to send with the API requests for this resource.
+        """
+        return pulumi.get(self, "query_params")
+
+    @query_params.setter
+    def query_params(self, value: pulumi.Input[Optional['RefreshCustomDomainQueryParamsArgs']]):
+        pulumi.set(self, "query_params", value)
 
     @_builtins.property
     @pulumi.getter(name="serviceId")
@@ -64,6 +82,7 @@ class RefreshCustomDomain(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  custom_domain_id_or_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 query_params: pulumi.Input[Optional[Union['RefreshCustomDomainQueryParamsArgs', 'RefreshCustomDomainQueryParamsArgsDict', 'outputs.RefreshCustomDomainQueryParams']]] = None,
                  service_id: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
@@ -72,6 +91,7 @@ class RefreshCustomDomain(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[_builtins.str] custom_domain_id_or_name: The ID or name of the custom domain
+        :param pulumi.Input[Union['RefreshCustomDomainQueryParamsArgs', 'RefreshCustomDomainQueryParamsArgsDict', 'outputs.RefreshCustomDomainQueryParams']] query_params: Query params to send with the API requests for this resource.
         :param pulumi.Input[_builtins.str] service_id: The ID of the service
         """
         ...
@@ -99,6 +119,7 @@ class RefreshCustomDomain(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  custom_domain_id_or_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 query_params: pulumi.Input[Optional[Union['RefreshCustomDomainQueryParamsArgs', 'RefreshCustomDomainQueryParamsArgsDict', 'outputs.RefreshCustomDomainQueryParams']]] = None,
                  service_id: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -110,6 +131,7 @@ class RefreshCustomDomain(pulumi.CustomResource):
             __props__ = RefreshCustomDomainArgs.__new__(RefreshCustomDomainArgs)
 
             __props__.__dict__["custom_domain_id_or_name"] = custom_domain_id_or_name
+            __props__.__dict__["query_params"] = query_params
             __props__.__dict__["service_id"] = service_id
         super(RefreshCustomDomain, __self__).__init__(
             'render:services:RefreshCustomDomain',
@@ -133,5 +155,14 @@ class RefreshCustomDomain(pulumi.CustomResource):
 
         __props__ = RefreshCustomDomainArgs.__new__(RefreshCustomDomainArgs)
 
+        __props__.__dict__["query_params"] = None
         return RefreshCustomDomain(resource_name, opts=opts, __props__=__props__)
+
+    @_builtins.property
+    @pulumi.getter(name="queryParams")
+    def query_params(self) -> pulumi.Output[Optional['outputs.RefreshCustomDomainQueryParams']]:
+        """
+        Query params to send with the API requests for this resource.
+        """
+        return pulumi.get(self, "query_params")
 

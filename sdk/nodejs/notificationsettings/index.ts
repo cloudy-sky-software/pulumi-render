@@ -14,7 +14,7 @@ export const getServiceNotificationOverride: typeof import("./getServiceNotifica
 export const getServiceNotificationOverrideOutput: typeof import("./getServiceNotificationOverride").getServiceNotificationOverrideOutput = null as any;
 utilities.lazyLoad(exports, ["getServiceNotificationOverride","getServiceNotificationOverrideOutput"], () => require("./getServiceNotificationOverride"));
 
-export { ListNotificationOverridesArgs, ListNotificationOverridesResult } from "./listNotificationOverrides";
+export { ListNotificationOverridesArgs, ListNotificationOverridesResult, ListNotificationOverridesOutputArgs } from "./listNotificationOverrides";
 export const listNotificationOverrides: typeof import("./listNotificationOverrides").listNotificationOverrides = null as any;
 export const listNotificationOverridesOutput: typeof import("./listNotificationOverrides").listNotificationOverridesOutput = null as any;
 utilities.lazyLoad(exports, ["listNotificationOverrides","listNotificationOverridesOutput"], () => require("./listNotificationOverrides"));

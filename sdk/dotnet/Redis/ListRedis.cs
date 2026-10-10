@@ -14,20 +14,40 @@ namespace Pulumi.Render.Redis
         public static Task<ListRedisResult> InvokeAsync(ListRedisArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<ListRedisResult>("render:redis:listRedis", args ?? new ListRedisArgs(), options.WithDefaults());
 
-        public static Output<ListRedisResult> Invoke(InvokeOptions? options = null)
-            => global::Pulumi.Deployment.Instance.Invoke<ListRedisResult>("render:redis:listRedis", InvokeArgs.Empty, options.WithDefaults());
+        public static Output<ListRedisResult> Invoke(ListRedisInvokeArgs? args = null, InvokeOptions? options = null)
+            => global::Pulumi.Deployment.Instance.Invoke<ListRedisResult>("render:redis:listRedis", args ?? new ListRedisInvokeArgs(), options.WithDefaults());
 
-        public static Output<ListRedisResult> Invoke(InvokeOutputOptions options)
-            => global::Pulumi.Deployment.Instance.Invoke<ListRedisResult>("render:redis:listRedis", InvokeArgs.Empty, options.WithDefaults());
+        public static Output<ListRedisResult> Invoke(ListRedisInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<ListRedisResult>("render:redis:listRedis", args ?? new ListRedisInvokeArgs(), options.WithDefaults());
     }
 
 
     public sealed class ListRedisArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// Query params to send with the API request.
+        /// </summary>
+        [Input("queryParams")]
+        public Inputs.ListRedisQueryParams? QueryParams { get; set; }
+
         public ListRedisArgs()
         {
         }
         public static new ListRedisArgs Empty => new ListRedisArgs();
+    }
+
+    public sealed class ListRedisInvokeArgs : global::Pulumi.InvokeArgs
+    {
+        /// <summary>
+        /// Query params to send with the API request.
+        /// </summary>
+        [Input("queryParams")]
+        public Input<Inputs.ListRedisQueryParamsArgs>? QueryParams { get; set; }
+
+        public ListRedisInvokeArgs()
+        {
+        }
+        public static new ListRedisInvokeArgs Empty => new ListRedisInvokeArgs();
     }
 
 

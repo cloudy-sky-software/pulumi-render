@@ -10,11 +10,16 @@ import * as utilities from "../utilities";
 export function listDeploys(args: ListDeploysArgs, opts?: pulumi.InvokeOptions): Promise<ListDeploysResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("render:services:listDeploys", {
+        "queryParams": args.queryParams ? inputs.services.listDeploysQueryParamsProvideDefaults(args.queryParams) : undefined,
         "serviceId": args.serviceId,
     }, opts);
 }
 
 export interface ListDeploysArgs {
+    /**
+     * Query params to send with the API request.
+     */
+    queryParams?: inputs.services.ListDeploysQueryParams;
     /**
      * The ID of the service
      */
@@ -27,11 +32,16 @@ export interface ListDeploysResult {
 export function listDeploysOutput(args: ListDeploysOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<ListDeploysResult> {
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("render:services:listDeploys", {
+        "queryParams": pulumi.output(args.queryParams).apply(v => v === undefined ? undefined : inputs.services.listDeploysQueryParamsProvideDefaults(v)),
         "serviceId": args.serviceId,
     }, opts);
 }
 
 export interface ListDeploysOutputArgs {
+    /**
+     * Query params to send with the API request.
+     */
+    queryParams?: pulumi.Input<inputs.services.ListDeploysQueryParamsArgs | undefined>;
     /**
      * The ID of the service
      */

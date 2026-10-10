@@ -15,6 +15,7 @@ else:
 from .. import _utilities
 from . import outputs
 from ._enums import *
+from ._inputs import *
 
 __all__ = [
     'ListRegistryCredentialsResult',
@@ -45,21 +46,29 @@ class AwaitableListRegistryCredentialsResult(ListRegistryCredentialsResult):
             items=self.items)
 
 
-def list_registry_credentials(opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableListRegistryCredentialsResult:
+def list_registry_credentials(query_params: Optional[Union['ListRegistryCredentialsQueryParams', 'ListRegistryCredentialsQueryParamsDict']] = None,
+                              opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableListRegistryCredentialsResult:
     """
     Use this data source to access information about an existing resource.
+
+    :param Union['ListRegistryCredentialsQueryParams', 'ListRegistryCredentialsQueryParamsDict'] query_params: Query params to send with the API request.
     """
     __args__ = dict()
+    __args__['queryParams'] = query_params
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke('render:registrycredentials:listRegistryCredentials', __args__, opts=opts, typ=ListRegistryCredentialsResult).value
 
     return AwaitableListRegistryCredentialsResult(
         items=pulumi.get(__ret__, 'items'))
-def list_registry_credentials_output(opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[ListRegistryCredentialsResult]:
+def list_registry_credentials_output(query_params: pulumi.Input[Optional[Optional[Union['ListRegistryCredentialsQueryParams', 'ListRegistryCredentialsQueryParamsDict']]]] = None,
+                                     opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[ListRegistryCredentialsResult]:
     """
     Use this data source to access information about an existing resource.
+
+    :param Union['ListRegistryCredentialsQueryParams', 'ListRegistryCredentialsQueryParamsDict'] query_params: Query params to send with the API request.
     """
     __args__ = dict()
+    __args__['queryParams'] = query_params
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('render:registrycredentials:listRegistryCredentials', __args__, opts=opts, typ=ListRegistryCredentialsResult)
     return __ret__.apply(lambda __response__: ListRegistryCredentialsResult(

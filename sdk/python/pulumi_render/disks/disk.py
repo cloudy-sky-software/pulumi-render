@@ -13,6 +13,8 @@ if sys.version_info >= (3, 11):
 else:
     from typing_extensions import NotRequired, TypedDict, TypeAlias
 from .. import _utilities
+from . import outputs
+from ._inputs import *
 
 __all__ = ['DiskArgs', 'Disk']
 
@@ -22,15 +24,20 @@ class DiskArgs:
                  mount_path: pulumi.Input[_builtins.str],
                  service_id: pulumi.Input[_builtins.str],
                  size_gb: pulumi.Input[_builtins.int],
-                 name: pulumi.Input[Optional[_builtins.str]] = None):
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 query_params: pulumi.Input[Optional['DiskQueryParamsArgs']] = None):
         """
         The set of arguments for constructing a Disk resource.
+
+        :param pulumi.Input['DiskQueryParamsArgs'] query_params: Query params to send with the API requests for this resource.
         """
         pulumi.set(__self__, "mount_path", mount_path)
         pulumi.set(__self__, "service_id", service_id)
         pulumi.set(__self__, "size_gb", size_gb)
         if name is not None:
             pulumi.set(__self__, "name", name)
+        if query_params is not None:
+            pulumi.set(__self__, "query_params", query_params)
 
     @_builtins.property
     @pulumi.getter(name="mountPath")
@@ -68,6 +75,18 @@ class DiskArgs:
     def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
+    @_builtins.property
+    @pulumi.getter(name="queryParams")
+    def query_params(self) -> pulumi.Input[Optional['DiskQueryParamsArgs']]:
+        """
+        Query params to send with the API requests for this resource.
+        """
+        return pulumi.get(self, "query_params")
+
+    @query_params.setter
+    def query_params(self, value: pulumi.Input[Optional['DiskQueryParamsArgs']]):
+        pulumi.set(self, "query_params", value)
+
 
 @pulumi.type_token("render:disks:Disk")
 class Disk(pulumi.CustomResource):
@@ -77,6 +96,7 @@ class Disk(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  mount_path: pulumi.Input[Optional[_builtins.str]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
+                 query_params: pulumi.Input[Optional[Union['DiskQueryParamsArgs', 'DiskQueryParamsArgsDict', 'outputs.DiskQueryParams']]] = None,
                  service_id: pulumi.Input[Optional[_builtins.str]] = None,
                  size_gb: pulumi.Input[Optional[_builtins.int]] = None,
                  __props__=None):
@@ -85,6 +105,7 @@ class Disk(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[Union['DiskQueryParamsArgs', 'DiskQueryParamsArgsDict', 'outputs.DiskQueryParams']] query_params: Query params to send with the API requests for this resource.
         """
         ...
     @overload
@@ -112,6 +133,7 @@ class Disk(pulumi.CustomResource):
                  opts: Optional[pulumi.ResourceOptions] = None,
                  mount_path: pulumi.Input[Optional[_builtins.str]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
+                 query_params: pulumi.Input[Optional[Union['DiskQueryParamsArgs', 'DiskQueryParamsArgsDict', 'outputs.DiskQueryParams']]] = None,
                  service_id: pulumi.Input[Optional[_builtins.str]] = None,
                  size_gb: pulumi.Input[Optional[_builtins.int]] = None,
                  __props__=None):
@@ -127,6 +149,7 @@ class Disk(pulumi.CustomResource):
                 raise TypeError("Missing required property 'mount_path'")
             __props__.__dict__["mount_path"] = mount_path
             __props__.__dict__["name"] = name
+            __props__.__dict__["query_params"] = query_params
             if service_id is None and not opts.urn:
                 raise TypeError("Missing required property 'service_id'")
             __props__.__dict__["service_id"] = service_id
@@ -160,6 +183,7 @@ class Disk(pulumi.CustomResource):
         __props__.__dict__["created_at"] = None
         __props__.__dict__["mount_path"] = None
         __props__.__dict__["name"] = None
+        __props__.__dict__["query_params"] = None
         __props__.__dict__["service_id"] = None
         __props__.__dict__["size_gb"] = None
         __props__.__dict__["updated_at"] = None
@@ -179,6 +203,14 @@ class Disk(pulumi.CustomResource):
     @pulumi.getter
     def name(self) -> pulumi.Output[_builtins.str]:
         return pulumi.get(self, "name")
+
+    @_builtins.property
+    @pulumi.getter(name="queryParams")
+    def query_params(self) -> pulumi.Output[Optional['outputs.DiskQueryParams']]:
+        """
+        Query params to send with the API requests for this resource.
+        """
+        return pulumi.get(self, "query_params")
 
     @_builtins.property
     @pulumi.getter(name="serviceId")

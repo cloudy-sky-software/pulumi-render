@@ -28,6 +28,12 @@ namespace Pulumi.Render.Services
         public Output<string> Path { get; private set; } = null!;
 
         /// <summary>
+        /// Query params to send with the API requests for this resource.
+        /// </summary>
+        [Output("queryParams")]
+        public Output<Outputs.HeaderQueryParams?> QueryParams { get; private set; } = null!;
+
+        /// <summary>
         /// Header value
         /// </summary>
         [Output("value")]
@@ -90,6 +96,12 @@ namespace Pulumi.Render.Services
         /// </summary>
         [Input("path", required: true)]
         public Input<string> Path { get; set; } = null!;
+
+        /// <summary>
+        /// Query params to send with the API requests for this resource.
+        /// </summary>
+        [Input("queryParams")]
+        public Input<Inputs.HeaderQueryParamsArgs>? QueryParams { get; set; }
 
         /// <summary>
         /// The ID of the service

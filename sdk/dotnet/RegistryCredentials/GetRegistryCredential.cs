@@ -25,6 +25,12 @@ namespace Pulumi.Render.RegistryCredentials
     public sealed class GetRegistryCredentialArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
+        /// Query params to send with the API request.
+        /// </summary>
+        [Input("queryParams")]
+        public Inputs.GetRegistryCredentialQueryParams? QueryParams { get; set; }
+
+        /// <summary>
         /// The ID of the registry credential
         /// </summary>
         [Input("registryCredentialId", required: true)]
@@ -38,6 +44,12 @@ namespace Pulumi.Render.RegistryCredentials
 
     public sealed class GetRegistryCredentialInvokeArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// Query params to send with the API request.
+        /// </summary>
+        [Input("queryParams")]
+        public Input<Inputs.GetRegistryCredentialQueryParamsArgs>? QueryParams { get; set; }
+
         /// <summary>
         /// The ID of the registry credential
         /// </summary>

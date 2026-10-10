@@ -24,6 +24,8 @@ func LookupDisk(ctx *pulumi.Context, args *LookupDiskArgs, opts ...pulumi.Invoke
 type LookupDiskArgs struct {
 	// The ID of the disk
 	DiskId string `pulumi:"diskId"`
+	// Query params to send with the API request.
+	QueryParams *GetDiskQueryParams `pulumi:"queryParams"`
 }
 
 type LookupDiskResult struct {
@@ -44,6 +46,8 @@ func LookupDiskOutput(ctx *pulumi.Context, args LookupDiskOutputArgs, opts ...pu
 type LookupDiskOutputArgs struct {
 	// The ID of the disk
 	DiskId pulumi.StringInput `pulumi:"diskId"`
+	// Query params to send with the API request.
+	QueryParams GetDiskQueryParamsPtrInput `pulumi:"queryParams"`
 }
 
 func (LookupDiskOutputArgs) ElementType() reflect.Type {

@@ -24,6 +24,8 @@ func LookupDeploy(ctx *pulumi.Context, args *LookupDeployArgs, opts ...pulumi.In
 type LookupDeployArgs struct {
 	// The ID of the deploy
 	DeployId string `pulumi:"deployId"`
+	// Query params to send with the API request.
+	QueryParams *GetDeployQueryParams `pulumi:"queryParams"`
 	// The ID of the service
 	ServiceId string `pulumi:"serviceId"`
 }
@@ -49,6 +51,8 @@ func LookupDeployOutput(ctx *pulumi.Context, args LookupDeployOutputArgs, opts .
 type LookupDeployOutputArgs struct {
 	// The ID of the deploy
 	DeployId pulumi.StringInput `pulumi:"deployId"`
+	// Query params to send with the API request.
+	QueryParams GetDeployQueryParamsPtrInput `pulumi:"queryParams"`
 	// The ID of the service
 	ServiceId pulumi.StringInput `pulumi:"serviceId"`
 }

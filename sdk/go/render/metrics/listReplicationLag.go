@@ -14,7 +14,7 @@ import (
 func ListReplicationLag(ctx *pulumi.Context, args *ListReplicationLagArgs, opts ...pulumi.InvokeOption) (*ListReplicationLagResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv ListReplicationLagResult
-	err := ctx.Invoke("render:metrics:listReplicationLag", args, &rv, opts...)
+	err := ctx.Invoke("render:metrics:listReplicationLag", args.Defaults(), &rv, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -22,6 +22,19 @@ func ListReplicationLag(ctx *pulumi.Context, args *ListReplicationLagArgs, opts 
 }
 
 type ListReplicationLagArgs struct {
+	// Query params to send with the API request.
+	QueryParams *ListReplicationLagQueryParams `pulumi:"queryParams"`
+}
+
+// Defaults sets the appropriate defaults for ListReplicationLagArgs
+func (val *ListReplicationLagArgs) Defaults() *ListReplicationLagArgs {
+	if val == nil {
+		return nil
+	}
+	tmp := *val
+	tmp.QueryParams = tmp.QueryParams.Defaults()
+
+	return &tmp
 }
 
 type ListReplicationLagResult struct {
@@ -29,11 +42,18 @@ type ListReplicationLagResult struct {
 }
 
 func ListReplicationLagOutput(ctx *pulumi.Context, args ListReplicationLagOutputArgs, opts ...pulumi.InvokeOption) ListReplicationLagResultOutput {
+	outputArgs := pulumi.ToOutputWithContext(ctx.Context(), args).
+		ApplyT(func(v interface{}) *ListReplicationLagArgs {
+			args := v.(ListReplicationLagArgs)
+			return args.Defaults()
+		})
 	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-	return ctx.InvokeOutput("render:metrics:listReplicationLag", args, ListReplicationLagResultOutput{}, options).(ListReplicationLagResultOutput)
+	return ctx.InvokeOutput("render:metrics:listReplicationLag", outputArgs, ListReplicationLagResultOutput{}, options).(ListReplicationLagResultOutput)
 }
 
 type ListReplicationLagOutputArgs struct {
+	// Query params to send with the API request.
+	QueryParams ListReplicationLagQueryParamsPtrInput `pulumi:"queryParams"`
 }
 
 func (ListReplicationLagOutputArgs) ElementType() reflect.Type {

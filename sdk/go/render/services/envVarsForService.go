@@ -15,6 +15,8 @@ type EnvVarsForService struct {
 	pulumi.CustomResourceState
 
 	EnvVars EnvVarInputTypeArrayOutput `pulumi:"envVars"`
+	// Query params to send with the API requests for this resource.
+	QueryParams EnvVarsForServiceQueryParamsPtrOutput `pulumi:"queryParams"`
 }
 
 // NewEnvVarsForService registers a new resource with the given unique name, arguments, and options.
@@ -58,6 +60,8 @@ func (EnvVarsForServiceState) ElementType() reflect.Type {
 
 type envVarsForServiceArgs struct {
 	EnvVars []EnvVarInputType `pulumi:"envVars"`
+	// Query params to send with the API requests for this resource.
+	QueryParams *EnvVarsForServiceQueryParams `pulumi:"queryParams"`
 	// The ID of the service
 	ServiceId *string `pulumi:"serviceId"`
 }
@@ -65,6 +69,8 @@ type envVarsForServiceArgs struct {
 // The set of arguments for constructing a EnvVarsForService resource.
 type EnvVarsForServiceArgs struct {
 	EnvVars EnvVarInputTypeArrayInput
+	// Query params to send with the API requests for this resource.
+	QueryParams EnvVarsForServiceQueryParamsPtrInput
 	// The ID of the service
 	ServiceId pulumi.StringPtrInput
 }
@@ -108,6 +114,11 @@ func (o EnvVarsForServiceOutput) ToEnvVarsForServiceOutputWithContext(ctx contex
 
 func (o EnvVarsForServiceOutput) EnvVars() EnvVarInputTypeArrayOutput {
 	return o.ApplyT(func(v *EnvVarsForService) EnvVarInputTypeArrayOutput { return v.EnvVars }).(EnvVarInputTypeArrayOutput)
+}
+
+// Query params to send with the API requests for this resource.
+func (o EnvVarsForServiceOutput) QueryParams() EnvVarsForServiceQueryParamsPtrOutput {
+	return o.ApplyT(func(v *EnvVarsForService) EnvVarsForServiceQueryParamsPtrOutput { return v.QueryParams }).(EnvVarsForServiceQueryParamsPtrOutput)
 }
 
 func init() {

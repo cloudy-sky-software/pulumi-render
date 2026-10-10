@@ -14,20 +14,40 @@ namespace Pulumi.Render.Metrics
         public static Task<GetBandwidthSourceResult> InvokeAsync(GetBandwidthSourceArgs? args = null, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetBandwidthSourceResult>("render:metrics:getBandwidthSource", args ?? new GetBandwidthSourceArgs(), options.WithDefaults());
 
-        public static Output<GetBandwidthSourceResult> Invoke(InvokeOptions? options = null)
-            => global::Pulumi.Deployment.Instance.Invoke<GetBandwidthSourceResult>("render:metrics:getBandwidthSource", InvokeArgs.Empty, options.WithDefaults());
+        public static Output<GetBandwidthSourceResult> Invoke(GetBandwidthSourceInvokeArgs? args = null, InvokeOptions? options = null)
+            => global::Pulumi.Deployment.Instance.Invoke<GetBandwidthSourceResult>("render:metrics:getBandwidthSource", args ?? new GetBandwidthSourceInvokeArgs(), options.WithDefaults());
 
-        public static Output<GetBandwidthSourceResult> Invoke(InvokeOutputOptions options)
-            => global::Pulumi.Deployment.Instance.Invoke<GetBandwidthSourceResult>("render:metrics:getBandwidthSource", InvokeArgs.Empty, options.WithDefaults());
+        public static Output<GetBandwidthSourceResult> Invoke(GetBandwidthSourceInvokeArgs args, InvokeOutputOptions options)
+            => global::Pulumi.Deployment.Instance.Invoke<GetBandwidthSourceResult>("render:metrics:getBandwidthSource", args ?? new GetBandwidthSourceInvokeArgs(), options.WithDefaults());
     }
 
 
     public sealed class GetBandwidthSourceArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// Query params to send with the API request.
+        /// </summary>
+        [Input("queryParams")]
+        public Inputs.GetBandwidthSourceQueryParams? QueryParams { get; set; }
+
         public GetBandwidthSourceArgs()
         {
         }
         public static new GetBandwidthSourceArgs Empty => new GetBandwidthSourceArgs();
+    }
+
+    public sealed class GetBandwidthSourceInvokeArgs : global::Pulumi.InvokeArgs
+    {
+        /// <summary>
+        /// Query params to send with the API request.
+        /// </summary>
+        [Input("queryParams")]
+        public Input<Inputs.GetBandwidthSourceQueryParamsArgs>? QueryParams { get; set; }
+
+        public GetBandwidthSourceInvokeArgs()
+        {
+        }
+        public static new GetBandwidthSourceInvokeArgs Empty => new GetBandwidthSourceInvokeArgs();
     }
 
 

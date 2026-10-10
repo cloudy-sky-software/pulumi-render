@@ -13,6 +13,7 @@ if sys.version_info >= (3, 11):
 else:
     from typing_extensions import NotRequired, TypedDict, TypeAlias
 from .. import _utilities
+from ._inputs import *
 
 __all__ = [
     'GetKeyValueConnectionInfoResult',
@@ -74,12 +75,16 @@ class AwaitableGetKeyValueConnectionInfoResult(GetKeyValueConnectionInfoResult):
 
 
 def get_key_value_connection_info(key_value_id: Optional[_builtins.str] = None,
+                                  query_params: Optional[Union['GetKeyValueConnectionInfoQueryParams', 'GetKeyValueConnectionInfoQueryParamsDict']] = None,
                                   opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetKeyValueConnectionInfoResult:
     """
     Use this data source to access information about an existing resource.
+
+    :param Union['GetKeyValueConnectionInfoQueryParams', 'GetKeyValueConnectionInfoQueryParamsDict'] query_params: Query params to send with the API request.
     """
     __args__ = dict()
     __args__['keyValueId'] = key_value_id
+    __args__['queryParams'] = query_params
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke('render:key-value:getKeyValueConnectionInfo', __args__, opts=opts, typ=GetKeyValueConnectionInfoResult).value
 
@@ -88,12 +93,16 @@ def get_key_value_connection_info(key_value_id: Optional[_builtins.str] = None,
         external_connection_string=pulumi.get(__ret__, 'external_connection_string'),
         internal_connection_string=pulumi.get(__ret__, 'internal_connection_string'))
 def get_key_value_connection_info_output(key_value_id: pulumi.Input[Optional[_builtins.str]] = None,
+                                         query_params: pulumi.Input[Optional[Optional[Union['GetKeyValueConnectionInfoQueryParams', 'GetKeyValueConnectionInfoQueryParamsDict']]]] = None,
                                          opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetKeyValueConnectionInfoResult]:
     """
     Use this data source to access information about an existing resource.
+
+    :param Union['GetKeyValueConnectionInfoQueryParams', 'GetKeyValueConnectionInfoQueryParamsDict'] query_params: Query params to send with the API request.
     """
     __args__ = dict()
     __args__['keyValueId'] = key_value_id
+    __args__['queryParams'] = query_params
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('render:key-value:getKeyValueConnectionInfo', __args__, opts=opts, typ=GetKeyValueConnectionInfoResult)
     return __ret__.apply(lambda __response__: GetKeyValueConnectionInfoResult(

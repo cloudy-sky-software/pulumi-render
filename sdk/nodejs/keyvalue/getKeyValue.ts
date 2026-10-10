@@ -11,11 +11,16 @@ export function getKeyValue(args: GetKeyValueArgs, opts?: pulumi.InvokeOptions):
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("render:key-value:getKeyValue", {
         "keyValueId": args.keyValueId,
+        "queryParams": args.queryParams,
     }, opts);
 }
 
 export interface GetKeyValueArgs {
     keyValueId: string;
+    /**
+     * Query params to send with the API request.
+     */
+    queryParams?: inputs.keyvalue.GetKeyValueQueryParams;
 }
 
 /**
@@ -67,9 +72,14 @@ export function getKeyValueOutput(args: GetKeyValueOutputArgs, opts?: pulumi.Inv
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("render:key-value:getKeyValue", {
         "keyValueId": args.keyValueId,
+        "queryParams": args.queryParams,
     }, opts);
 }
 
 export interface GetKeyValueOutputArgs {
     keyValueId: pulumi.Input<string>;
+    /**
+     * Query params to send with the API request.
+     */
+    queryParams?: pulumi.Input<inputs.keyvalue.GetKeyValueQueryParamsArgs | undefined>;
 }

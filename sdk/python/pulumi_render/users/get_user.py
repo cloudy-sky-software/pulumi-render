@@ -13,6 +13,7 @@ if sys.version_info >= (3, 11):
 else:
     from typing_extensions import NotRequired, TypedDict, TypeAlias
 from .. import _utilities
+from ._inputs import *
 
 __all__ = [
     'GetUserResult',
@@ -52,22 +53,30 @@ class AwaitableGetUserResult(GetUserResult):
             name=self.name)
 
 
-def get_user(opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetUserResult:
+def get_user(query_params: Optional[Union['GetUserQueryParams', 'GetUserQueryParamsDict']] = None,
+             opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetUserResult:
     """
     Use this data source to access information about an existing resource.
+
+    :param Union['GetUserQueryParams', 'GetUserQueryParamsDict'] query_params: Query params to send with the API request.
     """
     __args__ = dict()
+    __args__['queryParams'] = query_params
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke('render:users:getUser', __args__, opts=opts, typ=GetUserResult).value
 
     return AwaitableGetUserResult(
         email=pulumi.get(__ret__, 'email'),
         name=pulumi.get(__ret__, 'name'))
-def get_user_output(opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetUserResult]:
+def get_user_output(query_params: pulumi.Input[Optional[Optional[Union['GetUserQueryParams', 'GetUserQueryParamsDict']]]] = None,
+                    opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetUserResult]:
     """
     Use this data source to access information about an existing resource.
+
+    :param Union['GetUserQueryParams', 'GetUserQueryParamsDict'] query_params: Query params to send with the API request.
     """
     __args__ = dict()
+    __args__['queryParams'] = query_params
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('render:users:getUser', __args__, opts=opts, typ=GetUserResult)
     return __ret__.apply(lambda __response__: GetUserResult(

@@ -14,7 +14,7 @@ import (
 func ListEnvGroups(ctx *pulumi.Context, args *ListEnvGroupsArgs, opts ...pulumi.InvokeOption) (*ListEnvGroupsResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv ListEnvGroupsResult
-	err := ctx.Invoke("render:env-groups:listEnvGroups", args, &rv, opts...)
+	err := ctx.Invoke("render:env-groups:listEnvGroups", args.Defaults(), &rv, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -22,6 +22,19 @@ func ListEnvGroups(ctx *pulumi.Context, args *ListEnvGroupsArgs, opts ...pulumi.
 }
 
 type ListEnvGroupsArgs struct {
+	// Query params to send with the API request.
+	QueryParams *ListEnvGroupsQueryParams `pulumi:"queryParams"`
+}
+
+// Defaults sets the appropriate defaults for ListEnvGroupsArgs
+func (val *ListEnvGroupsArgs) Defaults() *ListEnvGroupsArgs {
+	if val == nil {
+		return nil
+	}
+	tmp := *val
+	tmp.QueryParams = tmp.QueryParams.Defaults()
+
+	return &tmp
 }
 
 type ListEnvGroupsResult struct {
@@ -29,11 +42,18 @@ type ListEnvGroupsResult struct {
 }
 
 func ListEnvGroupsOutput(ctx *pulumi.Context, args ListEnvGroupsOutputArgs, opts ...pulumi.InvokeOption) ListEnvGroupsResultOutput {
+	outputArgs := pulumi.ToOutputWithContext(ctx.Context(), args).
+		ApplyT(func(v interface{}) *ListEnvGroupsArgs {
+			args := v.(ListEnvGroupsArgs)
+			return args.Defaults()
+		})
 	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-	return ctx.InvokeOutput("render:env-groups:listEnvGroups", args, ListEnvGroupsResultOutput{}, options).(ListEnvGroupsResultOutput)
+	return ctx.InvokeOutput("render:env-groups:listEnvGroups", outputArgs, ListEnvGroupsResultOutput{}, options).(ListEnvGroupsResultOutput)
 }
 
 type ListEnvGroupsOutputArgs struct {
+	// Query params to send with the API request.
+	QueryParams ListEnvGroupsQueryParamsPtrInput `pulumi:"queryParams"`
 }
 
 func (ListEnvGroupsOutputArgs) ElementType() reflect.Type {

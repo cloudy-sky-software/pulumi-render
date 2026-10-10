@@ -2,6 +2,9 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
+import * as inputs from "../types/input";
+import * as outputs from "../types/output";
+import * as enums from "../types/enums";
 import * as utilities from "../utilities";
 
 export class ResumePostgres extends pulumi.CustomResource {
@@ -31,6 +34,10 @@ export class ResumePostgres extends pulumi.CustomResource {
         return obj['__pulumiType'] === ResumePostgres.__pulumiType;
     }
 
+    /**
+     * Query params to send with the API requests for this resource.
+     */
+    declare public readonly queryParams: pulumi.Output<outputs.postgres.ResumePostgresQueryParams | undefined>;
 
     /**
      * Create a ResumePostgres resource with the given unique name, arguments, and options.
@@ -44,7 +51,9 @@ export class ResumePostgres extends pulumi.CustomResource {
         opts = opts || {};
         if (!opts.id) {
             resourceInputs["postgresId"] = args?.postgresId;
+            resourceInputs["queryParams"] = args?.queryParams;
         } else {
+            resourceInputs["queryParams"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(ResumePostgres.__pulumiType, name, resourceInputs, opts);
@@ -56,4 +65,8 @@ export class ResumePostgres extends pulumi.CustomResource {
  */
 export interface ResumePostgresArgs {
     postgresId?: pulumi.Input<string | undefined>;
+    /**
+     * Query params to send with the API requests for this resource.
+     */
+    queryParams?: pulumi.Input<inputs.postgres.ResumePostgresQueryParamsArgs | undefined>;
 }

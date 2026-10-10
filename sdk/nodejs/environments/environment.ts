@@ -46,6 +46,10 @@ export class Environment extends pulumi.CustomResource {
      * Indicates whether an environment is `unprotected` or `protected`. Only admin users can perform destructive actions in `protected` environments.
      */
     declare public readonly protectedStatus: pulumi.Output<enums.environments.ProtectedStatus>;
+    /**
+     * Query params to send with the API requests for this resource.
+     */
+    declare public readonly queryParams: pulumi.Output<outputs.environments.EnvironmentQueryParams | undefined>;
     declare public /*out*/ readonly redisIds: pulumi.Output<string[]>;
     declare public /*out*/ readonly serviceIds: pulumi.Output<string[]>;
 
@@ -67,6 +71,7 @@ export class Environment extends pulumi.CustomResource {
             resourceInputs["networkIsolationEnabled"] = args?.networkIsolationEnabled;
             resourceInputs["projectId"] = args?.projectId;
             resourceInputs["protectedStatus"] = args?.protectedStatus;
+            resourceInputs["queryParams"] = args?.queryParams;
             resourceInputs["databasesIds"] = undefined /*out*/;
             resourceInputs["envGroupIds"] = undefined /*out*/;
             resourceInputs["redisIds"] = undefined /*out*/;
@@ -78,6 +83,7 @@ export class Environment extends pulumi.CustomResource {
             resourceInputs["networkIsolationEnabled"] = undefined /*out*/;
             resourceInputs["projectId"] = undefined /*out*/;
             resourceInputs["protectedStatus"] = undefined /*out*/;
+            resourceInputs["queryParams"] = undefined /*out*/;
             resourceInputs["redisIds"] = undefined /*out*/;
             resourceInputs["serviceIds"] = undefined /*out*/;
         }
@@ -100,4 +106,8 @@ export interface EnvironmentArgs {
      * Indicates whether an environment is `unprotected` or `protected`. Only admin users can perform destructive actions in `protected` environments.
      */
     protectedStatus?: pulumi.Input<enums.environments.ProtectedStatus | undefined>;
+    /**
+     * Query params to send with the API requests for this resource.
+     */
+    queryParams?: pulumi.Input<inputs.environments.EnvironmentQueryParamsArgs | undefined>;
 }

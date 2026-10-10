@@ -22,6 +22,8 @@ func GetUser(ctx *pulumi.Context, args *GetUserArgs, opts ...pulumi.InvokeOption
 }
 
 type GetUserArgs struct {
+	// Query params to send with the API request.
+	QueryParams *GetUserQueryParams `pulumi:"queryParams"`
 }
 
 type GetUserResult struct {
@@ -35,6 +37,8 @@ func GetUserOutput(ctx *pulumi.Context, args GetUserOutputArgs, opts ...pulumi.I
 }
 
 type GetUserOutputArgs struct {
+	// Query params to send with the API request.
+	QueryParams GetUserQueryParamsPtrInput `pulumi:"queryParams"`
 }
 
 func (GetUserOutputArgs) ElementType() reflect.Type {

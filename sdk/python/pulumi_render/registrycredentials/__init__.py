@@ -10,4 +10,5 @@ from ._enums import *
 from .get_registry_credential import *
 from .list_registry_credentials import *
 from .registry_credential import *
+from ._inputs import *
 from . import outputs

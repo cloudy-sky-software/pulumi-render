@@ -11,11 +11,16 @@ export function listPostgresExport(args: ListPostgresExportArgs, opts?: pulumi.I
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("render:postgres:listPostgresExport", {
         "postgresId": args.postgresId,
+        "queryParams": args.queryParams,
     }, opts);
 }
 
 export interface ListPostgresExportArgs {
     postgresId: string;
+    /**
+     * Query params to send with the API request.
+     */
+    queryParams?: inputs.postgres.ListPostgresExportQueryParams;
 }
 
 export interface ListPostgresExportResult {
@@ -25,9 +30,14 @@ export function listPostgresExportOutput(args: ListPostgresExportOutputArgs, opt
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("render:postgres:listPostgresExport", {
         "postgresId": args.postgresId,
+        "queryParams": args.queryParams,
     }, opts);
 }
 
 export interface ListPostgresExportOutputArgs {
     postgresId: pulumi.Input<string>;
+    /**
+     * Query params to send with the API request.
+     */
+    queryParams?: pulumi.Input<inputs.postgres.ListPostgresExportQueryParamsArgs | undefined>;
 }

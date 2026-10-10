@@ -23,6 +23,8 @@ func GetPostgresRecoveryInfo(ctx *pulumi.Context, args *GetPostgresRecoveryInfoA
 
 type GetPostgresRecoveryInfoArgs struct {
 	PostgresId string `pulumi:"postgresId"`
+	// Query params to send with the API request.
+	QueryParams *GetPostgresRecoveryInfoQueryParams `pulumi:"queryParams"`
 }
 
 type GetPostgresRecoveryInfoResult struct {
@@ -38,6 +40,8 @@ func GetPostgresRecoveryInfoOutput(ctx *pulumi.Context, args GetPostgresRecovery
 
 type GetPostgresRecoveryInfoOutputArgs struct {
 	PostgresId pulumi.StringInput `pulumi:"postgresId"`
+	// Query params to send with the API request.
+	QueryParams GetPostgresRecoveryInfoQueryParamsPtrInput `pulumi:"queryParams"`
 }
 
 func (GetPostgresRecoveryInfoOutputArgs) ElementType() reflect.Type {

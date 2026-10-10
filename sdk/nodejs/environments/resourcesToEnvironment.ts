@@ -46,6 +46,10 @@ export class ResourcesToEnvironment extends pulumi.CustomResource {
      * Indicates whether an environment is `unprotected` or `protected`. Only admin users can perform destructive actions in `protected` environments.
      */
     declare public /*out*/ readonly protectedStatus: pulumi.Output<enums.environments.ProtectedStatus>;
+    /**
+     * Query params to send with the API requests for this resource.
+     */
+    declare public readonly queryParams: pulumi.Output<outputs.environments.ResourcesToEnvironmentQueryParams | undefined>;
     declare public /*out*/ readonly redisIds: pulumi.Output<string[]>;
     declare public readonly resourceIds: pulumi.Output<string[]>;
     declare public /*out*/ readonly serviceIds: pulumi.Output<string[]>;
@@ -65,6 +69,7 @@ export class ResourcesToEnvironment extends pulumi.CustomResource {
                 throw new Error("Missing required property 'resourceIds'");
             }
             resourceInputs["environmentId"] = args?.environmentId;
+            resourceInputs["queryParams"] = args?.queryParams;
             resourceInputs["resourceIds"] = args?.resourceIds;
             resourceInputs["databasesIds"] = undefined /*out*/;
             resourceInputs["envGroupIds"] = undefined /*out*/;
@@ -81,6 +86,7 @@ export class ResourcesToEnvironment extends pulumi.CustomResource {
             resourceInputs["networkIsolationEnabled"] = undefined /*out*/;
             resourceInputs["projectId"] = undefined /*out*/;
             resourceInputs["protectedStatus"] = undefined /*out*/;
+            resourceInputs["queryParams"] = undefined /*out*/;
             resourceInputs["redisIds"] = undefined /*out*/;
             resourceInputs["resourceIds"] = undefined /*out*/;
             resourceInputs["serviceIds"] = undefined /*out*/;
@@ -95,5 +101,9 @@ export class ResourcesToEnvironment extends pulumi.CustomResource {
  */
 export interface ResourcesToEnvironmentArgs {
     environmentId?: pulumi.Input<string | undefined>;
+    /**
+     * Query params to send with the API requests for this resource.
+     */
+    queryParams?: pulumi.Input<inputs.environments.ResourcesToEnvironmentQueryParamsArgs | undefined>;
     resourceIds: pulumi.Input<pulumi.Input<string>[]>;
 }

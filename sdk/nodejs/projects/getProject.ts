@@ -11,11 +11,16 @@ export function getProject(args: GetProjectArgs, opts?: pulumi.InvokeOptions): P
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("render:projects:getProject", {
         "projectId": args.projectId,
+        "queryParams": args.queryParams,
     }, opts);
 }
 
 export interface GetProjectArgs {
     projectId: string;
+    /**
+     * Query params to send with the API request.
+     */
+    queryParams?: inputs.projects.GetProjectQueryParams;
 }
 
 /**
@@ -42,9 +47,14 @@ export function getProjectOutput(args: GetProjectOutputArgs, opts?: pulumi.Invok
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("render:projects:getProject", {
         "projectId": args.projectId,
+        "queryParams": args.queryParams,
     }, opts);
 }
 
 export interface GetProjectOutputArgs {
     projectId: pulumi.Input<string>;
+    /**
+     * Query params to send with the API request.
+     */
+    queryParams?: pulumi.Input<inputs.projects.GetProjectQueryParamsArgs | undefined>;
 }

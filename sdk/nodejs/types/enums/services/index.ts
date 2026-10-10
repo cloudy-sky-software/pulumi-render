@@ -355,6 +355,99 @@ export const JobStatus = {
 
 export type JobStatus = (typeof JobStatus)[keyof typeof JobStatus];
 
+export const ListCustomDomainsQueryParamsDomainType = {
+    Apex: "apex",
+    Subdomain: "subdomain",
+} as const;
+
+export type ListCustomDomainsQueryParamsDomainType = (typeof ListCustomDomainsQueryParamsDomainType)[keyof typeof ListCustomDomainsQueryParamsDomainType];
+
+export const ListCustomDomainsQueryParamsVerificationStatus = {
+    Verified: "verified",
+    Unverified: "unverified",
+} as const;
+
+export type ListCustomDomainsQueryParamsVerificationStatus = (typeof ListCustomDomainsQueryParamsVerificationStatus)[keyof typeof ListCustomDomainsQueryParamsVerificationStatus];
+
+export const ListDeploysQueryParamsStatusItem = {
+    Created: "created",
+    Queued: "queued",
+    BuildInProgress: "build_in_progress",
+    UpdateInProgress: "update_in_progress",
+    Live: "live",
+    Deactivated: "deactivated",
+    BuildFailed: "build_failed",
+    UpdateFailed: "update_failed",
+    Canceled: "canceled",
+    PreDeployInProgress: "pre_deploy_in_progress",
+    PreDeployFailed: "pre_deploy_failed",
+} as const;
+
+export type ListDeploysQueryParamsStatusItem = (typeof ListDeploysQueryParamsStatusItem)[keyof typeof ListDeploysQueryParamsStatusItem];
+
+export const ListJobQueryParamsStatusItem = {
+    Pending: "pending",
+    Running: "running",
+    Succeeded: "succeeded",
+    Failed: "failed",
+    Canceled: "canceled",
+} as const;
+
+export type ListJobQueryParamsStatusItem = (typeof ListJobQueryParamsStatusItem)[keyof typeof ListJobQueryParamsStatusItem];
+
+export const ListRoutesQueryParamsTypeItem = {
+    Redirect: "redirect",
+    Rewrite: "rewrite",
+} as const;
+
+export type ListRoutesQueryParamsTypeItem = (typeof ListRoutesQueryParamsTypeItem)[keyof typeof ListRoutesQueryParamsTypeItem];
+
+export const ListServicesQueryParamsEnvItem = {
+    Docker: "docker",
+    Elixir: "elixir",
+    Go: "go",
+    Node: "node",
+    Python: "python",
+    Ruby: "ruby",
+    Rust: "rust",
+    Image: "image",
+} as const;
+
+/**
+ * Runtime
+ */
+export type ListServicesQueryParamsEnvItem = (typeof ListServicesQueryParamsEnvItem)[keyof typeof ListServicesQueryParamsEnvItem];
+
+export const ListServicesQueryParamsRegionItem = {
+    Frankfurt: "frankfurt",
+    Oregon: "oregon",
+    Ohio: "ohio",
+    Singapore: "singapore",
+    Virginia: "virginia",
+} as const;
+
+/**
+ * Defaults to "oregon"
+ */
+export type ListServicesQueryParamsRegionItem = (typeof ListServicesQueryParamsRegionItem)[keyof typeof ListServicesQueryParamsRegionItem];
+
+export const ListServicesQueryParamsSuspendedItem = {
+    Suspended: "suspended",
+    NotSuspended: "not_suspended",
+} as const;
+
+export type ListServicesQueryParamsSuspendedItem = (typeof ListServicesQueryParamsSuspendedItem)[keyof typeof ListServicesQueryParamsSuspendedItem];
+
+export const ListServicesQueryParamsTypeItem = {
+    StaticSite: "static_site",
+    WebService: "web_service",
+    PrivateService: "private_service",
+    BackgroundWorker: "background_worker",
+    CronJob: "cron_job",
+} as const;
+
+export type ListServicesQueryParamsTypeItem = (typeof ListServicesQueryParamsTypeItem)[keyof typeof ListServicesQueryParamsTypeItem];
+
 export const Plan = {
     Starter: "starter",
     StarterPlus: "starter_plus",

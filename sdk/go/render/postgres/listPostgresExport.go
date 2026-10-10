@@ -23,6 +23,8 @@ func ListPostgresExport(ctx *pulumi.Context, args *ListPostgresExportArgs, opts 
 
 type ListPostgresExportArgs struct {
 	PostgresId string `pulumi:"postgresId"`
+	// Query params to send with the API request.
+	QueryParams *ListPostgresExportQueryParams `pulumi:"queryParams"`
 }
 
 type ListPostgresExportResult struct {
@@ -36,6 +38,8 @@ func ListPostgresExportOutput(ctx *pulumi.Context, args ListPostgresExportOutput
 
 type ListPostgresExportOutputArgs struct {
 	PostgresId pulumi.StringInput `pulumi:"postgresId"`
+	// Query params to send with the API request.
+	QueryParams ListPostgresExportQueryParamsPtrInput `pulumi:"queryParams"`
 }
 
 func (ListPostgresExportOutputArgs) ElementType() reflect.Type {

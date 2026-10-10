@@ -24,6 +24,8 @@ func LookupEnvGroup(ctx *pulumi.Context, args *LookupEnvGroupArgs, opts ...pulum
 type LookupEnvGroupArgs struct {
 	// Filter for resources that belong to an environment group
 	EnvGroupId string `pulumi:"envGroupId"`
+	// Query params to send with the API request.
+	QueryParams *GetEnvGroupQueryParams `pulumi:"queryParams"`
 }
 
 type LookupEnvGroupResult struct {
@@ -47,6 +49,8 @@ func LookupEnvGroupOutput(ctx *pulumi.Context, args LookupEnvGroupOutputArgs, op
 type LookupEnvGroupOutputArgs struct {
 	// Filter for resources that belong to an environment group
 	EnvGroupId pulumi.StringInput `pulumi:"envGroupId"`
+	// Query params to send with the API request.
+	QueryParams GetEnvGroupQueryParamsPtrInput `pulumi:"queryParams"`
 }
 
 func (LookupEnvGroupOutputArgs) ElementType() reflect.Type {

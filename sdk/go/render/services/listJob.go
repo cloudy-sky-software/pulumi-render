@@ -14,7 +14,7 @@ import (
 func ListJob(ctx *pulumi.Context, args *ListJobArgs, opts ...pulumi.InvokeOption) (*ListJobResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv ListJobResult
-	err := ctx.Invoke("render:services:listJob", args, &rv, opts...)
+	err := ctx.Invoke("render:services:listJob", args.Defaults(), &rv, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -22,8 +22,21 @@ func ListJob(ctx *pulumi.Context, args *ListJobArgs, opts ...pulumi.InvokeOption
 }
 
 type ListJobArgs struct {
+	// Query params to send with the API request.
+	QueryParams *ListJobQueryParams `pulumi:"queryParams"`
 	// The ID of the service
 	ServiceId string `pulumi:"serviceId"`
+}
+
+// Defaults sets the appropriate defaults for ListJobArgs
+func (val *ListJobArgs) Defaults() *ListJobArgs {
+	if val == nil {
+		return nil
+	}
+	tmp := *val
+	tmp.QueryParams = tmp.QueryParams.Defaults()
+
+	return &tmp
 }
 
 type ListJobResult struct {
@@ -31,11 +44,18 @@ type ListJobResult struct {
 }
 
 func ListJobOutput(ctx *pulumi.Context, args ListJobOutputArgs, opts ...pulumi.InvokeOption) ListJobResultOutput {
+	outputArgs := pulumi.ToOutputWithContext(ctx.Context(), args).
+		ApplyT(func(v interface{}) *ListJobArgs {
+			args := v.(ListJobArgs)
+			return args.Defaults()
+		})
 	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-	return ctx.InvokeOutput("render:services:listJob", args, ListJobResultOutput{}, options).(ListJobResultOutput)
+	return ctx.InvokeOutput("render:services:listJob", outputArgs, ListJobResultOutput{}, options).(ListJobResultOutput)
 }
 
 type ListJobOutputArgs struct {
+	// Query params to send with the API request.
+	QueryParams ListJobQueryParamsPtrInput `pulumi:"queryParams"`
 	// The ID of the service
 	ServiceId pulumi.StringInput `pulumi:"serviceId"`
 }

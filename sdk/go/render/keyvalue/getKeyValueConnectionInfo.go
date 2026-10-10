@@ -23,6 +23,8 @@ func GetKeyValueConnectionInfo(ctx *pulumi.Context, args *GetKeyValueConnectionI
 
 type GetKeyValueConnectionInfoArgs struct {
 	KeyValueId string `pulumi:"keyValueId"`
+	// Query params to send with the API request.
+	QueryParams *GetKeyValueConnectionInfoQueryParams `pulumi:"queryParams"`
 }
 
 // A Key Value instance
@@ -42,6 +44,8 @@ func GetKeyValueConnectionInfoOutput(ctx *pulumi.Context, args GetKeyValueConnec
 
 type GetKeyValueConnectionInfoOutputArgs struct {
 	KeyValueId pulumi.StringInput `pulumi:"keyValueId"`
+	// Query params to send with the API request.
+	QueryParams GetKeyValueConnectionInfoQueryParamsPtrInput `pulumi:"queryParams"`
 }
 
 func (GetKeyValueConnectionInfoOutputArgs) ElementType() reflect.Type {

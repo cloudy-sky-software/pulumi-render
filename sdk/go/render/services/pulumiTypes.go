@@ -13,6 +13,725 @@ import (
 
 var _ = internal.GetEnvOrDefault
 
+// Query params for the API request.
+type AutoscaleServiceCreateQueryParams struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams map[string]string `pulumi:"additionalParams"`
+}
+
+// AutoscaleServiceCreateQueryParamsInput is an input type that accepts AutoscaleServiceCreateQueryParamsArgs and AutoscaleServiceCreateQueryParamsOutput values.
+// You can construct a concrete instance of `AutoscaleServiceCreateQueryParamsInput` via:
+//
+//	AutoscaleServiceCreateQueryParamsArgs{...}
+type AutoscaleServiceCreateQueryParamsInput interface {
+	pulumi.Input
+
+	ToAutoscaleServiceCreateQueryParamsOutput() AutoscaleServiceCreateQueryParamsOutput
+	ToAutoscaleServiceCreateQueryParamsOutputWithContext(context.Context) AutoscaleServiceCreateQueryParamsOutput
+}
+
+// Query params for the API request.
+type AutoscaleServiceCreateQueryParamsArgs struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams pulumi.StringMapInput `pulumi:"additionalParams"`
+}
+
+func (AutoscaleServiceCreateQueryParamsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*AutoscaleServiceCreateQueryParams)(nil)).Elem()
+}
+
+func (i AutoscaleServiceCreateQueryParamsArgs) ToAutoscaleServiceCreateQueryParamsOutput() AutoscaleServiceCreateQueryParamsOutput {
+	return i.ToAutoscaleServiceCreateQueryParamsOutputWithContext(context.Background())
+}
+
+func (i AutoscaleServiceCreateQueryParamsArgs) ToAutoscaleServiceCreateQueryParamsOutputWithContext(ctx context.Context) AutoscaleServiceCreateQueryParamsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AutoscaleServiceCreateQueryParamsOutput)
+}
+
+func (i AutoscaleServiceCreateQueryParamsArgs) ToAutoscaleServiceCreateQueryParamsPtrOutput() AutoscaleServiceCreateQueryParamsPtrOutput {
+	return i.ToAutoscaleServiceCreateQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i AutoscaleServiceCreateQueryParamsArgs) ToAutoscaleServiceCreateQueryParamsPtrOutputWithContext(ctx context.Context) AutoscaleServiceCreateQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AutoscaleServiceCreateQueryParamsOutput).ToAutoscaleServiceCreateQueryParamsPtrOutputWithContext(ctx)
+}
+
+// AutoscaleServiceCreateQueryParamsPtrInput is an input type that accepts AutoscaleServiceCreateQueryParamsArgs, AutoscaleServiceCreateQueryParamsPtr and AutoscaleServiceCreateQueryParamsPtrOutput values.
+// You can construct a concrete instance of `AutoscaleServiceCreateQueryParamsPtrInput` via:
+//
+//	        AutoscaleServiceCreateQueryParamsArgs{...}
+//
+//	or:
+//
+//	        nil
+type AutoscaleServiceCreateQueryParamsPtrInput interface {
+	pulumi.Input
+
+	ToAutoscaleServiceCreateQueryParamsPtrOutput() AutoscaleServiceCreateQueryParamsPtrOutput
+	ToAutoscaleServiceCreateQueryParamsPtrOutputWithContext(context.Context) AutoscaleServiceCreateQueryParamsPtrOutput
+}
+
+type autoscaleServiceCreateQueryParamsPtrType AutoscaleServiceCreateQueryParamsArgs
+
+func AutoscaleServiceCreateQueryParamsPtr(v *AutoscaleServiceCreateQueryParamsArgs) AutoscaleServiceCreateQueryParamsPtrInput {
+	return (*autoscaleServiceCreateQueryParamsPtrType)(v)
+}
+
+func (*autoscaleServiceCreateQueryParamsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**AutoscaleServiceCreateQueryParams)(nil)).Elem()
+}
+
+func (i *autoscaleServiceCreateQueryParamsPtrType) ToAutoscaleServiceCreateQueryParamsPtrOutput() AutoscaleServiceCreateQueryParamsPtrOutput {
+	return i.ToAutoscaleServiceCreateQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i *autoscaleServiceCreateQueryParamsPtrType) ToAutoscaleServiceCreateQueryParamsPtrOutputWithContext(ctx context.Context) AutoscaleServiceCreateQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AutoscaleServiceCreateQueryParamsPtrOutput)
+}
+
+// Query params for the API request.
+type AutoscaleServiceCreateQueryParamsOutput struct{ *pulumi.OutputState }
+
+func (AutoscaleServiceCreateQueryParamsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*AutoscaleServiceCreateQueryParams)(nil)).Elem()
+}
+
+func (o AutoscaleServiceCreateQueryParamsOutput) ToAutoscaleServiceCreateQueryParamsOutput() AutoscaleServiceCreateQueryParamsOutput {
+	return o
+}
+
+func (o AutoscaleServiceCreateQueryParamsOutput) ToAutoscaleServiceCreateQueryParamsOutputWithContext(ctx context.Context) AutoscaleServiceCreateQueryParamsOutput {
+	return o
+}
+
+func (o AutoscaleServiceCreateQueryParamsOutput) ToAutoscaleServiceCreateQueryParamsPtrOutput() AutoscaleServiceCreateQueryParamsPtrOutput {
+	return o.ToAutoscaleServiceCreateQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (o AutoscaleServiceCreateQueryParamsOutput) ToAutoscaleServiceCreateQueryParamsPtrOutputWithContext(ctx context.Context) AutoscaleServiceCreateQueryParamsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v AutoscaleServiceCreateQueryParams) *AutoscaleServiceCreateQueryParams {
+		return &v
+	}).(AutoscaleServiceCreateQueryParamsPtrOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o AutoscaleServiceCreateQueryParamsOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v AutoscaleServiceCreateQueryParams) map[string]string { return v.AdditionalParams }).(pulumi.StringMapOutput)
+}
+
+type AutoscaleServiceCreateQueryParamsPtrOutput struct{ *pulumi.OutputState }
+
+func (AutoscaleServiceCreateQueryParamsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**AutoscaleServiceCreateQueryParams)(nil)).Elem()
+}
+
+func (o AutoscaleServiceCreateQueryParamsPtrOutput) ToAutoscaleServiceCreateQueryParamsPtrOutput() AutoscaleServiceCreateQueryParamsPtrOutput {
+	return o
+}
+
+func (o AutoscaleServiceCreateQueryParamsPtrOutput) ToAutoscaleServiceCreateQueryParamsPtrOutputWithContext(ctx context.Context) AutoscaleServiceCreateQueryParamsPtrOutput {
+	return o
+}
+
+func (o AutoscaleServiceCreateQueryParamsPtrOutput) Elem() AutoscaleServiceCreateQueryParamsOutput {
+	return o.ApplyT(func(v *AutoscaleServiceCreateQueryParams) AutoscaleServiceCreateQueryParams {
+		if v != nil {
+			return *v
+		}
+		var ret AutoscaleServiceCreateQueryParams
+		return ret
+	}).(AutoscaleServiceCreateQueryParamsOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o AutoscaleServiceCreateQueryParamsPtrOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *AutoscaleServiceCreateQueryParams) map[string]string {
+		if v == nil {
+			return nil
+		}
+		return v.AdditionalParams
+	}).(pulumi.StringMapOutput)
+}
+
+// Query params for the API request.
+type AutoscaleServicePutQueryParams struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams map[string]string `pulumi:"additionalParams"`
+}
+
+// AutoscaleServicePutQueryParamsInput is an input type that accepts AutoscaleServicePutQueryParamsArgs and AutoscaleServicePutQueryParamsOutput values.
+// You can construct a concrete instance of `AutoscaleServicePutQueryParamsInput` via:
+//
+//	AutoscaleServicePutQueryParamsArgs{...}
+type AutoscaleServicePutQueryParamsInput interface {
+	pulumi.Input
+
+	ToAutoscaleServicePutQueryParamsOutput() AutoscaleServicePutQueryParamsOutput
+	ToAutoscaleServicePutQueryParamsOutputWithContext(context.Context) AutoscaleServicePutQueryParamsOutput
+}
+
+// Query params for the API request.
+type AutoscaleServicePutQueryParamsArgs struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams pulumi.StringMapInput `pulumi:"additionalParams"`
+}
+
+func (AutoscaleServicePutQueryParamsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*AutoscaleServicePutQueryParams)(nil)).Elem()
+}
+
+func (i AutoscaleServicePutQueryParamsArgs) ToAutoscaleServicePutQueryParamsOutput() AutoscaleServicePutQueryParamsOutput {
+	return i.ToAutoscaleServicePutQueryParamsOutputWithContext(context.Background())
+}
+
+func (i AutoscaleServicePutQueryParamsArgs) ToAutoscaleServicePutQueryParamsOutputWithContext(ctx context.Context) AutoscaleServicePutQueryParamsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AutoscaleServicePutQueryParamsOutput)
+}
+
+func (i AutoscaleServicePutQueryParamsArgs) ToAutoscaleServicePutQueryParamsPtrOutput() AutoscaleServicePutQueryParamsPtrOutput {
+	return i.ToAutoscaleServicePutQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i AutoscaleServicePutQueryParamsArgs) ToAutoscaleServicePutQueryParamsPtrOutputWithContext(ctx context.Context) AutoscaleServicePutQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AutoscaleServicePutQueryParamsOutput).ToAutoscaleServicePutQueryParamsPtrOutputWithContext(ctx)
+}
+
+// AutoscaleServicePutQueryParamsPtrInput is an input type that accepts AutoscaleServicePutQueryParamsArgs, AutoscaleServicePutQueryParamsPtr and AutoscaleServicePutQueryParamsPtrOutput values.
+// You can construct a concrete instance of `AutoscaleServicePutQueryParamsPtrInput` via:
+//
+//	        AutoscaleServicePutQueryParamsArgs{...}
+//
+//	or:
+//
+//	        nil
+type AutoscaleServicePutQueryParamsPtrInput interface {
+	pulumi.Input
+
+	ToAutoscaleServicePutQueryParamsPtrOutput() AutoscaleServicePutQueryParamsPtrOutput
+	ToAutoscaleServicePutQueryParamsPtrOutputWithContext(context.Context) AutoscaleServicePutQueryParamsPtrOutput
+}
+
+type autoscaleServicePutQueryParamsPtrType AutoscaleServicePutQueryParamsArgs
+
+func AutoscaleServicePutQueryParamsPtr(v *AutoscaleServicePutQueryParamsArgs) AutoscaleServicePutQueryParamsPtrInput {
+	return (*autoscaleServicePutQueryParamsPtrType)(v)
+}
+
+func (*autoscaleServicePutQueryParamsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**AutoscaleServicePutQueryParams)(nil)).Elem()
+}
+
+func (i *autoscaleServicePutQueryParamsPtrType) ToAutoscaleServicePutQueryParamsPtrOutput() AutoscaleServicePutQueryParamsPtrOutput {
+	return i.ToAutoscaleServicePutQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i *autoscaleServicePutQueryParamsPtrType) ToAutoscaleServicePutQueryParamsPtrOutputWithContext(ctx context.Context) AutoscaleServicePutQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AutoscaleServicePutQueryParamsPtrOutput)
+}
+
+// Query params for the API request.
+type AutoscaleServicePutQueryParamsOutput struct{ *pulumi.OutputState }
+
+func (AutoscaleServicePutQueryParamsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*AutoscaleServicePutQueryParams)(nil)).Elem()
+}
+
+func (o AutoscaleServicePutQueryParamsOutput) ToAutoscaleServicePutQueryParamsOutput() AutoscaleServicePutQueryParamsOutput {
+	return o
+}
+
+func (o AutoscaleServicePutQueryParamsOutput) ToAutoscaleServicePutQueryParamsOutputWithContext(ctx context.Context) AutoscaleServicePutQueryParamsOutput {
+	return o
+}
+
+func (o AutoscaleServicePutQueryParamsOutput) ToAutoscaleServicePutQueryParamsPtrOutput() AutoscaleServicePutQueryParamsPtrOutput {
+	return o.ToAutoscaleServicePutQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (o AutoscaleServicePutQueryParamsOutput) ToAutoscaleServicePutQueryParamsPtrOutputWithContext(ctx context.Context) AutoscaleServicePutQueryParamsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v AutoscaleServicePutQueryParams) *AutoscaleServicePutQueryParams {
+		return &v
+	}).(AutoscaleServicePutQueryParamsPtrOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o AutoscaleServicePutQueryParamsOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v AutoscaleServicePutQueryParams) map[string]string { return v.AdditionalParams }).(pulumi.StringMapOutput)
+}
+
+type AutoscaleServicePutQueryParamsPtrOutput struct{ *pulumi.OutputState }
+
+func (AutoscaleServicePutQueryParamsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**AutoscaleServicePutQueryParams)(nil)).Elem()
+}
+
+func (o AutoscaleServicePutQueryParamsPtrOutput) ToAutoscaleServicePutQueryParamsPtrOutput() AutoscaleServicePutQueryParamsPtrOutput {
+	return o
+}
+
+func (o AutoscaleServicePutQueryParamsPtrOutput) ToAutoscaleServicePutQueryParamsPtrOutputWithContext(ctx context.Context) AutoscaleServicePutQueryParamsPtrOutput {
+	return o
+}
+
+func (o AutoscaleServicePutQueryParamsPtrOutput) Elem() AutoscaleServicePutQueryParamsOutput {
+	return o.ApplyT(func(v *AutoscaleServicePutQueryParams) AutoscaleServicePutQueryParams {
+		if v != nil {
+			return *v
+		}
+		var ret AutoscaleServicePutQueryParams
+		return ret
+	}).(AutoscaleServicePutQueryParamsOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o AutoscaleServicePutQueryParamsPtrOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *AutoscaleServicePutQueryParams) map[string]string {
+		if v == nil {
+			return nil
+		}
+		return v.AdditionalParams
+	}).(pulumi.StringMapOutput)
+}
+
+// Query params for each of the operations of the resource.
+type AutoscaleServiceQueryParams struct {
+	// Query params for the create operation.
+	Create *AutoscaleServiceCreateQueryParams `pulumi:"create"`
+	// Query params for the put operation.
+	Put *AutoscaleServicePutQueryParams `pulumi:"put"`
+}
+
+// AutoscaleServiceQueryParamsInput is an input type that accepts AutoscaleServiceQueryParamsArgs and AutoscaleServiceQueryParamsOutput values.
+// You can construct a concrete instance of `AutoscaleServiceQueryParamsInput` via:
+//
+//	AutoscaleServiceQueryParamsArgs{...}
+type AutoscaleServiceQueryParamsInput interface {
+	pulumi.Input
+
+	ToAutoscaleServiceQueryParamsOutput() AutoscaleServiceQueryParamsOutput
+	ToAutoscaleServiceQueryParamsOutputWithContext(context.Context) AutoscaleServiceQueryParamsOutput
+}
+
+// Query params for each of the operations of the resource.
+type AutoscaleServiceQueryParamsArgs struct {
+	// Query params for the create operation.
+	Create AutoscaleServiceCreateQueryParamsPtrInput `pulumi:"create"`
+	// Query params for the put operation.
+	Put AutoscaleServicePutQueryParamsPtrInput `pulumi:"put"`
+}
+
+func (AutoscaleServiceQueryParamsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*AutoscaleServiceQueryParams)(nil)).Elem()
+}
+
+func (i AutoscaleServiceQueryParamsArgs) ToAutoscaleServiceQueryParamsOutput() AutoscaleServiceQueryParamsOutput {
+	return i.ToAutoscaleServiceQueryParamsOutputWithContext(context.Background())
+}
+
+func (i AutoscaleServiceQueryParamsArgs) ToAutoscaleServiceQueryParamsOutputWithContext(ctx context.Context) AutoscaleServiceQueryParamsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AutoscaleServiceQueryParamsOutput)
+}
+
+func (i AutoscaleServiceQueryParamsArgs) ToAutoscaleServiceQueryParamsPtrOutput() AutoscaleServiceQueryParamsPtrOutput {
+	return i.ToAutoscaleServiceQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i AutoscaleServiceQueryParamsArgs) ToAutoscaleServiceQueryParamsPtrOutputWithContext(ctx context.Context) AutoscaleServiceQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AutoscaleServiceQueryParamsOutput).ToAutoscaleServiceQueryParamsPtrOutputWithContext(ctx)
+}
+
+// AutoscaleServiceQueryParamsPtrInput is an input type that accepts AutoscaleServiceQueryParamsArgs, AutoscaleServiceQueryParamsPtr and AutoscaleServiceQueryParamsPtrOutput values.
+// You can construct a concrete instance of `AutoscaleServiceQueryParamsPtrInput` via:
+//
+//	        AutoscaleServiceQueryParamsArgs{...}
+//
+//	or:
+//
+//	        nil
+type AutoscaleServiceQueryParamsPtrInput interface {
+	pulumi.Input
+
+	ToAutoscaleServiceQueryParamsPtrOutput() AutoscaleServiceQueryParamsPtrOutput
+	ToAutoscaleServiceQueryParamsPtrOutputWithContext(context.Context) AutoscaleServiceQueryParamsPtrOutput
+}
+
+type autoscaleServiceQueryParamsPtrType AutoscaleServiceQueryParamsArgs
+
+func AutoscaleServiceQueryParamsPtr(v *AutoscaleServiceQueryParamsArgs) AutoscaleServiceQueryParamsPtrInput {
+	return (*autoscaleServiceQueryParamsPtrType)(v)
+}
+
+func (*autoscaleServiceQueryParamsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**AutoscaleServiceQueryParams)(nil)).Elem()
+}
+
+func (i *autoscaleServiceQueryParamsPtrType) ToAutoscaleServiceQueryParamsPtrOutput() AutoscaleServiceQueryParamsPtrOutput {
+	return i.ToAutoscaleServiceQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i *autoscaleServiceQueryParamsPtrType) ToAutoscaleServiceQueryParamsPtrOutputWithContext(ctx context.Context) AutoscaleServiceQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(AutoscaleServiceQueryParamsPtrOutput)
+}
+
+// Query params for each of the operations of the resource.
+type AutoscaleServiceQueryParamsOutput struct{ *pulumi.OutputState }
+
+func (AutoscaleServiceQueryParamsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*AutoscaleServiceQueryParams)(nil)).Elem()
+}
+
+func (o AutoscaleServiceQueryParamsOutput) ToAutoscaleServiceQueryParamsOutput() AutoscaleServiceQueryParamsOutput {
+	return o
+}
+
+func (o AutoscaleServiceQueryParamsOutput) ToAutoscaleServiceQueryParamsOutputWithContext(ctx context.Context) AutoscaleServiceQueryParamsOutput {
+	return o
+}
+
+func (o AutoscaleServiceQueryParamsOutput) ToAutoscaleServiceQueryParamsPtrOutput() AutoscaleServiceQueryParamsPtrOutput {
+	return o.ToAutoscaleServiceQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (o AutoscaleServiceQueryParamsOutput) ToAutoscaleServiceQueryParamsPtrOutputWithContext(ctx context.Context) AutoscaleServiceQueryParamsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v AutoscaleServiceQueryParams) *AutoscaleServiceQueryParams {
+		return &v
+	}).(AutoscaleServiceQueryParamsPtrOutput)
+}
+
+// Query params for the create operation.
+func (o AutoscaleServiceQueryParamsOutput) Create() AutoscaleServiceCreateQueryParamsPtrOutput {
+	return o.ApplyT(func(v AutoscaleServiceQueryParams) *AutoscaleServiceCreateQueryParams { return v.Create }).(AutoscaleServiceCreateQueryParamsPtrOutput)
+}
+
+// Query params for the put operation.
+func (o AutoscaleServiceQueryParamsOutput) Put() AutoscaleServicePutQueryParamsPtrOutput {
+	return o.ApplyT(func(v AutoscaleServiceQueryParams) *AutoscaleServicePutQueryParams { return v.Put }).(AutoscaleServicePutQueryParamsPtrOutput)
+}
+
+type AutoscaleServiceQueryParamsPtrOutput struct{ *pulumi.OutputState }
+
+func (AutoscaleServiceQueryParamsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**AutoscaleServiceQueryParams)(nil)).Elem()
+}
+
+func (o AutoscaleServiceQueryParamsPtrOutput) ToAutoscaleServiceQueryParamsPtrOutput() AutoscaleServiceQueryParamsPtrOutput {
+	return o
+}
+
+func (o AutoscaleServiceQueryParamsPtrOutput) ToAutoscaleServiceQueryParamsPtrOutputWithContext(ctx context.Context) AutoscaleServiceQueryParamsPtrOutput {
+	return o
+}
+
+func (o AutoscaleServiceQueryParamsPtrOutput) Elem() AutoscaleServiceQueryParamsOutput {
+	return o.ApplyT(func(v *AutoscaleServiceQueryParams) AutoscaleServiceQueryParams {
+		if v != nil {
+			return *v
+		}
+		var ret AutoscaleServiceQueryParams
+		return ret
+	}).(AutoscaleServiceQueryParamsOutput)
+}
+
+// Query params for the create operation.
+func (o AutoscaleServiceQueryParamsPtrOutput) Create() AutoscaleServiceCreateQueryParamsPtrOutput {
+	return o.ApplyT(func(v *AutoscaleServiceQueryParams) *AutoscaleServiceCreateQueryParams {
+		if v == nil {
+			return nil
+		}
+		return v.Create
+	}).(AutoscaleServiceCreateQueryParamsPtrOutput)
+}
+
+// Query params for the put operation.
+func (o AutoscaleServiceQueryParamsPtrOutput) Put() AutoscaleServicePutQueryParamsPtrOutput {
+	return o.ApplyT(func(v *AutoscaleServiceQueryParams) *AutoscaleServicePutQueryParams {
+		if v == nil {
+			return nil
+		}
+		return v.Put
+	}).(AutoscaleServicePutQueryParamsPtrOutput)
+}
+
+// Query params for the API request.
+type BackgroundWorkerCreateQueryParams struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams map[string]string `pulumi:"additionalParams"`
+}
+
+// BackgroundWorkerCreateQueryParamsInput is an input type that accepts BackgroundWorkerCreateQueryParamsArgs and BackgroundWorkerCreateQueryParamsOutput values.
+// You can construct a concrete instance of `BackgroundWorkerCreateQueryParamsInput` via:
+//
+//	BackgroundWorkerCreateQueryParamsArgs{...}
+type BackgroundWorkerCreateQueryParamsInput interface {
+	pulumi.Input
+
+	ToBackgroundWorkerCreateQueryParamsOutput() BackgroundWorkerCreateQueryParamsOutput
+	ToBackgroundWorkerCreateQueryParamsOutputWithContext(context.Context) BackgroundWorkerCreateQueryParamsOutput
+}
+
+// Query params for the API request.
+type BackgroundWorkerCreateQueryParamsArgs struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams pulumi.StringMapInput `pulumi:"additionalParams"`
+}
+
+func (BackgroundWorkerCreateQueryParamsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*BackgroundWorkerCreateQueryParams)(nil)).Elem()
+}
+
+func (i BackgroundWorkerCreateQueryParamsArgs) ToBackgroundWorkerCreateQueryParamsOutput() BackgroundWorkerCreateQueryParamsOutput {
+	return i.ToBackgroundWorkerCreateQueryParamsOutputWithContext(context.Background())
+}
+
+func (i BackgroundWorkerCreateQueryParamsArgs) ToBackgroundWorkerCreateQueryParamsOutputWithContext(ctx context.Context) BackgroundWorkerCreateQueryParamsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(BackgroundWorkerCreateQueryParamsOutput)
+}
+
+func (i BackgroundWorkerCreateQueryParamsArgs) ToBackgroundWorkerCreateQueryParamsPtrOutput() BackgroundWorkerCreateQueryParamsPtrOutput {
+	return i.ToBackgroundWorkerCreateQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i BackgroundWorkerCreateQueryParamsArgs) ToBackgroundWorkerCreateQueryParamsPtrOutputWithContext(ctx context.Context) BackgroundWorkerCreateQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(BackgroundWorkerCreateQueryParamsOutput).ToBackgroundWorkerCreateQueryParamsPtrOutputWithContext(ctx)
+}
+
+// BackgroundWorkerCreateQueryParamsPtrInput is an input type that accepts BackgroundWorkerCreateQueryParamsArgs, BackgroundWorkerCreateQueryParamsPtr and BackgroundWorkerCreateQueryParamsPtrOutput values.
+// You can construct a concrete instance of `BackgroundWorkerCreateQueryParamsPtrInput` via:
+//
+//	        BackgroundWorkerCreateQueryParamsArgs{...}
+//
+//	or:
+//
+//	        nil
+type BackgroundWorkerCreateQueryParamsPtrInput interface {
+	pulumi.Input
+
+	ToBackgroundWorkerCreateQueryParamsPtrOutput() BackgroundWorkerCreateQueryParamsPtrOutput
+	ToBackgroundWorkerCreateQueryParamsPtrOutputWithContext(context.Context) BackgroundWorkerCreateQueryParamsPtrOutput
+}
+
+type backgroundWorkerCreateQueryParamsPtrType BackgroundWorkerCreateQueryParamsArgs
+
+func BackgroundWorkerCreateQueryParamsPtr(v *BackgroundWorkerCreateQueryParamsArgs) BackgroundWorkerCreateQueryParamsPtrInput {
+	return (*backgroundWorkerCreateQueryParamsPtrType)(v)
+}
+
+func (*backgroundWorkerCreateQueryParamsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**BackgroundWorkerCreateQueryParams)(nil)).Elem()
+}
+
+func (i *backgroundWorkerCreateQueryParamsPtrType) ToBackgroundWorkerCreateQueryParamsPtrOutput() BackgroundWorkerCreateQueryParamsPtrOutput {
+	return i.ToBackgroundWorkerCreateQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i *backgroundWorkerCreateQueryParamsPtrType) ToBackgroundWorkerCreateQueryParamsPtrOutputWithContext(ctx context.Context) BackgroundWorkerCreateQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(BackgroundWorkerCreateQueryParamsPtrOutput)
+}
+
+// Query params for the API request.
+type BackgroundWorkerCreateQueryParamsOutput struct{ *pulumi.OutputState }
+
+func (BackgroundWorkerCreateQueryParamsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*BackgroundWorkerCreateQueryParams)(nil)).Elem()
+}
+
+func (o BackgroundWorkerCreateQueryParamsOutput) ToBackgroundWorkerCreateQueryParamsOutput() BackgroundWorkerCreateQueryParamsOutput {
+	return o
+}
+
+func (o BackgroundWorkerCreateQueryParamsOutput) ToBackgroundWorkerCreateQueryParamsOutputWithContext(ctx context.Context) BackgroundWorkerCreateQueryParamsOutput {
+	return o
+}
+
+func (o BackgroundWorkerCreateQueryParamsOutput) ToBackgroundWorkerCreateQueryParamsPtrOutput() BackgroundWorkerCreateQueryParamsPtrOutput {
+	return o.ToBackgroundWorkerCreateQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (o BackgroundWorkerCreateQueryParamsOutput) ToBackgroundWorkerCreateQueryParamsPtrOutputWithContext(ctx context.Context) BackgroundWorkerCreateQueryParamsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v BackgroundWorkerCreateQueryParams) *BackgroundWorkerCreateQueryParams {
+		return &v
+	}).(BackgroundWorkerCreateQueryParamsPtrOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o BackgroundWorkerCreateQueryParamsOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v BackgroundWorkerCreateQueryParams) map[string]string { return v.AdditionalParams }).(pulumi.StringMapOutput)
+}
+
+type BackgroundWorkerCreateQueryParamsPtrOutput struct{ *pulumi.OutputState }
+
+func (BackgroundWorkerCreateQueryParamsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**BackgroundWorkerCreateQueryParams)(nil)).Elem()
+}
+
+func (o BackgroundWorkerCreateQueryParamsPtrOutput) ToBackgroundWorkerCreateQueryParamsPtrOutput() BackgroundWorkerCreateQueryParamsPtrOutput {
+	return o
+}
+
+func (o BackgroundWorkerCreateQueryParamsPtrOutput) ToBackgroundWorkerCreateQueryParamsPtrOutputWithContext(ctx context.Context) BackgroundWorkerCreateQueryParamsPtrOutput {
+	return o
+}
+
+func (o BackgroundWorkerCreateQueryParamsPtrOutput) Elem() BackgroundWorkerCreateQueryParamsOutput {
+	return o.ApplyT(func(v *BackgroundWorkerCreateQueryParams) BackgroundWorkerCreateQueryParams {
+		if v != nil {
+			return *v
+		}
+		var ret BackgroundWorkerCreateQueryParams
+		return ret
+	}).(BackgroundWorkerCreateQueryParamsOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o BackgroundWorkerCreateQueryParamsPtrOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *BackgroundWorkerCreateQueryParams) map[string]string {
+		if v == nil {
+			return nil
+		}
+		return v.AdditionalParams
+	}).(pulumi.StringMapOutput)
+}
+
+// Query params for the API request.
+type BackgroundWorkerDeleteQueryParams struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams map[string]string `pulumi:"additionalParams"`
+}
+
+// BackgroundWorkerDeleteQueryParamsInput is an input type that accepts BackgroundWorkerDeleteQueryParamsArgs and BackgroundWorkerDeleteQueryParamsOutput values.
+// You can construct a concrete instance of `BackgroundWorkerDeleteQueryParamsInput` via:
+//
+//	BackgroundWorkerDeleteQueryParamsArgs{...}
+type BackgroundWorkerDeleteQueryParamsInput interface {
+	pulumi.Input
+
+	ToBackgroundWorkerDeleteQueryParamsOutput() BackgroundWorkerDeleteQueryParamsOutput
+	ToBackgroundWorkerDeleteQueryParamsOutputWithContext(context.Context) BackgroundWorkerDeleteQueryParamsOutput
+}
+
+// Query params for the API request.
+type BackgroundWorkerDeleteQueryParamsArgs struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams pulumi.StringMapInput `pulumi:"additionalParams"`
+}
+
+func (BackgroundWorkerDeleteQueryParamsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*BackgroundWorkerDeleteQueryParams)(nil)).Elem()
+}
+
+func (i BackgroundWorkerDeleteQueryParamsArgs) ToBackgroundWorkerDeleteQueryParamsOutput() BackgroundWorkerDeleteQueryParamsOutput {
+	return i.ToBackgroundWorkerDeleteQueryParamsOutputWithContext(context.Background())
+}
+
+func (i BackgroundWorkerDeleteQueryParamsArgs) ToBackgroundWorkerDeleteQueryParamsOutputWithContext(ctx context.Context) BackgroundWorkerDeleteQueryParamsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(BackgroundWorkerDeleteQueryParamsOutput)
+}
+
+func (i BackgroundWorkerDeleteQueryParamsArgs) ToBackgroundWorkerDeleteQueryParamsPtrOutput() BackgroundWorkerDeleteQueryParamsPtrOutput {
+	return i.ToBackgroundWorkerDeleteQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i BackgroundWorkerDeleteQueryParamsArgs) ToBackgroundWorkerDeleteQueryParamsPtrOutputWithContext(ctx context.Context) BackgroundWorkerDeleteQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(BackgroundWorkerDeleteQueryParamsOutput).ToBackgroundWorkerDeleteQueryParamsPtrOutputWithContext(ctx)
+}
+
+// BackgroundWorkerDeleteQueryParamsPtrInput is an input type that accepts BackgroundWorkerDeleteQueryParamsArgs, BackgroundWorkerDeleteQueryParamsPtr and BackgroundWorkerDeleteQueryParamsPtrOutput values.
+// You can construct a concrete instance of `BackgroundWorkerDeleteQueryParamsPtrInput` via:
+//
+//	        BackgroundWorkerDeleteQueryParamsArgs{...}
+//
+//	or:
+//
+//	        nil
+type BackgroundWorkerDeleteQueryParamsPtrInput interface {
+	pulumi.Input
+
+	ToBackgroundWorkerDeleteQueryParamsPtrOutput() BackgroundWorkerDeleteQueryParamsPtrOutput
+	ToBackgroundWorkerDeleteQueryParamsPtrOutputWithContext(context.Context) BackgroundWorkerDeleteQueryParamsPtrOutput
+}
+
+type backgroundWorkerDeleteQueryParamsPtrType BackgroundWorkerDeleteQueryParamsArgs
+
+func BackgroundWorkerDeleteQueryParamsPtr(v *BackgroundWorkerDeleteQueryParamsArgs) BackgroundWorkerDeleteQueryParamsPtrInput {
+	return (*backgroundWorkerDeleteQueryParamsPtrType)(v)
+}
+
+func (*backgroundWorkerDeleteQueryParamsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**BackgroundWorkerDeleteQueryParams)(nil)).Elem()
+}
+
+func (i *backgroundWorkerDeleteQueryParamsPtrType) ToBackgroundWorkerDeleteQueryParamsPtrOutput() BackgroundWorkerDeleteQueryParamsPtrOutput {
+	return i.ToBackgroundWorkerDeleteQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i *backgroundWorkerDeleteQueryParamsPtrType) ToBackgroundWorkerDeleteQueryParamsPtrOutputWithContext(ctx context.Context) BackgroundWorkerDeleteQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(BackgroundWorkerDeleteQueryParamsPtrOutput)
+}
+
+// Query params for the API request.
+type BackgroundWorkerDeleteQueryParamsOutput struct{ *pulumi.OutputState }
+
+func (BackgroundWorkerDeleteQueryParamsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*BackgroundWorkerDeleteQueryParams)(nil)).Elem()
+}
+
+func (o BackgroundWorkerDeleteQueryParamsOutput) ToBackgroundWorkerDeleteQueryParamsOutput() BackgroundWorkerDeleteQueryParamsOutput {
+	return o
+}
+
+func (o BackgroundWorkerDeleteQueryParamsOutput) ToBackgroundWorkerDeleteQueryParamsOutputWithContext(ctx context.Context) BackgroundWorkerDeleteQueryParamsOutput {
+	return o
+}
+
+func (o BackgroundWorkerDeleteQueryParamsOutput) ToBackgroundWorkerDeleteQueryParamsPtrOutput() BackgroundWorkerDeleteQueryParamsPtrOutput {
+	return o.ToBackgroundWorkerDeleteQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (o BackgroundWorkerDeleteQueryParamsOutput) ToBackgroundWorkerDeleteQueryParamsPtrOutputWithContext(ctx context.Context) BackgroundWorkerDeleteQueryParamsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v BackgroundWorkerDeleteQueryParams) *BackgroundWorkerDeleteQueryParams {
+		return &v
+	}).(BackgroundWorkerDeleteQueryParamsPtrOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o BackgroundWorkerDeleteQueryParamsOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v BackgroundWorkerDeleteQueryParams) map[string]string { return v.AdditionalParams }).(pulumi.StringMapOutput)
+}
+
+type BackgroundWorkerDeleteQueryParamsPtrOutput struct{ *pulumi.OutputState }
+
+func (BackgroundWorkerDeleteQueryParamsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**BackgroundWorkerDeleteQueryParams)(nil)).Elem()
+}
+
+func (o BackgroundWorkerDeleteQueryParamsPtrOutput) ToBackgroundWorkerDeleteQueryParamsPtrOutput() BackgroundWorkerDeleteQueryParamsPtrOutput {
+	return o
+}
+
+func (o BackgroundWorkerDeleteQueryParamsPtrOutput) ToBackgroundWorkerDeleteQueryParamsPtrOutputWithContext(ctx context.Context) BackgroundWorkerDeleteQueryParamsPtrOutput {
+	return o
+}
+
+func (o BackgroundWorkerDeleteQueryParamsPtrOutput) Elem() BackgroundWorkerDeleteQueryParamsOutput {
+	return o.ApplyT(func(v *BackgroundWorkerDeleteQueryParams) BackgroundWorkerDeleteQueryParams {
+		if v != nil {
+			return *v
+		}
+		var ret BackgroundWorkerDeleteQueryParams
+		return ret
+	}).(BackgroundWorkerDeleteQueryParamsOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o BackgroundWorkerDeleteQueryParamsPtrOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *BackgroundWorkerDeleteQueryParams) map[string]string {
+		if v == nil {
+			return nil
+		}
+		return v.AdditionalParams
+	}).(pulumi.StringMapOutput)
+}
+
 type BackgroundWorkerDetailsCreate struct {
 	Autoscaling *WebServiceDetailspropertiesautoscaling `pulumi:"autoscaling"`
 	Disk        *ServiceDisk                            `pulumi:"disk"`
@@ -826,6 +1545,483 @@ func (o BackgroundWorkerOutputTypeOutput) UpdatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v BackgroundWorkerOutputType) string { return v.UpdatedAt }).(pulumi.StringOutput)
 }
 
+// Query params for each of the operations of the resource.
+type BackgroundWorkerQueryParams struct {
+	// Query params for the create operation.
+	Create *BackgroundWorkerCreateQueryParams `pulumi:"create"`
+	// Query params for the delete operation.
+	Delete *BackgroundWorkerDeleteQueryParams `pulumi:"delete"`
+	// Query params for the read operation.
+	Read *BackgroundWorkerReadQueryParams `pulumi:"read"`
+	// Query params for the update operation.
+	Update *BackgroundWorkerUpdateQueryParams `pulumi:"update"`
+}
+
+// BackgroundWorkerQueryParamsInput is an input type that accepts BackgroundWorkerQueryParamsArgs and BackgroundWorkerQueryParamsOutput values.
+// You can construct a concrete instance of `BackgroundWorkerQueryParamsInput` via:
+//
+//	BackgroundWorkerQueryParamsArgs{...}
+type BackgroundWorkerQueryParamsInput interface {
+	pulumi.Input
+
+	ToBackgroundWorkerQueryParamsOutput() BackgroundWorkerQueryParamsOutput
+	ToBackgroundWorkerQueryParamsOutputWithContext(context.Context) BackgroundWorkerQueryParamsOutput
+}
+
+// Query params for each of the operations of the resource.
+type BackgroundWorkerQueryParamsArgs struct {
+	// Query params for the create operation.
+	Create BackgroundWorkerCreateQueryParamsPtrInput `pulumi:"create"`
+	// Query params for the delete operation.
+	Delete BackgroundWorkerDeleteQueryParamsPtrInput `pulumi:"delete"`
+	// Query params for the read operation.
+	Read BackgroundWorkerReadQueryParamsPtrInput `pulumi:"read"`
+	// Query params for the update operation.
+	Update BackgroundWorkerUpdateQueryParamsPtrInput `pulumi:"update"`
+}
+
+func (BackgroundWorkerQueryParamsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*BackgroundWorkerQueryParams)(nil)).Elem()
+}
+
+func (i BackgroundWorkerQueryParamsArgs) ToBackgroundWorkerQueryParamsOutput() BackgroundWorkerQueryParamsOutput {
+	return i.ToBackgroundWorkerQueryParamsOutputWithContext(context.Background())
+}
+
+func (i BackgroundWorkerQueryParamsArgs) ToBackgroundWorkerQueryParamsOutputWithContext(ctx context.Context) BackgroundWorkerQueryParamsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(BackgroundWorkerQueryParamsOutput)
+}
+
+func (i BackgroundWorkerQueryParamsArgs) ToBackgroundWorkerQueryParamsPtrOutput() BackgroundWorkerQueryParamsPtrOutput {
+	return i.ToBackgroundWorkerQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i BackgroundWorkerQueryParamsArgs) ToBackgroundWorkerQueryParamsPtrOutputWithContext(ctx context.Context) BackgroundWorkerQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(BackgroundWorkerQueryParamsOutput).ToBackgroundWorkerQueryParamsPtrOutputWithContext(ctx)
+}
+
+// BackgroundWorkerQueryParamsPtrInput is an input type that accepts BackgroundWorkerQueryParamsArgs, BackgroundWorkerQueryParamsPtr and BackgroundWorkerQueryParamsPtrOutput values.
+// You can construct a concrete instance of `BackgroundWorkerQueryParamsPtrInput` via:
+//
+//	        BackgroundWorkerQueryParamsArgs{...}
+//
+//	or:
+//
+//	        nil
+type BackgroundWorkerQueryParamsPtrInput interface {
+	pulumi.Input
+
+	ToBackgroundWorkerQueryParamsPtrOutput() BackgroundWorkerQueryParamsPtrOutput
+	ToBackgroundWorkerQueryParamsPtrOutputWithContext(context.Context) BackgroundWorkerQueryParamsPtrOutput
+}
+
+type backgroundWorkerQueryParamsPtrType BackgroundWorkerQueryParamsArgs
+
+func BackgroundWorkerQueryParamsPtr(v *BackgroundWorkerQueryParamsArgs) BackgroundWorkerQueryParamsPtrInput {
+	return (*backgroundWorkerQueryParamsPtrType)(v)
+}
+
+func (*backgroundWorkerQueryParamsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**BackgroundWorkerQueryParams)(nil)).Elem()
+}
+
+func (i *backgroundWorkerQueryParamsPtrType) ToBackgroundWorkerQueryParamsPtrOutput() BackgroundWorkerQueryParamsPtrOutput {
+	return i.ToBackgroundWorkerQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i *backgroundWorkerQueryParamsPtrType) ToBackgroundWorkerQueryParamsPtrOutputWithContext(ctx context.Context) BackgroundWorkerQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(BackgroundWorkerQueryParamsPtrOutput)
+}
+
+// Query params for each of the operations of the resource.
+type BackgroundWorkerQueryParamsOutput struct{ *pulumi.OutputState }
+
+func (BackgroundWorkerQueryParamsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*BackgroundWorkerQueryParams)(nil)).Elem()
+}
+
+func (o BackgroundWorkerQueryParamsOutput) ToBackgroundWorkerQueryParamsOutput() BackgroundWorkerQueryParamsOutput {
+	return o
+}
+
+func (o BackgroundWorkerQueryParamsOutput) ToBackgroundWorkerQueryParamsOutputWithContext(ctx context.Context) BackgroundWorkerQueryParamsOutput {
+	return o
+}
+
+func (o BackgroundWorkerQueryParamsOutput) ToBackgroundWorkerQueryParamsPtrOutput() BackgroundWorkerQueryParamsPtrOutput {
+	return o.ToBackgroundWorkerQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (o BackgroundWorkerQueryParamsOutput) ToBackgroundWorkerQueryParamsPtrOutputWithContext(ctx context.Context) BackgroundWorkerQueryParamsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v BackgroundWorkerQueryParams) *BackgroundWorkerQueryParams {
+		return &v
+	}).(BackgroundWorkerQueryParamsPtrOutput)
+}
+
+// Query params for the create operation.
+func (o BackgroundWorkerQueryParamsOutput) Create() BackgroundWorkerCreateQueryParamsPtrOutput {
+	return o.ApplyT(func(v BackgroundWorkerQueryParams) *BackgroundWorkerCreateQueryParams { return v.Create }).(BackgroundWorkerCreateQueryParamsPtrOutput)
+}
+
+// Query params for the delete operation.
+func (o BackgroundWorkerQueryParamsOutput) Delete() BackgroundWorkerDeleteQueryParamsPtrOutput {
+	return o.ApplyT(func(v BackgroundWorkerQueryParams) *BackgroundWorkerDeleteQueryParams { return v.Delete }).(BackgroundWorkerDeleteQueryParamsPtrOutput)
+}
+
+// Query params for the read operation.
+func (o BackgroundWorkerQueryParamsOutput) Read() BackgroundWorkerReadQueryParamsPtrOutput {
+	return o.ApplyT(func(v BackgroundWorkerQueryParams) *BackgroundWorkerReadQueryParams { return v.Read }).(BackgroundWorkerReadQueryParamsPtrOutput)
+}
+
+// Query params for the update operation.
+func (o BackgroundWorkerQueryParamsOutput) Update() BackgroundWorkerUpdateQueryParamsPtrOutput {
+	return o.ApplyT(func(v BackgroundWorkerQueryParams) *BackgroundWorkerUpdateQueryParams { return v.Update }).(BackgroundWorkerUpdateQueryParamsPtrOutput)
+}
+
+type BackgroundWorkerQueryParamsPtrOutput struct{ *pulumi.OutputState }
+
+func (BackgroundWorkerQueryParamsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**BackgroundWorkerQueryParams)(nil)).Elem()
+}
+
+func (o BackgroundWorkerQueryParamsPtrOutput) ToBackgroundWorkerQueryParamsPtrOutput() BackgroundWorkerQueryParamsPtrOutput {
+	return o
+}
+
+func (o BackgroundWorkerQueryParamsPtrOutput) ToBackgroundWorkerQueryParamsPtrOutputWithContext(ctx context.Context) BackgroundWorkerQueryParamsPtrOutput {
+	return o
+}
+
+func (o BackgroundWorkerQueryParamsPtrOutput) Elem() BackgroundWorkerQueryParamsOutput {
+	return o.ApplyT(func(v *BackgroundWorkerQueryParams) BackgroundWorkerQueryParams {
+		if v != nil {
+			return *v
+		}
+		var ret BackgroundWorkerQueryParams
+		return ret
+	}).(BackgroundWorkerQueryParamsOutput)
+}
+
+// Query params for the create operation.
+func (o BackgroundWorkerQueryParamsPtrOutput) Create() BackgroundWorkerCreateQueryParamsPtrOutput {
+	return o.ApplyT(func(v *BackgroundWorkerQueryParams) *BackgroundWorkerCreateQueryParams {
+		if v == nil {
+			return nil
+		}
+		return v.Create
+	}).(BackgroundWorkerCreateQueryParamsPtrOutput)
+}
+
+// Query params for the delete operation.
+func (o BackgroundWorkerQueryParamsPtrOutput) Delete() BackgroundWorkerDeleteQueryParamsPtrOutput {
+	return o.ApplyT(func(v *BackgroundWorkerQueryParams) *BackgroundWorkerDeleteQueryParams {
+		if v == nil {
+			return nil
+		}
+		return v.Delete
+	}).(BackgroundWorkerDeleteQueryParamsPtrOutput)
+}
+
+// Query params for the read operation.
+func (o BackgroundWorkerQueryParamsPtrOutput) Read() BackgroundWorkerReadQueryParamsPtrOutput {
+	return o.ApplyT(func(v *BackgroundWorkerQueryParams) *BackgroundWorkerReadQueryParams {
+		if v == nil {
+			return nil
+		}
+		return v.Read
+	}).(BackgroundWorkerReadQueryParamsPtrOutput)
+}
+
+// Query params for the update operation.
+func (o BackgroundWorkerQueryParamsPtrOutput) Update() BackgroundWorkerUpdateQueryParamsPtrOutput {
+	return o.ApplyT(func(v *BackgroundWorkerQueryParams) *BackgroundWorkerUpdateQueryParams {
+		if v == nil {
+			return nil
+		}
+		return v.Update
+	}).(BackgroundWorkerUpdateQueryParamsPtrOutput)
+}
+
+// Query params for the API request.
+type BackgroundWorkerReadQueryParams struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams map[string]string `pulumi:"additionalParams"`
+}
+
+// BackgroundWorkerReadQueryParamsInput is an input type that accepts BackgroundWorkerReadQueryParamsArgs and BackgroundWorkerReadQueryParamsOutput values.
+// You can construct a concrete instance of `BackgroundWorkerReadQueryParamsInput` via:
+//
+//	BackgroundWorkerReadQueryParamsArgs{...}
+type BackgroundWorkerReadQueryParamsInput interface {
+	pulumi.Input
+
+	ToBackgroundWorkerReadQueryParamsOutput() BackgroundWorkerReadQueryParamsOutput
+	ToBackgroundWorkerReadQueryParamsOutputWithContext(context.Context) BackgroundWorkerReadQueryParamsOutput
+}
+
+// Query params for the API request.
+type BackgroundWorkerReadQueryParamsArgs struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams pulumi.StringMapInput `pulumi:"additionalParams"`
+}
+
+func (BackgroundWorkerReadQueryParamsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*BackgroundWorkerReadQueryParams)(nil)).Elem()
+}
+
+func (i BackgroundWorkerReadQueryParamsArgs) ToBackgroundWorkerReadQueryParamsOutput() BackgroundWorkerReadQueryParamsOutput {
+	return i.ToBackgroundWorkerReadQueryParamsOutputWithContext(context.Background())
+}
+
+func (i BackgroundWorkerReadQueryParamsArgs) ToBackgroundWorkerReadQueryParamsOutputWithContext(ctx context.Context) BackgroundWorkerReadQueryParamsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(BackgroundWorkerReadQueryParamsOutput)
+}
+
+func (i BackgroundWorkerReadQueryParamsArgs) ToBackgroundWorkerReadQueryParamsPtrOutput() BackgroundWorkerReadQueryParamsPtrOutput {
+	return i.ToBackgroundWorkerReadQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i BackgroundWorkerReadQueryParamsArgs) ToBackgroundWorkerReadQueryParamsPtrOutputWithContext(ctx context.Context) BackgroundWorkerReadQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(BackgroundWorkerReadQueryParamsOutput).ToBackgroundWorkerReadQueryParamsPtrOutputWithContext(ctx)
+}
+
+// BackgroundWorkerReadQueryParamsPtrInput is an input type that accepts BackgroundWorkerReadQueryParamsArgs, BackgroundWorkerReadQueryParamsPtr and BackgroundWorkerReadQueryParamsPtrOutput values.
+// You can construct a concrete instance of `BackgroundWorkerReadQueryParamsPtrInput` via:
+//
+//	        BackgroundWorkerReadQueryParamsArgs{...}
+//
+//	or:
+//
+//	        nil
+type BackgroundWorkerReadQueryParamsPtrInput interface {
+	pulumi.Input
+
+	ToBackgroundWorkerReadQueryParamsPtrOutput() BackgroundWorkerReadQueryParamsPtrOutput
+	ToBackgroundWorkerReadQueryParamsPtrOutputWithContext(context.Context) BackgroundWorkerReadQueryParamsPtrOutput
+}
+
+type backgroundWorkerReadQueryParamsPtrType BackgroundWorkerReadQueryParamsArgs
+
+func BackgroundWorkerReadQueryParamsPtr(v *BackgroundWorkerReadQueryParamsArgs) BackgroundWorkerReadQueryParamsPtrInput {
+	return (*backgroundWorkerReadQueryParamsPtrType)(v)
+}
+
+func (*backgroundWorkerReadQueryParamsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**BackgroundWorkerReadQueryParams)(nil)).Elem()
+}
+
+func (i *backgroundWorkerReadQueryParamsPtrType) ToBackgroundWorkerReadQueryParamsPtrOutput() BackgroundWorkerReadQueryParamsPtrOutput {
+	return i.ToBackgroundWorkerReadQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i *backgroundWorkerReadQueryParamsPtrType) ToBackgroundWorkerReadQueryParamsPtrOutputWithContext(ctx context.Context) BackgroundWorkerReadQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(BackgroundWorkerReadQueryParamsPtrOutput)
+}
+
+// Query params for the API request.
+type BackgroundWorkerReadQueryParamsOutput struct{ *pulumi.OutputState }
+
+func (BackgroundWorkerReadQueryParamsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*BackgroundWorkerReadQueryParams)(nil)).Elem()
+}
+
+func (o BackgroundWorkerReadQueryParamsOutput) ToBackgroundWorkerReadQueryParamsOutput() BackgroundWorkerReadQueryParamsOutput {
+	return o
+}
+
+func (o BackgroundWorkerReadQueryParamsOutput) ToBackgroundWorkerReadQueryParamsOutputWithContext(ctx context.Context) BackgroundWorkerReadQueryParamsOutput {
+	return o
+}
+
+func (o BackgroundWorkerReadQueryParamsOutput) ToBackgroundWorkerReadQueryParamsPtrOutput() BackgroundWorkerReadQueryParamsPtrOutput {
+	return o.ToBackgroundWorkerReadQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (o BackgroundWorkerReadQueryParamsOutput) ToBackgroundWorkerReadQueryParamsPtrOutputWithContext(ctx context.Context) BackgroundWorkerReadQueryParamsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v BackgroundWorkerReadQueryParams) *BackgroundWorkerReadQueryParams {
+		return &v
+	}).(BackgroundWorkerReadQueryParamsPtrOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o BackgroundWorkerReadQueryParamsOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v BackgroundWorkerReadQueryParams) map[string]string { return v.AdditionalParams }).(pulumi.StringMapOutput)
+}
+
+type BackgroundWorkerReadQueryParamsPtrOutput struct{ *pulumi.OutputState }
+
+func (BackgroundWorkerReadQueryParamsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**BackgroundWorkerReadQueryParams)(nil)).Elem()
+}
+
+func (o BackgroundWorkerReadQueryParamsPtrOutput) ToBackgroundWorkerReadQueryParamsPtrOutput() BackgroundWorkerReadQueryParamsPtrOutput {
+	return o
+}
+
+func (o BackgroundWorkerReadQueryParamsPtrOutput) ToBackgroundWorkerReadQueryParamsPtrOutputWithContext(ctx context.Context) BackgroundWorkerReadQueryParamsPtrOutput {
+	return o
+}
+
+func (o BackgroundWorkerReadQueryParamsPtrOutput) Elem() BackgroundWorkerReadQueryParamsOutput {
+	return o.ApplyT(func(v *BackgroundWorkerReadQueryParams) BackgroundWorkerReadQueryParams {
+		if v != nil {
+			return *v
+		}
+		var ret BackgroundWorkerReadQueryParams
+		return ret
+	}).(BackgroundWorkerReadQueryParamsOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o BackgroundWorkerReadQueryParamsPtrOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *BackgroundWorkerReadQueryParams) map[string]string {
+		if v == nil {
+			return nil
+		}
+		return v.AdditionalParams
+	}).(pulumi.StringMapOutput)
+}
+
+// Query params for the API request.
+type BackgroundWorkerUpdateQueryParams struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams map[string]string `pulumi:"additionalParams"`
+}
+
+// BackgroundWorkerUpdateQueryParamsInput is an input type that accepts BackgroundWorkerUpdateQueryParamsArgs and BackgroundWorkerUpdateQueryParamsOutput values.
+// You can construct a concrete instance of `BackgroundWorkerUpdateQueryParamsInput` via:
+//
+//	BackgroundWorkerUpdateQueryParamsArgs{...}
+type BackgroundWorkerUpdateQueryParamsInput interface {
+	pulumi.Input
+
+	ToBackgroundWorkerUpdateQueryParamsOutput() BackgroundWorkerUpdateQueryParamsOutput
+	ToBackgroundWorkerUpdateQueryParamsOutputWithContext(context.Context) BackgroundWorkerUpdateQueryParamsOutput
+}
+
+// Query params for the API request.
+type BackgroundWorkerUpdateQueryParamsArgs struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams pulumi.StringMapInput `pulumi:"additionalParams"`
+}
+
+func (BackgroundWorkerUpdateQueryParamsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*BackgroundWorkerUpdateQueryParams)(nil)).Elem()
+}
+
+func (i BackgroundWorkerUpdateQueryParamsArgs) ToBackgroundWorkerUpdateQueryParamsOutput() BackgroundWorkerUpdateQueryParamsOutput {
+	return i.ToBackgroundWorkerUpdateQueryParamsOutputWithContext(context.Background())
+}
+
+func (i BackgroundWorkerUpdateQueryParamsArgs) ToBackgroundWorkerUpdateQueryParamsOutputWithContext(ctx context.Context) BackgroundWorkerUpdateQueryParamsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(BackgroundWorkerUpdateQueryParamsOutput)
+}
+
+func (i BackgroundWorkerUpdateQueryParamsArgs) ToBackgroundWorkerUpdateQueryParamsPtrOutput() BackgroundWorkerUpdateQueryParamsPtrOutput {
+	return i.ToBackgroundWorkerUpdateQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i BackgroundWorkerUpdateQueryParamsArgs) ToBackgroundWorkerUpdateQueryParamsPtrOutputWithContext(ctx context.Context) BackgroundWorkerUpdateQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(BackgroundWorkerUpdateQueryParamsOutput).ToBackgroundWorkerUpdateQueryParamsPtrOutputWithContext(ctx)
+}
+
+// BackgroundWorkerUpdateQueryParamsPtrInput is an input type that accepts BackgroundWorkerUpdateQueryParamsArgs, BackgroundWorkerUpdateQueryParamsPtr and BackgroundWorkerUpdateQueryParamsPtrOutput values.
+// You can construct a concrete instance of `BackgroundWorkerUpdateQueryParamsPtrInput` via:
+//
+//	        BackgroundWorkerUpdateQueryParamsArgs{...}
+//
+//	or:
+//
+//	        nil
+type BackgroundWorkerUpdateQueryParamsPtrInput interface {
+	pulumi.Input
+
+	ToBackgroundWorkerUpdateQueryParamsPtrOutput() BackgroundWorkerUpdateQueryParamsPtrOutput
+	ToBackgroundWorkerUpdateQueryParamsPtrOutputWithContext(context.Context) BackgroundWorkerUpdateQueryParamsPtrOutput
+}
+
+type backgroundWorkerUpdateQueryParamsPtrType BackgroundWorkerUpdateQueryParamsArgs
+
+func BackgroundWorkerUpdateQueryParamsPtr(v *BackgroundWorkerUpdateQueryParamsArgs) BackgroundWorkerUpdateQueryParamsPtrInput {
+	return (*backgroundWorkerUpdateQueryParamsPtrType)(v)
+}
+
+func (*backgroundWorkerUpdateQueryParamsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**BackgroundWorkerUpdateQueryParams)(nil)).Elem()
+}
+
+func (i *backgroundWorkerUpdateQueryParamsPtrType) ToBackgroundWorkerUpdateQueryParamsPtrOutput() BackgroundWorkerUpdateQueryParamsPtrOutput {
+	return i.ToBackgroundWorkerUpdateQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i *backgroundWorkerUpdateQueryParamsPtrType) ToBackgroundWorkerUpdateQueryParamsPtrOutputWithContext(ctx context.Context) BackgroundWorkerUpdateQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(BackgroundWorkerUpdateQueryParamsPtrOutput)
+}
+
+// Query params for the API request.
+type BackgroundWorkerUpdateQueryParamsOutput struct{ *pulumi.OutputState }
+
+func (BackgroundWorkerUpdateQueryParamsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*BackgroundWorkerUpdateQueryParams)(nil)).Elem()
+}
+
+func (o BackgroundWorkerUpdateQueryParamsOutput) ToBackgroundWorkerUpdateQueryParamsOutput() BackgroundWorkerUpdateQueryParamsOutput {
+	return o
+}
+
+func (o BackgroundWorkerUpdateQueryParamsOutput) ToBackgroundWorkerUpdateQueryParamsOutputWithContext(ctx context.Context) BackgroundWorkerUpdateQueryParamsOutput {
+	return o
+}
+
+func (o BackgroundWorkerUpdateQueryParamsOutput) ToBackgroundWorkerUpdateQueryParamsPtrOutput() BackgroundWorkerUpdateQueryParamsPtrOutput {
+	return o.ToBackgroundWorkerUpdateQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (o BackgroundWorkerUpdateQueryParamsOutput) ToBackgroundWorkerUpdateQueryParamsPtrOutputWithContext(ctx context.Context) BackgroundWorkerUpdateQueryParamsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v BackgroundWorkerUpdateQueryParams) *BackgroundWorkerUpdateQueryParams {
+		return &v
+	}).(BackgroundWorkerUpdateQueryParamsPtrOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o BackgroundWorkerUpdateQueryParamsOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v BackgroundWorkerUpdateQueryParams) map[string]string { return v.AdditionalParams }).(pulumi.StringMapOutput)
+}
+
+type BackgroundWorkerUpdateQueryParamsPtrOutput struct{ *pulumi.OutputState }
+
+func (BackgroundWorkerUpdateQueryParamsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**BackgroundWorkerUpdateQueryParams)(nil)).Elem()
+}
+
+func (o BackgroundWorkerUpdateQueryParamsPtrOutput) ToBackgroundWorkerUpdateQueryParamsPtrOutput() BackgroundWorkerUpdateQueryParamsPtrOutput {
+	return o
+}
+
+func (o BackgroundWorkerUpdateQueryParamsPtrOutput) ToBackgroundWorkerUpdateQueryParamsPtrOutputWithContext(ctx context.Context) BackgroundWorkerUpdateQueryParamsPtrOutput {
+	return o
+}
+
+func (o BackgroundWorkerUpdateQueryParamsPtrOutput) Elem() BackgroundWorkerUpdateQueryParamsOutput {
+	return o.ApplyT(func(v *BackgroundWorkerUpdateQueryParams) BackgroundWorkerUpdateQueryParams {
+		if v != nil {
+			return *v
+		}
+		var ret BackgroundWorkerUpdateQueryParams
+		return ret
+	}).(BackgroundWorkerUpdateQueryParamsOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o BackgroundWorkerUpdateQueryParamsPtrOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *BackgroundWorkerUpdateQueryParams) map[string]string {
+		if v == nil {
+			return nil
+		}
+		return v.AdditionalParams
+	}).(pulumi.StringMapOutput)
+}
+
 type BuildFilter struct {
 	IgnoredPaths []string `pulumi:"ignoredPaths"`
 	Paths        []string `pulumi:"paths"`
@@ -1027,6 +2223,566 @@ func (o CachePtrOutput) Profile() pulumi.StringPtrOutput {
 		}
 		return &v.Profile
 	}).(pulumi.StringPtrOutput)
+}
+
+// Query params for the API request.
+type CancelDeployCreateQueryParams struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams map[string]string `pulumi:"additionalParams"`
+}
+
+// CancelDeployCreateQueryParamsInput is an input type that accepts CancelDeployCreateQueryParamsArgs and CancelDeployCreateQueryParamsOutput values.
+// You can construct a concrete instance of `CancelDeployCreateQueryParamsInput` via:
+//
+//	CancelDeployCreateQueryParamsArgs{...}
+type CancelDeployCreateQueryParamsInput interface {
+	pulumi.Input
+
+	ToCancelDeployCreateQueryParamsOutput() CancelDeployCreateQueryParamsOutput
+	ToCancelDeployCreateQueryParamsOutputWithContext(context.Context) CancelDeployCreateQueryParamsOutput
+}
+
+// Query params for the API request.
+type CancelDeployCreateQueryParamsArgs struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams pulumi.StringMapInput `pulumi:"additionalParams"`
+}
+
+func (CancelDeployCreateQueryParamsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*CancelDeployCreateQueryParams)(nil)).Elem()
+}
+
+func (i CancelDeployCreateQueryParamsArgs) ToCancelDeployCreateQueryParamsOutput() CancelDeployCreateQueryParamsOutput {
+	return i.ToCancelDeployCreateQueryParamsOutputWithContext(context.Background())
+}
+
+func (i CancelDeployCreateQueryParamsArgs) ToCancelDeployCreateQueryParamsOutputWithContext(ctx context.Context) CancelDeployCreateQueryParamsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CancelDeployCreateQueryParamsOutput)
+}
+
+func (i CancelDeployCreateQueryParamsArgs) ToCancelDeployCreateQueryParamsPtrOutput() CancelDeployCreateQueryParamsPtrOutput {
+	return i.ToCancelDeployCreateQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i CancelDeployCreateQueryParamsArgs) ToCancelDeployCreateQueryParamsPtrOutputWithContext(ctx context.Context) CancelDeployCreateQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CancelDeployCreateQueryParamsOutput).ToCancelDeployCreateQueryParamsPtrOutputWithContext(ctx)
+}
+
+// CancelDeployCreateQueryParamsPtrInput is an input type that accepts CancelDeployCreateQueryParamsArgs, CancelDeployCreateQueryParamsPtr and CancelDeployCreateQueryParamsPtrOutput values.
+// You can construct a concrete instance of `CancelDeployCreateQueryParamsPtrInput` via:
+//
+//	        CancelDeployCreateQueryParamsArgs{...}
+//
+//	or:
+//
+//	        nil
+type CancelDeployCreateQueryParamsPtrInput interface {
+	pulumi.Input
+
+	ToCancelDeployCreateQueryParamsPtrOutput() CancelDeployCreateQueryParamsPtrOutput
+	ToCancelDeployCreateQueryParamsPtrOutputWithContext(context.Context) CancelDeployCreateQueryParamsPtrOutput
+}
+
+type cancelDeployCreateQueryParamsPtrType CancelDeployCreateQueryParamsArgs
+
+func CancelDeployCreateQueryParamsPtr(v *CancelDeployCreateQueryParamsArgs) CancelDeployCreateQueryParamsPtrInput {
+	return (*cancelDeployCreateQueryParamsPtrType)(v)
+}
+
+func (*cancelDeployCreateQueryParamsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**CancelDeployCreateQueryParams)(nil)).Elem()
+}
+
+func (i *cancelDeployCreateQueryParamsPtrType) ToCancelDeployCreateQueryParamsPtrOutput() CancelDeployCreateQueryParamsPtrOutput {
+	return i.ToCancelDeployCreateQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i *cancelDeployCreateQueryParamsPtrType) ToCancelDeployCreateQueryParamsPtrOutputWithContext(ctx context.Context) CancelDeployCreateQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CancelDeployCreateQueryParamsPtrOutput)
+}
+
+// Query params for the API request.
+type CancelDeployCreateQueryParamsOutput struct{ *pulumi.OutputState }
+
+func (CancelDeployCreateQueryParamsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*CancelDeployCreateQueryParams)(nil)).Elem()
+}
+
+func (o CancelDeployCreateQueryParamsOutput) ToCancelDeployCreateQueryParamsOutput() CancelDeployCreateQueryParamsOutput {
+	return o
+}
+
+func (o CancelDeployCreateQueryParamsOutput) ToCancelDeployCreateQueryParamsOutputWithContext(ctx context.Context) CancelDeployCreateQueryParamsOutput {
+	return o
+}
+
+func (o CancelDeployCreateQueryParamsOutput) ToCancelDeployCreateQueryParamsPtrOutput() CancelDeployCreateQueryParamsPtrOutput {
+	return o.ToCancelDeployCreateQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (o CancelDeployCreateQueryParamsOutput) ToCancelDeployCreateQueryParamsPtrOutputWithContext(ctx context.Context) CancelDeployCreateQueryParamsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v CancelDeployCreateQueryParams) *CancelDeployCreateQueryParams {
+		return &v
+	}).(CancelDeployCreateQueryParamsPtrOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o CancelDeployCreateQueryParamsOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v CancelDeployCreateQueryParams) map[string]string { return v.AdditionalParams }).(pulumi.StringMapOutput)
+}
+
+type CancelDeployCreateQueryParamsPtrOutput struct{ *pulumi.OutputState }
+
+func (CancelDeployCreateQueryParamsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**CancelDeployCreateQueryParams)(nil)).Elem()
+}
+
+func (o CancelDeployCreateQueryParamsPtrOutput) ToCancelDeployCreateQueryParamsPtrOutput() CancelDeployCreateQueryParamsPtrOutput {
+	return o
+}
+
+func (o CancelDeployCreateQueryParamsPtrOutput) ToCancelDeployCreateQueryParamsPtrOutputWithContext(ctx context.Context) CancelDeployCreateQueryParamsPtrOutput {
+	return o
+}
+
+func (o CancelDeployCreateQueryParamsPtrOutput) Elem() CancelDeployCreateQueryParamsOutput {
+	return o.ApplyT(func(v *CancelDeployCreateQueryParams) CancelDeployCreateQueryParams {
+		if v != nil {
+			return *v
+		}
+		var ret CancelDeployCreateQueryParams
+		return ret
+	}).(CancelDeployCreateQueryParamsOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o CancelDeployCreateQueryParamsPtrOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *CancelDeployCreateQueryParams) map[string]string {
+		if v == nil {
+			return nil
+		}
+		return v.AdditionalParams
+	}).(pulumi.StringMapOutput)
+}
+
+// Query params for each of the operations of the resource.
+type CancelDeployQueryParams struct {
+	// Query params for the create operation.
+	Create *CancelDeployCreateQueryParams `pulumi:"create"`
+}
+
+// CancelDeployQueryParamsInput is an input type that accepts CancelDeployQueryParamsArgs and CancelDeployQueryParamsOutput values.
+// You can construct a concrete instance of `CancelDeployQueryParamsInput` via:
+//
+//	CancelDeployQueryParamsArgs{...}
+type CancelDeployQueryParamsInput interface {
+	pulumi.Input
+
+	ToCancelDeployQueryParamsOutput() CancelDeployQueryParamsOutput
+	ToCancelDeployQueryParamsOutputWithContext(context.Context) CancelDeployQueryParamsOutput
+}
+
+// Query params for each of the operations of the resource.
+type CancelDeployQueryParamsArgs struct {
+	// Query params for the create operation.
+	Create CancelDeployCreateQueryParamsPtrInput `pulumi:"create"`
+}
+
+func (CancelDeployQueryParamsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*CancelDeployQueryParams)(nil)).Elem()
+}
+
+func (i CancelDeployQueryParamsArgs) ToCancelDeployQueryParamsOutput() CancelDeployQueryParamsOutput {
+	return i.ToCancelDeployQueryParamsOutputWithContext(context.Background())
+}
+
+func (i CancelDeployQueryParamsArgs) ToCancelDeployQueryParamsOutputWithContext(ctx context.Context) CancelDeployQueryParamsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CancelDeployQueryParamsOutput)
+}
+
+func (i CancelDeployQueryParamsArgs) ToCancelDeployQueryParamsPtrOutput() CancelDeployQueryParamsPtrOutput {
+	return i.ToCancelDeployQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i CancelDeployQueryParamsArgs) ToCancelDeployQueryParamsPtrOutputWithContext(ctx context.Context) CancelDeployQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CancelDeployQueryParamsOutput).ToCancelDeployQueryParamsPtrOutputWithContext(ctx)
+}
+
+// CancelDeployQueryParamsPtrInput is an input type that accepts CancelDeployQueryParamsArgs, CancelDeployQueryParamsPtr and CancelDeployQueryParamsPtrOutput values.
+// You can construct a concrete instance of `CancelDeployQueryParamsPtrInput` via:
+//
+//	        CancelDeployQueryParamsArgs{...}
+//
+//	or:
+//
+//	        nil
+type CancelDeployQueryParamsPtrInput interface {
+	pulumi.Input
+
+	ToCancelDeployQueryParamsPtrOutput() CancelDeployQueryParamsPtrOutput
+	ToCancelDeployQueryParamsPtrOutputWithContext(context.Context) CancelDeployQueryParamsPtrOutput
+}
+
+type cancelDeployQueryParamsPtrType CancelDeployQueryParamsArgs
+
+func CancelDeployQueryParamsPtr(v *CancelDeployQueryParamsArgs) CancelDeployQueryParamsPtrInput {
+	return (*cancelDeployQueryParamsPtrType)(v)
+}
+
+func (*cancelDeployQueryParamsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**CancelDeployQueryParams)(nil)).Elem()
+}
+
+func (i *cancelDeployQueryParamsPtrType) ToCancelDeployQueryParamsPtrOutput() CancelDeployQueryParamsPtrOutput {
+	return i.ToCancelDeployQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i *cancelDeployQueryParamsPtrType) ToCancelDeployQueryParamsPtrOutputWithContext(ctx context.Context) CancelDeployQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CancelDeployQueryParamsPtrOutput)
+}
+
+// Query params for each of the operations of the resource.
+type CancelDeployQueryParamsOutput struct{ *pulumi.OutputState }
+
+func (CancelDeployQueryParamsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*CancelDeployQueryParams)(nil)).Elem()
+}
+
+func (o CancelDeployQueryParamsOutput) ToCancelDeployQueryParamsOutput() CancelDeployQueryParamsOutput {
+	return o
+}
+
+func (o CancelDeployQueryParamsOutput) ToCancelDeployQueryParamsOutputWithContext(ctx context.Context) CancelDeployQueryParamsOutput {
+	return o
+}
+
+func (o CancelDeployQueryParamsOutput) ToCancelDeployQueryParamsPtrOutput() CancelDeployQueryParamsPtrOutput {
+	return o.ToCancelDeployQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (o CancelDeployQueryParamsOutput) ToCancelDeployQueryParamsPtrOutputWithContext(ctx context.Context) CancelDeployQueryParamsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v CancelDeployQueryParams) *CancelDeployQueryParams {
+		return &v
+	}).(CancelDeployQueryParamsPtrOutput)
+}
+
+// Query params for the create operation.
+func (o CancelDeployQueryParamsOutput) Create() CancelDeployCreateQueryParamsPtrOutput {
+	return o.ApplyT(func(v CancelDeployQueryParams) *CancelDeployCreateQueryParams { return v.Create }).(CancelDeployCreateQueryParamsPtrOutput)
+}
+
+type CancelDeployQueryParamsPtrOutput struct{ *pulumi.OutputState }
+
+func (CancelDeployQueryParamsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**CancelDeployQueryParams)(nil)).Elem()
+}
+
+func (o CancelDeployQueryParamsPtrOutput) ToCancelDeployQueryParamsPtrOutput() CancelDeployQueryParamsPtrOutput {
+	return o
+}
+
+func (o CancelDeployQueryParamsPtrOutput) ToCancelDeployQueryParamsPtrOutputWithContext(ctx context.Context) CancelDeployQueryParamsPtrOutput {
+	return o
+}
+
+func (o CancelDeployQueryParamsPtrOutput) Elem() CancelDeployQueryParamsOutput {
+	return o.ApplyT(func(v *CancelDeployQueryParams) CancelDeployQueryParams {
+		if v != nil {
+			return *v
+		}
+		var ret CancelDeployQueryParams
+		return ret
+	}).(CancelDeployQueryParamsOutput)
+}
+
+// Query params for the create operation.
+func (o CancelDeployQueryParamsPtrOutput) Create() CancelDeployCreateQueryParamsPtrOutput {
+	return o.ApplyT(func(v *CancelDeployQueryParams) *CancelDeployCreateQueryParams {
+		if v == nil {
+			return nil
+		}
+		return v.Create
+	}).(CancelDeployCreateQueryParamsPtrOutput)
+}
+
+// Query params for the API request.
+type CancelJobCreateQueryParams struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams map[string]string `pulumi:"additionalParams"`
+}
+
+// CancelJobCreateQueryParamsInput is an input type that accepts CancelJobCreateQueryParamsArgs and CancelJobCreateQueryParamsOutput values.
+// You can construct a concrete instance of `CancelJobCreateQueryParamsInput` via:
+//
+//	CancelJobCreateQueryParamsArgs{...}
+type CancelJobCreateQueryParamsInput interface {
+	pulumi.Input
+
+	ToCancelJobCreateQueryParamsOutput() CancelJobCreateQueryParamsOutput
+	ToCancelJobCreateQueryParamsOutputWithContext(context.Context) CancelJobCreateQueryParamsOutput
+}
+
+// Query params for the API request.
+type CancelJobCreateQueryParamsArgs struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams pulumi.StringMapInput `pulumi:"additionalParams"`
+}
+
+func (CancelJobCreateQueryParamsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*CancelJobCreateQueryParams)(nil)).Elem()
+}
+
+func (i CancelJobCreateQueryParamsArgs) ToCancelJobCreateQueryParamsOutput() CancelJobCreateQueryParamsOutput {
+	return i.ToCancelJobCreateQueryParamsOutputWithContext(context.Background())
+}
+
+func (i CancelJobCreateQueryParamsArgs) ToCancelJobCreateQueryParamsOutputWithContext(ctx context.Context) CancelJobCreateQueryParamsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CancelJobCreateQueryParamsOutput)
+}
+
+func (i CancelJobCreateQueryParamsArgs) ToCancelJobCreateQueryParamsPtrOutput() CancelJobCreateQueryParamsPtrOutput {
+	return i.ToCancelJobCreateQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i CancelJobCreateQueryParamsArgs) ToCancelJobCreateQueryParamsPtrOutputWithContext(ctx context.Context) CancelJobCreateQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CancelJobCreateQueryParamsOutput).ToCancelJobCreateQueryParamsPtrOutputWithContext(ctx)
+}
+
+// CancelJobCreateQueryParamsPtrInput is an input type that accepts CancelJobCreateQueryParamsArgs, CancelJobCreateQueryParamsPtr and CancelJobCreateQueryParamsPtrOutput values.
+// You can construct a concrete instance of `CancelJobCreateQueryParamsPtrInput` via:
+//
+//	        CancelJobCreateQueryParamsArgs{...}
+//
+//	or:
+//
+//	        nil
+type CancelJobCreateQueryParamsPtrInput interface {
+	pulumi.Input
+
+	ToCancelJobCreateQueryParamsPtrOutput() CancelJobCreateQueryParamsPtrOutput
+	ToCancelJobCreateQueryParamsPtrOutputWithContext(context.Context) CancelJobCreateQueryParamsPtrOutput
+}
+
+type cancelJobCreateQueryParamsPtrType CancelJobCreateQueryParamsArgs
+
+func CancelJobCreateQueryParamsPtr(v *CancelJobCreateQueryParamsArgs) CancelJobCreateQueryParamsPtrInput {
+	return (*cancelJobCreateQueryParamsPtrType)(v)
+}
+
+func (*cancelJobCreateQueryParamsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**CancelJobCreateQueryParams)(nil)).Elem()
+}
+
+func (i *cancelJobCreateQueryParamsPtrType) ToCancelJobCreateQueryParamsPtrOutput() CancelJobCreateQueryParamsPtrOutput {
+	return i.ToCancelJobCreateQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i *cancelJobCreateQueryParamsPtrType) ToCancelJobCreateQueryParamsPtrOutputWithContext(ctx context.Context) CancelJobCreateQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CancelJobCreateQueryParamsPtrOutput)
+}
+
+// Query params for the API request.
+type CancelJobCreateQueryParamsOutput struct{ *pulumi.OutputState }
+
+func (CancelJobCreateQueryParamsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*CancelJobCreateQueryParams)(nil)).Elem()
+}
+
+func (o CancelJobCreateQueryParamsOutput) ToCancelJobCreateQueryParamsOutput() CancelJobCreateQueryParamsOutput {
+	return o
+}
+
+func (o CancelJobCreateQueryParamsOutput) ToCancelJobCreateQueryParamsOutputWithContext(ctx context.Context) CancelJobCreateQueryParamsOutput {
+	return o
+}
+
+func (o CancelJobCreateQueryParamsOutput) ToCancelJobCreateQueryParamsPtrOutput() CancelJobCreateQueryParamsPtrOutput {
+	return o.ToCancelJobCreateQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (o CancelJobCreateQueryParamsOutput) ToCancelJobCreateQueryParamsPtrOutputWithContext(ctx context.Context) CancelJobCreateQueryParamsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v CancelJobCreateQueryParams) *CancelJobCreateQueryParams {
+		return &v
+	}).(CancelJobCreateQueryParamsPtrOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o CancelJobCreateQueryParamsOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v CancelJobCreateQueryParams) map[string]string { return v.AdditionalParams }).(pulumi.StringMapOutput)
+}
+
+type CancelJobCreateQueryParamsPtrOutput struct{ *pulumi.OutputState }
+
+func (CancelJobCreateQueryParamsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**CancelJobCreateQueryParams)(nil)).Elem()
+}
+
+func (o CancelJobCreateQueryParamsPtrOutput) ToCancelJobCreateQueryParamsPtrOutput() CancelJobCreateQueryParamsPtrOutput {
+	return o
+}
+
+func (o CancelJobCreateQueryParamsPtrOutput) ToCancelJobCreateQueryParamsPtrOutputWithContext(ctx context.Context) CancelJobCreateQueryParamsPtrOutput {
+	return o
+}
+
+func (o CancelJobCreateQueryParamsPtrOutput) Elem() CancelJobCreateQueryParamsOutput {
+	return o.ApplyT(func(v *CancelJobCreateQueryParams) CancelJobCreateQueryParams {
+		if v != nil {
+			return *v
+		}
+		var ret CancelJobCreateQueryParams
+		return ret
+	}).(CancelJobCreateQueryParamsOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o CancelJobCreateQueryParamsPtrOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *CancelJobCreateQueryParams) map[string]string {
+		if v == nil {
+			return nil
+		}
+		return v.AdditionalParams
+	}).(pulumi.StringMapOutput)
+}
+
+// Query params for each of the operations of the resource.
+type CancelJobQueryParams struct {
+	// Query params for the create operation.
+	Create *CancelJobCreateQueryParams `pulumi:"create"`
+}
+
+// CancelJobQueryParamsInput is an input type that accepts CancelJobQueryParamsArgs and CancelJobQueryParamsOutput values.
+// You can construct a concrete instance of `CancelJobQueryParamsInput` via:
+//
+//	CancelJobQueryParamsArgs{...}
+type CancelJobQueryParamsInput interface {
+	pulumi.Input
+
+	ToCancelJobQueryParamsOutput() CancelJobQueryParamsOutput
+	ToCancelJobQueryParamsOutputWithContext(context.Context) CancelJobQueryParamsOutput
+}
+
+// Query params for each of the operations of the resource.
+type CancelJobQueryParamsArgs struct {
+	// Query params for the create operation.
+	Create CancelJobCreateQueryParamsPtrInput `pulumi:"create"`
+}
+
+func (CancelJobQueryParamsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*CancelJobQueryParams)(nil)).Elem()
+}
+
+func (i CancelJobQueryParamsArgs) ToCancelJobQueryParamsOutput() CancelJobQueryParamsOutput {
+	return i.ToCancelJobQueryParamsOutputWithContext(context.Background())
+}
+
+func (i CancelJobQueryParamsArgs) ToCancelJobQueryParamsOutputWithContext(ctx context.Context) CancelJobQueryParamsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CancelJobQueryParamsOutput)
+}
+
+func (i CancelJobQueryParamsArgs) ToCancelJobQueryParamsPtrOutput() CancelJobQueryParamsPtrOutput {
+	return i.ToCancelJobQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i CancelJobQueryParamsArgs) ToCancelJobQueryParamsPtrOutputWithContext(ctx context.Context) CancelJobQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CancelJobQueryParamsOutput).ToCancelJobQueryParamsPtrOutputWithContext(ctx)
+}
+
+// CancelJobQueryParamsPtrInput is an input type that accepts CancelJobQueryParamsArgs, CancelJobQueryParamsPtr and CancelJobQueryParamsPtrOutput values.
+// You can construct a concrete instance of `CancelJobQueryParamsPtrInput` via:
+//
+//	        CancelJobQueryParamsArgs{...}
+//
+//	or:
+//
+//	        nil
+type CancelJobQueryParamsPtrInput interface {
+	pulumi.Input
+
+	ToCancelJobQueryParamsPtrOutput() CancelJobQueryParamsPtrOutput
+	ToCancelJobQueryParamsPtrOutputWithContext(context.Context) CancelJobQueryParamsPtrOutput
+}
+
+type cancelJobQueryParamsPtrType CancelJobQueryParamsArgs
+
+func CancelJobQueryParamsPtr(v *CancelJobQueryParamsArgs) CancelJobQueryParamsPtrInput {
+	return (*cancelJobQueryParamsPtrType)(v)
+}
+
+func (*cancelJobQueryParamsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**CancelJobQueryParams)(nil)).Elem()
+}
+
+func (i *cancelJobQueryParamsPtrType) ToCancelJobQueryParamsPtrOutput() CancelJobQueryParamsPtrOutput {
+	return i.ToCancelJobQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i *cancelJobQueryParamsPtrType) ToCancelJobQueryParamsPtrOutputWithContext(ctx context.Context) CancelJobQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CancelJobQueryParamsPtrOutput)
+}
+
+// Query params for each of the operations of the resource.
+type CancelJobQueryParamsOutput struct{ *pulumi.OutputState }
+
+func (CancelJobQueryParamsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*CancelJobQueryParams)(nil)).Elem()
+}
+
+func (o CancelJobQueryParamsOutput) ToCancelJobQueryParamsOutput() CancelJobQueryParamsOutput {
+	return o
+}
+
+func (o CancelJobQueryParamsOutput) ToCancelJobQueryParamsOutputWithContext(ctx context.Context) CancelJobQueryParamsOutput {
+	return o
+}
+
+func (o CancelJobQueryParamsOutput) ToCancelJobQueryParamsPtrOutput() CancelJobQueryParamsPtrOutput {
+	return o.ToCancelJobQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (o CancelJobQueryParamsOutput) ToCancelJobQueryParamsPtrOutputWithContext(ctx context.Context) CancelJobQueryParamsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v CancelJobQueryParams) *CancelJobQueryParams {
+		return &v
+	}).(CancelJobQueryParamsPtrOutput)
+}
+
+// Query params for the create operation.
+func (o CancelJobQueryParamsOutput) Create() CancelJobCreateQueryParamsPtrOutput {
+	return o.ApplyT(func(v CancelJobQueryParams) *CancelJobCreateQueryParams { return v.Create }).(CancelJobCreateQueryParamsPtrOutput)
+}
+
+type CancelJobQueryParamsPtrOutput struct{ *pulumi.OutputState }
+
+func (CancelJobQueryParamsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**CancelJobQueryParams)(nil)).Elem()
+}
+
+func (o CancelJobQueryParamsPtrOutput) ToCancelJobQueryParamsPtrOutput() CancelJobQueryParamsPtrOutput {
+	return o
+}
+
+func (o CancelJobQueryParamsPtrOutput) ToCancelJobQueryParamsPtrOutputWithContext(ctx context.Context) CancelJobQueryParamsPtrOutput {
+	return o
+}
+
+func (o CancelJobQueryParamsPtrOutput) Elem() CancelJobQueryParamsOutput {
+	return o.ApplyT(func(v *CancelJobQueryParams) CancelJobQueryParams {
+		if v != nil {
+			return *v
+		}
+		var ret CancelJobQueryParams
+		return ret
+	}).(CancelJobQueryParamsOutput)
+}
+
+// Query params for the create operation.
+func (o CancelJobQueryParamsPtrOutput) Create() CancelJobCreateQueryParamsPtrOutput {
+	return o.ApplyT(func(v *CancelJobQueryParams) *CancelJobCreateQueryParams {
+		if v == nil {
+			return nil
+		}
+		return v.Create
+	}).(CancelJobCreateQueryParamsPtrOutput)
 }
 
 type CommitProperties struct {
@@ -1270,6 +3026,286 @@ func (o CriteriaPropertiesCpuPropertiesOutput) Enabled() pulumi.BoolOutput {
 // Determines when your service will be scaled. If the average resource utilization is significantly above/below the target, we will increase/decrease the number of instances.
 func (o CriteriaPropertiesCpuPropertiesOutput) Percentage() pulumi.IntOutput {
 	return o.ApplyT(func(v CriteriaPropertiesCpuProperties) int { return v.Percentage }).(pulumi.IntOutput)
+}
+
+// Query params for the API request.
+type CronJobCreateQueryParams struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams map[string]string `pulumi:"additionalParams"`
+}
+
+// CronJobCreateQueryParamsInput is an input type that accepts CronJobCreateQueryParamsArgs and CronJobCreateQueryParamsOutput values.
+// You can construct a concrete instance of `CronJobCreateQueryParamsInput` via:
+//
+//	CronJobCreateQueryParamsArgs{...}
+type CronJobCreateQueryParamsInput interface {
+	pulumi.Input
+
+	ToCronJobCreateQueryParamsOutput() CronJobCreateQueryParamsOutput
+	ToCronJobCreateQueryParamsOutputWithContext(context.Context) CronJobCreateQueryParamsOutput
+}
+
+// Query params for the API request.
+type CronJobCreateQueryParamsArgs struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams pulumi.StringMapInput `pulumi:"additionalParams"`
+}
+
+func (CronJobCreateQueryParamsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*CronJobCreateQueryParams)(nil)).Elem()
+}
+
+func (i CronJobCreateQueryParamsArgs) ToCronJobCreateQueryParamsOutput() CronJobCreateQueryParamsOutput {
+	return i.ToCronJobCreateQueryParamsOutputWithContext(context.Background())
+}
+
+func (i CronJobCreateQueryParamsArgs) ToCronJobCreateQueryParamsOutputWithContext(ctx context.Context) CronJobCreateQueryParamsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CronJobCreateQueryParamsOutput)
+}
+
+func (i CronJobCreateQueryParamsArgs) ToCronJobCreateQueryParamsPtrOutput() CronJobCreateQueryParamsPtrOutput {
+	return i.ToCronJobCreateQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i CronJobCreateQueryParamsArgs) ToCronJobCreateQueryParamsPtrOutputWithContext(ctx context.Context) CronJobCreateQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CronJobCreateQueryParamsOutput).ToCronJobCreateQueryParamsPtrOutputWithContext(ctx)
+}
+
+// CronJobCreateQueryParamsPtrInput is an input type that accepts CronJobCreateQueryParamsArgs, CronJobCreateQueryParamsPtr and CronJobCreateQueryParamsPtrOutput values.
+// You can construct a concrete instance of `CronJobCreateQueryParamsPtrInput` via:
+//
+//	        CronJobCreateQueryParamsArgs{...}
+//
+//	or:
+//
+//	        nil
+type CronJobCreateQueryParamsPtrInput interface {
+	pulumi.Input
+
+	ToCronJobCreateQueryParamsPtrOutput() CronJobCreateQueryParamsPtrOutput
+	ToCronJobCreateQueryParamsPtrOutputWithContext(context.Context) CronJobCreateQueryParamsPtrOutput
+}
+
+type cronJobCreateQueryParamsPtrType CronJobCreateQueryParamsArgs
+
+func CronJobCreateQueryParamsPtr(v *CronJobCreateQueryParamsArgs) CronJobCreateQueryParamsPtrInput {
+	return (*cronJobCreateQueryParamsPtrType)(v)
+}
+
+func (*cronJobCreateQueryParamsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**CronJobCreateQueryParams)(nil)).Elem()
+}
+
+func (i *cronJobCreateQueryParamsPtrType) ToCronJobCreateQueryParamsPtrOutput() CronJobCreateQueryParamsPtrOutput {
+	return i.ToCronJobCreateQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i *cronJobCreateQueryParamsPtrType) ToCronJobCreateQueryParamsPtrOutputWithContext(ctx context.Context) CronJobCreateQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CronJobCreateQueryParamsPtrOutput)
+}
+
+// Query params for the API request.
+type CronJobCreateQueryParamsOutput struct{ *pulumi.OutputState }
+
+func (CronJobCreateQueryParamsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*CronJobCreateQueryParams)(nil)).Elem()
+}
+
+func (o CronJobCreateQueryParamsOutput) ToCronJobCreateQueryParamsOutput() CronJobCreateQueryParamsOutput {
+	return o
+}
+
+func (o CronJobCreateQueryParamsOutput) ToCronJobCreateQueryParamsOutputWithContext(ctx context.Context) CronJobCreateQueryParamsOutput {
+	return o
+}
+
+func (o CronJobCreateQueryParamsOutput) ToCronJobCreateQueryParamsPtrOutput() CronJobCreateQueryParamsPtrOutput {
+	return o.ToCronJobCreateQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (o CronJobCreateQueryParamsOutput) ToCronJobCreateQueryParamsPtrOutputWithContext(ctx context.Context) CronJobCreateQueryParamsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v CronJobCreateQueryParams) *CronJobCreateQueryParams {
+		return &v
+	}).(CronJobCreateQueryParamsPtrOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o CronJobCreateQueryParamsOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v CronJobCreateQueryParams) map[string]string { return v.AdditionalParams }).(pulumi.StringMapOutput)
+}
+
+type CronJobCreateQueryParamsPtrOutput struct{ *pulumi.OutputState }
+
+func (CronJobCreateQueryParamsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**CronJobCreateQueryParams)(nil)).Elem()
+}
+
+func (o CronJobCreateQueryParamsPtrOutput) ToCronJobCreateQueryParamsPtrOutput() CronJobCreateQueryParamsPtrOutput {
+	return o
+}
+
+func (o CronJobCreateQueryParamsPtrOutput) ToCronJobCreateQueryParamsPtrOutputWithContext(ctx context.Context) CronJobCreateQueryParamsPtrOutput {
+	return o
+}
+
+func (o CronJobCreateQueryParamsPtrOutput) Elem() CronJobCreateQueryParamsOutput {
+	return o.ApplyT(func(v *CronJobCreateQueryParams) CronJobCreateQueryParams {
+		if v != nil {
+			return *v
+		}
+		var ret CronJobCreateQueryParams
+		return ret
+	}).(CronJobCreateQueryParamsOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o CronJobCreateQueryParamsPtrOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *CronJobCreateQueryParams) map[string]string {
+		if v == nil {
+			return nil
+		}
+		return v.AdditionalParams
+	}).(pulumi.StringMapOutput)
+}
+
+// Query params for the API request.
+type CronJobDeleteQueryParams struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams map[string]string `pulumi:"additionalParams"`
+}
+
+// CronJobDeleteQueryParamsInput is an input type that accepts CronJobDeleteQueryParamsArgs and CronJobDeleteQueryParamsOutput values.
+// You can construct a concrete instance of `CronJobDeleteQueryParamsInput` via:
+//
+//	CronJobDeleteQueryParamsArgs{...}
+type CronJobDeleteQueryParamsInput interface {
+	pulumi.Input
+
+	ToCronJobDeleteQueryParamsOutput() CronJobDeleteQueryParamsOutput
+	ToCronJobDeleteQueryParamsOutputWithContext(context.Context) CronJobDeleteQueryParamsOutput
+}
+
+// Query params for the API request.
+type CronJobDeleteQueryParamsArgs struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams pulumi.StringMapInput `pulumi:"additionalParams"`
+}
+
+func (CronJobDeleteQueryParamsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*CronJobDeleteQueryParams)(nil)).Elem()
+}
+
+func (i CronJobDeleteQueryParamsArgs) ToCronJobDeleteQueryParamsOutput() CronJobDeleteQueryParamsOutput {
+	return i.ToCronJobDeleteQueryParamsOutputWithContext(context.Background())
+}
+
+func (i CronJobDeleteQueryParamsArgs) ToCronJobDeleteQueryParamsOutputWithContext(ctx context.Context) CronJobDeleteQueryParamsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CronJobDeleteQueryParamsOutput)
+}
+
+func (i CronJobDeleteQueryParamsArgs) ToCronJobDeleteQueryParamsPtrOutput() CronJobDeleteQueryParamsPtrOutput {
+	return i.ToCronJobDeleteQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i CronJobDeleteQueryParamsArgs) ToCronJobDeleteQueryParamsPtrOutputWithContext(ctx context.Context) CronJobDeleteQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CronJobDeleteQueryParamsOutput).ToCronJobDeleteQueryParamsPtrOutputWithContext(ctx)
+}
+
+// CronJobDeleteQueryParamsPtrInput is an input type that accepts CronJobDeleteQueryParamsArgs, CronJobDeleteQueryParamsPtr and CronJobDeleteQueryParamsPtrOutput values.
+// You can construct a concrete instance of `CronJobDeleteQueryParamsPtrInput` via:
+//
+//	        CronJobDeleteQueryParamsArgs{...}
+//
+//	or:
+//
+//	        nil
+type CronJobDeleteQueryParamsPtrInput interface {
+	pulumi.Input
+
+	ToCronJobDeleteQueryParamsPtrOutput() CronJobDeleteQueryParamsPtrOutput
+	ToCronJobDeleteQueryParamsPtrOutputWithContext(context.Context) CronJobDeleteQueryParamsPtrOutput
+}
+
+type cronJobDeleteQueryParamsPtrType CronJobDeleteQueryParamsArgs
+
+func CronJobDeleteQueryParamsPtr(v *CronJobDeleteQueryParamsArgs) CronJobDeleteQueryParamsPtrInput {
+	return (*cronJobDeleteQueryParamsPtrType)(v)
+}
+
+func (*cronJobDeleteQueryParamsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**CronJobDeleteQueryParams)(nil)).Elem()
+}
+
+func (i *cronJobDeleteQueryParamsPtrType) ToCronJobDeleteQueryParamsPtrOutput() CronJobDeleteQueryParamsPtrOutput {
+	return i.ToCronJobDeleteQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i *cronJobDeleteQueryParamsPtrType) ToCronJobDeleteQueryParamsPtrOutputWithContext(ctx context.Context) CronJobDeleteQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CronJobDeleteQueryParamsPtrOutput)
+}
+
+// Query params for the API request.
+type CronJobDeleteQueryParamsOutput struct{ *pulumi.OutputState }
+
+func (CronJobDeleteQueryParamsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*CronJobDeleteQueryParams)(nil)).Elem()
+}
+
+func (o CronJobDeleteQueryParamsOutput) ToCronJobDeleteQueryParamsOutput() CronJobDeleteQueryParamsOutput {
+	return o
+}
+
+func (o CronJobDeleteQueryParamsOutput) ToCronJobDeleteQueryParamsOutputWithContext(ctx context.Context) CronJobDeleteQueryParamsOutput {
+	return o
+}
+
+func (o CronJobDeleteQueryParamsOutput) ToCronJobDeleteQueryParamsPtrOutput() CronJobDeleteQueryParamsPtrOutput {
+	return o.ToCronJobDeleteQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (o CronJobDeleteQueryParamsOutput) ToCronJobDeleteQueryParamsPtrOutputWithContext(ctx context.Context) CronJobDeleteQueryParamsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v CronJobDeleteQueryParams) *CronJobDeleteQueryParams {
+		return &v
+	}).(CronJobDeleteQueryParamsPtrOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o CronJobDeleteQueryParamsOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v CronJobDeleteQueryParams) map[string]string { return v.AdditionalParams }).(pulumi.StringMapOutput)
+}
+
+type CronJobDeleteQueryParamsPtrOutput struct{ *pulumi.OutputState }
+
+func (CronJobDeleteQueryParamsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**CronJobDeleteQueryParams)(nil)).Elem()
+}
+
+func (o CronJobDeleteQueryParamsPtrOutput) ToCronJobDeleteQueryParamsPtrOutput() CronJobDeleteQueryParamsPtrOutput {
+	return o
+}
+
+func (o CronJobDeleteQueryParamsPtrOutput) ToCronJobDeleteQueryParamsPtrOutputWithContext(ctx context.Context) CronJobDeleteQueryParamsPtrOutput {
+	return o
+}
+
+func (o CronJobDeleteQueryParamsPtrOutput) Elem() CronJobDeleteQueryParamsOutput {
+	return o.ApplyT(func(v *CronJobDeleteQueryParams) CronJobDeleteQueryParams {
+		if v != nil {
+			return *v
+		}
+		var ret CronJobDeleteQueryParams
+		return ret
+	}).(CronJobDeleteQueryParamsOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o CronJobDeleteQueryParamsPtrOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *CronJobDeleteQueryParams) map[string]string {
+		if v == nil {
+			return nil
+		}
+		return v.AdditionalParams
+	}).(pulumi.StringMapOutput)
 }
 
 type CronJobDetailsCreate struct {
@@ -1844,6 +3880,483 @@ func (o CronJobOutputTypeOutput) UpdatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v CronJobOutputType) string { return v.UpdatedAt }).(pulumi.StringOutput)
 }
 
+// Query params for each of the operations of the resource.
+type CronJobQueryParams struct {
+	// Query params for the create operation.
+	Create *CronJobCreateQueryParams `pulumi:"create"`
+	// Query params for the delete operation.
+	Delete *CronJobDeleteQueryParams `pulumi:"delete"`
+	// Query params for the read operation.
+	Read *CronJobReadQueryParams `pulumi:"read"`
+	// Query params for the update operation.
+	Update *CronJobUpdateQueryParams `pulumi:"update"`
+}
+
+// CronJobQueryParamsInput is an input type that accepts CronJobQueryParamsArgs and CronJobQueryParamsOutput values.
+// You can construct a concrete instance of `CronJobQueryParamsInput` via:
+//
+//	CronJobQueryParamsArgs{...}
+type CronJobQueryParamsInput interface {
+	pulumi.Input
+
+	ToCronJobQueryParamsOutput() CronJobQueryParamsOutput
+	ToCronJobQueryParamsOutputWithContext(context.Context) CronJobQueryParamsOutput
+}
+
+// Query params for each of the operations of the resource.
+type CronJobQueryParamsArgs struct {
+	// Query params for the create operation.
+	Create CronJobCreateQueryParamsPtrInput `pulumi:"create"`
+	// Query params for the delete operation.
+	Delete CronJobDeleteQueryParamsPtrInput `pulumi:"delete"`
+	// Query params for the read operation.
+	Read CronJobReadQueryParamsPtrInput `pulumi:"read"`
+	// Query params for the update operation.
+	Update CronJobUpdateQueryParamsPtrInput `pulumi:"update"`
+}
+
+func (CronJobQueryParamsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*CronJobQueryParams)(nil)).Elem()
+}
+
+func (i CronJobQueryParamsArgs) ToCronJobQueryParamsOutput() CronJobQueryParamsOutput {
+	return i.ToCronJobQueryParamsOutputWithContext(context.Background())
+}
+
+func (i CronJobQueryParamsArgs) ToCronJobQueryParamsOutputWithContext(ctx context.Context) CronJobQueryParamsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CronJobQueryParamsOutput)
+}
+
+func (i CronJobQueryParamsArgs) ToCronJobQueryParamsPtrOutput() CronJobQueryParamsPtrOutput {
+	return i.ToCronJobQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i CronJobQueryParamsArgs) ToCronJobQueryParamsPtrOutputWithContext(ctx context.Context) CronJobQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CronJobQueryParamsOutput).ToCronJobQueryParamsPtrOutputWithContext(ctx)
+}
+
+// CronJobQueryParamsPtrInput is an input type that accepts CronJobQueryParamsArgs, CronJobQueryParamsPtr and CronJobQueryParamsPtrOutput values.
+// You can construct a concrete instance of `CronJobQueryParamsPtrInput` via:
+//
+//	        CronJobQueryParamsArgs{...}
+//
+//	or:
+//
+//	        nil
+type CronJobQueryParamsPtrInput interface {
+	pulumi.Input
+
+	ToCronJobQueryParamsPtrOutput() CronJobQueryParamsPtrOutput
+	ToCronJobQueryParamsPtrOutputWithContext(context.Context) CronJobQueryParamsPtrOutput
+}
+
+type cronJobQueryParamsPtrType CronJobQueryParamsArgs
+
+func CronJobQueryParamsPtr(v *CronJobQueryParamsArgs) CronJobQueryParamsPtrInput {
+	return (*cronJobQueryParamsPtrType)(v)
+}
+
+func (*cronJobQueryParamsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**CronJobQueryParams)(nil)).Elem()
+}
+
+func (i *cronJobQueryParamsPtrType) ToCronJobQueryParamsPtrOutput() CronJobQueryParamsPtrOutput {
+	return i.ToCronJobQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i *cronJobQueryParamsPtrType) ToCronJobQueryParamsPtrOutputWithContext(ctx context.Context) CronJobQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CronJobQueryParamsPtrOutput)
+}
+
+// Query params for each of the operations of the resource.
+type CronJobQueryParamsOutput struct{ *pulumi.OutputState }
+
+func (CronJobQueryParamsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*CronJobQueryParams)(nil)).Elem()
+}
+
+func (o CronJobQueryParamsOutput) ToCronJobQueryParamsOutput() CronJobQueryParamsOutput {
+	return o
+}
+
+func (o CronJobQueryParamsOutput) ToCronJobQueryParamsOutputWithContext(ctx context.Context) CronJobQueryParamsOutput {
+	return o
+}
+
+func (o CronJobQueryParamsOutput) ToCronJobQueryParamsPtrOutput() CronJobQueryParamsPtrOutput {
+	return o.ToCronJobQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (o CronJobQueryParamsOutput) ToCronJobQueryParamsPtrOutputWithContext(ctx context.Context) CronJobQueryParamsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v CronJobQueryParams) *CronJobQueryParams {
+		return &v
+	}).(CronJobQueryParamsPtrOutput)
+}
+
+// Query params for the create operation.
+func (o CronJobQueryParamsOutput) Create() CronJobCreateQueryParamsPtrOutput {
+	return o.ApplyT(func(v CronJobQueryParams) *CronJobCreateQueryParams { return v.Create }).(CronJobCreateQueryParamsPtrOutput)
+}
+
+// Query params for the delete operation.
+func (o CronJobQueryParamsOutput) Delete() CronJobDeleteQueryParamsPtrOutput {
+	return o.ApplyT(func(v CronJobQueryParams) *CronJobDeleteQueryParams { return v.Delete }).(CronJobDeleteQueryParamsPtrOutput)
+}
+
+// Query params for the read operation.
+func (o CronJobQueryParamsOutput) Read() CronJobReadQueryParamsPtrOutput {
+	return o.ApplyT(func(v CronJobQueryParams) *CronJobReadQueryParams { return v.Read }).(CronJobReadQueryParamsPtrOutput)
+}
+
+// Query params for the update operation.
+func (o CronJobQueryParamsOutput) Update() CronJobUpdateQueryParamsPtrOutput {
+	return o.ApplyT(func(v CronJobQueryParams) *CronJobUpdateQueryParams { return v.Update }).(CronJobUpdateQueryParamsPtrOutput)
+}
+
+type CronJobQueryParamsPtrOutput struct{ *pulumi.OutputState }
+
+func (CronJobQueryParamsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**CronJobQueryParams)(nil)).Elem()
+}
+
+func (o CronJobQueryParamsPtrOutput) ToCronJobQueryParamsPtrOutput() CronJobQueryParamsPtrOutput {
+	return o
+}
+
+func (o CronJobQueryParamsPtrOutput) ToCronJobQueryParamsPtrOutputWithContext(ctx context.Context) CronJobQueryParamsPtrOutput {
+	return o
+}
+
+func (o CronJobQueryParamsPtrOutput) Elem() CronJobQueryParamsOutput {
+	return o.ApplyT(func(v *CronJobQueryParams) CronJobQueryParams {
+		if v != nil {
+			return *v
+		}
+		var ret CronJobQueryParams
+		return ret
+	}).(CronJobQueryParamsOutput)
+}
+
+// Query params for the create operation.
+func (o CronJobQueryParamsPtrOutput) Create() CronJobCreateQueryParamsPtrOutput {
+	return o.ApplyT(func(v *CronJobQueryParams) *CronJobCreateQueryParams {
+		if v == nil {
+			return nil
+		}
+		return v.Create
+	}).(CronJobCreateQueryParamsPtrOutput)
+}
+
+// Query params for the delete operation.
+func (o CronJobQueryParamsPtrOutput) Delete() CronJobDeleteQueryParamsPtrOutput {
+	return o.ApplyT(func(v *CronJobQueryParams) *CronJobDeleteQueryParams {
+		if v == nil {
+			return nil
+		}
+		return v.Delete
+	}).(CronJobDeleteQueryParamsPtrOutput)
+}
+
+// Query params for the read operation.
+func (o CronJobQueryParamsPtrOutput) Read() CronJobReadQueryParamsPtrOutput {
+	return o.ApplyT(func(v *CronJobQueryParams) *CronJobReadQueryParams {
+		if v == nil {
+			return nil
+		}
+		return v.Read
+	}).(CronJobReadQueryParamsPtrOutput)
+}
+
+// Query params for the update operation.
+func (o CronJobQueryParamsPtrOutput) Update() CronJobUpdateQueryParamsPtrOutput {
+	return o.ApplyT(func(v *CronJobQueryParams) *CronJobUpdateQueryParams {
+		if v == nil {
+			return nil
+		}
+		return v.Update
+	}).(CronJobUpdateQueryParamsPtrOutput)
+}
+
+// Query params for the API request.
+type CronJobReadQueryParams struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams map[string]string `pulumi:"additionalParams"`
+}
+
+// CronJobReadQueryParamsInput is an input type that accepts CronJobReadQueryParamsArgs and CronJobReadQueryParamsOutput values.
+// You can construct a concrete instance of `CronJobReadQueryParamsInput` via:
+//
+//	CronJobReadQueryParamsArgs{...}
+type CronJobReadQueryParamsInput interface {
+	pulumi.Input
+
+	ToCronJobReadQueryParamsOutput() CronJobReadQueryParamsOutput
+	ToCronJobReadQueryParamsOutputWithContext(context.Context) CronJobReadQueryParamsOutput
+}
+
+// Query params for the API request.
+type CronJobReadQueryParamsArgs struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams pulumi.StringMapInput `pulumi:"additionalParams"`
+}
+
+func (CronJobReadQueryParamsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*CronJobReadQueryParams)(nil)).Elem()
+}
+
+func (i CronJobReadQueryParamsArgs) ToCronJobReadQueryParamsOutput() CronJobReadQueryParamsOutput {
+	return i.ToCronJobReadQueryParamsOutputWithContext(context.Background())
+}
+
+func (i CronJobReadQueryParamsArgs) ToCronJobReadQueryParamsOutputWithContext(ctx context.Context) CronJobReadQueryParamsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CronJobReadQueryParamsOutput)
+}
+
+func (i CronJobReadQueryParamsArgs) ToCronJobReadQueryParamsPtrOutput() CronJobReadQueryParamsPtrOutput {
+	return i.ToCronJobReadQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i CronJobReadQueryParamsArgs) ToCronJobReadQueryParamsPtrOutputWithContext(ctx context.Context) CronJobReadQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CronJobReadQueryParamsOutput).ToCronJobReadQueryParamsPtrOutputWithContext(ctx)
+}
+
+// CronJobReadQueryParamsPtrInput is an input type that accepts CronJobReadQueryParamsArgs, CronJobReadQueryParamsPtr and CronJobReadQueryParamsPtrOutput values.
+// You can construct a concrete instance of `CronJobReadQueryParamsPtrInput` via:
+//
+//	        CronJobReadQueryParamsArgs{...}
+//
+//	or:
+//
+//	        nil
+type CronJobReadQueryParamsPtrInput interface {
+	pulumi.Input
+
+	ToCronJobReadQueryParamsPtrOutput() CronJobReadQueryParamsPtrOutput
+	ToCronJobReadQueryParamsPtrOutputWithContext(context.Context) CronJobReadQueryParamsPtrOutput
+}
+
+type cronJobReadQueryParamsPtrType CronJobReadQueryParamsArgs
+
+func CronJobReadQueryParamsPtr(v *CronJobReadQueryParamsArgs) CronJobReadQueryParamsPtrInput {
+	return (*cronJobReadQueryParamsPtrType)(v)
+}
+
+func (*cronJobReadQueryParamsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**CronJobReadQueryParams)(nil)).Elem()
+}
+
+func (i *cronJobReadQueryParamsPtrType) ToCronJobReadQueryParamsPtrOutput() CronJobReadQueryParamsPtrOutput {
+	return i.ToCronJobReadQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i *cronJobReadQueryParamsPtrType) ToCronJobReadQueryParamsPtrOutputWithContext(ctx context.Context) CronJobReadQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CronJobReadQueryParamsPtrOutput)
+}
+
+// Query params for the API request.
+type CronJobReadQueryParamsOutput struct{ *pulumi.OutputState }
+
+func (CronJobReadQueryParamsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*CronJobReadQueryParams)(nil)).Elem()
+}
+
+func (o CronJobReadQueryParamsOutput) ToCronJobReadQueryParamsOutput() CronJobReadQueryParamsOutput {
+	return o
+}
+
+func (o CronJobReadQueryParamsOutput) ToCronJobReadQueryParamsOutputWithContext(ctx context.Context) CronJobReadQueryParamsOutput {
+	return o
+}
+
+func (o CronJobReadQueryParamsOutput) ToCronJobReadQueryParamsPtrOutput() CronJobReadQueryParamsPtrOutput {
+	return o.ToCronJobReadQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (o CronJobReadQueryParamsOutput) ToCronJobReadQueryParamsPtrOutputWithContext(ctx context.Context) CronJobReadQueryParamsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v CronJobReadQueryParams) *CronJobReadQueryParams {
+		return &v
+	}).(CronJobReadQueryParamsPtrOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o CronJobReadQueryParamsOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v CronJobReadQueryParams) map[string]string { return v.AdditionalParams }).(pulumi.StringMapOutput)
+}
+
+type CronJobReadQueryParamsPtrOutput struct{ *pulumi.OutputState }
+
+func (CronJobReadQueryParamsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**CronJobReadQueryParams)(nil)).Elem()
+}
+
+func (o CronJobReadQueryParamsPtrOutput) ToCronJobReadQueryParamsPtrOutput() CronJobReadQueryParamsPtrOutput {
+	return o
+}
+
+func (o CronJobReadQueryParamsPtrOutput) ToCronJobReadQueryParamsPtrOutputWithContext(ctx context.Context) CronJobReadQueryParamsPtrOutput {
+	return o
+}
+
+func (o CronJobReadQueryParamsPtrOutput) Elem() CronJobReadQueryParamsOutput {
+	return o.ApplyT(func(v *CronJobReadQueryParams) CronJobReadQueryParams {
+		if v != nil {
+			return *v
+		}
+		var ret CronJobReadQueryParams
+		return ret
+	}).(CronJobReadQueryParamsOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o CronJobReadQueryParamsPtrOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *CronJobReadQueryParams) map[string]string {
+		if v == nil {
+			return nil
+		}
+		return v.AdditionalParams
+	}).(pulumi.StringMapOutput)
+}
+
+// Query params for the API request.
+type CronJobUpdateQueryParams struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams map[string]string `pulumi:"additionalParams"`
+}
+
+// CronJobUpdateQueryParamsInput is an input type that accepts CronJobUpdateQueryParamsArgs and CronJobUpdateQueryParamsOutput values.
+// You can construct a concrete instance of `CronJobUpdateQueryParamsInput` via:
+//
+//	CronJobUpdateQueryParamsArgs{...}
+type CronJobUpdateQueryParamsInput interface {
+	pulumi.Input
+
+	ToCronJobUpdateQueryParamsOutput() CronJobUpdateQueryParamsOutput
+	ToCronJobUpdateQueryParamsOutputWithContext(context.Context) CronJobUpdateQueryParamsOutput
+}
+
+// Query params for the API request.
+type CronJobUpdateQueryParamsArgs struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams pulumi.StringMapInput `pulumi:"additionalParams"`
+}
+
+func (CronJobUpdateQueryParamsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*CronJobUpdateQueryParams)(nil)).Elem()
+}
+
+func (i CronJobUpdateQueryParamsArgs) ToCronJobUpdateQueryParamsOutput() CronJobUpdateQueryParamsOutput {
+	return i.ToCronJobUpdateQueryParamsOutputWithContext(context.Background())
+}
+
+func (i CronJobUpdateQueryParamsArgs) ToCronJobUpdateQueryParamsOutputWithContext(ctx context.Context) CronJobUpdateQueryParamsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CronJobUpdateQueryParamsOutput)
+}
+
+func (i CronJobUpdateQueryParamsArgs) ToCronJobUpdateQueryParamsPtrOutput() CronJobUpdateQueryParamsPtrOutput {
+	return i.ToCronJobUpdateQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i CronJobUpdateQueryParamsArgs) ToCronJobUpdateQueryParamsPtrOutputWithContext(ctx context.Context) CronJobUpdateQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CronJobUpdateQueryParamsOutput).ToCronJobUpdateQueryParamsPtrOutputWithContext(ctx)
+}
+
+// CronJobUpdateQueryParamsPtrInput is an input type that accepts CronJobUpdateQueryParamsArgs, CronJobUpdateQueryParamsPtr and CronJobUpdateQueryParamsPtrOutput values.
+// You can construct a concrete instance of `CronJobUpdateQueryParamsPtrInput` via:
+//
+//	        CronJobUpdateQueryParamsArgs{...}
+//
+//	or:
+//
+//	        nil
+type CronJobUpdateQueryParamsPtrInput interface {
+	pulumi.Input
+
+	ToCronJobUpdateQueryParamsPtrOutput() CronJobUpdateQueryParamsPtrOutput
+	ToCronJobUpdateQueryParamsPtrOutputWithContext(context.Context) CronJobUpdateQueryParamsPtrOutput
+}
+
+type cronJobUpdateQueryParamsPtrType CronJobUpdateQueryParamsArgs
+
+func CronJobUpdateQueryParamsPtr(v *CronJobUpdateQueryParamsArgs) CronJobUpdateQueryParamsPtrInput {
+	return (*cronJobUpdateQueryParamsPtrType)(v)
+}
+
+func (*cronJobUpdateQueryParamsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**CronJobUpdateQueryParams)(nil)).Elem()
+}
+
+func (i *cronJobUpdateQueryParamsPtrType) ToCronJobUpdateQueryParamsPtrOutput() CronJobUpdateQueryParamsPtrOutput {
+	return i.ToCronJobUpdateQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i *cronJobUpdateQueryParamsPtrType) ToCronJobUpdateQueryParamsPtrOutputWithContext(ctx context.Context) CronJobUpdateQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CronJobUpdateQueryParamsPtrOutput)
+}
+
+// Query params for the API request.
+type CronJobUpdateQueryParamsOutput struct{ *pulumi.OutputState }
+
+func (CronJobUpdateQueryParamsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*CronJobUpdateQueryParams)(nil)).Elem()
+}
+
+func (o CronJobUpdateQueryParamsOutput) ToCronJobUpdateQueryParamsOutput() CronJobUpdateQueryParamsOutput {
+	return o
+}
+
+func (o CronJobUpdateQueryParamsOutput) ToCronJobUpdateQueryParamsOutputWithContext(ctx context.Context) CronJobUpdateQueryParamsOutput {
+	return o
+}
+
+func (o CronJobUpdateQueryParamsOutput) ToCronJobUpdateQueryParamsPtrOutput() CronJobUpdateQueryParamsPtrOutput {
+	return o.ToCronJobUpdateQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (o CronJobUpdateQueryParamsOutput) ToCronJobUpdateQueryParamsPtrOutputWithContext(ctx context.Context) CronJobUpdateQueryParamsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v CronJobUpdateQueryParams) *CronJobUpdateQueryParams {
+		return &v
+	}).(CronJobUpdateQueryParamsPtrOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o CronJobUpdateQueryParamsOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v CronJobUpdateQueryParams) map[string]string { return v.AdditionalParams }).(pulumi.StringMapOutput)
+}
+
+type CronJobUpdateQueryParamsPtrOutput struct{ *pulumi.OutputState }
+
+func (CronJobUpdateQueryParamsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**CronJobUpdateQueryParams)(nil)).Elem()
+}
+
+func (o CronJobUpdateQueryParamsPtrOutput) ToCronJobUpdateQueryParamsPtrOutput() CronJobUpdateQueryParamsPtrOutput {
+	return o
+}
+
+func (o CronJobUpdateQueryParamsPtrOutput) ToCronJobUpdateQueryParamsPtrOutputWithContext(ctx context.Context) CronJobUpdateQueryParamsPtrOutput {
+	return o
+}
+
+func (o CronJobUpdateQueryParamsPtrOutput) Elem() CronJobUpdateQueryParamsOutput {
+	return o.ApplyT(func(v *CronJobUpdateQueryParams) CronJobUpdateQueryParams {
+		if v != nil {
+			return *v
+		}
+		var ret CronJobUpdateQueryParams
+		return ret
+	}).(CronJobUpdateQueryParamsOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o CronJobUpdateQueryParamsPtrOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *CronJobUpdateQueryParams) map[string]string {
+		if v == nil {
+			return nil
+		}
+		return v.AdditionalParams
+	}).(pulumi.StringMapOutput)
+}
+
 type CustomDomainType struct {
 	CreatedAt          string                         `pulumi:"createdAt"`
 	DomainType         CustomDomainDomainType         `pulumi:"domainType"`
@@ -1899,6 +4412,604 @@ func (o CustomDomainTypeOutput) Server() CustomDomainServerPropertiesPtrOutput {
 
 func (o CustomDomainTypeOutput) VerificationStatus() CustomDomainVerificationStatusOutput {
 	return o.ApplyT(func(v CustomDomainType) CustomDomainVerificationStatus { return v.VerificationStatus }).(CustomDomainVerificationStatusOutput)
+}
+
+// Query params for the API request.
+type CustomDomainCreateQueryParams struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams map[string]string `pulumi:"additionalParams"`
+}
+
+// CustomDomainCreateQueryParamsInput is an input type that accepts CustomDomainCreateQueryParamsArgs and CustomDomainCreateQueryParamsOutput values.
+// You can construct a concrete instance of `CustomDomainCreateQueryParamsInput` via:
+//
+//	CustomDomainCreateQueryParamsArgs{...}
+type CustomDomainCreateQueryParamsInput interface {
+	pulumi.Input
+
+	ToCustomDomainCreateQueryParamsOutput() CustomDomainCreateQueryParamsOutput
+	ToCustomDomainCreateQueryParamsOutputWithContext(context.Context) CustomDomainCreateQueryParamsOutput
+}
+
+// Query params for the API request.
+type CustomDomainCreateQueryParamsArgs struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams pulumi.StringMapInput `pulumi:"additionalParams"`
+}
+
+func (CustomDomainCreateQueryParamsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*CustomDomainCreateQueryParams)(nil)).Elem()
+}
+
+func (i CustomDomainCreateQueryParamsArgs) ToCustomDomainCreateQueryParamsOutput() CustomDomainCreateQueryParamsOutput {
+	return i.ToCustomDomainCreateQueryParamsOutputWithContext(context.Background())
+}
+
+func (i CustomDomainCreateQueryParamsArgs) ToCustomDomainCreateQueryParamsOutputWithContext(ctx context.Context) CustomDomainCreateQueryParamsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CustomDomainCreateQueryParamsOutput)
+}
+
+func (i CustomDomainCreateQueryParamsArgs) ToCustomDomainCreateQueryParamsPtrOutput() CustomDomainCreateQueryParamsPtrOutput {
+	return i.ToCustomDomainCreateQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i CustomDomainCreateQueryParamsArgs) ToCustomDomainCreateQueryParamsPtrOutputWithContext(ctx context.Context) CustomDomainCreateQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CustomDomainCreateQueryParamsOutput).ToCustomDomainCreateQueryParamsPtrOutputWithContext(ctx)
+}
+
+// CustomDomainCreateQueryParamsPtrInput is an input type that accepts CustomDomainCreateQueryParamsArgs, CustomDomainCreateQueryParamsPtr and CustomDomainCreateQueryParamsPtrOutput values.
+// You can construct a concrete instance of `CustomDomainCreateQueryParamsPtrInput` via:
+//
+//	        CustomDomainCreateQueryParamsArgs{...}
+//
+//	or:
+//
+//	        nil
+type CustomDomainCreateQueryParamsPtrInput interface {
+	pulumi.Input
+
+	ToCustomDomainCreateQueryParamsPtrOutput() CustomDomainCreateQueryParamsPtrOutput
+	ToCustomDomainCreateQueryParamsPtrOutputWithContext(context.Context) CustomDomainCreateQueryParamsPtrOutput
+}
+
+type customDomainCreateQueryParamsPtrType CustomDomainCreateQueryParamsArgs
+
+func CustomDomainCreateQueryParamsPtr(v *CustomDomainCreateQueryParamsArgs) CustomDomainCreateQueryParamsPtrInput {
+	return (*customDomainCreateQueryParamsPtrType)(v)
+}
+
+func (*customDomainCreateQueryParamsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**CustomDomainCreateQueryParams)(nil)).Elem()
+}
+
+func (i *customDomainCreateQueryParamsPtrType) ToCustomDomainCreateQueryParamsPtrOutput() CustomDomainCreateQueryParamsPtrOutput {
+	return i.ToCustomDomainCreateQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i *customDomainCreateQueryParamsPtrType) ToCustomDomainCreateQueryParamsPtrOutputWithContext(ctx context.Context) CustomDomainCreateQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CustomDomainCreateQueryParamsPtrOutput)
+}
+
+// Query params for the API request.
+type CustomDomainCreateQueryParamsOutput struct{ *pulumi.OutputState }
+
+func (CustomDomainCreateQueryParamsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*CustomDomainCreateQueryParams)(nil)).Elem()
+}
+
+func (o CustomDomainCreateQueryParamsOutput) ToCustomDomainCreateQueryParamsOutput() CustomDomainCreateQueryParamsOutput {
+	return o
+}
+
+func (o CustomDomainCreateQueryParamsOutput) ToCustomDomainCreateQueryParamsOutputWithContext(ctx context.Context) CustomDomainCreateQueryParamsOutput {
+	return o
+}
+
+func (o CustomDomainCreateQueryParamsOutput) ToCustomDomainCreateQueryParamsPtrOutput() CustomDomainCreateQueryParamsPtrOutput {
+	return o.ToCustomDomainCreateQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (o CustomDomainCreateQueryParamsOutput) ToCustomDomainCreateQueryParamsPtrOutputWithContext(ctx context.Context) CustomDomainCreateQueryParamsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v CustomDomainCreateQueryParams) *CustomDomainCreateQueryParams {
+		return &v
+	}).(CustomDomainCreateQueryParamsPtrOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o CustomDomainCreateQueryParamsOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v CustomDomainCreateQueryParams) map[string]string { return v.AdditionalParams }).(pulumi.StringMapOutput)
+}
+
+type CustomDomainCreateQueryParamsPtrOutput struct{ *pulumi.OutputState }
+
+func (CustomDomainCreateQueryParamsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**CustomDomainCreateQueryParams)(nil)).Elem()
+}
+
+func (o CustomDomainCreateQueryParamsPtrOutput) ToCustomDomainCreateQueryParamsPtrOutput() CustomDomainCreateQueryParamsPtrOutput {
+	return o
+}
+
+func (o CustomDomainCreateQueryParamsPtrOutput) ToCustomDomainCreateQueryParamsPtrOutputWithContext(ctx context.Context) CustomDomainCreateQueryParamsPtrOutput {
+	return o
+}
+
+func (o CustomDomainCreateQueryParamsPtrOutput) Elem() CustomDomainCreateQueryParamsOutput {
+	return o.ApplyT(func(v *CustomDomainCreateQueryParams) CustomDomainCreateQueryParams {
+		if v != nil {
+			return *v
+		}
+		var ret CustomDomainCreateQueryParams
+		return ret
+	}).(CustomDomainCreateQueryParamsOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o CustomDomainCreateQueryParamsPtrOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *CustomDomainCreateQueryParams) map[string]string {
+		if v == nil {
+			return nil
+		}
+		return v.AdditionalParams
+	}).(pulumi.StringMapOutput)
+}
+
+// Query params for the API request.
+type CustomDomainDeleteQueryParams struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams map[string]string `pulumi:"additionalParams"`
+}
+
+// CustomDomainDeleteQueryParamsInput is an input type that accepts CustomDomainDeleteQueryParamsArgs and CustomDomainDeleteQueryParamsOutput values.
+// You can construct a concrete instance of `CustomDomainDeleteQueryParamsInput` via:
+//
+//	CustomDomainDeleteQueryParamsArgs{...}
+type CustomDomainDeleteQueryParamsInput interface {
+	pulumi.Input
+
+	ToCustomDomainDeleteQueryParamsOutput() CustomDomainDeleteQueryParamsOutput
+	ToCustomDomainDeleteQueryParamsOutputWithContext(context.Context) CustomDomainDeleteQueryParamsOutput
+}
+
+// Query params for the API request.
+type CustomDomainDeleteQueryParamsArgs struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams pulumi.StringMapInput `pulumi:"additionalParams"`
+}
+
+func (CustomDomainDeleteQueryParamsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*CustomDomainDeleteQueryParams)(nil)).Elem()
+}
+
+func (i CustomDomainDeleteQueryParamsArgs) ToCustomDomainDeleteQueryParamsOutput() CustomDomainDeleteQueryParamsOutput {
+	return i.ToCustomDomainDeleteQueryParamsOutputWithContext(context.Background())
+}
+
+func (i CustomDomainDeleteQueryParamsArgs) ToCustomDomainDeleteQueryParamsOutputWithContext(ctx context.Context) CustomDomainDeleteQueryParamsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CustomDomainDeleteQueryParamsOutput)
+}
+
+func (i CustomDomainDeleteQueryParamsArgs) ToCustomDomainDeleteQueryParamsPtrOutput() CustomDomainDeleteQueryParamsPtrOutput {
+	return i.ToCustomDomainDeleteQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i CustomDomainDeleteQueryParamsArgs) ToCustomDomainDeleteQueryParamsPtrOutputWithContext(ctx context.Context) CustomDomainDeleteQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CustomDomainDeleteQueryParamsOutput).ToCustomDomainDeleteQueryParamsPtrOutputWithContext(ctx)
+}
+
+// CustomDomainDeleteQueryParamsPtrInput is an input type that accepts CustomDomainDeleteQueryParamsArgs, CustomDomainDeleteQueryParamsPtr and CustomDomainDeleteQueryParamsPtrOutput values.
+// You can construct a concrete instance of `CustomDomainDeleteQueryParamsPtrInput` via:
+//
+//	        CustomDomainDeleteQueryParamsArgs{...}
+//
+//	or:
+//
+//	        nil
+type CustomDomainDeleteQueryParamsPtrInput interface {
+	pulumi.Input
+
+	ToCustomDomainDeleteQueryParamsPtrOutput() CustomDomainDeleteQueryParamsPtrOutput
+	ToCustomDomainDeleteQueryParamsPtrOutputWithContext(context.Context) CustomDomainDeleteQueryParamsPtrOutput
+}
+
+type customDomainDeleteQueryParamsPtrType CustomDomainDeleteQueryParamsArgs
+
+func CustomDomainDeleteQueryParamsPtr(v *CustomDomainDeleteQueryParamsArgs) CustomDomainDeleteQueryParamsPtrInput {
+	return (*customDomainDeleteQueryParamsPtrType)(v)
+}
+
+func (*customDomainDeleteQueryParamsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**CustomDomainDeleteQueryParams)(nil)).Elem()
+}
+
+func (i *customDomainDeleteQueryParamsPtrType) ToCustomDomainDeleteQueryParamsPtrOutput() CustomDomainDeleteQueryParamsPtrOutput {
+	return i.ToCustomDomainDeleteQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i *customDomainDeleteQueryParamsPtrType) ToCustomDomainDeleteQueryParamsPtrOutputWithContext(ctx context.Context) CustomDomainDeleteQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CustomDomainDeleteQueryParamsPtrOutput)
+}
+
+// Query params for the API request.
+type CustomDomainDeleteQueryParamsOutput struct{ *pulumi.OutputState }
+
+func (CustomDomainDeleteQueryParamsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*CustomDomainDeleteQueryParams)(nil)).Elem()
+}
+
+func (o CustomDomainDeleteQueryParamsOutput) ToCustomDomainDeleteQueryParamsOutput() CustomDomainDeleteQueryParamsOutput {
+	return o
+}
+
+func (o CustomDomainDeleteQueryParamsOutput) ToCustomDomainDeleteQueryParamsOutputWithContext(ctx context.Context) CustomDomainDeleteQueryParamsOutput {
+	return o
+}
+
+func (o CustomDomainDeleteQueryParamsOutput) ToCustomDomainDeleteQueryParamsPtrOutput() CustomDomainDeleteQueryParamsPtrOutput {
+	return o.ToCustomDomainDeleteQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (o CustomDomainDeleteQueryParamsOutput) ToCustomDomainDeleteQueryParamsPtrOutputWithContext(ctx context.Context) CustomDomainDeleteQueryParamsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v CustomDomainDeleteQueryParams) *CustomDomainDeleteQueryParams {
+		return &v
+	}).(CustomDomainDeleteQueryParamsPtrOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o CustomDomainDeleteQueryParamsOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v CustomDomainDeleteQueryParams) map[string]string { return v.AdditionalParams }).(pulumi.StringMapOutput)
+}
+
+type CustomDomainDeleteQueryParamsPtrOutput struct{ *pulumi.OutputState }
+
+func (CustomDomainDeleteQueryParamsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**CustomDomainDeleteQueryParams)(nil)).Elem()
+}
+
+func (o CustomDomainDeleteQueryParamsPtrOutput) ToCustomDomainDeleteQueryParamsPtrOutput() CustomDomainDeleteQueryParamsPtrOutput {
+	return o
+}
+
+func (o CustomDomainDeleteQueryParamsPtrOutput) ToCustomDomainDeleteQueryParamsPtrOutputWithContext(ctx context.Context) CustomDomainDeleteQueryParamsPtrOutput {
+	return o
+}
+
+func (o CustomDomainDeleteQueryParamsPtrOutput) Elem() CustomDomainDeleteQueryParamsOutput {
+	return o.ApplyT(func(v *CustomDomainDeleteQueryParams) CustomDomainDeleteQueryParams {
+		if v != nil {
+			return *v
+		}
+		var ret CustomDomainDeleteQueryParams
+		return ret
+	}).(CustomDomainDeleteQueryParamsOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o CustomDomainDeleteQueryParamsPtrOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *CustomDomainDeleteQueryParams) map[string]string {
+		if v == nil {
+			return nil
+		}
+		return v.AdditionalParams
+	}).(pulumi.StringMapOutput)
+}
+
+// Query params for each of the operations of the resource.
+type CustomDomainQueryParams struct {
+	// Query params for the create operation.
+	Create *CustomDomainCreateQueryParams `pulumi:"create"`
+	// Query params for the delete operation.
+	Delete *CustomDomainDeleteQueryParams `pulumi:"delete"`
+	// Query params for the read operation.
+	Read *CustomDomainReadQueryParams `pulumi:"read"`
+}
+
+// CustomDomainQueryParamsInput is an input type that accepts CustomDomainQueryParamsArgs and CustomDomainQueryParamsOutput values.
+// You can construct a concrete instance of `CustomDomainQueryParamsInput` via:
+//
+//	CustomDomainQueryParamsArgs{...}
+type CustomDomainQueryParamsInput interface {
+	pulumi.Input
+
+	ToCustomDomainQueryParamsOutput() CustomDomainQueryParamsOutput
+	ToCustomDomainQueryParamsOutputWithContext(context.Context) CustomDomainQueryParamsOutput
+}
+
+// Query params for each of the operations of the resource.
+type CustomDomainQueryParamsArgs struct {
+	// Query params for the create operation.
+	Create CustomDomainCreateQueryParamsPtrInput `pulumi:"create"`
+	// Query params for the delete operation.
+	Delete CustomDomainDeleteQueryParamsPtrInput `pulumi:"delete"`
+	// Query params for the read operation.
+	Read CustomDomainReadQueryParamsPtrInput `pulumi:"read"`
+}
+
+func (CustomDomainQueryParamsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*CustomDomainQueryParams)(nil)).Elem()
+}
+
+func (i CustomDomainQueryParamsArgs) ToCustomDomainQueryParamsOutput() CustomDomainQueryParamsOutput {
+	return i.ToCustomDomainQueryParamsOutputWithContext(context.Background())
+}
+
+func (i CustomDomainQueryParamsArgs) ToCustomDomainQueryParamsOutputWithContext(ctx context.Context) CustomDomainQueryParamsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CustomDomainQueryParamsOutput)
+}
+
+func (i CustomDomainQueryParamsArgs) ToCustomDomainQueryParamsPtrOutput() CustomDomainQueryParamsPtrOutput {
+	return i.ToCustomDomainQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i CustomDomainQueryParamsArgs) ToCustomDomainQueryParamsPtrOutputWithContext(ctx context.Context) CustomDomainQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CustomDomainQueryParamsOutput).ToCustomDomainQueryParamsPtrOutputWithContext(ctx)
+}
+
+// CustomDomainQueryParamsPtrInput is an input type that accepts CustomDomainQueryParamsArgs, CustomDomainQueryParamsPtr and CustomDomainQueryParamsPtrOutput values.
+// You can construct a concrete instance of `CustomDomainQueryParamsPtrInput` via:
+//
+//	        CustomDomainQueryParamsArgs{...}
+//
+//	or:
+//
+//	        nil
+type CustomDomainQueryParamsPtrInput interface {
+	pulumi.Input
+
+	ToCustomDomainQueryParamsPtrOutput() CustomDomainQueryParamsPtrOutput
+	ToCustomDomainQueryParamsPtrOutputWithContext(context.Context) CustomDomainQueryParamsPtrOutput
+}
+
+type customDomainQueryParamsPtrType CustomDomainQueryParamsArgs
+
+func CustomDomainQueryParamsPtr(v *CustomDomainQueryParamsArgs) CustomDomainQueryParamsPtrInput {
+	return (*customDomainQueryParamsPtrType)(v)
+}
+
+func (*customDomainQueryParamsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**CustomDomainQueryParams)(nil)).Elem()
+}
+
+func (i *customDomainQueryParamsPtrType) ToCustomDomainQueryParamsPtrOutput() CustomDomainQueryParamsPtrOutput {
+	return i.ToCustomDomainQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i *customDomainQueryParamsPtrType) ToCustomDomainQueryParamsPtrOutputWithContext(ctx context.Context) CustomDomainQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CustomDomainQueryParamsPtrOutput)
+}
+
+// Query params for each of the operations of the resource.
+type CustomDomainQueryParamsOutput struct{ *pulumi.OutputState }
+
+func (CustomDomainQueryParamsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*CustomDomainQueryParams)(nil)).Elem()
+}
+
+func (o CustomDomainQueryParamsOutput) ToCustomDomainQueryParamsOutput() CustomDomainQueryParamsOutput {
+	return o
+}
+
+func (o CustomDomainQueryParamsOutput) ToCustomDomainQueryParamsOutputWithContext(ctx context.Context) CustomDomainQueryParamsOutput {
+	return o
+}
+
+func (o CustomDomainQueryParamsOutput) ToCustomDomainQueryParamsPtrOutput() CustomDomainQueryParamsPtrOutput {
+	return o.ToCustomDomainQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (o CustomDomainQueryParamsOutput) ToCustomDomainQueryParamsPtrOutputWithContext(ctx context.Context) CustomDomainQueryParamsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v CustomDomainQueryParams) *CustomDomainQueryParams {
+		return &v
+	}).(CustomDomainQueryParamsPtrOutput)
+}
+
+// Query params for the create operation.
+func (o CustomDomainQueryParamsOutput) Create() CustomDomainCreateQueryParamsPtrOutput {
+	return o.ApplyT(func(v CustomDomainQueryParams) *CustomDomainCreateQueryParams { return v.Create }).(CustomDomainCreateQueryParamsPtrOutput)
+}
+
+// Query params for the delete operation.
+func (o CustomDomainQueryParamsOutput) Delete() CustomDomainDeleteQueryParamsPtrOutput {
+	return o.ApplyT(func(v CustomDomainQueryParams) *CustomDomainDeleteQueryParams { return v.Delete }).(CustomDomainDeleteQueryParamsPtrOutput)
+}
+
+// Query params for the read operation.
+func (o CustomDomainQueryParamsOutput) Read() CustomDomainReadQueryParamsPtrOutput {
+	return o.ApplyT(func(v CustomDomainQueryParams) *CustomDomainReadQueryParams { return v.Read }).(CustomDomainReadQueryParamsPtrOutput)
+}
+
+type CustomDomainQueryParamsPtrOutput struct{ *pulumi.OutputState }
+
+func (CustomDomainQueryParamsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**CustomDomainQueryParams)(nil)).Elem()
+}
+
+func (o CustomDomainQueryParamsPtrOutput) ToCustomDomainQueryParamsPtrOutput() CustomDomainQueryParamsPtrOutput {
+	return o
+}
+
+func (o CustomDomainQueryParamsPtrOutput) ToCustomDomainQueryParamsPtrOutputWithContext(ctx context.Context) CustomDomainQueryParamsPtrOutput {
+	return o
+}
+
+func (o CustomDomainQueryParamsPtrOutput) Elem() CustomDomainQueryParamsOutput {
+	return o.ApplyT(func(v *CustomDomainQueryParams) CustomDomainQueryParams {
+		if v != nil {
+			return *v
+		}
+		var ret CustomDomainQueryParams
+		return ret
+	}).(CustomDomainQueryParamsOutput)
+}
+
+// Query params for the create operation.
+func (o CustomDomainQueryParamsPtrOutput) Create() CustomDomainCreateQueryParamsPtrOutput {
+	return o.ApplyT(func(v *CustomDomainQueryParams) *CustomDomainCreateQueryParams {
+		if v == nil {
+			return nil
+		}
+		return v.Create
+	}).(CustomDomainCreateQueryParamsPtrOutput)
+}
+
+// Query params for the delete operation.
+func (o CustomDomainQueryParamsPtrOutput) Delete() CustomDomainDeleteQueryParamsPtrOutput {
+	return o.ApplyT(func(v *CustomDomainQueryParams) *CustomDomainDeleteQueryParams {
+		if v == nil {
+			return nil
+		}
+		return v.Delete
+	}).(CustomDomainDeleteQueryParamsPtrOutput)
+}
+
+// Query params for the read operation.
+func (o CustomDomainQueryParamsPtrOutput) Read() CustomDomainReadQueryParamsPtrOutput {
+	return o.ApplyT(func(v *CustomDomainQueryParams) *CustomDomainReadQueryParams {
+		if v == nil {
+			return nil
+		}
+		return v.Read
+	}).(CustomDomainReadQueryParamsPtrOutput)
+}
+
+// Query params for the API request.
+type CustomDomainReadQueryParams struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams map[string]string `pulumi:"additionalParams"`
+}
+
+// CustomDomainReadQueryParamsInput is an input type that accepts CustomDomainReadQueryParamsArgs and CustomDomainReadQueryParamsOutput values.
+// You can construct a concrete instance of `CustomDomainReadQueryParamsInput` via:
+//
+//	CustomDomainReadQueryParamsArgs{...}
+type CustomDomainReadQueryParamsInput interface {
+	pulumi.Input
+
+	ToCustomDomainReadQueryParamsOutput() CustomDomainReadQueryParamsOutput
+	ToCustomDomainReadQueryParamsOutputWithContext(context.Context) CustomDomainReadQueryParamsOutput
+}
+
+// Query params for the API request.
+type CustomDomainReadQueryParamsArgs struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams pulumi.StringMapInput `pulumi:"additionalParams"`
+}
+
+func (CustomDomainReadQueryParamsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*CustomDomainReadQueryParams)(nil)).Elem()
+}
+
+func (i CustomDomainReadQueryParamsArgs) ToCustomDomainReadQueryParamsOutput() CustomDomainReadQueryParamsOutput {
+	return i.ToCustomDomainReadQueryParamsOutputWithContext(context.Background())
+}
+
+func (i CustomDomainReadQueryParamsArgs) ToCustomDomainReadQueryParamsOutputWithContext(ctx context.Context) CustomDomainReadQueryParamsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CustomDomainReadQueryParamsOutput)
+}
+
+func (i CustomDomainReadQueryParamsArgs) ToCustomDomainReadQueryParamsPtrOutput() CustomDomainReadQueryParamsPtrOutput {
+	return i.ToCustomDomainReadQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i CustomDomainReadQueryParamsArgs) ToCustomDomainReadQueryParamsPtrOutputWithContext(ctx context.Context) CustomDomainReadQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CustomDomainReadQueryParamsOutput).ToCustomDomainReadQueryParamsPtrOutputWithContext(ctx)
+}
+
+// CustomDomainReadQueryParamsPtrInput is an input type that accepts CustomDomainReadQueryParamsArgs, CustomDomainReadQueryParamsPtr and CustomDomainReadQueryParamsPtrOutput values.
+// You can construct a concrete instance of `CustomDomainReadQueryParamsPtrInput` via:
+//
+//	        CustomDomainReadQueryParamsArgs{...}
+//
+//	or:
+//
+//	        nil
+type CustomDomainReadQueryParamsPtrInput interface {
+	pulumi.Input
+
+	ToCustomDomainReadQueryParamsPtrOutput() CustomDomainReadQueryParamsPtrOutput
+	ToCustomDomainReadQueryParamsPtrOutputWithContext(context.Context) CustomDomainReadQueryParamsPtrOutput
+}
+
+type customDomainReadQueryParamsPtrType CustomDomainReadQueryParamsArgs
+
+func CustomDomainReadQueryParamsPtr(v *CustomDomainReadQueryParamsArgs) CustomDomainReadQueryParamsPtrInput {
+	return (*customDomainReadQueryParamsPtrType)(v)
+}
+
+func (*customDomainReadQueryParamsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**CustomDomainReadQueryParams)(nil)).Elem()
+}
+
+func (i *customDomainReadQueryParamsPtrType) ToCustomDomainReadQueryParamsPtrOutput() CustomDomainReadQueryParamsPtrOutput {
+	return i.ToCustomDomainReadQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i *customDomainReadQueryParamsPtrType) ToCustomDomainReadQueryParamsPtrOutputWithContext(ctx context.Context) CustomDomainReadQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(CustomDomainReadQueryParamsPtrOutput)
+}
+
+// Query params for the API request.
+type CustomDomainReadQueryParamsOutput struct{ *pulumi.OutputState }
+
+func (CustomDomainReadQueryParamsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*CustomDomainReadQueryParams)(nil)).Elem()
+}
+
+func (o CustomDomainReadQueryParamsOutput) ToCustomDomainReadQueryParamsOutput() CustomDomainReadQueryParamsOutput {
+	return o
+}
+
+func (o CustomDomainReadQueryParamsOutput) ToCustomDomainReadQueryParamsOutputWithContext(ctx context.Context) CustomDomainReadQueryParamsOutput {
+	return o
+}
+
+func (o CustomDomainReadQueryParamsOutput) ToCustomDomainReadQueryParamsPtrOutput() CustomDomainReadQueryParamsPtrOutput {
+	return o.ToCustomDomainReadQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (o CustomDomainReadQueryParamsOutput) ToCustomDomainReadQueryParamsPtrOutputWithContext(ctx context.Context) CustomDomainReadQueryParamsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v CustomDomainReadQueryParams) *CustomDomainReadQueryParams {
+		return &v
+	}).(CustomDomainReadQueryParamsPtrOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o CustomDomainReadQueryParamsOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v CustomDomainReadQueryParams) map[string]string { return v.AdditionalParams }).(pulumi.StringMapOutput)
+}
+
+type CustomDomainReadQueryParamsPtrOutput struct{ *pulumi.OutputState }
+
+func (CustomDomainReadQueryParamsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**CustomDomainReadQueryParams)(nil)).Elem()
+}
+
+func (o CustomDomainReadQueryParamsPtrOutput) ToCustomDomainReadQueryParamsPtrOutput() CustomDomainReadQueryParamsPtrOutput {
+	return o
+}
+
+func (o CustomDomainReadQueryParamsPtrOutput) ToCustomDomainReadQueryParamsPtrOutputWithContext(ctx context.Context) CustomDomainReadQueryParamsPtrOutput {
+	return o
+}
+
+func (o CustomDomainReadQueryParamsPtrOutput) Elem() CustomDomainReadQueryParamsOutput {
+	return o.ApplyT(func(v *CustomDomainReadQueryParams) CustomDomainReadQueryParams {
+		if v != nil {
+			return *v
+		}
+		var ret CustomDomainReadQueryParams
+		return ret
+	}).(CustomDomainReadQueryParamsOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o CustomDomainReadQueryParamsPtrOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *CustomDomainReadQueryParams) map[string]string {
+		if v == nil {
+			return nil
+		}
+		return v.AdditionalParams
+	}).(pulumi.StringMapOutput)
 }
 
 type CustomDomainServerProperties struct {
@@ -2270,6 +5381,146 @@ func (o DeployCommitPropertiesPtrOutput) Message() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
+// Query params for the API request.
+type DeployCreateQueryParams struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams map[string]string `pulumi:"additionalParams"`
+}
+
+// DeployCreateQueryParamsInput is an input type that accepts DeployCreateQueryParamsArgs and DeployCreateQueryParamsOutput values.
+// You can construct a concrete instance of `DeployCreateQueryParamsInput` via:
+//
+//	DeployCreateQueryParamsArgs{...}
+type DeployCreateQueryParamsInput interface {
+	pulumi.Input
+
+	ToDeployCreateQueryParamsOutput() DeployCreateQueryParamsOutput
+	ToDeployCreateQueryParamsOutputWithContext(context.Context) DeployCreateQueryParamsOutput
+}
+
+// Query params for the API request.
+type DeployCreateQueryParamsArgs struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams pulumi.StringMapInput `pulumi:"additionalParams"`
+}
+
+func (DeployCreateQueryParamsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*DeployCreateQueryParams)(nil)).Elem()
+}
+
+func (i DeployCreateQueryParamsArgs) ToDeployCreateQueryParamsOutput() DeployCreateQueryParamsOutput {
+	return i.ToDeployCreateQueryParamsOutputWithContext(context.Background())
+}
+
+func (i DeployCreateQueryParamsArgs) ToDeployCreateQueryParamsOutputWithContext(ctx context.Context) DeployCreateQueryParamsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DeployCreateQueryParamsOutput)
+}
+
+func (i DeployCreateQueryParamsArgs) ToDeployCreateQueryParamsPtrOutput() DeployCreateQueryParamsPtrOutput {
+	return i.ToDeployCreateQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i DeployCreateQueryParamsArgs) ToDeployCreateQueryParamsPtrOutputWithContext(ctx context.Context) DeployCreateQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DeployCreateQueryParamsOutput).ToDeployCreateQueryParamsPtrOutputWithContext(ctx)
+}
+
+// DeployCreateQueryParamsPtrInput is an input type that accepts DeployCreateQueryParamsArgs, DeployCreateQueryParamsPtr and DeployCreateQueryParamsPtrOutput values.
+// You can construct a concrete instance of `DeployCreateQueryParamsPtrInput` via:
+//
+//	        DeployCreateQueryParamsArgs{...}
+//
+//	or:
+//
+//	        nil
+type DeployCreateQueryParamsPtrInput interface {
+	pulumi.Input
+
+	ToDeployCreateQueryParamsPtrOutput() DeployCreateQueryParamsPtrOutput
+	ToDeployCreateQueryParamsPtrOutputWithContext(context.Context) DeployCreateQueryParamsPtrOutput
+}
+
+type deployCreateQueryParamsPtrType DeployCreateQueryParamsArgs
+
+func DeployCreateQueryParamsPtr(v *DeployCreateQueryParamsArgs) DeployCreateQueryParamsPtrInput {
+	return (*deployCreateQueryParamsPtrType)(v)
+}
+
+func (*deployCreateQueryParamsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**DeployCreateQueryParams)(nil)).Elem()
+}
+
+func (i *deployCreateQueryParamsPtrType) ToDeployCreateQueryParamsPtrOutput() DeployCreateQueryParamsPtrOutput {
+	return i.ToDeployCreateQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i *deployCreateQueryParamsPtrType) ToDeployCreateQueryParamsPtrOutputWithContext(ctx context.Context) DeployCreateQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DeployCreateQueryParamsPtrOutput)
+}
+
+// Query params for the API request.
+type DeployCreateQueryParamsOutput struct{ *pulumi.OutputState }
+
+func (DeployCreateQueryParamsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*DeployCreateQueryParams)(nil)).Elem()
+}
+
+func (o DeployCreateQueryParamsOutput) ToDeployCreateQueryParamsOutput() DeployCreateQueryParamsOutput {
+	return o
+}
+
+func (o DeployCreateQueryParamsOutput) ToDeployCreateQueryParamsOutputWithContext(ctx context.Context) DeployCreateQueryParamsOutput {
+	return o
+}
+
+func (o DeployCreateQueryParamsOutput) ToDeployCreateQueryParamsPtrOutput() DeployCreateQueryParamsPtrOutput {
+	return o.ToDeployCreateQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (o DeployCreateQueryParamsOutput) ToDeployCreateQueryParamsPtrOutputWithContext(ctx context.Context) DeployCreateQueryParamsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v DeployCreateQueryParams) *DeployCreateQueryParams {
+		return &v
+	}).(DeployCreateQueryParamsPtrOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o DeployCreateQueryParamsOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v DeployCreateQueryParams) map[string]string { return v.AdditionalParams }).(pulumi.StringMapOutput)
+}
+
+type DeployCreateQueryParamsPtrOutput struct{ *pulumi.OutputState }
+
+func (DeployCreateQueryParamsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**DeployCreateQueryParams)(nil)).Elem()
+}
+
+func (o DeployCreateQueryParamsPtrOutput) ToDeployCreateQueryParamsPtrOutput() DeployCreateQueryParamsPtrOutput {
+	return o
+}
+
+func (o DeployCreateQueryParamsPtrOutput) ToDeployCreateQueryParamsPtrOutputWithContext(ctx context.Context) DeployCreateQueryParamsPtrOutput {
+	return o
+}
+
+func (o DeployCreateQueryParamsPtrOutput) Elem() DeployCreateQueryParamsOutput {
+	return o.ApplyT(func(v *DeployCreateQueryParams) DeployCreateQueryParams {
+		if v != nil {
+			return *v
+		}
+		var ret DeployCreateQueryParams
+		return ret
+	}).(DeployCreateQueryParamsOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o DeployCreateQueryParamsPtrOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *DeployCreateQueryParams) map[string]string {
+		if v == nil {
+			return nil
+		}
+		return v.AdditionalParams
+	}).(pulumi.StringMapOutput)
+}
+
 // Image information used when creating the deploy. Not present for Git-backed deploys
 type DeployImageProperties struct {
 	// Image reference used when creating the deploy
@@ -2362,6 +5613,305 @@ func (o DeployImagePropertiesPtrOutput) Sha() pulumi.StringPtrOutput {
 		}
 		return v.Sha
 	}).(pulumi.StringPtrOutput)
+}
+
+// Query params for each of the operations of the resource.
+type DeployQueryParams struct {
+	// Query params for the create operation.
+	Create *DeployCreateQueryParams `pulumi:"create"`
+	// Query params for the read operation.
+	Read *DeployReadQueryParams `pulumi:"read"`
+}
+
+// DeployQueryParamsInput is an input type that accepts DeployQueryParamsArgs and DeployQueryParamsOutput values.
+// You can construct a concrete instance of `DeployQueryParamsInput` via:
+//
+//	DeployQueryParamsArgs{...}
+type DeployQueryParamsInput interface {
+	pulumi.Input
+
+	ToDeployQueryParamsOutput() DeployQueryParamsOutput
+	ToDeployQueryParamsOutputWithContext(context.Context) DeployQueryParamsOutput
+}
+
+// Query params for each of the operations of the resource.
+type DeployQueryParamsArgs struct {
+	// Query params for the create operation.
+	Create DeployCreateQueryParamsPtrInput `pulumi:"create"`
+	// Query params for the read operation.
+	Read DeployReadQueryParamsPtrInput `pulumi:"read"`
+}
+
+func (DeployQueryParamsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*DeployQueryParams)(nil)).Elem()
+}
+
+func (i DeployQueryParamsArgs) ToDeployQueryParamsOutput() DeployQueryParamsOutput {
+	return i.ToDeployQueryParamsOutputWithContext(context.Background())
+}
+
+func (i DeployQueryParamsArgs) ToDeployQueryParamsOutputWithContext(ctx context.Context) DeployQueryParamsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DeployQueryParamsOutput)
+}
+
+func (i DeployQueryParamsArgs) ToDeployQueryParamsPtrOutput() DeployQueryParamsPtrOutput {
+	return i.ToDeployQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i DeployQueryParamsArgs) ToDeployQueryParamsPtrOutputWithContext(ctx context.Context) DeployQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DeployQueryParamsOutput).ToDeployQueryParamsPtrOutputWithContext(ctx)
+}
+
+// DeployQueryParamsPtrInput is an input type that accepts DeployQueryParamsArgs, DeployQueryParamsPtr and DeployQueryParamsPtrOutput values.
+// You can construct a concrete instance of `DeployQueryParamsPtrInput` via:
+//
+//	        DeployQueryParamsArgs{...}
+//
+//	or:
+//
+//	        nil
+type DeployQueryParamsPtrInput interface {
+	pulumi.Input
+
+	ToDeployQueryParamsPtrOutput() DeployQueryParamsPtrOutput
+	ToDeployQueryParamsPtrOutputWithContext(context.Context) DeployQueryParamsPtrOutput
+}
+
+type deployQueryParamsPtrType DeployQueryParamsArgs
+
+func DeployQueryParamsPtr(v *DeployQueryParamsArgs) DeployQueryParamsPtrInput {
+	return (*deployQueryParamsPtrType)(v)
+}
+
+func (*deployQueryParamsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**DeployQueryParams)(nil)).Elem()
+}
+
+func (i *deployQueryParamsPtrType) ToDeployQueryParamsPtrOutput() DeployQueryParamsPtrOutput {
+	return i.ToDeployQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i *deployQueryParamsPtrType) ToDeployQueryParamsPtrOutputWithContext(ctx context.Context) DeployQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DeployQueryParamsPtrOutput)
+}
+
+// Query params for each of the operations of the resource.
+type DeployQueryParamsOutput struct{ *pulumi.OutputState }
+
+func (DeployQueryParamsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*DeployQueryParams)(nil)).Elem()
+}
+
+func (o DeployQueryParamsOutput) ToDeployQueryParamsOutput() DeployQueryParamsOutput {
+	return o
+}
+
+func (o DeployQueryParamsOutput) ToDeployQueryParamsOutputWithContext(ctx context.Context) DeployQueryParamsOutput {
+	return o
+}
+
+func (o DeployQueryParamsOutput) ToDeployQueryParamsPtrOutput() DeployQueryParamsPtrOutput {
+	return o.ToDeployQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (o DeployQueryParamsOutput) ToDeployQueryParamsPtrOutputWithContext(ctx context.Context) DeployQueryParamsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v DeployQueryParams) *DeployQueryParams {
+		return &v
+	}).(DeployQueryParamsPtrOutput)
+}
+
+// Query params for the create operation.
+func (o DeployQueryParamsOutput) Create() DeployCreateQueryParamsPtrOutput {
+	return o.ApplyT(func(v DeployQueryParams) *DeployCreateQueryParams { return v.Create }).(DeployCreateQueryParamsPtrOutput)
+}
+
+// Query params for the read operation.
+func (o DeployQueryParamsOutput) Read() DeployReadQueryParamsPtrOutput {
+	return o.ApplyT(func(v DeployQueryParams) *DeployReadQueryParams { return v.Read }).(DeployReadQueryParamsPtrOutput)
+}
+
+type DeployQueryParamsPtrOutput struct{ *pulumi.OutputState }
+
+func (DeployQueryParamsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**DeployQueryParams)(nil)).Elem()
+}
+
+func (o DeployQueryParamsPtrOutput) ToDeployQueryParamsPtrOutput() DeployQueryParamsPtrOutput {
+	return o
+}
+
+func (o DeployQueryParamsPtrOutput) ToDeployQueryParamsPtrOutputWithContext(ctx context.Context) DeployQueryParamsPtrOutput {
+	return o
+}
+
+func (o DeployQueryParamsPtrOutput) Elem() DeployQueryParamsOutput {
+	return o.ApplyT(func(v *DeployQueryParams) DeployQueryParams {
+		if v != nil {
+			return *v
+		}
+		var ret DeployQueryParams
+		return ret
+	}).(DeployQueryParamsOutput)
+}
+
+// Query params for the create operation.
+func (o DeployQueryParamsPtrOutput) Create() DeployCreateQueryParamsPtrOutput {
+	return o.ApplyT(func(v *DeployQueryParams) *DeployCreateQueryParams {
+		if v == nil {
+			return nil
+		}
+		return v.Create
+	}).(DeployCreateQueryParamsPtrOutput)
+}
+
+// Query params for the read operation.
+func (o DeployQueryParamsPtrOutput) Read() DeployReadQueryParamsPtrOutput {
+	return o.ApplyT(func(v *DeployQueryParams) *DeployReadQueryParams {
+		if v == nil {
+			return nil
+		}
+		return v.Read
+	}).(DeployReadQueryParamsPtrOutput)
+}
+
+// Query params for the API request.
+type DeployReadQueryParams struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams map[string]string `pulumi:"additionalParams"`
+}
+
+// DeployReadQueryParamsInput is an input type that accepts DeployReadQueryParamsArgs and DeployReadQueryParamsOutput values.
+// You can construct a concrete instance of `DeployReadQueryParamsInput` via:
+//
+//	DeployReadQueryParamsArgs{...}
+type DeployReadQueryParamsInput interface {
+	pulumi.Input
+
+	ToDeployReadQueryParamsOutput() DeployReadQueryParamsOutput
+	ToDeployReadQueryParamsOutputWithContext(context.Context) DeployReadQueryParamsOutput
+}
+
+// Query params for the API request.
+type DeployReadQueryParamsArgs struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams pulumi.StringMapInput `pulumi:"additionalParams"`
+}
+
+func (DeployReadQueryParamsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*DeployReadQueryParams)(nil)).Elem()
+}
+
+func (i DeployReadQueryParamsArgs) ToDeployReadQueryParamsOutput() DeployReadQueryParamsOutput {
+	return i.ToDeployReadQueryParamsOutputWithContext(context.Background())
+}
+
+func (i DeployReadQueryParamsArgs) ToDeployReadQueryParamsOutputWithContext(ctx context.Context) DeployReadQueryParamsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DeployReadQueryParamsOutput)
+}
+
+func (i DeployReadQueryParamsArgs) ToDeployReadQueryParamsPtrOutput() DeployReadQueryParamsPtrOutput {
+	return i.ToDeployReadQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i DeployReadQueryParamsArgs) ToDeployReadQueryParamsPtrOutputWithContext(ctx context.Context) DeployReadQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DeployReadQueryParamsOutput).ToDeployReadQueryParamsPtrOutputWithContext(ctx)
+}
+
+// DeployReadQueryParamsPtrInput is an input type that accepts DeployReadQueryParamsArgs, DeployReadQueryParamsPtr and DeployReadQueryParamsPtrOutput values.
+// You can construct a concrete instance of `DeployReadQueryParamsPtrInput` via:
+//
+//	        DeployReadQueryParamsArgs{...}
+//
+//	or:
+//
+//	        nil
+type DeployReadQueryParamsPtrInput interface {
+	pulumi.Input
+
+	ToDeployReadQueryParamsPtrOutput() DeployReadQueryParamsPtrOutput
+	ToDeployReadQueryParamsPtrOutputWithContext(context.Context) DeployReadQueryParamsPtrOutput
+}
+
+type deployReadQueryParamsPtrType DeployReadQueryParamsArgs
+
+func DeployReadQueryParamsPtr(v *DeployReadQueryParamsArgs) DeployReadQueryParamsPtrInput {
+	return (*deployReadQueryParamsPtrType)(v)
+}
+
+func (*deployReadQueryParamsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**DeployReadQueryParams)(nil)).Elem()
+}
+
+func (i *deployReadQueryParamsPtrType) ToDeployReadQueryParamsPtrOutput() DeployReadQueryParamsPtrOutput {
+	return i.ToDeployReadQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i *deployReadQueryParamsPtrType) ToDeployReadQueryParamsPtrOutputWithContext(ctx context.Context) DeployReadQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(DeployReadQueryParamsPtrOutput)
+}
+
+// Query params for the API request.
+type DeployReadQueryParamsOutput struct{ *pulumi.OutputState }
+
+func (DeployReadQueryParamsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*DeployReadQueryParams)(nil)).Elem()
+}
+
+func (o DeployReadQueryParamsOutput) ToDeployReadQueryParamsOutput() DeployReadQueryParamsOutput {
+	return o
+}
+
+func (o DeployReadQueryParamsOutput) ToDeployReadQueryParamsOutputWithContext(ctx context.Context) DeployReadQueryParamsOutput {
+	return o
+}
+
+func (o DeployReadQueryParamsOutput) ToDeployReadQueryParamsPtrOutput() DeployReadQueryParamsPtrOutput {
+	return o.ToDeployReadQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (o DeployReadQueryParamsOutput) ToDeployReadQueryParamsPtrOutputWithContext(ctx context.Context) DeployReadQueryParamsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v DeployReadQueryParams) *DeployReadQueryParams {
+		return &v
+	}).(DeployReadQueryParamsPtrOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o DeployReadQueryParamsOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v DeployReadQueryParams) map[string]string { return v.AdditionalParams }).(pulumi.StringMapOutput)
+}
+
+type DeployReadQueryParamsPtrOutput struct{ *pulumi.OutputState }
+
+func (DeployReadQueryParamsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**DeployReadQueryParams)(nil)).Elem()
+}
+
+func (o DeployReadQueryParamsPtrOutput) ToDeployReadQueryParamsPtrOutput() DeployReadQueryParamsPtrOutput {
+	return o
+}
+
+func (o DeployReadQueryParamsPtrOutput) ToDeployReadQueryParamsPtrOutputWithContext(ctx context.Context) DeployReadQueryParamsPtrOutput {
+	return o
+}
+
+func (o DeployReadQueryParamsPtrOutput) Elem() DeployReadQueryParamsOutput {
+	return o.ApplyT(func(v *DeployReadQueryParams) DeployReadQueryParams {
+		if v != nil {
+			return *v
+		}
+		var ret DeployReadQueryParams
+		return ret
+	}).(DeployReadQueryParamsOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o DeployReadQueryParamsPtrOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *DeployReadQueryParams) map[string]string {
+		if v == nil {
+			return nil
+		}
+		return v.AdditionalParams
+	}).(pulumi.StringMapOutput)
 }
 
 type DeployWithCursor struct {
@@ -2873,6 +6423,286 @@ func (o EnvVarTypeOutput) Value() pulumi.StringOutput {
 	return o.ApplyT(func(v EnvVarType) string { return v.Value }).(pulumi.StringOutput)
 }
 
+// Query params for the API request.
+type EnvVarCreateQueryParams struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams map[string]string `pulumi:"additionalParams"`
+}
+
+// EnvVarCreateQueryParamsInput is an input type that accepts EnvVarCreateQueryParamsArgs and EnvVarCreateQueryParamsOutput values.
+// You can construct a concrete instance of `EnvVarCreateQueryParamsInput` via:
+//
+//	EnvVarCreateQueryParamsArgs{...}
+type EnvVarCreateQueryParamsInput interface {
+	pulumi.Input
+
+	ToEnvVarCreateQueryParamsOutput() EnvVarCreateQueryParamsOutput
+	ToEnvVarCreateQueryParamsOutputWithContext(context.Context) EnvVarCreateQueryParamsOutput
+}
+
+// Query params for the API request.
+type EnvVarCreateQueryParamsArgs struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams pulumi.StringMapInput `pulumi:"additionalParams"`
+}
+
+func (EnvVarCreateQueryParamsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*EnvVarCreateQueryParams)(nil)).Elem()
+}
+
+func (i EnvVarCreateQueryParamsArgs) ToEnvVarCreateQueryParamsOutput() EnvVarCreateQueryParamsOutput {
+	return i.ToEnvVarCreateQueryParamsOutputWithContext(context.Background())
+}
+
+func (i EnvVarCreateQueryParamsArgs) ToEnvVarCreateQueryParamsOutputWithContext(ctx context.Context) EnvVarCreateQueryParamsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(EnvVarCreateQueryParamsOutput)
+}
+
+func (i EnvVarCreateQueryParamsArgs) ToEnvVarCreateQueryParamsPtrOutput() EnvVarCreateQueryParamsPtrOutput {
+	return i.ToEnvVarCreateQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i EnvVarCreateQueryParamsArgs) ToEnvVarCreateQueryParamsPtrOutputWithContext(ctx context.Context) EnvVarCreateQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(EnvVarCreateQueryParamsOutput).ToEnvVarCreateQueryParamsPtrOutputWithContext(ctx)
+}
+
+// EnvVarCreateQueryParamsPtrInput is an input type that accepts EnvVarCreateQueryParamsArgs, EnvVarCreateQueryParamsPtr and EnvVarCreateQueryParamsPtrOutput values.
+// You can construct a concrete instance of `EnvVarCreateQueryParamsPtrInput` via:
+//
+//	        EnvVarCreateQueryParamsArgs{...}
+//
+//	or:
+//
+//	        nil
+type EnvVarCreateQueryParamsPtrInput interface {
+	pulumi.Input
+
+	ToEnvVarCreateQueryParamsPtrOutput() EnvVarCreateQueryParamsPtrOutput
+	ToEnvVarCreateQueryParamsPtrOutputWithContext(context.Context) EnvVarCreateQueryParamsPtrOutput
+}
+
+type envVarCreateQueryParamsPtrType EnvVarCreateQueryParamsArgs
+
+func EnvVarCreateQueryParamsPtr(v *EnvVarCreateQueryParamsArgs) EnvVarCreateQueryParamsPtrInput {
+	return (*envVarCreateQueryParamsPtrType)(v)
+}
+
+func (*envVarCreateQueryParamsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**EnvVarCreateQueryParams)(nil)).Elem()
+}
+
+func (i *envVarCreateQueryParamsPtrType) ToEnvVarCreateQueryParamsPtrOutput() EnvVarCreateQueryParamsPtrOutput {
+	return i.ToEnvVarCreateQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i *envVarCreateQueryParamsPtrType) ToEnvVarCreateQueryParamsPtrOutputWithContext(ctx context.Context) EnvVarCreateQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(EnvVarCreateQueryParamsPtrOutput)
+}
+
+// Query params for the API request.
+type EnvVarCreateQueryParamsOutput struct{ *pulumi.OutputState }
+
+func (EnvVarCreateQueryParamsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*EnvVarCreateQueryParams)(nil)).Elem()
+}
+
+func (o EnvVarCreateQueryParamsOutput) ToEnvVarCreateQueryParamsOutput() EnvVarCreateQueryParamsOutput {
+	return o
+}
+
+func (o EnvVarCreateQueryParamsOutput) ToEnvVarCreateQueryParamsOutputWithContext(ctx context.Context) EnvVarCreateQueryParamsOutput {
+	return o
+}
+
+func (o EnvVarCreateQueryParamsOutput) ToEnvVarCreateQueryParamsPtrOutput() EnvVarCreateQueryParamsPtrOutput {
+	return o.ToEnvVarCreateQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (o EnvVarCreateQueryParamsOutput) ToEnvVarCreateQueryParamsPtrOutputWithContext(ctx context.Context) EnvVarCreateQueryParamsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v EnvVarCreateQueryParams) *EnvVarCreateQueryParams {
+		return &v
+	}).(EnvVarCreateQueryParamsPtrOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o EnvVarCreateQueryParamsOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v EnvVarCreateQueryParams) map[string]string { return v.AdditionalParams }).(pulumi.StringMapOutput)
+}
+
+type EnvVarCreateQueryParamsPtrOutput struct{ *pulumi.OutputState }
+
+func (EnvVarCreateQueryParamsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**EnvVarCreateQueryParams)(nil)).Elem()
+}
+
+func (o EnvVarCreateQueryParamsPtrOutput) ToEnvVarCreateQueryParamsPtrOutput() EnvVarCreateQueryParamsPtrOutput {
+	return o
+}
+
+func (o EnvVarCreateQueryParamsPtrOutput) ToEnvVarCreateQueryParamsPtrOutputWithContext(ctx context.Context) EnvVarCreateQueryParamsPtrOutput {
+	return o
+}
+
+func (o EnvVarCreateQueryParamsPtrOutput) Elem() EnvVarCreateQueryParamsOutput {
+	return o.ApplyT(func(v *EnvVarCreateQueryParams) EnvVarCreateQueryParams {
+		if v != nil {
+			return *v
+		}
+		var ret EnvVarCreateQueryParams
+		return ret
+	}).(EnvVarCreateQueryParamsOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o EnvVarCreateQueryParamsPtrOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *EnvVarCreateQueryParams) map[string]string {
+		if v == nil {
+			return nil
+		}
+		return v.AdditionalParams
+	}).(pulumi.StringMapOutput)
+}
+
+// Query params for the API request.
+type EnvVarDeleteQueryParams struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams map[string]string `pulumi:"additionalParams"`
+}
+
+// EnvVarDeleteQueryParamsInput is an input type that accepts EnvVarDeleteQueryParamsArgs and EnvVarDeleteQueryParamsOutput values.
+// You can construct a concrete instance of `EnvVarDeleteQueryParamsInput` via:
+//
+//	EnvVarDeleteQueryParamsArgs{...}
+type EnvVarDeleteQueryParamsInput interface {
+	pulumi.Input
+
+	ToEnvVarDeleteQueryParamsOutput() EnvVarDeleteQueryParamsOutput
+	ToEnvVarDeleteQueryParamsOutputWithContext(context.Context) EnvVarDeleteQueryParamsOutput
+}
+
+// Query params for the API request.
+type EnvVarDeleteQueryParamsArgs struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams pulumi.StringMapInput `pulumi:"additionalParams"`
+}
+
+func (EnvVarDeleteQueryParamsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*EnvVarDeleteQueryParams)(nil)).Elem()
+}
+
+func (i EnvVarDeleteQueryParamsArgs) ToEnvVarDeleteQueryParamsOutput() EnvVarDeleteQueryParamsOutput {
+	return i.ToEnvVarDeleteQueryParamsOutputWithContext(context.Background())
+}
+
+func (i EnvVarDeleteQueryParamsArgs) ToEnvVarDeleteQueryParamsOutputWithContext(ctx context.Context) EnvVarDeleteQueryParamsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(EnvVarDeleteQueryParamsOutput)
+}
+
+func (i EnvVarDeleteQueryParamsArgs) ToEnvVarDeleteQueryParamsPtrOutput() EnvVarDeleteQueryParamsPtrOutput {
+	return i.ToEnvVarDeleteQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i EnvVarDeleteQueryParamsArgs) ToEnvVarDeleteQueryParamsPtrOutputWithContext(ctx context.Context) EnvVarDeleteQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(EnvVarDeleteQueryParamsOutput).ToEnvVarDeleteQueryParamsPtrOutputWithContext(ctx)
+}
+
+// EnvVarDeleteQueryParamsPtrInput is an input type that accepts EnvVarDeleteQueryParamsArgs, EnvVarDeleteQueryParamsPtr and EnvVarDeleteQueryParamsPtrOutput values.
+// You can construct a concrete instance of `EnvVarDeleteQueryParamsPtrInput` via:
+//
+//	        EnvVarDeleteQueryParamsArgs{...}
+//
+//	or:
+//
+//	        nil
+type EnvVarDeleteQueryParamsPtrInput interface {
+	pulumi.Input
+
+	ToEnvVarDeleteQueryParamsPtrOutput() EnvVarDeleteQueryParamsPtrOutput
+	ToEnvVarDeleteQueryParamsPtrOutputWithContext(context.Context) EnvVarDeleteQueryParamsPtrOutput
+}
+
+type envVarDeleteQueryParamsPtrType EnvVarDeleteQueryParamsArgs
+
+func EnvVarDeleteQueryParamsPtr(v *EnvVarDeleteQueryParamsArgs) EnvVarDeleteQueryParamsPtrInput {
+	return (*envVarDeleteQueryParamsPtrType)(v)
+}
+
+func (*envVarDeleteQueryParamsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**EnvVarDeleteQueryParams)(nil)).Elem()
+}
+
+func (i *envVarDeleteQueryParamsPtrType) ToEnvVarDeleteQueryParamsPtrOutput() EnvVarDeleteQueryParamsPtrOutput {
+	return i.ToEnvVarDeleteQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i *envVarDeleteQueryParamsPtrType) ToEnvVarDeleteQueryParamsPtrOutputWithContext(ctx context.Context) EnvVarDeleteQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(EnvVarDeleteQueryParamsPtrOutput)
+}
+
+// Query params for the API request.
+type EnvVarDeleteQueryParamsOutput struct{ *pulumi.OutputState }
+
+func (EnvVarDeleteQueryParamsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*EnvVarDeleteQueryParams)(nil)).Elem()
+}
+
+func (o EnvVarDeleteQueryParamsOutput) ToEnvVarDeleteQueryParamsOutput() EnvVarDeleteQueryParamsOutput {
+	return o
+}
+
+func (o EnvVarDeleteQueryParamsOutput) ToEnvVarDeleteQueryParamsOutputWithContext(ctx context.Context) EnvVarDeleteQueryParamsOutput {
+	return o
+}
+
+func (o EnvVarDeleteQueryParamsOutput) ToEnvVarDeleteQueryParamsPtrOutput() EnvVarDeleteQueryParamsPtrOutput {
+	return o.ToEnvVarDeleteQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (o EnvVarDeleteQueryParamsOutput) ToEnvVarDeleteQueryParamsPtrOutputWithContext(ctx context.Context) EnvVarDeleteQueryParamsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v EnvVarDeleteQueryParams) *EnvVarDeleteQueryParams {
+		return &v
+	}).(EnvVarDeleteQueryParamsPtrOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o EnvVarDeleteQueryParamsOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v EnvVarDeleteQueryParams) map[string]string { return v.AdditionalParams }).(pulumi.StringMapOutput)
+}
+
+type EnvVarDeleteQueryParamsPtrOutput struct{ *pulumi.OutputState }
+
+func (EnvVarDeleteQueryParamsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**EnvVarDeleteQueryParams)(nil)).Elem()
+}
+
+func (o EnvVarDeleteQueryParamsPtrOutput) ToEnvVarDeleteQueryParamsPtrOutput() EnvVarDeleteQueryParamsPtrOutput {
+	return o
+}
+
+func (o EnvVarDeleteQueryParamsPtrOutput) ToEnvVarDeleteQueryParamsPtrOutputWithContext(ctx context.Context) EnvVarDeleteQueryParamsPtrOutput {
+	return o
+}
+
+func (o EnvVarDeleteQueryParamsPtrOutput) Elem() EnvVarDeleteQueryParamsOutput {
+	return o.ApplyT(func(v *EnvVarDeleteQueryParams) EnvVarDeleteQueryParams {
+		if v != nil {
+			return *v
+		}
+		var ret EnvVarDeleteQueryParams
+		return ret
+	}).(EnvVarDeleteQueryParamsOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o EnvVarDeleteQueryParamsPtrOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *EnvVarDeleteQueryParams) map[string]string {
+		if v == nil {
+			return nil
+		}
+		return v.AdditionalParams
+	}).(pulumi.StringMapOutput)
+}
+
 type EnvVarInputType struct {
 	GenerateValue *bool   `pulumi:"generateValue"`
 	Key           *string `pulumi:"key"`
@@ -2979,6 +6809,483 @@ func (o EnvVarInputTypeArrayOutput) Index(i pulumi.IntInput) EnvVarInputTypeOutp
 	}).(EnvVarInputTypeOutput)
 }
 
+// Query params for the API request.
+type EnvVarPutQueryParams struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams map[string]string `pulumi:"additionalParams"`
+}
+
+// EnvVarPutQueryParamsInput is an input type that accepts EnvVarPutQueryParamsArgs and EnvVarPutQueryParamsOutput values.
+// You can construct a concrete instance of `EnvVarPutQueryParamsInput` via:
+//
+//	EnvVarPutQueryParamsArgs{...}
+type EnvVarPutQueryParamsInput interface {
+	pulumi.Input
+
+	ToEnvVarPutQueryParamsOutput() EnvVarPutQueryParamsOutput
+	ToEnvVarPutQueryParamsOutputWithContext(context.Context) EnvVarPutQueryParamsOutput
+}
+
+// Query params for the API request.
+type EnvVarPutQueryParamsArgs struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams pulumi.StringMapInput `pulumi:"additionalParams"`
+}
+
+func (EnvVarPutQueryParamsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*EnvVarPutQueryParams)(nil)).Elem()
+}
+
+func (i EnvVarPutQueryParamsArgs) ToEnvVarPutQueryParamsOutput() EnvVarPutQueryParamsOutput {
+	return i.ToEnvVarPutQueryParamsOutputWithContext(context.Background())
+}
+
+func (i EnvVarPutQueryParamsArgs) ToEnvVarPutQueryParamsOutputWithContext(ctx context.Context) EnvVarPutQueryParamsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(EnvVarPutQueryParamsOutput)
+}
+
+func (i EnvVarPutQueryParamsArgs) ToEnvVarPutQueryParamsPtrOutput() EnvVarPutQueryParamsPtrOutput {
+	return i.ToEnvVarPutQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i EnvVarPutQueryParamsArgs) ToEnvVarPutQueryParamsPtrOutputWithContext(ctx context.Context) EnvVarPutQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(EnvVarPutQueryParamsOutput).ToEnvVarPutQueryParamsPtrOutputWithContext(ctx)
+}
+
+// EnvVarPutQueryParamsPtrInput is an input type that accepts EnvVarPutQueryParamsArgs, EnvVarPutQueryParamsPtr and EnvVarPutQueryParamsPtrOutput values.
+// You can construct a concrete instance of `EnvVarPutQueryParamsPtrInput` via:
+//
+//	        EnvVarPutQueryParamsArgs{...}
+//
+//	or:
+//
+//	        nil
+type EnvVarPutQueryParamsPtrInput interface {
+	pulumi.Input
+
+	ToEnvVarPutQueryParamsPtrOutput() EnvVarPutQueryParamsPtrOutput
+	ToEnvVarPutQueryParamsPtrOutputWithContext(context.Context) EnvVarPutQueryParamsPtrOutput
+}
+
+type envVarPutQueryParamsPtrType EnvVarPutQueryParamsArgs
+
+func EnvVarPutQueryParamsPtr(v *EnvVarPutQueryParamsArgs) EnvVarPutQueryParamsPtrInput {
+	return (*envVarPutQueryParamsPtrType)(v)
+}
+
+func (*envVarPutQueryParamsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**EnvVarPutQueryParams)(nil)).Elem()
+}
+
+func (i *envVarPutQueryParamsPtrType) ToEnvVarPutQueryParamsPtrOutput() EnvVarPutQueryParamsPtrOutput {
+	return i.ToEnvVarPutQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i *envVarPutQueryParamsPtrType) ToEnvVarPutQueryParamsPtrOutputWithContext(ctx context.Context) EnvVarPutQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(EnvVarPutQueryParamsPtrOutput)
+}
+
+// Query params for the API request.
+type EnvVarPutQueryParamsOutput struct{ *pulumi.OutputState }
+
+func (EnvVarPutQueryParamsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*EnvVarPutQueryParams)(nil)).Elem()
+}
+
+func (o EnvVarPutQueryParamsOutput) ToEnvVarPutQueryParamsOutput() EnvVarPutQueryParamsOutput {
+	return o
+}
+
+func (o EnvVarPutQueryParamsOutput) ToEnvVarPutQueryParamsOutputWithContext(ctx context.Context) EnvVarPutQueryParamsOutput {
+	return o
+}
+
+func (o EnvVarPutQueryParamsOutput) ToEnvVarPutQueryParamsPtrOutput() EnvVarPutQueryParamsPtrOutput {
+	return o.ToEnvVarPutQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (o EnvVarPutQueryParamsOutput) ToEnvVarPutQueryParamsPtrOutputWithContext(ctx context.Context) EnvVarPutQueryParamsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v EnvVarPutQueryParams) *EnvVarPutQueryParams {
+		return &v
+	}).(EnvVarPutQueryParamsPtrOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o EnvVarPutQueryParamsOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v EnvVarPutQueryParams) map[string]string { return v.AdditionalParams }).(pulumi.StringMapOutput)
+}
+
+type EnvVarPutQueryParamsPtrOutput struct{ *pulumi.OutputState }
+
+func (EnvVarPutQueryParamsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**EnvVarPutQueryParams)(nil)).Elem()
+}
+
+func (o EnvVarPutQueryParamsPtrOutput) ToEnvVarPutQueryParamsPtrOutput() EnvVarPutQueryParamsPtrOutput {
+	return o
+}
+
+func (o EnvVarPutQueryParamsPtrOutput) ToEnvVarPutQueryParamsPtrOutputWithContext(ctx context.Context) EnvVarPutQueryParamsPtrOutput {
+	return o
+}
+
+func (o EnvVarPutQueryParamsPtrOutput) Elem() EnvVarPutQueryParamsOutput {
+	return o.ApplyT(func(v *EnvVarPutQueryParams) EnvVarPutQueryParams {
+		if v != nil {
+			return *v
+		}
+		var ret EnvVarPutQueryParams
+		return ret
+	}).(EnvVarPutQueryParamsOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o EnvVarPutQueryParamsPtrOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *EnvVarPutQueryParams) map[string]string {
+		if v == nil {
+			return nil
+		}
+		return v.AdditionalParams
+	}).(pulumi.StringMapOutput)
+}
+
+// Query params for each of the operations of the resource.
+type EnvVarQueryParams struct {
+	// Query params for the create operation.
+	Create *EnvVarCreateQueryParams `pulumi:"create"`
+	// Query params for the delete operation.
+	Delete *EnvVarDeleteQueryParams `pulumi:"delete"`
+	// Query params for the put operation.
+	Put *EnvVarPutQueryParams `pulumi:"put"`
+	// Query params for the read operation.
+	Read *EnvVarReadQueryParams `pulumi:"read"`
+}
+
+// EnvVarQueryParamsInput is an input type that accepts EnvVarQueryParamsArgs and EnvVarQueryParamsOutput values.
+// You can construct a concrete instance of `EnvVarQueryParamsInput` via:
+//
+//	EnvVarQueryParamsArgs{...}
+type EnvVarQueryParamsInput interface {
+	pulumi.Input
+
+	ToEnvVarQueryParamsOutput() EnvVarQueryParamsOutput
+	ToEnvVarQueryParamsOutputWithContext(context.Context) EnvVarQueryParamsOutput
+}
+
+// Query params for each of the operations of the resource.
+type EnvVarQueryParamsArgs struct {
+	// Query params for the create operation.
+	Create EnvVarCreateQueryParamsPtrInput `pulumi:"create"`
+	// Query params for the delete operation.
+	Delete EnvVarDeleteQueryParamsPtrInput `pulumi:"delete"`
+	// Query params for the put operation.
+	Put EnvVarPutQueryParamsPtrInput `pulumi:"put"`
+	// Query params for the read operation.
+	Read EnvVarReadQueryParamsPtrInput `pulumi:"read"`
+}
+
+func (EnvVarQueryParamsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*EnvVarQueryParams)(nil)).Elem()
+}
+
+func (i EnvVarQueryParamsArgs) ToEnvVarQueryParamsOutput() EnvVarQueryParamsOutput {
+	return i.ToEnvVarQueryParamsOutputWithContext(context.Background())
+}
+
+func (i EnvVarQueryParamsArgs) ToEnvVarQueryParamsOutputWithContext(ctx context.Context) EnvVarQueryParamsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(EnvVarQueryParamsOutput)
+}
+
+func (i EnvVarQueryParamsArgs) ToEnvVarQueryParamsPtrOutput() EnvVarQueryParamsPtrOutput {
+	return i.ToEnvVarQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i EnvVarQueryParamsArgs) ToEnvVarQueryParamsPtrOutputWithContext(ctx context.Context) EnvVarQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(EnvVarQueryParamsOutput).ToEnvVarQueryParamsPtrOutputWithContext(ctx)
+}
+
+// EnvVarQueryParamsPtrInput is an input type that accepts EnvVarQueryParamsArgs, EnvVarQueryParamsPtr and EnvVarQueryParamsPtrOutput values.
+// You can construct a concrete instance of `EnvVarQueryParamsPtrInput` via:
+//
+//	        EnvVarQueryParamsArgs{...}
+//
+//	or:
+//
+//	        nil
+type EnvVarQueryParamsPtrInput interface {
+	pulumi.Input
+
+	ToEnvVarQueryParamsPtrOutput() EnvVarQueryParamsPtrOutput
+	ToEnvVarQueryParamsPtrOutputWithContext(context.Context) EnvVarQueryParamsPtrOutput
+}
+
+type envVarQueryParamsPtrType EnvVarQueryParamsArgs
+
+func EnvVarQueryParamsPtr(v *EnvVarQueryParamsArgs) EnvVarQueryParamsPtrInput {
+	return (*envVarQueryParamsPtrType)(v)
+}
+
+func (*envVarQueryParamsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**EnvVarQueryParams)(nil)).Elem()
+}
+
+func (i *envVarQueryParamsPtrType) ToEnvVarQueryParamsPtrOutput() EnvVarQueryParamsPtrOutput {
+	return i.ToEnvVarQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i *envVarQueryParamsPtrType) ToEnvVarQueryParamsPtrOutputWithContext(ctx context.Context) EnvVarQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(EnvVarQueryParamsPtrOutput)
+}
+
+// Query params for each of the operations of the resource.
+type EnvVarQueryParamsOutput struct{ *pulumi.OutputState }
+
+func (EnvVarQueryParamsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*EnvVarQueryParams)(nil)).Elem()
+}
+
+func (o EnvVarQueryParamsOutput) ToEnvVarQueryParamsOutput() EnvVarQueryParamsOutput {
+	return o
+}
+
+func (o EnvVarQueryParamsOutput) ToEnvVarQueryParamsOutputWithContext(ctx context.Context) EnvVarQueryParamsOutput {
+	return o
+}
+
+func (o EnvVarQueryParamsOutput) ToEnvVarQueryParamsPtrOutput() EnvVarQueryParamsPtrOutput {
+	return o.ToEnvVarQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (o EnvVarQueryParamsOutput) ToEnvVarQueryParamsPtrOutputWithContext(ctx context.Context) EnvVarQueryParamsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v EnvVarQueryParams) *EnvVarQueryParams {
+		return &v
+	}).(EnvVarQueryParamsPtrOutput)
+}
+
+// Query params for the create operation.
+func (o EnvVarQueryParamsOutput) Create() EnvVarCreateQueryParamsPtrOutput {
+	return o.ApplyT(func(v EnvVarQueryParams) *EnvVarCreateQueryParams { return v.Create }).(EnvVarCreateQueryParamsPtrOutput)
+}
+
+// Query params for the delete operation.
+func (o EnvVarQueryParamsOutput) Delete() EnvVarDeleteQueryParamsPtrOutput {
+	return o.ApplyT(func(v EnvVarQueryParams) *EnvVarDeleteQueryParams { return v.Delete }).(EnvVarDeleteQueryParamsPtrOutput)
+}
+
+// Query params for the put operation.
+func (o EnvVarQueryParamsOutput) Put() EnvVarPutQueryParamsPtrOutput {
+	return o.ApplyT(func(v EnvVarQueryParams) *EnvVarPutQueryParams { return v.Put }).(EnvVarPutQueryParamsPtrOutput)
+}
+
+// Query params for the read operation.
+func (o EnvVarQueryParamsOutput) Read() EnvVarReadQueryParamsPtrOutput {
+	return o.ApplyT(func(v EnvVarQueryParams) *EnvVarReadQueryParams { return v.Read }).(EnvVarReadQueryParamsPtrOutput)
+}
+
+type EnvVarQueryParamsPtrOutput struct{ *pulumi.OutputState }
+
+func (EnvVarQueryParamsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**EnvVarQueryParams)(nil)).Elem()
+}
+
+func (o EnvVarQueryParamsPtrOutput) ToEnvVarQueryParamsPtrOutput() EnvVarQueryParamsPtrOutput {
+	return o
+}
+
+func (o EnvVarQueryParamsPtrOutput) ToEnvVarQueryParamsPtrOutputWithContext(ctx context.Context) EnvVarQueryParamsPtrOutput {
+	return o
+}
+
+func (o EnvVarQueryParamsPtrOutput) Elem() EnvVarQueryParamsOutput {
+	return o.ApplyT(func(v *EnvVarQueryParams) EnvVarQueryParams {
+		if v != nil {
+			return *v
+		}
+		var ret EnvVarQueryParams
+		return ret
+	}).(EnvVarQueryParamsOutput)
+}
+
+// Query params for the create operation.
+func (o EnvVarQueryParamsPtrOutput) Create() EnvVarCreateQueryParamsPtrOutput {
+	return o.ApplyT(func(v *EnvVarQueryParams) *EnvVarCreateQueryParams {
+		if v == nil {
+			return nil
+		}
+		return v.Create
+	}).(EnvVarCreateQueryParamsPtrOutput)
+}
+
+// Query params for the delete operation.
+func (o EnvVarQueryParamsPtrOutput) Delete() EnvVarDeleteQueryParamsPtrOutput {
+	return o.ApplyT(func(v *EnvVarQueryParams) *EnvVarDeleteQueryParams {
+		if v == nil {
+			return nil
+		}
+		return v.Delete
+	}).(EnvVarDeleteQueryParamsPtrOutput)
+}
+
+// Query params for the put operation.
+func (o EnvVarQueryParamsPtrOutput) Put() EnvVarPutQueryParamsPtrOutput {
+	return o.ApplyT(func(v *EnvVarQueryParams) *EnvVarPutQueryParams {
+		if v == nil {
+			return nil
+		}
+		return v.Put
+	}).(EnvVarPutQueryParamsPtrOutput)
+}
+
+// Query params for the read operation.
+func (o EnvVarQueryParamsPtrOutput) Read() EnvVarReadQueryParamsPtrOutput {
+	return o.ApplyT(func(v *EnvVarQueryParams) *EnvVarReadQueryParams {
+		if v == nil {
+			return nil
+		}
+		return v.Read
+	}).(EnvVarReadQueryParamsPtrOutput)
+}
+
+// Query params for the API request.
+type EnvVarReadQueryParams struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams map[string]string `pulumi:"additionalParams"`
+}
+
+// EnvVarReadQueryParamsInput is an input type that accepts EnvVarReadQueryParamsArgs and EnvVarReadQueryParamsOutput values.
+// You can construct a concrete instance of `EnvVarReadQueryParamsInput` via:
+//
+//	EnvVarReadQueryParamsArgs{...}
+type EnvVarReadQueryParamsInput interface {
+	pulumi.Input
+
+	ToEnvVarReadQueryParamsOutput() EnvVarReadQueryParamsOutput
+	ToEnvVarReadQueryParamsOutputWithContext(context.Context) EnvVarReadQueryParamsOutput
+}
+
+// Query params for the API request.
+type EnvVarReadQueryParamsArgs struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams pulumi.StringMapInput `pulumi:"additionalParams"`
+}
+
+func (EnvVarReadQueryParamsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*EnvVarReadQueryParams)(nil)).Elem()
+}
+
+func (i EnvVarReadQueryParamsArgs) ToEnvVarReadQueryParamsOutput() EnvVarReadQueryParamsOutput {
+	return i.ToEnvVarReadQueryParamsOutputWithContext(context.Background())
+}
+
+func (i EnvVarReadQueryParamsArgs) ToEnvVarReadQueryParamsOutputWithContext(ctx context.Context) EnvVarReadQueryParamsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(EnvVarReadQueryParamsOutput)
+}
+
+func (i EnvVarReadQueryParamsArgs) ToEnvVarReadQueryParamsPtrOutput() EnvVarReadQueryParamsPtrOutput {
+	return i.ToEnvVarReadQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i EnvVarReadQueryParamsArgs) ToEnvVarReadQueryParamsPtrOutputWithContext(ctx context.Context) EnvVarReadQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(EnvVarReadQueryParamsOutput).ToEnvVarReadQueryParamsPtrOutputWithContext(ctx)
+}
+
+// EnvVarReadQueryParamsPtrInput is an input type that accepts EnvVarReadQueryParamsArgs, EnvVarReadQueryParamsPtr and EnvVarReadQueryParamsPtrOutput values.
+// You can construct a concrete instance of `EnvVarReadQueryParamsPtrInput` via:
+//
+//	        EnvVarReadQueryParamsArgs{...}
+//
+//	or:
+//
+//	        nil
+type EnvVarReadQueryParamsPtrInput interface {
+	pulumi.Input
+
+	ToEnvVarReadQueryParamsPtrOutput() EnvVarReadQueryParamsPtrOutput
+	ToEnvVarReadQueryParamsPtrOutputWithContext(context.Context) EnvVarReadQueryParamsPtrOutput
+}
+
+type envVarReadQueryParamsPtrType EnvVarReadQueryParamsArgs
+
+func EnvVarReadQueryParamsPtr(v *EnvVarReadQueryParamsArgs) EnvVarReadQueryParamsPtrInput {
+	return (*envVarReadQueryParamsPtrType)(v)
+}
+
+func (*envVarReadQueryParamsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**EnvVarReadQueryParams)(nil)).Elem()
+}
+
+func (i *envVarReadQueryParamsPtrType) ToEnvVarReadQueryParamsPtrOutput() EnvVarReadQueryParamsPtrOutput {
+	return i.ToEnvVarReadQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i *envVarReadQueryParamsPtrType) ToEnvVarReadQueryParamsPtrOutputWithContext(ctx context.Context) EnvVarReadQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(EnvVarReadQueryParamsPtrOutput)
+}
+
+// Query params for the API request.
+type EnvVarReadQueryParamsOutput struct{ *pulumi.OutputState }
+
+func (EnvVarReadQueryParamsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*EnvVarReadQueryParams)(nil)).Elem()
+}
+
+func (o EnvVarReadQueryParamsOutput) ToEnvVarReadQueryParamsOutput() EnvVarReadQueryParamsOutput {
+	return o
+}
+
+func (o EnvVarReadQueryParamsOutput) ToEnvVarReadQueryParamsOutputWithContext(ctx context.Context) EnvVarReadQueryParamsOutput {
+	return o
+}
+
+func (o EnvVarReadQueryParamsOutput) ToEnvVarReadQueryParamsPtrOutput() EnvVarReadQueryParamsPtrOutput {
+	return o.ToEnvVarReadQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (o EnvVarReadQueryParamsOutput) ToEnvVarReadQueryParamsPtrOutputWithContext(ctx context.Context) EnvVarReadQueryParamsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v EnvVarReadQueryParams) *EnvVarReadQueryParams {
+		return &v
+	}).(EnvVarReadQueryParamsPtrOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o EnvVarReadQueryParamsOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v EnvVarReadQueryParams) map[string]string { return v.AdditionalParams }).(pulumi.StringMapOutput)
+}
+
+type EnvVarReadQueryParamsPtrOutput struct{ *pulumi.OutputState }
+
+func (EnvVarReadQueryParamsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**EnvVarReadQueryParams)(nil)).Elem()
+}
+
+func (o EnvVarReadQueryParamsPtrOutput) ToEnvVarReadQueryParamsPtrOutput() EnvVarReadQueryParamsPtrOutput {
+	return o
+}
+
+func (o EnvVarReadQueryParamsPtrOutput) ToEnvVarReadQueryParamsPtrOutputWithContext(ctx context.Context) EnvVarReadQueryParamsPtrOutput {
+	return o
+}
+
+func (o EnvVarReadQueryParamsPtrOutput) Elem() EnvVarReadQueryParamsOutput {
+	return o.ApplyT(func(v *EnvVarReadQueryParams) EnvVarReadQueryParams {
+		if v != nil {
+			return *v
+		}
+		var ret EnvVarReadQueryParams
+		return ret
+	}).(EnvVarReadQueryParamsOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o EnvVarReadQueryParamsPtrOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *EnvVarReadQueryParams) map[string]string {
+		if v == nil {
+			return nil
+		}
+		return v.AdditionalParams
+	}).(pulumi.StringMapOutput)
+}
+
 type EnvVarWithCursor struct {
 	Cursor string     `pulumi:"cursor"`
 	EnvVar EnvVarType `pulumi:"envVar"`
@@ -3026,6 +7333,445 @@ func (o EnvVarWithCursorArrayOutput) Index(i pulumi.IntInput) EnvVarWithCursorOu
 	}).(EnvVarWithCursorOutput)
 }
 
+// Query params for the API request.
+type EnvVarsForServiceCreateQueryParams struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams map[string]string `pulumi:"additionalParams"`
+}
+
+// EnvVarsForServiceCreateQueryParamsInput is an input type that accepts EnvVarsForServiceCreateQueryParamsArgs and EnvVarsForServiceCreateQueryParamsOutput values.
+// You can construct a concrete instance of `EnvVarsForServiceCreateQueryParamsInput` via:
+//
+//	EnvVarsForServiceCreateQueryParamsArgs{...}
+type EnvVarsForServiceCreateQueryParamsInput interface {
+	pulumi.Input
+
+	ToEnvVarsForServiceCreateQueryParamsOutput() EnvVarsForServiceCreateQueryParamsOutput
+	ToEnvVarsForServiceCreateQueryParamsOutputWithContext(context.Context) EnvVarsForServiceCreateQueryParamsOutput
+}
+
+// Query params for the API request.
+type EnvVarsForServiceCreateQueryParamsArgs struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams pulumi.StringMapInput `pulumi:"additionalParams"`
+}
+
+func (EnvVarsForServiceCreateQueryParamsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*EnvVarsForServiceCreateQueryParams)(nil)).Elem()
+}
+
+func (i EnvVarsForServiceCreateQueryParamsArgs) ToEnvVarsForServiceCreateQueryParamsOutput() EnvVarsForServiceCreateQueryParamsOutput {
+	return i.ToEnvVarsForServiceCreateQueryParamsOutputWithContext(context.Background())
+}
+
+func (i EnvVarsForServiceCreateQueryParamsArgs) ToEnvVarsForServiceCreateQueryParamsOutputWithContext(ctx context.Context) EnvVarsForServiceCreateQueryParamsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(EnvVarsForServiceCreateQueryParamsOutput)
+}
+
+func (i EnvVarsForServiceCreateQueryParamsArgs) ToEnvVarsForServiceCreateQueryParamsPtrOutput() EnvVarsForServiceCreateQueryParamsPtrOutput {
+	return i.ToEnvVarsForServiceCreateQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i EnvVarsForServiceCreateQueryParamsArgs) ToEnvVarsForServiceCreateQueryParamsPtrOutputWithContext(ctx context.Context) EnvVarsForServiceCreateQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(EnvVarsForServiceCreateQueryParamsOutput).ToEnvVarsForServiceCreateQueryParamsPtrOutputWithContext(ctx)
+}
+
+// EnvVarsForServiceCreateQueryParamsPtrInput is an input type that accepts EnvVarsForServiceCreateQueryParamsArgs, EnvVarsForServiceCreateQueryParamsPtr and EnvVarsForServiceCreateQueryParamsPtrOutput values.
+// You can construct a concrete instance of `EnvVarsForServiceCreateQueryParamsPtrInput` via:
+//
+//	        EnvVarsForServiceCreateQueryParamsArgs{...}
+//
+//	or:
+//
+//	        nil
+type EnvVarsForServiceCreateQueryParamsPtrInput interface {
+	pulumi.Input
+
+	ToEnvVarsForServiceCreateQueryParamsPtrOutput() EnvVarsForServiceCreateQueryParamsPtrOutput
+	ToEnvVarsForServiceCreateQueryParamsPtrOutputWithContext(context.Context) EnvVarsForServiceCreateQueryParamsPtrOutput
+}
+
+type envVarsForServiceCreateQueryParamsPtrType EnvVarsForServiceCreateQueryParamsArgs
+
+func EnvVarsForServiceCreateQueryParamsPtr(v *EnvVarsForServiceCreateQueryParamsArgs) EnvVarsForServiceCreateQueryParamsPtrInput {
+	return (*envVarsForServiceCreateQueryParamsPtrType)(v)
+}
+
+func (*envVarsForServiceCreateQueryParamsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**EnvVarsForServiceCreateQueryParams)(nil)).Elem()
+}
+
+func (i *envVarsForServiceCreateQueryParamsPtrType) ToEnvVarsForServiceCreateQueryParamsPtrOutput() EnvVarsForServiceCreateQueryParamsPtrOutput {
+	return i.ToEnvVarsForServiceCreateQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i *envVarsForServiceCreateQueryParamsPtrType) ToEnvVarsForServiceCreateQueryParamsPtrOutputWithContext(ctx context.Context) EnvVarsForServiceCreateQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(EnvVarsForServiceCreateQueryParamsPtrOutput)
+}
+
+// Query params for the API request.
+type EnvVarsForServiceCreateQueryParamsOutput struct{ *pulumi.OutputState }
+
+func (EnvVarsForServiceCreateQueryParamsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*EnvVarsForServiceCreateQueryParams)(nil)).Elem()
+}
+
+func (o EnvVarsForServiceCreateQueryParamsOutput) ToEnvVarsForServiceCreateQueryParamsOutput() EnvVarsForServiceCreateQueryParamsOutput {
+	return o
+}
+
+func (o EnvVarsForServiceCreateQueryParamsOutput) ToEnvVarsForServiceCreateQueryParamsOutputWithContext(ctx context.Context) EnvVarsForServiceCreateQueryParamsOutput {
+	return o
+}
+
+func (o EnvVarsForServiceCreateQueryParamsOutput) ToEnvVarsForServiceCreateQueryParamsPtrOutput() EnvVarsForServiceCreateQueryParamsPtrOutput {
+	return o.ToEnvVarsForServiceCreateQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (o EnvVarsForServiceCreateQueryParamsOutput) ToEnvVarsForServiceCreateQueryParamsPtrOutputWithContext(ctx context.Context) EnvVarsForServiceCreateQueryParamsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v EnvVarsForServiceCreateQueryParams) *EnvVarsForServiceCreateQueryParams {
+		return &v
+	}).(EnvVarsForServiceCreateQueryParamsPtrOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o EnvVarsForServiceCreateQueryParamsOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v EnvVarsForServiceCreateQueryParams) map[string]string { return v.AdditionalParams }).(pulumi.StringMapOutput)
+}
+
+type EnvVarsForServiceCreateQueryParamsPtrOutput struct{ *pulumi.OutputState }
+
+func (EnvVarsForServiceCreateQueryParamsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**EnvVarsForServiceCreateQueryParams)(nil)).Elem()
+}
+
+func (o EnvVarsForServiceCreateQueryParamsPtrOutput) ToEnvVarsForServiceCreateQueryParamsPtrOutput() EnvVarsForServiceCreateQueryParamsPtrOutput {
+	return o
+}
+
+func (o EnvVarsForServiceCreateQueryParamsPtrOutput) ToEnvVarsForServiceCreateQueryParamsPtrOutputWithContext(ctx context.Context) EnvVarsForServiceCreateQueryParamsPtrOutput {
+	return o
+}
+
+func (o EnvVarsForServiceCreateQueryParamsPtrOutput) Elem() EnvVarsForServiceCreateQueryParamsOutput {
+	return o.ApplyT(func(v *EnvVarsForServiceCreateQueryParams) EnvVarsForServiceCreateQueryParams {
+		if v != nil {
+			return *v
+		}
+		var ret EnvVarsForServiceCreateQueryParams
+		return ret
+	}).(EnvVarsForServiceCreateQueryParamsOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o EnvVarsForServiceCreateQueryParamsPtrOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *EnvVarsForServiceCreateQueryParams) map[string]string {
+		if v == nil {
+			return nil
+		}
+		return v.AdditionalParams
+	}).(pulumi.StringMapOutput)
+}
+
+// Query params for the API request.
+type EnvVarsForServicePutQueryParams struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams map[string]string `pulumi:"additionalParams"`
+}
+
+// EnvVarsForServicePutQueryParamsInput is an input type that accepts EnvVarsForServicePutQueryParamsArgs and EnvVarsForServicePutQueryParamsOutput values.
+// You can construct a concrete instance of `EnvVarsForServicePutQueryParamsInput` via:
+//
+//	EnvVarsForServicePutQueryParamsArgs{...}
+type EnvVarsForServicePutQueryParamsInput interface {
+	pulumi.Input
+
+	ToEnvVarsForServicePutQueryParamsOutput() EnvVarsForServicePutQueryParamsOutput
+	ToEnvVarsForServicePutQueryParamsOutputWithContext(context.Context) EnvVarsForServicePutQueryParamsOutput
+}
+
+// Query params for the API request.
+type EnvVarsForServicePutQueryParamsArgs struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams pulumi.StringMapInput `pulumi:"additionalParams"`
+}
+
+func (EnvVarsForServicePutQueryParamsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*EnvVarsForServicePutQueryParams)(nil)).Elem()
+}
+
+func (i EnvVarsForServicePutQueryParamsArgs) ToEnvVarsForServicePutQueryParamsOutput() EnvVarsForServicePutQueryParamsOutput {
+	return i.ToEnvVarsForServicePutQueryParamsOutputWithContext(context.Background())
+}
+
+func (i EnvVarsForServicePutQueryParamsArgs) ToEnvVarsForServicePutQueryParamsOutputWithContext(ctx context.Context) EnvVarsForServicePutQueryParamsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(EnvVarsForServicePutQueryParamsOutput)
+}
+
+func (i EnvVarsForServicePutQueryParamsArgs) ToEnvVarsForServicePutQueryParamsPtrOutput() EnvVarsForServicePutQueryParamsPtrOutput {
+	return i.ToEnvVarsForServicePutQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i EnvVarsForServicePutQueryParamsArgs) ToEnvVarsForServicePutQueryParamsPtrOutputWithContext(ctx context.Context) EnvVarsForServicePutQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(EnvVarsForServicePutQueryParamsOutput).ToEnvVarsForServicePutQueryParamsPtrOutputWithContext(ctx)
+}
+
+// EnvVarsForServicePutQueryParamsPtrInput is an input type that accepts EnvVarsForServicePutQueryParamsArgs, EnvVarsForServicePutQueryParamsPtr and EnvVarsForServicePutQueryParamsPtrOutput values.
+// You can construct a concrete instance of `EnvVarsForServicePutQueryParamsPtrInput` via:
+//
+//	        EnvVarsForServicePutQueryParamsArgs{...}
+//
+//	or:
+//
+//	        nil
+type EnvVarsForServicePutQueryParamsPtrInput interface {
+	pulumi.Input
+
+	ToEnvVarsForServicePutQueryParamsPtrOutput() EnvVarsForServicePutQueryParamsPtrOutput
+	ToEnvVarsForServicePutQueryParamsPtrOutputWithContext(context.Context) EnvVarsForServicePutQueryParamsPtrOutput
+}
+
+type envVarsForServicePutQueryParamsPtrType EnvVarsForServicePutQueryParamsArgs
+
+func EnvVarsForServicePutQueryParamsPtr(v *EnvVarsForServicePutQueryParamsArgs) EnvVarsForServicePutQueryParamsPtrInput {
+	return (*envVarsForServicePutQueryParamsPtrType)(v)
+}
+
+func (*envVarsForServicePutQueryParamsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**EnvVarsForServicePutQueryParams)(nil)).Elem()
+}
+
+func (i *envVarsForServicePutQueryParamsPtrType) ToEnvVarsForServicePutQueryParamsPtrOutput() EnvVarsForServicePutQueryParamsPtrOutput {
+	return i.ToEnvVarsForServicePutQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i *envVarsForServicePutQueryParamsPtrType) ToEnvVarsForServicePutQueryParamsPtrOutputWithContext(ctx context.Context) EnvVarsForServicePutQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(EnvVarsForServicePutQueryParamsPtrOutput)
+}
+
+// Query params for the API request.
+type EnvVarsForServicePutQueryParamsOutput struct{ *pulumi.OutputState }
+
+func (EnvVarsForServicePutQueryParamsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*EnvVarsForServicePutQueryParams)(nil)).Elem()
+}
+
+func (o EnvVarsForServicePutQueryParamsOutput) ToEnvVarsForServicePutQueryParamsOutput() EnvVarsForServicePutQueryParamsOutput {
+	return o
+}
+
+func (o EnvVarsForServicePutQueryParamsOutput) ToEnvVarsForServicePutQueryParamsOutputWithContext(ctx context.Context) EnvVarsForServicePutQueryParamsOutput {
+	return o
+}
+
+func (o EnvVarsForServicePutQueryParamsOutput) ToEnvVarsForServicePutQueryParamsPtrOutput() EnvVarsForServicePutQueryParamsPtrOutput {
+	return o.ToEnvVarsForServicePutQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (o EnvVarsForServicePutQueryParamsOutput) ToEnvVarsForServicePutQueryParamsPtrOutputWithContext(ctx context.Context) EnvVarsForServicePutQueryParamsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v EnvVarsForServicePutQueryParams) *EnvVarsForServicePutQueryParams {
+		return &v
+	}).(EnvVarsForServicePutQueryParamsPtrOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o EnvVarsForServicePutQueryParamsOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v EnvVarsForServicePutQueryParams) map[string]string { return v.AdditionalParams }).(pulumi.StringMapOutput)
+}
+
+type EnvVarsForServicePutQueryParamsPtrOutput struct{ *pulumi.OutputState }
+
+func (EnvVarsForServicePutQueryParamsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**EnvVarsForServicePutQueryParams)(nil)).Elem()
+}
+
+func (o EnvVarsForServicePutQueryParamsPtrOutput) ToEnvVarsForServicePutQueryParamsPtrOutput() EnvVarsForServicePutQueryParamsPtrOutput {
+	return o
+}
+
+func (o EnvVarsForServicePutQueryParamsPtrOutput) ToEnvVarsForServicePutQueryParamsPtrOutputWithContext(ctx context.Context) EnvVarsForServicePutQueryParamsPtrOutput {
+	return o
+}
+
+func (o EnvVarsForServicePutQueryParamsPtrOutput) Elem() EnvVarsForServicePutQueryParamsOutput {
+	return o.ApplyT(func(v *EnvVarsForServicePutQueryParams) EnvVarsForServicePutQueryParams {
+		if v != nil {
+			return *v
+		}
+		var ret EnvVarsForServicePutQueryParams
+		return ret
+	}).(EnvVarsForServicePutQueryParamsOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o EnvVarsForServicePutQueryParamsPtrOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *EnvVarsForServicePutQueryParams) map[string]string {
+		if v == nil {
+			return nil
+		}
+		return v.AdditionalParams
+	}).(pulumi.StringMapOutput)
+}
+
+// Query params for each of the operations of the resource.
+type EnvVarsForServiceQueryParams struct {
+	// Query params for the create operation.
+	Create *EnvVarsForServiceCreateQueryParams `pulumi:"create"`
+	// Query params for the put operation.
+	Put *EnvVarsForServicePutQueryParams `pulumi:"put"`
+}
+
+// EnvVarsForServiceQueryParamsInput is an input type that accepts EnvVarsForServiceQueryParamsArgs and EnvVarsForServiceQueryParamsOutput values.
+// You can construct a concrete instance of `EnvVarsForServiceQueryParamsInput` via:
+//
+//	EnvVarsForServiceQueryParamsArgs{...}
+type EnvVarsForServiceQueryParamsInput interface {
+	pulumi.Input
+
+	ToEnvVarsForServiceQueryParamsOutput() EnvVarsForServiceQueryParamsOutput
+	ToEnvVarsForServiceQueryParamsOutputWithContext(context.Context) EnvVarsForServiceQueryParamsOutput
+}
+
+// Query params for each of the operations of the resource.
+type EnvVarsForServiceQueryParamsArgs struct {
+	// Query params for the create operation.
+	Create EnvVarsForServiceCreateQueryParamsPtrInput `pulumi:"create"`
+	// Query params for the put operation.
+	Put EnvVarsForServicePutQueryParamsPtrInput `pulumi:"put"`
+}
+
+func (EnvVarsForServiceQueryParamsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*EnvVarsForServiceQueryParams)(nil)).Elem()
+}
+
+func (i EnvVarsForServiceQueryParamsArgs) ToEnvVarsForServiceQueryParamsOutput() EnvVarsForServiceQueryParamsOutput {
+	return i.ToEnvVarsForServiceQueryParamsOutputWithContext(context.Background())
+}
+
+func (i EnvVarsForServiceQueryParamsArgs) ToEnvVarsForServiceQueryParamsOutputWithContext(ctx context.Context) EnvVarsForServiceQueryParamsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(EnvVarsForServiceQueryParamsOutput)
+}
+
+func (i EnvVarsForServiceQueryParamsArgs) ToEnvVarsForServiceQueryParamsPtrOutput() EnvVarsForServiceQueryParamsPtrOutput {
+	return i.ToEnvVarsForServiceQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i EnvVarsForServiceQueryParamsArgs) ToEnvVarsForServiceQueryParamsPtrOutputWithContext(ctx context.Context) EnvVarsForServiceQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(EnvVarsForServiceQueryParamsOutput).ToEnvVarsForServiceQueryParamsPtrOutputWithContext(ctx)
+}
+
+// EnvVarsForServiceQueryParamsPtrInput is an input type that accepts EnvVarsForServiceQueryParamsArgs, EnvVarsForServiceQueryParamsPtr and EnvVarsForServiceQueryParamsPtrOutput values.
+// You can construct a concrete instance of `EnvVarsForServiceQueryParamsPtrInput` via:
+//
+//	        EnvVarsForServiceQueryParamsArgs{...}
+//
+//	or:
+//
+//	        nil
+type EnvVarsForServiceQueryParamsPtrInput interface {
+	pulumi.Input
+
+	ToEnvVarsForServiceQueryParamsPtrOutput() EnvVarsForServiceQueryParamsPtrOutput
+	ToEnvVarsForServiceQueryParamsPtrOutputWithContext(context.Context) EnvVarsForServiceQueryParamsPtrOutput
+}
+
+type envVarsForServiceQueryParamsPtrType EnvVarsForServiceQueryParamsArgs
+
+func EnvVarsForServiceQueryParamsPtr(v *EnvVarsForServiceQueryParamsArgs) EnvVarsForServiceQueryParamsPtrInput {
+	return (*envVarsForServiceQueryParamsPtrType)(v)
+}
+
+func (*envVarsForServiceQueryParamsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**EnvVarsForServiceQueryParams)(nil)).Elem()
+}
+
+func (i *envVarsForServiceQueryParamsPtrType) ToEnvVarsForServiceQueryParamsPtrOutput() EnvVarsForServiceQueryParamsPtrOutput {
+	return i.ToEnvVarsForServiceQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i *envVarsForServiceQueryParamsPtrType) ToEnvVarsForServiceQueryParamsPtrOutputWithContext(ctx context.Context) EnvVarsForServiceQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(EnvVarsForServiceQueryParamsPtrOutput)
+}
+
+// Query params for each of the operations of the resource.
+type EnvVarsForServiceQueryParamsOutput struct{ *pulumi.OutputState }
+
+func (EnvVarsForServiceQueryParamsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*EnvVarsForServiceQueryParams)(nil)).Elem()
+}
+
+func (o EnvVarsForServiceQueryParamsOutput) ToEnvVarsForServiceQueryParamsOutput() EnvVarsForServiceQueryParamsOutput {
+	return o
+}
+
+func (o EnvVarsForServiceQueryParamsOutput) ToEnvVarsForServiceQueryParamsOutputWithContext(ctx context.Context) EnvVarsForServiceQueryParamsOutput {
+	return o
+}
+
+func (o EnvVarsForServiceQueryParamsOutput) ToEnvVarsForServiceQueryParamsPtrOutput() EnvVarsForServiceQueryParamsPtrOutput {
+	return o.ToEnvVarsForServiceQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (o EnvVarsForServiceQueryParamsOutput) ToEnvVarsForServiceQueryParamsPtrOutputWithContext(ctx context.Context) EnvVarsForServiceQueryParamsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v EnvVarsForServiceQueryParams) *EnvVarsForServiceQueryParams {
+		return &v
+	}).(EnvVarsForServiceQueryParamsPtrOutput)
+}
+
+// Query params for the create operation.
+func (o EnvVarsForServiceQueryParamsOutput) Create() EnvVarsForServiceCreateQueryParamsPtrOutput {
+	return o.ApplyT(func(v EnvVarsForServiceQueryParams) *EnvVarsForServiceCreateQueryParams { return v.Create }).(EnvVarsForServiceCreateQueryParamsPtrOutput)
+}
+
+// Query params for the put operation.
+func (o EnvVarsForServiceQueryParamsOutput) Put() EnvVarsForServicePutQueryParamsPtrOutput {
+	return o.ApplyT(func(v EnvVarsForServiceQueryParams) *EnvVarsForServicePutQueryParams { return v.Put }).(EnvVarsForServicePutQueryParamsPtrOutput)
+}
+
+type EnvVarsForServiceQueryParamsPtrOutput struct{ *pulumi.OutputState }
+
+func (EnvVarsForServiceQueryParamsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**EnvVarsForServiceQueryParams)(nil)).Elem()
+}
+
+func (o EnvVarsForServiceQueryParamsPtrOutput) ToEnvVarsForServiceQueryParamsPtrOutput() EnvVarsForServiceQueryParamsPtrOutput {
+	return o
+}
+
+func (o EnvVarsForServiceQueryParamsPtrOutput) ToEnvVarsForServiceQueryParamsPtrOutputWithContext(ctx context.Context) EnvVarsForServiceQueryParamsPtrOutput {
+	return o
+}
+
+func (o EnvVarsForServiceQueryParamsPtrOutput) Elem() EnvVarsForServiceQueryParamsOutput {
+	return o.ApplyT(func(v *EnvVarsForServiceQueryParams) EnvVarsForServiceQueryParams {
+		if v != nil {
+			return *v
+		}
+		var ret EnvVarsForServiceQueryParams
+		return ret
+	}).(EnvVarsForServiceQueryParamsOutput)
+}
+
+// Query params for the create operation.
+func (o EnvVarsForServiceQueryParamsPtrOutput) Create() EnvVarsForServiceCreateQueryParamsPtrOutput {
+	return o.ApplyT(func(v *EnvVarsForServiceQueryParams) *EnvVarsForServiceCreateQueryParams {
+		if v == nil {
+			return nil
+		}
+		return v.Create
+	}).(EnvVarsForServiceCreateQueryParamsPtrOutput)
+}
+
+// Query params for the put operation.
+func (o EnvVarsForServiceQueryParamsPtrOutput) Put() EnvVarsForServicePutQueryParamsPtrOutput {
+	return o.ApplyT(func(v *EnvVarsForServiceQueryParams) *EnvVarsForServicePutQueryParams {
+		if v == nil {
+			return nil
+		}
+		return v.Put
+	}).(EnvVarsForServicePutQueryParamsPtrOutput)
+}
+
 type GetBackgroundWorkerType struct {
 	AutoDeploy  ServiceAutoDeploy `pulumi:"autoDeploy"`
 	Branch      *string           `pulumi:"branch"`
@@ -3066,6 +7812,146 @@ func (val *GetBackgroundWorkerType) Defaults() *GetBackgroundWorkerType {
 		tmp.Type = &type_
 	}
 	return &tmp
+}
+
+// Query params for the API request.
+type GetBackgroundWorkerQueryParams struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams map[string]string `pulumi:"additionalParams"`
+}
+
+// GetBackgroundWorkerQueryParamsInput is an input type that accepts GetBackgroundWorkerQueryParamsArgs and GetBackgroundWorkerQueryParamsOutput values.
+// You can construct a concrete instance of `GetBackgroundWorkerQueryParamsInput` via:
+//
+//	GetBackgroundWorkerQueryParamsArgs{...}
+type GetBackgroundWorkerQueryParamsInput interface {
+	pulumi.Input
+
+	ToGetBackgroundWorkerQueryParamsOutput() GetBackgroundWorkerQueryParamsOutput
+	ToGetBackgroundWorkerQueryParamsOutputWithContext(context.Context) GetBackgroundWorkerQueryParamsOutput
+}
+
+// Query params for the API request.
+type GetBackgroundWorkerQueryParamsArgs struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams pulumi.StringMapInput `pulumi:"additionalParams"`
+}
+
+func (GetBackgroundWorkerQueryParamsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetBackgroundWorkerQueryParams)(nil)).Elem()
+}
+
+func (i GetBackgroundWorkerQueryParamsArgs) ToGetBackgroundWorkerQueryParamsOutput() GetBackgroundWorkerQueryParamsOutput {
+	return i.ToGetBackgroundWorkerQueryParamsOutputWithContext(context.Background())
+}
+
+func (i GetBackgroundWorkerQueryParamsArgs) ToGetBackgroundWorkerQueryParamsOutputWithContext(ctx context.Context) GetBackgroundWorkerQueryParamsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetBackgroundWorkerQueryParamsOutput)
+}
+
+func (i GetBackgroundWorkerQueryParamsArgs) ToGetBackgroundWorkerQueryParamsPtrOutput() GetBackgroundWorkerQueryParamsPtrOutput {
+	return i.ToGetBackgroundWorkerQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i GetBackgroundWorkerQueryParamsArgs) ToGetBackgroundWorkerQueryParamsPtrOutputWithContext(ctx context.Context) GetBackgroundWorkerQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetBackgroundWorkerQueryParamsOutput).ToGetBackgroundWorkerQueryParamsPtrOutputWithContext(ctx)
+}
+
+// GetBackgroundWorkerQueryParamsPtrInput is an input type that accepts GetBackgroundWorkerQueryParamsArgs, GetBackgroundWorkerQueryParamsPtr and GetBackgroundWorkerQueryParamsPtrOutput values.
+// You can construct a concrete instance of `GetBackgroundWorkerQueryParamsPtrInput` via:
+//
+//	        GetBackgroundWorkerQueryParamsArgs{...}
+//
+//	or:
+//
+//	        nil
+type GetBackgroundWorkerQueryParamsPtrInput interface {
+	pulumi.Input
+
+	ToGetBackgroundWorkerQueryParamsPtrOutput() GetBackgroundWorkerQueryParamsPtrOutput
+	ToGetBackgroundWorkerQueryParamsPtrOutputWithContext(context.Context) GetBackgroundWorkerQueryParamsPtrOutput
+}
+
+type getBackgroundWorkerQueryParamsPtrType GetBackgroundWorkerQueryParamsArgs
+
+func GetBackgroundWorkerQueryParamsPtr(v *GetBackgroundWorkerQueryParamsArgs) GetBackgroundWorkerQueryParamsPtrInput {
+	return (*getBackgroundWorkerQueryParamsPtrType)(v)
+}
+
+func (*getBackgroundWorkerQueryParamsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**GetBackgroundWorkerQueryParams)(nil)).Elem()
+}
+
+func (i *getBackgroundWorkerQueryParamsPtrType) ToGetBackgroundWorkerQueryParamsPtrOutput() GetBackgroundWorkerQueryParamsPtrOutput {
+	return i.ToGetBackgroundWorkerQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i *getBackgroundWorkerQueryParamsPtrType) ToGetBackgroundWorkerQueryParamsPtrOutputWithContext(ctx context.Context) GetBackgroundWorkerQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetBackgroundWorkerQueryParamsPtrOutput)
+}
+
+// Query params for the API request.
+type GetBackgroundWorkerQueryParamsOutput struct{ *pulumi.OutputState }
+
+func (GetBackgroundWorkerQueryParamsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetBackgroundWorkerQueryParams)(nil)).Elem()
+}
+
+func (o GetBackgroundWorkerQueryParamsOutput) ToGetBackgroundWorkerQueryParamsOutput() GetBackgroundWorkerQueryParamsOutput {
+	return o
+}
+
+func (o GetBackgroundWorkerQueryParamsOutput) ToGetBackgroundWorkerQueryParamsOutputWithContext(ctx context.Context) GetBackgroundWorkerQueryParamsOutput {
+	return o
+}
+
+func (o GetBackgroundWorkerQueryParamsOutput) ToGetBackgroundWorkerQueryParamsPtrOutput() GetBackgroundWorkerQueryParamsPtrOutput {
+	return o.ToGetBackgroundWorkerQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (o GetBackgroundWorkerQueryParamsOutput) ToGetBackgroundWorkerQueryParamsPtrOutputWithContext(ctx context.Context) GetBackgroundWorkerQueryParamsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v GetBackgroundWorkerQueryParams) *GetBackgroundWorkerQueryParams {
+		return &v
+	}).(GetBackgroundWorkerQueryParamsPtrOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o GetBackgroundWorkerQueryParamsOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v GetBackgroundWorkerQueryParams) map[string]string { return v.AdditionalParams }).(pulumi.StringMapOutput)
+}
+
+type GetBackgroundWorkerQueryParamsPtrOutput struct{ *pulumi.OutputState }
+
+func (GetBackgroundWorkerQueryParamsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**GetBackgroundWorkerQueryParams)(nil)).Elem()
+}
+
+func (o GetBackgroundWorkerQueryParamsPtrOutput) ToGetBackgroundWorkerQueryParamsPtrOutput() GetBackgroundWorkerQueryParamsPtrOutput {
+	return o
+}
+
+func (o GetBackgroundWorkerQueryParamsPtrOutput) ToGetBackgroundWorkerQueryParamsPtrOutputWithContext(ctx context.Context) GetBackgroundWorkerQueryParamsPtrOutput {
+	return o
+}
+
+func (o GetBackgroundWorkerQueryParamsPtrOutput) Elem() GetBackgroundWorkerQueryParamsOutput {
+	return o.ApplyT(func(v *GetBackgroundWorkerQueryParams) GetBackgroundWorkerQueryParams {
+		if v != nil {
+			return *v
+		}
+		var ret GetBackgroundWorkerQueryParams
+		return ret
+	}).(GetBackgroundWorkerQueryParamsOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o GetBackgroundWorkerQueryParamsPtrOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *GetBackgroundWorkerQueryParams) map[string]string {
+		if v == nil {
+			return nil
+		}
+		return v.AdditionalParams
+	}).(pulumi.StringMapOutput)
 }
 
 type GetCronJobType struct {
@@ -3110,6 +7996,706 @@ func (val *GetCronJobType) Defaults() *GetCronJobType {
 	return &tmp
 }
 
+// Query params for the API request.
+type GetCronJobQueryParams struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams map[string]string `pulumi:"additionalParams"`
+}
+
+// GetCronJobQueryParamsInput is an input type that accepts GetCronJobQueryParamsArgs and GetCronJobQueryParamsOutput values.
+// You can construct a concrete instance of `GetCronJobQueryParamsInput` via:
+//
+//	GetCronJobQueryParamsArgs{...}
+type GetCronJobQueryParamsInput interface {
+	pulumi.Input
+
+	ToGetCronJobQueryParamsOutput() GetCronJobQueryParamsOutput
+	ToGetCronJobQueryParamsOutputWithContext(context.Context) GetCronJobQueryParamsOutput
+}
+
+// Query params for the API request.
+type GetCronJobQueryParamsArgs struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams pulumi.StringMapInput `pulumi:"additionalParams"`
+}
+
+func (GetCronJobQueryParamsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetCronJobQueryParams)(nil)).Elem()
+}
+
+func (i GetCronJobQueryParamsArgs) ToGetCronJobQueryParamsOutput() GetCronJobQueryParamsOutput {
+	return i.ToGetCronJobQueryParamsOutputWithContext(context.Background())
+}
+
+func (i GetCronJobQueryParamsArgs) ToGetCronJobQueryParamsOutputWithContext(ctx context.Context) GetCronJobQueryParamsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetCronJobQueryParamsOutput)
+}
+
+func (i GetCronJobQueryParamsArgs) ToGetCronJobQueryParamsPtrOutput() GetCronJobQueryParamsPtrOutput {
+	return i.ToGetCronJobQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i GetCronJobQueryParamsArgs) ToGetCronJobQueryParamsPtrOutputWithContext(ctx context.Context) GetCronJobQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetCronJobQueryParamsOutput).ToGetCronJobQueryParamsPtrOutputWithContext(ctx)
+}
+
+// GetCronJobQueryParamsPtrInput is an input type that accepts GetCronJobQueryParamsArgs, GetCronJobQueryParamsPtr and GetCronJobQueryParamsPtrOutput values.
+// You can construct a concrete instance of `GetCronJobQueryParamsPtrInput` via:
+//
+//	        GetCronJobQueryParamsArgs{...}
+//
+//	or:
+//
+//	        nil
+type GetCronJobQueryParamsPtrInput interface {
+	pulumi.Input
+
+	ToGetCronJobQueryParamsPtrOutput() GetCronJobQueryParamsPtrOutput
+	ToGetCronJobQueryParamsPtrOutputWithContext(context.Context) GetCronJobQueryParamsPtrOutput
+}
+
+type getCronJobQueryParamsPtrType GetCronJobQueryParamsArgs
+
+func GetCronJobQueryParamsPtr(v *GetCronJobQueryParamsArgs) GetCronJobQueryParamsPtrInput {
+	return (*getCronJobQueryParamsPtrType)(v)
+}
+
+func (*getCronJobQueryParamsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**GetCronJobQueryParams)(nil)).Elem()
+}
+
+func (i *getCronJobQueryParamsPtrType) ToGetCronJobQueryParamsPtrOutput() GetCronJobQueryParamsPtrOutput {
+	return i.ToGetCronJobQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i *getCronJobQueryParamsPtrType) ToGetCronJobQueryParamsPtrOutputWithContext(ctx context.Context) GetCronJobQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetCronJobQueryParamsPtrOutput)
+}
+
+// Query params for the API request.
+type GetCronJobQueryParamsOutput struct{ *pulumi.OutputState }
+
+func (GetCronJobQueryParamsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetCronJobQueryParams)(nil)).Elem()
+}
+
+func (o GetCronJobQueryParamsOutput) ToGetCronJobQueryParamsOutput() GetCronJobQueryParamsOutput {
+	return o
+}
+
+func (o GetCronJobQueryParamsOutput) ToGetCronJobQueryParamsOutputWithContext(ctx context.Context) GetCronJobQueryParamsOutput {
+	return o
+}
+
+func (o GetCronJobQueryParamsOutput) ToGetCronJobQueryParamsPtrOutput() GetCronJobQueryParamsPtrOutput {
+	return o.ToGetCronJobQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (o GetCronJobQueryParamsOutput) ToGetCronJobQueryParamsPtrOutputWithContext(ctx context.Context) GetCronJobQueryParamsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v GetCronJobQueryParams) *GetCronJobQueryParams {
+		return &v
+	}).(GetCronJobQueryParamsPtrOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o GetCronJobQueryParamsOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v GetCronJobQueryParams) map[string]string { return v.AdditionalParams }).(pulumi.StringMapOutput)
+}
+
+type GetCronJobQueryParamsPtrOutput struct{ *pulumi.OutputState }
+
+func (GetCronJobQueryParamsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**GetCronJobQueryParams)(nil)).Elem()
+}
+
+func (o GetCronJobQueryParamsPtrOutput) ToGetCronJobQueryParamsPtrOutput() GetCronJobQueryParamsPtrOutput {
+	return o
+}
+
+func (o GetCronJobQueryParamsPtrOutput) ToGetCronJobQueryParamsPtrOutputWithContext(ctx context.Context) GetCronJobQueryParamsPtrOutput {
+	return o
+}
+
+func (o GetCronJobQueryParamsPtrOutput) Elem() GetCronJobQueryParamsOutput {
+	return o.ApplyT(func(v *GetCronJobQueryParams) GetCronJobQueryParams {
+		if v != nil {
+			return *v
+		}
+		var ret GetCronJobQueryParams
+		return ret
+	}).(GetCronJobQueryParamsOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o GetCronJobQueryParamsPtrOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *GetCronJobQueryParams) map[string]string {
+		if v == nil {
+			return nil
+		}
+		return v.AdditionalParams
+	}).(pulumi.StringMapOutput)
+}
+
+// Query params for the API request.
+type GetCustomDomainQueryParams struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams map[string]string `pulumi:"additionalParams"`
+}
+
+// GetCustomDomainQueryParamsInput is an input type that accepts GetCustomDomainQueryParamsArgs and GetCustomDomainQueryParamsOutput values.
+// You can construct a concrete instance of `GetCustomDomainQueryParamsInput` via:
+//
+//	GetCustomDomainQueryParamsArgs{...}
+type GetCustomDomainQueryParamsInput interface {
+	pulumi.Input
+
+	ToGetCustomDomainQueryParamsOutput() GetCustomDomainQueryParamsOutput
+	ToGetCustomDomainQueryParamsOutputWithContext(context.Context) GetCustomDomainQueryParamsOutput
+}
+
+// Query params for the API request.
+type GetCustomDomainQueryParamsArgs struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams pulumi.StringMapInput `pulumi:"additionalParams"`
+}
+
+func (GetCustomDomainQueryParamsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetCustomDomainQueryParams)(nil)).Elem()
+}
+
+func (i GetCustomDomainQueryParamsArgs) ToGetCustomDomainQueryParamsOutput() GetCustomDomainQueryParamsOutput {
+	return i.ToGetCustomDomainQueryParamsOutputWithContext(context.Background())
+}
+
+func (i GetCustomDomainQueryParamsArgs) ToGetCustomDomainQueryParamsOutputWithContext(ctx context.Context) GetCustomDomainQueryParamsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetCustomDomainQueryParamsOutput)
+}
+
+func (i GetCustomDomainQueryParamsArgs) ToGetCustomDomainQueryParamsPtrOutput() GetCustomDomainQueryParamsPtrOutput {
+	return i.ToGetCustomDomainQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i GetCustomDomainQueryParamsArgs) ToGetCustomDomainQueryParamsPtrOutputWithContext(ctx context.Context) GetCustomDomainQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetCustomDomainQueryParamsOutput).ToGetCustomDomainQueryParamsPtrOutputWithContext(ctx)
+}
+
+// GetCustomDomainQueryParamsPtrInput is an input type that accepts GetCustomDomainQueryParamsArgs, GetCustomDomainQueryParamsPtr and GetCustomDomainQueryParamsPtrOutput values.
+// You can construct a concrete instance of `GetCustomDomainQueryParamsPtrInput` via:
+//
+//	        GetCustomDomainQueryParamsArgs{...}
+//
+//	or:
+//
+//	        nil
+type GetCustomDomainQueryParamsPtrInput interface {
+	pulumi.Input
+
+	ToGetCustomDomainQueryParamsPtrOutput() GetCustomDomainQueryParamsPtrOutput
+	ToGetCustomDomainQueryParamsPtrOutputWithContext(context.Context) GetCustomDomainQueryParamsPtrOutput
+}
+
+type getCustomDomainQueryParamsPtrType GetCustomDomainQueryParamsArgs
+
+func GetCustomDomainQueryParamsPtr(v *GetCustomDomainQueryParamsArgs) GetCustomDomainQueryParamsPtrInput {
+	return (*getCustomDomainQueryParamsPtrType)(v)
+}
+
+func (*getCustomDomainQueryParamsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**GetCustomDomainQueryParams)(nil)).Elem()
+}
+
+func (i *getCustomDomainQueryParamsPtrType) ToGetCustomDomainQueryParamsPtrOutput() GetCustomDomainQueryParamsPtrOutput {
+	return i.ToGetCustomDomainQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i *getCustomDomainQueryParamsPtrType) ToGetCustomDomainQueryParamsPtrOutputWithContext(ctx context.Context) GetCustomDomainQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetCustomDomainQueryParamsPtrOutput)
+}
+
+// Query params for the API request.
+type GetCustomDomainQueryParamsOutput struct{ *pulumi.OutputState }
+
+func (GetCustomDomainQueryParamsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetCustomDomainQueryParams)(nil)).Elem()
+}
+
+func (o GetCustomDomainQueryParamsOutput) ToGetCustomDomainQueryParamsOutput() GetCustomDomainQueryParamsOutput {
+	return o
+}
+
+func (o GetCustomDomainQueryParamsOutput) ToGetCustomDomainQueryParamsOutputWithContext(ctx context.Context) GetCustomDomainQueryParamsOutput {
+	return o
+}
+
+func (o GetCustomDomainQueryParamsOutput) ToGetCustomDomainQueryParamsPtrOutput() GetCustomDomainQueryParamsPtrOutput {
+	return o.ToGetCustomDomainQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (o GetCustomDomainQueryParamsOutput) ToGetCustomDomainQueryParamsPtrOutputWithContext(ctx context.Context) GetCustomDomainQueryParamsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v GetCustomDomainQueryParams) *GetCustomDomainQueryParams {
+		return &v
+	}).(GetCustomDomainQueryParamsPtrOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o GetCustomDomainQueryParamsOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v GetCustomDomainQueryParams) map[string]string { return v.AdditionalParams }).(pulumi.StringMapOutput)
+}
+
+type GetCustomDomainQueryParamsPtrOutput struct{ *pulumi.OutputState }
+
+func (GetCustomDomainQueryParamsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**GetCustomDomainQueryParams)(nil)).Elem()
+}
+
+func (o GetCustomDomainQueryParamsPtrOutput) ToGetCustomDomainQueryParamsPtrOutput() GetCustomDomainQueryParamsPtrOutput {
+	return o
+}
+
+func (o GetCustomDomainQueryParamsPtrOutput) ToGetCustomDomainQueryParamsPtrOutputWithContext(ctx context.Context) GetCustomDomainQueryParamsPtrOutput {
+	return o
+}
+
+func (o GetCustomDomainQueryParamsPtrOutput) Elem() GetCustomDomainQueryParamsOutput {
+	return o.ApplyT(func(v *GetCustomDomainQueryParams) GetCustomDomainQueryParams {
+		if v != nil {
+			return *v
+		}
+		var ret GetCustomDomainQueryParams
+		return ret
+	}).(GetCustomDomainQueryParamsOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o GetCustomDomainQueryParamsPtrOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *GetCustomDomainQueryParams) map[string]string {
+		if v == nil {
+			return nil
+		}
+		return v.AdditionalParams
+	}).(pulumi.StringMapOutput)
+}
+
+// Query params for the API request.
+type GetDeployQueryParams struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams map[string]string `pulumi:"additionalParams"`
+}
+
+// GetDeployQueryParamsInput is an input type that accepts GetDeployQueryParamsArgs and GetDeployQueryParamsOutput values.
+// You can construct a concrete instance of `GetDeployQueryParamsInput` via:
+//
+//	GetDeployQueryParamsArgs{...}
+type GetDeployQueryParamsInput interface {
+	pulumi.Input
+
+	ToGetDeployQueryParamsOutput() GetDeployQueryParamsOutput
+	ToGetDeployQueryParamsOutputWithContext(context.Context) GetDeployQueryParamsOutput
+}
+
+// Query params for the API request.
+type GetDeployQueryParamsArgs struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams pulumi.StringMapInput `pulumi:"additionalParams"`
+}
+
+func (GetDeployQueryParamsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetDeployQueryParams)(nil)).Elem()
+}
+
+func (i GetDeployQueryParamsArgs) ToGetDeployQueryParamsOutput() GetDeployQueryParamsOutput {
+	return i.ToGetDeployQueryParamsOutputWithContext(context.Background())
+}
+
+func (i GetDeployQueryParamsArgs) ToGetDeployQueryParamsOutputWithContext(ctx context.Context) GetDeployQueryParamsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetDeployQueryParamsOutput)
+}
+
+func (i GetDeployQueryParamsArgs) ToGetDeployQueryParamsPtrOutput() GetDeployQueryParamsPtrOutput {
+	return i.ToGetDeployQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i GetDeployQueryParamsArgs) ToGetDeployQueryParamsPtrOutputWithContext(ctx context.Context) GetDeployQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetDeployQueryParamsOutput).ToGetDeployQueryParamsPtrOutputWithContext(ctx)
+}
+
+// GetDeployQueryParamsPtrInput is an input type that accepts GetDeployQueryParamsArgs, GetDeployQueryParamsPtr and GetDeployQueryParamsPtrOutput values.
+// You can construct a concrete instance of `GetDeployQueryParamsPtrInput` via:
+//
+//	        GetDeployQueryParamsArgs{...}
+//
+//	or:
+//
+//	        nil
+type GetDeployQueryParamsPtrInput interface {
+	pulumi.Input
+
+	ToGetDeployQueryParamsPtrOutput() GetDeployQueryParamsPtrOutput
+	ToGetDeployQueryParamsPtrOutputWithContext(context.Context) GetDeployQueryParamsPtrOutput
+}
+
+type getDeployQueryParamsPtrType GetDeployQueryParamsArgs
+
+func GetDeployQueryParamsPtr(v *GetDeployQueryParamsArgs) GetDeployQueryParamsPtrInput {
+	return (*getDeployQueryParamsPtrType)(v)
+}
+
+func (*getDeployQueryParamsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**GetDeployQueryParams)(nil)).Elem()
+}
+
+func (i *getDeployQueryParamsPtrType) ToGetDeployQueryParamsPtrOutput() GetDeployQueryParamsPtrOutput {
+	return i.ToGetDeployQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i *getDeployQueryParamsPtrType) ToGetDeployQueryParamsPtrOutputWithContext(ctx context.Context) GetDeployQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetDeployQueryParamsPtrOutput)
+}
+
+// Query params for the API request.
+type GetDeployQueryParamsOutput struct{ *pulumi.OutputState }
+
+func (GetDeployQueryParamsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetDeployQueryParams)(nil)).Elem()
+}
+
+func (o GetDeployQueryParamsOutput) ToGetDeployQueryParamsOutput() GetDeployQueryParamsOutput {
+	return o
+}
+
+func (o GetDeployQueryParamsOutput) ToGetDeployQueryParamsOutputWithContext(ctx context.Context) GetDeployQueryParamsOutput {
+	return o
+}
+
+func (o GetDeployQueryParamsOutput) ToGetDeployQueryParamsPtrOutput() GetDeployQueryParamsPtrOutput {
+	return o.ToGetDeployQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (o GetDeployQueryParamsOutput) ToGetDeployQueryParamsPtrOutputWithContext(ctx context.Context) GetDeployQueryParamsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v GetDeployQueryParams) *GetDeployQueryParams {
+		return &v
+	}).(GetDeployQueryParamsPtrOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o GetDeployQueryParamsOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v GetDeployQueryParams) map[string]string { return v.AdditionalParams }).(pulumi.StringMapOutput)
+}
+
+type GetDeployQueryParamsPtrOutput struct{ *pulumi.OutputState }
+
+func (GetDeployQueryParamsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**GetDeployQueryParams)(nil)).Elem()
+}
+
+func (o GetDeployQueryParamsPtrOutput) ToGetDeployQueryParamsPtrOutput() GetDeployQueryParamsPtrOutput {
+	return o
+}
+
+func (o GetDeployQueryParamsPtrOutput) ToGetDeployQueryParamsPtrOutputWithContext(ctx context.Context) GetDeployQueryParamsPtrOutput {
+	return o
+}
+
+func (o GetDeployQueryParamsPtrOutput) Elem() GetDeployQueryParamsOutput {
+	return o.ApplyT(func(v *GetDeployQueryParams) GetDeployQueryParams {
+		if v != nil {
+			return *v
+		}
+		var ret GetDeployQueryParams
+		return ret
+	}).(GetDeployQueryParamsOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o GetDeployQueryParamsPtrOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *GetDeployQueryParams) map[string]string {
+		if v == nil {
+			return nil
+		}
+		return v.AdditionalParams
+	}).(pulumi.StringMapOutput)
+}
+
+// Query params for the API request.
+type GetEnvVarQueryParams struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams map[string]string `pulumi:"additionalParams"`
+}
+
+// GetEnvVarQueryParamsInput is an input type that accepts GetEnvVarQueryParamsArgs and GetEnvVarQueryParamsOutput values.
+// You can construct a concrete instance of `GetEnvVarQueryParamsInput` via:
+//
+//	GetEnvVarQueryParamsArgs{...}
+type GetEnvVarQueryParamsInput interface {
+	pulumi.Input
+
+	ToGetEnvVarQueryParamsOutput() GetEnvVarQueryParamsOutput
+	ToGetEnvVarQueryParamsOutputWithContext(context.Context) GetEnvVarQueryParamsOutput
+}
+
+// Query params for the API request.
+type GetEnvVarQueryParamsArgs struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams pulumi.StringMapInput `pulumi:"additionalParams"`
+}
+
+func (GetEnvVarQueryParamsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetEnvVarQueryParams)(nil)).Elem()
+}
+
+func (i GetEnvVarQueryParamsArgs) ToGetEnvVarQueryParamsOutput() GetEnvVarQueryParamsOutput {
+	return i.ToGetEnvVarQueryParamsOutputWithContext(context.Background())
+}
+
+func (i GetEnvVarQueryParamsArgs) ToGetEnvVarQueryParamsOutputWithContext(ctx context.Context) GetEnvVarQueryParamsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetEnvVarQueryParamsOutput)
+}
+
+func (i GetEnvVarQueryParamsArgs) ToGetEnvVarQueryParamsPtrOutput() GetEnvVarQueryParamsPtrOutput {
+	return i.ToGetEnvVarQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i GetEnvVarQueryParamsArgs) ToGetEnvVarQueryParamsPtrOutputWithContext(ctx context.Context) GetEnvVarQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetEnvVarQueryParamsOutput).ToGetEnvVarQueryParamsPtrOutputWithContext(ctx)
+}
+
+// GetEnvVarQueryParamsPtrInput is an input type that accepts GetEnvVarQueryParamsArgs, GetEnvVarQueryParamsPtr and GetEnvVarQueryParamsPtrOutput values.
+// You can construct a concrete instance of `GetEnvVarQueryParamsPtrInput` via:
+//
+//	        GetEnvVarQueryParamsArgs{...}
+//
+//	or:
+//
+//	        nil
+type GetEnvVarQueryParamsPtrInput interface {
+	pulumi.Input
+
+	ToGetEnvVarQueryParamsPtrOutput() GetEnvVarQueryParamsPtrOutput
+	ToGetEnvVarQueryParamsPtrOutputWithContext(context.Context) GetEnvVarQueryParamsPtrOutput
+}
+
+type getEnvVarQueryParamsPtrType GetEnvVarQueryParamsArgs
+
+func GetEnvVarQueryParamsPtr(v *GetEnvVarQueryParamsArgs) GetEnvVarQueryParamsPtrInput {
+	return (*getEnvVarQueryParamsPtrType)(v)
+}
+
+func (*getEnvVarQueryParamsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**GetEnvVarQueryParams)(nil)).Elem()
+}
+
+func (i *getEnvVarQueryParamsPtrType) ToGetEnvVarQueryParamsPtrOutput() GetEnvVarQueryParamsPtrOutput {
+	return i.ToGetEnvVarQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i *getEnvVarQueryParamsPtrType) ToGetEnvVarQueryParamsPtrOutputWithContext(ctx context.Context) GetEnvVarQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetEnvVarQueryParamsPtrOutput)
+}
+
+// Query params for the API request.
+type GetEnvVarQueryParamsOutput struct{ *pulumi.OutputState }
+
+func (GetEnvVarQueryParamsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetEnvVarQueryParams)(nil)).Elem()
+}
+
+func (o GetEnvVarQueryParamsOutput) ToGetEnvVarQueryParamsOutput() GetEnvVarQueryParamsOutput {
+	return o
+}
+
+func (o GetEnvVarQueryParamsOutput) ToGetEnvVarQueryParamsOutputWithContext(ctx context.Context) GetEnvVarQueryParamsOutput {
+	return o
+}
+
+func (o GetEnvVarQueryParamsOutput) ToGetEnvVarQueryParamsPtrOutput() GetEnvVarQueryParamsPtrOutput {
+	return o.ToGetEnvVarQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (o GetEnvVarQueryParamsOutput) ToGetEnvVarQueryParamsPtrOutputWithContext(ctx context.Context) GetEnvVarQueryParamsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v GetEnvVarQueryParams) *GetEnvVarQueryParams {
+		return &v
+	}).(GetEnvVarQueryParamsPtrOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o GetEnvVarQueryParamsOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v GetEnvVarQueryParams) map[string]string { return v.AdditionalParams }).(pulumi.StringMapOutput)
+}
+
+type GetEnvVarQueryParamsPtrOutput struct{ *pulumi.OutputState }
+
+func (GetEnvVarQueryParamsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**GetEnvVarQueryParams)(nil)).Elem()
+}
+
+func (o GetEnvVarQueryParamsPtrOutput) ToGetEnvVarQueryParamsPtrOutput() GetEnvVarQueryParamsPtrOutput {
+	return o
+}
+
+func (o GetEnvVarQueryParamsPtrOutput) ToGetEnvVarQueryParamsPtrOutputWithContext(ctx context.Context) GetEnvVarQueryParamsPtrOutput {
+	return o
+}
+
+func (o GetEnvVarQueryParamsPtrOutput) Elem() GetEnvVarQueryParamsOutput {
+	return o.ApplyT(func(v *GetEnvVarQueryParams) GetEnvVarQueryParams {
+		if v != nil {
+			return *v
+		}
+		var ret GetEnvVarQueryParams
+		return ret
+	}).(GetEnvVarQueryParamsOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o GetEnvVarQueryParamsPtrOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *GetEnvVarQueryParams) map[string]string {
+		if v == nil {
+			return nil
+		}
+		return v.AdditionalParams
+	}).(pulumi.StringMapOutput)
+}
+
+// Query params for the API request.
+type GetJobQueryParams struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams map[string]string `pulumi:"additionalParams"`
+}
+
+// GetJobQueryParamsInput is an input type that accepts GetJobQueryParamsArgs and GetJobQueryParamsOutput values.
+// You can construct a concrete instance of `GetJobQueryParamsInput` via:
+//
+//	GetJobQueryParamsArgs{...}
+type GetJobQueryParamsInput interface {
+	pulumi.Input
+
+	ToGetJobQueryParamsOutput() GetJobQueryParamsOutput
+	ToGetJobQueryParamsOutputWithContext(context.Context) GetJobQueryParamsOutput
+}
+
+// Query params for the API request.
+type GetJobQueryParamsArgs struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams pulumi.StringMapInput `pulumi:"additionalParams"`
+}
+
+func (GetJobQueryParamsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetJobQueryParams)(nil)).Elem()
+}
+
+func (i GetJobQueryParamsArgs) ToGetJobQueryParamsOutput() GetJobQueryParamsOutput {
+	return i.ToGetJobQueryParamsOutputWithContext(context.Background())
+}
+
+func (i GetJobQueryParamsArgs) ToGetJobQueryParamsOutputWithContext(ctx context.Context) GetJobQueryParamsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetJobQueryParamsOutput)
+}
+
+func (i GetJobQueryParamsArgs) ToGetJobQueryParamsPtrOutput() GetJobQueryParamsPtrOutput {
+	return i.ToGetJobQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i GetJobQueryParamsArgs) ToGetJobQueryParamsPtrOutputWithContext(ctx context.Context) GetJobQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetJobQueryParamsOutput).ToGetJobQueryParamsPtrOutputWithContext(ctx)
+}
+
+// GetJobQueryParamsPtrInput is an input type that accepts GetJobQueryParamsArgs, GetJobQueryParamsPtr and GetJobQueryParamsPtrOutput values.
+// You can construct a concrete instance of `GetJobQueryParamsPtrInput` via:
+//
+//	        GetJobQueryParamsArgs{...}
+//
+//	or:
+//
+//	        nil
+type GetJobQueryParamsPtrInput interface {
+	pulumi.Input
+
+	ToGetJobQueryParamsPtrOutput() GetJobQueryParamsPtrOutput
+	ToGetJobQueryParamsPtrOutputWithContext(context.Context) GetJobQueryParamsPtrOutput
+}
+
+type getJobQueryParamsPtrType GetJobQueryParamsArgs
+
+func GetJobQueryParamsPtr(v *GetJobQueryParamsArgs) GetJobQueryParamsPtrInput {
+	return (*getJobQueryParamsPtrType)(v)
+}
+
+func (*getJobQueryParamsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**GetJobQueryParams)(nil)).Elem()
+}
+
+func (i *getJobQueryParamsPtrType) ToGetJobQueryParamsPtrOutput() GetJobQueryParamsPtrOutput {
+	return i.ToGetJobQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i *getJobQueryParamsPtrType) ToGetJobQueryParamsPtrOutputWithContext(ctx context.Context) GetJobQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetJobQueryParamsPtrOutput)
+}
+
+// Query params for the API request.
+type GetJobQueryParamsOutput struct{ *pulumi.OutputState }
+
+func (GetJobQueryParamsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetJobQueryParams)(nil)).Elem()
+}
+
+func (o GetJobQueryParamsOutput) ToGetJobQueryParamsOutput() GetJobQueryParamsOutput {
+	return o
+}
+
+func (o GetJobQueryParamsOutput) ToGetJobQueryParamsOutputWithContext(ctx context.Context) GetJobQueryParamsOutput {
+	return o
+}
+
+func (o GetJobQueryParamsOutput) ToGetJobQueryParamsPtrOutput() GetJobQueryParamsPtrOutput {
+	return o.ToGetJobQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (o GetJobQueryParamsOutput) ToGetJobQueryParamsPtrOutputWithContext(ctx context.Context) GetJobQueryParamsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v GetJobQueryParams) *GetJobQueryParams {
+		return &v
+	}).(GetJobQueryParamsPtrOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o GetJobQueryParamsOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v GetJobQueryParams) map[string]string { return v.AdditionalParams }).(pulumi.StringMapOutput)
+}
+
+type GetJobQueryParamsPtrOutput struct{ *pulumi.OutputState }
+
+func (GetJobQueryParamsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**GetJobQueryParams)(nil)).Elem()
+}
+
+func (o GetJobQueryParamsPtrOutput) ToGetJobQueryParamsPtrOutput() GetJobQueryParamsPtrOutput {
+	return o
+}
+
+func (o GetJobQueryParamsPtrOutput) ToGetJobQueryParamsPtrOutputWithContext(ctx context.Context) GetJobQueryParamsPtrOutput {
+	return o
+}
+
+func (o GetJobQueryParamsPtrOutput) Elem() GetJobQueryParamsOutput {
+	return o.ApplyT(func(v *GetJobQueryParams) GetJobQueryParams {
+		if v != nil {
+			return *v
+		}
+		var ret GetJobQueryParams
+		return ret
+	}).(GetJobQueryParamsOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o GetJobQueryParamsPtrOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *GetJobQueryParams) map[string]string {
+		if v == nil {
+			return nil
+		}
+		return v.AdditionalParams
+	}).(pulumi.StringMapOutput)
+}
+
 type GetPrivateServiceType struct {
 	AutoDeploy  ServiceAutoDeploy `pulumi:"autoDeploy"`
 	Branch      *string           `pulumi:"branch"`
@@ -3150,6 +8736,286 @@ func (val *GetPrivateServiceType) Defaults() *GetPrivateServiceType {
 		tmp.Type = &type_
 	}
 	return &tmp
+}
+
+// Query params for the API request.
+type GetPrivateServiceQueryParams struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams map[string]string `pulumi:"additionalParams"`
+}
+
+// GetPrivateServiceQueryParamsInput is an input type that accepts GetPrivateServiceQueryParamsArgs and GetPrivateServiceQueryParamsOutput values.
+// You can construct a concrete instance of `GetPrivateServiceQueryParamsInput` via:
+//
+//	GetPrivateServiceQueryParamsArgs{...}
+type GetPrivateServiceQueryParamsInput interface {
+	pulumi.Input
+
+	ToGetPrivateServiceQueryParamsOutput() GetPrivateServiceQueryParamsOutput
+	ToGetPrivateServiceQueryParamsOutputWithContext(context.Context) GetPrivateServiceQueryParamsOutput
+}
+
+// Query params for the API request.
+type GetPrivateServiceQueryParamsArgs struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams pulumi.StringMapInput `pulumi:"additionalParams"`
+}
+
+func (GetPrivateServiceQueryParamsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetPrivateServiceQueryParams)(nil)).Elem()
+}
+
+func (i GetPrivateServiceQueryParamsArgs) ToGetPrivateServiceQueryParamsOutput() GetPrivateServiceQueryParamsOutput {
+	return i.ToGetPrivateServiceQueryParamsOutputWithContext(context.Background())
+}
+
+func (i GetPrivateServiceQueryParamsArgs) ToGetPrivateServiceQueryParamsOutputWithContext(ctx context.Context) GetPrivateServiceQueryParamsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetPrivateServiceQueryParamsOutput)
+}
+
+func (i GetPrivateServiceQueryParamsArgs) ToGetPrivateServiceQueryParamsPtrOutput() GetPrivateServiceQueryParamsPtrOutput {
+	return i.ToGetPrivateServiceQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i GetPrivateServiceQueryParamsArgs) ToGetPrivateServiceQueryParamsPtrOutputWithContext(ctx context.Context) GetPrivateServiceQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetPrivateServiceQueryParamsOutput).ToGetPrivateServiceQueryParamsPtrOutputWithContext(ctx)
+}
+
+// GetPrivateServiceQueryParamsPtrInput is an input type that accepts GetPrivateServiceQueryParamsArgs, GetPrivateServiceQueryParamsPtr and GetPrivateServiceQueryParamsPtrOutput values.
+// You can construct a concrete instance of `GetPrivateServiceQueryParamsPtrInput` via:
+//
+//	        GetPrivateServiceQueryParamsArgs{...}
+//
+//	or:
+//
+//	        nil
+type GetPrivateServiceQueryParamsPtrInput interface {
+	pulumi.Input
+
+	ToGetPrivateServiceQueryParamsPtrOutput() GetPrivateServiceQueryParamsPtrOutput
+	ToGetPrivateServiceQueryParamsPtrOutputWithContext(context.Context) GetPrivateServiceQueryParamsPtrOutput
+}
+
+type getPrivateServiceQueryParamsPtrType GetPrivateServiceQueryParamsArgs
+
+func GetPrivateServiceQueryParamsPtr(v *GetPrivateServiceQueryParamsArgs) GetPrivateServiceQueryParamsPtrInput {
+	return (*getPrivateServiceQueryParamsPtrType)(v)
+}
+
+func (*getPrivateServiceQueryParamsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**GetPrivateServiceQueryParams)(nil)).Elem()
+}
+
+func (i *getPrivateServiceQueryParamsPtrType) ToGetPrivateServiceQueryParamsPtrOutput() GetPrivateServiceQueryParamsPtrOutput {
+	return i.ToGetPrivateServiceQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i *getPrivateServiceQueryParamsPtrType) ToGetPrivateServiceQueryParamsPtrOutputWithContext(ctx context.Context) GetPrivateServiceQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetPrivateServiceQueryParamsPtrOutput)
+}
+
+// Query params for the API request.
+type GetPrivateServiceQueryParamsOutput struct{ *pulumi.OutputState }
+
+func (GetPrivateServiceQueryParamsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetPrivateServiceQueryParams)(nil)).Elem()
+}
+
+func (o GetPrivateServiceQueryParamsOutput) ToGetPrivateServiceQueryParamsOutput() GetPrivateServiceQueryParamsOutput {
+	return o
+}
+
+func (o GetPrivateServiceQueryParamsOutput) ToGetPrivateServiceQueryParamsOutputWithContext(ctx context.Context) GetPrivateServiceQueryParamsOutput {
+	return o
+}
+
+func (o GetPrivateServiceQueryParamsOutput) ToGetPrivateServiceQueryParamsPtrOutput() GetPrivateServiceQueryParamsPtrOutput {
+	return o.ToGetPrivateServiceQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (o GetPrivateServiceQueryParamsOutput) ToGetPrivateServiceQueryParamsPtrOutputWithContext(ctx context.Context) GetPrivateServiceQueryParamsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v GetPrivateServiceQueryParams) *GetPrivateServiceQueryParams {
+		return &v
+	}).(GetPrivateServiceQueryParamsPtrOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o GetPrivateServiceQueryParamsOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v GetPrivateServiceQueryParams) map[string]string { return v.AdditionalParams }).(pulumi.StringMapOutput)
+}
+
+type GetPrivateServiceQueryParamsPtrOutput struct{ *pulumi.OutputState }
+
+func (GetPrivateServiceQueryParamsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**GetPrivateServiceQueryParams)(nil)).Elem()
+}
+
+func (o GetPrivateServiceQueryParamsPtrOutput) ToGetPrivateServiceQueryParamsPtrOutput() GetPrivateServiceQueryParamsPtrOutput {
+	return o
+}
+
+func (o GetPrivateServiceQueryParamsPtrOutput) ToGetPrivateServiceQueryParamsPtrOutputWithContext(ctx context.Context) GetPrivateServiceQueryParamsPtrOutput {
+	return o
+}
+
+func (o GetPrivateServiceQueryParamsPtrOutput) Elem() GetPrivateServiceQueryParamsOutput {
+	return o.ApplyT(func(v *GetPrivateServiceQueryParams) GetPrivateServiceQueryParams {
+		if v != nil {
+			return *v
+		}
+		var ret GetPrivateServiceQueryParams
+		return ret
+	}).(GetPrivateServiceQueryParamsOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o GetPrivateServiceQueryParamsPtrOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *GetPrivateServiceQueryParams) map[string]string {
+		if v == nil {
+			return nil
+		}
+		return v.AdditionalParams
+	}).(pulumi.StringMapOutput)
+}
+
+// Query params for the API request.
+type GetSecretFileQueryParams struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams map[string]string `pulumi:"additionalParams"`
+}
+
+// GetSecretFileQueryParamsInput is an input type that accepts GetSecretFileQueryParamsArgs and GetSecretFileQueryParamsOutput values.
+// You can construct a concrete instance of `GetSecretFileQueryParamsInput` via:
+//
+//	GetSecretFileQueryParamsArgs{...}
+type GetSecretFileQueryParamsInput interface {
+	pulumi.Input
+
+	ToGetSecretFileQueryParamsOutput() GetSecretFileQueryParamsOutput
+	ToGetSecretFileQueryParamsOutputWithContext(context.Context) GetSecretFileQueryParamsOutput
+}
+
+// Query params for the API request.
+type GetSecretFileQueryParamsArgs struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams pulumi.StringMapInput `pulumi:"additionalParams"`
+}
+
+func (GetSecretFileQueryParamsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSecretFileQueryParams)(nil)).Elem()
+}
+
+func (i GetSecretFileQueryParamsArgs) ToGetSecretFileQueryParamsOutput() GetSecretFileQueryParamsOutput {
+	return i.ToGetSecretFileQueryParamsOutputWithContext(context.Background())
+}
+
+func (i GetSecretFileQueryParamsArgs) ToGetSecretFileQueryParamsOutputWithContext(ctx context.Context) GetSecretFileQueryParamsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSecretFileQueryParamsOutput)
+}
+
+func (i GetSecretFileQueryParamsArgs) ToGetSecretFileQueryParamsPtrOutput() GetSecretFileQueryParamsPtrOutput {
+	return i.ToGetSecretFileQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i GetSecretFileQueryParamsArgs) ToGetSecretFileQueryParamsPtrOutputWithContext(ctx context.Context) GetSecretFileQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSecretFileQueryParamsOutput).ToGetSecretFileQueryParamsPtrOutputWithContext(ctx)
+}
+
+// GetSecretFileQueryParamsPtrInput is an input type that accepts GetSecretFileQueryParamsArgs, GetSecretFileQueryParamsPtr and GetSecretFileQueryParamsPtrOutput values.
+// You can construct a concrete instance of `GetSecretFileQueryParamsPtrInput` via:
+//
+//	        GetSecretFileQueryParamsArgs{...}
+//
+//	or:
+//
+//	        nil
+type GetSecretFileQueryParamsPtrInput interface {
+	pulumi.Input
+
+	ToGetSecretFileQueryParamsPtrOutput() GetSecretFileQueryParamsPtrOutput
+	ToGetSecretFileQueryParamsPtrOutputWithContext(context.Context) GetSecretFileQueryParamsPtrOutput
+}
+
+type getSecretFileQueryParamsPtrType GetSecretFileQueryParamsArgs
+
+func GetSecretFileQueryParamsPtr(v *GetSecretFileQueryParamsArgs) GetSecretFileQueryParamsPtrInput {
+	return (*getSecretFileQueryParamsPtrType)(v)
+}
+
+func (*getSecretFileQueryParamsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**GetSecretFileQueryParams)(nil)).Elem()
+}
+
+func (i *getSecretFileQueryParamsPtrType) ToGetSecretFileQueryParamsPtrOutput() GetSecretFileQueryParamsPtrOutput {
+	return i.ToGetSecretFileQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i *getSecretFileQueryParamsPtrType) ToGetSecretFileQueryParamsPtrOutputWithContext(ctx context.Context) GetSecretFileQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetSecretFileQueryParamsPtrOutput)
+}
+
+// Query params for the API request.
+type GetSecretFileQueryParamsOutput struct{ *pulumi.OutputState }
+
+func (GetSecretFileQueryParamsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetSecretFileQueryParams)(nil)).Elem()
+}
+
+func (o GetSecretFileQueryParamsOutput) ToGetSecretFileQueryParamsOutput() GetSecretFileQueryParamsOutput {
+	return o
+}
+
+func (o GetSecretFileQueryParamsOutput) ToGetSecretFileQueryParamsOutputWithContext(ctx context.Context) GetSecretFileQueryParamsOutput {
+	return o
+}
+
+func (o GetSecretFileQueryParamsOutput) ToGetSecretFileQueryParamsPtrOutput() GetSecretFileQueryParamsPtrOutput {
+	return o.ToGetSecretFileQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (o GetSecretFileQueryParamsOutput) ToGetSecretFileQueryParamsPtrOutputWithContext(ctx context.Context) GetSecretFileQueryParamsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v GetSecretFileQueryParams) *GetSecretFileQueryParams {
+		return &v
+	}).(GetSecretFileQueryParamsPtrOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o GetSecretFileQueryParamsOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v GetSecretFileQueryParams) map[string]string { return v.AdditionalParams }).(pulumi.StringMapOutput)
+}
+
+type GetSecretFileQueryParamsPtrOutput struct{ *pulumi.OutputState }
+
+func (GetSecretFileQueryParamsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**GetSecretFileQueryParams)(nil)).Elem()
+}
+
+func (o GetSecretFileQueryParamsPtrOutput) ToGetSecretFileQueryParamsPtrOutput() GetSecretFileQueryParamsPtrOutput {
+	return o
+}
+
+func (o GetSecretFileQueryParamsPtrOutput) ToGetSecretFileQueryParamsPtrOutputWithContext(ctx context.Context) GetSecretFileQueryParamsPtrOutput {
+	return o
+}
+
+func (o GetSecretFileQueryParamsPtrOutput) Elem() GetSecretFileQueryParamsOutput {
+	return o.ApplyT(func(v *GetSecretFileQueryParams) GetSecretFileQueryParams {
+		if v != nil {
+			return *v
+		}
+		var ret GetSecretFileQueryParams
+		return ret
+	}).(GetSecretFileQueryParamsOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o GetSecretFileQueryParamsPtrOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *GetSecretFileQueryParams) map[string]string {
+		if v == nil {
+			return nil
+		}
+		return v.AdditionalParams
+	}).(pulumi.StringMapOutput)
 }
 
 type GetStaticSiteType struct {
@@ -3194,6 +9060,146 @@ func (val *GetStaticSiteType) Defaults() *GetStaticSiteType {
 	return &tmp
 }
 
+// Query params for the API request.
+type GetStaticSiteQueryParams struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams map[string]string `pulumi:"additionalParams"`
+}
+
+// GetStaticSiteQueryParamsInput is an input type that accepts GetStaticSiteQueryParamsArgs and GetStaticSiteQueryParamsOutput values.
+// You can construct a concrete instance of `GetStaticSiteQueryParamsInput` via:
+//
+//	GetStaticSiteQueryParamsArgs{...}
+type GetStaticSiteQueryParamsInput interface {
+	pulumi.Input
+
+	ToGetStaticSiteQueryParamsOutput() GetStaticSiteQueryParamsOutput
+	ToGetStaticSiteQueryParamsOutputWithContext(context.Context) GetStaticSiteQueryParamsOutput
+}
+
+// Query params for the API request.
+type GetStaticSiteQueryParamsArgs struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams pulumi.StringMapInput `pulumi:"additionalParams"`
+}
+
+func (GetStaticSiteQueryParamsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetStaticSiteQueryParams)(nil)).Elem()
+}
+
+func (i GetStaticSiteQueryParamsArgs) ToGetStaticSiteQueryParamsOutput() GetStaticSiteQueryParamsOutput {
+	return i.ToGetStaticSiteQueryParamsOutputWithContext(context.Background())
+}
+
+func (i GetStaticSiteQueryParamsArgs) ToGetStaticSiteQueryParamsOutputWithContext(ctx context.Context) GetStaticSiteQueryParamsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetStaticSiteQueryParamsOutput)
+}
+
+func (i GetStaticSiteQueryParamsArgs) ToGetStaticSiteQueryParamsPtrOutput() GetStaticSiteQueryParamsPtrOutput {
+	return i.ToGetStaticSiteQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i GetStaticSiteQueryParamsArgs) ToGetStaticSiteQueryParamsPtrOutputWithContext(ctx context.Context) GetStaticSiteQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetStaticSiteQueryParamsOutput).ToGetStaticSiteQueryParamsPtrOutputWithContext(ctx)
+}
+
+// GetStaticSiteQueryParamsPtrInput is an input type that accepts GetStaticSiteQueryParamsArgs, GetStaticSiteQueryParamsPtr and GetStaticSiteQueryParamsPtrOutput values.
+// You can construct a concrete instance of `GetStaticSiteQueryParamsPtrInput` via:
+//
+//	        GetStaticSiteQueryParamsArgs{...}
+//
+//	or:
+//
+//	        nil
+type GetStaticSiteQueryParamsPtrInput interface {
+	pulumi.Input
+
+	ToGetStaticSiteQueryParamsPtrOutput() GetStaticSiteQueryParamsPtrOutput
+	ToGetStaticSiteQueryParamsPtrOutputWithContext(context.Context) GetStaticSiteQueryParamsPtrOutput
+}
+
+type getStaticSiteQueryParamsPtrType GetStaticSiteQueryParamsArgs
+
+func GetStaticSiteQueryParamsPtr(v *GetStaticSiteQueryParamsArgs) GetStaticSiteQueryParamsPtrInput {
+	return (*getStaticSiteQueryParamsPtrType)(v)
+}
+
+func (*getStaticSiteQueryParamsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**GetStaticSiteQueryParams)(nil)).Elem()
+}
+
+func (i *getStaticSiteQueryParamsPtrType) ToGetStaticSiteQueryParamsPtrOutput() GetStaticSiteQueryParamsPtrOutput {
+	return i.ToGetStaticSiteQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i *getStaticSiteQueryParamsPtrType) ToGetStaticSiteQueryParamsPtrOutputWithContext(ctx context.Context) GetStaticSiteQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetStaticSiteQueryParamsPtrOutput)
+}
+
+// Query params for the API request.
+type GetStaticSiteQueryParamsOutput struct{ *pulumi.OutputState }
+
+func (GetStaticSiteQueryParamsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetStaticSiteQueryParams)(nil)).Elem()
+}
+
+func (o GetStaticSiteQueryParamsOutput) ToGetStaticSiteQueryParamsOutput() GetStaticSiteQueryParamsOutput {
+	return o
+}
+
+func (o GetStaticSiteQueryParamsOutput) ToGetStaticSiteQueryParamsOutputWithContext(ctx context.Context) GetStaticSiteQueryParamsOutput {
+	return o
+}
+
+func (o GetStaticSiteQueryParamsOutput) ToGetStaticSiteQueryParamsPtrOutput() GetStaticSiteQueryParamsPtrOutput {
+	return o.ToGetStaticSiteQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (o GetStaticSiteQueryParamsOutput) ToGetStaticSiteQueryParamsPtrOutputWithContext(ctx context.Context) GetStaticSiteQueryParamsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v GetStaticSiteQueryParams) *GetStaticSiteQueryParams {
+		return &v
+	}).(GetStaticSiteQueryParamsPtrOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o GetStaticSiteQueryParamsOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v GetStaticSiteQueryParams) map[string]string { return v.AdditionalParams }).(pulumi.StringMapOutput)
+}
+
+type GetStaticSiteQueryParamsPtrOutput struct{ *pulumi.OutputState }
+
+func (GetStaticSiteQueryParamsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**GetStaticSiteQueryParams)(nil)).Elem()
+}
+
+func (o GetStaticSiteQueryParamsPtrOutput) ToGetStaticSiteQueryParamsPtrOutput() GetStaticSiteQueryParamsPtrOutput {
+	return o
+}
+
+func (o GetStaticSiteQueryParamsPtrOutput) ToGetStaticSiteQueryParamsPtrOutputWithContext(ctx context.Context) GetStaticSiteQueryParamsPtrOutput {
+	return o
+}
+
+func (o GetStaticSiteQueryParamsPtrOutput) Elem() GetStaticSiteQueryParamsOutput {
+	return o.ApplyT(func(v *GetStaticSiteQueryParams) GetStaticSiteQueryParams {
+		if v != nil {
+			return *v
+		}
+		var ret GetStaticSiteQueryParams
+		return ret
+	}).(GetStaticSiteQueryParamsOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o GetStaticSiteQueryParamsPtrOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *GetStaticSiteQueryParams) map[string]string {
+		if v == nil {
+			return nil
+		}
+		return v.AdditionalParams
+	}).(pulumi.StringMapOutput)
+}
+
 type GetWebServiceType struct {
 	AutoDeploy  ServiceAutoDeploy `pulumi:"autoDeploy"`
 	Branch      *string           `pulumi:"branch"`
@@ -3234,6 +9240,146 @@ func (val *GetWebServiceType) Defaults() *GetWebServiceType {
 		tmp.Type = &type_
 	}
 	return &tmp
+}
+
+// Query params for the API request.
+type GetWebServiceQueryParams struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams map[string]string `pulumi:"additionalParams"`
+}
+
+// GetWebServiceQueryParamsInput is an input type that accepts GetWebServiceQueryParamsArgs and GetWebServiceQueryParamsOutput values.
+// You can construct a concrete instance of `GetWebServiceQueryParamsInput` via:
+//
+//	GetWebServiceQueryParamsArgs{...}
+type GetWebServiceQueryParamsInput interface {
+	pulumi.Input
+
+	ToGetWebServiceQueryParamsOutput() GetWebServiceQueryParamsOutput
+	ToGetWebServiceQueryParamsOutputWithContext(context.Context) GetWebServiceQueryParamsOutput
+}
+
+// Query params for the API request.
+type GetWebServiceQueryParamsArgs struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams pulumi.StringMapInput `pulumi:"additionalParams"`
+}
+
+func (GetWebServiceQueryParamsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetWebServiceQueryParams)(nil)).Elem()
+}
+
+func (i GetWebServiceQueryParamsArgs) ToGetWebServiceQueryParamsOutput() GetWebServiceQueryParamsOutput {
+	return i.ToGetWebServiceQueryParamsOutputWithContext(context.Background())
+}
+
+func (i GetWebServiceQueryParamsArgs) ToGetWebServiceQueryParamsOutputWithContext(ctx context.Context) GetWebServiceQueryParamsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetWebServiceQueryParamsOutput)
+}
+
+func (i GetWebServiceQueryParamsArgs) ToGetWebServiceQueryParamsPtrOutput() GetWebServiceQueryParamsPtrOutput {
+	return i.ToGetWebServiceQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i GetWebServiceQueryParamsArgs) ToGetWebServiceQueryParamsPtrOutputWithContext(ctx context.Context) GetWebServiceQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetWebServiceQueryParamsOutput).ToGetWebServiceQueryParamsPtrOutputWithContext(ctx)
+}
+
+// GetWebServiceQueryParamsPtrInput is an input type that accepts GetWebServiceQueryParamsArgs, GetWebServiceQueryParamsPtr and GetWebServiceQueryParamsPtrOutput values.
+// You can construct a concrete instance of `GetWebServiceQueryParamsPtrInput` via:
+//
+//	        GetWebServiceQueryParamsArgs{...}
+//
+//	or:
+//
+//	        nil
+type GetWebServiceQueryParamsPtrInput interface {
+	pulumi.Input
+
+	ToGetWebServiceQueryParamsPtrOutput() GetWebServiceQueryParamsPtrOutput
+	ToGetWebServiceQueryParamsPtrOutputWithContext(context.Context) GetWebServiceQueryParamsPtrOutput
+}
+
+type getWebServiceQueryParamsPtrType GetWebServiceQueryParamsArgs
+
+func GetWebServiceQueryParamsPtr(v *GetWebServiceQueryParamsArgs) GetWebServiceQueryParamsPtrInput {
+	return (*getWebServiceQueryParamsPtrType)(v)
+}
+
+func (*getWebServiceQueryParamsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**GetWebServiceQueryParams)(nil)).Elem()
+}
+
+func (i *getWebServiceQueryParamsPtrType) ToGetWebServiceQueryParamsPtrOutput() GetWebServiceQueryParamsPtrOutput {
+	return i.ToGetWebServiceQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i *getWebServiceQueryParamsPtrType) ToGetWebServiceQueryParamsPtrOutputWithContext(ctx context.Context) GetWebServiceQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetWebServiceQueryParamsPtrOutput)
+}
+
+// Query params for the API request.
+type GetWebServiceQueryParamsOutput struct{ *pulumi.OutputState }
+
+func (GetWebServiceQueryParamsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetWebServiceQueryParams)(nil)).Elem()
+}
+
+func (o GetWebServiceQueryParamsOutput) ToGetWebServiceQueryParamsOutput() GetWebServiceQueryParamsOutput {
+	return o
+}
+
+func (o GetWebServiceQueryParamsOutput) ToGetWebServiceQueryParamsOutputWithContext(ctx context.Context) GetWebServiceQueryParamsOutput {
+	return o
+}
+
+func (o GetWebServiceQueryParamsOutput) ToGetWebServiceQueryParamsPtrOutput() GetWebServiceQueryParamsPtrOutput {
+	return o.ToGetWebServiceQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (o GetWebServiceQueryParamsOutput) ToGetWebServiceQueryParamsPtrOutputWithContext(ctx context.Context) GetWebServiceQueryParamsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v GetWebServiceQueryParams) *GetWebServiceQueryParams {
+		return &v
+	}).(GetWebServiceQueryParamsPtrOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o GetWebServiceQueryParamsOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v GetWebServiceQueryParams) map[string]string { return v.AdditionalParams }).(pulumi.StringMapOutput)
+}
+
+type GetWebServiceQueryParamsPtrOutput struct{ *pulumi.OutputState }
+
+func (GetWebServiceQueryParamsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**GetWebServiceQueryParams)(nil)).Elem()
+}
+
+func (o GetWebServiceQueryParamsPtrOutput) ToGetWebServiceQueryParamsPtrOutput() GetWebServiceQueryParamsPtrOutput {
+	return o
+}
+
+func (o GetWebServiceQueryParamsPtrOutput) ToGetWebServiceQueryParamsPtrOutputWithContext(ctx context.Context) GetWebServiceQueryParamsPtrOutput {
+	return o
+}
+
+func (o GetWebServiceQueryParamsPtrOutput) Elem() GetWebServiceQueryParamsOutput {
+	return o.ApplyT(func(v *GetWebServiceQueryParams) GetWebServiceQueryParams {
+		if v != nil {
+			return *v
+		}
+		var ret GetWebServiceQueryParams
+		return ret
+	}).(GetWebServiceQueryParamsOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o GetWebServiceQueryParamsPtrOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *GetWebServiceQueryParams) map[string]string {
+		if v == nil {
+			return nil
+		}
+		return v.AdditionalParams
+	}).(pulumi.StringMapOutput)
 }
 
 type HeaderType struct {
@@ -3331,6 +9477,286 @@ func (o HeaderTypePtrOutput) Value() pulumi.StringPtrOutput {
 		}
 		return &v.Value
 	}).(pulumi.StringPtrOutput)
+}
+
+// Query params for the API request.
+type HeaderCreateQueryParams struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams map[string]string `pulumi:"additionalParams"`
+}
+
+// HeaderCreateQueryParamsInput is an input type that accepts HeaderCreateQueryParamsArgs and HeaderCreateQueryParamsOutput values.
+// You can construct a concrete instance of `HeaderCreateQueryParamsInput` via:
+//
+//	HeaderCreateQueryParamsArgs{...}
+type HeaderCreateQueryParamsInput interface {
+	pulumi.Input
+
+	ToHeaderCreateQueryParamsOutput() HeaderCreateQueryParamsOutput
+	ToHeaderCreateQueryParamsOutputWithContext(context.Context) HeaderCreateQueryParamsOutput
+}
+
+// Query params for the API request.
+type HeaderCreateQueryParamsArgs struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams pulumi.StringMapInput `pulumi:"additionalParams"`
+}
+
+func (HeaderCreateQueryParamsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*HeaderCreateQueryParams)(nil)).Elem()
+}
+
+func (i HeaderCreateQueryParamsArgs) ToHeaderCreateQueryParamsOutput() HeaderCreateQueryParamsOutput {
+	return i.ToHeaderCreateQueryParamsOutputWithContext(context.Background())
+}
+
+func (i HeaderCreateQueryParamsArgs) ToHeaderCreateQueryParamsOutputWithContext(ctx context.Context) HeaderCreateQueryParamsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(HeaderCreateQueryParamsOutput)
+}
+
+func (i HeaderCreateQueryParamsArgs) ToHeaderCreateQueryParamsPtrOutput() HeaderCreateQueryParamsPtrOutput {
+	return i.ToHeaderCreateQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i HeaderCreateQueryParamsArgs) ToHeaderCreateQueryParamsPtrOutputWithContext(ctx context.Context) HeaderCreateQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(HeaderCreateQueryParamsOutput).ToHeaderCreateQueryParamsPtrOutputWithContext(ctx)
+}
+
+// HeaderCreateQueryParamsPtrInput is an input type that accepts HeaderCreateQueryParamsArgs, HeaderCreateQueryParamsPtr and HeaderCreateQueryParamsPtrOutput values.
+// You can construct a concrete instance of `HeaderCreateQueryParamsPtrInput` via:
+//
+//	        HeaderCreateQueryParamsArgs{...}
+//
+//	or:
+//
+//	        nil
+type HeaderCreateQueryParamsPtrInput interface {
+	pulumi.Input
+
+	ToHeaderCreateQueryParamsPtrOutput() HeaderCreateQueryParamsPtrOutput
+	ToHeaderCreateQueryParamsPtrOutputWithContext(context.Context) HeaderCreateQueryParamsPtrOutput
+}
+
+type headerCreateQueryParamsPtrType HeaderCreateQueryParamsArgs
+
+func HeaderCreateQueryParamsPtr(v *HeaderCreateQueryParamsArgs) HeaderCreateQueryParamsPtrInput {
+	return (*headerCreateQueryParamsPtrType)(v)
+}
+
+func (*headerCreateQueryParamsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**HeaderCreateQueryParams)(nil)).Elem()
+}
+
+func (i *headerCreateQueryParamsPtrType) ToHeaderCreateQueryParamsPtrOutput() HeaderCreateQueryParamsPtrOutput {
+	return i.ToHeaderCreateQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i *headerCreateQueryParamsPtrType) ToHeaderCreateQueryParamsPtrOutputWithContext(ctx context.Context) HeaderCreateQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(HeaderCreateQueryParamsPtrOutput)
+}
+
+// Query params for the API request.
+type HeaderCreateQueryParamsOutput struct{ *pulumi.OutputState }
+
+func (HeaderCreateQueryParamsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*HeaderCreateQueryParams)(nil)).Elem()
+}
+
+func (o HeaderCreateQueryParamsOutput) ToHeaderCreateQueryParamsOutput() HeaderCreateQueryParamsOutput {
+	return o
+}
+
+func (o HeaderCreateQueryParamsOutput) ToHeaderCreateQueryParamsOutputWithContext(ctx context.Context) HeaderCreateQueryParamsOutput {
+	return o
+}
+
+func (o HeaderCreateQueryParamsOutput) ToHeaderCreateQueryParamsPtrOutput() HeaderCreateQueryParamsPtrOutput {
+	return o.ToHeaderCreateQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (o HeaderCreateQueryParamsOutput) ToHeaderCreateQueryParamsPtrOutputWithContext(ctx context.Context) HeaderCreateQueryParamsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v HeaderCreateQueryParams) *HeaderCreateQueryParams {
+		return &v
+	}).(HeaderCreateQueryParamsPtrOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o HeaderCreateQueryParamsOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v HeaderCreateQueryParams) map[string]string { return v.AdditionalParams }).(pulumi.StringMapOutput)
+}
+
+type HeaderCreateQueryParamsPtrOutput struct{ *pulumi.OutputState }
+
+func (HeaderCreateQueryParamsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**HeaderCreateQueryParams)(nil)).Elem()
+}
+
+func (o HeaderCreateQueryParamsPtrOutput) ToHeaderCreateQueryParamsPtrOutput() HeaderCreateQueryParamsPtrOutput {
+	return o
+}
+
+func (o HeaderCreateQueryParamsPtrOutput) ToHeaderCreateQueryParamsPtrOutputWithContext(ctx context.Context) HeaderCreateQueryParamsPtrOutput {
+	return o
+}
+
+func (o HeaderCreateQueryParamsPtrOutput) Elem() HeaderCreateQueryParamsOutput {
+	return o.ApplyT(func(v *HeaderCreateQueryParams) HeaderCreateQueryParams {
+		if v != nil {
+			return *v
+		}
+		var ret HeaderCreateQueryParams
+		return ret
+	}).(HeaderCreateQueryParamsOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o HeaderCreateQueryParamsPtrOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *HeaderCreateQueryParams) map[string]string {
+		if v == nil {
+			return nil
+		}
+		return v.AdditionalParams
+	}).(pulumi.StringMapOutput)
+}
+
+// Query params for the API request.
+type HeaderDeleteQueryParams struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams map[string]string `pulumi:"additionalParams"`
+}
+
+// HeaderDeleteQueryParamsInput is an input type that accepts HeaderDeleteQueryParamsArgs and HeaderDeleteQueryParamsOutput values.
+// You can construct a concrete instance of `HeaderDeleteQueryParamsInput` via:
+//
+//	HeaderDeleteQueryParamsArgs{...}
+type HeaderDeleteQueryParamsInput interface {
+	pulumi.Input
+
+	ToHeaderDeleteQueryParamsOutput() HeaderDeleteQueryParamsOutput
+	ToHeaderDeleteQueryParamsOutputWithContext(context.Context) HeaderDeleteQueryParamsOutput
+}
+
+// Query params for the API request.
+type HeaderDeleteQueryParamsArgs struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams pulumi.StringMapInput `pulumi:"additionalParams"`
+}
+
+func (HeaderDeleteQueryParamsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*HeaderDeleteQueryParams)(nil)).Elem()
+}
+
+func (i HeaderDeleteQueryParamsArgs) ToHeaderDeleteQueryParamsOutput() HeaderDeleteQueryParamsOutput {
+	return i.ToHeaderDeleteQueryParamsOutputWithContext(context.Background())
+}
+
+func (i HeaderDeleteQueryParamsArgs) ToHeaderDeleteQueryParamsOutputWithContext(ctx context.Context) HeaderDeleteQueryParamsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(HeaderDeleteQueryParamsOutput)
+}
+
+func (i HeaderDeleteQueryParamsArgs) ToHeaderDeleteQueryParamsPtrOutput() HeaderDeleteQueryParamsPtrOutput {
+	return i.ToHeaderDeleteQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i HeaderDeleteQueryParamsArgs) ToHeaderDeleteQueryParamsPtrOutputWithContext(ctx context.Context) HeaderDeleteQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(HeaderDeleteQueryParamsOutput).ToHeaderDeleteQueryParamsPtrOutputWithContext(ctx)
+}
+
+// HeaderDeleteQueryParamsPtrInput is an input type that accepts HeaderDeleteQueryParamsArgs, HeaderDeleteQueryParamsPtr and HeaderDeleteQueryParamsPtrOutput values.
+// You can construct a concrete instance of `HeaderDeleteQueryParamsPtrInput` via:
+//
+//	        HeaderDeleteQueryParamsArgs{...}
+//
+//	or:
+//
+//	        nil
+type HeaderDeleteQueryParamsPtrInput interface {
+	pulumi.Input
+
+	ToHeaderDeleteQueryParamsPtrOutput() HeaderDeleteQueryParamsPtrOutput
+	ToHeaderDeleteQueryParamsPtrOutputWithContext(context.Context) HeaderDeleteQueryParamsPtrOutput
+}
+
+type headerDeleteQueryParamsPtrType HeaderDeleteQueryParamsArgs
+
+func HeaderDeleteQueryParamsPtr(v *HeaderDeleteQueryParamsArgs) HeaderDeleteQueryParamsPtrInput {
+	return (*headerDeleteQueryParamsPtrType)(v)
+}
+
+func (*headerDeleteQueryParamsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**HeaderDeleteQueryParams)(nil)).Elem()
+}
+
+func (i *headerDeleteQueryParamsPtrType) ToHeaderDeleteQueryParamsPtrOutput() HeaderDeleteQueryParamsPtrOutput {
+	return i.ToHeaderDeleteQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i *headerDeleteQueryParamsPtrType) ToHeaderDeleteQueryParamsPtrOutputWithContext(ctx context.Context) HeaderDeleteQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(HeaderDeleteQueryParamsPtrOutput)
+}
+
+// Query params for the API request.
+type HeaderDeleteQueryParamsOutput struct{ *pulumi.OutputState }
+
+func (HeaderDeleteQueryParamsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*HeaderDeleteQueryParams)(nil)).Elem()
+}
+
+func (o HeaderDeleteQueryParamsOutput) ToHeaderDeleteQueryParamsOutput() HeaderDeleteQueryParamsOutput {
+	return o
+}
+
+func (o HeaderDeleteQueryParamsOutput) ToHeaderDeleteQueryParamsOutputWithContext(ctx context.Context) HeaderDeleteQueryParamsOutput {
+	return o
+}
+
+func (o HeaderDeleteQueryParamsOutput) ToHeaderDeleteQueryParamsPtrOutput() HeaderDeleteQueryParamsPtrOutput {
+	return o.ToHeaderDeleteQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (o HeaderDeleteQueryParamsOutput) ToHeaderDeleteQueryParamsPtrOutputWithContext(ctx context.Context) HeaderDeleteQueryParamsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v HeaderDeleteQueryParams) *HeaderDeleteQueryParams {
+		return &v
+	}).(HeaderDeleteQueryParamsPtrOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o HeaderDeleteQueryParamsOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v HeaderDeleteQueryParams) map[string]string { return v.AdditionalParams }).(pulumi.StringMapOutput)
+}
+
+type HeaderDeleteQueryParamsPtrOutput struct{ *pulumi.OutputState }
+
+func (HeaderDeleteQueryParamsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**HeaderDeleteQueryParams)(nil)).Elem()
+}
+
+func (o HeaderDeleteQueryParamsPtrOutput) ToHeaderDeleteQueryParamsPtrOutput() HeaderDeleteQueryParamsPtrOutput {
+	return o
+}
+
+func (o HeaderDeleteQueryParamsPtrOutput) ToHeaderDeleteQueryParamsPtrOutputWithContext(ctx context.Context) HeaderDeleteQueryParamsPtrOutput {
+	return o
+}
+
+func (o HeaderDeleteQueryParamsPtrOutput) Elem() HeaderDeleteQueryParamsOutput {
+	return o.ApplyT(func(v *HeaderDeleteQueryParams) HeaderDeleteQueryParams {
+		if v != nil {
+			return *v
+		}
+		var ret HeaderDeleteQueryParams
+		return ret
+	}).(HeaderDeleteQueryParamsOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o HeaderDeleteQueryParamsPtrOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *HeaderDeleteQueryParams) map[string]string {
+		if v == nil {
+			return nil
+		}
+		return v.AdditionalParams
+	}).(pulumi.StringMapOutput)
 }
 
 type HeaderInputType struct {
@@ -3446,6 +9872,165 @@ func (o HeaderInputTypeArrayOutput) Index(i pulumi.IntInput) HeaderInputTypeOutp
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) HeaderInputType {
 		return vs[0].([]HeaderInputType)[vs[1].(int)]
 	}).(HeaderInputTypeOutput)
+}
+
+// Query params for each of the operations of the resource.
+type HeaderQueryParams struct {
+	// Query params for the create operation.
+	Create *HeaderCreateQueryParams `pulumi:"create"`
+	// Query params for the delete operation.
+	Delete *HeaderDeleteQueryParams `pulumi:"delete"`
+}
+
+// HeaderQueryParamsInput is an input type that accepts HeaderQueryParamsArgs and HeaderQueryParamsOutput values.
+// You can construct a concrete instance of `HeaderQueryParamsInput` via:
+//
+//	HeaderQueryParamsArgs{...}
+type HeaderQueryParamsInput interface {
+	pulumi.Input
+
+	ToHeaderQueryParamsOutput() HeaderQueryParamsOutput
+	ToHeaderQueryParamsOutputWithContext(context.Context) HeaderQueryParamsOutput
+}
+
+// Query params for each of the operations of the resource.
+type HeaderQueryParamsArgs struct {
+	// Query params for the create operation.
+	Create HeaderCreateQueryParamsPtrInput `pulumi:"create"`
+	// Query params for the delete operation.
+	Delete HeaderDeleteQueryParamsPtrInput `pulumi:"delete"`
+}
+
+func (HeaderQueryParamsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*HeaderQueryParams)(nil)).Elem()
+}
+
+func (i HeaderQueryParamsArgs) ToHeaderQueryParamsOutput() HeaderQueryParamsOutput {
+	return i.ToHeaderQueryParamsOutputWithContext(context.Background())
+}
+
+func (i HeaderQueryParamsArgs) ToHeaderQueryParamsOutputWithContext(ctx context.Context) HeaderQueryParamsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(HeaderQueryParamsOutput)
+}
+
+func (i HeaderQueryParamsArgs) ToHeaderQueryParamsPtrOutput() HeaderQueryParamsPtrOutput {
+	return i.ToHeaderQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i HeaderQueryParamsArgs) ToHeaderQueryParamsPtrOutputWithContext(ctx context.Context) HeaderQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(HeaderQueryParamsOutput).ToHeaderQueryParamsPtrOutputWithContext(ctx)
+}
+
+// HeaderQueryParamsPtrInput is an input type that accepts HeaderQueryParamsArgs, HeaderQueryParamsPtr and HeaderQueryParamsPtrOutput values.
+// You can construct a concrete instance of `HeaderQueryParamsPtrInput` via:
+//
+//	        HeaderQueryParamsArgs{...}
+//
+//	or:
+//
+//	        nil
+type HeaderQueryParamsPtrInput interface {
+	pulumi.Input
+
+	ToHeaderQueryParamsPtrOutput() HeaderQueryParamsPtrOutput
+	ToHeaderQueryParamsPtrOutputWithContext(context.Context) HeaderQueryParamsPtrOutput
+}
+
+type headerQueryParamsPtrType HeaderQueryParamsArgs
+
+func HeaderQueryParamsPtr(v *HeaderQueryParamsArgs) HeaderQueryParamsPtrInput {
+	return (*headerQueryParamsPtrType)(v)
+}
+
+func (*headerQueryParamsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**HeaderQueryParams)(nil)).Elem()
+}
+
+func (i *headerQueryParamsPtrType) ToHeaderQueryParamsPtrOutput() HeaderQueryParamsPtrOutput {
+	return i.ToHeaderQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i *headerQueryParamsPtrType) ToHeaderQueryParamsPtrOutputWithContext(ctx context.Context) HeaderQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(HeaderQueryParamsPtrOutput)
+}
+
+// Query params for each of the operations of the resource.
+type HeaderQueryParamsOutput struct{ *pulumi.OutputState }
+
+func (HeaderQueryParamsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*HeaderQueryParams)(nil)).Elem()
+}
+
+func (o HeaderQueryParamsOutput) ToHeaderQueryParamsOutput() HeaderQueryParamsOutput {
+	return o
+}
+
+func (o HeaderQueryParamsOutput) ToHeaderQueryParamsOutputWithContext(ctx context.Context) HeaderQueryParamsOutput {
+	return o
+}
+
+func (o HeaderQueryParamsOutput) ToHeaderQueryParamsPtrOutput() HeaderQueryParamsPtrOutput {
+	return o.ToHeaderQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (o HeaderQueryParamsOutput) ToHeaderQueryParamsPtrOutputWithContext(ctx context.Context) HeaderQueryParamsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v HeaderQueryParams) *HeaderQueryParams {
+		return &v
+	}).(HeaderQueryParamsPtrOutput)
+}
+
+// Query params for the create operation.
+func (o HeaderQueryParamsOutput) Create() HeaderCreateQueryParamsPtrOutput {
+	return o.ApplyT(func(v HeaderQueryParams) *HeaderCreateQueryParams { return v.Create }).(HeaderCreateQueryParamsPtrOutput)
+}
+
+// Query params for the delete operation.
+func (o HeaderQueryParamsOutput) Delete() HeaderDeleteQueryParamsPtrOutput {
+	return o.ApplyT(func(v HeaderQueryParams) *HeaderDeleteQueryParams { return v.Delete }).(HeaderDeleteQueryParamsPtrOutput)
+}
+
+type HeaderQueryParamsPtrOutput struct{ *pulumi.OutputState }
+
+func (HeaderQueryParamsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**HeaderQueryParams)(nil)).Elem()
+}
+
+func (o HeaderQueryParamsPtrOutput) ToHeaderQueryParamsPtrOutput() HeaderQueryParamsPtrOutput {
+	return o
+}
+
+func (o HeaderQueryParamsPtrOutput) ToHeaderQueryParamsPtrOutputWithContext(ctx context.Context) HeaderQueryParamsPtrOutput {
+	return o
+}
+
+func (o HeaderQueryParamsPtrOutput) Elem() HeaderQueryParamsOutput {
+	return o.ApplyT(func(v *HeaderQueryParams) HeaderQueryParams {
+		if v != nil {
+			return *v
+		}
+		var ret HeaderQueryParams
+		return ret
+	}).(HeaderQueryParamsOutput)
+}
+
+// Query params for the create operation.
+func (o HeaderQueryParamsPtrOutput) Create() HeaderCreateQueryParamsPtrOutput {
+	return o.ApplyT(func(v *HeaderQueryParams) *HeaderCreateQueryParams {
+		if v == nil {
+			return nil
+		}
+		return v.Create
+	}).(HeaderCreateQueryParamsPtrOutput)
+}
+
+// Query params for the delete operation.
+func (o HeaderQueryParamsPtrOutput) Delete() HeaderDeleteQueryParamsPtrOutput {
+	return o.ApplyT(func(v *HeaderQueryParams) *HeaderDeleteQueryParams {
+		if v == nil {
+			return nil
+		}
+		return v.Delete
+	}).(HeaderDeleteQueryParamsPtrOutput)
 }
 
 type HeaderWithCursor struct {
@@ -3821,6 +10406,445 @@ func (o JobTypeOutput) Status() JobStatusPtrOutput {
 	return o.ApplyT(func(v JobType) *JobStatus { return v.Status }).(JobStatusPtrOutput)
 }
 
+// Query params for the API request.
+type JobCreateQueryParams struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams map[string]string `pulumi:"additionalParams"`
+}
+
+// JobCreateQueryParamsInput is an input type that accepts JobCreateQueryParamsArgs and JobCreateQueryParamsOutput values.
+// You can construct a concrete instance of `JobCreateQueryParamsInput` via:
+//
+//	JobCreateQueryParamsArgs{...}
+type JobCreateQueryParamsInput interface {
+	pulumi.Input
+
+	ToJobCreateQueryParamsOutput() JobCreateQueryParamsOutput
+	ToJobCreateQueryParamsOutputWithContext(context.Context) JobCreateQueryParamsOutput
+}
+
+// Query params for the API request.
+type JobCreateQueryParamsArgs struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams pulumi.StringMapInput `pulumi:"additionalParams"`
+}
+
+func (JobCreateQueryParamsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*JobCreateQueryParams)(nil)).Elem()
+}
+
+func (i JobCreateQueryParamsArgs) ToJobCreateQueryParamsOutput() JobCreateQueryParamsOutput {
+	return i.ToJobCreateQueryParamsOutputWithContext(context.Background())
+}
+
+func (i JobCreateQueryParamsArgs) ToJobCreateQueryParamsOutputWithContext(ctx context.Context) JobCreateQueryParamsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(JobCreateQueryParamsOutput)
+}
+
+func (i JobCreateQueryParamsArgs) ToJobCreateQueryParamsPtrOutput() JobCreateQueryParamsPtrOutput {
+	return i.ToJobCreateQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i JobCreateQueryParamsArgs) ToJobCreateQueryParamsPtrOutputWithContext(ctx context.Context) JobCreateQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(JobCreateQueryParamsOutput).ToJobCreateQueryParamsPtrOutputWithContext(ctx)
+}
+
+// JobCreateQueryParamsPtrInput is an input type that accepts JobCreateQueryParamsArgs, JobCreateQueryParamsPtr and JobCreateQueryParamsPtrOutput values.
+// You can construct a concrete instance of `JobCreateQueryParamsPtrInput` via:
+//
+//	        JobCreateQueryParamsArgs{...}
+//
+//	or:
+//
+//	        nil
+type JobCreateQueryParamsPtrInput interface {
+	pulumi.Input
+
+	ToJobCreateQueryParamsPtrOutput() JobCreateQueryParamsPtrOutput
+	ToJobCreateQueryParamsPtrOutputWithContext(context.Context) JobCreateQueryParamsPtrOutput
+}
+
+type jobCreateQueryParamsPtrType JobCreateQueryParamsArgs
+
+func JobCreateQueryParamsPtr(v *JobCreateQueryParamsArgs) JobCreateQueryParamsPtrInput {
+	return (*jobCreateQueryParamsPtrType)(v)
+}
+
+func (*jobCreateQueryParamsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**JobCreateQueryParams)(nil)).Elem()
+}
+
+func (i *jobCreateQueryParamsPtrType) ToJobCreateQueryParamsPtrOutput() JobCreateQueryParamsPtrOutput {
+	return i.ToJobCreateQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i *jobCreateQueryParamsPtrType) ToJobCreateQueryParamsPtrOutputWithContext(ctx context.Context) JobCreateQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(JobCreateQueryParamsPtrOutput)
+}
+
+// Query params for the API request.
+type JobCreateQueryParamsOutput struct{ *pulumi.OutputState }
+
+func (JobCreateQueryParamsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*JobCreateQueryParams)(nil)).Elem()
+}
+
+func (o JobCreateQueryParamsOutput) ToJobCreateQueryParamsOutput() JobCreateQueryParamsOutput {
+	return o
+}
+
+func (o JobCreateQueryParamsOutput) ToJobCreateQueryParamsOutputWithContext(ctx context.Context) JobCreateQueryParamsOutput {
+	return o
+}
+
+func (o JobCreateQueryParamsOutput) ToJobCreateQueryParamsPtrOutput() JobCreateQueryParamsPtrOutput {
+	return o.ToJobCreateQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (o JobCreateQueryParamsOutput) ToJobCreateQueryParamsPtrOutputWithContext(ctx context.Context) JobCreateQueryParamsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v JobCreateQueryParams) *JobCreateQueryParams {
+		return &v
+	}).(JobCreateQueryParamsPtrOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o JobCreateQueryParamsOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v JobCreateQueryParams) map[string]string { return v.AdditionalParams }).(pulumi.StringMapOutput)
+}
+
+type JobCreateQueryParamsPtrOutput struct{ *pulumi.OutputState }
+
+func (JobCreateQueryParamsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**JobCreateQueryParams)(nil)).Elem()
+}
+
+func (o JobCreateQueryParamsPtrOutput) ToJobCreateQueryParamsPtrOutput() JobCreateQueryParamsPtrOutput {
+	return o
+}
+
+func (o JobCreateQueryParamsPtrOutput) ToJobCreateQueryParamsPtrOutputWithContext(ctx context.Context) JobCreateQueryParamsPtrOutput {
+	return o
+}
+
+func (o JobCreateQueryParamsPtrOutput) Elem() JobCreateQueryParamsOutput {
+	return o.ApplyT(func(v *JobCreateQueryParams) JobCreateQueryParams {
+		if v != nil {
+			return *v
+		}
+		var ret JobCreateQueryParams
+		return ret
+	}).(JobCreateQueryParamsOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o JobCreateQueryParamsPtrOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *JobCreateQueryParams) map[string]string {
+		if v == nil {
+			return nil
+		}
+		return v.AdditionalParams
+	}).(pulumi.StringMapOutput)
+}
+
+// Query params for each of the operations of the resource.
+type JobQueryParams struct {
+	// Query params for the create operation.
+	Create *JobCreateQueryParams `pulumi:"create"`
+	// Query params for the read operation.
+	Read *JobReadQueryParams `pulumi:"read"`
+}
+
+// JobQueryParamsInput is an input type that accepts JobQueryParamsArgs and JobQueryParamsOutput values.
+// You can construct a concrete instance of `JobQueryParamsInput` via:
+//
+//	JobQueryParamsArgs{...}
+type JobQueryParamsInput interface {
+	pulumi.Input
+
+	ToJobQueryParamsOutput() JobQueryParamsOutput
+	ToJobQueryParamsOutputWithContext(context.Context) JobQueryParamsOutput
+}
+
+// Query params for each of the operations of the resource.
+type JobQueryParamsArgs struct {
+	// Query params for the create operation.
+	Create JobCreateQueryParamsPtrInput `pulumi:"create"`
+	// Query params for the read operation.
+	Read JobReadQueryParamsPtrInput `pulumi:"read"`
+}
+
+func (JobQueryParamsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*JobQueryParams)(nil)).Elem()
+}
+
+func (i JobQueryParamsArgs) ToJobQueryParamsOutput() JobQueryParamsOutput {
+	return i.ToJobQueryParamsOutputWithContext(context.Background())
+}
+
+func (i JobQueryParamsArgs) ToJobQueryParamsOutputWithContext(ctx context.Context) JobQueryParamsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(JobQueryParamsOutput)
+}
+
+func (i JobQueryParamsArgs) ToJobQueryParamsPtrOutput() JobQueryParamsPtrOutput {
+	return i.ToJobQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i JobQueryParamsArgs) ToJobQueryParamsPtrOutputWithContext(ctx context.Context) JobQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(JobQueryParamsOutput).ToJobQueryParamsPtrOutputWithContext(ctx)
+}
+
+// JobQueryParamsPtrInput is an input type that accepts JobQueryParamsArgs, JobQueryParamsPtr and JobQueryParamsPtrOutput values.
+// You can construct a concrete instance of `JobQueryParamsPtrInput` via:
+//
+//	        JobQueryParamsArgs{...}
+//
+//	or:
+//
+//	        nil
+type JobQueryParamsPtrInput interface {
+	pulumi.Input
+
+	ToJobQueryParamsPtrOutput() JobQueryParamsPtrOutput
+	ToJobQueryParamsPtrOutputWithContext(context.Context) JobQueryParamsPtrOutput
+}
+
+type jobQueryParamsPtrType JobQueryParamsArgs
+
+func JobQueryParamsPtr(v *JobQueryParamsArgs) JobQueryParamsPtrInput {
+	return (*jobQueryParamsPtrType)(v)
+}
+
+func (*jobQueryParamsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**JobQueryParams)(nil)).Elem()
+}
+
+func (i *jobQueryParamsPtrType) ToJobQueryParamsPtrOutput() JobQueryParamsPtrOutput {
+	return i.ToJobQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i *jobQueryParamsPtrType) ToJobQueryParamsPtrOutputWithContext(ctx context.Context) JobQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(JobQueryParamsPtrOutput)
+}
+
+// Query params for each of the operations of the resource.
+type JobQueryParamsOutput struct{ *pulumi.OutputState }
+
+func (JobQueryParamsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*JobQueryParams)(nil)).Elem()
+}
+
+func (o JobQueryParamsOutput) ToJobQueryParamsOutput() JobQueryParamsOutput {
+	return o
+}
+
+func (o JobQueryParamsOutput) ToJobQueryParamsOutputWithContext(ctx context.Context) JobQueryParamsOutput {
+	return o
+}
+
+func (o JobQueryParamsOutput) ToJobQueryParamsPtrOutput() JobQueryParamsPtrOutput {
+	return o.ToJobQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (o JobQueryParamsOutput) ToJobQueryParamsPtrOutputWithContext(ctx context.Context) JobQueryParamsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v JobQueryParams) *JobQueryParams {
+		return &v
+	}).(JobQueryParamsPtrOutput)
+}
+
+// Query params for the create operation.
+func (o JobQueryParamsOutput) Create() JobCreateQueryParamsPtrOutput {
+	return o.ApplyT(func(v JobQueryParams) *JobCreateQueryParams { return v.Create }).(JobCreateQueryParamsPtrOutput)
+}
+
+// Query params for the read operation.
+func (o JobQueryParamsOutput) Read() JobReadQueryParamsPtrOutput {
+	return o.ApplyT(func(v JobQueryParams) *JobReadQueryParams { return v.Read }).(JobReadQueryParamsPtrOutput)
+}
+
+type JobQueryParamsPtrOutput struct{ *pulumi.OutputState }
+
+func (JobQueryParamsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**JobQueryParams)(nil)).Elem()
+}
+
+func (o JobQueryParamsPtrOutput) ToJobQueryParamsPtrOutput() JobQueryParamsPtrOutput {
+	return o
+}
+
+func (o JobQueryParamsPtrOutput) ToJobQueryParamsPtrOutputWithContext(ctx context.Context) JobQueryParamsPtrOutput {
+	return o
+}
+
+func (o JobQueryParamsPtrOutput) Elem() JobQueryParamsOutput {
+	return o.ApplyT(func(v *JobQueryParams) JobQueryParams {
+		if v != nil {
+			return *v
+		}
+		var ret JobQueryParams
+		return ret
+	}).(JobQueryParamsOutput)
+}
+
+// Query params for the create operation.
+func (o JobQueryParamsPtrOutput) Create() JobCreateQueryParamsPtrOutput {
+	return o.ApplyT(func(v *JobQueryParams) *JobCreateQueryParams {
+		if v == nil {
+			return nil
+		}
+		return v.Create
+	}).(JobCreateQueryParamsPtrOutput)
+}
+
+// Query params for the read operation.
+func (o JobQueryParamsPtrOutput) Read() JobReadQueryParamsPtrOutput {
+	return o.ApplyT(func(v *JobQueryParams) *JobReadQueryParams {
+		if v == nil {
+			return nil
+		}
+		return v.Read
+	}).(JobReadQueryParamsPtrOutput)
+}
+
+// Query params for the API request.
+type JobReadQueryParams struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams map[string]string `pulumi:"additionalParams"`
+}
+
+// JobReadQueryParamsInput is an input type that accepts JobReadQueryParamsArgs and JobReadQueryParamsOutput values.
+// You can construct a concrete instance of `JobReadQueryParamsInput` via:
+//
+//	JobReadQueryParamsArgs{...}
+type JobReadQueryParamsInput interface {
+	pulumi.Input
+
+	ToJobReadQueryParamsOutput() JobReadQueryParamsOutput
+	ToJobReadQueryParamsOutputWithContext(context.Context) JobReadQueryParamsOutput
+}
+
+// Query params for the API request.
+type JobReadQueryParamsArgs struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams pulumi.StringMapInput `pulumi:"additionalParams"`
+}
+
+func (JobReadQueryParamsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*JobReadQueryParams)(nil)).Elem()
+}
+
+func (i JobReadQueryParamsArgs) ToJobReadQueryParamsOutput() JobReadQueryParamsOutput {
+	return i.ToJobReadQueryParamsOutputWithContext(context.Background())
+}
+
+func (i JobReadQueryParamsArgs) ToJobReadQueryParamsOutputWithContext(ctx context.Context) JobReadQueryParamsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(JobReadQueryParamsOutput)
+}
+
+func (i JobReadQueryParamsArgs) ToJobReadQueryParamsPtrOutput() JobReadQueryParamsPtrOutput {
+	return i.ToJobReadQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i JobReadQueryParamsArgs) ToJobReadQueryParamsPtrOutputWithContext(ctx context.Context) JobReadQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(JobReadQueryParamsOutput).ToJobReadQueryParamsPtrOutputWithContext(ctx)
+}
+
+// JobReadQueryParamsPtrInput is an input type that accepts JobReadQueryParamsArgs, JobReadQueryParamsPtr and JobReadQueryParamsPtrOutput values.
+// You can construct a concrete instance of `JobReadQueryParamsPtrInput` via:
+//
+//	        JobReadQueryParamsArgs{...}
+//
+//	or:
+//
+//	        nil
+type JobReadQueryParamsPtrInput interface {
+	pulumi.Input
+
+	ToJobReadQueryParamsPtrOutput() JobReadQueryParamsPtrOutput
+	ToJobReadQueryParamsPtrOutputWithContext(context.Context) JobReadQueryParamsPtrOutput
+}
+
+type jobReadQueryParamsPtrType JobReadQueryParamsArgs
+
+func JobReadQueryParamsPtr(v *JobReadQueryParamsArgs) JobReadQueryParamsPtrInput {
+	return (*jobReadQueryParamsPtrType)(v)
+}
+
+func (*jobReadQueryParamsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**JobReadQueryParams)(nil)).Elem()
+}
+
+func (i *jobReadQueryParamsPtrType) ToJobReadQueryParamsPtrOutput() JobReadQueryParamsPtrOutput {
+	return i.ToJobReadQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i *jobReadQueryParamsPtrType) ToJobReadQueryParamsPtrOutputWithContext(ctx context.Context) JobReadQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(JobReadQueryParamsPtrOutput)
+}
+
+// Query params for the API request.
+type JobReadQueryParamsOutput struct{ *pulumi.OutputState }
+
+func (JobReadQueryParamsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*JobReadQueryParams)(nil)).Elem()
+}
+
+func (o JobReadQueryParamsOutput) ToJobReadQueryParamsOutput() JobReadQueryParamsOutput {
+	return o
+}
+
+func (o JobReadQueryParamsOutput) ToJobReadQueryParamsOutputWithContext(ctx context.Context) JobReadQueryParamsOutput {
+	return o
+}
+
+func (o JobReadQueryParamsOutput) ToJobReadQueryParamsPtrOutput() JobReadQueryParamsPtrOutput {
+	return o.ToJobReadQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (o JobReadQueryParamsOutput) ToJobReadQueryParamsPtrOutputWithContext(ctx context.Context) JobReadQueryParamsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v JobReadQueryParams) *JobReadQueryParams {
+		return &v
+	}).(JobReadQueryParamsPtrOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o JobReadQueryParamsOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v JobReadQueryParams) map[string]string { return v.AdditionalParams }).(pulumi.StringMapOutput)
+}
+
+type JobReadQueryParamsPtrOutput struct{ *pulumi.OutputState }
+
+func (JobReadQueryParamsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**JobReadQueryParams)(nil)).Elem()
+}
+
+func (o JobReadQueryParamsPtrOutput) ToJobReadQueryParamsPtrOutput() JobReadQueryParamsPtrOutput {
+	return o
+}
+
+func (o JobReadQueryParamsPtrOutput) ToJobReadQueryParamsPtrOutputWithContext(ctx context.Context) JobReadQueryParamsPtrOutput {
+	return o
+}
+
+func (o JobReadQueryParamsPtrOutput) Elem() JobReadQueryParamsOutput {
+	return o.ApplyT(func(v *JobReadQueryParams) JobReadQueryParams {
+		if v != nil {
+			return *v
+		}
+		var ret JobReadQueryParams
+		return ret
+	}).(JobReadQueryParamsOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o JobReadQueryParamsPtrOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *JobReadQueryParams) map[string]string {
+		if v == nil {
+			return nil
+		}
+		return v.AdditionalParams
+	}).(pulumi.StringMapOutput)
+}
+
 type JobWithCursor struct {
 	Cursor string  `pulumi:"cursor"`
 	Job    JobType `pulumi:"job"`
@@ -3866,6 +10890,2474 @@ func (o JobWithCursorArrayOutput) Index(i pulumi.IntInput) JobWithCursorOutput {
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) JobWithCursor {
 		return vs[0].([]JobWithCursor)[vs[1].(int)]
 	}).(JobWithCursorOutput)
+}
+
+// Query params for the API request.
+type ListCustomDomainsQueryParams struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams map[string]string `pulumi:"additionalParams"`
+	// Filter for custom domains created after a certain time (specified as an ISO 8601 timestamp)
+	CreatedAfter *string `pulumi:"createdAfter"`
+	// Filter for custom domains created before a certain time (specified as an ISO 8601 timestamp)
+	CreatedBefore *string `pulumi:"createdBefore"`
+	// The position in the result list to start from when fetching paginated results. For details, see [Pagination](https://api-docs.render.com/reference/pagination).
+	Cursor *string `pulumi:"cursor"`
+	// Filter for domain type
+	DomainType *ListCustomDomainsQueryParamsDomainType `pulumi:"domainType"`
+	// The maximum number of items to return. For details, see [Pagination](https://api-docs.render.com/reference/pagination).
+	Limit *int `pulumi:"limit"`
+	// Filter for the names of custom domain
+	Name []string `pulumi:"name"`
+	// Filter for domain verification status (`verified` or `unverified`)
+	VerificationStatus *ListCustomDomainsQueryParamsVerificationStatus `pulumi:"verificationStatus"`
+}
+
+// Defaults sets the appropriate defaults for ListCustomDomainsQueryParams
+func (val *ListCustomDomainsQueryParams) Defaults() *ListCustomDomainsQueryParams {
+	if val == nil {
+		return nil
+	}
+	tmp := *val
+	if tmp.Limit == nil {
+		limit_ := 20
+		tmp.Limit = &limit_
+	}
+	return &tmp
+}
+
+// ListCustomDomainsQueryParamsInput is an input type that accepts ListCustomDomainsQueryParamsArgs and ListCustomDomainsQueryParamsOutput values.
+// You can construct a concrete instance of `ListCustomDomainsQueryParamsInput` via:
+//
+//	ListCustomDomainsQueryParamsArgs{...}
+type ListCustomDomainsQueryParamsInput interface {
+	pulumi.Input
+
+	ToListCustomDomainsQueryParamsOutput() ListCustomDomainsQueryParamsOutput
+	ToListCustomDomainsQueryParamsOutputWithContext(context.Context) ListCustomDomainsQueryParamsOutput
+}
+
+// Query params for the API request.
+type ListCustomDomainsQueryParamsArgs struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams pulumi.StringMapInput `pulumi:"additionalParams"`
+	// Filter for custom domains created after a certain time (specified as an ISO 8601 timestamp)
+	CreatedAfter pulumi.StringPtrInput `pulumi:"createdAfter"`
+	// Filter for custom domains created before a certain time (specified as an ISO 8601 timestamp)
+	CreatedBefore pulumi.StringPtrInput `pulumi:"createdBefore"`
+	// The position in the result list to start from when fetching paginated results. For details, see [Pagination](https://api-docs.render.com/reference/pagination).
+	Cursor pulumi.StringPtrInput `pulumi:"cursor"`
+	// Filter for domain type
+	DomainType ListCustomDomainsQueryParamsDomainTypePtrInput `pulumi:"domainType"`
+	// The maximum number of items to return. For details, see [Pagination](https://api-docs.render.com/reference/pagination).
+	Limit pulumi.IntPtrInput `pulumi:"limit"`
+	// Filter for the names of custom domain
+	Name pulumi.StringArrayInput `pulumi:"name"`
+	// Filter for domain verification status (`verified` or `unverified`)
+	VerificationStatus ListCustomDomainsQueryParamsVerificationStatusPtrInput `pulumi:"verificationStatus"`
+}
+
+// Defaults sets the appropriate defaults for ListCustomDomainsQueryParamsArgs
+func (val *ListCustomDomainsQueryParamsArgs) Defaults() *ListCustomDomainsQueryParamsArgs {
+	if val == nil {
+		return nil
+	}
+	tmp := *val
+	if tmp.Limit == nil {
+		tmp.Limit = pulumi.IntPtr(20)
+	}
+	return &tmp
+}
+func (ListCustomDomainsQueryParamsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ListCustomDomainsQueryParams)(nil)).Elem()
+}
+
+func (i ListCustomDomainsQueryParamsArgs) ToListCustomDomainsQueryParamsOutput() ListCustomDomainsQueryParamsOutput {
+	return i.ToListCustomDomainsQueryParamsOutputWithContext(context.Background())
+}
+
+func (i ListCustomDomainsQueryParamsArgs) ToListCustomDomainsQueryParamsOutputWithContext(ctx context.Context) ListCustomDomainsQueryParamsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ListCustomDomainsQueryParamsOutput)
+}
+
+func (i ListCustomDomainsQueryParamsArgs) ToListCustomDomainsQueryParamsPtrOutput() ListCustomDomainsQueryParamsPtrOutput {
+	return i.ToListCustomDomainsQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i ListCustomDomainsQueryParamsArgs) ToListCustomDomainsQueryParamsPtrOutputWithContext(ctx context.Context) ListCustomDomainsQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ListCustomDomainsQueryParamsOutput).ToListCustomDomainsQueryParamsPtrOutputWithContext(ctx)
+}
+
+// ListCustomDomainsQueryParamsPtrInput is an input type that accepts ListCustomDomainsQueryParamsArgs, ListCustomDomainsQueryParamsPtr and ListCustomDomainsQueryParamsPtrOutput values.
+// You can construct a concrete instance of `ListCustomDomainsQueryParamsPtrInput` via:
+//
+//	        ListCustomDomainsQueryParamsArgs{...}
+//
+//	or:
+//
+//	        nil
+type ListCustomDomainsQueryParamsPtrInput interface {
+	pulumi.Input
+
+	ToListCustomDomainsQueryParamsPtrOutput() ListCustomDomainsQueryParamsPtrOutput
+	ToListCustomDomainsQueryParamsPtrOutputWithContext(context.Context) ListCustomDomainsQueryParamsPtrOutput
+}
+
+type listCustomDomainsQueryParamsPtrType ListCustomDomainsQueryParamsArgs
+
+func ListCustomDomainsQueryParamsPtr(v *ListCustomDomainsQueryParamsArgs) ListCustomDomainsQueryParamsPtrInput {
+	return (*listCustomDomainsQueryParamsPtrType)(v)
+}
+
+func (*listCustomDomainsQueryParamsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**ListCustomDomainsQueryParams)(nil)).Elem()
+}
+
+func (i *listCustomDomainsQueryParamsPtrType) ToListCustomDomainsQueryParamsPtrOutput() ListCustomDomainsQueryParamsPtrOutput {
+	return i.ToListCustomDomainsQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i *listCustomDomainsQueryParamsPtrType) ToListCustomDomainsQueryParamsPtrOutputWithContext(ctx context.Context) ListCustomDomainsQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ListCustomDomainsQueryParamsPtrOutput)
+}
+
+// Query params for the API request.
+type ListCustomDomainsQueryParamsOutput struct{ *pulumi.OutputState }
+
+func (ListCustomDomainsQueryParamsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ListCustomDomainsQueryParams)(nil)).Elem()
+}
+
+func (o ListCustomDomainsQueryParamsOutput) ToListCustomDomainsQueryParamsOutput() ListCustomDomainsQueryParamsOutput {
+	return o
+}
+
+func (o ListCustomDomainsQueryParamsOutput) ToListCustomDomainsQueryParamsOutputWithContext(ctx context.Context) ListCustomDomainsQueryParamsOutput {
+	return o
+}
+
+func (o ListCustomDomainsQueryParamsOutput) ToListCustomDomainsQueryParamsPtrOutput() ListCustomDomainsQueryParamsPtrOutput {
+	return o.ToListCustomDomainsQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (o ListCustomDomainsQueryParamsOutput) ToListCustomDomainsQueryParamsPtrOutputWithContext(ctx context.Context) ListCustomDomainsQueryParamsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v ListCustomDomainsQueryParams) *ListCustomDomainsQueryParams {
+		return &v
+	}).(ListCustomDomainsQueryParamsPtrOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o ListCustomDomainsQueryParamsOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v ListCustomDomainsQueryParams) map[string]string { return v.AdditionalParams }).(pulumi.StringMapOutput)
+}
+
+// Filter for custom domains created after a certain time (specified as an ISO 8601 timestamp)
+func (o ListCustomDomainsQueryParamsOutput) CreatedAfter() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ListCustomDomainsQueryParams) *string { return v.CreatedAfter }).(pulumi.StringPtrOutput)
+}
+
+// Filter for custom domains created before a certain time (specified as an ISO 8601 timestamp)
+func (o ListCustomDomainsQueryParamsOutput) CreatedBefore() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ListCustomDomainsQueryParams) *string { return v.CreatedBefore }).(pulumi.StringPtrOutput)
+}
+
+// The position in the result list to start from when fetching paginated results. For details, see [Pagination](https://api-docs.render.com/reference/pagination).
+func (o ListCustomDomainsQueryParamsOutput) Cursor() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ListCustomDomainsQueryParams) *string { return v.Cursor }).(pulumi.StringPtrOutput)
+}
+
+// Filter for domain type
+func (o ListCustomDomainsQueryParamsOutput) DomainType() ListCustomDomainsQueryParamsDomainTypePtrOutput {
+	return o.ApplyT(func(v ListCustomDomainsQueryParams) *ListCustomDomainsQueryParamsDomainType { return v.DomainType }).(ListCustomDomainsQueryParamsDomainTypePtrOutput)
+}
+
+// The maximum number of items to return. For details, see [Pagination](https://api-docs.render.com/reference/pagination).
+func (o ListCustomDomainsQueryParamsOutput) Limit() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v ListCustomDomainsQueryParams) *int { return v.Limit }).(pulumi.IntPtrOutput)
+}
+
+// Filter for the names of custom domain
+func (o ListCustomDomainsQueryParamsOutput) Name() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v ListCustomDomainsQueryParams) []string { return v.Name }).(pulumi.StringArrayOutput)
+}
+
+// Filter for domain verification status (`verified` or `unverified`)
+func (o ListCustomDomainsQueryParamsOutput) VerificationStatus() ListCustomDomainsQueryParamsVerificationStatusPtrOutput {
+	return o.ApplyT(func(v ListCustomDomainsQueryParams) *ListCustomDomainsQueryParamsVerificationStatus {
+		return v.VerificationStatus
+	}).(ListCustomDomainsQueryParamsVerificationStatusPtrOutput)
+}
+
+type ListCustomDomainsQueryParamsPtrOutput struct{ *pulumi.OutputState }
+
+func (ListCustomDomainsQueryParamsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ListCustomDomainsQueryParams)(nil)).Elem()
+}
+
+func (o ListCustomDomainsQueryParamsPtrOutput) ToListCustomDomainsQueryParamsPtrOutput() ListCustomDomainsQueryParamsPtrOutput {
+	return o
+}
+
+func (o ListCustomDomainsQueryParamsPtrOutput) ToListCustomDomainsQueryParamsPtrOutputWithContext(ctx context.Context) ListCustomDomainsQueryParamsPtrOutput {
+	return o
+}
+
+func (o ListCustomDomainsQueryParamsPtrOutput) Elem() ListCustomDomainsQueryParamsOutput {
+	return o.ApplyT(func(v *ListCustomDomainsQueryParams) ListCustomDomainsQueryParams {
+		if v != nil {
+			return *v
+		}
+		var ret ListCustomDomainsQueryParams
+		return ret
+	}).(ListCustomDomainsQueryParamsOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o ListCustomDomainsQueryParamsPtrOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *ListCustomDomainsQueryParams) map[string]string {
+		if v == nil {
+			return nil
+		}
+		return v.AdditionalParams
+	}).(pulumi.StringMapOutput)
+}
+
+// Filter for custom domains created after a certain time (specified as an ISO 8601 timestamp)
+func (o ListCustomDomainsQueryParamsPtrOutput) CreatedAfter() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ListCustomDomainsQueryParams) *string {
+		if v == nil {
+			return nil
+		}
+		return v.CreatedAfter
+	}).(pulumi.StringPtrOutput)
+}
+
+// Filter for custom domains created before a certain time (specified as an ISO 8601 timestamp)
+func (o ListCustomDomainsQueryParamsPtrOutput) CreatedBefore() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ListCustomDomainsQueryParams) *string {
+		if v == nil {
+			return nil
+		}
+		return v.CreatedBefore
+	}).(pulumi.StringPtrOutput)
+}
+
+// The position in the result list to start from when fetching paginated results. For details, see [Pagination](https://api-docs.render.com/reference/pagination).
+func (o ListCustomDomainsQueryParamsPtrOutput) Cursor() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ListCustomDomainsQueryParams) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Cursor
+	}).(pulumi.StringPtrOutput)
+}
+
+// Filter for domain type
+func (o ListCustomDomainsQueryParamsPtrOutput) DomainType() ListCustomDomainsQueryParamsDomainTypePtrOutput {
+	return o.ApplyT(func(v *ListCustomDomainsQueryParams) *ListCustomDomainsQueryParamsDomainType {
+		if v == nil {
+			return nil
+		}
+		return v.DomainType
+	}).(ListCustomDomainsQueryParamsDomainTypePtrOutput)
+}
+
+// The maximum number of items to return. For details, see [Pagination](https://api-docs.render.com/reference/pagination).
+func (o ListCustomDomainsQueryParamsPtrOutput) Limit() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *ListCustomDomainsQueryParams) *int {
+		if v == nil {
+			return nil
+		}
+		return v.Limit
+	}).(pulumi.IntPtrOutput)
+}
+
+// Filter for the names of custom domain
+func (o ListCustomDomainsQueryParamsPtrOutput) Name() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *ListCustomDomainsQueryParams) []string {
+		if v == nil {
+			return nil
+		}
+		return v.Name
+	}).(pulumi.StringArrayOutput)
+}
+
+// Filter for domain verification status (`verified` or `unverified`)
+func (o ListCustomDomainsQueryParamsPtrOutput) VerificationStatus() ListCustomDomainsQueryParamsVerificationStatusPtrOutput {
+	return o.ApplyT(func(v *ListCustomDomainsQueryParams) *ListCustomDomainsQueryParamsVerificationStatus {
+		if v == nil {
+			return nil
+		}
+		return v.VerificationStatus
+	}).(ListCustomDomainsQueryParamsVerificationStatusPtrOutput)
+}
+
+// Query params for the API request.
+type ListDeploysQueryParams struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams map[string]string `pulumi:"additionalParams"`
+	// Filter for deploys created after a certain time (specified as an ISO 8601 timestamp)
+	CreatedAfter *string `pulumi:"createdAfter"`
+	// Filter for deploys created before a certain time (specified as an ISO 8601 timestamp)
+	CreatedBefore *string `pulumi:"createdBefore"`
+	// The position in the result list to start from when fetching paginated results. For details, see [Pagination](https://api-docs.render.com/reference/pagination).
+	Cursor *string `pulumi:"cursor"`
+	// Filter for deploys finished after a certain time (specified as an ISO 8601 timestamp)
+	FinishedAfter *string `pulumi:"finishedAfter"`
+	// Filter for deploys finished before a certain time (specified as an ISO 8601 timestamp)
+	FinishedBefore *string `pulumi:"finishedBefore"`
+	// The maximum number of items to return. For details, see [Pagination](https://api-docs.render.com/reference/pagination).
+	Limit *int `pulumi:"limit"`
+	// Filter for deploys with the specified statuses
+	Status []ListDeploysQueryParamsStatusItem `pulumi:"status"`
+	// Filter for deploys updated after a certain time (specified as an ISO 8601 timestamp)
+	UpdatedAfter *string `pulumi:"updatedAfter"`
+	// Filter for deploys updated before a certain time (specified as an ISO 8601 timestamp)
+	UpdatedBefore *string `pulumi:"updatedBefore"`
+}
+
+// Defaults sets the appropriate defaults for ListDeploysQueryParams
+func (val *ListDeploysQueryParams) Defaults() *ListDeploysQueryParams {
+	if val == nil {
+		return nil
+	}
+	tmp := *val
+	if tmp.Limit == nil {
+		limit_ := 20
+		tmp.Limit = &limit_
+	}
+	return &tmp
+}
+
+// ListDeploysQueryParamsInput is an input type that accepts ListDeploysQueryParamsArgs and ListDeploysQueryParamsOutput values.
+// You can construct a concrete instance of `ListDeploysQueryParamsInput` via:
+//
+//	ListDeploysQueryParamsArgs{...}
+type ListDeploysQueryParamsInput interface {
+	pulumi.Input
+
+	ToListDeploysQueryParamsOutput() ListDeploysQueryParamsOutput
+	ToListDeploysQueryParamsOutputWithContext(context.Context) ListDeploysQueryParamsOutput
+}
+
+// Query params for the API request.
+type ListDeploysQueryParamsArgs struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams pulumi.StringMapInput `pulumi:"additionalParams"`
+	// Filter for deploys created after a certain time (specified as an ISO 8601 timestamp)
+	CreatedAfter pulumi.StringPtrInput `pulumi:"createdAfter"`
+	// Filter for deploys created before a certain time (specified as an ISO 8601 timestamp)
+	CreatedBefore pulumi.StringPtrInput `pulumi:"createdBefore"`
+	// The position in the result list to start from when fetching paginated results. For details, see [Pagination](https://api-docs.render.com/reference/pagination).
+	Cursor pulumi.StringPtrInput `pulumi:"cursor"`
+	// Filter for deploys finished after a certain time (specified as an ISO 8601 timestamp)
+	FinishedAfter pulumi.StringPtrInput `pulumi:"finishedAfter"`
+	// Filter for deploys finished before a certain time (specified as an ISO 8601 timestamp)
+	FinishedBefore pulumi.StringPtrInput `pulumi:"finishedBefore"`
+	// The maximum number of items to return. For details, see [Pagination](https://api-docs.render.com/reference/pagination).
+	Limit pulumi.IntPtrInput `pulumi:"limit"`
+	// Filter for deploys with the specified statuses
+	Status ListDeploysQueryParamsStatusItemArrayInput `pulumi:"status"`
+	// Filter for deploys updated after a certain time (specified as an ISO 8601 timestamp)
+	UpdatedAfter pulumi.StringPtrInput `pulumi:"updatedAfter"`
+	// Filter for deploys updated before a certain time (specified as an ISO 8601 timestamp)
+	UpdatedBefore pulumi.StringPtrInput `pulumi:"updatedBefore"`
+}
+
+// Defaults sets the appropriate defaults for ListDeploysQueryParamsArgs
+func (val *ListDeploysQueryParamsArgs) Defaults() *ListDeploysQueryParamsArgs {
+	if val == nil {
+		return nil
+	}
+	tmp := *val
+	if tmp.Limit == nil {
+		tmp.Limit = pulumi.IntPtr(20)
+	}
+	return &tmp
+}
+func (ListDeploysQueryParamsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ListDeploysQueryParams)(nil)).Elem()
+}
+
+func (i ListDeploysQueryParamsArgs) ToListDeploysQueryParamsOutput() ListDeploysQueryParamsOutput {
+	return i.ToListDeploysQueryParamsOutputWithContext(context.Background())
+}
+
+func (i ListDeploysQueryParamsArgs) ToListDeploysQueryParamsOutputWithContext(ctx context.Context) ListDeploysQueryParamsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ListDeploysQueryParamsOutput)
+}
+
+func (i ListDeploysQueryParamsArgs) ToListDeploysQueryParamsPtrOutput() ListDeploysQueryParamsPtrOutput {
+	return i.ToListDeploysQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i ListDeploysQueryParamsArgs) ToListDeploysQueryParamsPtrOutputWithContext(ctx context.Context) ListDeploysQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ListDeploysQueryParamsOutput).ToListDeploysQueryParamsPtrOutputWithContext(ctx)
+}
+
+// ListDeploysQueryParamsPtrInput is an input type that accepts ListDeploysQueryParamsArgs, ListDeploysQueryParamsPtr and ListDeploysQueryParamsPtrOutput values.
+// You can construct a concrete instance of `ListDeploysQueryParamsPtrInput` via:
+//
+//	        ListDeploysQueryParamsArgs{...}
+//
+//	or:
+//
+//	        nil
+type ListDeploysQueryParamsPtrInput interface {
+	pulumi.Input
+
+	ToListDeploysQueryParamsPtrOutput() ListDeploysQueryParamsPtrOutput
+	ToListDeploysQueryParamsPtrOutputWithContext(context.Context) ListDeploysQueryParamsPtrOutput
+}
+
+type listDeploysQueryParamsPtrType ListDeploysQueryParamsArgs
+
+func ListDeploysQueryParamsPtr(v *ListDeploysQueryParamsArgs) ListDeploysQueryParamsPtrInput {
+	return (*listDeploysQueryParamsPtrType)(v)
+}
+
+func (*listDeploysQueryParamsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**ListDeploysQueryParams)(nil)).Elem()
+}
+
+func (i *listDeploysQueryParamsPtrType) ToListDeploysQueryParamsPtrOutput() ListDeploysQueryParamsPtrOutput {
+	return i.ToListDeploysQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i *listDeploysQueryParamsPtrType) ToListDeploysQueryParamsPtrOutputWithContext(ctx context.Context) ListDeploysQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ListDeploysQueryParamsPtrOutput)
+}
+
+// Query params for the API request.
+type ListDeploysQueryParamsOutput struct{ *pulumi.OutputState }
+
+func (ListDeploysQueryParamsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ListDeploysQueryParams)(nil)).Elem()
+}
+
+func (o ListDeploysQueryParamsOutput) ToListDeploysQueryParamsOutput() ListDeploysQueryParamsOutput {
+	return o
+}
+
+func (o ListDeploysQueryParamsOutput) ToListDeploysQueryParamsOutputWithContext(ctx context.Context) ListDeploysQueryParamsOutput {
+	return o
+}
+
+func (o ListDeploysQueryParamsOutput) ToListDeploysQueryParamsPtrOutput() ListDeploysQueryParamsPtrOutput {
+	return o.ToListDeploysQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (o ListDeploysQueryParamsOutput) ToListDeploysQueryParamsPtrOutputWithContext(ctx context.Context) ListDeploysQueryParamsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v ListDeploysQueryParams) *ListDeploysQueryParams {
+		return &v
+	}).(ListDeploysQueryParamsPtrOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o ListDeploysQueryParamsOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v ListDeploysQueryParams) map[string]string { return v.AdditionalParams }).(pulumi.StringMapOutput)
+}
+
+// Filter for deploys created after a certain time (specified as an ISO 8601 timestamp)
+func (o ListDeploysQueryParamsOutput) CreatedAfter() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ListDeploysQueryParams) *string { return v.CreatedAfter }).(pulumi.StringPtrOutput)
+}
+
+// Filter for deploys created before a certain time (specified as an ISO 8601 timestamp)
+func (o ListDeploysQueryParamsOutput) CreatedBefore() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ListDeploysQueryParams) *string { return v.CreatedBefore }).(pulumi.StringPtrOutput)
+}
+
+// The position in the result list to start from when fetching paginated results. For details, see [Pagination](https://api-docs.render.com/reference/pagination).
+func (o ListDeploysQueryParamsOutput) Cursor() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ListDeploysQueryParams) *string { return v.Cursor }).(pulumi.StringPtrOutput)
+}
+
+// Filter for deploys finished after a certain time (specified as an ISO 8601 timestamp)
+func (o ListDeploysQueryParamsOutput) FinishedAfter() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ListDeploysQueryParams) *string { return v.FinishedAfter }).(pulumi.StringPtrOutput)
+}
+
+// Filter for deploys finished before a certain time (specified as an ISO 8601 timestamp)
+func (o ListDeploysQueryParamsOutput) FinishedBefore() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ListDeploysQueryParams) *string { return v.FinishedBefore }).(pulumi.StringPtrOutput)
+}
+
+// The maximum number of items to return. For details, see [Pagination](https://api-docs.render.com/reference/pagination).
+func (o ListDeploysQueryParamsOutput) Limit() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v ListDeploysQueryParams) *int { return v.Limit }).(pulumi.IntPtrOutput)
+}
+
+// Filter for deploys with the specified statuses
+func (o ListDeploysQueryParamsOutput) Status() ListDeploysQueryParamsStatusItemArrayOutput {
+	return o.ApplyT(func(v ListDeploysQueryParams) []ListDeploysQueryParamsStatusItem { return v.Status }).(ListDeploysQueryParamsStatusItemArrayOutput)
+}
+
+// Filter for deploys updated after a certain time (specified as an ISO 8601 timestamp)
+func (o ListDeploysQueryParamsOutput) UpdatedAfter() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ListDeploysQueryParams) *string { return v.UpdatedAfter }).(pulumi.StringPtrOutput)
+}
+
+// Filter for deploys updated before a certain time (specified as an ISO 8601 timestamp)
+func (o ListDeploysQueryParamsOutput) UpdatedBefore() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ListDeploysQueryParams) *string { return v.UpdatedBefore }).(pulumi.StringPtrOutput)
+}
+
+type ListDeploysQueryParamsPtrOutput struct{ *pulumi.OutputState }
+
+func (ListDeploysQueryParamsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ListDeploysQueryParams)(nil)).Elem()
+}
+
+func (o ListDeploysQueryParamsPtrOutput) ToListDeploysQueryParamsPtrOutput() ListDeploysQueryParamsPtrOutput {
+	return o
+}
+
+func (o ListDeploysQueryParamsPtrOutput) ToListDeploysQueryParamsPtrOutputWithContext(ctx context.Context) ListDeploysQueryParamsPtrOutput {
+	return o
+}
+
+func (o ListDeploysQueryParamsPtrOutput) Elem() ListDeploysQueryParamsOutput {
+	return o.ApplyT(func(v *ListDeploysQueryParams) ListDeploysQueryParams {
+		if v != nil {
+			return *v
+		}
+		var ret ListDeploysQueryParams
+		return ret
+	}).(ListDeploysQueryParamsOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o ListDeploysQueryParamsPtrOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *ListDeploysQueryParams) map[string]string {
+		if v == nil {
+			return nil
+		}
+		return v.AdditionalParams
+	}).(pulumi.StringMapOutput)
+}
+
+// Filter for deploys created after a certain time (specified as an ISO 8601 timestamp)
+func (o ListDeploysQueryParamsPtrOutput) CreatedAfter() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ListDeploysQueryParams) *string {
+		if v == nil {
+			return nil
+		}
+		return v.CreatedAfter
+	}).(pulumi.StringPtrOutput)
+}
+
+// Filter for deploys created before a certain time (specified as an ISO 8601 timestamp)
+func (o ListDeploysQueryParamsPtrOutput) CreatedBefore() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ListDeploysQueryParams) *string {
+		if v == nil {
+			return nil
+		}
+		return v.CreatedBefore
+	}).(pulumi.StringPtrOutput)
+}
+
+// The position in the result list to start from when fetching paginated results. For details, see [Pagination](https://api-docs.render.com/reference/pagination).
+func (o ListDeploysQueryParamsPtrOutput) Cursor() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ListDeploysQueryParams) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Cursor
+	}).(pulumi.StringPtrOutput)
+}
+
+// Filter for deploys finished after a certain time (specified as an ISO 8601 timestamp)
+func (o ListDeploysQueryParamsPtrOutput) FinishedAfter() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ListDeploysQueryParams) *string {
+		if v == nil {
+			return nil
+		}
+		return v.FinishedAfter
+	}).(pulumi.StringPtrOutput)
+}
+
+// Filter for deploys finished before a certain time (specified as an ISO 8601 timestamp)
+func (o ListDeploysQueryParamsPtrOutput) FinishedBefore() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ListDeploysQueryParams) *string {
+		if v == nil {
+			return nil
+		}
+		return v.FinishedBefore
+	}).(pulumi.StringPtrOutput)
+}
+
+// The maximum number of items to return. For details, see [Pagination](https://api-docs.render.com/reference/pagination).
+func (o ListDeploysQueryParamsPtrOutput) Limit() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *ListDeploysQueryParams) *int {
+		if v == nil {
+			return nil
+		}
+		return v.Limit
+	}).(pulumi.IntPtrOutput)
+}
+
+// Filter for deploys with the specified statuses
+func (o ListDeploysQueryParamsPtrOutput) Status() ListDeploysQueryParamsStatusItemArrayOutput {
+	return o.ApplyT(func(v *ListDeploysQueryParams) []ListDeploysQueryParamsStatusItem {
+		if v == nil {
+			return nil
+		}
+		return v.Status
+	}).(ListDeploysQueryParamsStatusItemArrayOutput)
+}
+
+// Filter for deploys updated after a certain time (specified as an ISO 8601 timestamp)
+func (o ListDeploysQueryParamsPtrOutput) UpdatedAfter() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ListDeploysQueryParams) *string {
+		if v == nil {
+			return nil
+		}
+		return v.UpdatedAfter
+	}).(pulumi.StringPtrOutput)
+}
+
+// Filter for deploys updated before a certain time (specified as an ISO 8601 timestamp)
+func (o ListDeploysQueryParamsPtrOutput) UpdatedBefore() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ListDeploysQueryParams) *string {
+		if v == nil {
+			return nil
+		}
+		return v.UpdatedBefore
+	}).(pulumi.StringPtrOutput)
+}
+
+// Query params for the API request.
+type ListEnvVarsForServiceQueryParams struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams map[string]string `pulumi:"additionalParams"`
+	// The position in the result list to start from when fetching paginated results. For details, see [Pagination](https://api-docs.render.com/reference/pagination).
+	Cursor *string `pulumi:"cursor"`
+	// The maximum number of items to return. For details, see [Pagination](https://api-docs.render.com/reference/pagination).
+	Limit *int `pulumi:"limit"`
+}
+
+// Defaults sets the appropriate defaults for ListEnvVarsForServiceQueryParams
+func (val *ListEnvVarsForServiceQueryParams) Defaults() *ListEnvVarsForServiceQueryParams {
+	if val == nil {
+		return nil
+	}
+	tmp := *val
+	if tmp.Limit == nil {
+		limit_ := 20
+		tmp.Limit = &limit_
+	}
+	return &tmp
+}
+
+// ListEnvVarsForServiceQueryParamsInput is an input type that accepts ListEnvVarsForServiceQueryParamsArgs and ListEnvVarsForServiceQueryParamsOutput values.
+// You can construct a concrete instance of `ListEnvVarsForServiceQueryParamsInput` via:
+//
+//	ListEnvVarsForServiceQueryParamsArgs{...}
+type ListEnvVarsForServiceQueryParamsInput interface {
+	pulumi.Input
+
+	ToListEnvVarsForServiceQueryParamsOutput() ListEnvVarsForServiceQueryParamsOutput
+	ToListEnvVarsForServiceQueryParamsOutputWithContext(context.Context) ListEnvVarsForServiceQueryParamsOutput
+}
+
+// Query params for the API request.
+type ListEnvVarsForServiceQueryParamsArgs struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams pulumi.StringMapInput `pulumi:"additionalParams"`
+	// The position in the result list to start from when fetching paginated results. For details, see [Pagination](https://api-docs.render.com/reference/pagination).
+	Cursor pulumi.StringPtrInput `pulumi:"cursor"`
+	// The maximum number of items to return. For details, see [Pagination](https://api-docs.render.com/reference/pagination).
+	Limit pulumi.IntPtrInput `pulumi:"limit"`
+}
+
+// Defaults sets the appropriate defaults for ListEnvVarsForServiceQueryParamsArgs
+func (val *ListEnvVarsForServiceQueryParamsArgs) Defaults() *ListEnvVarsForServiceQueryParamsArgs {
+	if val == nil {
+		return nil
+	}
+	tmp := *val
+	if tmp.Limit == nil {
+		tmp.Limit = pulumi.IntPtr(20)
+	}
+	return &tmp
+}
+func (ListEnvVarsForServiceQueryParamsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ListEnvVarsForServiceQueryParams)(nil)).Elem()
+}
+
+func (i ListEnvVarsForServiceQueryParamsArgs) ToListEnvVarsForServiceQueryParamsOutput() ListEnvVarsForServiceQueryParamsOutput {
+	return i.ToListEnvVarsForServiceQueryParamsOutputWithContext(context.Background())
+}
+
+func (i ListEnvVarsForServiceQueryParamsArgs) ToListEnvVarsForServiceQueryParamsOutputWithContext(ctx context.Context) ListEnvVarsForServiceQueryParamsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ListEnvVarsForServiceQueryParamsOutput)
+}
+
+func (i ListEnvVarsForServiceQueryParamsArgs) ToListEnvVarsForServiceQueryParamsPtrOutput() ListEnvVarsForServiceQueryParamsPtrOutput {
+	return i.ToListEnvVarsForServiceQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i ListEnvVarsForServiceQueryParamsArgs) ToListEnvVarsForServiceQueryParamsPtrOutputWithContext(ctx context.Context) ListEnvVarsForServiceQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ListEnvVarsForServiceQueryParamsOutput).ToListEnvVarsForServiceQueryParamsPtrOutputWithContext(ctx)
+}
+
+// ListEnvVarsForServiceQueryParamsPtrInput is an input type that accepts ListEnvVarsForServiceQueryParamsArgs, ListEnvVarsForServiceQueryParamsPtr and ListEnvVarsForServiceQueryParamsPtrOutput values.
+// You can construct a concrete instance of `ListEnvVarsForServiceQueryParamsPtrInput` via:
+//
+//	        ListEnvVarsForServiceQueryParamsArgs{...}
+//
+//	or:
+//
+//	        nil
+type ListEnvVarsForServiceQueryParamsPtrInput interface {
+	pulumi.Input
+
+	ToListEnvVarsForServiceQueryParamsPtrOutput() ListEnvVarsForServiceQueryParamsPtrOutput
+	ToListEnvVarsForServiceQueryParamsPtrOutputWithContext(context.Context) ListEnvVarsForServiceQueryParamsPtrOutput
+}
+
+type listEnvVarsForServiceQueryParamsPtrType ListEnvVarsForServiceQueryParamsArgs
+
+func ListEnvVarsForServiceQueryParamsPtr(v *ListEnvVarsForServiceQueryParamsArgs) ListEnvVarsForServiceQueryParamsPtrInput {
+	return (*listEnvVarsForServiceQueryParamsPtrType)(v)
+}
+
+func (*listEnvVarsForServiceQueryParamsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**ListEnvVarsForServiceQueryParams)(nil)).Elem()
+}
+
+func (i *listEnvVarsForServiceQueryParamsPtrType) ToListEnvVarsForServiceQueryParamsPtrOutput() ListEnvVarsForServiceQueryParamsPtrOutput {
+	return i.ToListEnvVarsForServiceQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i *listEnvVarsForServiceQueryParamsPtrType) ToListEnvVarsForServiceQueryParamsPtrOutputWithContext(ctx context.Context) ListEnvVarsForServiceQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ListEnvVarsForServiceQueryParamsPtrOutput)
+}
+
+// Query params for the API request.
+type ListEnvVarsForServiceQueryParamsOutput struct{ *pulumi.OutputState }
+
+func (ListEnvVarsForServiceQueryParamsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ListEnvVarsForServiceQueryParams)(nil)).Elem()
+}
+
+func (o ListEnvVarsForServiceQueryParamsOutput) ToListEnvVarsForServiceQueryParamsOutput() ListEnvVarsForServiceQueryParamsOutput {
+	return o
+}
+
+func (o ListEnvVarsForServiceQueryParamsOutput) ToListEnvVarsForServiceQueryParamsOutputWithContext(ctx context.Context) ListEnvVarsForServiceQueryParamsOutput {
+	return o
+}
+
+func (o ListEnvVarsForServiceQueryParamsOutput) ToListEnvVarsForServiceQueryParamsPtrOutput() ListEnvVarsForServiceQueryParamsPtrOutput {
+	return o.ToListEnvVarsForServiceQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (o ListEnvVarsForServiceQueryParamsOutput) ToListEnvVarsForServiceQueryParamsPtrOutputWithContext(ctx context.Context) ListEnvVarsForServiceQueryParamsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v ListEnvVarsForServiceQueryParams) *ListEnvVarsForServiceQueryParams {
+		return &v
+	}).(ListEnvVarsForServiceQueryParamsPtrOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o ListEnvVarsForServiceQueryParamsOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v ListEnvVarsForServiceQueryParams) map[string]string { return v.AdditionalParams }).(pulumi.StringMapOutput)
+}
+
+// The position in the result list to start from when fetching paginated results. For details, see [Pagination](https://api-docs.render.com/reference/pagination).
+func (o ListEnvVarsForServiceQueryParamsOutput) Cursor() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ListEnvVarsForServiceQueryParams) *string { return v.Cursor }).(pulumi.StringPtrOutput)
+}
+
+// The maximum number of items to return. For details, see [Pagination](https://api-docs.render.com/reference/pagination).
+func (o ListEnvVarsForServiceQueryParamsOutput) Limit() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v ListEnvVarsForServiceQueryParams) *int { return v.Limit }).(pulumi.IntPtrOutput)
+}
+
+type ListEnvVarsForServiceQueryParamsPtrOutput struct{ *pulumi.OutputState }
+
+func (ListEnvVarsForServiceQueryParamsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ListEnvVarsForServiceQueryParams)(nil)).Elem()
+}
+
+func (o ListEnvVarsForServiceQueryParamsPtrOutput) ToListEnvVarsForServiceQueryParamsPtrOutput() ListEnvVarsForServiceQueryParamsPtrOutput {
+	return o
+}
+
+func (o ListEnvVarsForServiceQueryParamsPtrOutput) ToListEnvVarsForServiceQueryParamsPtrOutputWithContext(ctx context.Context) ListEnvVarsForServiceQueryParamsPtrOutput {
+	return o
+}
+
+func (o ListEnvVarsForServiceQueryParamsPtrOutput) Elem() ListEnvVarsForServiceQueryParamsOutput {
+	return o.ApplyT(func(v *ListEnvVarsForServiceQueryParams) ListEnvVarsForServiceQueryParams {
+		if v != nil {
+			return *v
+		}
+		var ret ListEnvVarsForServiceQueryParams
+		return ret
+	}).(ListEnvVarsForServiceQueryParamsOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o ListEnvVarsForServiceQueryParamsPtrOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *ListEnvVarsForServiceQueryParams) map[string]string {
+		if v == nil {
+			return nil
+		}
+		return v.AdditionalParams
+	}).(pulumi.StringMapOutput)
+}
+
+// The position in the result list to start from when fetching paginated results. For details, see [Pagination](https://api-docs.render.com/reference/pagination).
+func (o ListEnvVarsForServiceQueryParamsPtrOutput) Cursor() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ListEnvVarsForServiceQueryParams) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Cursor
+	}).(pulumi.StringPtrOutput)
+}
+
+// The maximum number of items to return. For details, see [Pagination](https://api-docs.render.com/reference/pagination).
+func (o ListEnvVarsForServiceQueryParamsPtrOutput) Limit() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *ListEnvVarsForServiceQueryParams) *int {
+		if v == nil {
+			return nil
+		}
+		return v.Limit
+	}).(pulumi.IntPtrOutput)
+}
+
+// Query params for the API request.
+type ListHeadersQueryParams struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams map[string]string `pulumi:"additionalParams"`
+	// The position in the result list to start from when fetching paginated results. For details, see [Pagination](https://api-docs.render.com/reference/pagination).
+	Cursor *string `pulumi:"cursor"`
+	// The maximum number of items to return. For details, see [Pagination](https://api-docs.render.com/reference/pagination).
+	Limit *int `pulumi:"limit"`
+	// Filter for header names
+	Name []string `pulumi:"name"`
+	// Filter for specific paths that headers apply to
+	Path []string `pulumi:"path"`
+	// Filter for header values
+	Value []string `pulumi:"value"`
+}
+
+// Defaults sets the appropriate defaults for ListHeadersQueryParams
+func (val *ListHeadersQueryParams) Defaults() *ListHeadersQueryParams {
+	if val == nil {
+		return nil
+	}
+	tmp := *val
+	if tmp.Limit == nil {
+		limit_ := 20
+		tmp.Limit = &limit_
+	}
+	return &tmp
+}
+
+// ListHeadersQueryParamsInput is an input type that accepts ListHeadersQueryParamsArgs and ListHeadersQueryParamsOutput values.
+// You can construct a concrete instance of `ListHeadersQueryParamsInput` via:
+//
+//	ListHeadersQueryParamsArgs{...}
+type ListHeadersQueryParamsInput interface {
+	pulumi.Input
+
+	ToListHeadersQueryParamsOutput() ListHeadersQueryParamsOutput
+	ToListHeadersQueryParamsOutputWithContext(context.Context) ListHeadersQueryParamsOutput
+}
+
+// Query params for the API request.
+type ListHeadersQueryParamsArgs struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams pulumi.StringMapInput `pulumi:"additionalParams"`
+	// The position in the result list to start from when fetching paginated results. For details, see [Pagination](https://api-docs.render.com/reference/pagination).
+	Cursor pulumi.StringPtrInput `pulumi:"cursor"`
+	// The maximum number of items to return. For details, see [Pagination](https://api-docs.render.com/reference/pagination).
+	Limit pulumi.IntPtrInput `pulumi:"limit"`
+	// Filter for header names
+	Name pulumi.StringArrayInput `pulumi:"name"`
+	// Filter for specific paths that headers apply to
+	Path pulumi.StringArrayInput `pulumi:"path"`
+	// Filter for header values
+	Value pulumi.StringArrayInput `pulumi:"value"`
+}
+
+// Defaults sets the appropriate defaults for ListHeadersQueryParamsArgs
+func (val *ListHeadersQueryParamsArgs) Defaults() *ListHeadersQueryParamsArgs {
+	if val == nil {
+		return nil
+	}
+	tmp := *val
+	if tmp.Limit == nil {
+		tmp.Limit = pulumi.IntPtr(20)
+	}
+	return &tmp
+}
+func (ListHeadersQueryParamsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ListHeadersQueryParams)(nil)).Elem()
+}
+
+func (i ListHeadersQueryParamsArgs) ToListHeadersQueryParamsOutput() ListHeadersQueryParamsOutput {
+	return i.ToListHeadersQueryParamsOutputWithContext(context.Background())
+}
+
+func (i ListHeadersQueryParamsArgs) ToListHeadersQueryParamsOutputWithContext(ctx context.Context) ListHeadersQueryParamsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ListHeadersQueryParamsOutput)
+}
+
+func (i ListHeadersQueryParamsArgs) ToListHeadersQueryParamsPtrOutput() ListHeadersQueryParamsPtrOutput {
+	return i.ToListHeadersQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i ListHeadersQueryParamsArgs) ToListHeadersQueryParamsPtrOutputWithContext(ctx context.Context) ListHeadersQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ListHeadersQueryParamsOutput).ToListHeadersQueryParamsPtrOutputWithContext(ctx)
+}
+
+// ListHeadersQueryParamsPtrInput is an input type that accepts ListHeadersQueryParamsArgs, ListHeadersQueryParamsPtr and ListHeadersQueryParamsPtrOutput values.
+// You can construct a concrete instance of `ListHeadersQueryParamsPtrInput` via:
+//
+//	        ListHeadersQueryParamsArgs{...}
+//
+//	or:
+//
+//	        nil
+type ListHeadersQueryParamsPtrInput interface {
+	pulumi.Input
+
+	ToListHeadersQueryParamsPtrOutput() ListHeadersQueryParamsPtrOutput
+	ToListHeadersQueryParamsPtrOutputWithContext(context.Context) ListHeadersQueryParamsPtrOutput
+}
+
+type listHeadersQueryParamsPtrType ListHeadersQueryParamsArgs
+
+func ListHeadersQueryParamsPtr(v *ListHeadersQueryParamsArgs) ListHeadersQueryParamsPtrInput {
+	return (*listHeadersQueryParamsPtrType)(v)
+}
+
+func (*listHeadersQueryParamsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**ListHeadersQueryParams)(nil)).Elem()
+}
+
+func (i *listHeadersQueryParamsPtrType) ToListHeadersQueryParamsPtrOutput() ListHeadersQueryParamsPtrOutput {
+	return i.ToListHeadersQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i *listHeadersQueryParamsPtrType) ToListHeadersQueryParamsPtrOutputWithContext(ctx context.Context) ListHeadersQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ListHeadersQueryParamsPtrOutput)
+}
+
+// Query params for the API request.
+type ListHeadersQueryParamsOutput struct{ *pulumi.OutputState }
+
+func (ListHeadersQueryParamsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ListHeadersQueryParams)(nil)).Elem()
+}
+
+func (o ListHeadersQueryParamsOutput) ToListHeadersQueryParamsOutput() ListHeadersQueryParamsOutput {
+	return o
+}
+
+func (o ListHeadersQueryParamsOutput) ToListHeadersQueryParamsOutputWithContext(ctx context.Context) ListHeadersQueryParamsOutput {
+	return o
+}
+
+func (o ListHeadersQueryParamsOutput) ToListHeadersQueryParamsPtrOutput() ListHeadersQueryParamsPtrOutput {
+	return o.ToListHeadersQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (o ListHeadersQueryParamsOutput) ToListHeadersQueryParamsPtrOutputWithContext(ctx context.Context) ListHeadersQueryParamsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v ListHeadersQueryParams) *ListHeadersQueryParams {
+		return &v
+	}).(ListHeadersQueryParamsPtrOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o ListHeadersQueryParamsOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v ListHeadersQueryParams) map[string]string { return v.AdditionalParams }).(pulumi.StringMapOutput)
+}
+
+// The position in the result list to start from when fetching paginated results. For details, see [Pagination](https://api-docs.render.com/reference/pagination).
+func (o ListHeadersQueryParamsOutput) Cursor() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ListHeadersQueryParams) *string { return v.Cursor }).(pulumi.StringPtrOutput)
+}
+
+// The maximum number of items to return. For details, see [Pagination](https://api-docs.render.com/reference/pagination).
+func (o ListHeadersQueryParamsOutput) Limit() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v ListHeadersQueryParams) *int { return v.Limit }).(pulumi.IntPtrOutput)
+}
+
+// Filter for header names
+func (o ListHeadersQueryParamsOutput) Name() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v ListHeadersQueryParams) []string { return v.Name }).(pulumi.StringArrayOutput)
+}
+
+// Filter for specific paths that headers apply to
+func (o ListHeadersQueryParamsOutput) Path() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v ListHeadersQueryParams) []string { return v.Path }).(pulumi.StringArrayOutput)
+}
+
+// Filter for header values
+func (o ListHeadersQueryParamsOutput) Value() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v ListHeadersQueryParams) []string { return v.Value }).(pulumi.StringArrayOutput)
+}
+
+type ListHeadersQueryParamsPtrOutput struct{ *pulumi.OutputState }
+
+func (ListHeadersQueryParamsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ListHeadersQueryParams)(nil)).Elem()
+}
+
+func (o ListHeadersQueryParamsPtrOutput) ToListHeadersQueryParamsPtrOutput() ListHeadersQueryParamsPtrOutput {
+	return o
+}
+
+func (o ListHeadersQueryParamsPtrOutput) ToListHeadersQueryParamsPtrOutputWithContext(ctx context.Context) ListHeadersQueryParamsPtrOutput {
+	return o
+}
+
+func (o ListHeadersQueryParamsPtrOutput) Elem() ListHeadersQueryParamsOutput {
+	return o.ApplyT(func(v *ListHeadersQueryParams) ListHeadersQueryParams {
+		if v != nil {
+			return *v
+		}
+		var ret ListHeadersQueryParams
+		return ret
+	}).(ListHeadersQueryParamsOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o ListHeadersQueryParamsPtrOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *ListHeadersQueryParams) map[string]string {
+		if v == nil {
+			return nil
+		}
+		return v.AdditionalParams
+	}).(pulumi.StringMapOutput)
+}
+
+// The position in the result list to start from when fetching paginated results. For details, see [Pagination](https://api-docs.render.com/reference/pagination).
+func (o ListHeadersQueryParamsPtrOutput) Cursor() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ListHeadersQueryParams) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Cursor
+	}).(pulumi.StringPtrOutput)
+}
+
+// The maximum number of items to return. For details, see [Pagination](https://api-docs.render.com/reference/pagination).
+func (o ListHeadersQueryParamsPtrOutput) Limit() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *ListHeadersQueryParams) *int {
+		if v == nil {
+			return nil
+		}
+		return v.Limit
+	}).(pulumi.IntPtrOutput)
+}
+
+// Filter for header names
+func (o ListHeadersQueryParamsPtrOutput) Name() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *ListHeadersQueryParams) []string {
+		if v == nil {
+			return nil
+		}
+		return v.Name
+	}).(pulumi.StringArrayOutput)
+}
+
+// Filter for specific paths that headers apply to
+func (o ListHeadersQueryParamsPtrOutput) Path() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *ListHeadersQueryParams) []string {
+		if v == nil {
+			return nil
+		}
+		return v.Path
+	}).(pulumi.StringArrayOutput)
+}
+
+// Filter for header values
+func (o ListHeadersQueryParamsPtrOutput) Value() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *ListHeadersQueryParams) []string {
+		if v == nil {
+			return nil
+		}
+		return v.Value
+	}).(pulumi.StringArrayOutput)
+}
+
+// Query params for the API request.
+type ListInstancesQueryParams struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams map[string]string `pulumi:"additionalParams"`
+}
+
+// ListInstancesQueryParamsInput is an input type that accepts ListInstancesQueryParamsArgs and ListInstancesQueryParamsOutput values.
+// You can construct a concrete instance of `ListInstancesQueryParamsInput` via:
+//
+//	ListInstancesQueryParamsArgs{...}
+type ListInstancesQueryParamsInput interface {
+	pulumi.Input
+
+	ToListInstancesQueryParamsOutput() ListInstancesQueryParamsOutput
+	ToListInstancesQueryParamsOutputWithContext(context.Context) ListInstancesQueryParamsOutput
+}
+
+// Query params for the API request.
+type ListInstancesQueryParamsArgs struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams pulumi.StringMapInput `pulumi:"additionalParams"`
+}
+
+func (ListInstancesQueryParamsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ListInstancesQueryParams)(nil)).Elem()
+}
+
+func (i ListInstancesQueryParamsArgs) ToListInstancesQueryParamsOutput() ListInstancesQueryParamsOutput {
+	return i.ToListInstancesQueryParamsOutputWithContext(context.Background())
+}
+
+func (i ListInstancesQueryParamsArgs) ToListInstancesQueryParamsOutputWithContext(ctx context.Context) ListInstancesQueryParamsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ListInstancesQueryParamsOutput)
+}
+
+func (i ListInstancesQueryParamsArgs) ToListInstancesQueryParamsPtrOutput() ListInstancesQueryParamsPtrOutput {
+	return i.ToListInstancesQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i ListInstancesQueryParamsArgs) ToListInstancesQueryParamsPtrOutputWithContext(ctx context.Context) ListInstancesQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ListInstancesQueryParamsOutput).ToListInstancesQueryParamsPtrOutputWithContext(ctx)
+}
+
+// ListInstancesQueryParamsPtrInput is an input type that accepts ListInstancesQueryParamsArgs, ListInstancesQueryParamsPtr and ListInstancesQueryParamsPtrOutput values.
+// You can construct a concrete instance of `ListInstancesQueryParamsPtrInput` via:
+//
+//	        ListInstancesQueryParamsArgs{...}
+//
+//	or:
+//
+//	        nil
+type ListInstancesQueryParamsPtrInput interface {
+	pulumi.Input
+
+	ToListInstancesQueryParamsPtrOutput() ListInstancesQueryParamsPtrOutput
+	ToListInstancesQueryParamsPtrOutputWithContext(context.Context) ListInstancesQueryParamsPtrOutput
+}
+
+type listInstancesQueryParamsPtrType ListInstancesQueryParamsArgs
+
+func ListInstancesQueryParamsPtr(v *ListInstancesQueryParamsArgs) ListInstancesQueryParamsPtrInput {
+	return (*listInstancesQueryParamsPtrType)(v)
+}
+
+func (*listInstancesQueryParamsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**ListInstancesQueryParams)(nil)).Elem()
+}
+
+func (i *listInstancesQueryParamsPtrType) ToListInstancesQueryParamsPtrOutput() ListInstancesQueryParamsPtrOutput {
+	return i.ToListInstancesQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i *listInstancesQueryParamsPtrType) ToListInstancesQueryParamsPtrOutputWithContext(ctx context.Context) ListInstancesQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ListInstancesQueryParamsPtrOutput)
+}
+
+// Query params for the API request.
+type ListInstancesQueryParamsOutput struct{ *pulumi.OutputState }
+
+func (ListInstancesQueryParamsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ListInstancesQueryParams)(nil)).Elem()
+}
+
+func (o ListInstancesQueryParamsOutput) ToListInstancesQueryParamsOutput() ListInstancesQueryParamsOutput {
+	return o
+}
+
+func (o ListInstancesQueryParamsOutput) ToListInstancesQueryParamsOutputWithContext(ctx context.Context) ListInstancesQueryParamsOutput {
+	return o
+}
+
+func (o ListInstancesQueryParamsOutput) ToListInstancesQueryParamsPtrOutput() ListInstancesQueryParamsPtrOutput {
+	return o.ToListInstancesQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (o ListInstancesQueryParamsOutput) ToListInstancesQueryParamsPtrOutputWithContext(ctx context.Context) ListInstancesQueryParamsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v ListInstancesQueryParams) *ListInstancesQueryParams {
+		return &v
+	}).(ListInstancesQueryParamsPtrOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o ListInstancesQueryParamsOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v ListInstancesQueryParams) map[string]string { return v.AdditionalParams }).(pulumi.StringMapOutput)
+}
+
+type ListInstancesQueryParamsPtrOutput struct{ *pulumi.OutputState }
+
+func (ListInstancesQueryParamsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ListInstancesQueryParams)(nil)).Elem()
+}
+
+func (o ListInstancesQueryParamsPtrOutput) ToListInstancesQueryParamsPtrOutput() ListInstancesQueryParamsPtrOutput {
+	return o
+}
+
+func (o ListInstancesQueryParamsPtrOutput) ToListInstancesQueryParamsPtrOutputWithContext(ctx context.Context) ListInstancesQueryParamsPtrOutput {
+	return o
+}
+
+func (o ListInstancesQueryParamsPtrOutput) Elem() ListInstancesQueryParamsOutput {
+	return o.ApplyT(func(v *ListInstancesQueryParams) ListInstancesQueryParams {
+		if v != nil {
+			return *v
+		}
+		var ret ListInstancesQueryParams
+		return ret
+	}).(ListInstancesQueryParamsOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o ListInstancesQueryParamsPtrOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *ListInstancesQueryParams) map[string]string {
+		if v == nil {
+			return nil
+		}
+		return v.AdditionalParams
+	}).(pulumi.StringMapOutput)
+}
+
+// Query params for the API request.
+type ListJobQueryParams struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams map[string]string `pulumi:"additionalParams"`
+	// Filter for jobs created after a certain time (specified as an ISO 8601 timestamp)
+	CreatedAfter *string `pulumi:"createdAfter"`
+	// Filter for jobs created before a certain time (specified as an ISO 8601 timestamp)
+	CreatedBefore *string `pulumi:"createdBefore"`
+	// The position in the result list to start from when fetching paginated results. For details, see [Pagination](https://api-docs.render.com/reference/pagination).
+	Cursor *string `pulumi:"cursor"`
+	// Filter for jobs finished after a certain time (specified as an ISO 8601 timestamp)
+	FinishedAfter *string `pulumi:"finishedAfter"`
+	// Filter for jobs finished before a certain time (specified as an ISO 8601 timestamp)
+	FinishedBefore *string `pulumi:"finishedBefore"`
+	// The maximum number of items to return. For details, see [Pagination](https://api-docs.render.com/reference/pagination).
+	Limit *int `pulumi:"limit"`
+	// Filter for jobs started after a certain time (specified as an ISO 8601 timestamp)
+	StartedAfter *string `pulumi:"startedAfter"`
+	// Filter for jobs started before a certain time (specified as an ISO 8601 timestamp)
+	StartedBefore *string `pulumi:"startedBefore"`
+	// Filter for the status of the job (`pending`, `running`, `succeeded`, `failed`, or `canceled`)
+	Status []ListJobQueryParamsStatusItem `pulumi:"status"`
+}
+
+// Defaults sets the appropriate defaults for ListJobQueryParams
+func (val *ListJobQueryParams) Defaults() *ListJobQueryParams {
+	if val == nil {
+		return nil
+	}
+	tmp := *val
+	if tmp.Limit == nil {
+		limit_ := 20
+		tmp.Limit = &limit_
+	}
+	return &tmp
+}
+
+// ListJobQueryParamsInput is an input type that accepts ListJobQueryParamsArgs and ListJobQueryParamsOutput values.
+// You can construct a concrete instance of `ListJobQueryParamsInput` via:
+//
+//	ListJobQueryParamsArgs{...}
+type ListJobQueryParamsInput interface {
+	pulumi.Input
+
+	ToListJobQueryParamsOutput() ListJobQueryParamsOutput
+	ToListJobQueryParamsOutputWithContext(context.Context) ListJobQueryParamsOutput
+}
+
+// Query params for the API request.
+type ListJobQueryParamsArgs struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams pulumi.StringMapInput `pulumi:"additionalParams"`
+	// Filter for jobs created after a certain time (specified as an ISO 8601 timestamp)
+	CreatedAfter pulumi.StringPtrInput `pulumi:"createdAfter"`
+	// Filter for jobs created before a certain time (specified as an ISO 8601 timestamp)
+	CreatedBefore pulumi.StringPtrInput `pulumi:"createdBefore"`
+	// The position in the result list to start from when fetching paginated results. For details, see [Pagination](https://api-docs.render.com/reference/pagination).
+	Cursor pulumi.StringPtrInput `pulumi:"cursor"`
+	// Filter for jobs finished after a certain time (specified as an ISO 8601 timestamp)
+	FinishedAfter pulumi.StringPtrInput `pulumi:"finishedAfter"`
+	// Filter for jobs finished before a certain time (specified as an ISO 8601 timestamp)
+	FinishedBefore pulumi.StringPtrInput `pulumi:"finishedBefore"`
+	// The maximum number of items to return. For details, see [Pagination](https://api-docs.render.com/reference/pagination).
+	Limit pulumi.IntPtrInput `pulumi:"limit"`
+	// Filter for jobs started after a certain time (specified as an ISO 8601 timestamp)
+	StartedAfter pulumi.StringPtrInput `pulumi:"startedAfter"`
+	// Filter for jobs started before a certain time (specified as an ISO 8601 timestamp)
+	StartedBefore pulumi.StringPtrInput `pulumi:"startedBefore"`
+	// Filter for the status of the job (`pending`, `running`, `succeeded`, `failed`, or `canceled`)
+	Status ListJobQueryParamsStatusItemArrayInput `pulumi:"status"`
+}
+
+// Defaults sets the appropriate defaults for ListJobQueryParamsArgs
+func (val *ListJobQueryParamsArgs) Defaults() *ListJobQueryParamsArgs {
+	if val == nil {
+		return nil
+	}
+	tmp := *val
+	if tmp.Limit == nil {
+		tmp.Limit = pulumi.IntPtr(20)
+	}
+	return &tmp
+}
+func (ListJobQueryParamsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ListJobQueryParams)(nil)).Elem()
+}
+
+func (i ListJobQueryParamsArgs) ToListJobQueryParamsOutput() ListJobQueryParamsOutput {
+	return i.ToListJobQueryParamsOutputWithContext(context.Background())
+}
+
+func (i ListJobQueryParamsArgs) ToListJobQueryParamsOutputWithContext(ctx context.Context) ListJobQueryParamsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ListJobQueryParamsOutput)
+}
+
+func (i ListJobQueryParamsArgs) ToListJobQueryParamsPtrOutput() ListJobQueryParamsPtrOutput {
+	return i.ToListJobQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i ListJobQueryParamsArgs) ToListJobQueryParamsPtrOutputWithContext(ctx context.Context) ListJobQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ListJobQueryParamsOutput).ToListJobQueryParamsPtrOutputWithContext(ctx)
+}
+
+// ListJobQueryParamsPtrInput is an input type that accepts ListJobQueryParamsArgs, ListJobQueryParamsPtr and ListJobQueryParamsPtrOutput values.
+// You can construct a concrete instance of `ListJobQueryParamsPtrInput` via:
+//
+//	        ListJobQueryParamsArgs{...}
+//
+//	or:
+//
+//	        nil
+type ListJobQueryParamsPtrInput interface {
+	pulumi.Input
+
+	ToListJobQueryParamsPtrOutput() ListJobQueryParamsPtrOutput
+	ToListJobQueryParamsPtrOutputWithContext(context.Context) ListJobQueryParamsPtrOutput
+}
+
+type listJobQueryParamsPtrType ListJobQueryParamsArgs
+
+func ListJobQueryParamsPtr(v *ListJobQueryParamsArgs) ListJobQueryParamsPtrInput {
+	return (*listJobQueryParamsPtrType)(v)
+}
+
+func (*listJobQueryParamsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**ListJobQueryParams)(nil)).Elem()
+}
+
+func (i *listJobQueryParamsPtrType) ToListJobQueryParamsPtrOutput() ListJobQueryParamsPtrOutput {
+	return i.ToListJobQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i *listJobQueryParamsPtrType) ToListJobQueryParamsPtrOutputWithContext(ctx context.Context) ListJobQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ListJobQueryParamsPtrOutput)
+}
+
+// Query params for the API request.
+type ListJobQueryParamsOutput struct{ *pulumi.OutputState }
+
+func (ListJobQueryParamsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ListJobQueryParams)(nil)).Elem()
+}
+
+func (o ListJobQueryParamsOutput) ToListJobQueryParamsOutput() ListJobQueryParamsOutput {
+	return o
+}
+
+func (o ListJobQueryParamsOutput) ToListJobQueryParamsOutputWithContext(ctx context.Context) ListJobQueryParamsOutput {
+	return o
+}
+
+func (o ListJobQueryParamsOutput) ToListJobQueryParamsPtrOutput() ListJobQueryParamsPtrOutput {
+	return o.ToListJobQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (o ListJobQueryParamsOutput) ToListJobQueryParamsPtrOutputWithContext(ctx context.Context) ListJobQueryParamsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v ListJobQueryParams) *ListJobQueryParams {
+		return &v
+	}).(ListJobQueryParamsPtrOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o ListJobQueryParamsOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v ListJobQueryParams) map[string]string { return v.AdditionalParams }).(pulumi.StringMapOutput)
+}
+
+// Filter for jobs created after a certain time (specified as an ISO 8601 timestamp)
+func (o ListJobQueryParamsOutput) CreatedAfter() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ListJobQueryParams) *string { return v.CreatedAfter }).(pulumi.StringPtrOutput)
+}
+
+// Filter for jobs created before a certain time (specified as an ISO 8601 timestamp)
+func (o ListJobQueryParamsOutput) CreatedBefore() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ListJobQueryParams) *string { return v.CreatedBefore }).(pulumi.StringPtrOutput)
+}
+
+// The position in the result list to start from when fetching paginated results. For details, see [Pagination](https://api-docs.render.com/reference/pagination).
+func (o ListJobQueryParamsOutput) Cursor() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ListJobQueryParams) *string { return v.Cursor }).(pulumi.StringPtrOutput)
+}
+
+// Filter for jobs finished after a certain time (specified as an ISO 8601 timestamp)
+func (o ListJobQueryParamsOutput) FinishedAfter() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ListJobQueryParams) *string { return v.FinishedAfter }).(pulumi.StringPtrOutput)
+}
+
+// Filter for jobs finished before a certain time (specified as an ISO 8601 timestamp)
+func (o ListJobQueryParamsOutput) FinishedBefore() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ListJobQueryParams) *string { return v.FinishedBefore }).(pulumi.StringPtrOutput)
+}
+
+// The maximum number of items to return. For details, see [Pagination](https://api-docs.render.com/reference/pagination).
+func (o ListJobQueryParamsOutput) Limit() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v ListJobQueryParams) *int { return v.Limit }).(pulumi.IntPtrOutput)
+}
+
+// Filter for jobs started after a certain time (specified as an ISO 8601 timestamp)
+func (o ListJobQueryParamsOutput) StartedAfter() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ListJobQueryParams) *string { return v.StartedAfter }).(pulumi.StringPtrOutput)
+}
+
+// Filter for jobs started before a certain time (specified as an ISO 8601 timestamp)
+func (o ListJobQueryParamsOutput) StartedBefore() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ListJobQueryParams) *string { return v.StartedBefore }).(pulumi.StringPtrOutput)
+}
+
+// Filter for the status of the job (`pending`, `running`, `succeeded`, `failed`, or `canceled`)
+func (o ListJobQueryParamsOutput) Status() ListJobQueryParamsStatusItemArrayOutput {
+	return o.ApplyT(func(v ListJobQueryParams) []ListJobQueryParamsStatusItem { return v.Status }).(ListJobQueryParamsStatusItemArrayOutput)
+}
+
+type ListJobQueryParamsPtrOutput struct{ *pulumi.OutputState }
+
+func (ListJobQueryParamsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ListJobQueryParams)(nil)).Elem()
+}
+
+func (o ListJobQueryParamsPtrOutput) ToListJobQueryParamsPtrOutput() ListJobQueryParamsPtrOutput {
+	return o
+}
+
+func (o ListJobQueryParamsPtrOutput) ToListJobQueryParamsPtrOutputWithContext(ctx context.Context) ListJobQueryParamsPtrOutput {
+	return o
+}
+
+func (o ListJobQueryParamsPtrOutput) Elem() ListJobQueryParamsOutput {
+	return o.ApplyT(func(v *ListJobQueryParams) ListJobQueryParams {
+		if v != nil {
+			return *v
+		}
+		var ret ListJobQueryParams
+		return ret
+	}).(ListJobQueryParamsOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o ListJobQueryParamsPtrOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *ListJobQueryParams) map[string]string {
+		if v == nil {
+			return nil
+		}
+		return v.AdditionalParams
+	}).(pulumi.StringMapOutput)
+}
+
+// Filter for jobs created after a certain time (specified as an ISO 8601 timestamp)
+func (o ListJobQueryParamsPtrOutput) CreatedAfter() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ListJobQueryParams) *string {
+		if v == nil {
+			return nil
+		}
+		return v.CreatedAfter
+	}).(pulumi.StringPtrOutput)
+}
+
+// Filter for jobs created before a certain time (specified as an ISO 8601 timestamp)
+func (o ListJobQueryParamsPtrOutput) CreatedBefore() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ListJobQueryParams) *string {
+		if v == nil {
+			return nil
+		}
+		return v.CreatedBefore
+	}).(pulumi.StringPtrOutput)
+}
+
+// The position in the result list to start from when fetching paginated results. For details, see [Pagination](https://api-docs.render.com/reference/pagination).
+func (o ListJobQueryParamsPtrOutput) Cursor() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ListJobQueryParams) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Cursor
+	}).(pulumi.StringPtrOutput)
+}
+
+// Filter for jobs finished after a certain time (specified as an ISO 8601 timestamp)
+func (o ListJobQueryParamsPtrOutput) FinishedAfter() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ListJobQueryParams) *string {
+		if v == nil {
+			return nil
+		}
+		return v.FinishedAfter
+	}).(pulumi.StringPtrOutput)
+}
+
+// Filter for jobs finished before a certain time (specified as an ISO 8601 timestamp)
+func (o ListJobQueryParamsPtrOutput) FinishedBefore() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ListJobQueryParams) *string {
+		if v == nil {
+			return nil
+		}
+		return v.FinishedBefore
+	}).(pulumi.StringPtrOutput)
+}
+
+// The maximum number of items to return. For details, see [Pagination](https://api-docs.render.com/reference/pagination).
+func (o ListJobQueryParamsPtrOutput) Limit() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *ListJobQueryParams) *int {
+		if v == nil {
+			return nil
+		}
+		return v.Limit
+	}).(pulumi.IntPtrOutput)
+}
+
+// Filter for jobs started after a certain time (specified as an ISO 8601 timestamp)
+func (o ListJobQueryParamsPtrOutput) StartedAfter() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ListJobQueryParams) *string {
+		if v == nil {
+			return nil
+		}
+		return v.StartedAfter
+	}).(pulumi.StringPtrOutput)
+}
+
+// Filter for jobs started before a certain time (specified as an ISO 8601 timestamp)
+func (o ListJobQueryParamsPtrOutput) StartedBefore() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ListJobQueryParams) *string {
+		if v == nil {
+			return nil
+		}
+		return v.StartedBefore
+	}).(pulumi.StringPtrOutput)
+}
+
+// Filter for the status of the job (`pending`, `running`, `succeeded`, `failed`, or `canceled`)
+func (o ListJobQueryParamsPtrOutput) Status() ListJobQueryParamsStatusItemArrayOutput {
+	return o.ApplyT(func(v *ListJobQueryParams) []ListJobQueryParamsStatusItem {
+		if v == nil {
+			return nil
+		}
+		return v.Status
+	}).(ListJobQueryParamsStatusItemArrayOutput)
+}
+
+// Query params for the API request.
+type ListRoutesQueryParams struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams map[string]string `pulumi:"additionalParams"`
+	// The position in the result list to start from when fetching paginated results. For details, see [Pagination](https://api-docs.render.com/reference/pagination).
+	Cursor *string `pulumi:"cursor"`
+	// Filter for the destination path of the route
+	Destination []string `pulumi:"destination"`
+	// The maximum number of items to return. For details, see [Pagination](https://api-docs.render.com/reference/pagination).
+	Limit *int `pulumi:"limit"`
+	// Filter for the source path of the route
+	Source []string `pulumi:"source"`
+	// Filter for the type of route rule
+	Type []ListRoutesQueryParamsTypeItem `pulumi:"type"`
+}
+
+// Defaults sets the appropriate defaults for ListRoutesQueryParams
+func (val *ListRoutesQueryParams) Defaults() *ListRoutesQueryParams {
+	if val == nil {
+		return nil
+	}
+	tmp := *val
+	if tmp.Limit == nil {
+		limit_ := 20
+		tmp.Limit = &limit_
+	}
+	return &tmp
+}
+
+// ListRoutesQueryParamsInput is an input type that accepts ListRoutesQueryParamsArgs and ListRoutesQueryParamsOutput values.
+// You can construct a concrete instance of `ListRoutesQueryParamsInput` via:
+//
+//	ListRoutesQueryParamsArgs{...}
+type ListRoutesQueryParamsInput interface {
+	pulumi.Input
+
+	ToListRoutesQueryParamsOutput() ListRoutesQueryParamsOutput
+	ToListRoutesQueryParamsOutputWithContext(context.Context) ListRoutesQueryParamsOutput
+}
+
+// Query params for the API request.
+type ListRoutesQueryParamsArgs struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams pulumi.StringMapInput `pulumi:"additionalParams"`
+	// The position in the result list to start from when fetching paginated results. For details, see [Pagination](https://api-docs.render.com/reference/pagination).
+	Cursor pulumi.StringPtrInput `pulumi:"cursor"`
+	// Filter for the destination path of the route
+	Destination pulumi.StringArrayInput `pulumi:"destination"`
+	// The maximum number of items to return. For details, see [Pagination](https://api-docs.render.com/reference/pagination).
+	Limit pulumi.IntPtrInput `pulumi:"limit"`
+	// Filter for the source path of the route
+	Source pulumi.StringArrayInput `pulumi:"source"`
+	// Filter for the type of route rule
+	Type ListRoutesQueryParamsTypeItemArrayInput `pulumi:"type"`
+}
+
+// Defaults sets the appropriate defaults for ListRoutesQueryParamsArgs
+func (val *ListRoutesQueryParamsArgs) Defaults() *ListRoutesQueryParamsArgs {
+	if val == nil {
+		return nil
+	}
+	tmp := *val
+	if tmp.Limit == nil {
+		tmp.Limit = pulumi.IntPtr(20)
+	}
+	return &tmp
+}
+func (ListRoutesQueryParamsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ListRoutesQueryParams)(nil)).Elem()
+}
+
+func (i ListRoutesQueryParamsArgs) ToListRoutesQueryParamsOutput() ListRoutesQueryParamsOutput {
+	return i.ToListRoutesQueryParamsOutputWithContext(context.Background())
+}
+
+func (i ListRoutesQueryParamsArgs) ToListRoutesQueryParamsOutputWithContext(ctx context.Context) ListRoutesQueryParamsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ListRoutesQueryParamsOutput)
+}
+
+func (i ListRoutesQueryParamsArgs) ToListRoutesQueryParamsPtrOutput() ListRoutesQueryParamsPtrOutput {
+	return i.ToListRoutesQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i ListRoutesQueryParamsArgs) ToListRoutesQueryParamsPtrOutputWithContext(ctx context.Context) ListRoutesQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ListRoutesQueryParamsOutput).ToListRoutesQueryParamsPtrOutputWithContext(ctx)
+}
+
+// ListRoutesQueryParamsPtrInput is an input type that accepts ListRoutesQueryParamsArgs, ListRoutesQueryParamsPtr and ListRoutesQueryParamsPtrOutput values.
+// You can construct a concrete instance of `ListRoutesQueryParamsPtrInput` via:
+//
+//	        ListRoutesQueryParamsArgs{...}
+//
+//	or:
+//
+//	        nil
+type ListRoutesQueryParamsPtrInput interface {
+	pulumi.Input
+
+	ToListRoutesQueryParamsPtrOutput() ListRoutesQueryParamsPtrOutput
+	ToListRoutesQueryParamsPtrOutputWithContext(context.Context) ListRoutesQueryParamsPtrOutput
+}
+
+type listRoutesQueryParamsPtrType ListRoutesQueryParamsArgs
+
+func ListRoutesQueryParamsPtr(v *ListRoutesQueryParamsArgs) ListRoutesQueryParamsPtrInput {
+	return (*listRoutesQueryParamsPtrType)(v)
+}
+
+func (*listRoutesQueryParamsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**ListRoutesQueryParams)(nil)).Elem()
+}
+
+func (i *listRoutesQueryParamsPtrType) ToListRoutesQueryParamsPtrOutput() ListRoutesQueryParamsPtrOutput {
+	return i.ToListRoutesQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i *listRoutesQueryParamsPtrType) ToListRoutesQueryParamsPtrOutputWithContext(ctx context.Context) ListRoutesQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ListRoutesQueryParamsPtrOutput)
+}
+
+// Query params for the API request.
+type ListRoutesQueryParamsOutput struct{ *pulumi.OutputState }
+
+func (ListRoutesQueryParamsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ListRoutesQueryParams)(nil)).Elem()
+}
+
+func (o ListRoutesQueryParamsOutput) ToListRoutesQueryParamsOutput() ListRoutesQueryParamsOutput {
+	return o
+}
+
+func (o ListRoutesQueryParamsOutput) ToListRoutesQueryParamsOutputWithContext(ctx context.Context) ListRoutesQueryParamsOutput {
+	return o
+}
+
+func (o ListRoutesQueryParamsOutput) ToListRoutesQueryParamsPtrOutput() ListRoutesQueryParamsPtrOutput {
+	return o.ToListRoutesQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (o ListRoutesQueryParamsOutput) ToListRoutesQueryParamsPtrOutputWithContext(ctx context.Context) ListRoutesQueryParamsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v ListRoutesQueryParams) *ListRoutesQueryParams {
+		return &v
+	}).(ListRoutesQueryParamsPtrOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o ListRoutesQueryParamsOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v ListRoutesQueryParams) map[string]string { return v.AdditionalParams }).(pulumi.StringMapOutput)
+}
+
+// The position in the result list to start from when fetching paginated results. For details, see [Pagination](https://api-docs.render.com/reference/pagination).
+func (o ListRoutesQueryParamsOutput) Cursor() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ListRoutesQueryParams) *string { return v.Cursor }).(pulumi.StringPtrOutput)
+}
+
+// Filter for the destination path of the route
+func (o ListRoutesQueryParamsOutput) Destination() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v ListRoutesQueryParams) []string { return v.Destination }).(pulumi.StringArrayOutput)
+}
+
+// The maximum number of items to return. For details, see [Pagination](https://api-docs.render.com/reference/pagination).
+func (o ListRoutesQueryParamsOutput) Limit() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v ListRoutesQueryParams) *int { return v.Limit }).(pulumi.IntPtrOutput)
+}
+
+// Filter for the source path of the route
+func (o ListRoutesQueryParamsOutput) Source() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v ListRoutesQueryParams) []string { return v.Source }).(pulumi.StringArrayOutput)
+}
+
+// Filter for the type of route rule
+func (o ListRoutesQueryParamsOutput) Type() ListRoutesQueryParamsTypeItemArrayOutput {
+	return o.ApplyT(func(v ListRoutesQueryParams) []ListRoutesQueryParamsTypeItem { return v.Type }).(ListRoutesQueryParamsTypeItemArrayOutput)
+}
+
+type ListRoutesQueryParamsPtrOutput struct{ *pulumi.OutputState }
+
+func (ListRoutesQueryParamsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ListRoutesQueryParams)(nil)).Elem()
+}
+
+func (o ListRoutesQueryParamsPtrOutput) ToListRoutesQueryParamsPtrOutput() ListRoutesQueryParamsPtrOutput {
+	return o
+}
+
+func (o ListRoutesQueryParamsPtrOutput) ToListRoutesQueryParamsPtrOutputWithContext(ctx context.Context) ListRoutesQueryParamsPtrOutput {
+	return o
+}
+
+func (o ListRoutesQueryParamsPtrOutput) Elem() ListRoutesQueryParamsOutput {
+	return o.ApplyT(func(v *ListRoutesQueryParams) ListRoutesQueryParams {
+		if v != nil {
+			return *v
+		}
+		var ret ListRoutesQueryParams
+		return ret
+	}).(ListRoutesQueryParamsOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o ListRoutesQueryParamsPtrOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *ListRoutesQueryParams) map[string]string {
+		if v == nil {
+			return nil
+		}
+		return v.AdditionalParams
+	}).(pulumi.StringMapOutput)
+}
+
+// The position in the result list to start from when fetching paginated results. For details, see [Pagination](https://api-docs.render.com/reference/pagination).
+func (o ListRoutesQueryParamsPtrOutput) Cursor() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ListRoutesQueryParams) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Cursor
+	}).(pulumi.StringPtrOutput)
+}
+
+// Filter for the destination path of the route
+func (o ListRoutesQueryParamsPtrOutput) Destination() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *ListRoutesQueryParams) []string {
+		if v == nil {
+			return nil
+		}
+		return v.Destination
+	}).(pulumi.StringArrayOutput)
+}
+
+// The maximum number of items to return. For details, see [Pagination](https://api-docs.render.com/reference/pagination).
+func (o ListRoutesQueryParamsPtrOutput) Limit() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *ListRoutesQueryParams) *int {
+		if v == nil {
+			return nil
+		}
+		return v.Limit
+	}).(pulumi.IntPtrOutput)
+}
+
+// Filter for the source path of the route
+func (o ListRoutesQueryParamsPtrOutput) Source() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *ListRoutesQueryParams) []string {
+		if v == nil {
+			return nil
+		}
+		return v.Source
+	}).(pulumi.StringArrayOutput)
+}
+
+// Filter for the type of route rule
+func (o ListRoutesQueryParamsPtrOutput) Type() ListRoutesQueryParamsTypeItemArrayOutput {
+	return o.ApplyT(func(v *ListRoutesQueryParams) []ListRoutesQueryParamsTypeItem {
+		if v == nil {
+			return nil
+		}
+		return v.Type
+	}).(ListRoutesQueryParamsTypeItemArrayOutput)
+}
+
+// Query params for the API request.
+type ListSecretFilesForServiceQueryParams struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams map[string]string `pulumi:"additionalParams"`
+	// The position in the result list to start from when fetching paginated results. For details, see [Pagination](https://api-docs.render.com/reference/pagination).
+	Cursor *string `pulumi:"cursor"`
+	// The maximum number of items to return. For details, see [Pagination](https://api-docs.render.com/reference/pagination).
+	Limit *int `pulumi:"limit"`
+}
+
+// Defaults sets the appropriate defaults for ListSecretFilesForServiceQueryParams
+func (val *ListSecretFilesForServiceQueryParams) Defaults() *ListSecretFilesForServiceQueryParams {
+	if val == nil {
+		return nil
+	}
+	tmp := *val
+	if tmp.Limit == nil {
+		limit_ := 20
+		tmp.Limit = &limit_
+	}
+	return &tmp
+}
+
+// ListSecretFilesForServiceQueryParamsInput is an input type that accepts ListSecretFilesForServiceQueryParamsArgs and ListSecretFilesForServiceQueryParamsOutput values.
+// You can construct a concrete instance of `ListSecretFilesForServiceQueryParamsInput` via:
+//
+//	ListSecretFilesForServiceQueryParamsArgs{...}
+type ListSecretFilesForServiceQueryParamsInput interface {
+	pulumi.Input
+
+	ToListSecretFilesForServiceQueryParamsOutput() ListSecretFilesForServiceQueryParamsOutput
+	ToListSecretFilesForServiceQueryParamsOutputWithContext(context.Context) ListSecretFilesForServiceQueryParamsOutput
+}
+
+// Query params for the API request.
+type ListSecretFilesForServiceQueryParamsArgs struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams pulumi.StringMapInput `pulumi:"additionalParams"`
+	// The position in the result list to start from when fetching paginated results. For details, see [Pagination](https://api-docs.render.com/reference/pagination).
+	Cursor pulumi.StringPtrInput `pulumi:"cursor"`
+	// The maximum number of items to return. For details, see [Pagination](https://api-docs.render.com/reference/pagination).
+	Limit pulumi.IntPtrInput `pulumi:"limit"`
+}
+
+// Defaults sets the appropriate defaults for ListSecretFilesForServiceQueryParamsArgs
+func (val *ListSecretFilesForServiceQueryParamsArgs) Defaults() *ListSecretFilesForServiceQueryParamsArgs {
+	if val == nil {
+		return nil
+	}
+	tmp := *val
+	if tmp.Limit == nil {
+		tmp.Limit = pulumi.IntPtr(20)
+	}
+	return &tmp
+}
+func (ListSecretFilesForServiceQueryParamsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ListSecretFilesForServiceQueryParams)(nil)).Elem()
+}
+
+func (i ListSecretFilesForServiceQueryParamsArgs) ToListSecretFilesForServiceQueryParamsOutput() ListSecretFilesForServiceQueryParamsOutput {
+	return i.ToListSecretFilesForServiceQueryParamsOutputWithContext(context.Background())
+}
+
+func (i ListSecretFilesForServiceQueryParamsArgs) ToListSecretFilesForServiceQueryParamsOutputWithContext(ctx context.Context) ListSecretFilesForServiceQueryParamsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ListSecretFilesForServiceQueryParamsOutput)
+}
+
+func (i ListSecretFilesForServiceQueryParamsArgs) ToListSecretFilesForServiceQueryParamsPtrOutput() ListSecretFilesForServiceQueryParamsPtrOutput {
+	return i.ToListSecretFilesForServiceQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i ListSecretFilesForServiceQueryParamsArgs) ToListSecretFilesForServiceQueryParamsPtrOutputWithContext(ctx context.Context) ListSecretFilesForServiceQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ListSecretFilesForServiceQueryParamsOutput).ToListSecretFilesForServiceQueryParamsPtrOutputWithContext(ctx)
+}
+
+// ListSecretFilesForServiceQueryParamsPtrInput is an input type that accepts ListSecretFilesForServiceQueryParamsArgs, ListSecretFilesForServiceQueryParamsPtr and ListSecretFilesForServiceQueryParamsPtrOutput values.
+// You can construct a concrete instance of `ListSecretFilesForServiceQueryParamsPtrInput` via:
+//
+//	        ListSecretFilesForServiceQueryParamsArgs{...}
+//
+//	or:
+//
+//	        nil
+type ListSecretFilesForServiceQueryParamsPtrInput interface {
+	pulumi.Input
+
+	ToListSecretFilesForServiceQueryParamsPtrOutput() ListSecretFilesForServiceQueryParamsPtrOutput
+	ToListSecretFilesForServiceQueryParamsPtrOutputWithContext(context.Context) ListSecretFilesForServiceQueryParamsPtrOutput
+}
+
+type listSecretFilesForServiceQueryParamsPtrType ListSecretFilesForServiceQueryParamsArgs
+
+func ListSecretFilesForServiceQueryParamsPtr(v *ListSecretFilesForServiceQueryParamsArgs) ListSecretFilesForServiceQueryParamsPtrInput {
+	return (*listSecretFilesForServiceQueryParamsPtrType)(v)
+}
+
+func (*listSecretFilesForServiceQueryParamsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**ListSecretFilesForServiceQueryParams)(nil)).Elem()
+}
+
+func (i *listSecretFilesForServiceQueryParamsPtrType) ToListSecretFilesForServiceQueryParamsPtrOutput() ListSecretFilesForServiceQueryParamsPtrOutput {
+	return i.ToListSecretFilesForServiceQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i *listSecretFilesForServiceQueryParamsPtrType) ToListSecretFilesForServiceQueryParamsPtrOutputWithContext(ctx context.Context) ListSecretFilesForServiceQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ListSecretFilesForServiceQueryParamsPtrOutput)
+}
+
+// Query params for the API request.
+type ListSecretFilesForServiceQueryParamsOutput struct{ *pulumi.OutputState }
+
+func (ListSecretFilesForServiceQueryParamsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ListSecretFilesForServiceQueryParams)(nil)).Elem()
+}
+
+func (o ListSecretFilesForServiceQueryParamsOutput) ToListSecretFilesForServiceQueryParamsOutput() ListSecretFilesForServiceQueryParamsOutput {
+	return o
+}
+
+func (o ListSecretFilesForServiceQueryParamsOutput) ToListSecretFilesForServiceQueryParamsOutputWithContext(ctx context.Context) ListSecretFilesForServiceQueryParamsOutput {
+	return o
+}
+
+func (o ListSecretFilesForServiceQueryParamsOutput) ToListSecretFilesForServiceQueryParamsPtrOutput() ListSecretFilesForServiceQueryParamsPtrOutput {
+	return o.ToListSecretFilesForServiceQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (o ListSecretFilesForServiceQueryParamsOutput) ToListSecretFilesForServiceQueryParamsPtrOutputWithContext(ctx context.Context) ListSecretFilesForServiceQueryParamsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v ListSecretFilesForServiceQueryParams) *ListSecretFilesForServiceQueryParams {
+		return &v
+	}).(ListSecretFilesForServiceQueryParamsPtrOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o ListSecretFilesForServiceQueryParamsOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v ListSecretFilesForServiceQueryParams) map[string]string { return v.AdditionalParams }).(pulumi.StringMapOutput)
+}
+
+// The position in the result list to start from when fetching paginated results. For details, see [Pagination](https://api-docs.render.com/reference/pagination).
+func (o ListSecretFilesForServiceQueryParamsOutput) Cursor() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ListSecretFilesForServiceQueryParams) *string { return v.Cursor }).(pulumi.StringPtrOutput)
+}
+
+// The maximum number of items to return. For details, see [Pagination](https://api-docs.render.com/reference/pagination).
+func (o ListSecretFilesForServiceQueryParamsOutput) Limit() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v ListSecretFilesForServiceQueryParams) *int { return v.Limit }).(pulumi.IntPtrOutput)
+}
+
+type ListSecretFilesForServiceQueryParamsPtrOutput struct{ *pulumi.OutputState }
+
+func (ListSecretFilesForServiceQueryParamsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ListSecretFilesForServiceQueryParams)(nil)).Elem()
+}
+
+func (o ListSecretFilesForServiceQueryParamsPtrOutput) ToListSecretFilesForServiceQueryParamsPtrOutput() ListSecretFilesForServiceQueryParamsPtrOutput {
+	return o
+}
+
+func (o ListSecretFilesForServiceQueryParamsPtrOutput) ToListSecretFilesForServiceQueryParamsPtrOutputWithContext(ctx context.Context) ListSecretFilesForServiceQueryParamsPtrOutput {
+	return o
+}
+
+func (o ListSecretFilesForServiceQueryParamsPtrOutput) Elem() ListSecretFilesForServiceQueryParamsOutput {
+	return o.ApplyT(func(v *ListSecretFilesForServiceQueryParams) ListSecretFilesForServiceQueryParams {
+		if v != nil {
+			return *v
+		}
+		var ret ListSecretFilesForServiceQueryParams
+		return ret
+	}).(ListSecretFilesForServiceQueryParamsOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o ListSecretFilesForServiceQueryParamsPtrOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *ListSecretFilesForServiceQueryParams) map[string]string {
+		if v == nil {
+			return nil
+		}
+		return v.AdditionalParams
+	}).(pulumi.StringMapOutput)
+}
+
+// The position in the result list to start from when fetching paginated results. For details, see [Pagination](https://api-docs.render.com/reference/pagination).
+func (o ListSecretFilesForServiceQueryParamsPtrOutput) Cursor() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ListSecretFilesForServiceQueryParams) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Cursor
+	}).(pulumi.StringPtrOutput)
+}
+
+// The maximum number of items to return. For details, see [Pagination](https://api-docs.render.com/reference/pagination).
+func (o ListSecretFilesForServiceQueryParamsPtrOutput) Limit() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *ListSecretFilesForServiceQueryParams) *int {
+		if v == nil {
+			return nil
+		}
+		return v.Limit
+	}).(pulumi.IntPtrOutput)
+}
+
+// Query params for the API request.
+type ListServicesQueryParams struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams map[string]string `pulumi:"additionalParams"`
+	// Filter for resources created after a certain time (specified as an ISO 8601 timestamp)
+	CreatedAfter *string `pulumi:"createdAfter"`
+	// Filter for resources created before a certain time (specified as an ISO 8601 timestamp)
+	CreatedBefore *string `pulumi:"createdBefore"`
+	// The position in the result list to start from when fetching paginated results. For details, see [Pagination](https://api-docs.render.com/reference/pagination).
+	Cursor *string `pulumi:"cursor"`
+	// Filter for environments (runtimes) of services (deprecated; use `runtime` instead)
+	Env []ListServicesQueryParamsEnvItem `pulumi:"env"`
+	// Filter for resources that belong to an environment
+	EnvironmentId []string `pulumi:"environmentId"`
+	// Include previews in the response
+	IncludePreviews *bool `pulumi:"includePreviews"`
+	// The maximum number of items to return. For details, see [Pagination](https://api-docs.render.com/reference/pagination).
+	Limit *int `pulumi:"limit"`
+	// Filter by name
+	Name []string `pulumi:"name"`
+	// The ID of the workspaces to return resources for
+	OwnerId []string `pulumi:"ownerId"`
+	// Filter by resource region
+	Region []ListServicesQueryParamsRegionItem `pulumi:"region"`
+	// Filter resources based on whether they're suspended or not suspended
+	Suspended []ListServicesQueryParamsSuspendedItem `pulumi:"suspended"`
+	// Filter for types of services
+	Type []ListServicesQueryParamsTypeItem `pulumi:"type"`
+	// Filter for resources updated after a certain time (specified as an ISO 8601 timestamp)
+	UpdatedAfter *string `pulumi:"updatedAfter"`
+	// Filter for resources updated before a certain time (specified as an ISO 8601 timestamp)
+	UpdatedBefore *string `pulumi:"updatedBefore"`
+}
+
+// Defaults sets the appropriate defaults for ListServicesQueryParams
+func (val *ListServicesQueryParams) Defaults() *ListServicesQueryParams {
+	if val == nil {
+		return nil
+	}
+	tmp := *val
+	if tmp.IncludePreviews == nil {
+		includePreviews_ := true
+		tmp.IncludePreviews = &includePreviews_
+	}
+	if tmp.Limit == nil {
+		limit_ := 20
+		tmp.Limit = &limit_
+	}
+	return &tmp
+}
+
+// ListServicesQueryParamsInput is an input type that accepts ListServicesQueryParamsArgs and ListServicesQueryParamsOutput values.
+// You can construct a concrete instance of `ListServicesQueryParamsInput` via:
+//
+//	ListServicesQueryParamsArgs{...}
+type ListServicesQueryParamsInput interface {
+	pulumi.Input
+
+	ToListServicesQueryParamsOutput() ListServicesQueryParamsOutput
+	ToListServicesQueryParamsOutputWithContext(context.Context) ListServicesQueryParamsOutput
+}
+
+// Query params for the API request.
+type ListServicesQueryParamsArgs struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams pulumi.StringMapInput `pulumi:"additionalParams"`
+	// Filter for resources created after a certain time (specified as an ISO 8601 timestamp)
+	CreatedAfter pulumi.StringPtrInput `pulumi:"createdAfter"`
+	// Filter for resources created before a certain time (specified as an ISO 8601 timestamp)
+	CreatedBefore pulumi.StringPtrInput `pulumi:"createdBefore"`
+	// The position in the result list to start from when fetching paginated results. For details, see [Pagination](https://api-docs.render.com/reference/pagination).
+	Cursor pulumi.StringPtrInput `pulumi:"cursor"`
+	// Filter for environments (runtimes) of services (deprecated; use `runtime` instead)
+	Env ListServicesQueryParamsEnvItemArrayInput `pulumi:"env"`
+	// Filter for resources that belong to an environment
+	EnvironmentId pulumi.StringArrayInput `pulumi:"environmentId"`
+	// Include previews in the response
+	IncludePreviews pulumi.BoolPtrInput `pulumi:"includePreviews"`
+	// The maximum number of items to return. For details, see [Pagination](https://api-docs.render.com/reference/pagination).
+	Limit pulumi.IntPtrInput `pulumi:"limit"`
+	// Filter by name
+	Name pulumi.StringArrayInput `pulumi:"name"`
+	// The ID of the workspaces to return resources for
+	OwnerId pulumi.StringArrayInput `pulumi:"ownerId"`
+	// Filter by resource region
+	Region ListServicesQueryParamsRegionItemArrayInput `pulumi:"region"`
+	// Filter resources based on whether they're suspended or not suspended
+	Suspended ListServicesQueryParamsSuspendedItemArrayInput `pulumi:"suspended"`
+	// Filter for types of services
+	Type ListServicesQueryParamsTypeItemArrayInput `pulumi:"type"`
+	// Filter for resources updated after a certain time (specified as an ISO 8601 timestamp)
+	UpdatedAfter pulumi.StringPtrInput `pulumi:"updatedAfter"`
+	// Filter for resources updated before a certain time (specified as an ISO 8601 timestamp)
+	UpdatedBefore pulumi.StringPtrInput `pulumi:"updatedBefore"`
+}
+
+// Defaults sets the appropriate defaults for ListServicesQueryParamsArgs
+func (val *ListServicesQueryParamsArgs) Defaults() *ListServicesQueryParamsArgs {
+	if val == nil {
+		return nil
+	}
+	tmp := *val
+	if tmp.IncludePreviews == nil {
+		tmp.IncludePreviews = pulumi.BoolPtr(true)
+	}
+	if tmp.Limit == nil {
+		tmp.Limit = pulumi.IntPtr(20)
+	}
+	return &tmp
+}
+func (ListServicesQueryParamsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ListServicesQueryParams)(nil)).Elem()
+}
+
+func (i ListServicesQueryParamsArgs) ToListServicesQueryParamsOutput() ListServicesQueryParamsOutput {
+	return i.ToListServicesQueryParamsOutputWithContext(context.Background())
+}
+
+func (i ListServicesQueryParamsArgs) ToListServicesQueryParamsOutputWithContext(ctx context.Context) ListServicesQueryParamsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ListServicesQueryParamsOutput)
+}
+
+func (i ListServicesQueryParamsArgs) ToListServicesQueryParamsPtrOutput() ListServicesQueryParamsPtrOutput {
+	return i.ToListServicesQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i ListServicesQueryParamsArgs) ToListServicesQueryParamsPtrOutputWithContext(ctx context.Context) ListServicesQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ListServicesQueryParamsOutput).ToListServicesQueryParamsPtrOutputWithContext(ctx)
+}
+
+// ListServicesQueryParamsPtrInput is an input type that accepts ListServicesQueryParamsArgs, ListServicesQueryParamsPtr and ListServicesQueryParamsPtrOutput values.
+// You can construct a concrete instance of `ListServicesQueryParamsPtrInput` via:
+//
+//	        ListServicesQueryParamsArgs{...}
+//
+//	or:
+//
+//	        nil
+type ListServicesQueryParamsPtrInput interface {
+	pulumi.Input
+
+	ToListServicesQueryParamsPtrOutput() ListServicesQueryParamsPtrOutput
+	ToListServicesQueryParamsPtrOutputWithContext(context.Context) ListServicesQueryParamsPtrOutput
+}
+
+type listServicesQueryParamsPtrType ListServicesQueryParamsArgs
+
+func ListServicesQueryParamsPtr(v *ListServicesQueryParamsArgs) ListServicesQueryParamsPtrInput {
+	return (*listServicesQueryParamsPtrType)(v)
+}
+
+func (*listServicesQueryParamsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**ListServicesQueryParams)(nil)).Elem()
+}
+
+func (i *listServicesQueryParamsPtrType) ToListServicesQueryParamsPtrOutput() ListServicesQueryParamsPtrOutput {
+	return i.ToListServicesQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i *listServicesQueryParamsPtrType) ToListServicesQueryParamsPtrOutputWithContext(ctx context.Context) ListServicesQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ListServicesQueryParamsPtrOutput)
+}
+
+// Query params for the API request.
+type ListServicesQueryParamsOutput struct{ *pulumi.OutputState }
+
+func (ListServicesQueryParamsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ListServicesQueryParams)(nil)).Elem()
+}
+
+func (o ListServicesQueryParamsOutput) ToListServicesQueryParamsOutput() ListServicesQueryParamsOutput {
+	return o
+}
+
+func (o ListServicesQueryParamsOutput) ToListServicesQueryParamsOutputWithContext(ctx context.Context) ListServicesQueryParamsOutput {
+	return o
+}
+
+func (o ListServicesQueryParamsOutput) ToListServicesQueryParamsPtrOutput() ListServicesQueryParamsPtrOutput {
+	return o.ToListServicesQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (o ListServicesQueryParamsOutput) ToListServicesQueryParamsPtrOutputWithContext(ctx context.Context) ListServicesQueryParamsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v ListServicesQueryParams) *ListServicesQueryParams {
+		return &v
+	}).(ListServicesQueryParamsPtrOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o ListServicesQueryParamsOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v ListServicesQueryParams) map[string]string { return v.AdditionalParams }).(pulumi.StringMapOutput)
+}
+
+// Filter for resources created after a certain time (specified as an ISO 8601 timestamp)
+func (o ListServicesQueryParamsOutput) CreatedAfter() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ListServicesQueryParams) *string { return v.CreatedAfter }).(pulumi.StringPtrOutput)
+}
+
+// Filter for resources created before a certain time (specified as an ISO 8601 timestamp)
+func (o ListServicesQueryParamsOutput) CreatedBefore() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ListServicesQueryParams) *string { return v.CreatedBefore }).(pulumi.StringPtrOutput)
+}
+
+// The position in the result list to start from when fetching paginated results. For details, see [Pagination](https://api-docs.render.com/reference/pagination).
+func (o ListServicesQueryParamsOutput) Cursor() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ListServicesQueryParams) *string { return v.Cursor }).(pulumi.StringPtrOutput)
+}
+
+// Filter for environments (runtimes) of services (deprecated; use `runtime` instead)
+func (o ListServicesQueryParamsOutput) Env() ListServicesQueryParamsEnvItemArrayOutput {
+	return o.ApplyT(func(v ListServicesQueryParams) []ListServicesQueryParamsEnvItem { return v.Env }).(ListServicesQueryParamsEnvItemArrayOutput)
+}
+
+// Filter for resources that belong to an environment
+func (o ListServicesQueryParamsOutput) EnvironmentId() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v ListServicesQueryParams) []string { return v.EnvironmentId }).(pulumi.StringArrayOutput)
+}
+
+// Include previews in the response
+func (o ListServicesQueryParamsOutput) IncludePreviews() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v ListServicesQueryParams) *bool { return v.IncludePreviews }).(pulumi.BoolPtrOutput)
+}
+
+// The maximum number of items to return. For details, see [Pagination](https://api-docs.render.com/reference/pagination).
+func (o ListServicesQueryParamsOutput) Limit() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v ListServicesQueryParams) *int { return v.Limit }).(pulumi.IntPtrOutput)
+}
+
+// Filter by name
+func (o ListServicesQueryParamsOutput) Name() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v ListServicesQueryParams) []string { return v.Name }).(pulumi.StringArrayOutput)
+}
+
+// The ID of the workspaces to return resources for
+func (o ListServicesQueryParamsOutput) OwnerId() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v ListServicesQueryParams) []string { return v.OwnerId }).(pulumi.StringArrayOutput)
+}
+
+// Filter by resource region
+func (o ListServicesQueryParamsOutput) Region() ListServicesQueryParamsRegionItemArrayOutput {
+	return o.ApplyT(func(v ListServicesQueryParams) []ListServicesQueryParamsRegionItem { return v.Region }).(ListServicesQueryParamsRegionItemArrayOutput)
+}
+
+// Filter resources based on whether they're suspended or not suspended
+func (o ListServicesQueryParamsOutput) Suspended() ListServicesQueryParamsSuspendedItemArrayOutput {
+	return o.ApplyT(func(v ListServicesQueryParams) []ListServicesQueryParamsSuspendedItem { return v.Suspended }).(ListServicesQueryParamsSuspendedItemArrayOutput)
+}
+
+// Filter for types of services
+func (o ListServicesQueryParamsOutput) Type() ListServicesQueryParamsTypeItemArrayOutput {
+	return o.ApplyT(func(v ListServicesQueryParams) []ListServicesQueryParamsTypeItem { return v.Type }).(ListServicesQueryParamsTypeItemArrayOutput)
+}
+
+// Filter for resources updated after a certain time (specified as an ISO 8601 timestamp)
+func (o ListServicesQueryParamsOutput) UpdatedAfter() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ListServicesQueryParams) *string { return v.UpdatedAfter }).(pulumi.StringPtrOutput)
+}
+
+// Filter for resources updated before a certain time (specified as an ISO 8601 timestamp)
+func (o ListServicesQueryParamsOutput) UpdatedBefore() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ListServicesQueryParams) *string { return v.UpdatedBefore }).(pulumi.StringPtrOutput)
+}
+
+type ListServicesQueryParamsPtrOutput struct{ *pulumi.OutputState }
+
+func (ListServicesQueryParamsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ListServicesQueryParams)(nil)).Elem()
+}
+
+func (o ListServicesQueryParamsPtrOutput) ToListServicesQueryParamsPtrOutput() ListServicesQueryParamsPtrOutput {
+	return o
+}
+
+func (o ListServicesQueryParamsPtrOutput) ToListServicesQueryParamsPtrOutputWithContext(ctx context.Context) ListServicesQueryParamsPtrOutput {
+	return o
+}
+
+func (o ListServicesQueryParamsPtrOutput) Elem() ListServicesQueryParamsOutput {
+	return o.ApplyT(func(v *ListServicesQueryParams) ListServicesQueryParams {
+		if v != nil {
+			return *v
+		}
+		var ret ListServicesQueryParams
+		return ret
+	}).(ListServicesQueryParamsOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o ListServicesQueryParamsPtrOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *ListServicesQueryParams) map[string]string {
+		if v == nil {
+			return nil
+		}
+		return v.AdditionalParams
+	}).(pulumi.StringMapOutput)
+}
+
+// Filter for resources created after a certain time (specified as an ISO 8601 timestamp)
+func (o ListServicesQueryParamsPtrOutput) CreatedAfter() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ListServicesQueryParams) *string {
+		if v == nil {
+			return nil
+		}
+		return v.CreatedAfter
+	}).(pulumi.StringPtrOutput)
+}
+
+// Filter for resources created before a certain time (specified as an ISO 8601 timestamp)
+func (o ListServicesQueryParamsPtrOutput) CreatedBefore() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ListServicesQueryParams) *string {
+		if v == nil {
+			return nil
+		}
+		return v.CreatedBefore
+	}).(pulumi.StringPtrOutput)
+}
+
+// The position in the result list to start from when fetching paginated results. For details, see [Pagination](https://api-docs.render.com/reference/pagination).
+func (o ListServicesQueryParamsPtrOutput) Cursor() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ListServicesQueryParams) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Cursor
+	}).(pulumi.StringPtrOutput)
+}
+
+// Filter for environments (runtimes) of services (deprecated; use `runtime` instead)
+func (o ListServicesQueryParamsPtrOutput) Env() ListServicesQueryParamsEnvItemArrayOutput {
+	return o.ApplyT(func(v *ListServicesQueryParams) []ListServicesQueryParamsEnvItem {
+		if v == nil {
+			return nil
+		}
+		return v.Env
+	}).(ListServicesQueryParamsEnvItemArrayOutput)
+}
+
+// Filter for resources that belong to an environment
+func (o ListServicesQueryParamsPtrOutput) EnvironmentId() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *ListServicesQueryParams) []string {
+		if v == nil {
+			return nil
+		}
+		return v.EnvironmentId
+	}).(pulumi.StringArrayOutput)
+}
+
+// Include previews in the response
+func (o ListServicesQueryParamsPtrOutput) IncludePreviews() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *ListServicesQueryParams) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.IncludePreviews
+	}).(pulumi.BoolPtrOutput)
+}
+
+// The maximum number of items to return. For details, see [Pagination](https://api-docs.render.com/reference/pagination).
+func (o ListServicesQueryParamsPtrOutput) Limit() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *ListServicesQueryParams) *int {
+		if v == nil {
+			return nil
+		}
+		return v.Limit
+	}).(pulumi.IntPtrOutput)
+}
+
+// Filter by name
+func (o ListServicesQueryParamsPtrOutput) Name() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *ListServicesQueryParams) []string {
+		if v == nil {
+			return nil
+		}
+		return v.Name
+	}).(pulumi.StringArrayOutput)
+}
+
+// The ID of the workspaces to return resources for
+func (o ListServicesQueryParamsPtrOutput) OwnerId() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *ListServicesQueryParams) []string {
+		if v == nil {
+			return nil
+		}
+		return v.OwnerId
+	}).(pulumi.StringArrayOutput)
+}
+
+// Filter by resource region
+func (o ListServicesQueryParamsPtrOutput) Region() ListServicesQueryParamsRegionItemArrayOutput {
+	return o.ApplyT(func(v *ListServicesQueryParams) []ListServicesQueryParamsRegionItem {
+		if v == nil {
+			return nil
+		}
+		return v.Region
+	}).(ListServicesQueryParamsRegionItemArrayOutput)
+}
+
+// Filter resources based on whether they're suspended or not suspended
+func (o ListServicesQueryParamsPtrOutput) Suspended() ListServicesQueryParamsSuspendedItemArrayOutput {
+	return o.ApplyT(func(v *ListServicesQueryParams) []ListServicesQueryParamsSuspendedItem {
+		if v == nil {
+			return nil
+		}
+		return v.Suspended
+	}).(ListServicesQueryParamsSuspendedItemArrayOutput)
+}
+
+// Filter for types of services
+func (o ListServicesQueryParamsPtrOutput) Type() ListServicesQueryParamsTypeItemArrayOutput {
+	return o.ApplyT(func(v *ListServicesQueryParams) []ListServicesQueryParamsTypeItem {
+		if v == nil {
+			return nil
+		}
+		return v.Type
+	}).(ListServicesQueryParamsTypeItemArrayOutput)
+}
+
+// Filter for resources updated after a certain time (specified as an ISO 8601 timestamp)
+func (o ListServicesQueryParamsPtrOutput) UpdatedAfter() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ListServicesQueryParams) *string {
+		if v == nil {
+			return nil
+		}
+		return v.UpdatedAfter
+	}).(pulumi.StringPtrOutput)
+}
+
+// Filter for resources updated before a certain time (specified as an ISO 8601 timestamp)
+func (o ListServicesQueryParamsPtrOutput) UpdatedBefore() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ListServicesQueryParams) *string {
+		if v == nil {
+			return nil
+		}
+		return v.UpdatedBefore
+	}).(pulumi.StringPtrOutput)
 }
 
 type ListServicesResponse struct {
@@ -4067,6 +13559,286 @@ func (o MaintenanceModePtrOutput) Uri() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
+// Query params for the API request.
+type PreviewServiceCreateQueryParams struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams map[string]string `pulumi:"additionalParams"`
+}
+
+// PreviewServiceCreateQueryParamsInput is an input type that accepts PreviewServiceCreateQueryParamsArgs and PreviewServiceCreateQueryParamsOutput values.
+// You can construct a concrete instance of `PreviewServiceCreateQueryParamsInput` via:
+//
+//	PreviewServiceCreateQueryParamsArgs{...}
+type PreviewServiceCreateQueryParamsInput interface {
+	pulumi.Input
+
+	ToPreviewServiceCreateQueryParamsOutput() PreviewServiceCreateQueryParamsOutput
+	ToPreviewServiceCreateQueryParamsOutputWithContext(context.Context) PreviewServiceCreateQueryParamsOutput
+}
+
+// Query params for the API request.
+type PreviewServiceCreateQueryParamsArgs struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams pulumi.StringMapInput `pulumi:"additionalParams"`
+}
+
+func (PreviewServiceCreateQueryParamsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*PreviewServiceCreateQueryParams)(nil)).Elem()
+}
+
+func (i PreviewServiceCreateQueryParamsArgs) ToPreviewServiceCreateQueryParamsOutput() PreviewServiceCreateQueryParamsOutput {
+	return i.ToPreviewServiceCreateQueryParamsOutputWithContext(context.Background())
+}
+
+func (i PreviewServiceCreateQueryParamsArgs) ToPreviewServiceCreateQueryParamsOutputWithContext(ctx context.Context) PreviewServiceCreateQueryParamsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(PreviewServiceCreateQueryParamsOutput)
+}
+
+func (i PreviewServiceCreateQueryParamsArgs) ToPreviewServiceCreateQueryParamsPtrOutput() PreviewServiceCreateQueryParamsPtrOutput {
+	return i.ToPreviewServiceCreateQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i PreviewServiceCreateQueryParamsArgs) ToPreviewServiceCreateQueryParamsPtrOutputWithContext(ctx context.Context) PreviewServiceCreateQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(PreviewServiceCreateQueryParamsOutput).ToPreviewServiceCreateQueryParamsPtrOutputWithContext(ctx)
+}
+
+// PreviewServiceCreateQueryParamsPtrInput is an input type that accepts PreviewServiceCreateQueryParamsArgs, PreviewServiceCreateQueryParamsPtr and PreviewServiceCreateQueryParamsPtrOutput values.
+// You can construct a concrete instance of `PreviewServiceCreateQueryParamsPtrInput` via:
+//
+//	        PreviewServiceCreateQueryParamsArgs{...}
+//
+//	or:
+//
+//	        nil
+type PreviewServiceCreateQueryParamsPtrInput interface {
+	pulumi.Input
+
+	ToPreviewServiceCreateQueryParamsPtrOutput() PreviewServiceCreateQueryParamsPtrOutput
+	ToPreviewServiceCreateQueryParamsPtrOutputWithContext(context.Context) PreviewServiceCreateQueryParamsPtrOutput
+}
+
+type previewServiceCreateQueryParamsPtrType PreviewServiceCreateQueryParamsArgs
+
+func PreviewServiceCreateQueryParamsPtr(v *PreviewServiceCreateQueryParamsArgs) PreviewServiceCreateQueryParamsPtrInput {
+	return (*previewServiceCreateQueryParamsPtrType)(v)
+}
+
+func (*previewServiceCreateQueryParamsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**PreviewServiceCreateQueryParams)(nil)).Elem()
+}
+
+func (i *previewServiceCreateQueryParamsPtrType) ToPreviewServiceCreateQueryParamsPtrOutput() PreviewServiceCreateQueryParamsPtrOutput {
+	return i.ToPreviewServiceCreateQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i *previewServiceCreateQueryParamsPtrType) ToPreviewServiceCreateQueryParamsPtrOutputWithContext(ctx context.Context) PreviewServiceCreateQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(PreviewServiceCreateQueryParamsPtrOutput)
+}
+
+// Query params for the API request.
+type PreviewServiceCreateQueryParamsOutput struct{ *pulumi.OutputState }
+
+func (PreviewServiceCreateQueryParamsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*PreviewServiceCreateQueryParams)(nil)).Elem()
+}
+
+func (o PreviewServiceCreateQueryParamsOutput) ToPreviewServiceCreateQueryParamsOutput() PreviewServiceCreateQueryParamsOutput {
+	return o
+}
+
+func (o PreviewServiceCreateQueryParamsOutput) ToPreviewServiceCreateQueryParamsOutputWithContext(ctx context.Context) PreviewServiceCreateQueryParamsOutput {
+	return o
+}
+
+func (o PreviewServiceCreateQueryParamsOutput) ToPreviewServiceCreateQueryParamsPtrOutput() PreviewServiceCreateQueryParamsPtrOutput {
+	return o.ToPreviewServiceCreateQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (o PreviewServiceCreateQueryParamsOutput) ToPreviewServiceCreateQueryParamsPtrOutputWithContext(ctx context.Context) PreviewServiceCreateQueryParamsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v PreviewServiceCreateQueryParams) *PreviewServiceCreateQueryParams {
+		return &v
+	}).(PreviewServiceCreateQueryParamsPtrOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o PreviewServiceCreateQueryParamsOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v PreviewServiceCreateQueryParams) map[string]string { return v.AdditionalParams }).(pulumi.StringMapOutput)
+}
+
+type PreviewServiceCreateQueryParamsPtrOutput struct{ *pulumi.OutputState }
+
+func (PreviewServiceCreateQueryParamsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**PreviewServiceCreateQueryParams)(nil)).Elem()
+}
+
+func (o PreviewServiceCreateQueryParamsPtrOutput) ToPreviewServiceCreateQueryParamsPtrOutput() PreviewServiceCreateQueryParamsPtrOutput {
+	return o
+}
+
+func (o PreviewServiceCreateQueryParamsPtrOutput) ToPreviewServiceCreateQueryParamsPtrOutputWithContext(ctx context.Context) PreviewServiceCreateQueryParamsPtrOutput {
+	return o
+}
+
+func (o PreviewServiceCreateQueryParamsPtrOutput) Elem() PreviewServiceCreateQueryParamsOutput {
+	return o.ApplyT(func(v *PreviewServiceCreateQueryParams) PreviewServiceCreateQueryParams {
+		if v != nil {
+			return *v
+		}
+		var ret PreviewServiceCreateQueryParams
+		return ret
+	}).(PreviewServiceCreateQueryParamsOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o PreviewServiceCreateQueryParamsPtrOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *PreviewServiceCreateQueryParams) map[string]string {
+		if v == nil {
+			return nil
+		}
+		return v.AdditionalParams
+	}).(pulumi.StringMapOutput)
+}
+
+// Query params for each of the operations of the resource.
+type PreviewServiceQueryParams struct {
+	// Query params for the create operation.
+	Create *PreviewServiceCreateQueryParams `pulumi:"create"`
+}
+
+// PreviewServiceQueryParamsInput is an input type that accepts PreviewServiceQueryParamsArgs and PreviewServiceQueryParamsOutput values.
+// You can construct a concrete instance of `PreviewServiceQueryParamsInput` via:
+//
+//	PreviewServiceQueryParamsArgs{...}
+type PreviewServiceQueryParamsInput interface {
+	pulumi.Input
+
+	ToPreviewServiceQueryParamsOutput() PreviewServiceQueryParamsOutput
+	ToPreviewServiceQueryParamsOutputWithContext(context.Context) PreviewServiceQueryParamsOutput
+}
+
+// Query params for each of the operations of the resource.
+type PreviewServiceQueryParamsArgs struct {
+	// Query params for the create operation.
+	Create PreviewServiceCreateQueryParamsPtrInput `pulumi:"create"`
+}
+
+func (PreviewServiceQueryParamsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*PreviewServiceQueryParams)(nil)).Elem()
+}
+
+func (i PreviewServiceQueryParamsArgs) ToPreviewServiceQueryParamsOutput() PreviewServiceQueryParamsOutput {
+	return i.ToPreviewServiceQueryParamsOutputWithContext(context.Background())
+}
+
+func (i PreviewServiceQueryParamsArgs) ToPreviewServiceQueryParamsOutputWithContext(ctx context.Context) PreviewServiceQueryParamsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(PreviewServiceQueryParamsOutput)
+}
+
+func (i PreviewServiceQueryParamsArgs) ToPreviewServiceQueryParamsPtrOutput() PreviewServiceQueryParamsPtrOutput {
+	return i.ToPreviewServiceQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i PreviewServiceQueryParamsArgs) ToPreviewServiceQueryParamsPtrOutputWithContext(ctx context.Context) PreviewServiceQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(PreviewServiceQueryParamsOutput).ToPreviewServiceQueryParamsPtrOutputWithContext(ctx)
+}
+
+// PreviewServiceQueryParamsPtrInput is an input type that accepts PreviewServiceQueryParamsArgs, PreviewServiceQueryParamsPtr and PreviewServiceQueryParamsPtrOutput values.
+// You can construct a concrete instance of `PreviewServiceQueryParamsPtrInput` via:
+//
+//	        PreviewServiceQueryParamsArgs{...}
+//
+//	or:
+//
+//	        nil
+type PreviewServiceQueryParamsPtrInput interface {
+	pulumi.Input
+
+	ToPreviewServiceQueryParamsPtrOutput() PreviewServiceQueryParamsPtrOutput
+	ToPreviewServiceQueryParamsPtrOutputWithContext(context.Context) PreviewServiceQueryParamsPtrOutput
+}
+
+type previewServiceQueryParamsPtrType PreviewServiceQueryParamsArgs
+
+func PreviewServiceQueryParamsPtr(v *PreviewServiceQueryParamsArgs) PreviewServiceQueryParamsPtrInput {
+	return (*previewServiceQueryParamsPtrType)(v)
+}
+
+func (*previewServiceQueryParamsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**PreviewServiceQueryParams)(nil)).Elem()
+}
+
+func (i *previewServiceQueryParamsPtrType) ToPreviewServiceQueryParamsPtrOutput() PreviewServiceQueryParamsPtrOutput {
+	return i.ToPreviewServiceQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i *previewServiceQueryParamsPtrType) ToPreviewServiceQueryParamsPtrOutputWithContext(ctx context.Context) PreviewServiceQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(PreviewServiceQueryParamsPtrOutput)
+}
+
+// Query params for each of the operations of the resource.
+type PreviewServiceQueryParamsOutput struct{ *pulumi.OutputState }
+
+func (PreviewServiceQueryParamsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*PreviewServiceQueryParams)(nil)).Elem()
+}
+
+func (o PreviewServiceQueryParamsOutput) ToPreviewServiceQueryParamsOutput() PreviewServiceQueryParamsOutput {
+	return o
+}
+
+func (o PreviewServiceQueryParamsOutput) ToPreviewServiceQueryParamsOutputWithContext(ctx context.Context) PreviewServiceQueryParamsOutput {
+	return o
+}
+
+func (o PreviewServiceQueryParamsOutput) ToPreviewServiceQueryParamsPtrOutput() PreviewServiceQueryParamsPtrOutput {
+	return o.ToPreviewServiceQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (o PreviewServiceQueryParamsOutput) ToPreviewServiceQueryParamsPtrOutputWithContext(ctx context.Context) PreviewServiceQueryParamsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v PreviewServiceQueryParams) *PreviewServiceQueryParams {
+		return &v
+	}).(PreviewServiceQueryParamsPtrOutput)
+}
+
+// Query params for the create operation.
+func (o PreviewServiceQueryParamsOutput) Create() PreviewServiceCreateQueryParamsPtrOutput {
+	return o.ApplyT(func(v PreviewServiceQueryParams) *PreviewServiceCreateQueryParams { return v.Create }).(PreviewServiceCreateQueryParamsPtrOutput)
+}
+
+type PreviewServiceQueryParamsPtrOutput struct{ *pulumi.OutputState }
+
+func (PreviewServiceQueryParamsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**PreviewServiceQueryParams)(nil)).Elem()
+}
+
+func (o PreviewServiceQueryParamsPtrOutput) ToPreviewServiceQueryParamsPtrOutput() PreviewServiceQueryParamsPtrOutput {
+	return o
+}
+
+func (o PreviewServiceQueryParamsPtrOutput) ToPreviewServiceQueryParamsPtrOutputWithContext(ctx context.Context) PreviewServiceQueryParamsPtrOutput {
+	return o
+}
+
+func (o PreviewServiceQueryParamsPtrOutput) Elem() PreviewServiceQueryParamsOutput {
+	return o.ApplyT(func(v *PreviewServiceQueryParams) PreviewServiceQueryParams {
+		if v != nil {
+			return *v
+		}
+		var ret PreviewServiceQueryParams
+		return ret
+	}).(PreviewServiceQueryParamsOutput)
+}
+
+// Query params for the create operation.
+func (o PreviewServiceQueryParamsPtrOutput) Create() PreviewServiceCreateQueryParamsPtrOutput {
+	return o.ApplyT(func(v *PreviewServiceQueryParams) *PreviewServiceCreateQueryParams {
+		if v == nil {
+			return nil
+		}
+		return v.Create
+	}).(PreviewServiceCreateQueryParamsPtrOutput)
+}
+
 type Previews struct {
 	// Defaults to "off"
 	Generation *PreviewsGeneration `pulumi:"generation"`
@@ -4226,6 +13998,286 @@ func (o PreviewsPtrOutput) Generation() PreviewsGenerationPtrOutput {
 		}
 		return v.Generation
 	}).(PreviewsGenerationPtrOutput)
+}
+
+// Query params for the API request.
+type PrivateServiceCreateQueryParams struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams map[string]string `pulumi:"additionalParams"`
+}
+
+// PrivateServiceCreateQueryParamsInput is an input type that accepts PrivateServiceCreateQueryParamsArgs and PrivateServiceCreateQueryParamsOutput values.
+// You can construct a concrete instance of `PrivateServiceCreateQueryParamsInput` via:
+//
+//	PrivateServiceCreateQueryParamsArgs{...}
+type PrivateServiceCreateQueryParamsInput interface {
+	pulumi.Input
+
+	ToPrivateServiceCreateQueryParamsOutput() PrivateServiceCreateQueryParamsOutput
+	ToPrivateServiceCreateQueryParamsOutputWithContext(context.Context) PrivateServiceCreateQueryParamsOutput
+}
+
+// Query params for the API request.
+type PrivateServiceCreateQueryParamsArgs struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams pulumi.StringMapInput `pulumi:"additionalParams"`
+}
+
+func (PrivateServiceCreateQueryParamsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*PrivateServiceCreateQueryParams)(nil)).Elem()
+}
+
+func (i PrivateServiceCreateQueryParamsArgs) ToPrivateServiceCreateQueryParamsOutput() PrivateServiceCreateQueryParamsOutput {
+	return i.ToPrivateServiceCreateQueryParamsOutputWithContext(context.Background())
+}
+
+func (i PrivateServiceCreateQueryParamsArgs) ToPrivateServiceCreateQueryParamsOutputWithContext(ctx context.Context) PrivateServiceCreateQueryParamsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(PrivateServiceCreateQueryParamsOutput)
+}
+
+func (i PrivateServiceCreateQueryParamsArgs) ToPrivateServiceCreateQueryParamsPtrOutput() PrivateServiceCreateQueryParamsPtrOutput {
+	return i.ToPrivateServiceCreateQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i PrivateServiceCreateQueryParamsArgs) ToPrivateServiceCreateQueryParamsPtrOutputWithContext(ctx context.Context) PrivateServiceCreateQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(PrivateServiceCreateQueryParamsOutput).ToPrivateServiceCreateQueryParamsPtrOutputWithContext(ctx)
+}
+
+// PrivateServiceCreateQueryParamsPtrInput is an input type that accepts PrivateServiceCreateQueryParamsArgs, PrivateServiceCreateQueryParamsPtr and PrivateServiceCreateQueryParamsPtrOutput values.
+// You can construct a concrete instance of `PrivateServiceCreateQueryParamsPtrInput` via:
+//
+//	        PrivateServiceCreateQueryParamsArgs{...}
+//
+//	or:
+//
+//	        nil
+type PrivateServiceCreateQueryParamsPtrInput interface {
+	pulumi.Input
+
+	ToPrivateServiceCreateQueryParamsPtrOutput() PrivateServiceCreateQueryParamsPtrOutput
+	ToPrivateServiceCreateQueryParamsPtrOutputWithContext(context.Context) PrivateServiceCreateQueryParamsPtrOutput
+}
+
+type privateServiceCreateQueryParamsPtrType PrivateServiceCreateQueryParamsArgs
+
+func PrivateServiceCreateQueryParamsPtr(v *PrivateServiceCreateQueryParamsArgs) PrivateServiceCreateQueryParamsPtrInput {
+	return (*privateServiceCreateQueryParamsPtrType)(v)
+}
+
+func (*privateServiceCreateQueryParamsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**PrivateServiceCreateQueryParams)(nil)).Elem()
+}
+
+func (i *privateServiceCreateQueryParamsPtrType) ToPrivateServiceCreateQueryParamsPtrOutput() PrivateServiceCreateQueryParamsPtrOutput {
+	return i.ToPrivateServiceCreateQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i *privateServiceCreateQueryParamsPtrType) ToPrivateServiceCreateQueryParamsPtrOutputWithContext(ctx context.Context) PrivateServiceCreateQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(PrivateServiceCreateQueryParamsPtrOutput)
+}
+
+// Query params for the API request.
+type PrivateServiceCreateQueryParamsOutput struct{ *pulumi.OutputState }
+
+func (PrivateServiceCreateQueryParamsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*PrivateServiceCreateQueryParams)(nil)).Elem()
+}
+
+func (o PrivateServiceCreateQueryParamsOutput) ToPrivateServiceCreateQueryParamsOutput() PrivateServiceCreateQueryParamsOutput {
+	return o
+}
+
+func (o PrivateServiceCreateQueryParamsOutput) ToPrivateServiceCreateQueryParamsOutputWithContext(ctx context.Context) PrivateServiceCreateQueryParamsOutput {
+	return o
+}
+
+func (o PrivateServiceCreateQueryParamsOutput) ToPrivateServiceCreateQueryParamsPtrOutput() PrivateServiceCreateQueryParamsPtrOutput {
+	return o.ToPrivateServiceCreateQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (o PrivateServiceCreateQueryParamsOutput) ToPrivateServiceCreateQueryParamsPtrOutputWithContext(ctx context.Context) PrivateServiceCreateQueryParamsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v PrivateServiceCreateQueryParams) *PrivateServiceCreateQueryParams {
+		return &v
+	}).(PrivateServiceCreateQueryParamsPtrOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o PrivateServiceCreateQueryParamsOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v PrivateServiceCreateQueryParams) map[string]string { return v.AdditionalParams }).(pulumi.StringMapOutput)
+}
+
+type PrivateServiceCreateQueryParamsPtrOutput struct{ *pulumi.OutputState }
+
+func (PrivateServiceCreateQueryParamsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**PrivateServiceCreateQueryParams)(nil)).Elem()
+}
+
+func (o PrivateServiceCreateQueryParamsPtrOutput) ToPrivateServiceCreateQueryParamsPtrOutput() PrivateServiceCreateQueryParamsPtrOutput {
+	return o
+}
+
+func (o PrivateServiceCreateQueryParamsPtrOutput) ToPrivateServiceCreateQueryParamsPtrOutputWithContext(ctx context.Context) PrivateServiceCreateQueryParamsPtrOutput {
+	return o
+}
+
+func (o PrivateServiceCreateQueryParamsPtrOutput) Elem() PrivateServiceCreateQueryParamsOutput {
+	return o.ApplyT(func(v *PrivateServiceCreateQueryParams) PrivateServiceCreateQueryParams {
+		if v != nil {
+			return *v
+		}
+		var ret PrivateServiceCreateQueryParams
+		return ret
+	}).(PrivateServiceCreateQueryParamsOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o PrivateServiceCreateQueryParamsPtrOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *PrivateServiceCreateQueryParams) map[string]string {
+		if v == nil {
+			return nil
+		}
+		return v.AdditionalParams
+	}).(pulumi.StringMapOutput)
+}
+
+// Query params for the API request.
+type PrivateServiceDeleteQueryParams struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams map[string]string `pulumi:"additionalParams"`
+}
+
+// PrivateServiceDeleteQueryParamsInput is an input type that accepts PrivateServiceDeleteQueryParamsArgs and PrivateServiceDeleteQueryParamsOutput values.
+// You can construct a concrete instance of `PrivateServiceDeleteQueryParamsInput` via:
+//
+//	PrivateServiceDeleteQueryParamsArgs{...}
+type PrivateServiceDeleteQueryParamsInput interface {
+	pulumi.Input
+
+	ToPrivateServiceDeleteQueryParamsOutput() PrivateServiceDeleteQueryParamsOutput
+	ToPrivateServiceDeleteQueryParamsOutputWithContext(context.Context) PrivateServiceDeleteQueryParamsOutput
+}
+
+// Query params for the API request.
+type PrivateServiceDeleteQueryParamsArgs struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams pulumi.StringMapInput `pulumi:"additionalParams"`
+}
+
+func (PrivateServiceDeleteQueryParamsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*PrivateServiceDeleteQueryParams)(nil)).Elem()
+}
+
+func (i PrivateServiceDeleteQueryParamsArgs) ToPrivateServiceDeleteQueryParamsOutput() PrivateServiceDeleteQueryParamsOutput {
+	return i.ToPrivateServiceDeleteQueryParamsOutputWithContext(context.Background())
+}
+
+func (i PrivateServiceDeleteQueryParamsArgs) ToPrivateServiceDeleteQueryParamsOutputWithContext(ctx context.Context) PrivateServiceDeleteQueryParamsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(PrivateServiceDeleteQueryParamsOutput)
+}
+
+func (i PrivateServiceDeleteQueryParamsArgs) ToPrivateServiceDeleteQueryParamsPtrOutput() PrivateServiceDeleteQueryParamsPtrOutput {
+	return i.ToPrivateServiceDeleteQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i PrivateServiceDeleteQueryParamsArgs) ToPrivateServiceDeleteQueryParamsPtrOutputWithContext(ctx context.Context) PrivateServiceDeleteQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(PrivateServiceDeleteQueryParamsOutput).ToPrivateServiceDeleteQueryParamsPtrOutputWithContext(ctx)
+}
+
+// PrivateServiceDeleteQueryParamsPtrInput is an input type that accepts PrivateServiceDeleteQueryParamsArgs, PrivateServiceDeleteQueryParamsPtr and PrivateServiceDeleteQueryParamsPtrOutput values.
+// You can construct a concrete instance of `PrivateServiceDeleteQueryParamsPtrInput` via:
+//
+//	        PrivateServiceDeleteQueryParamsArgs{...}
+//
+//	or:
+//
+//	        nil
+type PrivateServiceDeleteQueryParamsPtrInput interface {
+	pulumi.Input
+
+	ToPrivateServiceDeleteQueryParamsPtrOutput() PrivateServiceDeleteQueryParamsPtrOutput
+	ToPrivateServiceDeleteQueryParamsPtrOutputWithContext(context.Context) PrivateServiceDeleteQueryParamsPtrOutput
+}
+
+type privateServiceDeleteQueryParamsPtrType PrivateServiceDeleteQueryParamsArgs
+
+func PrivateServiceDeleteQueryParamsPtr(v *PrivateServiceDeleteQueryParamsArgs) PrivateServiceDeleteQueryParamsPtrInput {
+	return (*privateServiceDeleteQueryParamsPtrType)(v)
+}
+
+func (*privateServiceDeleteQueryParamsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**PrivateServiceDeleteQueryParams)(nil)).Elem()
+}
+
+func (i *privateServiceDeleteQueryParamsPtrType) ToPrivateServiceDeleteQueryParamsPtrOutput() PrivateServiceDeleteQueryParamsPtrOutput {
+	return i.ToPrivateServiceDeleteQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i *privateServiceDeleteQueryParamsPtrType) ToPrivateServiceDeleteQueryParamsPtrOutputWithContext(ctx context.Context) PrivateServiceDeleteQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(PrivateServiceDeleteQueryParamsPtrOutput)
+}
+
+// Query params for the API request.
+type PrivateServiceDeleteQueryParamsOutput struct{ *pulumi.OutputState }
+
+func (PrivateServiceDeleteQueryParamsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*PrivateServiceDeleteQueryParams)(nil)).Elem()
+}
+
+func (o PrivateServiceDeleteQueryParamsOutput) ToPrivateServiceDeleteQueryParamsOutput() PrivateServiceDeleteQueryParamsOutput {
+	return o
+}
+
+func (o PrivateServiceDeleteQueryParamsOutput) ToPrivateServiceDeleteQueryParamsOutputWithContext(ctx context.Context) PrivateServiceDeleteQueryParamsOutput {
+	return o
+}
+
+func (o PrivateServiceDeleteQueryParamsOutput) ToPrivateServiceDeleteQueryParamsPtrOutput() PrivateServiceDeleteQueryParamsPtrOutput {
+	return o.ToPrivateServiceDeleteQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (o PrivateServiceDeleteQueryParamsOutput) ToPrivateServiceDeleteQueryParamsPtrOutputWithContext(ctx context.Context) PrivateServiceDeleteQueryParamsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v PrivateServiceDeleteQueryParams) *PrivateServiceDeleteQueryParams {
+		return &v
+	}).(PrivateServiceDeleteQueryParamsPtrOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o PrivateServiceDeleteQueryParamsOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v PrivateServiceDeleteQueryParams) map[string]string { return v.AdditionalParams }).(pulumi.StringMapOutput)
+}
+
+type PrivateServiceDeleteQueryParamsPtrOutput struct{ *pulumi.OutputState }
+
+func (PrivateServiceDeleteQueryParamsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**PrivateServiceDeleteQueryParams)(nil)).Elem()
+}
+
+func (o PrivateServiceDeleteQueryParamsPtrOutput) ToPrivateServiceDeleteQueryParamsPtrOutput() PrivateServiceDeleteQueryParamsPtrOutput {
+	return o
+}
+
+func (o PrivateServiceDeleteQueryParamsPtrOutput) ToPrivateServiceDeleteQueryParamsPtrOutputWithContext(ctx context.Context) PrivateServiceDeleteQueryParamsPtrOutput {
+	return o
+}
+
+func (o PrivateServiceDeleteQueryParamsPtrOutput) Elem() PrivateServiceDeleteQueryParamsOutput {
+	return o.ApplyT(func(v *PrivateServiceDeleteQueryParams) PrivateServiceDeleteQueryParams {
+		if v != nil {
+			return *v
+		}
+		var ret PrivateServiceDeleteQueryParams
+		return ret
+	}).(PrivateServiceDeleteQueryParamsOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o PrivateServiceDeleteQueryParamsPtrOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *PrivateServiceDeleteQueryParams) map[string]string {
+		if v == nil {
+			return nil
+		}
+		return v.AdditionalParams
+	}).(pulumi.StringMapOutput)
 }
 
 type PrivateServiceDetailsCreate struct {
@@ -5069,6 +15121,763 @@ func (o PrivateServiceOutputTypeOutput) UpdatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v PrivateServiceOutputType) string { return v.UpdatedAt }).(pulumi.StringOutput)
 }
 
+// Query params for each of the operations of the resource.
+type PrivateServiceQueryParams struct {
+	// Query params for the create operation.
+	Create *PrivateServiceCreateQueryParams `pulumi:"create"`
+	// Query params for the delete operation.
+	Delete *PrivateServiceDeleteQueryParams `pulumi:"delete"`
+	// Query params for the read operation.
+	Read *PrivateServiceReadQueryParams `pulumi:"read"`
+	// Query params for the update operation.
+	Update *PrivateServiceUpdateQueryParams `pulumi:"update"`
+}
+
+// PrivateServiceQueryParamsInput is an input type that accepts PrivateServiceQueryParamsArgs and PrivateServiceQueryParamsOutput values.
+// You can construct a concrete instance of `PrivateServiceQueryParamsInput` via:
+//
+//	PrivateServiceQueryParamsArgs{...}
+type PrivateServiceQueryParamsInput interface {
+	pulumi.Input
+
+	ToPrivateServiceQueryParamsOutput() PrivateServiceQueryParamsOutput
+	ToPrivateServiceQueryParamsOutputWithContext(context.Context) PrivateServiceQueryParamsOutput
+}
+
+// Query params for each of the operations of the resource.
+type PrivateServiceQueryParamsArgs struct {
+	// Query params for the create operation.
+	Create PrivateServiceCreateQueryParamsPtrInput `pulumi:"create"`
+	// Query params for the delete operation.
+	Delete PrivateServiceDeleteQueryParamsPtrInput `pulumi:"delete"`
+	// Query params for the read operation.
+	Read PrivateServiceReadQueryParamsPtrInput `pulumi:"read"`
+	// Query params for the update operation.
+	Update PrivateServiceUpdateQueryParamsPtrInput `pulumi:"update"`
+}
+
+func (PrivateServiceQueryParamsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*PrivateServiceQueryParams)(nil)).Elem()
+}
+
+func (i PrivateServiceQueryParamsArgs) ToPrivateServiceQueryParamsOutput() PrivateServiceQueryParamsOutput {
+	return i.ToPrivateServiceQueryParamsOutputWithContext(context.Background())
+}
+
+func (i PrivateServiceQueryParamsArgs) ToPrivateServiceQueryParamsOutputWithContext(ctx context.Context) PrivateServiceQueryParamsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(PrivateServiceQueryParamsOutput)
+}
+
+func (i PrivateServiceQueryParamsArgs) ToPrivateServiceQueryParamsPtrOutput() PrivateServiceQueryParamsPtrOutput {
+	return i.ToPrivateServiceQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i PrivateServiceQueryParamsArgs) ToPrivateServiceQueryParamsPtrOutputWithContext(ctx context.Context) PrivateServiceQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(PrivateServiceQueryParamsOutput).ToPrivateServiceQueryParamsPtrOutputWithContext(ctx)
+}
+
+// PrivateServiceQueryParamsPtrInput is an input type that accepts PrivateServiceQueryParamsArgs, PrivateServiceQueryParamsPtr and PrivateServiceQueryParamsPtrOutput values.
+// You can construct a concrete instance of `PrivateServiceQueryParamsPtrInput` via:
+//
+//	        PrivateServiceQueryParamsArgs{...}
+//
+//	or:
+//
+//	        nil
+type PrivateServiceQueryParamsPtrInput interface {
+	pulumi.Input
+
+	ToPrivateServiceQueryParamsPtrOutput() PrivateServiceQueryParamsPtrOutput
+	ToPrivateServiceQueryParamsPtrOutputWithContext(context.Context) PrivateServiceQueryParamsPtrOutput
+}
+
+type privateServiceQueryParamsPtrType PrivateServiceQueryParamsArgs
+
+func PrivateServiceQueryParamsPtr(v *PrivateServiceQueryParamsArgs) PrivateServiceQueryParamsPtrInput {
+	return (*privateServiceQueryParamsPtrType)(v)
+}
+
+func (*privateServiceQueryParamsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**PrivateServiceQueryParams)(nil)).Elem()
+}
+
+func (i *privateServiceQueryParamsPtrType) ToPrivateServiceQueryParamsPtrOutput() PrivateServiceQueryParamsPtrOutput {
+	return i.ToPrivateServiceQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i *privateServiceQueryParamsPtrType) ToPrivateServiceQueryParamsPtrOutputWithContext(ctx context.Context) PrivateServiceQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(PrivateServiceQueryParamsPtrOutput)
+}
+
+// Query params for each of the operations of the resource.
+type PrivateServiceQueryParamsOutput struct{ *pulumi.OutputState }
+
+func (PrivateServiceQueryParamsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*PrivateServiceQueryParams)(nil)).Elem()
+}
+
+func (o PrivateServiceQueryParamsOutput) ToPrivateServiceQueryParamsOutput() PrivateServiceQueryParamsOutput {
+	return o
+}
+
+func (o PrivateServiceQueryParamsOutput) ToPrivateServiceQueryParamsOutputWithContext(ctx context.Context) PrivateServiceQueryParamsOutput {
+	return o
+}
+
+func (o PrivateServiceQueryParamsOutput) ToPrivateServiceQueryParamsPtrOutput() PrivateServiceQueryParamsPtrOutput {
+	return o.ToPrivateServiceQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (o PrivateServiceQueryParamsOutput) ToPrivateServiceQueryParamsPtrOutputWithContext(ctx context.Context) PrivateServiceQueryParamsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v PrivateServiceQueryParams) *PrivateServiceQueryParams {
+		return &v
+	}).(PrivateServiceQueryParamsPtrOutput)
+}
+
+// Query params for the create operation.
+func (o PrivateServiceQueryParamsOutput) Create() PrivateServiceCreateQueryParamsPtrOutput {
+	return o.ApplyT(func(v PrivateServiceQueryParams) *PrivateServiceCreateQueryParams { return v.Create }).(PrivateServiceCreateQueryParamsPtrOutput)
+}
+
+// Query params for the delete operation.
+func (o PrivateServiceQueryParamsOutput) Delete() PrivateServiceDeleteQueryParamsPtrOutput {
+	return o.ApplyT(func(v PrivateServiceQueryParams) *PrivateServiceDeleteQueryParams { return v.Delete }).(PrivateServiceDeleteQueryParamsPtrOutput)
+}
+
+// Query params for the read operation.
+func (o PrivateServiceQueryParamsOutput) Read() PrivateServiceReadQueryParamsPtrOutput {
+	return o.ApplyT(func(v PrivateServiceQueryParams) *PrivateServiceReadQueryParams { return v.Read }).(PrivateServiceReadQueryParamsPtrOutput)
+}
+
+// Query params for the update operation.
+func (o PrivateServiceQueryParamsOutput) Update() PrivateServiceUpdateQueryParamsPtrOutput {
+	return o.ApplyT(func(v PrivateServiceQueryParams) *PrivateServiceUpdateQueryParams { return v.Update }).(PrivateServiceUpdateQueryParamsPtrOutput)
+}
+
+type PrivateServiceQueryParamsPtrOutput struct{ *pulumi.OutputState }
+
+func (PrivateServiceQueryParamsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**PrivateServiceQueryParams)(nil)).Elem()
+}
+
+func (o PrivateServiceQueryParamsPtrOutput) ToPrivateServiceQueryParamsPtrOutput() PrivateServiceQueryParamsPtrOutput {
+	return o
+}
+
+func (o PrivateServiceQueryParamsPtrOutput) ToPrivateServiceQueryParamsPtrOutputWithContext(ctx context.Context) PrivateServiceQueryParamsPtrOutput {
+	return o
+}
+
+func (o PrivateServiceQueryParamsPtrOutput) Elem() PrivateServiceQueryParamsOutput {
+	return o.ApplyT(func(v *PrivateServiceQueryParams) PrivateServiceQueryParams {
+		if v != nil {
+			return *v
+		}
+		var ret PrivateServiceQueryParams
+		return ret
+	}).(PrivateServiceQueryParamsOutput)
+}
+
+// Query params for the create operation.
+func (o PrivateServiceQueryParamsPtrOutput) Create() PrivateServiceCreateQueryParamsPtrOutput {
+	return o.ApplyT(func(v *PrivateServiceQueryParams) *PrivateServiceCreateQueryParams {
+		if v == nil {
+			return nil
+		}
+		return v.Create
+	}).(PrivateServiceCreateQueryParamsPtrOutput)
+}
+
+// Query params for the delete operation.
+func (o PrivateServiceQueryParamsPtrOutput) Delete() PrivateServiceDeleteQueryParamsPtrOutput {
+	return o.ApplyT(func(v *PrivateServiceQueryParams) *PrivateServiceDeleteQueryParams {
+		if v == nil {
+			return nil
+		}
+		return v.Delete
+	}).(PrivateServiceDeleteQueryParamsPtrOutput)
+}
+
+// Query params for the read operation.
+func (o PrivateServiceQueryParamsPtrOutput) Read() PrivateServiceReadQueryParamsPtrOutput {
+	return o.ApplyT(func(v *PrivateServiceQueryParams) *PrivateServiceReadQueryParams {
+		if v == nil {
+			return nil
+		}
+		return v.Read
+	}).(PrivateServiceReadQueryParamsPtrOutput)
+}
+
+// Query params for the update operation.
+func (o PrivateServiceQueryParamsPtrOutput) Update() PrivateServiceUpdateQueryParamsPtrOutput {
+	return o.ApplyT(func(v *PrivateServiceQueryParams) *PrivateServiceUpdateQueryParams {
+		if v == nil {
+			return nil
+		}
+		return v.Update
+	}).(PrivateServiceUpdateQueryParamsPtrOutput)
+}
+
+// Query params for the API request.
+type PrivateServiceReadQueryParams struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams map[string]string `pulumi:"additionalParams"`
+}
+
+// PrivateServiceReadQueryParamsInput is an input type that accepts PrivateServiceReadQueryParamsArgs and PrivateServiceReadQueryParamsOutput values.
+// You can construct a concrete instance of `PrivateServiceReadQueryParamsInput` via:
+//
+//	PrivateServiceReadQueryParamsArgs{...}
+type PrivateServiceReadQueryParamsInput interface {
+	pulumi.Input
+
+	ToPrivateServiceReadQueryParamsOutput() PrivateServiceReadQueryParamsOutput
+	ToPrivateServiceReadQueryParamsOutputWithContext(context.Context) PrivateServiceReadQueryParamsOutput
+}
+
+// Query params for the API request.
+type PrivateServiceReadQueryParamsArgs struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams pulumi.StringMapInput `pulumi:"additionalParams"`
+}
+
+func (PrivateServiceReadQueryParamsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*PrivateServiceReadQueryParams)(nil)).Elem()
+}
+
+func (i PrivateServiceReadQueryParamsArgs) ToPrivateServiceReadQueryParamsOutput() PrivateServiceReadQueryParamsOutput {
+	return i.ToPrivateServiceReadQueryParamsOutputWithContext(context.Background())
+}
+
+func (i PrivateServiceReadQueryParamsArgs) ToPrivateServiceReadQueryParamsOutputWithContext(ctx context.Context) PrivateServiceReadQueryParamsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(PrivateServiceReadQueryParamsOutput)
+}
+
+func (i PrivateServiceReadQueryParamsArgs) ToPrivateServiceReadQueryParamsPtrOutput() PrivateServiceReadQueryParamsPtrOutput {
+	return i.ToPrivateServiceReadQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i PrivateServiceReadQueryParamsArgs) ToPrivateServiceReadQueryParamsPtrOutputWithContext(ctx context.Context) PrivateServiceReadQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(PrivateServiceReadQueryParamsOutput).ToPrivateServiceReadQueryParamsPtrOutputWithContext(ctx)
+}
+
+// PrivateServiceReadQueryParamsPtrInput is an input type that accepts PrivateServiceReadQueryParamsArgs, PrivateServiceReadQueryParamsPtr and PrivateServiceReadQueryParamsPtrOutput values.
+// You can construct a concrete instance of `PrivateServiceReadQueryParamsPtrInput` via:
+//
+//	        PrivateServiceReadQueryParamsArgs{...}
+//
+//	or:
+//
+//	        nil
+type PrivateServiceReadQueryParamsPtrInput interface {
+	pulumi.Input
+
+	ToPrivateServiceReadQueryParamsPtrOutput() PrivateServiceReadQueryParamsPtrOutput
+	ToPrivateServiceReadQueryParamsPtrOutputWithContext(context.Context) PrivateServiceReadQueryParamsPtrOutput
+}
+
+type privateServiceReadQueryParamsPtrType PrivateServiceReadQueryParamsArgs
+
+func PrivateServiceReadQueryParamsPtr(v *PrivateServiceReadQueryParamsArgs) PrivateServiceReadQueryParamsPtrInput {
+	return (*privateServiceReadQueryParamsPtrType)(v)
+}
+
+func (*privateServiceReadQueryParamsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**PrivateServiceReadQueryParams)(nil)).Elem()
+}
+
+func (i *privateServiceReadQueryParamsPtrType) ToPrivateServiceReadQueryParamsPtrOutput() PrivateServiceReadQueryParamsPtrOutput {
+	return i.ToPrivateServiceReadQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i *privateServiceReadQueryParamsPtrType) ToPrivateServiceReadQueryParamsPtrOutputWithContext(ctx context.Context) PrivateServiceReadQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(PrivateServiceReadQueryParamsPtrOutput)
+}
+
+// Query params for the API request.
+type PrivateServiceReadQueryParamsOutput struct{ *pulumi.OutputState }
+
+func (PrivateServiceReadQueryParamsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*PrivateServiceReadQueryParams)(nil)).Elem()
+}
+
+func (o PrivateServiceReadQueryParamsOutput) ToPrivateServiceReadQueryParamsOutput() PrivateServiceReadQueryParamsOutput {
+	return o
+}
+
+func (o PrivateServiceReadQueryParamsOutput) ToPrivateServiceReadQueryParamsOutputWithContext(ctx context.Context) PrivateServiceReadQueryParamsOutput {
+	return o
+}
+
+func (o PrivateServiceReadQueryParamsOutput) ToPrivateServiceReadQueryParamsPtrOutput() PrivateServiceReadQueryParamsPtrOutput {
+	return o.ToPrivateServiceReadQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (o PrivateServiceReadQueryParamsOutput) ToPrivateServiceReadQueryParamsPtrOutputWithContext(ctx context.Context) PrivateServiceReadQueryParamsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v PrivateServiceReadQueryParams) *PrivateServiceReadQueryParams {
+		return &v
+	}).(PrivateServiceReadQueryParamsPtrOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o PrivateServiceReadQueryParamsOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v PrivateServiceReadQueryParams) map[string]string { return v.AdditionalParams }).(pulumi.StringMapOutput)
+}
+
+type PrivateServiceReadQueryParamsPtrOutput struct{ *pulumi.OutputState }
+
+func (PrivateServiceReadQueryParamsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**PrivateServiceReadQueryParams)(nil)).Elem()
+}
+
+func (o PrivateServiceReadQueryParamsPtrOutput) ToPrivateServiceReadQueryParamsPtrOutput() PrivateServiceReadQueryParamsPtrOutput {
+	return o
+}
+
+func (o PrivateServiceReadQueryParamsPtrOutput) ToPrivateServiceReadQueryParamsPtrOutputWithContext(ctx context.Context) PrivateServiceReadQueryParamsPtrOutput {
+	return o
+}
+
+func (o PrivateServiceReadQueryParamsPtrOutput) Elem() PrivateServiceReadQueryParamsOutput {
+	return o.ApplyT(func(v *PrivateServiceReadQueryParams) PrivateServiceReadQueryParams {
+		if v != nil {
+			return *v
+		}
+		var ret PrivateServiceReadQueryParams
+		return ret
+	}).(PrivateServiceReadQueryParamsOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o PrivateServiceReadQueryParamsPtrOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *PrivateServiceReadQueryParams) map[string]string {
+		if v == nil {
+			return nil
+		}
+		return v.AdditionalParams
+	}).(pulumi.StringMapOutput)
+}
+
+// Query params for the API request.
+type PrivateServiceUpdateQueryParams struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams map[string]string `pulumi:"additionalParams"`
+}
+
+// PrivateServiceUpdateQueryParamsInput is an input type that accepts PrivateServiceUpdateQueryParamsArgs and PrivateServiceUpdateQueryParamsOutput values.
+// You can construct a concrete instance of `PrivateServiceUpdateQueryParamsInput` via:
+//
+//	PrivateServiceUpdateQueryParamsArgs{...}
+type PrivateServiceUpdateQueryParamsInput interface {
+	pulumi.Input
+
+	ToPrivateServiceUpdateQueryParamsOutput() PrivateServiceUpdateQueryParamsOutput
+	ToPrivateServiceUpdateQueryParamsOutputWithContext(context.Context) PrivateServiceUpdateQueryParamsOutput
+}
+
+// Query params for the API request.
+type PrivateServiceUpdateQueryParamsArgs struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams pulumi.StringMapInput `pulumi:"additionalParams"`
+}
+
+func (PrivateServiceUpdateQueryParamsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*PrivateServiceUpdateQueryParams)(nil)).Elem()
+}
+
+func (i PrivateServiceUpdateQueryParamsArgs) ToPrivateServiceUpdateQueryParamsOutput() PrivateServiceUpdateQueryParamsOutput {
+	return i.ToPrivateServiceUpdateQueryParamsOutputWithContext(context.Background())
+}
+
+func (i PrivateServiceUpdateQueryParamsArgs) ToPrivateServiceUpdateQueryParamsOutputWithContext(ctx context.Context) PrivateServiceUpdateQueryParamsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(PrivateServiceUpdateQueryParamsOutput)
+}
+
+func (i PrivateServiceUpdateQueryParamsArgs) ToPrivateServiceUpdateQueryParamsPtrOutput() PrivateServiceUpdateQueryParamsPtrOutput {
+	return i.ToPrivateServiceUpdateQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i PrivateServiceUpdateQueryParamsArgs) ToPrivateServiceUpdateQueryParamsPtrOutputWithContext(ctx context.Context) PrivateServiceUpdateQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(PrivateServiceUpdateQueryParamsOutput).ToPrivateServiceUpdateQueryParamsPtrOutputWithContext(ctx)
+}
+
+// PrivateServiceUpdateQueryParamsPtrInput is an input type that accepts PrivateServiceUpdateQueryParamsArgs, PrivateServiceUpdateQueryParamsPtr and PrivateServiceUpdateQueryParamsPtrOutput values.
+// You can construct a concrete instance of `PrivateServiceUpdateQueryParamsPtrInput` via:
+//
+//	        PrivateServiceUpdateQueryParamsArgs{...}
+//
+//	or:
+//
+//	        nil
+type PrivateServiceUpdateQueryParamsPtrInput interface {
+	pulumi.Input
+
+	ToPrivateServiceUpdateQueryParamsPtrOutput() PrivateServiceUpdateQueryParamsPtrOutput
+	ToPrivateServiceUpdateQueryParamsPtrOutputWithContext(context.Context) PrivateServiceUpdateQueryParamsPtrOutput
+}
+
+type privateServiceUpdateQueryParamsPtrType PrivateServiceUpdateQueryParamsArgs
+
+func PrivateServiceUpdateQueryParamsPtr(v *PrivateServiceUpdateQueryParamsArgs) PrivateServiceUpdateQueryParamsPtrInput {
+	return (*privateServiceUpdateQueryParamsPtrType)(v)
+}
+
+func (*privateServiceUpdateQueryParamsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**PrivateServiceUpdateQueryParams)(nil)).Elem()
+}
+
+func (i *privateServiceUpdateQueryParamsPtrType) ToPrivateServiceUpdateQueryParamsPtrOutput() PrivateServiceUpdateQueryParamsPtrOutput {
+	return i.ToPrivateServiceUpdateQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i *privateServiceUpdateQueryParamsPtrType) ToPrivateServiceUpdateQueryParamsPtrOutputWithContext(ctx context.Context) PrivateServiceUpdateQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(PrivateServiceUpdateQueryParamsPtrOutput)
+}
+
+// Query params for the API request.
+type PrivateServiceUpdateQueryParamsOutput struct{ *pulumi.OutputState }
+
+func (PrivateServiceUpdateQueryParamsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*PrivateServiceUpdateQueryParams)(nil)).Elem()
+}
+
+func (o PrivateServiceUpdateQueryParamsOutput) ToPrivateServiceUpdateQueryParamsOutput() PrivateServiceUpdateQueryParamsOutput {
+	return o
+}
+
+func (o PrivateServiceUpdateQueryParamsOutput) ToPrivateServiceUpdateQueryParamsOutputWithContext(ctx context.Context) PrivateServiceUpdateQueryParamsOutput {
+	return o
+}
+
+func (o PrivateServiceUpdateQueryParamsOutput) ToPrivateServiceUpdateQueryParamsPtrOutput() PrivateServiceUpdateQueryParamsPtrOutput {
+	return o.ToPrivateServiceUpdateQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (o PrivateServiceUpdateQueryParamsOutput) ToPrivateServiceUpdateQueryParamsPtrOutputWithContext(ctx context.Context) PrivateServiceUpdateQueryParamsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v PrivateServiceUpdateQueryParams) *PrivateServiceUpdateQueryParams {
+		return &v
+	}).(PrivateServiceUpdateQueryParamsPtrOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o PrivateServiceUpdateQueryParamsOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v PrivateServiceUpdateQueryParams) map[string]string { return v.AdditionalParams }).(pulumi.StringMapOutput)
+}
+
+type PrivateServiceUpdateQueryParamsPtrOutput struct{ *pulumi.OutputState }
+
+func (PrivateServiceUpdateQueryParamsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**PrivateServiceUpdateQueryParams)(nil)).Elem()
+}
+
+func (o PrivateServiceUpdateQueryParamsPtrOutput) ToPrivateServiceUpdateQueryParamsPtrOutput() PrivateServiceUpdateQueryParamsPtrOutput {
+	return o
+}
+
+func (o PrivateServiceUpdateQueryParamsPtrOutput) ToPrivateServiceUpdateQueryParamsPtrOutputWithContext(ctx context.Context) PrivateServiceUpdateQueryParamsPtrOutput {
+	return o
+}
+
+func (o PrivateServiceUpdateQueryParamsPtrOutput) Elem() PrivateServiceUpdateQueryParamsOutput {
+	return o.ApplyT(func(v *PrivateServiceUpdateQueryParams) PrivateServiceUpdateQueryParams {
+		if v != nil {
+			return *v
+		}
+		var ret PrivateServiceUpdateQueryParams
+		return ret
+	}).(PrivateServiceUpdateQueryParamsOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o PrivateServiceUpdateQueryParamsPtrOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *PrivateServiceUpdateQueryParams) map[string]string {
+		if v == nil {
+			return nil
+		}
+		return v.AdditionalParams
+	}).(pulumi.StringMapOutput)
+}
+
+// Query params for the API request.
+type RefreshCustomDomainCreateQueryParams struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams map[string]string `pulumi:"additionalParams"`
+}
+
+// RefreshCustomDomainCreateQueryParamsInput is an input type that accepts RefreshCustomDomainCreateQueryParamsArgs and RefreshCustomDomainCreateQueryParamsOutput values.
+// You can construct a concrete instance of `RefreshCustomDomainCreateQueryParamsInput` via:
+//
+//	RefreshCustomDomainCreateQueryParamsArgs{...}
+type RefreshCustomDomainCreateQueryParamsInput interface {
+	pulumi.Input
+
+	ToRefreshCustomDomainCreateQueryParamsOutput() RefreshCustomDomainCreateQueryParamsOutput
+	ToRefreshCustomDomainCreateQueryParamsOutputWithContext(context.Context) RefreshCustomDomainCreateQueryParamsOutput
+}
+
+// Query params for the API request.
+type RefreshCustomDomainCreateQueryParamsArgs struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams pulumi.StringMapInput `pulumi:"additionalParams"`
+}
+
+func (RefreshCustomDomainCreateQueryParamsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*RefreshCustomDomainCreateQueryParams)(nil)).Elem()
+}
+
+func (i RefreshCustomDomainCreateQueryParamsArgs) ToRefreshCustomDomainCreateQueryParamsOutput() RefreshCustomDomainCreateQueryParamsOutput {
+	return i.ToRefreshCustomDomainCreateQueryParamsOutputWithContext(context.Background())
+}
+
+func (i RefreshCustomDomainCreateQueryParamsArgs) ToRefreshCustomDomainCreateQueryParamsOutputWithContext(ctx context.Context) RefreshCustomDomainCreateQueryParamsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RefreshCustomDomainCreateQueryParamsOutput)
+}
+
+func (i RefreshCustomDomainCreateQueryParamsArgs) ToRefreshCustomDomainCreateQueryParamsPtrOutput() RefreshCustomDomainCreateQueryParamsPtrOutput {
+	return i.ToRefreshCustomDomainCreateQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i RefreshCustomDomainCreateQueryParamsArgs) ToRefreshCustomDomainCreateQueryParamsPtrOutputWithContext(ctx context.Context) RefreshCustomDomainCreateQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RefreshCustomDomainCreateQueryParamsOutput).ToRefreshCustomDomainCreateQueryParamsPtrOutputWithContext(ctx)
+}
+
+// RefreshCustomDomainCreateQueryParamsPtrInput is an input type that accepts RefreshCustomDomainCreateQueryParamsArgs, RefreshCustomDomainCreateQueryParamsPtr and RefreshCustomDomainCreateQueryParamsPtrOutput values.
+// You can construct a concrete instance of `RefreshCustomDomainCreateQueryParamsPtrInput` via:
+//
+//	        RefreshCustomDomainCreateQueryParamsArgs{...}
+//
+//	or:
+//
+//	        nil
+type RefreshCustomDomainCreateQueryParamsPtrInput interface {
+	pulumi.Input
+
+	ToRefreshCustomDomainCreateQueryParamsPtrOutput() RefreshCustomDomainCreateQueryParamsPtrOutput
+	ToRefreshCustomDomainCreateQueryParamsPtrOutputWithContext(context.Context) RefreshCustomDomainCreateQueryParamsPtrOutput
+}
+
+type refreshCustomDomainCreateQueryParamsPtrType RefreshCustomDomainCreateQueryParamsArgs
+
+func RefreshCustomDomainCreateQueryParamsPtr(v *RefreshCustomDomainCreateQueryParamsArgs) RefreshCustomDomainCreateQueryParamsPtrInput {
+	return (*refreshCustomDomainCreateQueryParamsPtrType)(v)
+}
+
+func (*refreshCustomDomainCreateQueryParamsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**RefreshCustomDomainCreateQueryParams)(nil)).Elem()
+}
+
+func (i *refreshCustomDomainCreateQueryParamsPtrType) ToRefreshCustomDomainCreateQueryParamsPtrOutput() RefreshCustomDomainCreateQueryParamsPtrOutput {
+	return i.ToRefreshCustomDomainCreateQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i *refreshCustomDomainCreateQueryParamsPtrType) ToRefreshCustomDomainCreateQueryParamsPtrOutputWithContext(ctx context.Context) RefreshCustomDomainCreateQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RefreshCustomDomainCreateQueryParamsPtrOutput)
+}
+
+// Query params for the API request.
+type RefreshCustomDomainCreateQueryParamsOutput struct{ *pulumi.OutputState }
+
+func (RefreshCustomDomainCreateQueryParamsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*RefreshCustomDomainCreateQueryParams)(nil)).Elem()
+}
+
+func (o RefreshCustomDomainCreateQueryParamsOutput) ToRefreshCustomDomainCreateQueryParamsOutput() RefreshCustomDomainCreateQueryParamsOutput {
+	return o
+}
+
+func (o RefreshCustomDomainCreateQueryParamsOutput) ToRefreshCustomDomainCreateQueryParamsOutputWithContext(ctx context.Context) RefreshCustomDomainCreateQueryParamsOutput {
+	return o
+}
+
+func (o RefreshCustomDomainCreateQueryParamsOutput) ToRefreshCustomDomainCreateQueryParamsPtrOutput() RefreshCustomDomainCreateQueryParamsPtrOutput {
+	return o.ToRefreshCustomDomainCreateQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (o RefreshCustomDomainCreateQueryParamsOutput) ToRefreshCustomDomainCreateQueryParamsPtrOutputWithContext(ctx context.Context) RefreshCustomDomainCreateQueryParamsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v RefreshCustomDomainCreateQueryParams) *RefreshCustomDomainCreateQueryParams {
+		return &v
+	}).(RefreshCustomDomainCreateQueryParamsPtrOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o RefreshCustomDomainCreateQueryParamsOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v RefreshCustomDomainCreateQueryParams) map[string]string { return v.AdditionalParams }).(pulumi.StringMapOutput)
+}
+
+type RefreshCustomDomainCreateQueryParamsPtrOutput struct{ *pulumi.OutputState }
+
+func (RefreshCustomDomainCreateQueryParamsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**RefreshCustomDomainCreateQueryParams)(nil)).Elem()
+}
+
+func (o RefreshCustomDomainCreateQueryParamsPtrOutput) ToRefreshCustomDomainCreateQueryParamsPtrOutput() RefreshCustomDomainCreateQueryParamsPtrOutput {
+	return o
+}
+
+func (o RefreshCustomDomainCreateQueryParamsPtrOutput) ToRefreshCustomDomainCreateQueryParamsPtrOutputWithContext(ctx context.Context) RefreshCustomDomainCreateQueryParamsPtrOutput {
+	return o
+}
+
+func (o RefreshCustomDomainCreateQueryParamsPtrOutput) Elem() RefreshCustomDomainCreateQueryParamsOutput {
+	return o.ApplyT(func(v *RefreshCustomDomainCreateQueryParams) RefreshCustomDomainCreateQueryParams {
+		if v != nil {
+			return *v
+		}
+		var ret RefreshCustomDomainCreateQueryParams
+		return ret
+	}).(RefreshCustomDomainCreateQueryParamsOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o RefreshCustomDomainCreateQueryParamsPtrOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *RefreshCustomDomainCreateQueryParams) map[string]string {
+		if v == nil {
+			return nil
+		}
+		return v.AdditionalParams
+	}).(pulumi.StringMapOutput)
+}
+
+// Query params for each of the operations of the resource.
+type RefreshCustomDomainQueryParams struct {
+	// Query params for the create operation.
+	Create *RefreshCustomDomainCreateQueryParams `pulumi:"create"`
+}
+
+// RefreshCustomDomainQueryParamsInput is an input type that accepts RefreshCustomDomainQueryParamsArgs and RefreshCustomDomainQueryParamsOutput values.
+// You can construct a concrete instance of `RefreshCustomDomainQueryParamsInput` via:
+//
+//	RefreshCustomDomainQueryParamsArgs{...}
+type RefreshCustomDomainQueryParamsInput interface {
+	pulumi.Input
+
+	ToRefreshCustomDomainQueryParamsOutput() RefreshCustomDomainQueryParamsOutput
+	ToRefreshCustomDomainQueryParamsOutputWithContext(context.Context) RefreshCustomDomainQueryParamsOutput
+}
+
+// Query params for each of the operations of the resource.
+type RefreshCustomDomainQueryParamsArgs struct {
+	// Query params for the create operation.
+	Create RefreshCustomDomainCreateQueryParamsPtrInput `pulumi:"create"`
+}
+
+func (RefreshCustomDomainQueryParamsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*RefreshCustomDomainQueryParams)(nil)).Elem()
+}
+
+func (i RefreshCustomDomainQueryParamsArgs) ToRefreshCustomDomainQueryParamsOutput() RefreshCustomDomainQueryParamsOutput {
+	return i.ToRefreshCustomDomainQueryParamsOutputWithContext(context.Background())
+}
+
+func (i RefreshCustomDomainQueryParamsArgs) ToRefreshCustomDomainQueryParamsOutputWithContext(ctx context.Context) RefreshCustomDomainQueryParamsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RefreshCustomDomainQueryParamsOutput)
+}
+
+func (i RefreshCustomDomainQueryParamsArgs) ToRefreshCustomDomainQueryParamsPtrOutput() RefreshCustomDomainQueryParamsPtrOutput {
+	return i.ToRefreshCustomDomainQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i RefreshCustomDomainQueryParamsArgs) ToRefreshCustomDomainQueryParamsPtrOutputWithContext(ctx context.Context) RefreshCustomDomainQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RefreshCustomDomainQueryParamsOutput).ToRefreshCustomDomainQueryParamsPtrOutputWithContext(ctx)
+}
+
+// RefreshCustomDomainQueryParamsPtrInput is an input type that accepts RefreshCustomDomainQueryParamsArgs, RefreshCustomDomainQueryParamsPtr and RefreshCustomDomainQueryParamsPtrOutput values.
+// You can construct a concrete instance of `RefreshCustomDomainQueryParamsPtrInput` via:
+//
+//	        RefreshCustomDomainQueryParamsArgs{...}
+//
+//	or:
+//
+//	        nil
+type RefreshCustomDomainQueryParamsPtrInput interface {
+	pulumi.Input
+
+	ToRefreshCustomDomainQueryParamsPtrOutput() RefreshCustomDomainQueryParamsPtrOutput
+	ToRefreshCustomDomainQueryParamsPtrOutputWithContext(context.Context) RefreshCustomDomainQueryParamsPtrOutput
+}
+
+type refreshCustomDomainQueryParamsPtrType RefreshCustomDomainQueryParamsArgs
+
+func RefreshCustomDomainQueryParamsPtr(v *RefreshCustomDomainQueryParamsArgs) RefreshCustomDomainQueryParamsPtrInput {
+	return (*refreshCustomDomainQueryParamsPtrType)(v)
+}
+
+func (*refreshCustomDomainQueryParamsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**RefreshCustomDomainQueryParams)(nil)).Elem()
+}
+
+func (i *refreshCustomDomainQueryParamsPtrType) ToRefreshCustomDomainQueryParamsPtrOutput() RefreshCustomDomainQueryParamsPtrOutput {
+	return i.ToRefreshCustomDomainQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i *refreshCustomDomainQueryParamsPtrType) ToRefreshCustomDomainQueryParamsPtrOutputWithContext(ctx context.Context) RefreshCustomDomainQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RefreshCustomDomainQueryParamsPtrOutput)
+}
+
+// Query params for each of the operations of the resource.
+type RefreshCustomDomainQueryParamsOutput struct{ *pulumi.OutputState }
+
+func (RefreshCustomDomainQueryParamsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*RefreshCustomDomainQueryParams)(nil)).Elem()
+}
+
+func (o RefreshCustomDomainQueryParamsOutput) ToRefreshCustomDomainQueryParamsOutput() RefreshCustomDomainQueryParamsOutput {
+	return o
+}
+
+func (o RefreshCustomDomainQueryParamsOutput) ToRefreshCustomDomainQueryParamsOutputWithContext(ctx context.Context) RefreshCustomDomainQueryParamsOutput {
+	return o
+}
+
+func (o RefreshCustomDomainQueryParamsOutput) ToRefreshCustomDomainQueryParamsPtrOutput() RefreshCustomDomainQueryParamsPtrOutput {
+	return o.ToRefreshCustomDomainQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (o RefreshCustomDomainQueryParamsOutput) ToRefreshCustomDomainQueryParamsPtrOutputWithContext(ctx context.Context) RefreshCustomDomainQueryParamsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v RefreshCustomDomainQueryParams) *RefreshCustomDomainQueryParams {
+		return &v
+	}).(RefreshCustomDomainQueryParamsPtrOutput)
+}
+
+// Query params for the create operation.
+func (o RefreshCustomDomainQueryParamsOutput) Create() RefreshCustomDomainCreateQueryParamsPtrOutput {
+	return o.ApplyT(func(v RefreshCustomDomainQueryParams) *RefreshCustomDomainCreateQueryParams { return v.Create }).(RefreshCustomDomainCreateQueryParamsPtrOutput)
+}
+
+type RefreshCustomDomainQueryParamsPtrOutput struct{ *pulumi.OutputState }
+
+func (RefreshCustomDomainQueryParamsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**RefreshCustomDomainQueryParams)(nil)).Elem()
+}
+
+func (o RefreshCustomDomainQueryParamsPtrOutput) ToRefreshCustomDomainQueryParamsPtrOutput() RefreshCustomDomainQueryParamsPtrOutput {
+	return o
+}
+
+func (o RefreshCustomDomainQueryParamsPtrOutput) ToRefreshCustomDomainQueryParamsPtrOutputWithContext(ctx context.Context) RefreshCustomDomainQueryParamsPtrOutput {
+	return o
+}
+
+func (o RefreshCustomDomainQueryParamsPtrOutput) Elem() RefreshCustomDomainQueryParamsOutput {
+	return o.ApplyT(func(v *RefreshCustomDomainQueryParams) RefreshCustomDomainQueryParams {
+		if v != nil {
+			return *v
+		}
+		var ret RefreshCustomDomainQueryParams
+		return ret
+	}).(RefreshCustomDomainQueryParamsOutput)
+}
+
+// Query params for the create operation.
+func (o RefreshCustomDomainQueryParamsPtrOutput) Create() RefreshCustomDomainCreateQueryParamsPtrOutput {
+	return o.ApplyT(func(v *RefreshCustomDomainQueryParams) *RefreshCustomDomainCreateQueryParams {
+		if v == nil {
+			return nil
+		}
+		return v.Create
+	}).(RefreshCustomDomainCreateQueryParamsPtrOutput)
+}
+
 type RegistryCredential struct {
 	// Unique identifier for this credential
 	Id string `pulumi:"id"`
@@ -5420,6 +16229,566 @@ func (o ResourcePtrOutput) Name() pulumi.StringPtrOutput {
 	}).(pulumi.StringPtrOutput)
 }
 
+// Query params for the API request.
+type RestartServiceCreateQueryParams struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams map[string]string `pulumi:"additionalParams"`
+}
+
+// RestartServiceCreateQueryParamsInput is an input type that accepts RestartServiceCreateQueryParamsArgs and RestartServiceCreateQueryParamsOutput values.
+// You can construct a concrete instance of `RestartServiceCreateQueryParamsInput` via:
+//
+//	RestartServiceCreateQueryParamsArgs{...}
+type RestartServiceCreateQueryParamsInput interface {
+	pulumi.Input
+
+	ToRestartServiceCreateQueryParamsOutput() RestartServiceCreateQueryParamsOutput
+	ToRestartServiceCreateQueryParamsOutputWithContext(context.Context) RestartServiceCreateQueryParamsOutput
+}
+
+// Query params for the API request.
+type RestartServiceCreateQueryParamsArgs struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams pulumi.StringMapInput `pulumi:"additionalParams"`
+}
+
+func (RestartServiceCreateQueryParamsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*RestartServiceCreateQueryParams)(nil)).Elem()
+}
+
+func (i RestartServiceCreateQueryParamsArgs) ToRestartServiceCreateQueryParamsOutput() RestartServiceCreateQueryParamsOutput {
+	return i.ToRestartServiceCreateQueryParamsOutputWithContext(context.Background())
+}
+
+func (i RestartServiceCreateQueryParamsArgs) ToRestartServiceCreateQueryParamsOutputWithContext(ctx context.Context) RestartServiceCreateQueryParamsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RestartServiceCreateQueryParamsOutput)
+}
+
+func (i RestartServiceCreateQueryParamsArgs) ToRestartServiceCreateQueryParamsPtrOutput() RestartServiceCreateQueryParamsPtrOutput {
+	return i.ToRestartServiceCreateQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i RestartServiceCreateQueryParamsArgs) ToRestartServiceCreateQueryParamsPtrOutputWithContext(ctx context.Context) RestartServiceCreateQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RestartServiceCreateQueryParamsOutput).ToRestartServiceCreateQueryParamsPtrOutputWithContext(ctx)
+}
+
+// RestartServiceCreateQueryParamsPtrInput is an input type that accepts RestartServiceCreateQueryParamsArgs, RestartServiceCreateQueryParamsPtr and RestartServiceCreateQueryParamsPtrOutput values.
+// You can construct a concrete instance of `RestartServiceCreateQueryParamsPtrInput` via:
+//
+//	        RestartServiceCreateQueryParamsArgs{...}
+//
+//	or:
+//
+//	        nil
+type RestartServiceCreateQueryParamsPtrInput interface {
+	pulumi.Input
+
+	ToRestartServiceCreateQueryParamsPtrOutput() RestartServiceCreateQueryParamsPtrOutput
+	ToRestartServiceCreateQueryParamsPtrOutputWithContext(context.Context) RestartServiceCreateQueryParamsPtrOutput
+}
+
+type restartServiceCreateQueryParamsPtrType RestartServiceCreateQueryParamsArgs
+
+func RestartServiceCreateQueryParamsPtr(v *RestartServiceCreateQueryParamsArgs) RestartServiceCreateQueryParamsPtrInput {
+	return (*restartServiceCreateQueryParamsPtrType)(v)
+}
+
+func (*restartServiceCreateQueryParamsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**RestartServiceCreateQueryParams)(nil)).Elem()
+}
+
+func (i *restartServiceCreateQueryParamsPtrType) ToRestartServiceCreateQueryParamsPtrOutput() RestartServiceCreateQueryParamsPtrOutput {
+	return i.ToRestartServiceCreateQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i *restartServiceCreateQueryParamsPtrType) ToRestartServiceCreateQueryParamsPtrOutputWithContext(ctx context.Context) RestartServiceCreateQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RestartServiceCreateQueryParamsPtrOutput)
+}
+
+// Query params for the API request.
+type RestartServiceCreateQueryParamsOutput struct{ *pulumi.OutputState }
+
+func (RestartServiceCreateQueryParamsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*RestartServiceCreateQueryParams)(nil)).Elem()
+}
+
+func (o RestartServiceCreateQueryParamsOutput) ToRestartServiceCreateQueryParamsOutput() RestartServiceCreateQueryParamsOutput {
+	return o
+}
+
+func (o RestartServiceCreateQueryParamsOutput) ToRestartServiceCreateQueryParamsOutputWithContext(ctx context.Context) RestartServiceCreateQueryParamsOutput {
+	return o
+}
+
+func (o RestartServiceCreateQueryParamsOutput) ToRestartServiceCreateQueryParamsPtrOutput() RestartServiceCreateQueryParamsPtrOutput {
+	return o.ToRestartServiceCreateQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (o RestartServiceCreateQueryParamsOutput) ToRestartServiceCreateQueryParamsPtrOutputWithContext(ctx context.Context) RestartServiceCreateQueryParamsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v RestartServiceCreateQueryParams) *RestartServiceCreateQueryParams {
+		return &v
+	}).(RestartServiceCreateQueryParamsPtrOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o RestartServiceCreateQueryParamsOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v RestartServiceCreateQueryParams) map[string]string { return v.AdditionalParams }).(pulumi.StringMapOutput)
+}
+
+type RestartServiceCreateQueryParamsPtrOutput struct{ *pulumi.OutputState }
+
+func (RestartServiceCreateQueryParamsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**RestartServiceCreateQueryParams)(nil)).Elem()
+}
+
+func (o RestartServiceCreateQueryParamsPtrOutput) ToRestartServiceCreateQueryParamsPtrOutput() RestartServiceCreateQueryParamsPtrOutput {
+	return o
+}
+
+func (o RestartServiceCreateQueryParamsPtrOutput) ToRestartServiceCreateQueryParamsPtrOutputWithContext(ctx context.Context) RestartServiceCreateQueryParamsPtrOutput {
+	return o
+}
+
+func (o RestartServiceCreateQueryParamsPtrOutput) Elem() RestartServiceCreateQueryParamsOutput {
+	return o.ApplyT(func(v *RestartServiceCreateQueryParams) RestartServiceCreateQueryParams {
+		if v != nil {
+			return *v
+		}
+		var ret RestartServiceCreateQueryParams
+		return ret
+	}).(RestartServiceCreateQueryParamsOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o RestartServiceCreateQueryParamsPtrOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *RestartServiceCreateQueryParams) map[string]string {
+		if v == nil {
+			return nil
+		}
+		return v.AdditionalParams
+	}).(pulumi.StringMapOutput)
+}
+
+// Query params for each of the operations of the resource.
+type RestartServiceQueryParams struct {
+	// Query params for the create operation.
+	Create *RestartServiceCreateQueryParams `pulumi:"create"`
+}
+
+// RestartServiceQueryParamsInput is an input type that accepts RestartServiceQueryParamsArgs and RestartServiceQueryParamsOutput values.
+// You can construct a concrete instance of `RestartServiceQueryParamsInput` via:
+//
+//	RestartServiceQueryParamsArgs{...}
+type RestartServiceQueryParamsInput interface {
+	pulumi.Input
+
+	ToRestartServiceQueryParamsOutput() RestartServiceQueryParamsOutput
+	ToRestartServiceQueryParamsOutputWithContext(context.Context) RestartServiceQueryParamsOutput
+}
+
+// Query params for each of the operations of the resource.
+type RestartServiceQueryParamsArgs struct {
+	// Query params for the create operation.
+	Create RestartServiceCreateQueryParamsPtrInput `pulumi:"create"`
+}
+
+func (RestartServiceQueryParamsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*RestartServiceQueryParams)(nil)).Elem()
+}
+
+func (i RestartServiceQueryParamsArgs) ToRestartServiceQueryParamsOutput() RestartServiceQueryParamsOutput {
+	return i.ToRestartServiceQueryParamsOutputWithContext(context.Background())
+}
+
+func (i RestartServiceQueryParamsArgs) ToRestartServiceQueryParamsOutputWithContext(ctx context.Context) RestartServiceQueryParamsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RestartServiceQueryParamsOutput)
+}
+
+func (i RestartServiceQueryParamsArgs) ToRestartServiceQueryParamsPtrOutput() RestartServiceQueryParamsPtrOutput {
+	return i.ToRestartServiceQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i RestartServiceQueryParamsArgs) ToRestartServiceQueryParamsPtrOutputWithContext(ctx context.Context) RestartServiceQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RestartServiceQueryParamsOutput).ToRestartServiceQueryParamsPtrOutputWithContext(ctx)
+}
+
+// RestartServiceQueryParamsPtrInput is an input type that accepts RestartServiceQueryParamsArgs, RestartServiceQueryParamsPtr and RestartServiceQueryParamsPtrOutput values.
+// You can construct a concrete instance of `RestartServiceQueryParamsPtrInput` via:
+//
+//	        RestartServiceQueryParamsArgs{...}
+//
+//	or:
+//
+//	        nil
+type RestartServiceQueryParamsPtrInput interface {
+	pulumi.Input
+
+	ToRestartServiceQueryParamsPtrOutput() RestartServiceQueryParamsPtrOutput
+	ToRestartServiceQueryParamsPtrOutputWithContext(context.Context) RestartServiceQueryParamsPtrOutput
+}
+
+type restartServiceQueryParamsPtrType RestartServiceQueryParamsArgs
+
+func RestartServiceQueryParamsPtr(v *RestartServiceQueryParamsArgs) RestartServiceQueryParamsPtrInput {
+	return (*restartServiceQueryParamsPtrType)(v)
+}
+
+func (*restartServiceQueryParamsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**RestartServiceQueryParams)(nil)).Elem()
+}
+
+func (i *restartServiceQueryParamsPtrType) ToRestartServiceQueryParamsPtrOutput() RestartServiceQueryParamsPtrOutput {
+	return i.ToRestartServiceQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i *restartServiceQueryParamsPtrType) ToRestartServiceQueryParamsPtrOutputWithContext(ctx context.Context) RestartServiceQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RestartServiceQueryParamsPtrOutput)
+}
+
+// Query params for each of the operations of the resource.
+type RestartServiceQueryParamsOutput struct{ *pulumi.OutputState }
+
+func (RestartServiceQueryParamsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*RestartServiceQueryParams)(nil)).Elem()
+}
+
+func (o RestartServiceQueryParamsOutput) ToRestartServiceQueryParamsOutput() RestartServiceQueryParamsOutput {
+	return o
+}
+
+func (o RestartServiceQueryParamsOutput) ToRestartServiceQueryParamsOutputWithContext(ctx context.Context) RestartServiceQueryParamsOutput {
+	return o
+}
+
+func (o RestartServiceQueryParamsOutput) ToRestartServiceQueryParamsPtrOutput() RestartServiceQueryParamsPtrOutput {
+	return o.ToRestartServiceQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (o RestartServiceQueryParamsOutput) ToRestartServiceQueryParamsPtrOutputWithContext(ctx context.Context) RestartServiceQueryParamsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v RestartServiceQueryParams) *RestartServiceQueryParams {
+		return &v
+	}).(RestartServiceQueryParamsPtrOutput)
+}
+
+// Query params for the create operation.
+func (o RestartServiceQueryParamsOutput) Create() RestartServiceCreateQueryParamsPtrOutput {
+	return o.ApplyT(func(v RestartServiceQueryParams) *RestartServiceCreateQueryParams { return v.Create }).(RestartServiceCreateQueryParamsPtrOutput)
+}
+
+type RestartServiceQueryParamsPtrOutput struct{ *pulumi.OutputState }
+
+func (RestartServiceQueryParamsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**RestartServiceQueryParams)(nil)).Elem()
+}
+
+func (o RestartServiceQueryParamsPtrOutput) ToRestartServiceQueryParamsPtrOutput() RestartServiceQueryParamsPtrOutput {
+	return o
+}
+
+func (o RestartServiceQueryParamsPtrOutput) ToRestartServiceQueryParamsPtrOutputWithContext(ctx context.Context) RestartServiceQueryParamsPtrOutput {
+	return o
+}
+
+func (o RestartServiceQueryParamsPtrOutput) Elem() RestartServiceQueryParamsOutput {
+	return o.ApplyT(func(v *RestartServiceQueryParams) RestartServiceQueryParams {
+		if v != nil {
+			return *v
+		}
+		var ret RestartServiceQueryParams
+		return ret
+	}).(RestartServiceQueryParamsOutput)
+}
+
+// Query params for the create operation.
+func (o RestartServiceQueryParamsPtrOutput) Create() RestartServiceCreateQueryParamsPtrOutput {
+	return o.ApplyT(func(v *RestartServiceQueryParams) *RestartServiceCreateQueryParams {
+		if v == nil {
+			return nil
+		}
+		return v.Create
+	}).(RestartServiceCreateQueryParamsPtrOutput)
+}
+
+// Query params for the API request.
+type RollbackDeployCreateQueryParams struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams map[string]string `pulumi:"additionalParams"`
+}
+
+// RollbackDeployCreateQueryParamsInput is an input type that accepts RollbackDeployCreateQueryParamsArgs and RollbackDeployCreateQueryParamsOutput values.
+// You can construct a concrete instance of `RollbackDeployCreateQueryParamsInput` via:
+//
+//	RollbackDeployCreateQueryParamsArgs{...}
+type RollbackDeployCreateQueryParamsInput interface {
+	pulumi.Input
+
+	ToRollbackDeployCreateQueryParamsOutput() RollbackDeployCreateQueryParamsOutput
+	ToRollbackDeployCreateQueryParamsOutputWithContext(context.Context) RollbackDeployCreateQueryParamsOutput
+}
+
+// Query params for the API request.
+type RollbackDeployCreateQueryParamsArgs struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams pulumi.StringMapInput `pulumi:"additionalParams"`
+}
+
+func (RollbackDeployCreateQueryParamsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*RollbackDeployCreateQueryParams)(nil)).Elem()
+}
+
+func (i RollbackDeployCreateQueryParamsArgs) ToRollbackDeployCreateQueryParamsOutput() RollbackDeployCreateQueryParamsOutput {
+	return i.ToRollbackDeployCreateQueryParamsOutputWithContext(context.Background())
+}
+
+func (i RollbackDeployCreateQueryParamsArgs) ToRollbackDeployCreateQueryParamsOutputWithContext(ctx context.Context) RollbackDeployCreateQueryParamsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RollbackDeployCreateQueryParamsOutput)
+}
+
+func (i RollbackDeployCreateQueryParamsArgs) ToRollbackDeployCreateQueryParamsPtrOutput() RollbackDeployCreateQueryParamsPtrOutput {
+	return i.ToRollbackDeployCreateQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i RollbackDeployCreateQueryParamsArgs) ToRollbackDeployCreateQueryParamsPtrOutputWithContext(ctx context.Context) RollbackDeployCreateQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RollbackDeployCreateQueryParamsOutput).ToRollbackDeployCreateQueryParamsPtrOutputWithContext(ctx)
+}
+
+// RollbackDeployCreateQueryParamsPtrInput is an input type that accepts RollbackDeployCreateQueryParamsArgs, RollbackDeployCreateQueryParamsPtr and RollbackDeployCreateQueryParamsPtrOutput values.
+// You can construct a concrete instance of `RollbackDeployCreateQueryParamsPtrInput` via:
+//
+//	        RollbackDeployCreateQueryParamsArgs{...}
+//
+//	or:
+//
+//	        nil
+type RollbackDeployCreateQueryParamsPtrInput interface {
+	pulumi.Input
+
+	ToRollbackDeployCreateQueryParamsPtrOutput() RollbackDeployCreateQueryParamsPtrOutput
+	ToRollbackDeployCreateQueryParamsPtrOutputWithContext(context.Context) RollbackDeployCreateQueryParamsPtrOutput
+}
+
+type rollbackDeployCreateQueryParamsPtrType RollbackDeployCreateQueryParamsArgs
+
+func RollbackDeployCreateQueryParamsPtr(v *RollbackDeployCreateQueryParamsArgs) RollbackDeployCreateQueryParamsPtrInput {
+	return (*rollbackDeployCreateQueryParamsPtrType)(v)
+}
+
+func (*rollbackDeployCreateQueryParamsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**RollbackDeployCreateQueryParams)(nil)).Elem()
+}
+
+func (i *rollbackDeployCreateQueryParamsPtrType) ToRollbackDeployCreateQueryParamsPtrOutput() RollbackDeployCreateQueryParamsPtrOutput {
+	return i.ToRollbackDeployCreateQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i *rollbackDeployCreateQueryParamsPtrType) ToRollbackDeployCreateQueryParamsPtrOutputWithContext(ctx context.Context) RollbackDeployCreateQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RollbackDeployCreateQueryParamsPtrOutput)
+}
+
+// Query params for the API request.
+type RollbackDeployCreateQueryParamsOutput struct{ *pulumi.OutputState }
+
+func (RollbackDeployCreateQueryParamsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*RollbackDeployCreateQueryParams)(nil)).Elem()
+}
+
+func (o RollbackDeployCreateQueryParamsOutput) ToRollbackDeployCreateQueryParamsOutput() RollbackDeployCreateQueryParamsOutput {
+	return o
+}
+
+func (o RollbackDeployCreateQueryParamsOutput) ToRollbackDeployCreateQueryParamsOutputWithContext(ctx context.Context) RollbackDeployCreateQueryParamsOutput {
+	return o
+}
+
+func (o RollbackDeployCreateQueryParamsOutput) ToRollbackDeployCreateQueryParamsPtrOutput() RollbackDeployCreateQueryParamsPtrOutput {
+	return o.ToRollbackDeployCreateQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (o RollbackDeployCreateQueryParamsOutput) ToRollbackDeployCreateQueryParamsPtrOutputWithContext(ctx context.Context) RollbackDeployCreateQueryParamsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v RollbackDeployCreateQueryParams) *RollbackDeployCreateQueryParams {
+		return &v
+	}).(RollbackDeployCreateQueryParamsPtrOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o RollbackDeployCreateQueryParamsOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v RollbackDeployCreateQueryParams) map[string]string { return v.AdditionalParams }).(pulumi.StringMapOutput)
+}
+
+type RollbackDeployCreateQueryParamsPtrOutput struct{ *pulumi.OutputState }
+
+func (RollbackDeployCreateQueryParamsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**RollbackDeployCreateQueryParams)(nil)).Elem()
+}
+
+func (o RollbackDeployCreateQueryParamsPtrOutput) ToRollbackDeployCreateQueryParamsPtrOutput() RollbackDeployCreateQueryParamsPtrOutput {
+	return o
+}
+
+func (o RollbackDeployCreateQueryParamsPtrOutput) ToRollbackDeployCreateQueryParamsPtrOutputWithContext(ctx context.Context) RollbackDeployCreateQueryParamsPtrOutput {
+	return o
+}
+
+func (o RollbackDeployCreateQueryParamsPtrOutput) Elem() RollbackDeployCreateQueryParamsOutput {
+	return o.ApplyT(func(v *RollbackDeployCreateQueryParams) RollbackDeployCreateQueryParams {
+		if v != nil {
+			return *v
+		}
+		var ret RollbackDeployCreateQueryParams
+		return ret
+	}).(RollbackDeployCreateQueryParamsOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o RollbackDeployCreateQueryParamsPtrOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *RollbackDeployCreateQueryParams) map[string]string {
+		if v == nil {
+			return nil
+		}
+		return v.AdditionalParams
+	}).(pulumi.StringMapOutput)
+}
+
+// Query params for each of the operations of the resource.
+type RollbackDeployQueryParams struct {
+	// Query params for the create operation.
+	Create *RollbackDeployCreateQueryParams `pulumi:"create"`
+}
+
+// RollbackDeployQueryParamsInput is an input type that accepts RollbackDeployQueryParamsArgs and RollbackDeployQueryParamsOutput values.
+// You can construct a concrete instance of `RollbackDeployQueryParamsInput` via:
+//
+//	RollbackDeployQueryParamsArgs{...}
+type RollbackDeployQueryParamsInput interface {
+	pulumi.Input
+
+	ToRollbackDeployQueryParamsOutput() RollbackDeployQueryParamsOutput
+	ToRollbackDeployQueryParamsOutputWithContext(context.Context) RollbackDeployQueryParamsOutput
+}
+
+// Query params for each of the operations of the resource.
+type RollbackDeployQueryParamsArgs struct {
+	// Query params for the create operation.
+	Create RollbackDeployCreateQueryParamsPtrInput `pulumi:"create"`
+}
+
+func (RollbackDeployQueryParamsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*RollbackDeployQueryParams)(nil)).Elem()
+}
+
+func (i RollbackDeployQueryParamsArgs) ToRollbackDeployQueryParamsOutput() RollbackDeployQueryParamsOutput {
+	return i.ToRollbackDeployQueryParamsOutputWithContext(context.Background())
+}
+
+func (i RollbackDeployQueryParamsArgs) ToRollbackDeployQueryParamsOutputWithContext(ctx context.Context) RollbackDeployQueryParamsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RollbackDeployQueryParamsOutput)
+}
+
+func (i RollbackDeployQueryParamsArgs) ToRollbackDeployQueryParamsPtrOutput() RollbackDeployQueryParamsPtrOutput {
+	return i.ToRollbackDeployQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i RollbackDeployQueryParamsArgs) ToRollbackDeployQueryParamsPtrOutputWithContext(ctx context.Context) RollbackDeployQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RollbackDeployQueryParamsOutput).ToRollbackDeployQueryParamsPtrOutputWithContext(ctx)
+}
+
+// RollbackDeployQueryParamsPtrInput is an input type that accepts RollbackDeployQueryParamsArgs, RollbackDeployQueryParamsPtr and RollbackDeployQueryParamsPtrOutput values.
+// You can construct a concrete instance of `RollbackDeployQueryParamsPtrInput` via:
+//
+//	        RollbackDeployQueryParamsArgs{...}
+//
+//	or:
+//
+//	        nil
+type RollbackDeployQueryParamsPtrInput interface {
+	pulumi.Input
+
+	ToRollbackDeployQueryParamsPtrOutput() RollbackDeployQueryParamsPtrOutput
+	ToRollbackDeployQueryParamsPtrOutputWithContext(context.Context) RollbackDeployQueryParamsPtrOutput
+}
+
+type rollbackDeployQueryParamsPtrType RollbackDeployQueryParamsArgs
+
+func RollbackDeployQueryParamsPtr(v *RollbackDeployQueryParamsArgs) RollbackDeployQueryParamsPtrInput {
+	return (*rollbackDeployQueryParamsPtrType)(v)
+}
+
+func (*rollbackDeployQueryParamsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**RollbackDeployQueryParams)(nil)).Elem()
+}
+
+func (i *rollbackDeployQueryParamsPtrType) ToRollbackDeployQueryParamsPtrOutput() RollbackDeployQueryParamsPtrOutput {
+	return i.ToRollbackDeployQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i *rollbackDeployQueryParamsPtrType) ToRollbackDeployQueryParamsPtrOutputWithContext(ctx context.Context) RollbackDeployQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RollbackDeployQueryParamsPtrOutput)
+}
+
+// Query params for each of the operations of the resource.
+type RollbackDeployQueryParamsOutput struct{ *pulumi.OutputState }
+
+func (RollbackDeployQueryParamsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*RollbackDeployQueryParams)(nil)).Elem()
+}
+
+func (o RollbackDeployQueryParamsOutput) ToRollbackDeployQueryParamsOutput() RollbackDeployQueryParamsOutput {
+	return o
+}
+
+func (o RollbackDeployQueryParamsOutput) ToRollbackDeployQueryParamsOutputWithContext(ctx context.Context) RollbackDeployQueryParamsOutput {
+	return o
+}
+
+func (o RollbackDeployQueryParamsOutput) ToRollbackDeployQueryParamsPtrOutput() RollbackDeployQueryParamsPtrOutput {
+	return o.ToRollbackDeployQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (o RollbackDeployQueryParamsOutput) ToRollbackDeployQueryParamsPtrOutputWithContext(ctx context.Context) RollbackDeployQueryParamsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v RollbackDeployQueryParams) *RollbackDeployQueryParams {
+		return &v
+	}).(RollbackDeployQueryParamsPtrOutput)
+}
+
+// Query params for the create operation.
+func (o RollbackDeployQueryParamsOutput) Create() RollbackDeployCreateQueryParamsPtrOutput {
+	return o.ApplyT(func(v RollbackDeployQueryParams) *RollbackDeployCreateQueryParams { return v.Create }).(RollbackDeployCreateQueryParamsPtrOutput)
+}
+
+type RollbackDeployQueryParamsPtrOutput struct{ *pulumi.OutputState }
+
+func (RollbackDeployQueryParamsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**RollbackDeployQueryParams)(nil)).Elem()
+}
+
+func (o RollbackDeployQueryParamsPtrOutput) ToRollbackDeployQueryParamsPtrOutput() RollbackDeployQueryParamsPtrOutput {
+	return o
+}
+
+func (o RollbackDeployQueryParamsPtrOutput) ToRollbackDeployQueryParamsPtrOutputWithContext(ctx context.Context) RollbackDeployQueryParamsPtrOutput {
+	return o
+}
+
+func (o RollbackDeployQueryParamsPtrOutput) Elem() RollbackDeployQueryParamsOutput {
+	return o.ApplyT(func(v *RollbackDeployQueryParams) RollbackDeployQueryParams {
+		if v != nil {
+			return *v
+		}
+		var ret RollbackDeployQueryParams
+		return ret
+	}).(RollbackDeployQueryParamsOutput)
+}
+
+// Query params for the create operation.
+func (o RollbackDeployQueryParamsPtrOutput) Create() RollbackDeployCreateQueryParamsPtrOutput {
+	return o.ApplyT(func(v *RollbackDeployQueryParams) *RollbackDeployCreateQueryParams {
+		if v == nil {
+			return nil
+		}
+		return v.Create
+	}).(RollbackDeployCreateQueryParamsPtrOutput)
+}
+
 type RouteType struct {
 	Destination string `pulumi:"destination"`
 	Id          string `pulumi:"id"`
@@ -5579,6 +16948,604 @@ func (o RouteCreateArrayOutput) Index(i pulumi.IntInput) RouteCreateOutput {
 	}).(RouteCreateOutput)
 }
 
+// Query params for the API request.
+type RouteCreateQueryParams struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams map[string]string `pulumi:"additionalParams"`
+}
+
+// RouteCreateQueryParamsInput is an input type that accepts RouteCreateQueryParamsArgs and RouteCreateQueryParamsOutput values.
+// You can construct a concrete instance of `RouteCreateQueryParamsInput` via:
+//
+//	RouteCreateQueryParamsArgs{...}
+type RouteCreateQueryParamsInput interface {
+	pulumi.Input
+
+	ToRouteCreateQueryParamsOutput() RouteCreateQueryParamsOutput
+	ToRouteCreateQueryParamsOutputWithContext(context.Context) RouteCreateQueryParamsOutput
+}
+
+// Query params for the API request.
+type RouteCreateQueryParamsArgs struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams pulumi.StringMapInput `pulumi:"additionalParams"`
+}
+
+func (RouteCreateQueryParamsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*RouteCreateQueryParams)(nil)).Elem()
+}
+
+func (i RouteCreateQueryParamsArgs) ToRouteCreateQueryParamsOutput() RouteCreateQueryParamsOutput {
+	return i.ToRouteCreateQueryParamsOutputWithContext(context.Background())
+}
+
+func (i RouteCreateQueryParamsArgs) ToRouteCreateQueryParamsOutputWithContext(ctx context.Context) RouteCreateQueryParamsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RouteCreateQueryParamsOutput)
+}
+
+func (i RouteCreateQueryParamsArgs) ToRouteCreateQueryParamsPtrOutput() RouteCreateQueryParamsPtrOutput {
+	return i.ToRouteCreateQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i RouteCreateQueryParamsArgs) ToRouteCreateQueryParamsPtrOutputWithContext(ctx context.Context) RouteCreateQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RouteCreateQueryParamsOutput).ToRouteCreateQueryParamsPtrOutputWithContext(ctx)
+}
+
+// RouteCreateQueryParamsPtrInput is an input type that accepts RouteCreateQueryParamsArgs, RouteCreateQueryParamsPtr and RouteCreateQueryParamsPtrOutput values.
+// You can construct a concrete instance of `RouteCreateQueryParamsPtrInput` via:
+//
+//	        RouteCreateQueryParamsArgs{...}
+//
+//	or:
+//
+//	        nil
+type RouteCreateQueryParamsPtrInput interface {
+	pulumi.Input
+
+	ToRouteCreateQueryParamsPtrOutput() RouteCreateQueryParamsPtrOutput
+	ToRouteCreateQueryParamsPtrOutputWithContext(context.Context) RouteCreateQueryParamsPtrOutput
+}
+
+type routeCreateQueryParamsPtrType RouteCreateQueryParamsArgs
+
+func RouteCreateQueryParamsPtr(v *RouteCreateQueryParamsArgs) RouteCreateQueryParamsPtrInput {
+	return (*routeCreateQueryParamsPtrType)(v)
+}
+
+func (*routeCreateQueryParamsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**RouteCreateQueryParams)(nil)).Elem()
+}
+
+func (i *routeCreateQueryParamsPtrType) ToRouteCreateQueryParamsPtrOutput() RouteCreateQueryParamsPtrOutput {
+	return i.ToRouteCreateQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i *routeCreateQueryParamsPtrType) ToRouteCreateQueryParamsPtrOutputWithContext(ctx context.Context) RouteCreateQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RouteCreateQueryParamsPtrOutput)
+}
+
+// Query params for the API request.
+type RouteCreateQueryParamsOutput struct{ *pulumi.OutputState }
+
+func (RouteCreateQueryParamsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*RouteCreateQueryParams)(nil)).Elem()
+}
+
+func (o RouteCreateQueryParamsOutput) ToRouteCreateQueryParamsOutput() RouteCreateQueryParamsOutput {
+	return o
+}
+
+func (o RouteCreateQueryParamsOutput) ToRouteCreateQueryParamsOutputWithContext(ctx context.Context) RouteCreateQueryParamsOutput {
+	return o
+}
+
+func (o RouteCreateQueryParamsOutput) ToRouteCreateQueryParamsPtrOutput() RouteCreateQueryParamsPtrOutput {
+	return o.ToRouteCreateQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (o RouteCreateQueryParamsOutput) ToRouteCreateQueryParamsPtrOutputWithContext(ctx context.Context) RouteCreateQueryParamsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v RouteCreateQueryParams) *RouteCreateQueryParams {
+		return &v
+	}).(RouteCreateQueryParamsPtrOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o RouteCreateQueryParamsOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v RouteCreateQueryParams) map[string]string { return v.AdditionalParams }).(pulumi.StringMapOutput)
+}
+
+type RouteCreateQueryParamsPtrOutput struct{ *pulumi.OutputState }
+
+func (RouteCreateQueryParamsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**RouteCreateQueryParams)(nil)).Elem()
+}
+
+func (o RouteCreateQueryParamsPtrOutput) ToRouteCreateQueryParamsPtrOutput() RouteCreateQueryParamsPtrOutput {
+	return o
+}
+
+func (o RouteCreateQueryParamsPtrOutput) ToRouteCreateQueryParamsPtrOutputWithContext(ctx context.Context) RouteCreateQueryParamsPtrOutput {
+	return o
+}
+
+func (o RouteCreateQueryParamsPtrOutput) Elem() RouteCreateQueryParamsOutput {
+	return o.ApplyT(func(v *RouteCreateQueryParams) RouteCreateQueryParams {
+		if v != nil {
+			return *v
+		}
+		var ret RouteCreateQueryParams
+		return ret
+	}).(RouteCreateQueryParamsOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o RouteCreateQueryParamsPtrOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *RouteCreateQueryParams) map[string]string {
+		if v == nil {
+			return nil
+		}
+		return v.AdditionalParams
+	}).(pulumi.StringMapOutput)
+}
+
+// Query params for the API request.
+type RouteDeleteQueryParams struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams map[string]string `pulumi:"additionalParams"`
+}
+
+// RouteDeleteQueryParamsInput is an input type that accepts RouteDeleteQueryParamsArgs and RouteDeleteQueryParamsOutput values.
+// You can construct a concrete instance of `RouteDeleteQueryParamsInput` via:
+//
+//	RouteDeleteQueryParamsArgs{...}
+type RouteDeleteQueryParamsInput interface {
+	pulumi.Input
+
+	ToRouteDeleteQueryParamsOutput() RouteDeleteQueryParamsOutput
+	ToRouteDeleteQueryParamsOutputWithContext(context.Context) RouteDeleteQueryParamsOutput
+}
+
+// Query params for the API request.
+type RouteDeleteQueryParamsArgs struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams pulumi.StringMapInput `pulumi:"additionalParams"`
+}
+
+func (RouteDeleteQueryParamsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*RouteDeleteQueryParams)(nil)).Elem()
+}
+
+func (i RouteDeleteQueryParamsArgs) ToRouteDeleteQueryParamsOutput() RouteDeleteQueryParamsOutput {
+	return i.ToRouteDeleteQueryParamsOutputWithContext(context.Background())
+}
+
+func (i RouteDeleteQueryParamsArgs) ToRouteDeleteQueryParamsOutputWithContext(ctx context.Context) RouteDeleteQueryParamsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RouteDeleteQueryParamsOutput)
+}
+
+func (i RouteDeleteQueryParamsArgs) ToRouteDeleteQueryParamsPtrOutput() RouteDeleteQueryParamsPtrOutput {
+	return i.ToRouteDeleteQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i RouteDeleteQueryParamsArgs) ToRouteDeleteQueryParamsPtrOutputWithContext(ctx context.Context) RouteDeleteQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RouteDeleteQueryParamsOutput).ToRouteDeleteQueryParamsPtrOutputWithContext(ctx)
+}
+
+// RouteDeleteQueryParamsPtrInput is an input type that accepts RouteDeleteQueryParamsArgs, RouteDeleteQueryParamsPtr and RouteDeleteQueryParamsPtrOutput values.
+// You can construct a concrete instance of `RouteDeleteQueryParamsPtrInput` via:
+//
+//	        RouteDeleteQueryParamsArgs{...}
+//
+//	or:
+//
+//	        nil
+type RouteDeleteQueryParamsPtrInput interface {
+	pulumi.Input
+
+	ToRouteDeleteQueryParamsPtrOutput() RouteDeleteQueryParamsPtrOutput
+	ToRouteDeleteQueryParamsPtrOutputWithContext(context.Context) RouteDeleteQueryParamsPtrOutput
+}
+
+type routeDeleteQueryParamsPtrType RouteDeleteQueryParamsArgs
+
+func RouteDeleteQueryParamsPtr(v *RouteDeleteQueryParamsArgs) RouteDeleteQueryParamsPtrInput {
+	return (*routeDeleteQueryParamsPtrType)(v)
+}
+
+func (*routeDeleteQueryParamsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**RouteDeleteQueryParams)(nil)).Elem()
+}
+
+func (i *routeDeleteQueryParamsPtrType) ToRouteDeleteQueryParamsPtrOutput() RouteDeleteQueryParamsPtrOutput {
+	return i.ToRouteDeleteQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i *routeDeleteQueryParamsPtrType) ToRouteDeleteQueryParamsPtrOutputWithContext(ctx context.Context) RouteDeleteQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RouteDeleteQueryParamsPtrOutput)
+}
+
+// Query params for the API request.
+type RouteDeleteQueryParamsOutput struct{ *pulumi.OutputState }
+
+func (RouteDeleteQueryParamsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*RouteDeleteQueryParams)(nil)).Elem()
+}
+
+func (o RouteDeleteQueryParamsOutput) ToRouteDeleteQueryParamsOutput() RouteDeleteQueryParamsOutput {
+	return o
+}
+
+func (o RouteDeleteQueryParamsOutput) ToRouteDeleteQueryParamsOutputWithContext(ctx context.Context) RouteDeleteQueryParamsOutput {
+	return o
+}
+
+func (o RouteDeleteQueryParamsOutput) ToRouteDeleteQueryParamsPtrOutput() RouteDeleteQueryParamsPtrOutput {
+	return o.ToRouteDeleteQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (o RouteDeleteQueryParamsOutput) ToRouteDeleteQueryParamsPtrOutputWithContext(ctx context.Context) RouteDeleteQueryParamsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v RouteDeleteQueryParams) *RouteDeleteQueryParams {
+		return &v
+	}).(RouteDeleteQueryParamsPtrOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o RouteDeleteQueryParamsOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v RouteDeleteQueryParams) map[string]string { return v.AdditionalParams }).(pulumi.StringMapOutput)
+}
+
+type RouteDeleteQueryParamsPtrOutput struct{ *pulumi.OutputState }
+
+func (RouteDeleteQueryParamsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**RouteDeleteQueryParams)(nil)).Elem()
+}
+
+func (o RouteDeleteQueryParamsPtrOutput) ToRouteDeleteQueryParamsPtrOutput() RouteDeleteQueryParamsPtrOutput {
+	return o
+}
+
+func (o RouteDeleteQueryParamsPtrOutput) ToRouteDeleteQueryParamsPtrOutputWithContext(ctx context.Context) RouteDeleteQueryParamsPtrOutput {
+	return o
+}
+
+func (o RouteDeleteQueryParamsPtrOutput) Elem() RouteDeleteQueryParamsOutput {
+	return o.ApplyT(func(v *RouteDeleteQueryParams) RouteDeleteQueryParams {
+		if v != nil {
+			return *v
+		}
+		var ret RouteDeleteQueryParams
+		return ret
+	}).(RouteDeleteQueryParamsOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o RouteDeleteQueryParamsPtrOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *RouteDeleteQueryParams) map[string]string {
+		if v == nil {
+			return nil
+		}
+		return v.AdditionalParams
+	}).(pulumi.StringMapOutput)
+}
+
+// Query params for each of the operations of the resource.
+type RouteQueryParams struct {
+	// Query params for the create operation.
+	Create *RouteCreateQueryParams `pulumi:"create"`
+	// Query params for the delete operation.
+	Delete *RouteDeleteQueryParams `pulumi:"delete"`
+	// Query params for the update operation.
+	Update *RouteUpdateQueryParams `pulumi:"update"`
+}
+
+// RouteQueryParamsInput is an input type that accepts RouteQueryParamsArgs and RouteQueryParamsOutput values.
+// You can construct a concrete instance of `RouteQueryParamsInput` via:
+//
+//	RouteQueryParamsArgs{...}
+type RouteQueryParamsInput interface {
+	pulumi.Input
+
+	ToRouteQueryParamsOutput() RouteQueryParamsOutput
+	ToRouteQueryParamsOutputWithContext(context.Context) RouteQueryParamsOutput
+}
+
+// Query params for each of the operations of the resource.
+type RouteQueryParamsArgs struct {
+	// Query params for the create operation.
+	Create RouteCreateQueryParamsPtrInput `pulumi:"create"`
+	// Query params for the delete operation.
+	Delete RouteDeleteQueryParamsPtrInput `pulumi:"delete"`
+	// Query params for the update operation.
+	Update RouteUpdateQueryParamsPtrInput `pulumi:"update"`
+}
+
+func (RouteQueryParamsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*RouteQueryParams)(nil)).Elem()
+}
+
+func (i RouteQueryParamsArgs) ToRouteQueryParamsOutput() RouteQueryParamsOutput {
+	return i.ToRouteQueryParamsOutputWithContext(context.Background())
+}
+
+func (i RouteQueryParamsArgs) ToRouteQueryParamsOutputWithContext(ctx context.Context) RouteQueryParamsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RouteQueryParamsOutput)
+}
+
+func (i RouteQueryParamsArgs) ToRouteQueryParamsPtrOutput() RouteQueryParamsPtrOutput {
+	return i.ToRouteQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i RouteQueryParamsArgs) ToRouteQueryParamsPtrOutputWithContext(ctx context.Context) RouteQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RouteQueryParamsOutput).ToRouteQueryParamsPtrOutputWithContext(ctx)
+}
+
+// RouteQueryParamsPtrInput is an input type that accepts RouteQueryParamsArgs, RouteQueryParamsPtr and RouteQueryParamsPtrOutput values.
+// You can construct a concrete instance of `RouteQueryParamsPtrInput` via:
+//
+//	        RouteQueryParamsArgs{...}
+//
+//	or:
+//
+//	        nil
+type RouteQueryParamsPtrInput interface {
+	pulumi.Input
+
+	ToRouteQueryParamsPtrOutput() RouteQueryParamsPtrOutput
+	ToRouteQueryParamsPtrOutputWithContext(context.Context) RouteQueryParamsPtrOutput
+}
+
+type routeQueryParamsPtrType RouteQueryParamsArgs
+
+func RouteQueryParamsPtr(v *RouteQueryParamsArgs) RouteQueryParamsPtrInput {
+	return (*routeQueryParamsPtrType)(v)
+}
+
+func (*routeQueryParamsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**RouteQueryParams)(nil)).Elem()
+}
+
+func (i *routeQueryParamsPtrType) ToRouteQueryParamsPtrOutput() RouteQueryParamsPtrOutput {
+	return i.ToRouteQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i *routeQueryParamsPtrType) ToRouteQueryParamsPtrOutputWithContext(ctx context.Context) RouteQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RouteQueryParamsPtrOutput)
+}
+
+// Query params for each of the operations of the resource.
+type RouteQueryParamsOutput struct{ *pulumi.OutputState }
+
+func (RouteQueryParamsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*RouteQueryParams)(nil)).Elem()
+}
+
+func (o RouteQueryParamsOutput) ToRouteQueryParamsOutput() RouteQueryParamsOutput {
+	return o
+}
+
+func (o RouteQueryParamsOutput) ToRouteQueryParamsOutputWithContext(ctx context.Context) RouteQueryParamsOutput {
+	return o
+}
+
+func (o RouteQueryParamsOutput) ToRouteQueryParamsPtrOutput() RouteQueryParamsPtrOutput {
+	return o.ToRouteQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (o RouteQueryParamsOutput) ToRouteQueryParamsPtrOutputWithContext(ctx context.Context) RouteQueryParamsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v RouteQueryParams) *RouteQueryParams {
+		return &v
+	}).(RouteQueryParamsPtrOutput)
+}
+
+// Query params for the create operation.
+func (o RouteQueryParamsOutput) Create() RouteCreateQueryParamsPtrOutput {
+	return o.ApplyT(func(v RouteQueryParams) *RouteCreateQueryParams { return v.Create }).(RouteCreateQueryParamsPtrOutput)
+}
+
+// Query params for the delete operation.
+func (o RouteQueryParamsOutput) Delete() RouteDeleteQueryParamsPtrOutput {
+	return o.ApplyT(func(v RouteQueryParams) *RouteDeleteQueryParams { return v.Delete }).(RouteDeleteQueryParamsPtrOutput)
+}
+
+// Query params for the update operation.
+func (o RouteQueryParamsOutput) Update() RouteUpdateQueryParamsPtrOutput {
+	return o.ApplyT(func(v RouteQueryParams) *RouteUpdateQueryParams { return v.Update }).(RouteUpdateQueryParamsPtrOutput)
+}
+
+type RouteQueryParamsPtrOutput struct{ *pulumi.OutputState }
+
+func (RouteQueryParamsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**RouteQueryParams)(nil)).Elem()
+}
+
+func (o RouteQueryParamsPtrOutput) ToRouteQueryParamsPtrOutput() RouteQueryParamsPtrOutput {
+	return o
+}
+
+func (o RouteQueryParamsPtrOutput) ToRouteQueryParamsPtrOutputWithContext(ctx context.Context) RouteQueryParamsPtrOutput {
+	return o
+}
+
+func (o RouteQueryParamsPtrOutput) Elem() RouteQueryParamsOutput {
+	return o.ApplyT(func(v *RouteQueryParams) RouteQueryParams {
+		if v != nil {
+			return *v
+		}
+		var ret RouteQueryParams
+		return ret
+	}).(RouteQueryParamsOutput)
+}
+
+// Query params for the create operation.
+func (o RouteQueryParamsPtrOutput) Create() RouteCreateQueryParamsPtrOutput {
+	return o.ApplyT(func(v *RouteQueryParams) *RouteCreateQueryParams {
+		if v == nil {
+			return nil
+		}
+		return v.Create
+	}).(RouteCreateQueryParamsPtrOutput)
+}
+
+// Query params for the delete operation.
+func (o RouteQueryParamsPtrOutput) Delete() RouteDeleteQueryParamsPtrOutput {
+	return o.ApplyT(func(v *RouteQueryParams) *RouteDeleteQueryParams {
+		if v == nil {
+			return nil
+		}
+		return v.Delete
+	}).(RouteDeleteQueryParamsPtrOutput)
+}
+
+// Query params for the update operation.
+func (o RouteQueryParamsPtrOutput) Update() RouteUpdateQueryParamsPtrOutput {
+	return o.ApplyT(func(v *RouteQueryParams) *RouteUpdateQueryParams {
+		if v == nil {
+			return nil
+		}
+		return v.Update
+	}).(RouteUpdateQueryParamsPtrOutput)
+}
+
+// Query params for the API request.
+type RouteUpdateQueryParams struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams map[string]string `pulumi:"additionalParams"`
+}
+
+// RouteUpdateQueryParamsInput is an input type that accepts RouteUpdateQueryParamsArgs and RouteUpdateQueryParamsOutput values.
+// You can construct a concrete instance of `RouteUpdateQueryParamsInput` via:
+//
+//	RouteUpdateQueryParamsArgs{...}
+type RouteUpdateQueryParamsInput interface {
+	pulumi.Input
+
+	ToRouteUpdateQueryParamsOutput() RouteUpdateQueryParamsOutput
+	ToRouteUpdateQueryParamsOutputWithContext(context.Context) RouteUpdateQueryParamsOutput
+}
+
+// Query params for the API request.
+type RouteUpdateQueryParamsArgs struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams pulumi.StringMapInput `pulumi:"additionalParams"`
+}
+
+func (RouteUpdateQueryParamsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*RouteUpdateQueryParams)(nil)).Elem()
+}
+
+func (i RouteUpdateQueryParamsArgs) ToRouteUpdateQueryParamsOutput() RouteUpdateQueryParamsOutput {
+	return i.ToRouteUpdateQueryParamsOutputWithContext(context.Background())
+}
+
+func (i RouteUpdateQueryParamsArgs) ToRouteUpdateQueryParamsOutputWithContext(ctx context.Context) RouteUpdateQueryParamsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RouteUpdateQueryParamsOutput)
+}
+
+func (i RouteUpdateQueryParamsArgs) ToRouteUpdateQueryParamsPtrOutput() RouteUpdateQueryParamsPtrOutput {
+	return i.ToRouteUpdateQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i RouteUpdateQueryParamsArgs) ToRouteUpdateQueryParamsPtrOutputWithContext(ctx context.Context) RouteUpdateQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RouteUpdateQueryParamsOutput).ToRouteUpdateQueryParamsPtrOutputWithContext(ctx)
+}
+
+// RouteUpdateQueryParamsPtrInput is an input type that accepts RouteUpdateQueryParamsArgs, RouteUpdateQueryParamsPtr and RouteUpdateQueryParamsPtrOutput values.
+// You can construct a concrete instance of `RouteUpdateQueryParamsPtrInput` via:
+//
+//	        RouteUpdateQueryParamsArgs{...}
+//
+//	or:
+//
+//	        nil
+type RouteUpdateQueryParamsPtrInput interface {
+	pulumi.Input
+
+	ToRouteUpdateQueryParamsPtrOutput() RouteUpdateQueryParamsPtrOutput
+	ToRouteUpdateQueryParamsPtrOutputWithContext(context.Context) RouteUpdateQueryParamsPtrOutput
+}
+
+type routeUpdateQueryParamsPtrType RouteUpdateQueryParamsArgs
+
+func RouteUpdateQueryParamsPtr(v *RouteUpdateQueryParamsArgs) RouteUpdateQueryParamsPtrInput {
+	return (*routeUpdateQueryParamsPtrType)(v)
+}
+
+func (*routeUpdateQueryParamsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**RouteUpdateQueryParams)(nil)).Elem()
+}
+
+func (i *routeUpdateQueryParamsPtrType) ToRouteUpdateQueryParamsPtrOutput() RouteUpdateQueryParamsPtrOutput {
+	return i.ToRouteUpdateQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i *routeUpdateQueryParamsPtrType) ToRouteUpdateQueryParamsPtrOutputWithContext(ctx context.Context) RouteUpdateQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(RouteUpdateQueryParamsPtrOutput)
+}
+
+// Query params for the API request.
+type RouteUpdateQueryParamsOutput struct{ *pulumi.OutputState }
+
+func (RouteUpdateQueryParamsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*RouteUpdateQueryParams)(nil)).Elem()
+}
+
+func (o RouteUpdateQueryParamsOutput) ToRouteUpdateQueryParamsOutput() RouteUpdateQueryParamsOutput {
+	return o
+}
+
+func (o RouteUpdateQueryParamsOutput) ToRouteUpdateQueryParamsOutputWithContext(ctx context.Context) RouteUpdateQueryParamsOutput {
+	return o
+}
+
+func (o RouteUpdateQueryParamsOutput) ToRouteUpdateQueryParamsPtrOutput() RouteUpdateQueryParamsPtrOutput {
+	return o.ToRouteUpdateQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (o RouteUpdateQueryParamsOutput) ToRouteUpdateQueryParamsPtrOutputWithContext(ctx context.Context) RouteUpdateQueryParamsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v RouteUpdateQueryParams) *RouteUpdateQueryParams {
+		return &v
+	}).(RouteUpdateQueryParamsPtrOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o RouteUpdateQueryParamsOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v RouteUpdateQueryParams) map[string]string { return v.AdditionalParams }).(pulumi.StringMapOutput)
+}
+
+type RouteUpdateQueryParamsPtrOutput struct{ *pulumi.OutputState }
+
+func (RouteUpdateQueryParamsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**RouteUpdateQueryParams)(nil)).Elem()
+}
+
+func (o RouteUpdateQueryParamsPtrOutput) ToRouteUpdateQueryParamsPtrOutput() RouteUpdateQueryParamsPtrOutput {
+	return o
+}
+
+func (o RouteUpdateQueryParamsPtrOutput) ToRouteUpdateQueryParamsPtrOutputWithContext(ctx context.Context) RouteUpdateQueryParamsPtrOutput {
+	return o
+}
+
+func (o RouteUpdateQueryParamsPtrOutput) Elem() RouteUpdateQueryParamsOutput {
+	return o.ApplyT(func(v *RouteUpdateQueryParams) RouteUpdateQueryParams {
+		if v != nil {
+			return *v
+		}
+		var ret RouteUpdateQueryParams
+		return ret
+	}).(RouteUpdateQueryParamsOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o RouteUpdateQueryParamsPtrOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *RouteUpdateQueryParams) map[string]string {
+		if v == nil {
+			return nil
+		}
+		return v.AdditionalParams
+	}).(pulumi.StringMapOutput)
+}
+
 type RouteWithCursor struct {
 	Cursor string    `pulumi:"cursor"`
 	Route  RouteType `pulumi:"route"`
@@ -5626,6 +17593,286 @@ func (o RouteWithCursorArrayOutput) Index(i pulumi.IntInput) RouteWithCursorOutp
 	}).(RouteWithCursorOutput)
 }
 
+// Query params for the API request.
+type ScaleServiceCreateQueryParams struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams map[string]string `pulumi:"additionalParams"`
+}
+
+// ScaleServiceCreateQueryParamsInput is an input type that accepts ScaleServiceCreateQueryParamsArgs and ScaleServiceCreateQueryParamsOutput values.
+// You can construct a concrete instance of `ScaleServiceCreateQueryParamsInput` via:
+//
+//	ScaleServiceCreateQueryParamsArgs{...}
+type ScaleServiceCreateQueryParamsInput interface {
+	pulumi.Input
+
+	ToScaleServiceCreateQueryParamsOutput() ScaleServiceCreateQueryParamsOutput
+	ToScaleServiceCreateQueryParamsOutputWithContext(context.Context) ScaleServiceCreateQueryParamsOutput
+}
+
+// Query params for the API request.
+type ScaleServiceCreateQueryParamsArgs struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams pulumi.StringMapInput `pulumi:"additionalParams"`
+}
+
+func (ScaleServiceCreateQueryParamsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ScaleServiceCreateQueryParams)(nil)).Elem()
+}
+
+func (i ScaleServiceCreateQueryParamsArgs) ToScaleServiceCreateQueryParamsOutput() ScaleServiceCreateQueryParamsOutput {
+	return i.ToScaleServiceCreateQueryParamsOutputWithContext(context.Background())
+}
+
+func (i ScaleServiceCreateQueryParamsArgs) ToScaleServiceCreateQueryParamsOutputWithContext(ctx context.Context) ScaleServiceCreateQueryParamsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ScaleServiceCreateQueryParamsOutput)
+}
+
+func (i ScaleServiceCreateQueryParamsArgs) ToScaleServiceCreateQueryParamsPtrOutput() ScaleServiceCreateQueryParamsPtrOutput {
+	return i.ToScaleServiceCreateQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i ScaleServiceCreateQueryParamsArgs) ToScaleServiceCreateQueryParamsPtrOutputWithContext(ctx context.Context) ScaleServiceCreateQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ScaleServiceCreateQueryParamsOutput).ToScaleServiceCreateQueryParamsPtrOutputWithContext(ctx)
+}
+
+// ScaleServiceCreateQueryParamsPtrInput is an input type that accepts ScaleServiceCreateQueryParamsArgs, ScaleServiceCreateQueryParamsPtr and ScaleServiceCreateQueryParamsPtrOutput values.
+// You can construct a concrete instance of `ScaleServiceCreateQueryParamsPtrInput` via:
+//
+//	        ScaleServiceCreateQueryParamsArgs{...}
+//
+//	or:
+//
+//	        nil
+type ScaleServiceCreateQueryParamsPtrInput interface {
+	pulumi.Input
+
+	ToScaleServiceCreateQueryParamsPtrOutput() ScaleServiceCreateQueryParamsPtrOutput
+	ToScaleServiceCreateQueryParamsPtrOutputWithContext(context.Context) ScaleServiceCreateQueryParamsPtrOutput
+}
+
+type scaleServiceCreateQueryParamsPtrType ScaleServiceCreateQueryParamsArgs
+
+func ScaleServiceCreateQueryParamsPtr(v *ScaleServiceCreateQueryParamsArgs) ScaleServiceCreateQueryParamsPtrInput {
+	return (*scaleServiceCreateQueryParamsPtrType)(v)
+}
+
+func (*scaleServiceCreateQueryParamsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**ScaleServiceCreateQueryParams)(nil)).Elem()
+}
+
+func (i *scaleServiceCreateQueryParamsPtrType) ToScaleServiceCreateQueryParamsPtrOutput() ScaleServiceCreateQueryParamsPtrOutput {
+	return i.ToScaleServiceCreateQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i *scaleServiceCreateQueryParamsPtrType) ToScaleServiceCreateQueryParamsPtrOutputWithContext(ctx context.Context) ScaleServiceCreateQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ScaleServiceCreateQueryParamsPtrOutput)
+}
+
+// Query params for the API request.
+type ScaleServiceCreateQueryParamsOutput struct{ *pulumi.OutputState }
+
+func (ScaleServiceCreateQueryParamsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ScaleServiceCreateQueryParams)(nil)).Elem()
+}
+
+func (o ScaleServiceCreateQueryParamsOutput) ToScaleServiceCreateQueryParamsOutput() ScaleServiceCreateQueryParamsOutput {
+	return o
+}
+
+func (o ScaleServiceCreateQueryParamsOutput) ToScaleServiceCreateQueryParamsOutputWithContext(ctx context.Context) ScaleServiceCreateQueryParamsOutput {
+	return o
+}
+
+func (o ScaleServiceCreateQueryParamsOutput) ToScaleServiceCreateQueryParamsPtrOutput() ScaleServiceCreateQueryParamsPtrOutput {
+	return o.ToScaleServiceCreateQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (o ScaleServiceCreateQueryParamsOutput) ToScaleServiceCreateQueryParamsPtrOutputWithContext(ctx context.Context) ScaleServiceCreateQueryParamsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v ScaleServiceCreateQueryParams) *ScaleServiceCreateQueryParams {
+		return &v
+	}).(ScaleServiceCreateQueryParamsPtrOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o ScaleServiceCreateQueryParamsOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v ScaleServiceCreateQueryParams) map[string]string { return v.AdditionalParams }).(pulumi.StringMapOutput)
+}
+
+type ScaleServiceCreateQueryParamsPtrOutput struct{ *pulumi.OutputState }
+
+func (ScaleServiceCreateQueryParamsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ScaleServiceCreateQueryParams)(nil)).Elem()
+}
+
+func (o ScaleServiceCreateQueryParamsPtrOutput) ToScaleServiceCreateQueryParamsPtrOutput() ScaleServiceCreateQueryParamsPtrOutput {
+	return o
+}
+
+func (o ScaleServiceCreateQueryParamsPtrOutput) ToScaleServiceCreateQueryParamsPtrOutputWithContext(ctx context.Context) ScaleServiceCreateQueryParamsPtrOutput {
+	return o
+}
+
+func (o ScaleServiceCreateQueryParamsPtrOutput) Elem() ScaleServiceCreateQueryParamsOutput {
+	return o.ApplyT(func(v *ScaleServiceCreateQueryParams) ScaleServiceCreateQueryParams {
+		if v != nil {
+			return *v
+		}
+		var ret ScaleServiceCreateQueryParams
+		return ret
+	}).(ScaleServiceCreateQueryParamsOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o ScaleServiceCreateQueryParamsPtrOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *ScaleServiceCreateQueryParams) map[string]string {
+		if v == nil {
+			return nil
+		}
+		return v.AdditionalParams
+	}).(pulumi.StringMapOutput)
+}
+
+// Query params for each of the operations of the resource.
+type ScaleServiceQueryParams struct {
+	// Query params for the create operation.
+	Create *ScaleServiceCreateQueryParams `pulumi:"create"`
+}
+
+// ScaleServiceQueryParamsInput is an input type that accepts ScaleServiceQueryParamsArgs and ScaleServiceQueryParamsOutput values.
+// You can construct a concrete instance of `ScaleServiceQueryParamsInput` via:
+//
+//	ScaleServiceQueryParamsArgs{...}
+type ScaleServiceQueryParamsInput interface {
+	pulumi.Input
+
+	ToScaleServiceQueryParamsOutput() ScaleServiceQueryParamsOutput
+	ToScaleServiceQueryParamsOutputWithContext(context.Context) ScaleServiceQueryParamsOutput
+}
+
+// Query params for each of the operations of the resource.
+type ScaleServiceQueryParamsArgs struct {
+	// Query params for the create operation.
+	Create ScaleServiceCreateQueryParamsPtrInput `pulumi:"create"`
+}
+
+func (ScaleServiceQueryParamsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ScaleServiceQueryParams)(nil)).Elem()
+}
+
+func (i ScaleServiceQueryParamsArgs) ToScaleServiceQueryParamsOutput() ScaleServiceQueryParamsOutput {
+	return i.ToScaleServiceQueryParamsOutputWithContext(context.Background())
+}
+
+func (i ScaleServiceQueryParamsArgs) ToScaleServiceQueryParamsOutputWithContext(ctx context.Context) ScaleServiceQueryParamsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ScaleServiceQueryParamsOutput)
+}
+
+func (i ScaleServiceQueryParamsArgs) ToScaleServiceQueryParamsPtrOutput() ScaleServiceQueryParamsPtrOutput {
+	return i.ToScaleServiceQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i ScaleServiceQueryParamsArgs) ToScaleServiceQueryParamsPtrOutputWithContext(ctx context.Context) ScaleServiceQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ScaleServiceQueryParamsOutput).ToScaleServiceQueryParamsPtrOutputWithContext(ctx)
+}
+
+// ScaleServiceQueryParamsPtrInput is an input type that accepts ScaleServiceQueryParamsArgs, ScaleServiceQueryParamsPtr and ScaleServiceQueryParamsPtrOutput values.
+// You can construct a concrete instance of `ScaleServiceQueryParamsPtrInput` via:
+//
+//	        ScaleServiceQueryParamsArgs{...}
+//
+//	or:
+//
+//	        nil
+type ScaleServiceQueryParamsPtrInput interface {
+	pulumi.Input
+
+	ToScaleServiceQueryParamsPtrOutput() ScaleServiceQueryParamsPtrOutput
+	ToScaleServiceQueryParamsPtrOutputWithContext(context.Context) ScaleServiceQueryParamsPtrOutput
+}
+
+type scaleServiceQueryParamsPtrType ScaleServiceQueryParamsArgs
+
+func ScaleServiceQueryParamsPtr(v *ScaleServiceQueryParamsArgs) ScaleServiceQueryParamsPtrInput {
+	return (*scaleServiceQueryParamsPtrType)(v)
+}
+
+func (*scaleServiceQueryParamsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**ScaleServiceQueryParams)(nil)).Elem()
+}
+
+func (i *scaleServiceQueryParamsPtrType) ToScaleServiceQueryParamsPtrOutput() ScaleServiceQueryParamsPtrOutput {
+	return i.ToScaleServiceQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i *scaleServiceQueryParamsPtrType) ToScaleServiceQueryParamsPtrOutputWithContext(ctx context.Context) ScaleServiceQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ScaleServiceQueryParamsPtrOutput)
+}
+
+// Query params for each of the operations of the resource.
+type ScaleServiceQueryParamsOutput struct{ *pulumi.OutputState }
+
+func (ScaleServiceQueryParamsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ScaleServiceQueryParams)(nil)).Elem()
+}
+
+func (o ScaleServiceQueryParamsOutput) ToScaleServiceQueryParamsOutput() ScaleServiceQueryParamsOutput {
+	return o
+}
+
+func (o ScaleServiceQueryParamsOutput) ToScaleServiceQueryParamsOutputWithContext(ctx context.Context) ScaleServiceQueryParamsOutput {
+	return o
+}
+
+func (o ScaleServiceQueryParamsOutput) ToScaleServiceQueryParamsPtrOutput() ScaleServiceQueryParamsPtrOutput {
+	return o.ToScaleServiceQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (o ScaleServiceQueryParamsOutput) ToScaleServiceQueryParamsPtrOutputWithContext(ctx context.Context) ScaleServiceQueryParamsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v ScaleServiceQueryParams) *ScaleServiceQueryParams {
+		return &v
+	}).(ScaleServiceQueryParamsPtrOutput)
+}
+
+// Query params for the create operation.
+func (o ScaleServiceQueryParamsOutput) Create() ScaleServiceCreateQueryParamsPtrOutput {
+	return o.ApplyT(func(v ScaleServiceQueryParams) *ScaleServiceCreateQueryParams { return v.Create }).(ScaleServiceCreateQueryParamsPtrOutput)
+}
+
+type ScaleServiceQueryParamsPtrOutput struct{ *pulumi.OutputState }
+
+func (ScaleServiceQueryParamsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ScaleServiceQueryParams)(nil)).Elem()
+}
+
+func (o ScaleServiceQueryParamsPtrOutput) ToScaleServiceQueryParamsPtrOutput() ScaleServiceQueryParamsPtrOutput {
+	return o
+}
+
+func (o ScaleServiceQueryParamsPtrOutput) ToScaleServiceQueryParamsPtrOutputWithContext(ctx context.Context) ScaleServiceQueryParamsPtrOutput {
+	return o
+}
+
+func (o ScaleServiceQueryParamsPtrOutput) Elem() ScaleServiceQueryParamsOutput {
+	return o.ApplyT(func(v *ScaleServiceQueryParams) ScaleServiceQueryParams {
+		if v != nil {
+			return *v
+		}
+		var ret ScaleServiceQueryParams
+		return ret
+	}).(ScaleServiceQueryParamsOutput)
+}
+
+// Query params for the create operation.
+func (o ScaleServiceQueryParamsPtrOutput) Create() ScaleServiceCreateQueryParamsPtrOutput {
+	return o.ApplyT(func(v *ScaleServiceQueryParams) *ScaleServiceCreateQueryParams {
+		if v == nil {
+			return nil
+		}
+		return v.Create
+	}).(ScaleServiceCreateQueryParamsPtrOutput)
+}
+
 type SecretFileType struct {
 	Content string `pulumi:"content"`
 	Name    string `pulumi:"name"`
@@ -5651,6 +17898,286 @@ func (o SecretFileTypeOutput) Content() pulumi.StringOutput {
 
 func (o SecretFileTypeOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v SecretFileType) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// Query params for the API request.
+type SecretFileCreateQueryParams struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams map[string]string `pulumi:"additionalParams"`
+}
+
+// SecretFileCreateQueryParamsInput is an input type that accepts SecretFileCreateQueryParamsArgs and SecretFileCreateQueryParamsOutput values.
+// You can construct a concrete instance of `SecretFileCreateQueryParamsInput` via:
+//
+//	SecretFileCreateQueryParamsArgs{...}
+type SecretFileCreateQueryParamsInput interface {
+	pulumi.Input
+
+	ToSecretFileCreateQueryParamsOutput() SecretFileCreateQueryParamsOutput
+	ToSecretFileCreateQueryParamsOutputWithContext(context.Context) SecretFileCreateQueryParamsOutput
+}
+
+// Query params for the API request.
+type SecretFileCreateQueryParamsArgs struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams pulumi.StringMapInput `pulumi:"additionalParams"`
+}
+
+func (SecretFileCreateQueryParamsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*SecretFileCreateQueryParams)(nil)).Elem()
+}
+
+func (i SecretFileCreateQueryParamsArgs) ToSecretFileCreateQueryParamsOutput() SecretFileCreateQueryParamsOutput {
+	return i.ToSecretFileCreateQueryParamsOutputWithContext(context.Background())
+}
+
+func (i SecretFileCreateQueryParamsArgs) ToSecretFileCreateQueryParamsOutputWithContext(ctx context.Context) SecretFileCreateQueryParamsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SecretFileCreateQueryParamsOutput)
+}
+
+func (i SecretFileCreateQueryParamsArgs) ToSecretFileCreateQueryParamsPtrOutput() SecretFileCreateQueryParamsPtrOutput {
+	return i.ToSecretFileCreateQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i SecretFileCreateQueryParamsArgs) ToSecretFileCreateQueryParamsPtrOutputWithContext(ctx context.Context) SecretFileCreateQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SecretFileCreateQueryParamsOutput).ToSecretFileCreateQueryParamsPtrOutputWithContext(ctx)
+}
+
+// SecretFileCreateQueryParamsPtrInput is an input type that accepts SecretFileCreateQueryParamsArgs, SecretFileCreateQueryParamsPtr and SecretFileCreateQueryParamsPtrOutput values.
+// You can construct a concrete instance of `SecretFileCreateQueryParamsPtrInput` via:
+//
+//	        SecretFileCreateQueryParamsArgs{...}
+//
+//	or:
+//
+//	        nil
+type SecretFileCreateQueryParamsPtrInput interface {
+	pulumi.Input
+
+	ToSecretFileCreateQueryParamsPtrOutput() SecretFileCreateQueryParamsPtrOutput
+	ToSecretFileCreateQueryParamsPtrOutputWithContext(context.Context) SecretFileCreateQueryParamsPtrOutput
+}
+
+type secretFileCreateQueryParamsPtrType SecretFileCreateQueryParamsArgs
+
+func SecretFileCreateQueryParamsPtr(v *SecretFileCreateQueryParamsArgs) SecretFileCreateQueryParamsPtrInput {
+	return (*secretFileCreateQueryParamsPtrType)(v)
+}
+
+func (*secretFileCreateQueryParamsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**SecretFileCreateQueryParams)(nil)).Elem()
+}
+
+func (i *secretFileCreateQueryParamsPtrType) ToSecretFileCreateQueryParamsPtrOutput() SecretFileCreateQueryParamsPtrOutput {
+	return i.ToSecretFileCreateQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i *secretFileCreateQueryParamsPtrType) ToSecretFileCreateQueryParamsPtrOutputWithContext(ctx context.Context) SecretFileCreateQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SecretFileCreateQueryParamsPtrOutput)
+}
+
+// Query params for the API request.
+type SecretFileCreateQueryParamsOutput struct{ *pulumi.OutputState }
+
+func (SecretFileCreateQueryParamsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*SecretFileCreateQueryParams)(nil)).Elem()
+}
+
+func (o SecretFileCreateQueryParamsOutput) ToSecretFileCreateQueryParamsOutput() SecretFileCreateQueryParamsOutput {
+	return o
+}
+
+func (o SecretFileCreateQueryParamsOutput) ToSecretFileCreateQueryParamsOutputWithContext(ctx context.Context) SecretFileCreateQueryParamsOutput {
+	return o
+}
+
+func (o SecretFileCreateQueryParamsOutput) ToSecretFileCreateQueryParamsPtrOutput() SecretFileCreateQueryParamsPtrOutput {
+	return o.ToSecretFileCreateQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (o SecretFileCreateQueryParamsOutput) ToSecretFileCreateQueryParamsPtrOutputWithContext(ctx context.Context) SecretFileCreateQueryParamsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v SecretFileCreateQueryParams) *SecretFileCreateQueryParams {
+		return &v
+	}).(SecretFileCreateQueryParamsPtrOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o SecretFileCreateQueryParamsOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v SecretFileCreateQueryParams) map[string]string { return v.AdditionalParams }).(pulumi.StringMapOutput)
+}
+
+type SecretFileCreateQueryParamsPtrOutput struct{ *pulumi.OutputState }
+
+func (SecretFileCreateQueryParamsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**SecretFileCreateQueryParams)(nil)).Elem()
+}
+
+func (o SecretFileCreateQueryParamsPtrOutput) ToSecretFileCreateQueryParamsPtrOutput() SecretFileCreateQueryParamsPtrOutput {
+	return o
+}
+
+func (o SecretFileCreateQueryParamsPtrOutput) ToSecretFileCreateQueryParamsPtrOutputWithContext(ctx context.Context) SecretFileCreateQueryParamsPtrOutput {
+	return o
+}
+
+func (o SecretFileCreateQueryParamsPtrOutput) Elem() SecretFileCreateQueryParamsOutput {
+	return o.ApplyT(func(v *SecretFileCreateQueryParams) SecretFileCreateQueryParams {
+		if v != nil {
+			return *v
+		}
+		var ret SecretFileCreateQueryParams
+		return ret
+	}).(SecretFileCreateQueryParamsOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o SecretFileCreateQueryParamsPtrOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *SecretFileCreateQueryParams) map[string]string {
+		if v == nil {
+			return nil
+		}
+		return v.AdditionalParams
+	}).(pulumi.StringMapOutput)
+}
+
+// Query params for the API request.
+type SecretFileDeleteQueryParams struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams map[string]string `pulumi:"additionalParams"`
+}
+
+// SecretFileDeleteQueryParamsInput is an input type that accepts SecretFileDeleteQueryParamsArgs and SecretFileDeleteQueryParamsOutput values.
+// You can construct a concrete instance of `SecretFileDeleteQueryParamsInput` via:
+//
+//	SecretFileDeleteQueryParamsArgs{...}
+type SecretFileDeleteQueryParamsInput interface {
+	pulumi.Input
+
+	ToSecretFileDeleteQueryParamsOutput() SecretFileDeleteQueryParamsOutput
+	ToSecretFileDeleteQueryParamsOutputWithContext(context.Context) SecretFileDeleteQueryParamsOutput
+}
+
+// Query params for the API request.
+type SecretFileDeleteQueryParamsArgs struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams pulumi.StringMapInput `pulumi:"additionalParams"`
+}
+
+func (SecretFileDeleteQueryParamsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*SecretFileDeleteQueryParams)(nil)).Elem()
+}
+
+func (i SecretFileDeleteQueryParamsArgs) ToSecretFileDeleteQueryParamsOutput() SecretFileDeleteQueryParamsOutput {
+	return i.ToSecretFileDeleteQueryParamsOutputWithContext(context.Background())
+}
+
+func (i SecretFileDeleteQueryParamsArgs) ToSecretFileDeleteQueryParamsOutputWithContext(ctx context.Context) SecretFileDeleteQueryParamsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SecretFileDeleteQueryParamsOutput)
+}
+
+func (i SecretFileDeleteQueryParamsArgs) ToSecretFileDeleteQueryParamsPtrOutput() SecretFileDeleteQueryParamsPtrOutput {
+	return i.ToSecretFileDeleteQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i SecretFileDeleteQueryParamsArgs) ToSecretFileDeleteQueryParamsPtrOutputWithContext(ctx context.Context) SecretFileDeleteQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SecretFileDeleteQueryParamsOutput).ToSecretFileDeleteQueryParamsPtrOutputWithContext(ctx)
+}
+
+// SecretFileDeleteQueryParamsPtrInput is an input type that accepts SecretFileDeleteQueryParamsArgs, SecretFileDeleteQueryParamsPtr and SecretFileDeleteQueryParamsPtrOutput values.
+// You can construct a concrete instance of `SecretFileDeleteQueryParamsPtrInput` via:
+//
+//	        SecretFileDeleteQueryParamsArgs{...}
+//
+//	or:
+//
+//	        nil
+type SecretFileDeleteQueryParamsPtrInput interface {
+	pulumi.Input
+
+	ToSecretFileDeleteQueryParamsPtrOutput() SecretFileDeleteQueryParamsPtrOutput
+	ToSecretFileDeleteQueryParamsPtrOutputWithContext(context.Context) SecretFileDeleteQueryParamsPtrOutput
+}
+
+type secretFileDeleteQueryParamsPtrType SecretFileDeleteQueryParamsArgs
+
+func SecretFileDeleteQueryParamsPtr(v *SecretFileDeleteQueryParamsArgs) SecretFileDeleteQueryParamsPtrInput {
+	return (*secretFileDeleteQueryParamsPtrType)(v)
+}
+
+func (*secretFileDeleteQueryParamsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**SecretFileDeleteQueryParams)(nil)).Elem()
+}
+
+func (i *secretFileDeleteQueryParamsPtrType) ToSecretFileDeleteQueryParamsPtrOutput() SecretFileDeleteQueryParamsPtrOutput {
+	return i.ToSecretFileDeleteQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i *secretFileDeleteQueryParamsPtrType) ToSecretFileDeleteQueryParamsPtrOutputWithContext(ctx context.Context) SecretFileDeleteQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SecretFileDeleteQueryParamsPtrOutput)
+}
+
+// Query params for the API request.
+type SecretFileDeleteQueryParamsOutput struct{ *pulumi.OutputState }
+
+func (SecretFileDeleteQueryParamsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*SecretFileDeleteQueryParams)(nil)).Elem()
+}
+
+func (o SecretFileDeleteQueryParamsOutput) ToSecretFileDeleteQueryParamsOutput() SecretFileDeleteQueryParamsOutput {
+	return o
+}
+
+func (o SecretFileDeleteQueryParamsOutput) ToSecretFileDeleteQueryParamsOutputWithContext(ctx context.Context) SecretFileDeleteQueryParamsOutput {
+	return o
+}
+
+func (o SecretFileDeleteQueryParamsOutput) ToSecretFileDeleteQueryParamsPtrOutput() SecretFileDeleteQueryParamsPtrOutput {
+	return o.ToSecretFileDeleteQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (o SecretFileDeleteQueryParamsOutput) ToSecretFileDeleteQueryParamsPtrOutputWithContext(ctx context.Context) SecretFileDeleteQueryParamsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v SecretFileDeleteQueryParams) *SecretFileDeleteQueryParams {
+		return &v
+	}).(SecretFileDeleteQueryParamsPtrOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o SecretFileDeleteQueryParamsOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v SecretFileDeleteQueryParams) map[string]string { return v.AdditionalParams }).(pulumi.StringMapOutput)
+}
+
+type SecretFileDeleteQueryParamsPtrOutput struct{ *pulumi.OutputState }
+
+func (SecretFileDeleteQueryParamsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**SecretFileDeleteQueryParams)(nil)).Elem()
+}
+
+func (o SecretFileDeleteQueryParamsPtrOutput) ToSecretFileDeleteQueryParamsPtrOutput() SecretFileDeleteQueryParamsPtrOutput {
+	return o
+}
+
+func (o SecretFileDeleteQueryParamsPtrOutput) ToSecretFileDeleteQueryParamsPtrOutputWithContext(ctx context.Context) SecretFileDeleteQueryParamsPtrOutput {
+	return o
+}
+
+func (o SecretFileDeleteQueryParamsPtrOutput) Elem() SecretFileDeleteQueryParamsOutput {
+	return o.ApplyT(func(v *SecretFileDeleteQueryParams) SecretFileDeleteQueryParams {
+		if v != nil {
+			return *v
+		}
+		var ret SecretFileDeleteQueryParams
+		return ret
+	}).(SecretFileDeleteQueryParamsOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o SecretFileDeleteQueryParamsPtrOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *SecretFileDeleteQueryParams) map[string]string {
+		if v == nil {
+			return nil
+		}
+		return v.AdditionalParams
+	}).(pulumi.StringMapOutput)
 }
 
 type SecretFileInputType struct {
@@ -5753,6 +18280,483 @@ func (o SecretFileInputTypeArrayOutput) Index(i pulumi.IntInput) SecretFileInput
 	}).(SecretFileInputTypeOutput)
 }
 
+// Query params for the API request.
+type SecretFilePutQueryParams struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams map[string]string `pulumi:"additionalParams"`
+}
+
+// SecretFilePutQueryParamsInput is an input type that accepts SecretFilePutQueryParamsArgs and SecretFilePutQueryParamsOutput values.
+// You can construct a concrete instance of `SecretFilePutQueryParamsInput` via:
+//
+//	SecretFilePutQueryParamsArgs{...}
+type SecretFilePutQueryParamsInput interface {
+	pulumi.Input
+
+	ToSecretFilePutQueryParamsOutput() SecretFilePutQueryParamsOutput
+	ToSecretFilePutQueryParamsOutputWithContext(context.Context) SecretFilePutQueryParamsOutput
+}
+
+// Query params for the API request.
+type SecretFilePutQueryParamsArgs struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams pulumi.StringMapInput `pulumi:"additionalParams"`
+}
+
+func (SecretFilePutQueryParamsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*SecretFilePutQueryParams)(nil)).Elem()
+}
+
+func (i SecretFilePutQueryParamsArgs) ToSecretFilePutQueryParamsOutput() SecretFilePutQueryParamsOutput {
+	return i.ToSecretFilePutQueryParamsOutputWithContext(context.Background())
+}
+
+func (i SecretFilePutQueryParamsArgs) ToSecretFilePutQueryParamsOutputWithContext(ctx context.Context) SecretFilePutQueryParamsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SecretFilePutQueryParamsOutput)
+}
+
+func (i SecretFilePutQueryParamsArgs) ToSecretFilePutQueryParamsPtrOutput() SecretFilePutQueryParamsPtrOutput {
+	return i.ToSecretFilePutQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i SecretFilePutQueryParamsArgs) ToSecretFilePutQueryParamsPtrOutputWithContext(ctx context.Context) SecretFilePutQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SecretFilePutQueryParamsOutput).ToSecretFilePutQueryParamsPtrOutputWithContext(ctx)
+}
+
+// SecretFilePutQueryParamsPtrInput is an input type that accepts SecretFilePutQueryParamsArgs, SecretFilePutQueryParamsPtr and SecretFilePutQueryParamsPtrOutput values.
+// You can construct a concrete instance of `SecretFilePutQueryParamsPtrInput` via:
+//
+//	        SecretFilePutQueryParamsArgs{...}
+//
+//	or:
+//
+//	        nil
+type SecretFilePutQueryParamsPtrInput interface {
+	pulumi.Input
+
+	ToSecretFilePutQueryParamsPtrOutput() SecretFilePutQueryParamsPtrOutput
+	ToSecretFilePutQueryParamsPtrOutputWithContext(context.Context) SecretFilePutQueryParamsPtrOutput
+}
+
+type secretFilePutQueryParamsPtrType SecretFilePutQueryParamsArgs
+
+func SecretFilePutQueryParamsPtr(v *SecretFilePutQueryParamsArgs) SecretFilePutQueryParamsPtrInput {
+	return (*secretFilePutQueryParamsPtrType)(v)
+}
+
+func (*secretFilePutQueryParamsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**SecretFilePutQueryParams)(nil)).Elem()
+}
+
+func (i *secretFilePutQueryParamsPtrType) ToSecretFilePutQueryParamsPtrOutput() SecretFilePutQueryParamsPtrOutput {
+	return i.ToSecretFilePutQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i *secretFilePutQueryParamsPtrType) ToSecretFilePutQueryParamsPtrOutputWithContext(ctx context.Context) SecretFilePutQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SecretFilePutQueryParamsPtrOutput)
+}
+
+// Query params for the API request.
+type SecretFilePutQueryParamsOutput struct{ *pulumi.OutputState }
+
+func (SecretFilePutQueryParamsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*SecretFilePutQueryParams)(nil)).Elem()
+}
+
+func (o SecretFilePutQueryParamsOutput) ToSecretFilePutQueryParamsOutput() SecretFilePutQueryParamsOutput {
+	return o
+}
+
+func (o SecretFilePutQueryParamsOutput) ToSecretFilePutQueryParamsOutputWithContext(ctx context.Context) SecretFilePutQueryParamsOutput {
+	return o
+}
+
+func (o SecretFilePutQueryParamsOutput) ToSecretFilePutQueryParamsPtrOutput() SecretFilePutQueryParamsPtrOutput {
+	return o.ToSecretFilePutQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (o SecretFilePutQueryParamsOutput) ToSecretFilePutQueryParamsPtrOutputWithContext(ctx context.Context) SecretFilePutQueryParamsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v SecretFilePutQueryParams) *SecretFilePutQueryParams {
+		return &v
+	}).(SecretFilePutQueryParamsPtrOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o SecretFilePutQueryParamsOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v SecretFilePutQueryParams) map[string]string { return v.AdditionalParams }).(pulumi.StringMapOutput)
+}
+
+type SecretFilePutQueryParamsPtrOutput struct{ *pulumi.OutputState }
+
+func (SecretFilePutQueryParamsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**SecretFilePutQueryParams)(nil)).Elem()
+}
+
+func (o SecretFilePutQueryParamsPtrOutput) ToSecretFilePutQueryParamsPtrOutput() SecretFilePutQueryParamsPtrOutput {
+	return o
+}
+
+func (o SecretFilePutQueryParamsPtrOutput) ToSecretFilePutQueryParamsPtrOutputWithContext(ctx context.Context) SecretFilePutQueryParamsPtrOutput {
+	return o
+}
+
+func (o SecretFilePutQueryParamsPtrOutput) Elem() SecretFilePutQueryParamsOutput {
+	return o.ApplyT(func(v *SecretFilePutQueryParams) SecretFilePutQueryParams {
+		if v != nil {
+			return *v
+		}
+		var ret SecretFilePutQueryParams
+		return ret
+	}).(SecretFilePutQueryParamsOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o SecretFilePutQueryParamsPtrOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *SecretFilePutQueryParams) map[string]string {
+		if v == nil {
+			return nil
+		}
+		return v.AdditionalParams
+	}).(pulumi.StringMapOutput)
+}
+
+// Query params for each of the operations of the resource.
+type SecretFileQueryParams struct {
+	// Query params for the create operation.
+	Create *SecretFileCreateQueryParams `pulumi:"create"`
+	// Query params for the delete operation.
+	Delete *SecretFileDeleteQueryParams `pulumi:"delete"`
+	// Query params for the put operation.
+	Put *SecretFilePutQueryParams `pulumi:"put"`
+	// Query params for the read operation.
+	Read *SecretFileReadQueryParams `pulumi:"read"`
+}
+
+// SecretFileQueryParamsInput is an input type that accepts SecretFileQueryParamsArgs and SecretFileQueryParamsOutput values.
+// You can construct a concrete instance of `SecretFileQueryParamsInput` via:
+//
+//	SecretFileQueryParamsArgs{...}
+type SecretFileQueryParamsInput interface {
+	pulumi.Input
+
+	ToSecretFileQueryParamsOutput() SecretFileQueryParamsOutput
+	ToSecretFileQueryParamsOutputWithContext(context.Context) SecretFileQueryParamsOutput
+}
+
+// Query params for each of the operations of the resource.
+type SecretFileQueryParamsArgs struct {
+	// Query params for the create operation.
+	Create SecretFileCreateQueryParamsPtrInput `pulumi:"create"`
+	// Query params for the delete operation.
+	Delete SecretFileDeleteQueryParamsPtrInput `pulumi:"delete"`
+	// Query params for the put operation.
+	Put SecretFilePutQueryParamsPtrInput `pulumi:"put"`
+	// Query params for the read operation.
+	Read SecretFileReadQueryParamsPtrInput `pulumi:"read"`
+}
+
+func (SecretFileQueryParamsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*SecretFileQueryParams)(nil)).Elem()
+}
+
+func (i SecretFileQueryParamsArgs) ToSecretFileQueryParamsOutput() SecretFileQueryParamsOutput {
+	return i.ToSecretFileQueryParamsOutputWithContext(context.Background())
+}
+
+func (i SecretFileQueryParamsArgs) ToSecretFileQueryParamsOutputWithContext(ctx context.Context) SecretFileQueryParamsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SecretFileQueryParamsOutput)
+}
+
+func (i SecretFileQueryParamsArgs) ToSecretFileQueryParamsPtrOutput() SecretFileQueryParamsPtrOutput {
+	return i.ToSecretFileQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i SecretFileQueryParamsArgs) ToSecretFileQueryParamsPtrOutputWithContext(ctx context.Context) SecretFileQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SecretFileQueryParamsOutput).ToSecretFileQueryParamsPtrOutputWithContext(ctx)
+}
+
+// SecretFileQueryParamsPtrInput is an input type that accepts SecretFileQueryParamsArgs, SecretFileQueryParamsPtr and SecretFileQueryParamsPtrOutput values.
+// You can construct a concrete instance of `SecretFileQueryParamsPtrInput` via:
+//
+//	        SecretFileQueryParamsArgs{...}
+//
+//	or:
+//
+//	        nil
+type SecretFileQueryParamsPtrInput interface {
+	pulumi.Input
+
+	ToSecretFileQueryParamsPtrOutput() SecretFileQueryParamsPtrOutput
+	ToSecretFileQueryParamsPtrOutputWithContext(context.Context) SecretFileQueryParamsPtrOutput
+}
+
+type secretFileQueryParamsPtrType SecretFileQueryParamsArgs
+
+func SecretFileQueryParamsPtr(v *SecretFileQueryParamsArgs) SecretFileQueryParamsPtrInput {
+	return (*secretFileQueryParamsPtrType)(v)
+}
+
+func (*secretFileQueryParamsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**SecretFileQueryParams)(nil)).Elem()
+}
+
+func (i *secretFileQueryParamsPtrType) ToSecretFileQueryParamsPtrOutput() SecretFileQueryParamsPtrOutput {
+	return i.ToSecretFileQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i *secretFileQueryParamsPtrType) ToSecretFileQueryParamsPtrOutputWithContext(ctx context.Context) SecretFileQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SecretFileQueryParamsPtrOutput)
+}
+
+// Query params for each of the operations of the resource.
+type SecretFileQueryParamsOutput struct{ *pulumi.OutputState }
+
+func (SecretFileQueryParamsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*SecretFileQueryParams)(nil)).Elem()
+}
+
+func (o SecretFileQueryParamsOutput) ToSecretFileQueryParamsOutput() SecretFileQueryParamsOutput {
+	return o
+}
+
+func (o SecretFileQueryParamsOutput) ToSecretFileQueryParamsOutputWithContext(ctx context.Context) SecretFileQueryParamsOutput {
+	return o
+}
+
+func (o SecretFileQueryParamsOutput) ToSecretFileQueryParamsPtrOutput() SecretFileQueryParamsPtrOutput {
+	return o.ToSecretFileQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (o SecretFileQueryParamsOutput) ToSecretFileQueryParamsPtrOutputWithContext(ctx context.Context) SecretFileQueryParamsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v SecretFileQueryParams) *SecretFileQueryParams {
+		return &v
+	}).(SecretFileQueryParamsPtrOutput)
+}
+
+// Query params for the create operation.
+func (o SecretFileQueryParamsOutput) Create() SecretFileCreateQueryParamsPtrOutput {
+	return o.ApplyT(func(v SecretFileQueryParams) *SecretFileCreateQueryParams { return v.Create }).(SecretFileCreateQueryParamsPtrOutput)
+}
+
+// Query params for the delete operation.
+func (o SecretFileQueryParamsOutput) Delete() SecretFileDeleteQueryParamsPtrOutput {
+	return o.ApplyT(func(v SecretFileQueryParams) *SecretFileDeleteQueryParams { return v.Delete }).(SecretFileDeleteQueryParamsPtrOutput)
+}
+
+// Query params for the put operation.
+func (o SecretFileQueryParamsOutput) Put() SecretFilePutQueryParamsPtrOutput {
+	return o.ApplyT(func(v SecretFileQueryParams) *SecretFilePutQueryParams { return v.Put }).(SecretFilePutQueryParamsPtrOutput)
+}
+
+// Query params for the read operation.
+func (o SecretFileQueryParamsOutput) Read() SecretFileReadQueryParamsPtrOutput {
+	return o.ApplyT(func(v SecretFileQueryParams) *SecretFileReadQueryParams { return v.Read }).(SecretFileReadQueryParamsPtrOutput)
+}
+
+type SecretFileQueryParamsPtrOutput struct{ *pulumi.OutputState }
+
+func (SecretFileQueryParamsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**SecretFileQueryParams)(nil)).Elem()
+}
+
+func (o SecretFileQueryParamsPtrOutput) ToSecretFileQueryParamsPtrOutput() SecretFileQueryParamsPtrOutput {
+	return o
+}
+
+func (o SecretFileQueryParamsPtrOutput) ToSecretFileQueryParamsPtrOutputWithContext(ctx context.Context) SecretFileQueryParamsPtrOutput {
+	return o
+}
+
+func (o SecretFileQueryParamsPtrOutput) Elem() SecretFileQueryParamsOutput {
+	return o.ApplyT(func(v *SecretFileQueryParams) SecretFileQueryParams {
+		if v != nil {
+			return *v
+		}
+		var ret SecretFileQueryParams
+		return ret
+	}).(SecretFileQueryParamsOutput)
+}
+
+// Query params for the create operation.
+func (o SecretFileQueryParamsPtrOutput) Create() SecretFileCreateQueryParamsPtrOutput {
+	return o.ApplyT(func(v *SecretFileQueryParams) *SecretFileCreateQueryParams {
+		if v == nil {
+			return nil
+		}
+		return v.Create
+	}).(SecretFileCreateQueryParamsPtrOutput)
+}
+
+// Query params for the delete operation.
+func (o SecretFileQueryParamsPtrOutput) Delete() SecretFileDeleteQueryParamsPtrOutput {
+	return o.ApplyT(func(v *SecretFileQueryParams) *SecretFileDeleteQueryParams {
+		if v == nil {
+			return nil
+		}
+		return v.Delete
+	}).(SecretFileDeleteQueryParamsPtrOutput)
+}
+
+// Query params for the put operation.
+func (o SecretFileQueryParamsPtrOutput) Put() SecretFilePutQueryParamsPtrOutput {
+	return o.ApplyT(func(v *SecretFileQueryParams) *SecretFilePutQueryParams {
+		if v == nil {
+			return nil
+		}
+		return v.Put
+	}).(SecretFilePutQueryParamsPtrOutput)
+}
+
+// Query params for the read operation.
+func (o SecretFileQueryParamsPtrOutput) Read() SecretFileReadQueryParamsPtrOutput {
+	return o.ApplyT(func(v *SecretFileQueryParams) *SecretFileReadQueryParams {
+		if v == nil {
+			return nil
+		}
+		return v.Read
+	}).(SecretFileReadQueryParamsPtrOutput)
+}
+
+// Query params for the API request.
+type SecretFileReadQueryParams struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams map[string]string `pulumi:"additionalParams"`
+}
+
+// SecretFileReadQueryParamsInput is an input type that accepts SecretFileReadQueryParamsArgs and SecretFileReadQueryParamsOutput values.
+// You can construct a concrete instance of `SecretFileReadQueryParamsInput` via:
+//
+//	SecretFileReadQueryParamsArgs{...}
+type SecretFileReadQueryParamsInput interface {
+	pulumi.Input
+
+	ToSecretFileReadQueryParamsOutput() SecretFileReadQueryParamsOutput
+	ToSecretFileReadQueryParamsOutputWithContext(context.Context) SecretFileReadQueryParamsOutput
+}
+
+// Query params for the API request.
+type SecretFileReadQueryParamsArgs struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams pulumi.StringMapInput `pulumi:"additionalParams"`
+}
+
+func (SecretFileReadQueryParamsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*SecretFileReadQueryParams)(nil)).Elem()
+}
+
+func (i SecretFileReadQueryParamsArgs) ToSecretFileReadQueryParamsOutput() SecretFileReadQueryParamsOutput {
+	return i.ToSecretFileReadQueryParamsOutputWithContext(context.Background())
+}
+
+func (i SecretFileReadQueryParamsArgs) ToSecretFileReadQueryParamsOutputWithContext(ctx context.Context) SecretFileReadQueryParamsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SecretFileReadQueryParamsOutput)
+}
+
+func (i SecretFileReadQueryParamsArgs) ToSecretFileReadQueryParamsPtrOutput() SecretFileReadQueryParamsPtrOutput {
+	return i.ToSecretFileReadQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i SecretFileReadQueryParamsArgs) ToSecretFileReadQueryParamsPtrOutputWithContext(ctx context.Context) SecretFileReadQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SecretFileReadQueryParamsOutput).ToSecretFileReadQueryParamsPtrOutputWithContext(ctx)
+}
+
+// SecretFileReadQueryParamsPtrInput is an input type that accepts SecretFileReadQueryParamsArgs, SecretFileReadQueryParamsPtr and SecretFileReadQueryParamsPtrOutput values.
+// You can construct a concrete instance of `SecretFileReadQueryParamsPtrInput` via:
+//
+//	        SecretFileReadQueryParamsArgs{...}
+//
+//	or:
+//
+//	        nil
+type SecretFileReadQueryParamsPtrInput interface {
+	pulumi.Input
+
+	ToSecretFileReadQueryParamsPtrOutput() SecretFileReadQueryParamsPtrOutput
+	ToSecretFileReadQueryParamsPtrOutputWithContext(context.Context) SecretFileReadQueryParamsPtrOutput
+}
+
+type secretFileReadQueryParamsPtrType SecretFileReadQueryParamsArgs
+
+func SecretFileReadQueryParamsPtr(v *SecretFileReadQueryParamsArgs) SecretFileReadQueryParamsPtrInput {
+	return (*secretFileReadQueryParamsPtrType)(v)
+}
+
+func (*secretFileReadQueryParamsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**SecretFileReadQueryParams)(nil)).Elem()
+}
+
+func (i *secretFileReadQueryParamsPtrType) ToSecretFileReadQueryParamsPtrOutput() SecretFileReadQueryParamsPtrOutput {
+	return i.ToSecretFileReadQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i *secretFileReadQueryParamsPtrType) ToSecretFileReadQueryParamsPtrOutputWithContext(ctx context.Context) SecretFileReadQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SecretFileReadQueryParamsPtrOutput)
+}
+
+// Query params for the API request.
+type SecretFileReadQueryParamsOutput struct{ *pulumi.OutputState }
+
+func (SecretFileReadQueryParamsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*SecretFileReadQueryParams)(nil)).Elem()
+}
+
+func (o SecretFileReadQueryParamsOutput) ToSecretFileReadQueryParamsOutput() SecretFileReadQueryParamsOutput {
+	return o
+}
+
+func (o SecretFileReadQueryParamsOutput) ToSecretFileReadQueryParamsOutputWithContext(ctx context.Context) SecretFileReadQueryParamsOutput {
+	return o
+}
+
+func (o SecretFileReadQueryParamsOutput) ToSecretFileReadQueryParamsPtrOutput() SecretFileReadQueryParamsPtrOutput {
+	return o.ToSecretFileReadQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (o SecretFileReadQueryParamsOutput) ToSecretFileReadQueryParamsPtrOutputWithContext(ctx context.Context) SecretFileReadQueryParamsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v SecretFileReadQueryParams) *SecretFileReadQueryParams {
+		return &v
+	}).(SecretFileReadQueryParamsPtrOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o SecretFileReadQueryParamsOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v SecretFileReadQueryParams) map[string]string { return v.AdditionalParams }).(pulumi.StringMapOutput)
+}
+
+type SecretFileReadQueryParamsPtrOutput struct{ *pulumi.OutputState }
+
+func (SecretFileReadQueryParamsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**SecretFileReadQueryParams)(nil)).Elem()
+}
+
+func (o SecretFileReadQueryParamsPtrOutput) ToSecretFileReadQueryParamsPtrOutput() SecretFileReadQueryParamsPtrOutput {
+	return o
+}
+
+func (o SecretFileReadQueryParamsPtrOutput) ToSecretFileReadQueryParamsPtrOutputWithContext(ctx context.Context) SecretFileReadQueryParamsPtrOutput {
+	return o
+}
+
+func (o SecretFileReadQueryParamsPtrOutput) Elem() SecretFileReadQueryParamsOutput {
+	return o.ApplyT(func(v *SecretFileReadQueryParams) SecretFileReadQueryParams {
+		if v != nil {
+			return *v
+		}
+		var ret SecretFileReadQueryParams
+		return ret
+	}).(SecretFileReadQueryParamsOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o SecretFileReadQueryParamsPtrOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *SecretFileReadQueryParams) map[string]string {
+		if v == nil {
+			return nil
+		}
+		return v.AdditionalParams
+	}).(pulumi.StringMapOutput)
+}
+
 type SecretFileWithCursor struct {
 	Cursor     string         `pulumi:"cursor"`
 	SecretFile SecretFileType `pulumi:"secretFile"`
@@ -5798,6 +18802,445 @@ func (o SecretFileWithCursorArrayOutput) Index(i pulumi.IntInput) SecretFileWith
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) SecretFileWithCursor {
 		return vs[0].([]SecretFileWithCursor)[vs[1].(int)]
 	}).(SecretFileWithCursorOutput)
+}
+
+// Query params for the API request.
+type SecretFilesForServiceCreateQueryParams struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams map[string]string `pulumi:"additionalParams"`
+}
+
+// SecretFilesForServiceCreateQueryParamsInput is an input type that accepts SecretFilesForServiceCreateQueryParamsArgs and SecretFilesForServiceCreateQueryParamsOutput values.
+// You can construct a concrete instance of `SecretFilesForServiceCreateQueryParamsInput` via:
+//
+//	SecretFilesForServiceCreateQueryParamsArgs{...}
+type SecretFilesForServiceCreateQueryParamsInput interface {
+	pulumi.Input
+
+	ToSecretFilesForServiceCreateQueryParamsOutput() SecretFilesForServiceCreateQueryParamsOutput
+	ToSecretFilesForServiceCreateQueryParamsOutputWithContext(context.Context) SecretFilesForServiceCreateQueryParamsOutput
+}
+
+// Query params for the API request.
+type SecretFilesForServiceCreateQueryParamsArgs struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams pulumi.StringMapInput `pulumi:"additionalParams"`
+}
+
+func (SecretFilesForServiceCreateQueryParamsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*SecretFilesForServiceCreateQueryParams)(nil)).Elem()
+}
+
+func (i SecretFilesForServiceCreateQueryParamsArgs) ToSecretFilesForServiceCreateQueryParamsOutput() SecretFilesForServiceCreateQueryParamsOutput {
+	return i.ToSecretFilesForServiceCreateQueryParamsOutputWithContext(context.Background())
+}
+
+func (i SecretFilesForServiceCreateQueryParamsArgs) ToSecretFilesForServiceCreateQueryParamsOutputWithContext(ctx context.Context) SecretFilesForServiceCreateQueryParamsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SecretFilesForServiceCreateQueryParamsOutput)
+}
+
+func (i SecretFilesForServiceCreateQueryParamsArgs) ToSecretFilesForServiceCreateQueryParamsPtrOutput() SecretFilesForServiceCreateQueryParamsPtrOutput {
+	return i.ToSecretFilesForServiceCreateQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i SecretFilesForServiceCreateQueryParamsArgs) ToSecretFilesForServiceCreateQueryParamsPtrOutputWithContext(ctx context.Context) SecretFilesForServiceCreateQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SecretFilesForServiceCreateQueryParamsOutput).ToSecretFilesForServiceCreateQueryParamsPtrOutputWithContext(ctx)
+}
+
+// SecretFilesForServiceCreateQueryParamsPtrInput is an input type that accepts SecretFilesForServiceCreateQueryParamsArgs, SecretFilesForServiceCreateQueryParamsPtr and SecretFilesForServiceCreateQueryParamsPtrOutput values.
+// You can construct a concrete instance of `SecretFilesForServiceCreateQueryParamsPtrInput` via:
+//
+//	        SecretFilesForServiceCreateQueryParamsArgs{...}
+//
+//	or:
+//
+//	        nil
+type SecretFilesForServiceCreateQueryParamsPtrInput interface {
+	pulumi.Input
+
+	ToSecretFilesForServiceCreateQueryParamsPtrOutput() SecretFilesForServiceCreateQueryParamsPtrOutput
+	ToSecretFilesForServiceCreateQueryParamsPtrOutputWithContext(context.Context) SecretFilesForServiceCreateQueryParamsPtrOutput
+}
+
+type secretFilesForServiceCreateQueryParamsPtrType SecretFilesForServiceCreateQueryParamsArgs
+
+func SecretFilesForServiceCreateQueryParamsPtr(v *SecretFilesForServiceCreateQueryParamsArgs) SecretFilesForServiceCreateQueryParamsPtrInput {
+	return (*secretFilesForServiceCreateQueryParamsPtrType)(v)
+}
+
+func (*secretFilesForServiceCreateQueryParamsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**SecretFilesForServiceCreateQueryParams)(nil)).Elem()
+}
+
+func (i *secretFilesForServiceCreateQueryParamsPtrType) ToSecretFilesForServiceCreateQueryParamsPtrOutput() SecretFilesForServiceCreateQueryParamsPtrOutput {
+	return i.ToSecretFilesForServiceCreateQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i *secretFilesForServiceCreateQueryParamsPtrType) ToSecretFilesForServiceCreateQueryParamsPtrOutputWithContext(ctx context.Context) SecretFilesForServiceCreateQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SecretFilesForServiceCreateQueryParamsPtrOutput)
+}
+
+// Query params for the API request.
+type SecretFilesForServiceCreateQueryParamsOutput struct{ *pulumi.OutputState }
+
+func (SecretFilesForServiceCreateQueryParamsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*SecretFilesForServiceCreateQueryParams)(nil)).Elem()
+}
+
+func (o SecretFilesForServiceCreateQueryParamsOutput) ToSecretFilesForServiceCreateQueryParamsOutput() SecretFilesForServiceCreateQueryParamsOutput {
+	return o
+}
+
+func (o SecretFilesForServiceCreateQueryParamsOutput) ToSecretFilesForServiceCreateQueryParamsOutputWithContext(ctx context.Context) SecretFilesForServiceCreateQueryParamsOutput {
+	return o
+}
+
+func (o SecretFilesForServiceCreateQueryParamsOutput) ToSecretFilesForServiceCreateQueryParamsPtrOutput() SecretFilesForServiceCreateQueryParamsPtrOutput {
+	return o.ToSecretFilesForServiceCreateQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (o SecretFilesForServiceCreateQueryParamsOutput) ToSecretFilesForServiceCreateQueryParamsPtrOutputWithContext(ctx context.Context) SecretFilesForServiceCreateQueryParamsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v SecretFilesForServiceCreateQueryParams) *SecretFilesForServiceCreateQueryParams {
+		return &v
+	}).(SecretFilesForServiceCreateQueryParamsPtrOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o SecretFilesForServiceCreateQueryParamsOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v SecretFilesForServiceCreateQueryParams) map[string]string { return v.AdditionalParams }).(pulumi.StringMapOutput)
+}
+
+type SecretFilesForServiceCreateQueryParamsPtrOutput struct{ *pulumi.OutputState }
+
+func (SecretFilesForServiceCreateQueryParamsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**SecretFilesForServiceCreateQueryParams)(nil)).Elem()
+}
+
+func (o SecretFilesForServiceCreateQueryParamsPtrOutput) ToSecretFilesForServiceCreateQueryParamsPtrOutput() SecretFilesForServiceCreateQueryParamsPtrOutput {
+	return o
+}
+
+func (o SecretFilesForServiceCreateQueryParamsPtrOutput) ToSecretFilesForServiceCreateQueryParamsPtrOutputWithContext(ctx context.Context) SecretFilesForServiceCreateQueryParamsPtrOutput {
+	return o
+}
+
+func (o SecretFilesForServiceCreateQueryParamsPtrOutput) Elem() SecretFilesForServiceCreateQueryParamsOutput {
+	return o.ApplyT(func(v *SecretFilesForServiceCreateQueryParams) SecretFilesForServiceCreateQueryParams {
+		if v != nil {
+			return *v
+		}
+		var ret SecretFilesForServiceCreateQueryParams
+		return ret
+	}).(SecretFilesForServiceCreateQueryParamsOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o SecretFilesForServiceCreateQueryParamsPtrOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *SecretFilesForServiceCreateQueryParams) map[string]string {
+		if v == nil {
+			return nil
+		}
+		return v.AdditionalParams
+	}).(pulumi.StringMapOutput)
+}
+
+// Query params for the API request.
+type SecretFilesForServicePutQueryParams struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams map[string]string `pulumi:"additionalParams"`
+}
+
+// SecretFilesForServicePutQueryParamsInput is an input type that accepts SecretFilesForServicePutQueryParamsArgs and SecretFilesForServicePutQueryParamsOutput values.
+// You can construct a concrete instance of `SecretFilesForServicePutQueryParamsInput` via:
+//
+//	SecretFilesForServicePutQueryParamsArgs{...}
+type SecretFilesForServicePutQueryParamsInput interface {
+	pulumi.Input
+
+	ToSecretFilesForServicePutQueryParamsOutput() SecretFilesForServicePutQueryParamsOutput
+	ToSecretFilesForServicePutQueryParamsOutputWithContext(context.Context) SecretFilesForServicePutQueryParamsOutput
+}
+
+// Query params for the API request.
+type SecretFilesForServicePutQueryParamsArgs struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams pulumi.StringMapInput `pulumi:"additionalParams"`
+}
+
+func (SecretFilesForServicePutQueryParamsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*SecretFilesForServicePutQueryParams)(nil)).Elem()
+}
+
+func (i SecretFilesForServicePutQueryParamsArgs) ToSecretFilesForServicePutQueryParamsOutput() SecretFilesForServicePutQueryParamsOutput {
+	return i.ToSecretFilesForServicePutQueryParamsOutputWithContext(context.Background())
+}
+
+func (i SecretFilesForServicePutQueryParamsArgs) ToSecretFilesForServicePutQueryParamsOutputWithContext(ctx context.Context) SecretFilesForServicePutQueryParamsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SecretFilesForServicePutQueryParamsOutput)
+}
+
+func (i SecretFilesForServicePutQueryParamsArgs) ToSecretFilesForServicePutQueryParamsPtrOutput() SecretFilesForServicePutQueryParamsPtrOutput {
+	return i.ToSecretFilesForServicePutQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i SecretFilesForServicePutQueryParamsArgs) ToSecretFilesForServicePutQueryParamsPtrOutputWithContext(ctx context.Context) SecretFilesForServicePutQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SecretFilesForServicePutQueryParamsOutput).ToSecretFilesForServicePutQueryParamsPtrOutputWithContext(ctx)
+}
+
+// SecretFilesForServicePutQueryParamsPtrInput is an input type that accepts SecretFilesForServicePutQueryParamsArgs, SecretFilesForServicePutQueryParamsPtr and SecretFilesForServicePutQueryParamsPtrOutput values.
+// You can construct a concrete instance of `SecretFilesForServicePutQueryParamsPtrInput` via:
+//
+//	        SecretFilesForServicePutQueryParamsArgs{...}
+//
+//	or:
+//
+//	        nil
+type SecretFilesForServicePutQueryParamsPtrInput interface {
+	pulumi.Input
+
+	ToSecretFilesForServicePutQueryParamsPtrOutput() SecretFilesForServicePutQueryParamsPtrOutput
+	ToSecretFilesForServicePutQueryParamsPtrOutputWithContext(context.Context) SecretFilesForServicePutQueryParamsPtrOutput
+}
+
+type secretFilesForServicePutQueryParamsPtrType SecretFilesForServicePutQueryParamsArgs
+
+func SecretFilesForServicePutQueryParamsPtr(v *SecretFilesForServicePutQueryParamsArgs) SecretFilesForServicePutQueryParamsPtrInput {
+	return (*secretFilesForServicePutQueryParamsPtrType)(v)
+}
+
+func (*secretFilesForServicePutQueryParamsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**SecretFilesForServicePutQueryParams)(nil)).Elem()
+}
+
+func (i *secretFilesForServicePutQueryParamsPtrType) ToSecretFilesForServicePutQueryParamsPtrOutput() SecretFilesForServicePutQueryParamsPtrOutput {
+	return i.ToSecretFilesForServicePutQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i *secretFilesForServicePutQueryParamsPtrType) ToSecretFilesForServicePutQueryParamsPtrOutputWithContext(ctx context.Context) SecretFilesForServicePutQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SecretFilesForServicePutQueryParamsPtrOutput)
+}
+
+// Query params for the API request.
+type SecretFilesForServicePutQueryParamsOutput struct{ *pulumi.OutputState }
+
+func (SecretFilesForServicePutQueryParamsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*SecretFilesForServicePutQueryParams)(nil)).Elem()
+}
+
+func (o SecretFilesForServicePutQueryParamsOutput) ToSecretFilesForServicePutQueryParamsOutput() SecretFilesForServicePutQueryParamsOutput {
+	return o
+}
+
+func (o SecretFilesForServicePutQueryParamsOutput) ToSecretFilesForServicePutQueryParamsOutputWithContext(ctx context.Context) SecretFilesForServicePutQueryParamsOutput {
+	return o
+}
+
+func (o SecretFilesForServicePutQueryParamsOutput) ToSecretFilesForServicePutQueryParamsPtrOutput() SecretFilesForServicePutQueryParamsPtrOutput {
+	return o.ToSecretFilesForServicePutQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (o SecretFilesForServicePutQueryParamsOutput) ToSecretFilesForServicePutQueryParamsPtrOutputWithContext(ctx context.Context) SecretFilesForServicePutQueryParamsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v SecretFilesForServicePutQueryParams) *SecretFilesForServicePutQueryParams {
+		return &v
+	}).(SecretFilesForServicePutQueryParamsPtrOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o SecretFilesForServicePutQueryParamsOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v SecretFilesForServicePutQueryParams) map[string]string { return v.AdditionalParams }).(pulumi.StringMapOutput)
+}
+
+type SecretFilesForServicePutQueryParamsPtrOutput struct{ *pulumi.OutputState }
+
+func (SecretFilesForServicePutQueryParamsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**SecretFilesForServicePutQueryParams)(nil)).Elem()
+}
+
+func (o SecretFilesForServicePutQueryParamsPtrOutput) ToSecretFilesForServicePutQueryParamsPtrOutput() SecretFilesForServicePutQueryParamsPtrOutput {
+	return o
+}
+
+func (o SecretFilesForServicePutQueryParamsPtrOutput) ToSecretFilesForServicePutQueryParamsPtrOutputWithContext(ctx context.Context) SecretFilesForServicePutQueryParamsPtrOutput {
+	return o
+}
+
+func (o SecretFilesForServicePutQueryParamsPtrOutput) Elem() SecretFilesForServicePutQueryParamsOutput {
+	return o.ApplyT(func(v *SecretFilesForServicePutQueryParams) SecretFilesForServicePutQueryParams {
+		if v != nil {
+			return *v
+		}
+		var ret SecretFilesForServicePutQueryParams
+		return ret
+	}).(SecretFilesForServicePutQueryParamsOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o SecretFilesForServicePutQueryParamsPtrOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *SecretFilesForServicePutQueryParams) map[string]string {
+		if v == nil {
+			return nil
+		}
+		return v.AdditionalParams
+	}).(pulumi.StringMapOutput)
+}
+
+// Query params for each of the operations of the resource.
+type SecretFilesForServiceQueryParams struct {
+	// Query params for the create operation.
+	Create *SecretFilesForServiceCreateQueryParams `pulumi:"create"`
+	// Query params for the put operation.
+	Put *SecretFilesForServicePutQueryParams `pulumi:"put"`
+}
+
+// SecretFilesForServiceQueryParamsInput is an input type that accepts SecretFilesForServiceQueryParamsArgs and SecretFilesForServiceQueryParamsOutput values.
+// You can construct a concrete instance of `SecretFilesForServiceQueryParamsInput` via:
+//
+//	SecretFilesForServiceQueryParamsArgs{...}
+type SecretFilesForServiceQueryParamsInput interface {
+	pulumi.Input
+
+	ToSecretFilesForServiceQueryParamsOutput() SecretFilesForServiceQueryParamsOutput
+	ToSecretFilesForServiceQueryParamsOutputWithContext(context.Context) SecretFilesForServiceQueryParamsOutput
+}
+
+// Query params for each of the operations of the resource.
+type SecretFilesForServiceQueryParamsArgs struct {
+	// Query params for the create operation.
+	Create SecretFilesForServiceCreateQueryParamsPtrInput `pulumi:"create"`
+	// Query params for the put operation.
+	Put SecretFilesForServicePutQueryParamsPtrInput `pulumi:"put"`
+}
+
+func (SecretFilesForServiceQueryParamsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*SecretFilesForServiceQueryParams)(nil)).Elem()
+}
+
+func (i SecretFilesForServiceQueryParamsArgs) ToSecretFilesForServiceQueryParamsOutput() SecretFilesForServiceQueryParamsOutput {
+	return i.ToSecretFilesForServiceQueryParamsOutputWithContext(context.Background())
+}
+
+func (i SecretFilesForServiceQueryParamsArgs) ToSecretFilesForServiceQueryParamsOutputWithContext(ctx context.Context) SecretFilesForServiceQueryParamsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SecretFilesForServiceQueryParamsOutput)
+}
+
+func (i SecretFilesForServiceQueryParamsArgs) ToSecretFilesForServiceQueryParamsPtrOutput() SecretFilesForServiceQueryParamsPtrOutput {
+	return i.ToSecretFilesForServiceQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i SecretFilesForServiceQueryParamsArgs) ToSecretFilesForServiceQueryParamsPtrOutputWithContext(ctx context.Context) SecretFilesForServiceQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SecretFilesForServiceQueryParamsOutput).ToSecretFilesForServiceQueryParamsPtrOutputWithContext(ctx)
+}
+
+// SecretFilesForServiceQueryParamsPtrInput is an input type that accepts SecretFilesForServiceQueryParamsArgs, SecretFilesForServiceQueryParamsPtr and SecretFilesForServiceQueryParamsPtrOutput values.
+// You can construct a concrete instance of `SecretFilesForServiceQueryParamsPtrInput` via:
+//
+//	        SecretFilesForServiceQueryParamsArgs{...}
+//
+//	or:
+//
+//	        nil
+type SecretFilesForServiceQueryParamsPtrInput interface {
+	pulumi.Input
+
+	ToSecretFilesForServiceQueryParamsPtrOutput() SecretFilesForServiceQueryParamsPtrOutput
+	ToSecretFilesForServiceQueryParamsPtrOutputWithContext(context.Context) SecretFilesForServiceQueryParamsPtrOutput
+}
+
+type secretFilesForServiceQueryParamsPtrType SecretFilesForServiceQueryParamsArgs
+
+func SecretFilesForServiceQueryParamsPtr(v *SecretFilesForServiceQueryParamsArgs) SecretFilesForServiceQueryParamsPtrInput {
+	return (*secretFilesForServiceQueryParamsPtrType)(v)
+}
+
+func (*secretFilesForServiceQueryParamsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**SecretFilesForServiceQueryParams)(nil)).Elem()
+}
+
+func (i *secretFilesForServiceQueryParamsPtrType) ToSecretFilesForServiceQueryParamsPtrOutput() SecretFilesForServiceQueryParamsPtrOutput {
+	return i.ToSecretFilesForServiceQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i *secretFilesForServiceQueryParamsPtrType) ToSecretFilesForServiceQueryParamsPtrOutputWithContext(ctx context.Context) SecretFilesForServiceQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SecretFilesForServiceQueryParamsPtrOutput)
+}
+
+// Query params for each of the operations of the resource.
+type SecretFilesForServiceQueryParamsOutput struct{ *pulumi.OutputState }
+
+func (SecretFilesForServiceQueryParamsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*SecretFilesForServiceQueryParams)(nil)).Elem()
+}
+
+func (o SecretFilesForServiceQueryParamsOutput) ToSecretFilesForServiceQueryParamsOutput() SecretFilesForServiceQueryParamsOutput {
+	return o
+}
+
+func (o SecretFilesForServiceQueryParamsOutput) ToSecretFilesForServiceQueryParamsOutputWithContext(ctx context.Context) SecretFilesForServiceQueryParamsOutput {
+	return o
+}
+
+func (o SecretFilesForServiceQueryParamsOutput) ToSecretFilesForServiceQueryParamsPtrOutput() SecretFilesForServiceQueryParamsPtrOutput {
+	return o.ToSecretFilesForServiceQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (o SecretFilesForServiceQueryParamsOutput) ToSecretFilesForServiceQueryParamsPtrOutputWithContext(ctx context.Context) SecretFilesForServiceQueryParamsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v SecretFilesForServiceQueryParams) *SecretFilesForServiceQueryParams {
+		return &v
+	}).(SecretFilesForServiceQueryParamsPtrOutput)
+}
+
+// Query params for the create operation.
+func (o SecretFilesForServiceQueryParamsOutput) Create() SecretFilesForServiceCreateQueryParamsPtrOutput {
+	return o.ApplyT(func(v SecretFilesForServiceQueryParams) *SecretFilesForServiceCreateQueryParams { return v.Create }).(SecretFilesForServiceCreateQueryParamsPtrOutput)
+}
+
+// Query params for the put operation.
+func (o SecretFilesForServiceQueryParamsOutput) Put() SecretFilesForServicePutQueryParamsPtrOutput {
+	return o.ApplyT(func(v SecretFilesForServiceQueryParams) *SecretFilesForServicePutQueryParams { return v.Put }).(SecretFilesForServicePutQueryParamsPtrOutput)
+}
+
+type SecretFilesForServiceQueryParamsPtrOutput struct{ *pulumi.OutputState }
+
+func (SecretFilesForServiceQueryParamsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**SecretFilesForServiceQueryParams)(nil)).Elem()
+}
+
+func (o SecretFilesForServiceQueryParamsPtrOutput) ToSecretFilesForServiceQueryParamsPtrOutput() SecretFilesForServiceQueryParamsPtrOutput {
+	return o
+}
+
+func (o SecretFilesForServiceQueryParamsPtrOutput) ToSecretFilesForServiceQueryParamsPtrOutputWithContext(ctx context.Context) SecretFilesForServiceQueryParamsPtrOutput {
+	return o
+}
+
+func (o SecretFilesForServiceQueryParamsPtrOutput) Elem() SecretFilesForServiceQueryParamsOutput {
+	return o.ApplyT(func(v *SecretFilesForServiceQueryParams) SecretFilesForServiceQueryParams {
+		if v != nil {
+			return *v
+		}
+		var ret SecretFilesForServiceQueryParams
+		return ret
+	}).(SecretFilesForServiceQueryParamsOutput)
+}
+
+// Query params for the create operation.
+func (o SecretFilesForServiceQueryParamsPtrOutput) Create() SecretFilesForServiceCreateQueryParamsPtrOutput {
+	return o.ApplyT(func(v *SecretFilesForServiceQueryParams) *SecretFilesForServiceCreateQueryParams {
+		if v == nil {
+			return nil
+		}
+		return v.Create
+	}).(SecretFilesForServiceCreateQueryParamsPtrOutput)
+}
+
+// Query params for the put operation.
+func (o SecretFilesForServiceQueryParamsPtrOutput) Put() SecretFilesForServicePutQueryParamsPtrOutput {
+	return o.ApplyT(func(v *SecretFilesForServiceQueryParams) *SecretFilesForServicePutQueryParams {
+		if v == nil {
+			return nil
+		}
+		return v.Put
+	}).(SecretFilesForServicePutQueryParamsPtrOutput)
 }
 
 type ServerPort struct {
@@ -6367,6 +19810,286 @@ func (o ServiceInstanceArrayOutput) Index(i pulumi.IntInput) ServiceInstanceOutp
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ServiceInstance {
 		return vs[0].([]ServiceInstance)[vs[1].(int)]
 	}).(ServiceInstanceOutput)
+}
+
+// Query params for the API request.
+type StaticSiteCreateQueryParams struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams map[string]string `pulumi:"additionalParams"`
+}
+
+// StaticSiteCreateQueryParamsInput is an input type that accepts StaticSiteCreateQueryParamsArgs and StaticSiteCreateQueryParamsOutput values.
+// You can construct a concrete instance of `StaticSiteCreateQueryParamsInput` via:
+//
+//	StaticSiteCreateQueryParamsArgs{...}
+type StaticSiteCreateQueryParamsInput interface {
+	pulumi.Input
+
+	ToStaticSiteCreateQueryParamsOutput() StaticSiteCreateQueryParamsOutput
+	ToStaticSiteCreateQueryParamsOutputWithContext(context.Context) StaticSiteCreateQueryParamsOutput
+}
+
+// Query params for the API request.
+type StaticSiteCreateQueryParamsArgs struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams pulumi.StringMapInput `pulumi:"additionalParams"`
+}
+
+func (StaticSiteCreateQueryParamsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*StaticSiteCreateQueryParams)(nil)).Elem()
+}
+
+func (i StaticSiteCreateQueryParamsArgs) ToStaticSiteCreateQueryParamsOutput() StaticSiteCreateQueryParamsOutput {
+	return i.ToStaticSiteCreateQueryParamsOutputWithContext(context.Background())
+}
+
+func (i StaticSiteCreateQueryParamsArgs) ToStaticSiteCreateQueryParamsOutputWithContext(ctx context.Context) StaticSiteCreateQueryParamsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(StaticSiteCreateQueryParamsOutput)
+}
+
+func (i StaticSiteCreateQueryParamsArgs) ToStaticSiteCreateQueryParamsPtrOutput() StaticSiteCreateQueryParamsPtrOutput {
+	return i.ToStaticSiteCreateQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i StaticSiteCreateQueryParamsArgs) ToStaticSiteCreateQueryParamsPtrOutputWithContext(ctx context.Context) StaticSiteCreateQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(StaticSiteCreateQueryParamsOutput).ToStaticSiteCreateQueryParamsPtrOutputWithContext(ctx)
+}
+
+// StaticSiteCreateQueryParamsPtrInput is an input type that accepts StaticSiteCreateQueryParamsArgs, StaticSiteCreateQueryParamsPtr and StaticSiteCreateQueryParamsPtrOutput values.
+// You can construct a concrete instance of `StaticSiteCreateQueryParamsPtrInput` via:
+//
+//	        StaticSiteCreateQueryParamsArgs{...}
+//
+//	or:
+//
+//	        nil
+type StaticSiteCreateQueryParamsPtrInput interface {
+	pulumi.Input
+
+	ToStaticSiteCreateQueryParamsPtrOutput() StaticSiteCreateQueryParamsPtrOutput
+	ToStaticSiteCreateQueryParamsPtrOutputWithContext(context.Context) StaticSiteCreateQueryParamsPtrOutput
+}
+
+type staticSiteCreateQueryParamsPtrType StaticSiteCreateQueryParamsArgs
+
+func StaticSiteCreateQueryParamsPtr(v *StaticSiteCreateQueryParamsArgs) StaticSiteCreateQueryParamsPtrInput {
+	return (*staticSiteCreateQueryParamsPtrType)(v)
+}
+
+func (*staticSiteCreateQueryParamsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**StaticSiteCreateQueryParams)(nil)).Elem()
+}
+
+func (i *staticSiteCreateQueryParamsPtrType) ToStaticSiteCreateQueryParamsPtrOutput() StaticSiteCreateQueryParamsPtrOutput {
+	return i.ToStaticSiteCreateQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i *staticSiteCreateQueryParamsPtrType) ToStaticSiteCreateQueryParamsPtrOutputWithContext(ctx context.Context) StaticSiteCreateQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(StaticSiteCreateQueryParamsPtrOutput)
+}
+
+// Query params for the API request.
+type StaticSiteCreateQueryParamsOutput struct{ *pulumi.OutputState }
+
+func (StaticSiteCreateQueryParamsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*StaticSiteCreateQueryParams)(nil)).Elem()
+}
+
+func (o StaticSiteCreateQueryParamsOutput) ToStaticSiteCreateQueryParamsOutput() StaticSiteCreateQueryParamsOutput {
+	return o
+}
+
+func (o StaticSiteCreateQueryParamsOutput) ToStaticSiteCreateQueryParamsOutputWithContext(ctx context.Context) StaticSiteCreateQueryParamsOutput {
+	return o
+}
+
+func (o StaticSiteCreateQueryParamsOutput) ToStaticSiteCreateQueryParamsPtrOutput() StaticSiteCreateQueryParamsPtrOutput {
+	return o.ToStaticSiteCreateQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (o StaticSiteCreateQueryParamsOutput) ToStaticSiteCreateQueryParamsPtrOutputWithContext(ctx context.Context) StaticSiteCreateQueryParamsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v StaticSiteCreateQueryParams) *StaticSiteCreateQueryParams {
+		return &v
+	}).(StaticSiteCreateQueryParamsPtrOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o StaticSiteCreateQueryParamsOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v StaticSiteCreateQueryParams) map[string]string { return v.AdditionalParams }).(pulumi.StringMapOutput)
+}
+
+type StaticSiteCreateQueryParamsPtrOutput struct{ *pulumi.OutputState }
+
+func (StaticSiteCreateQueryParamsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**StaticSiteCreateQueryParams)(nil)).Elem()
+}
+
+func (o StaticSiteCreateQueryParamsPtrOutput) ToStaticSiteCreateQueryParamsPtrOutput() StaticSiteCreateQueryParamsPtrOutput {
+	return o
+}
+
+func (o StaticSiteCreateQueryParamsPtrOutput) ToStaticSiteCreateQueryParamsPtrOutputWithContext(ctx context.Context) StaticSiteCreateQueryParamsPtrOutput {
+	return o
+}
+
+func (o StaticSiteCreateQueryParamsPtrOutput) Elem() StaticSiteCreateQueryParamsOutput {
+	return o.ApplyT(func(v *StaticSiteCreateQueryParams) StaticSiteCreateQueryParams {
+		if v != nil {
+			return *v
+		}
+		var ret StaticSiteCreateQueryParams
+		return ret
+	}).(StaticSiteCreateQueryParamsOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o StaticSiteCreateQueryParamsPtrOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *StaticSiteCreateQueryParams) map[string]string {
+		if v == nil {
+			return nil
+		}
+		return v.AdditionalParams
+	}).(pulumi.StringMapOutput)
+}
+
+// Query params for the API request.
+type StaticSiteDeleteQueryParams struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams map[string]string `pulumi:"additionalParams"`
+}
+
+// StaticSiteDeleteQueryParamsInput is an input type that accepts StaticSiteDeleteQueryParamsArgs and StaticSiteDeleteQueryParamsOutput values.
+// You can construct a concrete instance of `StaticSiteDeleteQueryParamsInput` via:
+//
+//	StaticSiteDeleteQueryParamsArgs{...}
+type StaticSiteDeleteQueryParamsInput interface {
+	pulumi.Input
+
+	ToStaticSiteDeleteQueryParamsOutput() StaticSiteDeleteQueryParamsOutput
+	ToStaticSiteDeleteQueryParamsOutputWithContext(context.Context) StaticSiteDeleteQueryParamsOutput
+}
+
+// Query params for the API request.
+type StaticSiteDeleteQueryParamsArgs struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams pulumi.StringMapInput `pulumi:"additionalParams"`
+}
+
+func (StaticSiteDeleteQueryParamsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*StaticSiteDeleteQueryParams)(nil)).Elem()
+}
+
+func (i StaticSiteDeleteQueryParamsArgs) ToStaticSiteDeleteQueryParamsOutput() StaticSiteDeleteQueryParamsOutput {
+	return i.ToStaticSiteDeleteQueryParamsOutputWithContext(context.Background())
+}
+
+func (i StaticSiteDeleteQueryParamsArgs) ToStaticSiteDeleteQueryParamsOutputWithContext(ctx context.Context) StaticSiteDeleteQueryParamsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(StaticSiteDeleteQueryParamsOutput)
+}
+
+func (i StaticSiteDeleteQueryParamsArgs) ToStaticSiteDeleteQueryParamsPtrOutput() StaticSiteDeleteQueryParamsPtrOutput {
+	return i.ToStaticSiteDeleteQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i StaticSiteDeleteQueryParamsArgs) ToStaticSiteDeleteQueryParamsPtrOutputWithContext(ctx context.Context) StaticSiteDeleteQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(StaticSiteDeleteQueryParamsOutput).ToStaticSiteDeleteQueryParamsPtrOutputWithContext(ctx)
+}
+
+// StaticSiteDeleteQueryParamsPtrInput is an input type that accepts StaticSiteDeleteQueryParamsArgs, StaticSiteDeleteQueryParamsPtr and StaticSiteDeleteQueryParamsPtrOutput values.
+// You can construct a concrete instance of `StaticSiteDeleteQueryParamsPtrInput` via:
+//
+//	        StaticSiteDeleteQueryParamsArgs{...}
+//
+//	or:
+//
+//	        nil
+type StaticSiteDeleteQueryParamsPtrInput interface {
+	pulumi.Input
+
+	ToStaticSiteDeleteQueryParamsPtrOutput() StaticSiteDeleteQueryParamsPtrOutput
+	ToStaticSiteDeleteQueryParamsPtrOutputWithContext(context.Context) StaticSiteDeleteQueryParamsPtrOutput
+}
+
+type staticSiteDeleteQueryParamsPtrType StaticSiteDeleteQueryParamsArgs
+
+func StaticSiteDeleteQueryParamsPtr(v *StaticSiteDeleteQueryParamsArgs) StaticSiteDeleteQueryParamsPtrInput {
+	return (*staticSiteDeleteQueryParamsPtrType)(v)
+}
+
+func (*staticSiteDeleteQueryParamsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**StaticSiteDeleteQueryParams)(nil)).Elem()
+}
+
+func (i *staticSiteDeleteQueryParamsPtrType) ToStaticSiteDeleteQueryParamsPtrOutput() StaticSiteDeleteQueryParamsPtrOutput {
+	return i.ToStaticSiteDeleteQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i *staticSiteDeleteQueryParamsPtrType) ToStaticSiteDeleteQueryParamsPtrOutputWithContext(ctx context.Context) StaticSiteDeleteQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(StaticSiteDeleteQueryParamsPtrOutput)
+}
+
+// Query params for the API request.
+type StaticSiteDeleteQueryParamsOutput struct{ *pulumi.OutputState }
+
+func (StaticSiteDeleteQueryParamsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*StaticSiteDeleteQueryParams)(nil)).Elem()
+}
+
+func (o StaticSiteDeleteQueryParamsOutput) ToStaticSiteDeleteQueryParamsOutput() StaticSiteDeleteQueryParamsOutput {
+	return o
+}
+
+func (o StaticSiteDeleteQueryParamsOutput) ToStaticSiteDeleteQueryParamsOutputWithContext(ctx context.Context) StaticSiteDeleteQueryParamsOutput {
+	return o
+}
+
+func (o StaticSiteDeleteQueryParamsOutput) ToStaticSiteDeleteQueryParamsPtrOutput() StaticSiteDeleteQueryParamsPtrOutput {
+	return o.ToStaticSiteDeleteQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (o StaticSiteDeleteQueryParamsOutput) ToStaticSiteDeleteQueryParamsPtrOutputWithContext(ctx context.Context) StaticSiteDeleteQueryParamsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v StaticSiteDeleteQueryParams) *StaticSiteDeleteQueryParams {
+		return &v
+	}).(StaticSiteDeleteQueryParamsPtrOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o StaticSiteDeleteQueryParamsOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v StaticSiteDeleteQueryParams) map[string]string { return v.AdditionalParams }).(pulumi.StringMapOutput)
+}
+
+type StaticSiteDeleteQueryParamsPtrOutput struct{ *pulumi.OutputState }
+
+func (StaticSiteDeleteQueryParamsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**StaticSiteDeleteQueryParams)(nil)).Elem()
+}
+
+func (o StaticSiteDeleteQueryParamsPtrOutput) ToStaticSiteDeleteQueryParamsPtrOutput() StaticSiteDeleteQueryParamsPtrOutput {
+	return o
+}
+
+func (o StaticSiteDeleteQueryParamsPtrOutput) ToStaticSiteDeleteQueryParamsPtrOutputWithContext(ctx context.Context) StaticSiteDeleteQueryParamsPtrOutput {
+	return o
+}
+
+func (o StaticSiteDeleteQueryParamsPtrOutput) Elem() StaticSiteDeleteQueryParamsOutput {
+	return o.ApplyT(func(v *StaticSiteDeleteQueryParams) StaticSiteDeleteQueryParams {
+		if v != nil {
+			return *v
+		}
+		var ret StaticSiteDeleteQueryParams
+		return ret
+	}).(StaticSiteDeleteQueryParamsOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o StaticSiteDeleteQueryParamsPtrOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *StaticSiteDeleteQueryParams) map[string]string {
+		if v == nil {
+			return nil
+		}
+		return v.AdditionalParams
+	}).(pulumi.StringMapOutput)
 }
 
 type StaticSiteDetailsCreate struct {
@@ -6951,6 +20674,1043 @@ func (o StaticSiteOutputTypeOutput) Type() pulumi.StringPtrOutput {
 
 func (o StaticSiteOutputTypeOutput) UpdatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v StaticSiteOutputType) string { return v.UpdatedAt }).(pulumi.StringOutput)
+}
+
+// Query params for each of the operations of the resource.
+type StaticSiteQueryParams struct {
+	// Query params for the create operation.
+	Create *StaticSiteCreateQueryParams `pulumi:"create"`
+	// Query params for the delete operation.
+	Delete *StaticSiteDeleteQueryParams `pulumi:"delete"`
+	// Query params for the read operation.
+	Read *StaticSiteReadQueryParams `pulumi:"read"`
+	// Query params for the update operation.
+	Update *StaticSiteUpdateQueryParams `pulumi:"update"`
+}
+
+// StaticSiteQueryParamsInput is an input type that accepts StaticSiteQueryParamsArgs and StaticSiteQueryParamsOutput values.
+// You can construct a concrete instance of `StaticSiteQueryParamsInput` via:
+//
+//	StaticSiteQueryParamsArgs{...}
+type StaticSiteQueryParamsInput interface {
+	pulumi.Input
+
+	ToStaticSiteQueryParamsOutput() StaticSiteQueryParamsOutput
+	ToStaticSiteQueryParamsOutputWithContext(context.Context) StaticSiteQueryParamsOutput
+}
+
+// Query params for each of the operations of the resource.
+type StaticSiteQueryParamsArgs struct {
+	// Query params for the create operation.
+	Create StaticSiteCreateQueryParamsPtrInput `pulumi:"create"`
+	// Query params for the delete operation.
+	Delete StaticSiteDeleteQueryParamsPtrInput `pulumi:"delete"`
+	// Query params for the read operation.
+	Read StaticSiteReadQueryParamsPtrInput `pulumi:"read"`
+	// Query params for the update operation.
+	Update StaticSiteUpdateQueryParamsPtrInput `pulumi:"update"`
+}
+
+func (StaticSiteQueryParamsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*StaticSiteQueryParams)(nil)).Elem()
+}
+
+func (i StaticSiteQueryParamsArgs) ToStaticSiteQueryParamsOutput() StaticSiteQueryParamsOutput {
+	return i.ToStaticSiteQueryParamsOutputWithContext(context.Background())
+}
+
+func (i StaticSiteQueryParamsArgs) ToStaticSiteQueryParamsOutputWithContext(ctx context.Context) StaticSiteQueryParamsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(StaticSiteQueryParamsOutput)
+}
+
+func (i StaticSiteQueryParamsArgs) ToStaticSiteQueryParamsPtrOutput() StaticSiteQueryParamsPtrOutput {
+	return i.ToStaticSiteQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i StaticSiteQueryParamsArgs) ToStaticSiteQueryParamsPtrOutputWithContext(ctx context.Context) StaticSiteQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(StaticSiteQueryParamsOutput).ToStaticSiteQueryParamsPtrOutputWithContext(ctx)
+}
+
+// StaticSiteQueryParamsPtrInput is an input type that accepts StaticSiteQueryParamsArgs, StaticSiteQueryParamsPtr and StaticSiteQueryParamsPtrOutput values.
+// You can construct a concrete instance of `StaticSiteQueryParamsPtrInput` via:
+//
+//	        StaticSiteQueryParamsArgs{...}
+//
+//	or:
+//
+//	        nil
+type StaticSiteQueryParamsPtrInput interface {
+	pulumi.Input
+
+	ToStaticSiteQueryParamsPtrOutput() StaticSiteQueryParamsPtrOutput
+	ToStaticSiteQueryParamsPtrOutputWithContext(context.Context) StaticSiteQueryParamsPtrOutput
+}
+
+type staticSiteQueryParamsPtrType StaticSiteQueryParamsArgs
+
+func StaticSiteQueryParamsPtr(v *StaticSiteQueryParamsArgs) StaticSiteQueryParamsPtrInput {
+	return (*staticSiteQueryParamsPtrType)(v)
+}
+
+func (*staticSiteQueryParamsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**StaticSiteQueryParams)(nil)).Elem()
+}
+
+func (i *staticSiteQueryParamsPtrType) ToStaticSiteQueryParamsPtrOutput() StaticSiteQueryParamsPtrOutput {
+	return i.ToStaticSiteQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i *staticSiteQueryParamsPtrType) ToStaticSiteQueryParamsPtrOutputWithContext(ctx context.Context) StaticSiteQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(StaticSiteQueryParamsPtrOutput)
+}
+
+// Query params for each of the operations of the resource.
+type StaticSiteQueryParamsOutput struct{ *pulumi.OutputState }
+
+func (StaticSiteQueryParamsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*StaticSiteQueryParams)(nil)).Elem()
+}
+
+func (o StaticSiteQueryParamsOutput) ToStaticSiteQueryParamsOutput() StaticSiteQueryParamsOutput {
+	return o
+}
+
+func (o StaticSiteQueryParamsOutput) ToStaticSiteQueryParamsOutputWithContext(ctx context.Context) StaticSiteQueryParamsOutput {
+	return o
+}
+
+func (o StaticSiteQueryParamsOutput) ToStaticSiteQueryParamsPtrOutput() StaticSiteQueryParamsPtrOutput {
+	return o.ToStaticSiteQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (o StaticSiteQueryParamsOutput) ToStaticSiteQueryParamsPtrOutputWithContext(ctx context.Context) StaticSiteQueryParamsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v StaticSiteQueryParams) *StaticSiteQueryParams {
+		return &v
+	}).(StaticSiteQueryParamsPtrOutput)
+}
+
+// Query params for the create operation.
+func (o StaticSiteQueryParamsOutput) Create() StaticSiteCreateQueryParamsPtrOutput {
+	return o.ApplyT(func(v StaticSiteQueryParams) *StaticSiteCreateQueryParams { return v.Create }).(StaticSiteCreateQueryParamsPtrOutput)
+}
+
+// Query params for the delete operation.
+func (o StaticSiteQueryParamsOutput) Delete() StaticSiteDeleteQueryParamsPtrOutput {
+	return o.ApplyT(func(v StaticSiteQueryParams) *StaticSiteDeleteQueryParams { return v.Delete }).(StaticSiteDeleteQueryParamsPtrOutput)
+}
+
+// Query params for the read operation.
+func (o StaticSiteQueryParamsOutput) Read() StaticSiteReadQueryParamsPtrOutput {
+	return o.ApplyT(func(v StaticSiteQueryParams) *StaticSiteReadQueryParams { return v.Read }).(StaticSiteReadQueryParamsPtrOutput)
+}
+
+// Query params for the update operation.
+func (o StaticSiteQueryParamsOutput) Update() StaticSiteUpdateQueryParamsPtrOutput {
+	return o.ApplyT(func(v StaticSiteQueryParams) *StaticSiteUpdateQueryParams { return v.Update }).(StaticSiteUpdateQueryParamsPtrOutput)
+}
+
+type StaticSiteQueryParamsPtrOutput struct{ *pulumi.OutputState }
+
+func (StaticSiteQueryParamsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**StaticSiteQueryParams)(nil)).Elem()
+}
+
+func (o StaticSiteQueryParamsPtrOutput) ToStaticSiteQueryParamsPtrOutput() StaticSiteQueryParamsPtrOutput {
+	return o
+}
+
+func (o StaticSiteQueryParamsPtrOutput) ToStaticSiteQueryParamsPtrOutputWithContext(ctx context.Context) StaticSiteQueryParamsPtrOutput {
+	return o
+}
+
+func (o StaticSiteQueryParamsPtrOutput) Elem() StaticSiteQueryParamsOutput {
+	return o.ApplyT(func(v *StaticSiteQueryParams) StaticSiteQueryParams {
+		if v != nil {
+			return *v
+		}
+		var ret StaticSiteQueryParams
+		return ret
+	}).(StaticSiteQueryParamsOutput)
+}
+
+// Query params for the create operation.
+func (o StaticSiteQueryParamsPtrOutput) Create() StaticSiteCreateQueryParamsPtrOutput {
+	return o.ApplyT(func(v *StaticSiteQueryParams) *StaticSiteCreateQueryParams {
+		if v == nil {
+			return nil
+		}
+		return v.Create
+	}).(StaticSiteCreateQueryParamsPtrOutput)
+}
+
+// Query params for the delete operation.
+func (o StaticSiteQueryParamsPtrOutput) Delete() StaticSiteDeleteQueryParamsPtrOutput {
+	return o.ApplyT(func(v *StaticSiteQueryParams) *StaticSiteDeleteQueryParams {
+		if v == nil {
+			return nil
+		}
+		return v.Delete
+	}).(StaticSiteDeleteQueryParamsPtrOutput)
+}
+
+// Query params for the read operation.
+func (o StaticSiteQueryParamsPtrOutput) Read() StaticSiteReadQueryParamsPtrOutput {
+	return o.ApplyT(func(v *StaticSiteQueryParams) *StaticSiteReadQueryParams {
+		if v == nil {
+			return nil
+		}
+		return v.Read
+	}).(StaticSiteReadQueryParamsPtrOutput)
+}
+
+// Query params for the update operation.
+func (o StaticSiteQueryParamsPtrOutput) Update() StaticSiteUpdateQueryParamsPtrOutput {
+	return o.ApplyT(func(v *StaticSiteQueryParams) *StaticSiteUpdateQueryParams {
+		if v == nil {
+			return nil
+		}
+		return v.Update
+	}).(StaticSiteUpdateQueryParamsPtrOutput)
+}
+
+// Query params for the API request.
+type StaticSiteReadQueryParams struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams map[string]string `pulumi:"additionalParams"`
+}
+
+// StaticSiteReadQueryParamsInput is an input type that accepts StaticSiteReadQueryParamsArgs and StaticSiteReadQueryParamsOutput values.
+// You can construct a concrete instance of `StaticSiteReadQueryParamsInput` via:
+//
+//	StaticSiteReadQueryParamsArgs{...}
+type StaticSiteReadQueryParamsInput interface {
+	pulumi.Input
+
+	ToStaticSiteReadQueryParamsOutput() StaticSiteReadQueryParamsOutput
+	ToStaticSiteReadQueryParamsOutputWithContext(context.Context) StaticSiteReadQueryParamsOutput
+}
+
+// Query params for the API request.
+type StaticSiteReadQueryParamsArgs struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams pulumi.StringMapInput `pulumi:"additionalParams"`
+}
+
+func (StaticSiteReadQueryParamsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*StaticSiteReadQueryParams)(nil)).Elem()
+}
+
+func (i StaticSiteReadQueryParamsArgs) ToStaticSiteReadQueryParamsOutput() StaticSiteReadQueryParamsOutput {
+	return i.ToStaticSiteReadQueryParamsOutputWithContext(context.Background())
+}
+
+func (i StaticSiteReadQueryParamsArgs) ToStaticSiteReadQueryParamsOutputWithContext(ctx context.Context) StaticSiteReadQueryParamsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(StaticSiteReadQueryParamsOutput)
+}
+
+func (i StaticSiteReadQueryParamsArgs) ToStaticSiteReadQueryParamsPtrOutput() StaticSiteReadQueryParamsPtrOutput {
+	return i.ToStaticSiteReadQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i StaticSiteReadQueryParamsArgs) ToStaticSiteReadQueryParamsPtrOutputWithContext(ctx context.Context) StaticSiteReadQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(StaticSiteReadQueryParamsOutput).ToStaticSiteReadQueryParamsPtrOutputWithContext(ctx)
+}
+
+// StaticSiteReadQueryParamsPtrInput is an input type that accepts StaticSiteReadQueryParamsArgs, StaticSiteReadQueryParamsPtr and StaticSiteReadQueryParamsPtrOutput values.
+// You can construct a concrete instance of `StaticSiteReadQueryParamsPtrInput` via:
+//
+//	        StaticSiteReadQueryParamsArgs{...}
+//
+//	or:
+//
+//	        nil
+type StaticSiteReadQueryParamsPtrInput interface {
+	pulumi.Input
+
+	ToStaticSiteReadQueryParamsPtrOutput() StaticSiteReadQueryParamsPtrOutput
+	ToStaticSiteReadQueryParamsPtrOutputWithContext(context.Context) StaticSiteReadQueryParamsPtrOutput
+}
+
+type staticSiteReadQueryParamsPtrType StaticSiteReadQueryParamsArgs
+
+func StaticSiteReadQueryParamsPtr(v *StaticSiteReadQueryParamsArgs) StaticSiteReadQueryParamsPtrInput {
+	return (*staticSiteReadQueryParamsPtrType)(v)
+}
+
+func (*staticSiteReadQueryParamsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**StaticSiteReadQueryParams)(nil)).Elem()
+}
+
+func (i *staticSiteReadQueryParamsPtrType) ToStaticSiteReadQueryParamsPtrOutput() StaticSiteReadQueryParamsPtrOutput {
+	return i.ToStaticSiteReadQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i *staticSiteReadQueryParamsPtrType) ToStaticSiteReadQueryParamsPtrOutputWithContext(ctx context.Context) StaticSiteReadQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(StaticSiteReadQueryParamsPtrOutput)
+}
+
+// Query params for the API request.
+type StaticSiteReadQueryParamsOutput struct{ *pulumi.OutputState }
+
+func (StaticSiteReadQueryParamsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*StaticSiteReadQueryParams)(nil)).Elem()
+}
+
+func (o StaticSiteReadQueryParamsOutput) ToStaticSiteReadQueryParamsOutput() StaticSiteReadQueryParamsOutput {
+	return o
+}
+
+func (o StaticSiteReadQueryParamsOutput) ToStaticSiteReadQueryParamsOutputWithContext(ctx context.Context) StaticSiteReadQueryParamsOutput {
+	return o
+}
+
+func (o StaticSiteReadQueryParamsOutput) ToStaticSiteReadQueryParamsPtrOutput() StaticSiteReadQueryParamsPtrOutput {
+	return o.ToStaticSiteReadQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (o StaticSiteReadQueryParamsOutput) ToStaticSiteReadQueryParamsPtrOutputWithContext(ctx context.Context) StaticSiteReadQueryParamsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v StaticSiteReadQueryParams) *StaticSiteReadQueryParams {
+		return &v
+	}).(StaticSiteReadQueryParamsPtrOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o StaticSiteReadQueryParamsOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v StaticSiteReadQueryParams) map[string]string { return v.AdditionalParams }).(pulumi.StringMapOutput)
+}
+
+type StaticSiteReadQueryParamsPtrOutput struct{ *pulumi.OutputState }
+
+func (StaticSiteReadQueryParamsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**StaticSiteReadQueryParams)(nil)).Elem()
+}
+
+func (o StaticSiteReadQueryParamsPtrOutput) ToStaticSiteReadQueryParamsPtrOutput() StaticSiteReadQueryParamsPtrOutput {
+	return o
+}
+
+func (o StaticSiteReadQueryParamsPtrOutput) ToStaticSiteReadQueryParamsPtrOutputWithContext(ctx context.Context) StaticSiteReadQueryParamsPtrOutput {
+	return o
+}
+
+func (o StaticSiteReadQueryParamsPtrOutput) Elem() StaticSiteReadQueryParamsOutput {
+	return o.ApplyT(func(v *StaticSiteReadQueryParams) StaticSiteReadQueryParams {
+		if v != nil {
+			return *v
+		}
+		var ret StaticSiteReadQueryParams
+		return ret
+	}).(StaticSiteReadQueryParamsOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o StaticSiteReadQueryParamsPtrOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *StaticSiteReadQueryParams) map[string]string {
+		if v == nil {
+			return nil
+		}
+		return v.AdditionalParams
+	}).(pulumi.StringMapOutput)
+}
+
+// Query params for the API request.
+type StaticSiteUpdateQueryParams struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams map[string]string `pulumi:"additionalParams"`
+}
+
+// StaticSiteUpdateQueryParamsInput is an input type that accepts StaticSiteUpdateQueryParamsArgs and StaticSiteUpdateQueryParamsOutput values.
+// You can construct a concrete instance of `StaticSiteUpdateQueryParamsInput` via:
+//
+//	StaticSiteUpdateQueryParamsArgs{...}
+type StaticSiteUpdateQueryParamsInput interface {
+	pulumi.Input
+
+	ToStaticSiteUpdateQueryParamsOutput() StaticSiteUpdateQueryParamsOutput
+	ToStaticSiteUpdateQueryParamsOutputWithContext(context.Context) StaticSiteUpdateQueryParamsOutput
+}
+
+// Query params for the API request.
+type StaticSiteUpdateQueryParamsArgs struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams pulumi.StringMapInput `pulumi:"additionalParams"`
+}
+
+func (StaticSiteUpdateQueryParamsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*StaticSiteUpdateQueryParams)(nil)).Elem()
+}
+
+func (i StaticSiteUpdateQueryParamsArgs) ToStaticSiteUpdateQueryParamsOutput() StaticSiteUpdateQueryParamsOutput {
+	return i.ToStaticSiteUpdateQueryParamsOutputWithContext(context.Background())
+}
+
+func (i StaticSiteUpdateQueryParamsArgs) ToStaticSiteUpdateQueryParamsOutputWithContext(ctx context.Context) StaticSiteUpdateQueryParamsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(StaticSiteUpdateQueryParamsOutput)
+}
+
+func (i StaticSiteUpdateQueryParamsArgs) ToStaticSiteUpdateQueryParamsPtrOutput() StaticSiteUpdateQueryParamsPtrOutput {
+	return i.ToStaticSiteUpdateQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i StaticSiteUpdateQueryParamsArgs) ToStaticSiteUpdateQueryParamsPtrOutputWithContext(ctx context.Context) StaticSiteUpdateQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(StaticSiteUpdateQueryParamsOutput).ToStaticSiteUpdateQueryParamsPtrOutputWithContext(ctx)
+}
+
+// StaticSiteUpdateQueryParamsPtrInput is an input type that accepts StaticSiteUpdateQueryParamsArgs, StaticSiteUpdateQueryParamsPtr and StaticSiteUpdateQueryParamsPtrOutput values.
+// You can construct a concrete instance of `StaticSiteUpdateQueryParamsPtrInput` via:
+//
+//	        StaticSiteUpdateQueryParamsArgs{...}
+//
+//	or:
+//
+//	        nil
+type StaticSiteUpdateQueryParamsPtrInput interface {
+	pulumi.Input
+
+	ToStaticSiteUpdateQueryParamsPtrOutput() StaticSiteUpdateQueryParamsPtrOutput
+	ToStaticSiteUpdateQueryParamsPtrOutputWithContext(context.Context) StaticSiteUpdateQueryParamsPtrOutput
+}
+
+type staticSiteUpdateQueryParamsPtrType StaticSiteUpdateQueryParamsArgs
+
+func StaticSiteUpdateQueryParamsPtr(v *StaticSiteUpdateQueryParamsArgs) StaticSiteUpdateQueryParamsPtrInput {
+	return (*staticSiteUpdateQueryParamsPtrType)(v)
+}
+
+func (*staticSiteUpdateQueryParamsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**StaticSiteUpdateQueryParams)(nil)).Elem()
+}
+
+func (i *staticSiteUpdateQueryParamsPtrType) ToStaticSiteUpdateQueryParamsPtrOutput() StaticSiteUpdateQueryParamsPtrOutput {
+	return i.ToStaticSiteUpdateQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i *staticSiteUpdateQueryParamsPtrType) ToStaticSiteUpdateQueryParamsPtrOutputWithContext(ctx context.Context) StaticSiteUpdateQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(StaticSiteUpdateQueryParamsPtrOutput)
+}
+
+// Query params for the API request.
+type StaticSiteUpdateQueryParamsOutput struct{ *pulumi.OutputState }
+
+func (StaticSiteUpdateQueryParamsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*StaticSiteUpdateQueryParams)(nil)).Elem()
+}
+
+func (o StaticSiteUpdateQueryParamsOutput) ToStaticSiteUpdateQueryParamsOutput() StaticSiteUpdateQueryParamsOutput {
+	return o
+}
+
+func (o StaticSiteUpdateQueryParamsOutput) ToStaticSiteUpdateQueryParamsOutputWithContext(ctx context.Context) StaticSiteUpdateQueryParamsOutput {
+	return o
+}
+
+func (o StaticSiteUpdateQueryParamsOutput) ToStaticSiteUpdateQueryParamsPtrOutput() StaticSiteUpdateQueryParamsPtrOutput {
+	return o.ToStaticSiteUpdateQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (o StaticSiteUpdateQueryParamsOutput) ToStaticSiteUpdateQueryParamsPtrOutputWithContext(ctx context.Context) StaticSiteUpdateQueryParamsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v StaticSiteUpdateQueryParams) *StaticSiteUpdateQueryParams {
+		return &v
+	}).(StaticSiteUpdateQueryParamsPtrOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o StaticSiteUpdateQueryParamsOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v StaticSiteUpdateQueryParams) map[string]string { return v.AdditionalParams }).(pulumi.StringMapOutput)
+}
+
+type StaticSiteUpdateQueryParamsPtrOutput struct{ *pulumi.OutputState }
+
+func (StaticSiteUpdateQueryParamsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**StaticSiteUpdateQueryParams)(nil)).Elem()
+}
+
+func (o StaticSiteUpdateQueryParamsPtrOutput) ToStaticSiteUpdateQueryParamsPtrOutput() StaticSiteUpdateQueryParamsPtrOutput {
+	return o
+}
+
+func (o StaticSiteUpdateQueryParamsPtrOutput) ToStaticSiteUpdateQueryParamsPtrOutputWithContext(ctx context.Context) StaticSiteUpdateQueryParamsPtrOutput {
+	return o
+}
+
+func (o StaticSiteUpdateQueryParamsPtrOutput) Elem() StaticSiteUpdateQueryParamsOutput {
+	return o.ApplyT(func(v *StaticSiteUpdateQueryParams) StaticSiteUpdateQueryParams {
+		if v != nil {
+			return *v
+		}
+		var ret StaticSiteUpdateQueryParams
+		return ret
+	}).(StaticSiteUpdateQueryParamsOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o StaticSiteUpdateQueryParamsPtrOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *StaticSiteUpdateQueryParams) map[string]string {
+		if v == nil {
+			return nil
+		}
+		return v.AdditionalParams
+	}).(pulumi.StringMapOutput)
+}
+
+// Query params for the API request.
+type SuspendServiceCreateQueryParams struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams map[string]string `pulumi:"additionalParams"`
+}
+
+// SuspendServiceCreateQueryParamsInput is an input type that accepts SuspendServiceCreateQueryParamsArgs and SuspendServiceCreateQueryParamsOutput values.
+// You can construct a concrete instance of `SuspendServiceCreateQueryParamsInput` via:
+//
+//	SuspendServiceCreateQueryParamsArgs{...}
+type SuspendServiceCreateQueryParamsInput interface {
+	pulumi.Input
+
+	ToSuspendServiceCreateQueryParamsOutput() SuspendServiceCreateQueryParamsOutput
+	ToSuspendServiceCreateQueryParamsOutputWithContext(context.Context) SuspendServiceCreateQueryParamsOutput
+}
+
+// Query params for the API request.
+type SuspendServiceCreateQueryParamsArgs struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams pulumi.StringMapInput `pulumi:"additionalParams"`
+}
+
+func (SuspendServiceCreateQueryParamsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*SuspendServiceCreateQueryParams)(nil)).Elem()
+}
+
+func (i SuspendServiceCreateQueryParamsArgs) ToSuspendServiceCreateQueryParamsOutput() SuspendServiceCreateQueryParamsOutput {
+	return i.ToSuspendServiceCreateQueryParamsOutputWithContext(context.Background())
+}
+
+func (i SuspendServiceCreateQueryParamsArgs) ToSuspendServiceCreateQueryParamsOutputWithContext(ctx context.Context) SuspendServiceCreateQueryParamsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SuspendServiceCreateQueryParamsOutput)
+}
+
+func (i SuspendServiceCreateQueryParamsArgs) ToSuspendServiceCreateQueryParamsPtrOutput() SuspendServiceCreateQueryParamsPtrOutput {
+	return i.ToSuspendServiceCreateQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i SuspendServiceCreateQueryParamsArgs) ToSuspendServiceCreateQueryParamsPtrOutputWithContext(ctx context.Context) SuspendServiceCreateQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SuspendServiceCreateQueryParamsOutput).ToSuspendServiceCreateQueryParamsPtrOutputWithContext(ctx)
+}
+
+// SuspendServiceCreateQueryParamsPtrInput is an input type that accepts SuspendServiceCreateQueryParamsArgs, SuspendServiceCreateQueryParamsPtr and SuspendServiceCreateQueryParamsPtrOutput values.
+// You can construct a concrete instance of `SuspendServiceCreateQueryParamsPtrInput` via:
+//
+//	        SuspendServiceCreateQueryParamsArgs{...}
+//
+//	or:
+//
+//	        nil
+type SuspendServiceCreateQueryParamsPtrInput interface {
+	pulumi.Input
+
+	ToSuspendServiceCreateQueryParamsPtrOutput() SuspendServiceCreateQueryParamsPtrOutput
+	ToSuspendServiceCreateQueryParamsPtrOutputWithContext(context.Context) SuspendServiceCreateQueryParamsPtrOutput
+}
+
+type suspendServiceCreateQueryParamsPtrType SuspendServiceCreateQueryParamsArgs
+
+func SuspendServiceCreateQueryParamsPtr(v *SuspendServiceCreateQueryParamsArgs) SuspendServiceCreateQueryParamsPtrInput {
+	return (*suspendServiceCreateQueryParamsPtrType)(v)
+}
+
+func (*suspendServiceCreateQueryParamsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**SuspendServiceCreateQueryParams)(nil)).Elem()
+}
+
+func (i *suspendServiceCreateQueryParamsPtrType) ToSuspendServiceCreateQueryParamsPtrOutput() SuspendServiceCreateQueryParamsPtrOutput {
+	return i.ToSuspendServiceCreateQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i *suspendServiceCreateQueryParamsPtrType) ToSuspendServiceCreateQueryParamsPtrOutputWithContext(ctx context.Context) SuspendServiceCreateQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SuspendServiceCreateQueryParamsPtrOutput)
+}
+
+// Query params for the API request.
+type SuspendServiceCreateQueryParamsOutput struct{ *pulumi.OutputState }
+
+func (SuspendServiceCreateQueryParamsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*SuspendServiceCreateQueryParams)(nil)).Elem()
+}
+
+func (o SuspendServiceCreateQueryParamsOutput) ToSuspendServiceCreateQueryParamsOutput() SuspendServiceCreateQueryParamsOutput {
+	return o
+}
+
+func (o SuspendServiceCreateQueryParamsOutput) ToSuspendServiceCreateQueryParamsOutputWithContext(ctx context.Context) SuspendServiceCreateQueryParamsOutput {
+	return o
+}
+
+func (o SuspendServiceCreateQueryParamsOutput) ToSuspendServiceCreateQueryParamsPtrOutput() SuspendServiceCreateQueryParamsPtrOutput {
+	return o.ToSuspendServiceCreateQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (o SuspendServiceCreateQueryParamsOutput) ToSuspendServiceCreateQueryParamsPtrOutputWithContext(ctx context.Context) SuspendServiceCreateQueryParamsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v SuspendServiceCreateQueryParams) *SuspendServiceCreateQueryParams {
+		return &v
+	}).(SuspendServiceCreateQueryParamsPtrOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o SuspendServiceCreateQueryParamsOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v SuspendServiceCreateQueryParams) map[string]string { return v.AdditionalParams }).(pulumi.StringMapOutput)
+}
+
+type SuspendServiceCreateQueryParamsPtrOutput struct{ *pulumi.OutputState }
+
+func (SuspendServiceCreateQueryParamsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**SuspendServiceCreateQueryParams)(nil)).Elem()
+}
+
+func (o SuspendServiceCreateQueryParamsPtrOutput) ToSuspendServiceCreateQueryParamsPtrOutput() SuspendServiceCreateQueryParamsPtrOutput {
+	return o
+}
+
+func (o SuspendServiceCreateQueryParamsPtrOutput) ToSuspendServiceCreateQueryParamsPtrOutputWithContext(ctx context.Context) SuspendServiceCreateQueryParamsPtrOutput {
+	return o
+}
+
+func (o SuspendServiceCreateQueryParamsPtrOutput) Elem() SuspendServiceCreateQueryParamsOutput {
+	return o.ApplyT(func(v *SuspendServiceCreateQueryParams) SuspendServiceCreateQueryParams {
+		if v != nil {
+			return *v
+		}
+		var ret SuspendServiceCreateQueryParams
+		return ret
+	}).(SuspendServiceCreateQueryParamsOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o SuspendServiceCreateQueryParamsPtrOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *SuspendServiceCreateQueryParams) map[string]string {
+		if v == nil {
+			return nil
+		}
+		return v.AdditionalParams
+	}).(pulumi.StringMapOutput)
+}
+
+// Query params for each of the operations of the resource.
+type SuspendServiceQueryParams struct {
+	// Query params for the create operation.
+	Create *SuspendServiceCreateQueryParams `pulumi:"create"`
+}
+
+// SuspendServiceQueryParamsInput is an input type that accepts SuspendServiceQueryParamsArgs and SuspendServiceQueryParamsOutput values.
+// You can construct a concrete instance of `SuspendServiceQueryParamsInput` via:
+//
+//	SuspendServiceQueryParamsArgs{...}
+type SuspendServiceQueryParamsInput interface {
+	pulumi.Input
+
+	ToSuspendServiceQueryParamsOutput() SuspendServiceQueryParamsOutput
+	ToSuspendServiceQueryParamsOutputWithContext(context.Context) SuspendServiceQueryParamsOutput
+}
+
+// Query params for each of the operations of the resource.
+type SuspendServiceQueryParamsArgs struct {
+	// Query params for the create operation.
+	Create SuspendServiceCreateQueryParamsPtrInput `pulumi:"create"`
+}
+
+func (SuspendServiceQueryParamsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*SuspendServiceQueryParams)(nil)).Elem()
+}
+
+func (i SuspendServiceQueryParamsArgs) ToSuspendServiceQueryParamsOutput() SuspendServiceQueryParamsOutput {
+	return i.ToSuspendServiceQueryParamsOutputWithContext(context.Background())
+}
+
+func (i SuspendServiceQueryParamsArgs) ToSuspendServiceQueryParamsOutputWithContext(ctx context.Context) SuspendServiceQueryParamsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SuspendServiceQueryParamsOutput)
+}
+
+func (i SuspendServiceQueryParamsArgs) ToSuspendServiceQueryParamsPtrOutput() SuspendServiceQueryParamsPtrOutput {
+	return i.ToSuspendServiceQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i SuspendServiceQueryParamsArgs) ToSuspendServiceQueryParamsPtrOutputWithContext(ctx context.Context) SuspendServiceQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SuspendServiceQueryParamsOutput).ToSuspendServiceQueryParamsPtrOutputWithContext(ctx)
+}
+
+// SuspendServiceQueryParamsPtrInput is an input type that accepts SuspendServiceQueryParamsArgs, SuspendServiceQueryParamsPtr and SuspendServiceQueryParamsPtrOutput values.
+// You can construct a concrete instance of `SuspendServiceQueryParamsPtrInput` via:
+//
+//	        SuspendServiceQueryParamsArgs{...}
+//
+//	or:
+//
+//	        nil
+type SuspendServiceQueryParamsPtrInput interface {
+	pulumi.Input
+
+	ToSuspendServiceQueryParamsPtrOutput() SuspendServiceQueryParamsPtrOutput
+	ToSuspendServiceQueryParamsPtrOutputWithContext(context.Context) SuspendServiceQueryParamsPtrOutput
+}
+
+type suspendServiceQueryParamsPtrType SuspendServiceQueryParamsArgs
+
+func SuspendServiceQueryParamsPtr(v *SuspendServiceQueryParamsArgs) SuspendServiceQueryParamsPtrInput {
+	return (*suspendServiceQueryParamsPtrType)(v)
+}
+
+func (*suspendServiceQueryParamsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**SuspendServiceQueryParams)(nil)).Elem()
+}
+
+func (i *suspendServiceQueryParamsPtrType) ToSuspendServiceQueryParamsPtrOutput() SuspendServiceQueryParamsPtrOutput {
+	return i.ToSuspendServiceQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i *suspendServiceQueryParamsPtrType) ToSuspendServiceQueryParamsPtrOutputWithContext(ctx context.Context) SuspendServiceQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(SuspendServiceQueryParamsPtrOutput)
+}
+
+// Query params for each of the operations of the resource.
+type SuspendServiceQueryParamsOutput struct{ *pulumi.OutputState }
+
+func (SuspendServiceQueryParamsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*SuspendServiceQueryParams)(nil)).Elem()
+}
+
+func (o SuspendServiceQueryParamsOutput) ToSuspendServiceQueryParamsOutput() SuspendServiceQueryParamsOutput {
+	return o
+}
+
+func (o SuspendServiceQueryParamsOutput) ToSuspendServiceQueryParamsOutputWithContext(ctx context.Context) SuspendServiceQueryParamsOutput {
+	return o
+}
+
+func (o SuspendServiceQueryParamsOutput) ToSuspendServiceQueryParamsPtrOutput() SuspendServiceQueryParamsPtrOutput {
+	return o.ToSuspendServiceQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (o SuspendServiceQueryParamsOutput) ToSuspendServiceQueryParamsPtrOutputWithContext(ctx context.Context) SuspendServiceQueryParamsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v SuspendServiceQueryParams) *SuspendServiceQueryParams {
+		return &v
+	}).(SuspendServiceQueryParamsPtrOutput)
+}
+
+// Query params for the create operation.
+func (o SuspendServiceQueryParamsOutput) Create() SuspendServiceCreateQueryParamsPtrOutput {
+	return o.ApplyT(func(v SuspendServiceQueryParams) *SuspendServiceCreateQueryParams { return v.Create }).(SuspendServiceCreateQueryParamsPtrOutput)
+}
+
+type SuspendServiceQueryParamsPtrOutput struct{ *pulumi.OutputState }
+
+func (SuspendServiceQueryParamsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**SuspendServiceQueryParams)(nil)).Elem()
+}
+
+func (o SuspendServiceQueryParamsPtrOutput) ToSuspendServiceQueryParamsPtrOutput() SuspendServiceQueryParamsPtrOutput {
+	return o
+}
+
+func (o SuspendServiceQueryParamsPtrOutput) ToSuspendServiceQueryParamsPtrOutputWithContext(ctx context.Context) SuspendServiceQueryParamsPtrOutput {
+	return o
+}
+
+func (o SuspendServiceQueryParamsPtrOutput) Elem() SuspendServiceQueryParamsOutput {
+	return o.ApplyT(func(v *SuspendServiceQueryParams) SuspendServiceQueryParams {
+		if v != nil {
+			return *v
+		}
+		var ret SuspendServiceQueryParams
+		return ret
+	}).(SuspendServiceQueryParamsOutput)
+}
+
+// Query params for the create operation.
+func (o SuspendServiceQueryParamsPtrOutput) Create() SuspendServiceCreateQueryParamsPtrOutput {
+	return o.ApplyT(func(v *SuspendServiceQueryParams) *SuspendServiceCreateQueryParams {
+		if v == nil {
+			return nil
+		}
+		return v.Create
+	}).(SuspendServiceCreateQueryParamsPtrOutput)
+}
+
+// Query params for the API request.
+type WebServiceCreateQueryParams struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams map[string]string `pulumi:"additionalParams"`
+}
+
+// WebServiceCreateQueryParamsInput is an input type that accepts WebServiceCreateQueryParamsArgs and WebServiceCreateQueryParamsOutput values.
+// You can construct a concrete instance of `WebServiceCreateQueryParamsInput` via:
+//
+//	WebServiceCreateQueryParamsArgs{...}
+type WebServiceCreateQueryParamsInput interface {
+	pulumi.Input
+
+	ToWebServiceCreateQueryParamsOutput() WebServiceCreateQueryParamsOutput
+	ToWebServiceCreateQueryParamsOutputWithContext(context.Context) WebServiceCreateQueryParamsOutput
+}
+
+// Query params for the API request.
+type WebServiceCreateQueryParamsArgs struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams pulumi.StringMapInput `pulumi:"additionalParams"`
+}
+
+func (WebServiceCreateQueryParamsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*WebServiceCreateQueryParams)(nil)).Elem()
+}
+
+func (i WebServiceCreateQueryParamsArgs) ToWebServiceCreateQueryParamsOutput() WebServiceCreateQueryParamsOutput {
+	return i.ToWebServiceCreateQueryParamsOutputWithContext(context.Background())
+}
+
+func (i WebServiceCreateQueryParamsArgs) ToWebServiceCreateQueryParamsOutputWithContext(ctx context.Context) WebServiceCreateQueryParamsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(WebServiceCreateQueryParamsOutput)
+}
+
+func (i WebServiceCreateQueryParamsArgs) ToWebServiceCreateQueryParamsPtrOutput() WebServiceCreateQueryParamsPtrOutput {
+	return i.ToWebServiceCreateQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i WebServiceCreateQueryParamsArgs) ToWebServiceCreateQueryParamsPtrOutputWithContext(ctx context.Context) WebServiceCreateQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(WebServiceCreateQueryParamsOutput).ToWebServiceCreateQueryParamsPtrOutputWithContext(ctx)
+}
+
+// WebServiceCreateQueryParamsPtrInput is an input type that accepts WebServiceCreateQueryParamsArgs, WebServiceCreateQueryParamsPtr and WebServiceCreateQueryParamsPtrOutput values.
+// You can construct a concrete instance of `WebServiceCreateQueryParamsPtrInput` via:
+//
+//	        WebServiceCreateQueryParamsArgs{...}
+//
+//	or:
+//
+//	        nil
+type WebServiceCreateQueryParamsPtrInput interface {
+	pulumi.Input
+
+	ToWebServiceCreateQueryParamsPtrOutput() WebServiceCreateQueryParamsPtrOutput
+	ToWebServiceCreateQueryParamsPtrOutputWithContext(context.Context) WebServiceCreateQueryParamsPtrOutput
+}
+
+type webServiceCreateQueryParamsPtrType WebServiceCreateQueryParamsArgs
+
+func WebServiceCreateQueryParamsPtr(v *WebServiceCreateQueryParamsArgs) WebServiceCreateQueryParamsPtrInput {
+	return (*webServiceCreateQueryParamsPtrType)(v)
+}
+
+func (*webServiceCreateQueryParamsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**WebServiceCreateQueryParams)(nil)).Elem()
+}
+
+func (i *webServiceCreateQueryParamsPtrType) ToWebServiceCreateQueryParamsPtrOutput() WebServiceCreateQueryParamsPtrOutput {
+	return i.ToWebServiceCreateQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i *webServiceCreateQueryParamsPtrType) ToWebServiceCreateQueryParamsPtrOutputWithContext(ctx context.Context) WebServiceCreateQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(WebServiceCreateQueryParamsPtrOutput)
+}
+
+// Query params for the API request.
+type WebServiceCreateQueryParamsOutput struct{ *pulumi.OutputState }
+
+func (WebServiceCreateQueryParamsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*WebServiceCreateQueryParams)(nil)).Elem()
+}
+
+func (o WebServiceCreateQueryParamsOutput) ToWebServiceCreateQueryParamsOutput() WebServiceCreateQueryParamsOutput {
+	return o
+}
+
+func (o WebServiceCreateQueryParamsOutput) ToWebServiceCreateQueryParamsOutputWithContext(ctx context.Context) WebServiceCreateQueryParamsOutput {
+	return o
+}
+
+func (o WebServiceCreateQueryParamsOutput) ToWebServiceCreateQueryParamsPtrOutput() WebServiceCreateQueryParamsPtrOutput {
+	return o.ToWebServiceCreateQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (o WebServiceCreateQueryParamsOutput) ToWebServiceCreateQueryParamsPtrOutputWithContext(ctx context.Context) WebServiceCreateQueryParamsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v WebServiceCreateQueryParams) *WebServiceCreateQueryParams {
+		return &v
+	}).(WebServiceCreateQueryParamsPtrOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o WebServiceCreateQueryParamsOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v WebServiceCreateQueryParams) map[string]string { return v.AdditionalParams }).(pulumi.StringMapOutput)
+}
+
+type WebServiceCreateQueryParamsPtrOutput struct{ *pulumi.OutputState }
+
+func (WebServiceCreateQueryParamsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**WebServiceCreateQueryParams)(nil)).Elem()
+}
+
+func (o WebServiceCreateQueryParamsPtrOutput) ToWebServiceCreateQueryParamsPtrOutput() WebServiceCreateQueryParamsPtrOutput {
+	return o
+}
+
+func (o WebServiceCreateQueryParamsPtrOutput) ToWebServiceCreateQueryParamsPtrOutputWithContext(ctx context.Context) WebServiceCreateQueryParamsPtrOutput {
+	return o
+}
+
+func (o WebServiceCreateQueryParamsPtrOutput) Elem() WebServiceCreateQueryParamsOutput {
+	return o.ApplyT(func(v *WebServiceCreateQueryParams) WebServiceCreateQueryParams {
+		if v != nil {
+			return *v
+		}
+		var ret WebServiceCreateQueryParams
+		return ret
+	}).(WebServiceCreateQueryParamsOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o WebServiceCreateQueryParamsPtrOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *WebServiceCreateQueryParams) map[string]string {
+		if v == nil {
+			return nil
+		}
+		return v.AdditionalParams
+	}).(pulumi.StringMapOutput)
+}
+
+// Query params for the API request.
+type WebServiceDeleteQueryParams struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams map[string]string `pulumi:"additionalParams"`
+}
+
+// WebServiceDeleteQueryParamsInput is an input type that accepts WebServiceDeleteQueryParamsArgs and WebServiceDeleteQueryParamsOutput values.
+// You can construct a concrete instance of `WebServiceDeleteQueryParamsInput` via:
+//
+//	WebServiceDeleteQueryParamsArgs{...}
+type WebServiceDeleteQueryParamsInput interface {
+	pulumi.Input
+
+	ToWebServiceDeleteQueryParamsOutput() WebServiceDeleteQueryParamsOutput
+	ToWebServiceDeleteQueryParamsOutputWithContext(context.Context) WebServiceDeleteQueryParamsOutput
+}
+
+// Query params for the API request.
+type WebServiceDeleteQueryParamsArgs struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams pulumi.StringMapInput `pulumi:"additionalParams"`
+}
+
+func (WebServiceDeleteQueryParamsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*WebServiceDeleteQueryParams)(nil)).Elem()
+}
+
+func (i WebServiceDeleteQueryParamsArgs) ToWebServiceDeleteQueryParamsOutput() WebServiceDeleteQueryParamsOutput {
+	return i.ToWebServiceDeleteQueryParamsOutputWithContext(context.Background())
+}
+
+func (i WebServiceDeleteQueryParamsArgs) ToWebServiceDeleteQueryParamsOutputWithContext(ctx context.Context) WebServiceDeleteQueryParamsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(WebServiceDeleteQueryParamsOutput)
+}
+
+func (i WebServiceDeleteQueryParamsArgs) ToWebServiceDeleteQueryParamsPtrOutput() WebServiceDeleteQueryParamsPtrOutput {
+	return i.ToWebServiceDeleteQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i WebServiceDeleteQueryParamsArgs) ToWebServiceDeleteQueryParamsPtrOutputWithContext(ctx context.Context) WebServiceDeleteQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(WebServiceDeleteQueryParamsOutput).ToWebServiceDeleteQueryParamsPtrOutputWithContext(ctx)
+}
+
+// WebServiceDeleteQueryParamsPtrInput is an input type that accepts WebServiceDeleteQueryParamsArgs, WebServiceDeleteQueryParamsPtr and WebServiceDeleteQueryParamsPtrOutput values.
+// You can construct a concrete instance of `WebServiceDeleteQueryParamsPtrInput` via:
+//
+//	        WebServiceDeleteQueryParamsArgs{...}
+//
+//	or:
+//
+//	        nil
+type WebServiceDeleteQueryParamsPtrInput interface {
+	pulumi.Input
+
+	ToWebServiceDeleteQueryParamsPtrOutput() WebServiceDeleteQueryParamsPtrOutput
+	ToWebServiceDeleteQueryParamsPtrOutputWithContext(context.Context) WebServiceDeleteQueryParamsPtrOutput
+}
+
+type webServiceDeleteQueryParamsPtrType WebServiceDeleteQueryParamsArgs
+
+func WebServiceDeleteQueryParamsPtr(v *WebServiceDeleteQueryParamsArgs) WebServiceDeleteQueryParamsPtrInput {
+	return (*webServiceDeleteQueryParamsPtrType)(v)
+}
+
+func (*webServiceDeleteQueryParamsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**WebServiceDeleteQueryParams)(nil)).Elem()
+}
+
+func (i *webServiceDeleteQueryParamsPtrType) ToWebServiceDeleteQueryParamsPtrOutput() WebServiceDeleteQueryParamsPtrOutput {
+	return i.ToWebServiceDeleteQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i *webServiceDeleteQueryParamsPtrType) ToWebServiceDeleteQueryParamsPtrOutputWithContext(ctx context.Context) WebServiceDeleteQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(WebServiceDeleteQueryParamsPtrOutput)
+}
+
+// Query params for the API request.
+type WebServiceDeleteQueryParamsOutput struct{ *pulumi.OutputState }
+
+func (WebServiceDeleteQueryParamsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*WebServiceDeleteQueryParams)(nil)).Elem()
+}
+
+func (o WebServiceDeleteQueryParamsOutput) ToWebServiceDeleteQueryParamsOutput() WebServiceDeleteQueryParamsOutput {
+	return o
+}
+
+func (o WebServiceDeleteQueryParamsOutput) ToWebServiceDeleteQueryParamsOutputWithContext(ctx context.Context) WebServiceDeleteQueryParamsOutput {
+	return o
+}
+
+func (o WebServiceDeleteQueryParamsOutput) ToWebServiceDeleteQueryParamsPtrOutput() WebServiceDeleteQueryParamsPtrOutput {
+	return o.ToWebServiceDeleteQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (o WebServiceDeleteQueryParamsOutput) ToWebServiceDeleteQueryParamsPtrOutputWithContext(ctx context.Context) WebServiceDeleteQueryParamsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v WebServiceDeleteQueryParams) *WebServiceDeleteQueryParams {
+		return &v
+	}).(WebServiceDeleteQueryParamsPtrOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o WebServiceDeleteQueryParamsOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v WebServiceDeleteQueryParams) map[string]string { return v.AdditionalParams }).(pulumi.StringMapOutput)
+}
+
+type WebServiceDeleteQueryParamsPtrOutput struct{ *pulumi.OutputState }
+
+func (WebServiceDeleteQueryParamsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**WebServiceDeleteQueryParams)(nil)).Elem()
+}
+
+func (o WebServiceDeleteQueryParamsPtrOutput) ToWebServiceDeleteQueryParamsPtrOutput() WebServiceDeleteQueryParamsPtrOutput {
+	return o
+}
+
+func (o WebServiceDeleteQueryParamsPtrOutput) ToWebServiceDeleteQueryParamsPtrOutputWithContext(ctx context.Context) WebServiceDeleteQueryParamsPtrOutput {
+	return o
+}
+
+func (o WebServiceDeleteQueryParamsPtrOutput) Elem() WebServiceDeleteQueryParamsOutput {
+	return o.ApplyT(func(v *WebServiceDeleteQueryParams) WebServiceDeleteQueryParams {
+		if v != nil {
+			return *v
+		}
+		var ret WebServiceDeleteQueryParams
+		return ret
+	}).(WebServiceDeleteQueryParamsOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o WebServiceDeleteQueryParamsPtrOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *WebServiceDeleteQueryParams) map[string]string {
+		if v == nil {
+			return nil
+		}
+		return v.AdditionalParams
+	}).(pulumi.StringMapOutput)
 }
 
 type WebServiceDetailsCreate struct {
@@ -9124,41 +23884,704 @@ func (o WebServiceOutputTypeOutput) UpdatedAt() pulumi.StringOutput {
 	return o.ApplyT(func(v WebServiceOutputType) string { return v.UpdatedAt }).(pulumi.StringOutput)
 }
 
+// Query params for each of the operations of the resource.
+type WebServiceQueryParams struct {
+	// Query params for the create operation.
+	Create *WebServiceCreateQueryParams `pulumi:"create"`
+	// Query params for the delete operation.
+	Delete *WebServiceDeleteQueryParams `pulumi:"delete"`
+	// Query params for the read operation.
+	Read *WebServiceReadQueryParams `pulumi:"read"`
+	// Query params for the update operation.
+	Update *WebServiceUpdateQueryParams `pulumi:"update"`
+}
+
+// WebServiceQueryParamsInput is an input type that accepts WebServiceQueryParamsArgs and WebServiceQueryParamsOutput values.
+// You can construct a concrete instance of `WebServiceQueryParamsInput` via:
+//
+//	WebServiceQueryParamsArgs{...}
+type WebServiceQueryParamsInput interface {
+	pulumi.Input
+
+	ToWebServiceQueryParamsOutput() WebServiceQueryParamsOutput
+	ToWebServiceQueryParamsOutputWithContext(context.Context) WebServiceQueryParamsOutput
+}
+
+// Query params for each of the operations of the resource.
+type WebServiceQueryParamsArgs struct {
+	// Query params for the create operation.
+	Create WebServiceCreateQueryParamsPtrInput `pulumi:"create"`
+	// Query params for the delete operation.
+	Delete WebServiceDeleteQueryParamsPtrInput `pulumi:"delete"`
+	// Query params for the read operation.
+	Read WebServiceReadQueryParamsPtrInput `pulumi:"read"`
+	// Query params for the update operation.
+	Update WebServiceUpdateQueryParamsPtrInput `pulumi:"update"`
+}
+
+func (WebServiceQueryParamsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*WebServiceQueryParams)(nil)).Elem()
+}
+
+func (i WebServiceQueryParamsArgs) ToWebServiceQueryParamsOutput() WebServiceQueryParamsOutput {
+	return i.ToWebServiceQueryParamsOutputWithContext(context.Background())
+}
+
+func (i WebServiceQueryParamsArgs) ToWebServiceQueryParamsOutputWithContext(ctx context.Context) WebServiceQueryParamsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(WebServiceQueryParamsOutput)
+}
+
+func (i WebServiceQueryParamsArgs) ToWebServiceQueryParamsPtrOutput() WebServiceQueryParamsPtrOutput {
+	return i.ToWebServiceQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i WebServiceQueryParamsArgs) ToWebServiceQueryParamsPtrOutputWithContext(ctx context.Context) WebServiceQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(WebServiceQueryParamsOutput).ToWebServiceQueryParamsPtrOutputWithContext(ctx)
+}
+
+// WebServiceQueryParamsPtrInput is an input type that accepts WebServiceQueryParamsArgs, WebServiceQueryParamsPtr and WebServiceQueryParamsPtrOutput values.
+// You can construct a concrete instance of `WebServiceQueryParamsPtrInput` via:
+//
+//	        WebServiceQueryParamsArgs{...}
+//
+//	or:
+//
+//	        nil
+type WebServiceQueryParamsPtrInput interface {
+	pulumi.Input
+
+	ToWebServiceQueryParamsPtrOutput() WebServiceQueryParamsPtrOutput
+	ToWebServiceQueryParamsPtrOutputWithContext(context.Context) WebServiceQueryParamsPtrOutput
+}
+
+type webServiceQueryParamsPtrType WebServiceQueryParamsArgs
+
+func WebServiceQueryParamsPtr(v *WebServiceQueryParamsArgs) WebServiceQueryParamsPtrInput {
+	return (*webServiceQueryParamsPtrType)(v)
+}
+
+func (*webServiceQueryParamsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**WebServiceQueryParams)(nil)).Elem()
+}
+
+func (i *webServiceQueryParamsPtrType) ToWebServiceQueryParamsPtrOutput() WebServiceQueryParamsPtrOutput {
+	return i.ToWebServiceQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i *webServiceQueryParamsPtrType) ToWebServiceQueryParamsPtrOutputWithContext(ctx context.Context) WebServiceQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(WebServiceQueryParamsPtrOutput)
+}
+
+// Query params for each of the operations of the resource.
+type WebServiceQueryParamsOutput struct{ *pulumi.OutputState }
+
+func (WebServiceQueryParamsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*WebServiceQueryParams)(nil)).Elem()
+}
+
+func (o WebServiceQueryParamsOutput) ToWebServiceQueryParamsOutput() WebServiceQueryParamsOutput {
+	return o
+}
+
+func (o WebServiceQueryParamsOutput) ToWebServiceQueryParamsOutputWithContext(ctx context.Context) WebServiceQueryParamsOutput {
+	return o
+}
+
+func (o WebServiceQueryParamsOutput) ToWebServiceQueryParamsPtrOutput() WebServiceQueryParamsPtrOutput {
+	return o.ToWebServiceQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (o WebServiceQueryParamsOutput) ToWebServiceQueryParamsPtrOutputWithContext(ctx context.Context) WebServiceQueryParamsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v WebServiceQueryParams) *WebServiceQueryParams {
+		return &v
+	}).(WebServiceQueryParamsPtrOutput)
+}
+
+// Query params for the create operation.
+func (o WebServiceQueryParamsOutput) Create() WebServiceCreateQueryParamsPtrOutput {
+	return o.ApplyT(func(v WebServiceQueryParams) *WebServiceCreateQueryParams { return v.Create }).(WebServiceCreateQueryParamsPtrOutput)
+}
+
+// Query params for the delete operation.
+func (o WebServiceQueryParamsOutput) Delete() WebServiceDeleteQueryParamsPtrOutput {
+	return o.ApplyT(func(v WebServiceQueryParams) *WebServiceDeleteQueryParams { return v.Delete }).(WebServiceDeleteQueryParamsPtrOutput)
+}
+
+// Query params for the read operation.
+func (o WebServiceQueryParamsOutput) Read() WebServiceReadQueryParamsPtrOutput {
+	return o.ApplyT(func(v WebServiceQueryParams) *WebServiceReadQueryParams { return v.Read }).(WebServiceReadQueryParamsPtrOutput)
+}
+
+// Query params for the update operation.
+func (o WebServiceQueryParamsOutput) Update() WebServiceUpdateQueryParamsPtrOutput {
+	return o.ApplyT(func(v WebServiceQueryParams) *WebServiceUpdateQueryParams { return v.Update }).(WebServiceUpdateQueryParamsPtrOutput)
+}
+
+type WebServiceQueryParamsPtrOutput struct{ *pulumi.OutputState }
+
+func (WebServiceQueryParamsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**WebServiceQueryParams)(nil)).Elem()
+}
+
+func (o WebServiceQueryParamsPtrOutput) ToWebServiceQueryParamsPtrOutput() WebServiceQueryParamsPtrOutput {
+	return o
+}
+
+func (o WebServiceQueryParamsPtrOutput) ToWebServiceQueryParamsPtrOutputWithContext(ctx context.Context) WebServiceQueryParamsPtrOutput {
+	return o
+}
+
+func (o WebServiceQueryParamsPtrOutput) Elem() WebServiceQueryParamsOutput {
+	return o.ApplyT(func(v *WebServiceQueryParams) WebServiceQueryParams {
+		if v != nil {
+			return *v
+		}
+		var ret WebServiceQueryParams
+		return ret
+	}).(WebServiceQueryParamsOutput)
+}
+
+// Query params for the create operation.
+func (o WebServiceQueryParamsPtrOutput) Create() WebServiceCreateQueryParamsPtrOutput {
+	return o.ApplyT(func(v *WebServiceQueryParams) *WebServiceCreateQueryParams {
+		if v == nil {
+			return nil
+		}
+		return v.Create
+	}).(WebServiceCreateQueryParamsPtrOutput)
+}
+
+// Query params for the delete operation.
+func (o WebServiceQueryParamsPtrOutput) Delete() WebServiceDeleteQueryParamsPtrOutput {
+	return o.ApplyT(func(v *WebServiceQueryParams) *WebServiceDeleteQueryParams {
+		if v == nil {
+			return nil
+		}
+		return v.Delete
+	}).(WebServiceDeleteQueryParamsPtrOutput)
+}
+
+// Query params for the read operation.
+func (o WebServiceQueryParamsPtrOutput) Read() WebServiceReadQueryParamsPtrOutput {
+	return o.ApplyT(func(v *WebServiceQueryParams) *WebServiceReadQueryParams {
+		if v == nil {
+			return nil
+		}
+		return v.Read
+	}).(WebServiceReadQueryParamsPtrOutput)
+}
+
+// Query params for the update operation.
+func (o WebServiceQueryParamsPtrOutput) Update() WebServiceUpdateQueryParamsPtrOutput {
+	return o.ApplyT(func(v *WebServiceQueryParams) *WebServiceUpdateQueryParams {
+		if v == nil {
+			return nil
+		}
+		return v.Update
+	}).(WebServiceUpdateQueryParamsPtrOutput)
+}
+
+// Query params for the API request.
+type WebServiceReadQueryParams struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams map[string]string `pulumi:"additionalParams"`
+}
+
+// WebServiceReadQueryParamsInput is an input type that accepts WebServiceReadQueryParamsArgs and WebServiceReadQueryParamsOutput values.
+// You can construct a concrete instance of `WebServiceReadQueryParamsInput` via:
+//
+//	WebServiceReadQueryParamsArgs{...}
+type WebServiceReadQueryParamsInput interface {
+	pulumi.Input
+
+	ToWebServiceReadQueryParamsOutput() WebServiceReadQueryParamsOutput
+	ToWebServiceReadQueryParamsOutputWithContext(context.Context) WebServiceReadQueryParamsOutput
+}
+
+// Query params for the API request.
+type WebServiceReadQueryParamsArgs struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams pulumi.StringMapInput `pulumi:"additionalParams"`
+}
+
+func (WebServiceReadQueryParamsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*WebServiceReadQueryParams)(nil)).Elem()
+}
+
+func (i WebServiceReadQueryParamsArgs) ToWebServiceReadQueryParamsOutput() WebServiceReadQueryParamsOutput {
+	return i.ToWebServiceReadQueryParamsOutputWithContext(context.Background())
+}
+
+func (i WebServiceReadQueryParamsArgs) ToWebServiceReadQueryParamsOutputWithContext(ctx context.Context) WebServiceReadQueryParamsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(WebServiceReadQueryParamsOutput)
+}
+
+func (i WebServiceReadQueryParamsArgs) ToWebServiceReadQueryParamsPtrOutput() WebServiceReadQueryParamsPtrOutput {
+	return i.ToWebServiceReadQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i WebServiceReadQueryParamsArgs) ToWebServiceReadQueryParamsPtrOutputWithContext(ctx context.Context) WebServiceReadQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(WebServiceReadQueryParamsOutput).ToWebServiceReadQueryParamsPtrOutputWithContext(ctx)
+}
+
+// WebServiceReadQueryParamsPtrInput is an input type that accepts WebServiceReadQueryParamsArgs, WebServiceReadQueryParamsPtr and WebServiceReadQueryParamsPtrOutput values.
+// You can construct a concrete instance of `WebServiceReadQueryParamsPtrInput` via:
+//
+//	        WebServiceReadQueryParamsArgs{...}
+//
+//	or:
+//
+//	        nil
+type WebServiceReadQueryParamsPtrInput interface {
+	pulumi.Input
+
+	ToWebServiceReadQueryParamsPtrOutput() WebServiceReadQueryParamsPtrOutput
+	ToWebServiceReadQueryParamsPtrOutputWithContext(context.Context) WebServiceReadQueryParamsPtrOutput
+}
+
+type webServiceReadQueryParamsPtrType WebServiceReadQueryParamsArgs
+
+func WebServiceReadQueryParamsPtr(v *WebServiceReadQueryParamsArgs) WebServiceReadQueryParamsPtrInput {
+	return (*webServiceReadQueryParamsPtrType)(v)
+}
+
+func (*webServiceReadQueryParamsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**WebServiceReadQueryParams)(nil)).Elem()
+}
+
+func (i *webServiceReadQueryParamsPtrType) ToWebServiceReadQueryParamsPtrOutput() WebServiceReadQueryParamsPtrOutput {
+	return i.ToWebServiceReadQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i *webServiceReadQueryParamsPtrType) ToWebServiceReadQueryParamsPtrOutputWithContext(ctx context.Context) WebServiceReadQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(WebServiceReadQueryParamsPtrOutput)
+}
+
+// Query params for the API request.
+type WebServiceReadQueryParamsOutput struct{ *pulumi.OutputState }
+
+func (WebServiceReadQueryParamsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*WebServiceReadQueryParams)(nil)).Elem()
+}
+
+func (o WebServiceReadQueryParamsOutput) ToWebServiceReadQueryParamsOutput() WebServiceReadQueryParamsOutput {
+	return o
+}
+
+func (o WebServiceReadQueryParamsOutput) ToWebServiceReadQueryParamsOutputWithContext(ctx context.Context) WebServiceReadQueryParamsOutput {
+	return o
+}
+
+func (o WebServiceReadQueryParamsOutput) ToWebServiceReadQueryParamsPtrOutput() WebServiceReadQueryParamsPtrOutput {
+	return o.ToWebServiceReadQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (o WebServiceReadQueryParamsOutput) ToWebServiceReadQueryParamsPtrOutputWithContext(ctx context.Context) WebServiceReadQueryParamsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v WebServiceReadQueryParams) *WebServiceReadQueryParams {
+		return &v
+	}).(WebServiceReadQueryParamsPtrOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o WebServiceReadQueryParamsOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v WebServiceReadQueryParams) map[string]string { return v.AdditionalParams }).(pulumi.StringMapOutput)
+}
+
+type WebServiceReadQueryParamsPtrOutput struct{ *pulumi.OutputState }
+
+func (WebServiceReadQueryParamsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**WebServiceReadQueryParams)(nil)).Elem()
+}
+
+func (o WebServiceReadQueryParamsPtrOutput) ToWebServiceReadQueryParamsPtrOutput() WebServiceReadQueryParamsPtrOutput {
+	return o
+}
+
+func (o WebServiceReadQueryParamsPtrOutput) ToWebServiceReadQueryParamsPtrOutputWithContext(ctx context.Context) WebServiceReadQueryParamsPtrOutput {
+	return o
+}
+
+func (o WebServiceReadQueryParamsPtrOutput) Elem() WebServiceReadQueryParamsOutput {
+	return o.ApplyT(func(v *WebServiceReadQueryParams) WebServiceReadQueryParams {
+		if v != nil {
+			return *v
+		}
+		var ret WebServiceReadQueryParams
+		return ret
+	}).(WebServiceReadQueryParamsOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o WebServiceReadQueryParamsPtrOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *WebServiceReadQueryParams) map[string]string {
+		if v == nil {
+			return nil
+		}
+		return v.AdditionalParams
+	}).(pulumi.StringMapOutput)
+}
+
+// Query params for the API request.
+type WebServiceUpdateQueryParams struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams map[string]string `pulumi:"additionalParams"`
+}
+
+// WebServiceUpdateQueryParamsInput is an input type that accepts WebServiceUpdateQueryParamsArgs and WebServiceUpdateQueryParamsOutput values.
+// You can construct a concrete instance of `WebServiceUpdateQueryParamsInput` via:
+//
+//	WebServiceUpdateQueryParamsArgs{...}
+type WebServiceUpdateQueryParamsInput interface {
+	pulumi.Input
+
+	ToWebServiceUpdateQueryParamsOutput() WebServiceUpdateQueryParamsOutput
+	ToWebServiceUpdateQueryParamsOutputWithContext(context.Context) WebServiceUpdateQueryParamsOutput
+}
+
+// Query params for the API request.
+type WebServiceUpdateQueryParamsArgs struct {
+	// Additional query params to send with the request that are not defined in the API spec.
+	AdditionalParams pulumi.StringMapInput `pulumi:"additionalParams"`
+}
+
+func (WebServiceUpdateQueryParamsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*WebServiceUpdateQueryParams)(nil)).Elem()
+}
+
+func (i WebServiceUpdateQueryParamsArgs) ToWebServiceUpdateQueryParamsOutput() WebServiceUpdateQueryParamsOutput {
+	return i.ToWebServiceUpdateQueryParamsOutputWithContext(context.Background())
+}
+
+func (i WebServiceUpdateQueryParamsArgs) ToWebServiceUpdateQueryParamsOutputWithContext(ctx context.Context) WebServiceUpdateQueryParamsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(WebServiceUpdateQueryParamsOutput)
+}
+
+func (i WebServiceUpdateQueryParamsArgs) ToWebServiceUpdateQueryParamsPtrOutput() WebServiceUpdateQueryParamsPtrOutput {
+	return i.ToWebServiceUpdateQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i WebServiceUpdateQueryParamsArgs) ToWebServiceUpdateQueryParamsPtrOutputWithContext(ctx context.Context) WebServiceUpdateQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(WebServiceUpdateQueryParamsOutput).ToWebServiceUpdateQueryParamsPtrOutputWithContext(ctx)
+}
+
+// WebServiceUpdateQueryParamsPtrInput is an input type that accepts WebServiceUpdateQueryParamsArgs, WebServiceUpdateQueryParamsPtr and WebServiceUpdateQueryParamsPtrOutput values.
+// You can construct a concrete instance of `WebServiceUpdateQueryParamsPtrInput` via:
+//
+//	        WebServiceUpdateQueryParamsArgs{...}
+//
+//	or:
+//
+//	        nil
+type WebServiceUpdateQueryParamsPtrInput interface {
+	pulumi.Input
+
+	ToWebServiceUpdateQueryParamsPtrOutput() WebServiceUpdateQueryParamsPtrOutput
+	ToWebServiceUpdateQueryParamsPtrOutputWithContext(context.Context) WebServiceUpdateQueryParamsPtrOutput
+}
+
+type webServiceUpdateQueryParamsPtrType WebServiceUpdateQueryParamsArgs
+
+func WebServiceUpdateQueryParamsPtr(v *WebServiceUpdateQueryParamsArgs) WebServiceUpdateQueryParamsPtrInput {
+	return (*webServiceUpdateQueryParamsPtrType)(v)
+}
+
+func (*webServiceUpdateQueryParamsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**WebServiceUpdateQueryParams)(nil)).Elem()
+}
+
+func (i *webServiceUpdateQueryParamsPtrType) ToWebServiceUpdateQueryParamsPtrOutput() WebServiceUpdateQueryParamsPtrOutput {
+	return i.ToWebServiceUpdateQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (i *webServiceUpdateQueryParamsPtrType) ToWebServiceUpdateQueryParamsPtrOutputWithContext(ctx context.Context) WebServiceUpdateQueryParamsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(WebServiceUpdateQueryParamsPtrOutput)
+}
+
+// Query params for the API request.
+type WebServiceUpdateQueryParamsOutput struct{ *pulumi.OutputState }
+
+func (WebServiceUpdateQueryParamsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*WebServiceUpdateQueryParams)(nil)).Elem()
+}
+
+func (o WebServiceUpdateQueryParamsOutput) ToWebServiceUpdateQueryParamsOutput() WebServiceUpdateQueryParamsOutput {
+	return o
+}
+
+func (o WebServiceUpdateQueryParamsOutput) ToWebServiceUpdateQueryParamsOutputWithContext(ctx context.Context) WebServiceUpdateQueryParamsOutput {
+	return o
+}
+
+func (o WebServiceUpdateQueryParamsOutput) ToWebServiceUpdateQueryParamsPtrOutput() WebServiceUpdateQueryParamsPtrOutput {
+	return o.ToWebServiceUpdateQueryParamsPtrOutputWithContext(context.Background())
+}
+
+func (o WebServiceUpdateQueryParamsOutput) ToWebServiceUpdateQueryParamsPtrOutputWithContext(ctx context.Context) WebServiceUpdateQueryParamsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v WebServiceUpdateQueryParams) *WebServiceUpdateQueryParams {
+		return &v
+	}).(WebServiceUpdateQueryParamsPtrOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o WebServiceUpdateQueryParamsOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v WebServiceUpdateQueryParams) map[string]string { return v.AdditionalParams }).(pulumi.StringMapOutput)
+}
+
+type WebServiceUpdateQueryParamsPtrOutput struct{ *pulumi.OutputState }
+
+func (WebServiceUpdateQueryParamsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**WebServiceUpdateQueryParams)(nil)).Elem()
+}
+
+func (o WebServiceUpdateQueryParamsPtrOutput) ToWebServiceUpdateQueryParamsPtrOutput() WebServiceUpdateQueryParamsPtrOutput {
+	return o
+}
+
+func (o WebServiceUpdateQueryParamsPtrOutput) ToWebServiceUpdateQueryParamsPtrOutputWithContext(ctx context.Context) WebServiceUpdateQueryParamsPtrOutput {
+	return o
+}
+
+func (o WebServiceUpdateQueryParamsPtrOutput) Elem() WebServiceUpdateQueryParamsOutput {
+	return o.ApplyT(func(v *WebServiceUpdateQueryParams) WebServiceUpdateQueryParams {
+		if v != nil {
+			return *v
+		}
+		var ret WebServiceUpdateQueryParams
+		return ret
+	}).(WebServiceUpdateQueryParamsOutput)
+}
+
+// Additional query params to send with the request that are not defined in the API spec.
+func (o WebServiceUpdateQueryParamsPtrOutput) AdditionalParams() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *WebServiceUpdateQueryParams) map[string]string {
+		if v == nil {
+			return nil
+		}
+		return v.AdditionalParams
+	}).(pulumi.StringMapOutput)
+}
+
 func init() {
+	pulumi.RegisterInputType(reflect.TypeOf((*AutoscaleServiceCreateQueryParamsInput)(nil)).Elem(), AutoscaleServiceCreateQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AutoscaleServiceCreateQueryParamsPtrInput)(nil)).Elem(), AutoscaleServiceCreateQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AutoscaleServicePutQueryParamsInput)(nil)).Elem(), AutoscaleServicePutQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AutoscaleServicePutQueryParamsPtrInput)(nil)).Elem(), AutoscaleServicePutQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AutoscaleServiceQueryParamsInput)(nil)).Elem(), AutoscaleServiceQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*AutoscaleServiceQueryParamsPtrInput)(nil)).Elem(), AutoscaleServiceQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*BackgroundWorkerCreateQueryParamsInput)(nil)).Elem(), BackgroundWorkerCreateQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*BackgroundWorkerCreateQueryParamsPtrInput)(nil)).Elem(), BackgroundWorkerCreateQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*BackgroundWorkerDeleteQueryParamsInput)(nil)).Elem(), BackgroundWorkerDeleteQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*BackgroundWorkerDeleteQueryParamsPtrInput)(nil)).Elem(), BackgroundWorkerDeleteQueryParamsArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*BackgroundWorkerDetailsCreateInput)(nil)).Elem(), BackgroundWorkerDetailsCreateArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*BackgroundWorkerDetailsCreatePtrInput)(nil)).Elem(), BackgroundWorkerDetailsCreateArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*BackgroundWorkerQueryParamsInput)(nil)).Elem(), BackgroundWorkerQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*BackgroundWorkerQueryParamsPtrInput)(nil)).Elem(), BackgroundWorkerQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*BackgroundWorkerReadQueryParamsInput)(nil)).Elem(), BackgroundWorkerReadQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*BackgroundWorkerReadQueryParamsPtrInput)(nil)).Elem(), BackgroundWorkerReadQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*BackgroundWorkerUpdateQueryParamsInput)(nil)).Elem(), BackgroundWorkerUpdateQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*BackgroundWorkerUpdateQueryParamsPtrInput)(nil)).Elem(), BackgroundWorkerUpdateQueryParamsArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*BuildFilterInput)(nil)).Elem(), BuildFilterArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*BuildFilterPtrInput)(nil)).Elem(), BuildFilterArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*CancelDeployCreateQueryParamsInput)(nil)).Elem(), CancelDeployCreateQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*CancelDeployCreateQueryParamsPtrInput)(nil)).Elem(), CancelDeployCreateQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*CancelDeployQueryParamsInput)(nil)).Elem(), CancelDeployQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*CancelDeployQueryParamsPtrInput)(nil)).Elem(), CancelDeployQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*CancelJobCreateQueryParamsInput)(nil)).Elem(), CancelJobCreateQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*CancelJobCreateQueryParamsPtrInput)(nil)).Elem(), CancelJobCreateQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*CancelJobQueryParamsInput)(nil)).Elem(), CancelJobQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*CancelJobQueryParamsPtrInput)(nil)).Elem(), CancelJobQueryParamsArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*CriteriaPropertiesInput)(nil)).Elem(), CriteriaPropertiesArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*CriteriaPropertiesCpuPropertiesInput)(nil)).Elem(), CriteriaPropertiesCpuPropertiesArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*CronJobCreateQueryParamsInput)(nil)).Elem(), CronJobCreateQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*CronJobCreateQueryParamsPtrInput)(nil)).Elem(), CronJobCreateQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*CronJobDeleteQueryParamsInput)(nil)).Elem(), CronJobDeleteQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*CronJobDeleteQueryParamsPtrInput)(nil)).Elem(), CronJobDeleteQueryParamsArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*CronJobDetailsCreateInput)(nil)).Elem(), CronJobDetailsCreateArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*CronJobDetailsCreatePtrInput)(nil)).Elem(), CronJobDetailsCreateArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*CronJobQueryParamsInput)(nil)).Elem(), CronJobQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*CronJobQueryParamsPtrInput)(nil)).Elem(), CronJobQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*CronJobReadQueryParamsInput)(nil)).Elem(), CronJobReadQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*CronJobReadQueryParamsPtrInput)(nil)).Elem(), CronJobReadQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*CronJobUpdateQueryParamsInput)(nil)).Elem(), CronJobUpdateQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*CronJobUpdateQueryParamsPtrInput)(nil)).Elem(), CronJobUpdateQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*CustomDomainCreateQueryParamsInput)(nil)).Elem(), CustomDomainCreateQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*CustomDomainCreateQueryParamsPtrInput)(nil)).Elem(), CustomDomainCreateQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*CustomDomainDeleteQueryParamsInput)(nil)).Elem(), CustomDomainDeleteQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*CustomDomainDeleteQueryParamsPtrInput)(nil)).Elem(), CustomDomainDeleteQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*CustomDomainQueryParamsInput)(nil)).Elem(), CustomDomainQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*CustomDomainQueryParamsPtrInput)(nil)).Elem(), CustomDomainQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*CustomDomainReadQueryParamsInput)(nil)).Elem(), CustomDomainReadQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*CustomDomainReadQueryParamsPtrInput)(nil)).Elem(), CustomDomainReadQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DeployCreateQueryParamsInput)(nil)).Elem(), DeployCreateQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DeployCreateQueryParamsPtrInput)(nil)).Elem(), DeployCreateQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DeployQueryParamsInput)(nil)).Elem(), DeployQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DeployQueryParamsPtrInput)(nil)).Elem(), DeployQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DeployReadQueryParamsInput)(nil)).Elem(), DeployReadQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*DeployReadQueryParamsPtrInput)(nil)).Elem(), DeployReadQueryParamsArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*EnvSpecificDetailsInput)(nil)).Elem(), EnvSpecificDetailsArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*EnvSpecificDetailsPtrInput)(nil)).Elem(), EnvSpecificDetailsArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*EnvSpecificDetailsCreateInput)(nil)).Elem(), EnvSpecificDetailsCreateArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*EnvSpecificDetailsCreatePtrInput)(nil)).Elem(), EnvSpecificDetailsCreateArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*EnvVarCreateQueryParamsInput)(nil)).Elem(), EnvVarCreateQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*EnvVarCreateQueryParamsPtrInput)(nil)).Elem(), EnvVarCreateQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*EnvVarDeleteQueryParamsInput)(nil)).Elem(), EnvVarDeleteQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*EnvVarDeleteQueryParamsPtrInput)(nil)).Elem(), EnvVarDeleteQueryParamsArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*EnvVarInputTypeInput)(nil)).Elem(), EnvVarInputTypeArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*EnvVarInputTypeArrayInput)(nil)).Elem(), EnvVarInputTypeArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*EnvVarPutQueryParamsInput)(nil)).Elem(), EnvVarPutQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*EnvVarPutQueryParamsPtrInput)(nil)).Elem(), EnvVarPutQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*EnvVarQueryParamsInput)(nil)).Elem(), EnvVarQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*EnvVarQueryParamsPtrInput)(nil)).Elem(), EnvVarQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*EnvVarReadQueryParamsInput)(nil)).Elem(), EnvVarReadQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*EnvVarReadQueryParamsPtrInput)(nil)).Elem(), EnvVarReadQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*EnvVarsForServiceCreateQueryParamsInput)(nil)).Elem(), EnvVarsForServiceCreateQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*EnvVarsForServiceCreateQueryParamsPtrInput)(nil)).Elem(), EnvVarsForServiceCreateQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*EnvVarsForServicePutQueryParamsInput)(nil)).Elem(), EnvVarsForServicePutQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*EnvVarsForServicePutQueryParamsPtrInput)(nil)).Elem(), EnvVarsForServicePutQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*EnvVarsForServiceQueryParamsInput)(nil)).Elem(), EnvVarsForServiceQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*EnvVarsForServiceQueryParamsPtrInput)(nil)).Elem(), EnvVarsForServiceQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetBackgroundWorkerQueryParamsInput)(nil)).Elem(), GetBackgroundWorkerQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetBackgroundWorkerQueryParamsPtrInput)(nil)).Elem(), GetBackgroundWorkerQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetCronJobQueryParamsInput)(nil)).Elem(), GetCronJobQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetCronJobQueryParamsPtrInput)(nil)).Elem(), GetCronJobQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetCustomDomainQueryParamsInput)(nil)).Elem(), GetCustomDomainQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetCustomDomainQueryParamsPtrInput)(nil)).Elem(), GetCustomDomainQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetDeployQueryParamsInput)(nil)).Elem(), GetDeployQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetDeployQueryParamsPtrInput)(nil)).Elem(), GetDeployQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetEnvVarQueryParamsInput)(nil)).Elem(), GetEnvVarQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetEnvVarQueryParamsPtrInput)(nil)).Elem(), GetEnvVarQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetJobQueryParamsInput)(nil)).Elem(), GetJobQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetJobQueryParamsPtrInput)(nil)).Elem(), GetJobQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetPrivateServiceQueryParamsInput)(nil)).Elem(), GetPrivateServiceQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetPrivateServiceQueryParamsPtrInput)(nil)).Elem(), GetPrivateServiceQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSecretFileQueryParamsInput)(nil)).Elem(), GetSecretFileQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetSecretFileQueryParamsPtrInput)(nil)).Elem(), GetSecretFileQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetStaticSiteQueryParamsInput)(nil)).Elem(), GetStaticSiteQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetStaticSiteQueryParamsPtrInput)(nil)).Elem(), GetStaticSiteQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetWebServiceQueryParamsInput)(nil)).Elem(), GetWebServiceQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetWebServiceQueryParamsPtrInput)(nil)).Elem(), GetWebServiceQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*HeaderCreateQueryParamsInput)(nil)).Elem(), HeaderCreateQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*HeaderCreateQueryParamsPtrInput)(nil)).Elem(), HeaderCreateQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*HeaderDeleteQueryParamsInput)(nil)).Elem(), HeaderDeleteQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*HeaderDeleteQueryParamsPtrInput)(nil)).Elem(), HeaderDeleteQueryParamsArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*HeaderInputTypeInput)(nil)).Elem(), HeaderInputTypeArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*HeaderInputTypeArrayInput)(nil)).Elem(), HeaderInputTypeArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*HeaderQueryParamsInput)(nil)).Elem(), HeaderQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*HeaderQueryParamsPtrInput)(nil)).Elem(), HeaderQueryParamsArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ImageInput)(nil)).Elem(), ImageArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ImagePtrInput)(nil)).Elem(), ImageArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*JobCreateQueryParamsInput)(nil)).Elem(), JobCreateQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*JobCreateQueryParamsPtrInput)(nil)).Elem(), JobCreateQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*JobQueryParamsInput)(nil)).Elem(), JobQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*JobQueryParamsPtrInput)(nil)).Elem(), JobQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*JobReadQueryParamsInput)(nil)).Elem(), JobReadQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*JobReadQueryParamsPtrInput)(nil)).Elem(), JobReadQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ListCustomDomainsQueryParamsInput)(nil)).Elem(), ListCustomDomainsQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ListCustomDomainsQueryParamsPtrInput)(nil)).Elem(), ListCustomDomainsQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ListDeploysQueryParamsInput)(nil)).Elem(), ListDeploysQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ListDeploysQueryParamsPtrInput)(nil)).Elem(), ListDeploysQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ListEnvVarsForServiceQueryParamsInput)(nil)).Elem(), ListEnvVarsForServiceQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ListEnvVarsForServiceQueryParamsPtrInput)(nil)).Elem(), ListEnvVarsForServiceQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ListHeadersQueryParamsInput)(nil)).Elem(), ListHeadersQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ListHeadersQueryParamsPtrInput)(nil)).Elem(), ListHeadersQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ListInstancesQueryParamsInput)(nil)).Elem(), ListInstancesQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ListInstancesQueryParamsPtrInput)(nil)).Elem(), ListInstancesQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ListJobQueryParamsInput)(nil)).Elem(), ListJobQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ListJobQueryParamsPtrInput)(nil)).Elem(), ListJobQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ListRoutesQueryParamsInput)(nil)).Elem(), ListRoutesQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ListRoutesQueryParamsPtrInput)(nil)).Elem(), ListRoutesQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ListSecretFilesForServiceQueryParamsInput)(nil)).Elem(), ListSecretFilesForServiceQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ListSecretFilesForServiceQueryParamsPtrInput)(nil)).Elem(), ListSecretFilesForServiceQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ListServicesQueryParamsInput)(nil)).Elem(), ListServicesQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ListServicesQueryParamsPtrInput)(nil)).Elem(), ListServicesQueryParamsArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*MaintenanceModeInput)(nil)).Elem(), MaintenanceModeArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*MaintenanceModePtrInput)(nil)).Elem(), MaintenanceModeArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*PreviewServiceCreateQueryParamsInput)(nil)).Elem(), PreviewServiceCreateQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*PreviewServiceCreateQueryParamsPtrInput)(nil)).Elem(), PreviewServiceCreateQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*PreviewServiceQueryParamsInput)(nil)).Elem(), PreviewServiceQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*PreviewServiceQueryParamsPtrInput)(nil)).Elem(), PreviewServiceQueryParamsArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*PreviewsInput)(nil)).Elem(), PreviewsArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*PreviewsPtrInput)(nil)).Elem(), PreviewsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*PrivateServiceCreateQueryParamsInput)(nil)).Elem(), PrivateServiceCreateQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*PrivateServiceCreateQueryParamsPtrInput)(nil)).Elem(), PrivateServiceCreateQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*PrivateServiceDeleteQueryParamsInput)(nil)).Elem(), PrivateServiceDeleteQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*PrivateServiceDeleteQueryParamsPtrInput)(nil)).Elem(), PrivateServiceDeleteQueryParamsArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*PrivateServiceDetailsCreateInput)(nil)).Elem(), PrivateServiceDetailsCreateArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*PrivateServiceDetailsCreatePtrInput)(nil)).Elem(), PrivateServiceDetailsCreateArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*PrivateServiceQueryParamsInput)(nil)).Elem(), PrivateServiceQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*PrivateServiceQueryParamsPtrInput)(nil)).Elem(), PrivateServiceQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*PrivateServiceReadQueryParamsInput)(nil)).Elem(), PrivateServiceReadQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*PrivateServiceReadQueryParamsPtrInput)(nil)).Elem(), PrivateServiceReadQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*PrivateServiceUpdateQueryParamsInput)(nil)).Elem(), PrivateServiceUpdateQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*PrivateServiceUpdateQueryParamsPtrInput)(nil)).Elem(), PrivateServiceUpdateQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RefreshCustomDomainCreateQueryParamsInput)(nil)).Elem(), RefreshCustomDomainCreateQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RefreshCustomDomainCreateQueryParamsPtrInput)(nil)).Elem(), RefreshCustomDomainCreateQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RefreshCustomDomainQueryParamsInput)(nil)).Elem(), RefreshCustomDomainQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RefreshCustomDomainQueryParamsPtrInput)(nil)).Elem(), RefreshCustomDomainQueryParamsArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*RegistryCredentialInput)(nil)).Elem(), RegistryCredentialArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*RegistryCredentialPtrInput)(nil)).Elem(), RegistryCredentialArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RestartServiceCreateQueryParamsInput)(nil)).Elem(), RestartServiceCreateQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RestartServiceCreateQueryParamsPtrInput)(nil)).Elem(), RestartServiceCreateQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RestartServiceQueryParamsInput)(nil)).Elem(), RestartServiceQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RestartServiceQueryParamsPtrInput)(nil)).Elem(), RestartServiceQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RollbackDeployCreateQueryParamsInput)(nil)).Elem(), RollbackDeployCreateQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RollbackDeployCreateQueryParamsPtrInput)(nil)).Elem(), RollbackDeployCreateQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RollbackDeployQueryParamsInput)(nil)).Elem(), RollbackDeployQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RollbackDeployQueryParamsPtrInput)(nil)).Elem(), RollbackDeployQueryParamsArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*RouteCreateInput)(nil)).Elem(), RouteCreateArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*RouteCreateArrayInput)(nil)).Elem(), RouteCreateArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RouteCreateQueryParamsInput)(nil)).Elem(), RouteCreateQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RouteCreateQueryParamsPtrInput)(nil)).Elem(), RouteCreateQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RouteDeleteQueryParamsInput)(nil)).Elem(), RouteDeleteQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RouteDeleteQueryParamsPtrInput)(nil)).Elem(), RouteDeleteQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RouteQueryParamsInput)(nil)).Elem(), RouteQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RouteQueryParamsPtrInput)(nil)).Elem(), RouteQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RouteUpdateQueryParamsInput)(nil)).Elem(), RouteUpdateQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*RouteUpdateQueryParamsPtrInput)(nil)).Elem(), RouteUpdateQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ScaleServiceCreateQueryParamsInput)(nil)).Elem(), ScaleServiceCreateQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ScaleServiceCreateQueryParamsPtrInput)(nil)).Elem(), ScaleServiceCreateQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ScaleServiceQueryParamsInput)(nil)).Elem(), ScaleServiceQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ScaleServiceQueryParamsPtrInput)(nil)).Elem(), ScaleServiceQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SecretFileCreateQueryParamsInput)(nil)).Elem(), SecretFileCreateQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SecretFileCreateQueryParamsPtrInput)(nil)).Elem(), SecretFileCreateQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SecretFileDeleteQueryParamsInput)(nil)).Elem(), SecretFileDeleteQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SecretFileDeleteQueryParamsPtrInput)(nil)).Elem(), SecretFileDeleteQueryParamsArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SecretFileInputTypeInput)(nil)).Elem(), SecretFileInputTypeArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*SecretFileInputTypeArrayInput)(nil)).Elem(), SecretFileInputTypeArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SecretFilePutQueryParamsInput)(nil)).Elem(), SecretFilePutQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SecretFilePutQueryParamsPtrInput)(nil)).Elem(), SecretFilePutQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SecretFileQueryParamsInput)(nil)).Elem(), SecretFileQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SecretFileQueryParamsPtrInput)(nil)).Elem(), SecretFileQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SecretFileReadQueryParamsInput)(nil)).Elem(), SecretFileReadQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SecretFileReadQueryParamsPtrInput)(nil)).Elem(), SecretFileReadQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SecretFilesForServiceCreateQueryParamsInput)(nil)).Elem(), SecretFilesForServiceCreateQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SecretFilesForServiceCreateQueryParamsPtrInput)(nil)).Elem(), SecretFilesForServiceCreateQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SecretFilesForServicePutQueryParamsInput)(nil)).Elem(), SecretFilesForServicePutQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SecretFilesForServicePutQueryParamsPtrInput)(nil)).Elem(), SecretFilesForServicePutQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SecretFilesForServiceQueryParamsInput)(nil)).Elem(), SecretFilesForServiceQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SecretFilesForServiceQueryParamsPtrInput)(nil)).Elem(), SecretFilesForServiceQueryParamsArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ServiceDiskInput)(nil)).Elem(), ServiceDiskArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*ServiceDiskPtrInput)(nil)).Elem(), ServiceDiskArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*StaticSiteCreateQueryParamsInput)(nil)).Elem(), StaticSiteCreateQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*StaticSiteCreateQueryParamsPtrInput)(nil)).Elem(), StaticSiteCreateQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*StaticSiteDeleteQueryParamsInput)(nil)).Elem(), StaticSiteDeleteQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*StaticSiteDeleteQueryParamsPtrInput)(nil)).Elem(), StaticSiteDeleteQueryParamsArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*StaticSiteDetailsCreateInput)(nil)).Elem(), StaticSiteDetailsCreateArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*StaticSiteDetailsCreatePtrInput)(nil)).Elem(), StaticSiteDetailsCreateArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*StaticSiteQueryParamsInput)(nil)).Elem(), StaticSiteQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*StaticSiteQueryParamsPtrInput)(nil)).Elem(), StaticSiteQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*StaticSiteReadQueryParamsInput)(nil)).Elem(), StaticSiteReadQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*StaticSiteReadQueryParamsPtrInput)(nil)).Elem(), StaticSiteReadQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*StaticSiteUpdateQueryParamsInput)(nil)).Elem(), StaticSiteUpdateQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*StaticSiteUpdateQueryParamsPtrInput)(nil)).Elem(), StaticSiteUpdateQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SuspendServiceCreateQueryParamsInput)(nil)).Elem(), SuspendServiceCreateQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SuspendServiceCreateQueryParamsPtrInput)(nil)).Elem(), SuspendServiceCreateQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SuspendServiceQueryParamsInput)(nil)).Elem(), SuspendServiceQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*SuspendServiceQueryParamsPtrInput)(nil)).Elem(), SuspendServiceQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*WebServiceCreateQueryParamsInput)(nil)).Elem(), WebServiceCreateQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*WebServiceCreateQueryParamsPtrInput)(nil)).Elem(), WebServiceCreateQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*WebServiceDeleteQueryParamsInput)(nil)).Elem(), WebServiceDeleteQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*WebServiceDeleteQueryParamsPtrInput)(nil)).Elem(), WebServiceDeleteQueryParamsArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*WebServiceDetailsCreateInput)(nil)).Elem(), WebServiceDetailsCreateArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*WebServiceDetailsCreatePtrInput)(nil)).Elem(), WebServiceDetailsCreateArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*WebServiceDetailspropertiesautoscalingInput)(nil)).Elem(), WebServiceDetailspropertiesautoscalingArgs{})
@@ -9169,25 +24592,73 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*WebServiceDetailspropertiesautoscalingCriteriaPropertiesCpuPropertiesPtrInput)(nil)).Elem(), WebServiceDetailspropertiesautoscalingCriteriaPropertiesCpuPropertiesArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*WebServiceDetailspropertiesautoscalingpropertiescriteriapropertiescpuInput)(nil)).Elem(), WebServiceDetailspropertiesautoscalingpropertiescriteriapropertiescpuArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*WebServiceDetailspropertiesautoscalingpropertiescriteriapropertiescpuPtrInput)(nil)).Elem(), WebServiceDetailspropertiesautoscalingpropertiescriteriapropertiescpuArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*WebServiceQueryParamsInput)(nil)).Elem(), WebServiceQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*WebServiceQueryParamsPtrInput)(nil)).Elem(), WebServiceQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*WebServiceReadQueryParamsInput)(nil)).Elem(), WebServiceReadQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*WebServiceReadQueryParamsPtrInput)(nil)).Elem(), WebServiceReadQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*WebServiceUpdateQueryParamsInput)(nil)).Elem(), WebServiceUpdateQueryParamsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*WebServiceUpdateQueryParamsPtrInput)(nil)).Elem(), WebServiceUpdateQueryParamsArgs{})
+	pulumi.RegisterOutputType(AutoscaleServiceCreateQueryParamsOutput{})
+	pulumi.RegisterOutputType(AutoscaleServiceCreateQueryParamsPtrOutput{})
+	pulumi.RegisterOutputType(AutoscaleServicePutQueryParamsOutput{})
+	pulumi.RegisterOutputType(AutoscaleServicePutQueryParamsPtrOutput{})
+	pulumi.RegisterOutputType(AutoscaleServiceQueryParamsOutput{})
+	pulumi.RegisterOutputType(AutoscaleServiceQueryParamsPtrOutput{})
+	pulumi.RegisterOutputType(BackgroundWorkerCreateQueryParamsOutput{})
+	pulumi.RegisterOutputType(BackgroundWorkerCreateQueryParamsPtrOutput{})
+	pulumi.RegisterOutputType(BackgroundWorkerDeleteQueryParamsOutput{})
+	pulumi.RegisterOutputType(BackgroundWorkerDeleteQueryParamsPtrOutput{})
 	pulumi.RegisterOutputType(BackgroundWorkerDetailsCreateOutput{})
 	pulumi.RegisterOutputType(BackgroundWorkerDetailsCreatePtrOutput{})
 	pulumi.RegisterOutputType(BackgroundWorkerDetailsOutputOutput{})
 	pulumi.RegisterOutputType(BackgroundWorkerDetailsOutputPtrOutput{})
 	pulumi.RegisterOutputType(BackgroundWorkerOutputTypeOutput{})
+	pulumi.RegisterOutputType(BackgroundWorkerQueryParamsOutput{})
+	pulumi.RegisterOutputType(BackgroundWorkerQueryParamsPtrOutput{})
+	pulumi.RegisterOutputType(BackgroundWorkerReadQueryParamsOutput{})
+	pulumi.RegisterOutputType(BackgroundWorkerReadQueryParamsPtrOutput{})
+	pulumi.RegisterOutputType(BackgroundWorkerUpdateQueryParamsOutput{})
+	pulumi.RegisterOutputType(BackgroundWorkerUpdateQueryParamsPtrOutput{})
 	pulumi.RegisterOutputType(BuildFilterOutput{})
 	pulumi.RegisterOutputType(BuildFilterPtrOutput{})
 	pulumi.RegisterOutputType(CacheOutput{})
 	pulumi.RegisterOutputType(CachePtrOutput{})
+	pulumi.RegisterOutputType(CancelDeployCreateQueryParamsOutput{})
+	pulumi.RegisterOutputType(CancelDeployCreateQueryParamsPtrOutput{})
+	pulumi.RegisterOutputType(CancelDeployQueryParamsOutput{})
+	pulumi.RegisterOutputType(CancelDeployQueryParamsPtrOutput{})
+	pulumi.RegisterOutputType(CancelJobCreateQueryParamsOutput{})
+	pulumi.RegisterOutputType(CancelJobCreateQueryParamsPtrOutput{})
+	pulumi.RegisterOutputType(CancelJobQueryParamsOutput{})
+	pulumi.RegisterOutputType(CancelJobQueryParamsPtrOutput{})
 	pulumi.RegisterOutputType(CommitPropertiesOutput{})
 	pulumi.RegisterOutputType(CommitPropertiesPtrOutput{})
 	pulumi.RegisterOutputType(CriteriaPropertiesOutput{})
 	pulumi.RegisterOutputType(CriteriaPropertiesCpuPropertiesOutput{})
+	pulumi.RegisterOutputType(CronJobCreateQueryParamsOutput{})
+	pulumi.RegisterOutputType(CronJobCreateQueryParamsPtrOutput{})
+	pulumi.RegisterOutputType(CronJobDeleteQueryParamsOutput{})
+	pulumi.RegisterOutputType(CronJobDeleteQueryParamsPtrOutput{})
 	pulumi.RegisterOutputType(CronJobDetailsCreateOutput{})
 	pulumi.RegisterOutputType(CronJobDetailsCreatePtrOutput{})
 	pulumi.RegisterOutputType(CronJobDetailsOutputOutput{})
 	pulumi.RegisterOutputType(CronJobDetailsOutputPtrOutput{})
 	pulumi.RegisterOutputType(CronJobOutputTypeOutput{})
+	pulumi.RegisterOutputType(CronJobQueryParamsOutput{})
+	pulumi.RegisterOutputType(CronJobQueryParamsPtrOutput{})
+	pulumi.RegisterOutputType(CronJobReadQueryParamsOutput{})
+	pulumi.RegisterOutputType(CronJobReadQueryParamsPtrOutput{})
+	pulumi.RegisterOutputType(CronJobUpdateQueryParamsOutput{})
+	pulumi.RegisterOutputType(CronJobUpdateQueryParamsPtrOutput{})
 	pulumi.RegisterOutputType(CustomDomainTypeOutput{})
+	pulumi.RegisterOutputType(CustomDomainCreateQueryParamsOutput{})
+	pulumi.RegisterOutputType(CustomDomainCreateQueryParamsPtrOutput{})
+	pulumi.RegisterOutputType(CustomDomainDeleteQueryParamsOutput{})
+	pulumi.RegisterOutputType(CustomDomainDeleteQueryParamsPtrOutput{})
+	pulumi.RegisterOutputType(CustomDomainQueryParamsOutput{})
+	pulumi.RegisterOutputType(CustomDomainQueryParamsPtrOutput{})
+	pulumi.RegisterOutputType(CustomDomainReadQueryParamsOutput{})
+	pulumi.RegisterOutputType(CustomDomainReadQueryParamsPtrOutput{})
 	pulumi.RegisterOutputType(CustomDomainServerPropertiesOutput{})
 	pulumi.RegisterOutputType(CustomDomainServerPropertiesPtrOutput{})
 	pulumi.RegisterOutputType(CustomDomainWithCursorOutput{})
@@ -9196,8 +24667,14 @@ func init() {
 	pulumi.RegisterOutputType(DeployTypePtrOutput{})
 	pulumi.RegisterOutputType(DeployCommitPropertiesOutput{})
 	pulumi.RegisterOutputType(DeployCommitPropertiesPtrOutput{})
+	pulumi.RegisterOutputType(DeployCreateQueryParamsOutput{})
+	pulumi.RegisterOutputType(DeployCreateQueryParamsPtrOutput{})
 	pulumi.RegisterOutputType(DeployImagePropertiesOutput{})
 	pulumi.RegisterOutputType(DeployImagePropertiesPtrOutput{})
+	pulumi.RegisterOutputType(DeployQueryParamsOutput{})
+	pulumi.RegisterOutputType(DeployQueryParamsPtrOutput{})
+	pulumi.RegisterOutputType(DeployReadQueryParamsOutput{})
+	pulumi.RegisterOutputType(DeployReadQueryParamsPtrOutput{})
 	pulumi.RegisterOutputType(DeployWithCursorOutput{})
 	pulumi.RegisterOutputType(DeployWithCursorArrayOutput{})
 	pulumi.RegisterOutputType(EnvSpecificDetailsOutput{})
@@ -9205,14 +24682,56 @@ func init() {
 	pulumi.RegisterOutputType(EnvSpecificDetailsCreateOutput{})
 	pulumi.RegisterOutputType(EnvSpecificDetailsCreatePtrOutput{})
 	pulumi.RegisterOutputType(EnvVarTypeOutput{})
+	pulumi.RegisterOutputType(EnvVarCreateQueryParamsOutput{})
+	pulumi.RegisterOutputType(EnvVarCreateQueryParamsPtrOutput{})
+	pulumi.RegisterOutputType(EnvVarDeleteQueryParamsOutput{})
+	pulumi.RegisterOutputType(EnvVarDeleteQueryParamsPtrOutput{})
 	pulumi.RegisterOutputType(EnvVarInputTypeOutput{})
 	pulumi.RegisterOutputType(EnvVarInputTypeArrayOutput{})
+	pulumi.RegisterOutputType(EnvVarPutQueryParamsOutput{})
+	pulumi.RegisterOutputType(EnvVarPutQueryParamsPtrOutput{})
+	pulumi.RegisterOutputType(EnvVarQueryParamsOutput{})
+	pulumi.RegisterOutputType(EnvVarQueryParamsPtrOutput{})
+	pulumi.RegisterOutputType(EnvVarReadQueryParamsOutput{})
+	pulumi.RegisterOutputType(EnvVarReadQueryParamsPtrOutput{})
 	pulumi.RegisterOutputType(EnvVarWithCursorOutput{})
 	pulumi.RegisterOutputType(EnvVarWithCursorArrayOutput{})
+	pulumi.RegisterOutputType(EnvVarsForServiceCreateQueryParamsOutput{})
+	pulumi.RegisterOutputType(EnvVarsForServiceCreateQueryParamsPtrOutput{})
+	pulumi.RegisterOutputType(EnvVarsForServicePutQueryParamsOutput{})
+	pulumi.RegisterOutputType(EnvVarsForServicePutQueryParamsPtrOutput{})
+	pulumi.RegisterOutputType(EnvVarsForServiceQueryParamsOutput{})
+	pulumi.RegisterOutputType(EnvVarsForServiceQueryParamsPtrOutput{})
+	pulumi.RegisterOutputType(GetBackgroundWorkerQueryParamsOutput{})
+	pulumi.RegisterOutputType(GetBackgroundWorkerQueryParamsPtrOutput{})
+	pulumi.RegisterOutputType(GetCronJobQueryParamsOutput{})
+	pulumi.RegisterOutputType(GetCronJobQueryParamsPtrOutput{})
+	pulumi.RegisterOutputType(GetCustomDomainQueryParamsOutput{})
+	pulumi.RegisterOutputType(GetCustomDomainQueryParamsPtrOutput{})
+	pulumi.RegisterOutputType(GetDeployQueryParamsOutput{})
+	pulumi.RegisterOutputType(GetDeployQueryParamsPtrOutput{})
+	pulumi.RegisterOutputType(GetEnvVarQueryParamsOutput{})
+	pulumi.RegisterOutputType(GetEnvVarQueryParamsPtrOutput{})
+	pulumi.RegisterOutputType(GetJobQueryParamsOutput{})
+	pulumi.RegisterOutputType(GetJobQueryParamsPtrOutput{})
+	pulumi.RegisterOutputType(GetPrivateServiceQueryParamsOutput{})
+	pulumi.RegisterOutputType(GetPrivateServiceQueryParamsPtrOutput{})
+	pulumi.RegisterOutputType(GetSecretFileQueryParamsOutput{})
+	pulumi.RegisterOutputType(GetSecretFileQueryParamsPtrOutput{})
+	pulumi.RegisterOutputType(GetStaticSiteQueryParamsOutput{})
+	pulumi.RegisterOutputType(GetStaticSiteQueryParamsPtrOutput{})
+	pulumi.RegisterOutputType(GetWebServiceQueryParamsOutput{})
+	pulumi.RegisterOutputType(GetWebServiceQueryParamsPtrOutput{})
 	pulumi.RegisterOutputType(HeaderTypeOutput{})
 	pulumi.RegisterOutputType(HeaderTypePtrOutput{})
+	pulumi.RegisterOutputType(HeaderCreateQueryParamsOutput{})
+	pulumi.RegisterOutputType(HeaderCreateQueryParamsPtrOutput{})
+	pulumi.RegisterOutputType(HeaderDeleteQueryParamsOutput{})
+	pulumi.RegisterOutputType(HeaderDeleteQueryParamsPtrOutput{})
 	pulumi.RegisterOutputType(HeaderInputTypeOutput{})
 	pulumi.RegisterOutputType(HeaderInputTypeArrayOutput{})
+	pulumi.RegisterOutputType(HeaderQueryParamsOutput{})
+	pulumi.RegisterOutputType(HeaderQueryParamsPtrOutput{})
 	pulumi.RegisterOutputType(HeaderWithCursorOutput{})
 	pulumi.RegisterOutputType(HeaderWithCursorArrayOutput{})
 	pulumi.RegisterOutputType(ImageOutput{})
@@ -9220,35 +24739,113 @@ func init() {
 	pulumi.RegisterOutputType(ImagePropertiesOutput{})
 	pulumi.RegisterOutputType(ImagePropertiesPtrOutput{})
 	pulumi.RegisterOutputType(JobTypeOutput{})
+	pulumi.RegisterOutputType(JobCreateQueryParamsOutput{})
+	pulumi.RegisterOutputType(JobCreateQueryParamsPtrOutput{})
+	pulumi.RegisterOutputType(JobQueryParamsOutput{})
+	pulumi.RegisterOutputType(JobQueryParamsPtrOutput{})
+	pulumi.RegisterOutputType(JobReadQueryParamsOutput{})
+	pulumi.RegisterOutputType(JobReadQueryParamsPtrOutput{})
 	pulumi.RegisterOutputType(JobWithCursorOutput{})
 	pulumi.RegisterOutputType(JobWithCursorArrayOutput{})
+	pulumi.RegisterOutputType(ListCustomDomainsQueryParamsOutput{})
+	pulumi.RegisterOutputType(ListCustomDomainsQueryParamsPtrOutput{})
+	pulumi.RegisterOutputType(ListDeploysQueryParamsOutput{})
+	pulumi.RegisterOutputType(ListDeploysQueryParamsPtrOutput{})
+	pulumi.RegisterOutputType(ListEnvVarsForServiceQueryParamsOutput{})
+	pulumi.RegisterOutputType(ListEnvVarsForServiceQueryParamsPtrOutput{})
+	pulumi.RegisterOutputType(ListHeadersQueryParamsOutput{})
+	pulumi.RegisterOutputType(ListHeadersQueryParamsPtrOutput{})
+	pulumi.RegisterOutputType(ListInstancesQueryParamsOutput{})
+	pulumi.RegisterOutputType(ListInstancesQueryParamsPtrOutput{})
+	pulumi.RegisterOutputType(ListJobQueryParamsOutput{})
+	pulumi.RegisterOutputType(ListJobQueryParamsPtrOutput{})
+	pulumi.RegisterOutputType(ListRoutesQueryParamsOutput{})
+	pulumi.RegisterOutputType(ListRoutesQueryParamsPtrOutput{})
+	pulumi.RegisterOutputType(ListSecretFilesForServiceQueryParamsOutput{})
+	pulumi.RegisterOutputType(ListSecretFilesForServiceQueryParamsPtrOutput{})
+	pulumi.RegisterOutputType(ListServicesQueryParamsOutput{})
+	pulumi.RegisterOutputType(ListServicesQueryParamsPtrOutput{})
 	pulumi.RegisterOutputType(ListServicesResponseOutput{})
 	pulumi.RegisterOutputType(ListServicesResponseArrayOutput{})
 	pulumi.RegisterOutputType(MaintenanceModeOutput{})
 	pulumi.RegisterOutputType(MaintenanceModePtrOutput{})
+	pulumi.RegisterOutputType(PreviewServiceCreateQueryParamsOutput{})
+	pulumi.RegisterOutputType(PreviewServiceCreateQueryParamsPtrOutput{})
+	pulumi.RegisterOutputType(PreviewServiceQueryParamsOutput{})
+	pulumi.RegisterOutputType(PreviewServiceQueryParamsPtrOutput{})
 	pulumi.RegisterOutputType(PreviewsOutput{})
 	pulumi.RegisterOutputType(PreviewsPtrOutput{})
+	pulumi.RegisterOutputType(PrivateServiceCreateQueryParamsOutput{})
+	pulumi.RegisterOutputType(PrivateServiceCreateQueryParamsPtrOutput{})
+	pulumi.RegisterOutputType(PrivateServiceDeleteQueryParamsOutput{})
+	pulumi.RegisterOutputType(PrivateServiceDeleteQueryParamsPtrOutput{})
 	pulumi.RegisterOutputType(PrivateServiceDetailsCreateOutput{})
 	pulumi.RegisterOutputType(PrivateServiceDetailsCreatePtrOutput{})
 	pulumi.RegisterOutputType(PrivateServiceDetailsOutputOutput{})
 	pulumi.RegisterOutputType(PrivateServiceDetailsOutputPtrOutput{})
 	pulumi.RegisterOutputType(PrivateServiceOutputTypeOutput{})
+	pulumi.RegisterOutputType(PrivateServiceQueryParamsOutput{})
+	pulumi.RegisterOutputType(PrivateServiceQueryParamsPtrOutput{})
+	pulumi.RegisterOutputType(PrivateServiceReadQueryParamsOutput{})
+	pulumi.RegisterOutputType(PrivateServiceReadQueryParamsPtrOutput{})
+	pulumi.RegisterOutputType(PrivateServiceUpdateQueryParamsOutput{})
+	pulumi.RegisterOutputType(PrivateServiceUpdateQueryParamsPtrOutput{})
+	pulumi.RegisterOutputType(RefreshCustomDomainCreateQueryParamsOutput{})
+	pulumi.RegisterOutputType(RefreshCustomDomainCreateQueryParamsPtrOutput{})
+	pulumi.RegisterOutputType(RefreshCustomDomainQueryParamsOutput{})
+	pulumi.RegisterOutputType(RefreshCustomDomainQueryParamsPtrOutput{})
 	pulumi.RegisterOutputType(RegistryCredentialOutput{})
 	pulumi.RegisterOutputType(RegistryCredentialPtrOutput{})
 	pulumi.RegisterOutputType(RegistryCredentialSummaryOutput{})
 	pulumi.RegisterOutputType(RegistryCredentialSummaryPtrOutput{})
 	pulumi.RegisterOutputType(ResourceOutput{})
 	pulumi.RegisterOutputType(ResourcePtrOutput{})
+	pulumi.RegisterOutputType(RestartServiceCreateQueryParamsOutput{})
+	pulumi.RegisterOutputType(RestartServiceCreateQueryParamsPtrOutput{})
+	pulumi.RegisterOutputType(RestartServiceQueryParamsOutput{})
+	pulumi.RegisterOutputType(RestartServiceQueryParamsPtrOutput{})
+	pulumi.RegisterOutputType(RollbackDeployCreateQueryParamsOutput{})
+	pulumi.RegisterOutputType(RollbackDeployCreateQueryParamsPtrOutput{})
+	pulumi.RegisterOutputType(RollbackDeployQueryParamsOutput{})
+	pulumi.RegisterOutputType(RollbackDeployQueryParamsPtrOutput{})
 	pulumi.RegisterOutputType(RouteTypeOutput{})
 	pulumi.RegisterOutputType(RouteCreateOutput{})
 	pulumi.RegisterOutputType(RouteCreateArrayOutput{})
+	pulumi.RegisterOutputType(RouteCreateQueryParamsOutput{})
+	pulumi.RegisterOutputType(RouteCreateQueryParamsPtrOutput{})
+	pulumi.RegisterOutputType(RouteDeleteQueryParamsOutput{})
+	pulumi.RegisterOutputType(RouteDeleteQueryParamsPtrOutput{})
+	pulumi.RegisterOutputType(RouteQueryParamsOutput{})
+	pulumi.RegisterOutputType(RouteQueryParamsPtrOutput{})
+	pulumi.RegisterOutputType(RouteUpdateQueryParamsOutput{})
+	pulumi.RegisterOutputType(RouteUpdateQueryParamsPtrOutput{})
 	pulumi.RegisterOutputType(RouteWithCursorOutput{})
 	pulumi.RegisterOutputType(RouteWithCursorArrayOutput{})
+	pulumi.RegisterOutputType(ScaleServiceCreateQueryParamsOutput{})
+	pulumi.RegisterOutputType(ScaleServiceCreateQueryParamsPtrOutput{})
+	pulumi.RegisterOutputType(ScaleServiceQueryParamsOutput{})
+	pulumi.RegisterOutputType(ScaleServiceQueryParamsPtrOutput{})
 	pulumi.RegisterOutputType(SecretFileTypeOutput{})
+	pulumi.RegisterOutputType(SecretFileCreateQueryParamsOutput{})
+	pulumi.RegisterOutputType(SecretFileCreateQueryParamsPtrOutput{})
+	pulumi.RegisterOutputType(SecretFileDeleteQueryParamsOutput{})
+	pulumi.RegisterOutputType(SecretFileDeleteQueryParamsPtrOutput{})
 	pulumi.RegisterOutputType(SecretFileInputTypeOutput{})
 	pulumi.RegisterOutputType(SecretFileInputTypeArrayOutput{})
+	pulumi.RegisterOutputType(SecretFilePutQueryParamsOutput{})
+	pulumi.RegisterOutputType(SecretFilePutQueryParamsPtrOutput{})
+	pulumi.RegisterOutputType(SecretFileQueryParamsOutput{})
+	pulumi.RegisterOutputType(SecretFileQueryParamsPtrOutput{})
+	pulumi.RegisterOutputType(SecretFileReadQueryParamsOutput{})
+	pulumi.RegisterOutputType(SecretFileReadQueryParamsPtrOutput{})
 	pulumi.RegisterOutputType(SecretFileWithCursorOutput{})
 	pulumi.RegisterOutputType(SecretFileWithCursorArrayOutput{})
+	pulumi.RegisterOutputType(SecretFilesForServiceCreateQueryParamsOutput{})
+	pulumi.RegisterOutputType(SecretFilesForServiceCreateQueryParamsPtrOutput{})
+	pulumi.RegisterOutputType(SecretFilesForServicePutQueryParamsOutput{})
+	pulumi.RegisterOutputType(SecretFilesForServicePutQueryParamsPtrOutput{})
+	pulumi.RegisterOutputType(SecretFilesForServiceQueryParamsOutput{})
+	pulumi.RegisterOutputType(SecretFilesForServiceQueryParamsPtrOutput{})
 	pulumi.RegisterOutputType(ServerPortOutput{})
 	pulumi.RegisterOutputType(ServerPortArrayOutput{})
 	pulumi.RegisterOutputType(ServiceOutput{})
@@ -9257,11 +24854,29 @@ func init() {
 	pulumi.RegisterOutputType(ServiceDiskPtrOutput{})
 	pulumi.RegisterOutputType(ServiceInstanceOutput{})
 	pulumi.RegisterOutputType(ServiceInstanceArrayOutput{})
+	pulumi.RegisterOutputType(StaticSiteCreateQueryParamsOutput{})
+	pulumi.RegisterOutputType(StaticSiteCreateQueryParamsPtrOutput{})
+	pulumi.RegisterOutputType(StaticSiteDeleteQueryParamsOutput{})
+	pulumi.RegisterOutputType(StaticSiteDeleteQueryParamsPtrOutput{})
 	pulumi.RegisterOutputType(StaticSiteDetailsCreateOutput{})
 	pulumi.RegisterOutputType(StaticSiteDetailsCreatePtrOutput{})
 	pulumi.RegisterOutputType(StaticSiteDetailsOutputOutput{})
 	pulumi.RegisterOutputType(StaticSiteDetailsOutputPtrOutput{})
 	pulumi.RegisterOutputType(StaticSiteOutputTypeOutput{})
+	pulumi.RegisterOutputType(StaticSiteQueryParamsOutput{})
+	pulumi.RegisterOutputType(StaticSiteQueryParamsPtrOutput{})
+	pulumi.RegisterOutputType(StaticSiteReadQueryParamsOutput{})
+	pulumi.RegisterOutputType(StaticSiteReadQueryParamsPtrOutput{})
+	pulumi.RegisterOutputType(StaticSiteUpdateQueryParamsOutput{})
+	pulumi.RegisterOutputType(StaticSiteUpdateQueryParamsPtrOutput{})
+	pulumi.RegisterOutputType(SuspendServiceCreateQueryParamsOutput{})
+	pulumi.RegisterOutputType(SuspendServiceCreateQueryParamsPtrOutput{})
+	pulumi.RegisterOutputType(SuspendServiceQueryParamsOutput{})
+	pulumi.RegisterOutputType(SuspendServiceQueryParamsPtrOutput{})
+	pulumi.RegisterOutputType(WebServiceCreateQueryParamsOutput{})
+	pulumi.RegisterOutputType(WebServiceCreateQueryParamsPtrOutput{})
+	pulumi.RegisterOutputType(WebServiceDeleteQueryParamsOutput{})
+	pulumi.RegisterOutputType(WebServiceDeleteQueryParamsPtrOutput{})
 	pulumi.RegisterOutputType(WebServiceDetailsCreateOutput{})
 	pulumi.RegisterOutputType(WebServiceDetailsCreatePtrOutput{})
 	pulumi.RegisterOutputType(WebServiceDetailsOutputOutput{})
@@ -9285,4 +24900,10 @@ func init() {
 	pulumi.RegisterOutputType(WebServiceDetailspropertiesdiskOutput{})
 	pulumi.RegisterOutputType(WebServiceDetailspropertiesdiskPtrOutput{})
 	pulumi.RegisterOutputType(WebServiceOutputTypeOutput{})
+	pulumi.RegisterOutputType(WebServiceQueryParamsOutput{})
+	pulumi.RegisterOutputType(WebServiceQueryParamsPtrOutput{})
+	pulumi.RegisterOutputType(WebServiceReadQueryParamsOutput{})
+	pulumi.RegisterOutputType(WebServiceReadQueryParamsPtrOutput{})
+	pulumi.RegisterOutputType(WebServiceUpdateQueryParamsOutput{})
+	pulumi.RegisterOutputType(WebServiceUpdateQueryParamsPtrOutput{})
 }

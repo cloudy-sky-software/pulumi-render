@@ -41,6 +41,10 @@ export class RegistryCredential extends pulumi.CustomResource {
     declare public readonly name: pulumi.Output<string>;
     declare public readonly ownerId: pulumi.Output<string>;
     /**
+     * Query params to send with the API requests for this resource.
+     */
+    declare public readonly queryParams: pulumi.Output<outputs.registrycredentials.RegistryCredentialQueryParams | undefined>;
+    /**
      * The registry to use this credential with
      */
     declare public readonly registry: pulumi.Output<enums.registrycredentials.Registry>;
@@ -79,6 +83,7 @@ export class RegistryCredential extends pulumi.CustomResource {
             resourceInputs["authToken"] = args?.authToken;
             resourceInputs["name"] = args?.name;
             resourceInputs["ownerId"] = args?.ownerId;
+            resourceInputs["queryParams"] = args?.queryParams;
             resourceInputs["registry"] = args?.registry;
             resourceInputs["username"] = args?.username;
             resourceInputs["updatedAt"] = undefined /*out*/;
@@ -86,6 +91,7 @@ export class RegistryCredential extends pulumi.CustomResource {
             resourceInputs["authToken"] = undefined /*out*/;
             resourceInputs["name"] = undefined /*out*/;
             resourceInputs["ownerId"] = undefined /*out*/;
+            resourceInputs["queryParams"] = undefined /*out*/;
             resourceInputs["registry"] = undefined /*out*/;
             resourceInputs["updatedAt"] = undefined /*out*/;
             resourceInputs["username"] = undefined /*out*/;
@@ -102,6 +108,10 @@ export interface RegistryCredentialArgs {
     authToken: pulumi.Input<string>;
     name?: pulumi.Input<string | undefined>;
     ownerId: pulumi.Input<string>;
+    /**
+     * Query params to send with the API requests for this resource.
+     */
+    queryParams?: pulumi.Input<inputs.registrycredentials.RegistryCredentialQueryParamsArgs | undefined>;
     /**
      * The registry to use this credential with
      */

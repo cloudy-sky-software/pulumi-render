@@ -21,6 +21,8 @@ type AutoscaleService struct {
 	Max pulumi.IntOutput `pulumi:"max"`
 	// The minimum number of instances for the service
 	Min pulumi.IntOutput `pulumi:"min"`
+	// Query params to send with the API requests for this resource.
+	QueryParams AutoscaleServiceQueryParamsPtrOutput `pulumi:"queryParams"`
 }
 
 // NewAutoscaleService registers a new resource with the given unique name, arguments, and options.
@@ -82,6 +84,8 @@ type autoscaleServiceArgs struct {
 	Max int `pulumi:"max"`
 	// The minimum number of instances for the service
 	Min int `pulumi:"min"`
+	// Query params to send with the API requests for this resource.
+	QueryParams *AutoscaleServiceQueryParams `pulumi:"queryParams"`
 	// The ID of the service
 	ServiceId *string `pulumi:"serviceId"`
 }
@@ -94,6 +98,8 @@ type AutoscaleServiceArgs struct {
 	Max pulumi.IntInput
 	// The minimum number of instances for the service
 	Min pulumi.IntInput
+	// Query params to send with the API requests for this resource.
+	QueryParams AutoscaleServiceQueryParamsPtrInput
 	// The ID of the service
 	ServiceId pulumi.StringPtrInput
 }
@@ -151,6 +157,11 @@ func (o AutoscaleServiceOutput) Max() pulumi.IntOutput {
 // The minimum number of instances for the service
 func (o AutoscaleServiceOutput) Min() pulumi.IntOutput {
 	return o.ApplyT(func(v *AutoscaleService) pulumi.IntOutput { return v.Min }).(pulumi.IntOutput)
+}
+
+// Query params to send with the API requests for this resource.
+func (o AutoscaleServiceOutput) QueryParams() AutoscaleServiceQueryParamsPtrOutput {
+	return o.ApplyT(func(v *AutoscaleService) AutoscaleServiceQueryParamsPtrOutput { return v.QueryParams }).(AutoscaleServiceQueryParamsPtrOutput)
 }
 
 func init() {

@@ -39,6 +39,68 @@ namespace Pulumi.Render.Postgres
         public override string ToString() => _value;
     }
 
+    /// <summary>
+    /// Defaults to "oregon"
+    /// </summary>
+    [EnumType]
+    public readonly struct ListPostgresQueryParamsRegionItem : IEquatable<ListPostgresQueryParamsRegionItem>
+    {
+        private readonly string _value;
+
+        private ListPostgresQueryParamsRegionItem(string value)
+        {
+            _value = value ?? throw new ArgumentNullException(nameof(value));
+        }
+
+        public static ListPostgresQueryParamsRegionItem Frankfurt { get; } = new ListPostgresQueryParamsRegionItem("frankfurt");
+        public static ListPostgresQueryParamsRegionItem Oregon { get; } = new ListPostgresQueryParamsRegionItem("oregon");
+        public static ListPostgresQueryParamsRegionItem Ohio { get; } = new ListPostgresQueryParamsRegionItem("ohio");
+        public static ListPostgresQueryParamsRegionItem Singapore { get; } = new ListPostgresQueryParamsRegionItem("singapore");
+        public static ListPostgresQueryParamsRegionItem Virginia { get; } = new ListPostgresQueryParamsRegionItem("virginia");
+
+        public static bool operator ==(ListPostgresQueryParamsRegionItem left, ListPostgresQueryParamsRegionItem right) => left.Equals(right);
+        public static bool operator !=(ListPostgresQueryParamsRegionItem left, ListPostgresQueryParamsRegionItem right) => !left.Equals(right);
+
+        public static explicit operator string(ListPostgresQueryParamsRegionItem value) => value._value;
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override bool Equals(object? obj) => obj is ListPostgresQueryParamsRegionItem other && Equals(other);
+        public bool Equals(ListPostgresQueryParamsRegionItem other) => string.Equals(_value, other._value, StringComparison.Ordinal);
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override int GetHashCode() => _value?.GetHashCode() ?? 0;
+
+        public override string ToString() => _value;
+    }
+
+    [EnumType]
+    public readonly struct ListPostgresQueryParamsSuspendedItem : IEquatable<ListPostgresQueryParamsSuspendedItem>
+    {
+        private readonly string _value;
+
+        private ListPostgresQueryParamsSuspendedItem(string value)
+        {
+            _value = value ?? throw new ArgumentNullException(nameof(value));
+        }
+
+        public static ListPostgresQueryParamsSuspendedItem Suspended { get; } = new ListPostgresQueryParamsSuspendedItem("suspended");
+        public static ListPostgresQueryParamsSuspendedItem NotSuspended { get; } = new ListPostgresQueryParamsSuspendedItem("not_suspended");
+
+        public static bool operator ==(ListPostgresQueryParamsSuspendedItem left, ListPostgresQueryParamsSuspendedItem right) => left.Equals(right);
+        public static bool operator !=(ListPostgresQueryParamsSuspendedItem left, ListPostgresQueryParamsSuspendedItem right) => !left.Equals(right);
+
+        public static explicit operator string(ListPostgresQueryParamsSuspendedItem value) => value._value;
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override bool Equals(object? obj) => obj is ListPostgresQueryParamsSuspendedItem other && Equals(other);
+        public bool Equals(ListPostgresQueryParamsSuspendedItem other) => string.Equals(_value, other._value, StringComparison.Ordinal);
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override int GetHashCode() => _value?.GetHashCode() ?? 0;
+
+        public override string ToString() => _value;
+    }
+
     [EnumType]
     public readonly struct OwnerType : IEquatable<OwnerType>
     {

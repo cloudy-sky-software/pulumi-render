@@ -11,6 +11,7 @@ export function getOwnerNotificationSetting(args: GetOwnerNotificationSettingArg
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("render:notification-settings:getOwnerNotificationSetting", {
         "ownerId": args.ownerId,
+        "queryParams": args.queryParams,
     }, opts);
 }
 
@@ -19,6 +20,10 @@ export interface GetOwnerNotificationSettingArgs {
      * The ID of the workspace to return resources for
      */
     ownerId: string;
+    /**
+     * Query params to send with the API request.
+     */
+    queryParams?: inputs.notificationsettings.GetOwnerNotificationSettingQueryParams;
 }
 
 export interface GetOwnerNotificationSettingResult {
@@ -32,6 +37,7 @@ export function getOwnerNotificationSettingOutput(args: GetOwnerNotificationSett
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("render:notification-settings:getOwnerNotificationSetting", {
         "ownerId": args.ownerId,
+        "queryParams": args.queryParams,
     }, opts);
 }
 
@@ -40,4 +46,8 @@ export interface GetOwnerNotificationSettingOutputArgs {
      * The ID of the workspace to return resources for
      */
     ownerId: pulumi.Input<string>;
+    /**
+     * Query params to send with the API request.
+     */
+    queryParams?: pulumi.Input<inputs.notificationsettings.GetOwnerNotificationSettingQueryParamsArgs | undefined>;
 }

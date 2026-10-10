@@ -14,7 +14,7 @@ import (
 func ListDisks(ctx *pulumi.Context, args *ListDisksArgs, opts ...pulumi.InvokeOption) (*ListDisksResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv ListDisksResult
-	err := ctx.Invoke("render:disks:listDisks", args, &rv, opts...)
+	err := ctx.Invoke("render:disks:listDisks", args.Defaults(), &rv, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -22,6 +22,19 @@ func ListDisks(ctx *pulumi.Context, args *ListDisksArgs, opts ...pulumi.InvokeOp
 }
 
 type ListDisksArgs struct {
+	// Query params to send with the API request.
+	QueryParams *ListDisksQueryParams `pulumi:"queryParams"`
+}
+
+// Defaults sets the appropriate defaults for ListDisksArgs
+func (val *ListDisksArgs) Defaults() *ListDisksArgs {
+	if val == nil {
+		return nil
+	}
+	tmp := *val
+	tmp.QueryParams = tmp.QueryParams.Defaults()
+
+	return &tmp
 }
 
 type ListDisksResult struct {
@@ -29,11 +42,18 @@ type ListDisksResult struct {
 }
 
 func ListDisksOutput(ctx *pulumi.Context, args ListDisksOutputArgs, opts ...pulumi.InvokeOption) ListDisksResultOutput {
+	outputArgs := pulumi.ToOutputWithContext(ctx.Context(), args).
+		ApplyT(func(v interface{}) *ListDisksArgs {
+			args := v.(ListDisksArgs)
+			return args.Defaults()
+		})
 	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-	return ctx.InvokeOutput("render:disks:listDisks", args, ListDisksResultOutput{}, options).(ListDisksResultOutput)
+	return ctx.InvokeOutput("render:disks:listDisks", outputArgs, ListDisksResultOutput{}, options).(ListDisksResultOutput)
 }
 
 type ListDisksOutputArgs struct {
+	// Query params to send with the API request.
+	QueryParams ListDisksQueryParamsPtrInput `pulumi:"queryParams"`
 }
 
 func (ListDisksOutputArgs) ElementType() reflect.Type {

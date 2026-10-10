@@ -22,6 +22,8 @@ func LookupCronJob(ctx *pulumi.Context, args *LookupCronJobArgs, opts ...pulumi.
 }
 
 type LookupCronJobArgs struct {
+	// Query params to send with the API request.
+	QueryParams *GetCronJobQueryParams `pulumi:"queryParams"`
 	// The ID of the service
 	ServiceId string `pulumi:"serviceId"`
 }
@@ -73,6 +75,8 @@ func LookupCronJobOutput(ctx *pulumi.Context, args LookupCronJobOutputArgs, opts
 }
 
 type LookupCronJobOutputArgs struct {
+	// Query params to send with the API request.
+	QueryParams GetCronJobQueryParamsPtrInput `pulumi:"queryParams"`
 	// The ID of the service
 	ServiceId pulumi.StringInput `pulumi:"serviceId"`
 }

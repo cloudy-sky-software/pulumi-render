@@ -13,20 +13,38 @@ if sys.version_info >= (3, 11):
 else:
     from typing_extensions import NotRequired, TypedDict, TypeAlias
 from .. import _utilities
+from . import outputs
+from ._inputs import *
 
 __all__ = ['RestartServiceArgs', 'RestartService']
 
 @pulumi.input_type
 class RestartServiceArgs:
     def __init__(__self__, *,
+                 query_params: pulumi.Input[Optional['RestartServiceQueryParamsArgs']] = None,
                  service_id: pulumi.Input[Optional[_builtins.str]] = None):
         """
         The set of arguments for constructing a RestartService resource.
 
+        :param pulumi.Input['RestartServiceQueryParamsArgs'] query_params: Query params to send with the API requests for this resource.
         :param pulumi.Input[_builtins.str] service_id: The ID of the service
         """
+        if query_params is not None:
+            pulumi.set(__self__, "query_params", query_params)
         if service_id is not None:
             pulumi.set(__self__, "service_id", service_id)
+
+    @_builtins.property
+    @pulumi.getter(name="queryParams")
+    def query_params(self) -> pulumi.Input[Optional['RestartServiceQueryParamsArgs']]:
+        """
+        Query params to send with the API requests for this resource.
+        """
+        return pulumi.get(self, "query_params")
+
+    @query_params.setter
+    def query_params(self, value: pulumi.Input[Optional['RestartServiceQueryParamsArgs']]):
+        pulumi.set(self, "query_params", value)
 
     @_builtins.property
     @pulumi.getter(name="serviceId")
@@ -47,6 +65,7 @@ class RestartService(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 query_params: pulumi.Input[Optional[Union['RestartServiceQueryParamsArgs', 'RestartServiceQueryParamsArgsDict', 'outputs.RestartServiceQueryParams']]] = None,
                  service_id: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
@@ -54,6 +73,7 @@ class RestartService(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[Union['RestartServiceQueryParamsArgs', 'RestartServiceQueryParamsArgsDict', 'outputs.RestartServiceQueryParams']] query_params: Query params to send with the API requests for this resource.
         :param pulumi.Input[_builtins.str] service_id: The ID of the service
         """
         ...
@@ -80,6 +100,7 @@ class RestartService(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 query_params: pulumi.Input[Optional[Union['RestartServiceQueryParamsArgs', 'RestartServiceQueryParamsArgsDict', 'outputs.RestartServiceQueryParams']]] = None,
                  service_id: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -90,6 +111,7 @@ class RestartService(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = RestartServiceArgs.__new__(RestartServiceArgs)
 
+            __props__.__dict__["query_params"] = query_params
             __props__.__dict__["service_id"] = service_id
         super(RestartService, __self__).__init__(
             'render:services:RestartService',
@@ -113,5 +135,14 @@ class RestartService(pulumi.CustomResource):
 
         __props__ = RestartServiceArgs.__new__(RestartServiceArgs)
 
+        __props__.__dict__["query_params"] = None
         return RestartService(resource_name, opts=opts, __props__=__props__)
+
+    @_builtins.property
+    @pulumi.getter(name="queryParams")
+    def query_params(self) -> pulumi.Output[Optional['outputs.RestartServiceQueryParams']]:
+        """
+        Query params to send with the API requests for this resource.
+        """
+        return pulumi.get(self, "query_params")
 

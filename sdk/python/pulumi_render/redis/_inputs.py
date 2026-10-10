@@ -18,6 +18,22 @@ from ._enums import *
 __all__ = [
     'CidrBlockAndDescriptionArgs',
     'CidrBlockAndDescriptionArgsDict',
+    'GetRedisConnectionInfoQueryParams',
+    'GetRedisConnectionInfoQueryParamsDict',
+    'GetRedisQueryParams',
+    'GetRedisQueryParamsDict',
+    'ListRedisQueryParams',
+    'ListRedisQueryParamsDict',
+    'RedisCreateQueryParamsArgs',
+    'RedisCreateQueryParamsArgsDict',
+    'RedisDeleteQueryParamsArgs',
+    'RedisDeleteQueryParamsArgsDict',
+    'RedisQueryParamsArgs',
+    'RedisQueryParamsArgsDict',
+    'RedisReadQueryParamsArgs',
+    'RedisReadQueryParamsArgsDict',
+    'RedisUpdateQueryParamsArgs',
+    'RedisUpdateQueryParamsArgsDict',
 ]
 
 class CidrBlockAndDescriptionArgsDict(TypedDict):
@@ -58,5 +74,539 @@ class CidrBlockAndDescriptionArgs:
     @description.setter
     def description(self, value: pulumi.Input[_builtins.str]):
         pulumi.set(self, "description", value)
+
+
+class GetRedisConnectionInfoQueryParamsDict(TypedDict):
+    """
+    Query params for the API request.
+    """
+    additional_params: NotRequired[Mapping[str, _builtins.str]]
+    """
+    Additional query params to send with the request that are not defined in the API spec.
+    """
+
+@pulumi.input_type
+class GetRedisConnectionInfoQueryParams:
+    def __init__(__self__, *,
+                 additional_params: Optional[Mapping[str, _builtins.str]] = None):
+        """
+        Query params for the API request.
+
+        :param Mapping[str, _builtins.str] additional_params: Additional query params to send with the request that are not defined in the API spec.
+        """
+        if additional_params is not None:
+            pulumi.set(__self__, "additional_params", additional_params)
+
+    @_builtins.property
+    @pulumi.getter(name="additionalParams")
+    def additional_params(self) -> Optional[Mapping[str, _builtins.str]]:
+        """
+        Additional query params to send with the request that are not defined in the API spec.
+        """
+        return pulumi.get(self, "additional_params")
+
+    @additional_params.setter
+    def additional_params(self, value: Optional[Mapping[str, _builtins.str]]):
+        pulumi.set(self, "additional_params", value)
+
+
+class GetRedisQueryParamsDict(TypedDict):
+    """
+    Query params for the API request.
+    """
+    additional_params: NotRequired[Mapping[str, _builtins.str]]
+    """
+    Additional query params to send with the request that are not defined in the API spec.
+    """
+
+@pulumi.input_type
+class GetRedisQueryParams:
+    def __init__(__self__, *,
+                 additional_params: Optional[Mapping[str, _builtins.str]] = None):
+        """
+        Query params for the API request.
+
+        :param Mapping[str, _builtins.str] additional_params: Additional query params to send with the request that are not defined in the API spec.
+        """
+        if additional_params is not None:
+            pulumi.set(__self__, "additional_params", additional_params)
+
+    @_builtins.property
+    @pulumi.getter(name="additionalParams")
+    def additional_params(self) -> Optional[Mapping[str, _builtins.str]]:
+        """
+        Additional query params to send with the request that are not defined in the API spec.
+        """
+        return pulumi.get(self, "additional_params")
+
+    @additional_params.setter
+    def additional_params(self, value: Optional[Mapping[str, _builtins.str]]):
+        pulumi.set(self, "additional_params", value)
+
+
+class ListRedisQueryParamsDict(TypedDict):
+    """
+    Query params for the API request.
+    """
+    additional_params: NotRequired[Mapping[str, _builtins.str]]
+    """
+    Additional query params to send with the request that are not defined in the API spec.
+    """
+    created_after: NotRequired[_builtins.str]
+    """
+    Filter for resources created after a certain time (specified as an ISO 8601 timestamp)
+    """
+    created_before: NotRequired[_builtins.str]
+    """
+    Filter for resources created before a certain time (specified as an ISO 8601 timestamp)
+    """
+    cursor: NotRequired[_builtins.str]
+    """
+    The position in the result list to start from when fetching paginated results. For details, see [Pagination](https://api-docs.render.com/reference/pagination).
+    """
+    environment_id: NotRequired[Sequence[_builtins.str]]
+    """
+    Filter for resources that belong to an environment
+    """
+    limit: NotRequired[_builtins.int]
+    """
+    The maximum number of items to return. For details, see [Pagination](https://api-docs.render.com/reference/pagination).
+    """
+    name: NotRequired[Sequence[_builtins.str]]
+    """
+    Filter by name
+    """
+    owner_id: NotRequired[Sequence[_builtins.str]]
+    """
+    The ID of the workspaces to return resources for
+    """
+    region: NotRequired[Sequence['ListRedisQueryParamsRegionItem']]
+    """
+    Filter by resource region
+    """
+    updated_after: NotRequired[_builtins.str]
+    """
+    Filter for resources updated after a certain time (specified as an ISO 8601 timestamp)
+    """
+    updated_before: NotRequired[_builtins.str]
+    """
+    Filter for resources updated before a certain time (specified as an ISO 8601 timestamp)
+    """
+
+@pulumi.input_type
+class ListRedisQueryParams:
+    def __init__(__self__, *,
+                 additional_params: Optional[Mapping[str, _builtins.str]] = None,
+                 created_after: Optional[_builtins.str] = None,
+                 created_before: Optional[_builtins.str] = None,
+                 cursor: Optional[_builtins.str] = None,
+                 environment_id: Optional[Sequence[_builtins.str]] = None,
+                 limit: Optional[_builtins.int] = None,
+                 name: Optional[Sequence[_builtins.str]] = None,
+                 owner_id: Optional[Sequence[_builtins.str]] = None,
+                 region: Optional[Sequence['ListRedisQueryParamsRegionItem']] = None,
+                 updated_after: Optional[_builtins.str] = None,
+                 updated_before: Optional[_builtins.str] = None):
+        """
+        Query params for the API request.
+
+        :param Mapping[str, _builtins.str] additional_params: Additional query params to send with the request that are not defined in the API spec.
+        :param _builtins.str created_after: Filter for resources created after a certain time (specified as an ISO 8601 timestamp)
+        :param _builtins.str created_before: Filter for resources created before a certain time (specified as an ISO 8601 timestamp)
+        :param _builtins.str cursor: The position in the result list to start from when fetching paginated results. For details, see [Pagination](https://api-docs.render.com/reference/pagination).
+        :param Sequence[_builtins.str] environment_id: Filter for resources that belong to an environment
+        :param _builtins.int limit: The maximum number of items to return. For details, see [Pagination](https://api-docs.render.com/reference/pagination).
+        :param Sequence[_builtins.str] name: Filter by name
+        :param Sequence[_builtins.str] owner_id: The ID of the workspaces to return resources for
+        :param Sequence['ListRedisQueryParamsRegionItem'] region: Filter by resource region
+        :param _builtins.str updated_after: Filter for resources updated after a certain time (specified as an ISO 8601 timestamp)
+        :param _builtins.str updated_before: Filter for resources updated before a certain time (specified as an ISO 8601 timestamp)
+        """
+        if additional_params is not None:
+            pulumi.set(__self__, "additional_params", additional_params)
+        if created_after is not None:
+            pulumi.set(__self__, "created_after", created_after)
+        if created_before is not None:
+            pulumi.set(__self__, "created_before", created_before)
+        if cursor is not None:
+            pulumi.set(__self__, "cursor", cursor)
+        if environment_id is not None:
+            pulumi.set(__self__, "environment_id", environment_id)
+        if limit is None:
+            limit = 20
+        if limit is not None:
+            pulumi.set(__self__, "limit", limit)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if owner_id is not None:
+            pulumi.set(__self__, "owner_id", owner_id)
+        if region is not None:
+            pulumi.set(__self__, "region", region)
+        if updated_after is not None:
+            pulumi.set(__self__, "updated_after", updated_after)
+        if updated_before is not None:
+            pulumi.set(__self__, "updated_before", updated_before)
+
+    @_builtins.property
+    @pulumi.getter(name="additionalParams")
+    def additional_params(self) -> Optional[Mapping[str, _builtins.str]]:
+        """
+        Additional query params to send with the request that are not defined in the API spec.
+        """
+        return pulumi.get(self, "additional_params")
+
+    @additional_params.setter
+    def additional_params(self, value: Optional[Mapping[str, _builtins.str]]):
+        pulumi.set(self, "additional_params", value)
+
+    @_builtins.property
+    @pulumi.getter(name="createdAfter")
+    def created_after(self) -> Optional[_builtins.str]:
+        """
+        Filter for resources created after a certain time (specified as an ISO 8601 timestamp)
+        """
+        return pulumi.get(self, "created_after")
+
+    @created_after.setter
+    def created_after(self, value: Optional[_builtins.str]):
+        pulumi.set(self, "created_after", value)
+
+    @_builtins.property
+    @pulumi.getter(name="createdBefore")
+    def created_before(self) -> Optional[_builtins.str]:
+        """
+        Filter for resources created before a certain time (specified as an ISO 8601 timestamp)
+        """
+        return pulumi.get(self, "created_before")
+
+    @created_before.setter
+    def created_before(self, value: Optional[_builtins.str]):
+        pulumi.set(self, "created_before", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def cursor(self) -> Optional[_builtins.str]:
+        """
+        The position in the result list to start from when fetching paginated results. For details, see [Pagination](https://api-docs.render.com/reference/pagination).
+        """
+        return pulumi.get(self, "cursor")
+
+    @cursor.setter
+    def cursor(self, value: Optional[_builtins.str]):
+        pulumi.set(self, "cursor", value)
+
+    @_builtins.property
+    @pulumi.getter(name="environmentId")
+    def environment_id(self) -> Optional[Sequence[_builtins.str]]:
+        """
+        Filter for resources that belong to an environment
+        """
+        return pulumi.get(self, "environment_id")
+
+    @environment_id.setter
+    def environment_id(self, value: Optional[Sequence[_builtins.str]]):
+        pulumi.set(self, "environment_id", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def limit(self) -> Optional[_builtins.int]:
+        """
+        The maximum number of items to return. For details, see [Pagination](https://api-docs.render.com/reference/pagination).
+        """
+        return pulumi.get(self, "limit")
+
+    @limit.setter
+    def limit(self, value: Optional[_builtins.int]):
+        pulumi.set(self, "limit", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> Optional[Sequence[_builtins.str]]:
+        """
+        Filter by name
+        """
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: Optional[Sequence[_builtins.str]]):
+        pulumi.set(self, "name", value)
+
+    @_builtins.property
+    @pulumi.getter(name="ownerId")
+    def owner_id(self) -> Optional[Sequence[_builtins.str]]:
+        """
+        The ID of the workspaces to return resources for
+        """
+        return pulumi.get(self, "owner_id")
+
+    @owner_id.setter
+    def owner_id(self, value: Optional[Sequence[_builtins.str]]):
+        pulumi.set(self, "owner_id", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def region(self) -> Optional[Sequence['ListRedisQueryParamsRegionItem']]:
+        """
+        Filter by resource region
+        """
+        return pulumi.get(self, "region")
+
+    @region.setter
+    def region(self, value: Optional[Sequence['ListRedisQueryParamsRegionItem']]):
+        pulumi.set(self, "region", value)
+
+    @_builtins.property
+    @pulumi.getter(name="updatedAfter")
+    def updated_after(self) -> Optional[_builtins.str]:
+        """
+        Filter for resources updated after a certain time (specified as an ISO 8601 timestamp)
+        """
+        return pulumi.get(self, "updated_after")
+
+    @updated_after.setter
+    def updated_after(self, value: Optional[_builtins.str]):
+        pulumi.set(self, "updated_after", value)
+
+    @_builtins.property
+    @pulumi.getter(name="updatedBefore")
+    def updated_before(self) -> Optional[_builtins.str]:
+        """
+        Filter for resources updated before a certain time (specified as an ISO 8601 timestamp)
+        """
+        return pulumi.get(self, "updated_before")
+
+    @updated_before.setter
+    def updated_before(self, value: Optional[_builtins.str]):
+        pulumi.set(self, "updated_before", value)
+
+
+class RedisCreateQueryParamsArgsDict(TypedDict):
+    """
+    Query params for the API request.
+    """
+    additional_params: NotRequired[pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]]
+    """
+    Additional query params to send with the request that are not defined in the API spec.
+    """
+
+@pulumi.input_type
+class RedisCreateQueryParamsArgs:
+    def __init__(__self__, *,
+                 additional_params: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None):
+        """
+        Query params for the API request.
+
+        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] additional_params: Additional query params to send with the request that are not defined in the API spec.
+        """
+        if additional_params is not None:
+            pulumi.set(__self__, "additional_params", additional_params)
+
+    @_builtins.property
+    @pulumi.getter(name="additionalParams")
+    def additional_params(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
+        """
+        Additional query params to send with the request that are not defined in the API spec.
+        """
+        return pulumi.get(self, "additional_params")
+
+    @additional_params.setter
+    def additional_params(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "additional_params", value)
+
+
+class RedisDeleteQueryParamsArgsDict(TypedDict):
+    """
+    Query params for the API request.
+    """
+    additional_params: NotRequired[pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]]
+    """
+    Additional query params to send with the request that are not defined in the API spec.
+    """
+
+@pulumi.input_type
+class RedisDeleteQueryParamsArgs:
+    def __init__(__self__, *,
+                 additional_params: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None):
+        """
+        Query params for the API request.
+
+        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] additional_params: Additional query params to send with the request that are not defined in the API spec.
+        """
+        if additional_params is not None:
+            pulumi.set(__self__, "additional_params", additional_params)
+
+    @_builtins.property
+    @pulumi.getter(name="additionalParams")
+    def additional_params(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
+        """
+        Additional query params to send with the request that are not defined in the API spec.
+        """
+        return pulumi.get(self, "additional_params")
+
+    @additional_params.setter
+    def additional_params(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "additional_params", value)
+
+
+class RedisQueryParamsArgsDict(TypedDict):
+    """
+    Query params for each of the operations of the resource.
+    """
+    create: NotRequired[pulumi.Input[Optional['RedisCreateQueryParamsArgsDict']]]
+    """
+    Query params for the create operation.
+    """
+    delete: NotRequired[pulumi.Input[Optional['RedisDeleteQueryParamsArgsDict']]]
+    """
+    Query params for the delete operation.
+    """
+    read: NotRequired[pulumi.Input[Optional['RedisReadQueryParamsArgsDict']]]
+    """
+    Query params for the read operation.
+    """
+    update: NotRequired[pulumi.Input[Optional['RedisUpdateQueryParamsArgsDict']]]
+    """
+    Query params for the update operation.
+    """
+
+@pulumi.input_type
+class RedisQueryParamsArgs:
+    def __init__(__self__, *,
+                 create: pulumi.Input[Optional['RedisCreateQueryParamsArgs']] = None,
+                 delete: pulumi.Input[Optional['RedisDeleteQueryParamsArgs']] = None,
+                 read: pulumi.Input[Optional['RedisReadQueryParamsArgs']] = None,
+                 update: pulumi.Input[Optional['RedisUpdateQueryParamsArgs']] = None):
+        """
+        Query params for each of the operations of the resource.
+
+        :param pulumi.Input['RedisCreateQueryParamsArgs'] create: Query params for the create operation.
+        :param pulumi.Input['RedisDeleteQueryParamsArgs'] delete: Query params for the delete operation.
+        :param pulumi.Input['RedisReadQueryParamsArgs'] read: Query params for the read operation.
+        :param pulumi.Input['RedisUpdateQueryParamsArgs'] update: Query params for the update operation.
+        """
+        if create is not None:
+            pulumi.set(__self__, "create", create)
+        if delete is not None:
+            pulumi.set(__self__, "delete", delete)
+        if read is not None:
+            pulumi.set(__self__, "read", read)
+        if update is not None:
+            pulumi.set(__self__, "update", update)
+
+    @_builtins.property
+    @pulumi.getter
+    def create(self) -> pulumi.Input[Optional['RedisCreateQueryParamsArgs']]:
+        """
+        Query params for the create operation.
+        """
+        return pulumi.get(self, "create")
+
+    @create.setter
+    def create(self, value: pulumi.Input[Optional['RedisCreateQueryParamsArgs']]):
+        pulumi.set(self, "create", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def delete(self) -> pulumi.Input[Optional['RedisDeleteQueryParamsArgs']]:
+        """
+        Query params for the delete operation.
+        """
+        return pulumi.get(self, "delete")
+
+    @delete.setter
+    def delete(self, value: pulumi.Input[Optional['RedisDeleteQueryParamsArgs']]):
+        pulumi.set(self, "delete", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def read(self) -> pulumi.Input[Optional['RedisReadQueryParamsArgs']]:
+        """
+        Query params for the read operation.
+        """
+        return pulumi.get(self, "read")
+
+    @read.setter
+    def read(self, value: pulumi.Input[Optional['RedisReadQueryParamsArgs']]):
+        pulumi.set(self, "read", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def update(self) -> pulumi.Input[Optional['RedisUpdateQueryParamsArgs']]:
+        """
+        Query params for the update operation.
+        """
+        return pulumi.get(self, "update")
+
+    @update.setter
+    def update(self, value: pulumi.Input[Optional['RedisUpdateQueryParamsArgs']]):
+        pulumi.set(self, "update", value)
+
+
+class RedisReadQueryParamsArgsDict(TypedDict):
+    """
+    Query params for the API request.
+    """
+    additional_params: NotRequired[pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]]
+    """
+    Additional query params to send with the request that are not defined in the API spec.
+    """
+
+@pulumi.input_type
+class RedisReadQueryParamsArgs:
+    def __init__(__self__, *,
+                 additional_params: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None):
+        """
+        Query params for the API request.
+
+        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] additional_params: Additional query params to send with the request that are not defined in the API spec.
+        """
+        if additional_params is not None:
+            pulumi.set(__self__, "additional_params", additional_params)
+
+    @_builtins.property
+    @pulumi.getter(name="additionalParams")
+    def additional_params(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
+        """
+        Additional query params to send with the request that are not defined in the API spec.
+        """
+        return pulumi.get(self, "additional_params")
+
+    @additional_params.setter
+    def additional_params(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "additional_params", value)
+
+
+class RedisUpdateQueryParamsArgsDict(TypedDict):
+    """
+    Query params for the API request.
+    """
+    additional_params: NotRequired[pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]]
+    """
+    Additional query params to send with the request that are not defined in the API spec.
+    """
+
+@pulumi.input_type
+class RedisUpdateQueryParamsArgs:
+    def __init__(__self__, *,
+                 additional_params: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None):
+        """
+        Query params for the API request.
+
+        :param pulumi.Input[Mapping[str, pulumi.Input[_builtins.str]]] additional_params: Additional query params to send with the request that are not defined in the API spec.
+        """
+        if additional_params is not None:
+            pulumi.set(__self__, "additional_params", additional_params)
+
+    @_builtins.property
+    @pulumi.getter(name="additionalParams")
+    def additional_params(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
+        """
+        Additional query params to send with the request that are not defined in the API spec.
+        """
+        return pulumi.get(self, "additional_params")
+
+    @additional_params.setter
+    def additional_params(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "additional_params", value)
 
 

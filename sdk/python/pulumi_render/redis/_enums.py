@@ -7,6 +7,7 @@ import pulumi
 from enum import Enum
 
 __all__ = [
+    'ListRedisQueryParamsRegionItem',
     'MaintenancePropertiesState',
     'MaxmemoryPolicy',
     'OwnerType',
@@ -21,6 +22,18 @@ __all__ = [
     'Region',
     'Status',
 ]
+
+
+@pulumi.type_token("render:redis:ListRedisQueryParamsRegionItem")
+class ListRedisQueryParamsRegionItem(_builtins.str, Enum):
+    """
+    Defaults to "oregon"
+    """
+    FRANKFURT = "frankfurt"
+    OREGON = "oregon"
+    OHIO = "ohio"
+    SINGAPORE = "singapore"
+    VIRGINIA = "virginia"
 
 
 @pulumi.type_token("render:redis:MaintenancePropertiesState")

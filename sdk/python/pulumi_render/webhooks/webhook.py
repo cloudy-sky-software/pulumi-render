@@ -13,7 +13,9 @@ if sys.version_info >= (3, 11):
 else:
     from typing_extensions import NotRequired, TypedDict, TypeAlias
 from .. import _utilities
+from . import outputs
 from ._enums import *
+from ._inputs import *
 
 __all__ = ['WebhookArgs', 'Webhook']
 
@@ -24,12 +26,14 @@ class WebhookArgs:
                  event_filter: pulumi.Input[Sequence[pulumi.Input['EventFilterItem']]],
                  owner_id: pulumi.Input[_builtins.str],
                  url: pulumi.Input[_builtins.str],
-                 name: pulumi.Input[Optional[_builtins.str]] = None):
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 query_params: pulumi.Input[Optional['WebhookQueryParamsArgs']] = None):
         """
         The set of arguments for constructing a Webhook resource.
 
         :param pulumi.Input[Sequence[pulumi.Input['EventFilterItem']]] event_filter: The event types that will trigger the webhook. An empty list means all event types will trigger the webhook.
         :param pulumi.Input[_builtins.str] owner_id: The ID of the owner (team or personal user) whose resources should be returned
+        :param pulumi.Input['WebhookQueryParamsArgs'] query_params: Query params to send with the API requests for this resource.
         """
         pulumi.set(__self__, "enabled", enabled)
         pulumi.set(__self__, "event_filter", event_filter)
@@ -37,6 +41,8 @@ class WebhookArgs:
         pulumi.set(__self__, "url", url)
         if name is not None:
             pulumi.set(__self__, "name", name)
+        if query_params is not None:
+            pulumi.set(__self__, "query_params", query_params)
 
     @_builtins.property
     @pulumi.getter
@@ -89,6 +95,18 @@ class WebhookArgs:
     def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
 
+    @_builtins.property
+    @pulumi.getter(name="queryParams")
+    def query_params(self) -> pulumi.Input[Optional['WebhookQueryParamsArgs']]:
+        """
+        Query params to send with the API requests for this resource.
+        """
+        return pulumi.get(self, "query_params")
+
+    @query_params.setter
+    def query_params(self, value: pulumi.Input[Optional['WebhookQueryParamsArgs']]):
+        pulumi.set(self, "query_params", value)
+
 
 @pulumi.type_token("render:webhooks:Webhook")
 class Webhook(pulumi.CustomResource):
@@ -100,6 +118,7 @@ class Webhook(pulumi.CustomResource):
                  event_filter: pulumi.Input[Optional[Sequence[pulumi.Input['EventFilterItem']]]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  owner_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 query_params: pulumi.Input[Optional[Union['WebhookQueryParamsArgs', 'WebhookQueryParamsArgsDict', 'outputs.WebhookQueryParams']]] = None,
                  url: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         """
@@ -109,6 +128,7 @@ class Webhook(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Sequence[pulumi.Input['EventFilterItem']]] event_filter: The event types that will trigger the webhook. An empty list means all event types will trigger the webhook.
         :param pulumi.Input[_builtins.str] owner_id: The ID of the owner (team or personal user) whose resources should be returned
+        :param pulumi.Input[Union['WebhookQueryParamsArgs', 'WebhookQueryParamsArgsDict', 'outputs.WebhookQueryParams']] query_params: Query params to send with the API requests for this resource.
         """
         ...
     @overload
@@ -138,6 +158,7 @@ class Webhook(pulumi.CustomResource):
                  event_filter: pulumi.Input[Optional[Sequence[pulumi.Input['EventFilterItem']]]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None,
                  owner_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 query_params: pulumi.Input[Optional[Union['WebhookQueryParamsArgs', 'WebhookQueryParamsArgsDict', 'outputs.WebhookQueryParams']]] = None,
                  url: pulumi.Input[Optional[_builtins.str]] = None,
                  __props__=None):
         opts = pulumi.ResourceOptions.merge(_utilities.get_resource_opts_defaults(), opts)
@@ -158,6 +179,7 @@ class Webhook(pulumi.CustomResource):
             if owner_id is None and not opts.urn:
                 raise TypeError("Missing required property 'owner_id'")
             __props__.__dict__["owner_id"] = owner_id
+            __props__.__dict__["query_params"] = query_params
             if url is None and not opts.urn:
                 raise TypeError("Missing required property 'url'")
             __props__.__dict__["url"] = url
@@ -188,6 +210,7 @@ class Webhook(pulumi.CustomResource):
         __props__.__dict__["event_filter"] = None
         __props__.__dict__["name"] = None
         __props__.__dict__["owner_id"] = None
+        __props__.__dict__["query_params"] = None
         __props__.__dict__["secret"] = None
         __props__.__dict__["url"] = None
         return Webhook(resource_name, opts=opts, __props__=__props__)
@@ -217,6 +240,14 @@ class Webhook(pulumi.CustomResource):
         The ID of the owner (team or personal user) whose resources should be returned
         """
         return pulumi.get(self, "owner_id")
+
+    @_builtins.property
+    @pulumi.getter(name="queryParams")
+    def query_params(self) -> pulumi.Output[Optional['outputs.WebhookQueryParams']]:
+        """
+        Query params to send with the API requests for this resource.
+        """
+        return pulumi.get(self, "query_params")
 
     @_builtins.property
     @pulumi.getter

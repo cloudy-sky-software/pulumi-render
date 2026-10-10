@@ -37,6 +37,10 @@ export class CancelJob extends pulumi.CustomResource {
     declare public /*out*/ readonly createdAt: pulumi.Output<string>;
     declare public /*out*/ readonly finishedAt: pulumi.Output<string | undefined>;
     declare public /*out*/ readonly planId: pulumi.Output<string>;
+    /**
+     * Query params to send with the API requests for this resource.
+     */
+    declare public readonly queryParams: pulumi.Output<outputs.services.CancelJobQueryParams | undefined>;
     declare public readonly serviceId: pulumi.Output<string>;
     declare public /*out*/ readonly startCommand: pulumi.Output<string>;
     declare public /*out*/ readonly startedAt: pulumi.Output<string | undefined>;
@@ -54,6 +58,7 @@ export class CancelJob extends pulumi.CustomResource {
         opts = opts || {};
         if (!opts.id) {
             resourceInputs["jobId"] = args?.jobId;
+            resourceInputs["queryParams"] = args?.queryParams;
             resourceInputs["serviceId"] = args?.serviceId;
             resourceInputs["createdAt"] = undefined /*out*/;
             resourceInputs["finishedAt"] = undefined /*out*/;
@@ -65,6 +70,7 @@ export class CancelJob extends pulumi.CustomResource {
             resourceInputs["createdAt"] = undefined /*out*/;
             resourceInputs["finishedAt"] = undefined /*out*/;
             resourceInputs["planId"] = undefined /*out*/;
+            resourceInputs["queryParams"] = undefined /*out*/;
             resourceInputs["serviceId"] = undefined /*out*/;
             resourceInputs["startCommand"] = undefined /*out*/;
             resourceInputs["startedAt"] = undefined /*out*/;
@@ -83,6 +89,10 @@ export interface CancelJobArgs {
      * The ID of the job
      */
     jobId?: pulumi.Input<string | undefined>;
+    /**
+     * Query params to send with the API requests for this resource.
+     */
+    queryParams?: pulumi.Input<inputs.services.CancelJobQueryParamsArgs | undefined>;
     /**
      * The ID of the service
      */

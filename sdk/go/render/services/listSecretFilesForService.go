@@ -14,7 +14,7 @@ import (
 func ListSecretFilesForService(ctx *pulumi.Context, args *ListSecretFilesForServiceArgs, opts ...pulumi.InvokeOption) (*ListSecretFilesForServiceResult, error) {
 	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv ListSecretFilesForServiceResult
-	err := ctx.Invoke("render:services:listSecretFilesForService", args, &rv, opts...)
+	err := ctx.Invoke("render:services:listSecretFilesForService", args.Defaults(), &rv, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -22,8 +22,21 @@ func ListSecretFilesForService(ctx *pulumi.Context, args *ListSecretFilesForServ
 }
 
 type ListSecretFilesForServiceArgs struct {
+	// Query params to send with the API request.
+	QueryParams *ListSecretFilesForServiceQueryParams `pulumi:"queryParams"`
 	// The ID of the service
 	ServiceId string `pulumi:"serviceId"`
+}
+
+// Defaults sets the appropriate defaults for ListSecretFilesForServiceArgs
+func (val *ListSecretFilesForServiceArgs) Defaults() *ListSecretFilesForServiceArgs {
+	if val == nil {
+		return nil
+	}
+	tmp := *val
+	tmp.QueryParams = tmp.QueryParams.Defaults()
+
+	return &tmp
 }
 
 type ListSecretFilesForServiceResult struct {
@@ -31,11 +44,18 @@ type ListSecretFilesForServiceResult struct {
 }
 
 func ListSecretFilesForServiceOutput(ctx *pulumi.Context, args ListSecretFilesForServiceOutputArgs, opts ...pulumi.InvokeOption) ListSecretFilesForServiceResultOutput {
+	outputArgs := pulumi.ToOutputWithContext(ctx.Context(), args).
+		ApplyT(func(v interface{}) *ListSecretFilesForServiceArgs {
+			args := v.(ListSecretFilesForServiceArgs)
+			return args.Defaults()
+		})
 	options := pulumi.InvokeOutputOptions{InvokeOptions: internal.PkgInvokeDefaultOpts(opts)}
-	return ctx.InvokeOutput("render:services:listSecretFilesForService", args, ListSecretFilesForServiceResultOutput{}, options).(ListSecretFilesForServiceResultOutput)
+	return ctx.InvokeOutput("render:services:listSecretFilesForService", outputArgs, ListSecretFilesForServiceResultOutput{}, options).(ListSecretFilesForServiceResultOutput)
 }
 
 type ListSecretFilesForServiceOutputArgs struct {
+	// Query params to send with the API request.
+	QueryParams ListSecretFilesForServiceQueryParamsPtrInput `pulumi:"queryParams"`
 	// The ID of the service
 	ServiceId pulumi.StringInput `pulumi:"serviceId"`
 }

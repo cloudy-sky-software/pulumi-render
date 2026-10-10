@@ -9,16 +9,769 @@ import * as enums from "../types/enums";
 import * as utilities from "../utilities";
 
 export namespace blueprints {
+    /**
+     * Query params for the API request.
+     */
+    export interface GetBlueprintQueryParams {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: {[key: string]: string};
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface GetBlueprintQueryParamsArgs {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface ListBlueprintSyncsQueryParams {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: {[key: string]: string};
+        /**
+         * The position in the result list to start from when fetching paginated results. For details, see [Pagination](https://api-docs.render.com/reference/pagination).
+         */
+        cursor?: string;
+        /**
+         * The maximum number of items to return. For details, see [Pagination](https://api-docs.render.com/reference/pagination).
+         */
+        limit?: number;
+    }
+    /**
+     * listBlueprintSyncsQueryParamsProvideDefaults sets the appropriate defaults for ListBlueprintSyncsQueryParams
+     */
+    export function listBlueprintSyncsQueryParamsProvideDefaults(val: ListBlueprintSyncsQueryParams): ListBlueprintSyncsQueryParams {
+        return {
+            ...val,
+            limit: (val.limit) ?? 20,
+        };
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface ListBlueprintSyncsQueryParamsArgs {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
+        /**
+         * The position in the result list to start from when fetching paginated results. For details, see [Pagination](https://api-docs.render.com/reference/pagination).
+         */
+        cursor?: pulumi.Input<string | undefined>;
+        /**
+         * The maximum number of items to return. For details, see [Pagination](https://api-docs.render.com/reference/pagination).
+         */
+        limit?: pulumi.Input<number | undefined>;
+    }
+    /**
+     * listBlueprintSyncsQueryParamsArgsProvideDefaults sets the appropriate defaults for ListBlueprintSyncsQueryParamsArgs
+     */
+    export function listBlueprintSyncsQueryParamsArgsProvideDefaults(val: ListBlueprintSyncsQueryParamsArgs): ListBlueprintSyncsQueryParamsArgs {
+        return {
+            ...val,
+            limit: (val.limit) ?? 20,
+        };
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface ListBlueprintsQueryParams {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: {[key: string]: string};
+        /**
+         * The position in the result list to start from when fetching paginated results. For details, see [Pagination](https://api-docs.render.com/reference/pagination).
+         */
+        cursor?: string;
+        /**
+         * The maximum number of items to return. For details, see [Pagination](https://api-docs.render.com/reference/pagination).
+         */
+        limit?: number;
+        /**
+         * The ID of the workspaces to return resources for
+         */
+        ownerId?: string[];
+    }
+    /**
+     * listBlueprintsQueryParamsProvideDefaults sets the appropriate defaults for ListBlueprintsQueryParams
+     */
+    export function listBlueprintsQueryParamsProvideDefaults(val: ListBlueprintsQueryParams): ListBlueprintsQueryParams {
+        return {
+            ...val,
+            limit: (val.limit) ?? 20,
+        };
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface ListBlueprintsQueryParamsArgs {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
+        /**
+         * The position in the result list to start from when fetching paginated results. For details, see [Pagination](https://api-docs.render.com/reference/pagination).
+         */
+        cursor?: pulumi.Input<string | undefined>;
+        /**
+         * The maximum number of items to return. For details, see [Pagination](https://api-docs.render.com/reference/pagination).
+         */
+        limit?: pulumi.Input<number | undefined>;
+        /**
+         * The ID of the workspaces to return resources for
+         */
+        ownerId?: pulumi.Input<pulumi.Input<string>[] | undefined>;
+    }
+    /**
+     * listBlueprintsQueryParamsArgsProvideDefaults sets the appropriate defaults for ListBlueprintsQueryParamsArgs
+     */
+    export function listBlueprintsQueryParamsArgsProvideDefaults(val: ListBlueprintsQueryParamsArgs): ListBlueprintsQueryParamsArgs {
+        return {
+            ...val,
+            limit: (val.limit) ?? 20,
+        };
+    }
+
+}
+
+export namespace cronjobs {
+    /**
+     * Query params for the API request.
+     */
+    export interface RunCronJobCreateQueryParamsArgs {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
+    }
+
+    /**
+     * Query params for each of the operations of the resource.
+     */
+    export interface RunCronJobQueryParamsArgs {
+        /**
+         * Query params for the create operation.
+         */
+        create?: pulumi.Input<inputs.cronjobs.RunCronJobCreateQueryParamsArgs | undefined>;
+    }
 }
 
 export namespace disks {
+    /**
+     * Query params for the API request.
+     */
+    export interface DiskCreateQueryParamsArgs {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface DiskDeleteQueryParamsArgs {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
+    }
+
+    /**
+     * Query params for each of the operations of the resource.
+     */
+    export interface DiskQueryParamsArgs {
+        /**
+         * Query params for the create operation.
+         */
+        create?: pulumi.Input<inputs.disks.DiskCreateQueryParamsArgs | undefined>;
+        /**
+         * Query params for the delete operation.
+         */
+        delete?: pulumi.Input<inputs.disks.DiskDeleteQueryParamsArgs | undefined>;
+        /**
+         * Query params for the read operation.
+         */
+        read?: pulumi.Input<inputs.disks.DiskReadQueryParamsArgs | undefined>;
+        /**
+         * Query params for the update operation.
+         */
+        update?: pulumi.Input<inputs.disks.DiskUpdateQueryParamsArgs | undefined>;
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface DiskReadQueryParamsArgs {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface DiskUpdateQueryParamsArgs {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface GetDiskQueryParams {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: {[key: string]: string};
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface GetDiskQueryParamsArgs {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface ListDisksQueryParams {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: {[key: string]: string};
+        /**
+         * Filter for resources created after a certain time (specified as an ISO 8601 timestamp)
+         */
+        createdAfter?: string;
+        /**
+         * Filter for resources created before a certain time (specified as an ISO 8601 timestamp)
+         */
+        createdBefore?: string;
+        /**
+         * The position in the result list to start from when fetching paginated results. For details, see [Pagination](https://api-docs.render.com/reference/pagination).
+         */
+        cursor?: string;
+        /**
+         * Filter by disk IDs
+         */
+        diskId?: string[];
+        /**
+         * The maximum number of items to return. For details, see [Pagination](https://api-docs.render.com/reference/pagination).
+         */
+        limit?: number;
+        /**
+         * Filter by name
+         */
+        name?: string[];
+        /**
+         * The ID of the workspaces to return resources for
+         */
+        ownerId?: string[];
+        /**
+         * Filter for resources by service ID
+         */
+        serviceId?: string[];
+        /**
+         * Filter for resources updated after a certain time (specified as an ISO 8601 timestamp)
+         */
+        updatedAfter?: string;
+        /**
+         * Filter for resources updated before a certain time (specified as an ISO 8601 timestamp)
+         */
+        updatedBefore?: string;
+    }
+    /**
+     * listDisksQueryParamsProvideDefaults sets the appropriate defaults for ListDisksQueryParams
+     */
+    export function listDisksQueryParamsProvideDefaults(val: ListDisksQueryParams): ListDisksQueryParams {
+        return {
+            ...val,
+            limit: (val.limit) ?? 20,
+        };
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface ListDisksQueryParamsArgs {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
+        /**
+         * Filter for resources created after a certain time (specified as an ISO 8601 timestamp)
+         */
+        createdAfter?: pulumi.Input<string | undefined>;
+        /**
+         * Filter for resources created before a certain time (specified as an ISO 8601 timestamp)
+         */
+        createdBefore?: pulumi.Input<string | undefined>;
+        /**
+         * The position in the result list to start from when fetching paginated results. For details, see [Pagination](https://api-docs.render.com/reference/pagination).
+         */
+        cursor?: pulumi.Input<string | undefined>;
+        /**
+         * Filter by disk IDs
+         */
+        diskId?: pulumi.Input<pulumi.Input<string>[] | undefined>;
+        /**
+         * The maximum number of items to return. For details, see [Pagination](https://api-docs.render.com/reference/pagination).
+         */
+        limit?: pulumi.Input<number | undefined>;
+        /**
+         * Filter by name
+         */
+        name?: pulumi.Input<pulumi.Input<string>[] | undefined>;
+        /**
+         * The ID of the workspaces to return resources for
+         */
+        ownerId?: pulumi.Input<pulumi.Input<string>[] | undefined>;
+        /**
+         * Filter for resources by service ID
+         */
+        serviceId?: pulumi.Input<pulumi.Input<string>[] | undefined>;
+        /**
+         * Filter for resources updated after a certain time (specified as an ISO 8601 timestamp)
+         */
+        updatedAfter?: pulumi.Input<string | undefined>;
+        /**
+         * Filter for resources updated before a certain time (specified as an ISO 8601 timestamp)
+         */
+        updatedBefore?: pulumi.Input<string | undefined>;
+    }
+    /**
+     * listDisksQueryParamsArgsProvideDefaults sets the appropriate defaults for ListDisksQueryParamsArgs
+     */
+    export function listDisksQueryParamsArgsProvideDefaults(val: ListDisksQueryParamsArgs): ListDisksQueryParamsArgs {
+        return {
+            ...val,
+            limit: (val.limit) ?? 20,
+        };
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface RestoreSnapshotCreateQueryParamsArgs {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
+    }
+
+    /**
+     * Query params for each of the operations of the resource.
+     */
+    export interface RestoreSnapshotQueryParamsArgs {
+        /**
+         * Query params for the create operation.
+         */
+        create?: pulumi.Input<inputs.disks.RestoreSnapshotCreateQueryParamsArgs | undefined>;
+    }
 }
 
 export namespace envgroups {
+    /**
+     * Query params for the API request.
+     */
+    export interface EnvGroupCreateQueryParamsArgs {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface EnvGroupDeleteQueryParamsArgs {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface EnvGroupEnvVarCreateQueryParamsArgs {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface EnvGroupEnvVarDeleteQueryParamsArgs {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface EnvGroupEnvVarPutQueryParamsArgs {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
+    }
+
+    /**
+     * Query params for each of the operations of the resource.
+     */
+    export interface EnvGroupEnvVarQueryParamsArgs {
+        /**
+         * Query params for the create operation.
+         */
+        create?: pulumi.Input<inputs.envgroups.EnvGroupEnvVarCreateQueryParamsArgs | undefined>;
+        /**
+         * Query params for the delete operation.
+         */
+        delete?: pulumi.Input<inputs.envgroups.EnvGroupEnvVarDeleteQueryParamsArgs | undefined>;
+        /**
+         * Query params for the put operation.
+         */
+        put?: pulumi.Input<inputs.envgroups.EnvGroupEnvVarPutQueryParamsArgs | undefined>;
+        /**
+         * Query params for the read operation.
+         */
+        read?: pulumi.Input<inputs.envgroups.EnvGroupEnvVarReadQueryParamsArgs | undefined>;
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface EnvGroupEnvVarReadQueryParamsArgs {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
+    }
+
+    /**
+     * Query params for each of the operations of the resource.
+     */
+    export interface EnvGroupQueryParamsArgs {
+        /**
+         * Query params for the create operation.
+         */
+        create?: pulumi.Input<inputs.envgroups.EnvGroupCreateQueryParamsArgs | undefined>;
+        /**
+         * Query params for the delete operation.
+         */
+        delete?: pulumi.Input<inputs.envgroups.EnvGroupDeleteQueryParamsArgs | undefined>;
+        /**
+         * Query params for the read operation.
+         */
+        read?: pulumi.Input<inputs.envgroups.EnvGroupReadQueryParamsArgs | undefined>;
+        /**
+         * Query params for the update operation.
+         */
+        update?: pulumi.Input<inputs.envgroups.EnvGroupUpdateQueryParamsArgs | undefined>;
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface EnvGroupReadQueryParamsArgs {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface EnvGroupSecretFileCreateQueryParamsArgs {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface EnvGroupSecretFileDeleteQueryParamsArgs {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface EnvGroupSecretFilePutQueryParamsArgs {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
+    }
+
+    /**
+     * Query params for each of the operations of the resource.
+     */
+    export interface EnvGroupSecretFileQueryParamsArgs {
+        /**
+         * Query params for the create operation.
+         */
+        create?: pulumi.Input<inputs.envgroups.EnvGroupSecretFileCreateQueryParamsArgs | undefined>;
+        /**
+         * Query params for the delete operation.
+         */
+        delete?: pulumi.Input<inputs.envgroups.EnvGroupSecretFileDeleteQueryParamsArgs | undefined>;
+        /**
+         * Query params for the put operation.
+         */
+        put?: pulumi.Input<inputs.envgroups.EnvGroupSecretFilePutQueryParamsArgs | undefined>;
+        /**
+         * Query params for the read operation.
+         */
+        read?: pulumi.Input<inputs.envgroups.EnvGroupSecretFileReadQueryParamsArgs | undefined>;
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface EnvGroupSecretFileReadQueryParamsArgs {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface EnvGroupUpdateQueryParamsArgs {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
+    }
+
     export interface EnvVarInputArgs {
         generateValue?: pulumi.Input<boolean | undefined>;
         key?: pulumi.Input<string | undefined>;
         value?: pulumi.Input<string | undefined>;
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface GetEnvGroupEnvVarQueryParams {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: {[key: string]: string};
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface GetEnvGroupEnvVarQueryParamsArgs {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface GetEnvGroupQueryParams {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: {[key: string]: string};
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface GetEnvGroupQueryParamsArgs {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface GetEnvGroupSecretFileQueryParams {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: {[key: string]: string};
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface GetEnvGroupSecretFileQueryParamsArgs {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface LinkServiceToEnvGroupCreateQueryParamsArgs {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
+    }
+
+    /**
+     * Query params for each of the operations of the resource.
+     */
+    export interface LinkServiceToEnvGroupQueryParamsArgs {
+        /**
+         * Query params for the create operation.
+         */
+        create?: pulumi.Input<inputs.envgroups.LinkServiceToEnvGroupCreateQueryParamsArgs | undefined>;
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface ListEnvGroupsQueryParams {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: {[key: string]: string};
+        /**
+         * Filter for resources created after a certain time (specified as an ISO 8601 timestamp)
+         */
+        createdAfter?: string;
+        /**
+         * Filter for resources created before a certain time (specified as an ISO 8601 timestamp)
+         */
+        createdBefore?: string;
+        /**
+         * The position in the result list to start from when fetching paginated results. For details, see [Pagination](https://api-docs.render.com/reference/pagination).
+         */
+        cursor?: string;
+        /**
+         * Filter for resources that belong to an environment
+         */
+        environmentId?: string[];
+        /**
+         * The maximum number of items to return. For details, see [Pagination](https://api-docs.render.com/reference/pagination).
+         */
+        limit?: number;
+        /**
+         * Filter by name
+         */
+        name?: string[];
+        /**
+         * The ID of the workspaces to return resources for
+         */
+        ownerId?: string[];
+        /**
+         * Filter for resources updated after a certain time (specified as an ISO 8601 timestamp)
+         */
+        updatedAfter?: string;
+        /**
+         * Filter for resources updated before a certain time (specified as an ISO 8601 timestamp)
+         */
+        updatedBefore?: string;
+    }
+    /**
+     * listEnvGroupsQueryParamsProvideDefaults sets the appropriate defaults for ListEnvGroupsQueryParams
+     */
+    export function listEnvGroupsQueryParamsProvideDefaults(val: ListEnvGroupsQueryParams): ListEnvGroupsQueryParams {
+        return {
+            ...val,
+            limit: (val.limit) ?? 20,
+        };
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface ListEnvGroupsQueryParamsArgs {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
+        /**
+         * Filter for resources created after a certain time (specified as an ISO 8601 timestamp)
+         */
+        createdAfter?: pulumi.Input<string | undefined>;
+        /**
+         * Filter for resources created before a certain time (specified as an ISO 8601 timestamp)
+         */
+        createdBefore?: pulumi.Input<string | undefined>;
+        /**
+         * The position in the result list to start from when fetching paginated results. For details, see [Pagination](https://api-docs.render.com/reference/pagination).
+         */
+        cursor?: pulumi.Input<string | undefined>;
+        /**
+         * Filter for resources that belong to an environment
+         */
+        environmentId?: pulumi.Input<pulumi.Input<string>[] | undefined>;
+        /**
+         * The maximum number of items to return. For details, see [Pagination](https://api-docs.render.com/reference/pagination).
+         */
+        limit?: pulumi.Input<number | undefined>;
+        /**
+         * Filter by name
+         */
+        name?: pulumi.Input<pulumi.Input<string>[] | undefined>;
+        /**
+         * The ID of the workspaces to return resources for
+         */
+        ownerId?: pulumi.Input<pulumi.Input<string>[] | undefined>;
+        /**
+         * Filter for resources updated after a certain time (specified as an ISO 8601 timestamp)
+         */
+        updatedAfter?: pulumi.Input<string | undefined>;
+        /**
+         * Filter for resources updated before a certain time (specified as an ISO 8601 timestamp)
+         */
+        updatedBefore?: pulumi.Input<string | undefined>;
+    }
+    /**
+     * listEnvGroupsQueryParamsArgsProvideDefaults sets the appropriate defaults for ListEnvGroupsQueryParamsArgs
+     */
+    export function listEnvGroupsQueryParamsArgsProvideDefaults(val: ListEnvGroupsQueryParamsArgs): ListEnvGroupsQueryParamsArgs {
+        return {
+            ...val,
+            limit: (val.limit) ?? 20,
+        };
     }
 
     export interface SecretFileInputArgs {
@@ -28,6 +781,225 @@ export namespace envgroups {
 }
 
 export namespace environments {
+    /**
+     * Query params for the API request.
+     */
+    export interface EnvironmentCreateQueryParamsArgs {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface EnvironmentDeleteQueryParamsArgs {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
+    }
+
+    /**
+     * Query params for each of the operations of the resource.
+     */
+    export interface EnvironmentQueryParamsArgs {
+        /**
+         * Query params for the create operation.
+         */
+        create?: pulumi.Input<inputs.environments.EnvironmentCreateQueryParamsArgs | undefined>;
+        /**
+         * Query params for the delete operation.
+         */
+        delete?: pulumi.Input<inputs.environments.EnvironmentDeleteQueryParamsArgs | undefined>;
+        /**
+         * Query params for the read operation.
+         */
+        read?: pulumi.Input<inputs.environments.EnvironmentReadQueryParamsArgs | undefined>;
+        /**
+         * Query params for the update operation.
+         */
+        update?: pulumi.Input<inputs.environments.EnvironmentUpdateQueryParamsArgs | undefined>;
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface EnvironmentReadQueryParamsArgs {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface EnvironmentUpdateQueryParamsArgs {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface GetEnvironmentQueryParams {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: {[key: string]: string};
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface GetEnvironmentQueryParamsArgs {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface ListEnvironmentsQueryParams {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: {[key: string]: string};
+        /**
+         * Filter for resources created after a certain time (specified as an ISO 8601 timestamp)
+         */
+        createdAfter?: string;
+        /**
+         * Filter for resources created before a certain time (specified as an ISO 8601 timestamp)
+         */
+        createdBefore?: string;
+        /**
+         * The position in the result list to start from when fetching paginated results. For details, see [Pagination](https://api-docs.render.com/reference/pagination).
+         */
+        cursor?: string;
+        /**
+         * Filter for resources that belong to an environment
+         */
+        environmentId?: string[];
+        /**
+         * The maximum number of items to return. For details, see [Pagination](https://api-docs.render.com/reference/pagination).
+         */
+        limit?: number;
+        /**
+         * Filter by name
+         */
+        name?: string[];
+        /**
+         * The ID of the workspaces to return resources for
+         */
+        ownerId?: string[];
+        /**
+         * Filter for resources that belong to a project
+         */
+        projectId: string[];
+        /**
+         * Filter for resources updated after a certain time (specified as an ISO 8601 timestamp)
+         */
+        updatedAfter?: string;
+        /**
+         * Filter for resources updated before a certain time (specified as an ISO 8601 timestamp)
+         */
+        updatedBefore?: string;
+    }
+    /**
+     * listEnvironmentsQueryParamsProvideDefaults sets the appropriate defaults for ListEnvironmentsQueryParams
+     */
+    export function listEnvironmentsQueryParamsProvideDefaults(val: ListEnvironmentsQueryParams): ListEnvironmentsQueryParams {
+        return {
+            ...val,
+            limit: (val.limit) ?? 20,
+        };
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface ListEnvironmentsQueryParamsArgs {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
+        /**
+         * Filter for resources created after a certain time (specified as an ISO 8601 timestamp)
+         */
+        createdAfter?: pulumi.Input<string | undefined>;
+        /**
+         * Filter for resources created before a certain time (specified as an ISO 8601 timestamp)
+         */
+        createdBefore?: pulumi.Input<string | undefined>;
+        /**
+         * The position in the result list to start from when fetching paginated results. For details, see [Pagination](https://api-docs.render.com/reference/pagination).
+         */
+        cursor?: pulumi.Input<string | undefined>;
+        /**
+         * Filter for resources that belong to an environment
+         */
+        environmentId?: pulumi.Input<pulumi.Input<string>[] | undefined>;
+        /**
+         * The maximum number of items to return. For details, see [Pagination](https://api-docs.render.com/reference/pagination).
+         */
+        limit?: pulumi.Input<number | undefined>;
+        /**
+         * Filter by name
+         */
+        name?: pulumi.Input<pulumi.Input<string>[] | undefined>;
+        /**
+         * The ID of the workspaces to return resources for
+         */
+        ownerId?: pulumi.Input<pulumi.Input<string>[] | undefined>;
+        /**
+         * Filter for resources that belong to a project
+         */
+        projectId: pulumi.Input<pulumi.Input<string>[]>;
+        /**
+         * Filter for resources updated after a certain time (specified as an ISO 8601 timestamp)
+         */
+        updatedAfter?: pulumi.Input<string | undefined>;
+        /**
+         * Filter for resources updated before a certain time (specified as an ISO 8601 timestamp)
+         */
+        updatedBefore?: pulumi.Input<string | undefined>;
+    }
+    /**
+     * listEnvironmentsQueryParamsArgsProvideDefaults sets the appropriate defaults for ListEnvironmentsQueryParamsArgs
+     */
+    export function listEnvironmentsQueryParamsArgsProvideDefaults(val: ListEnvironmentsQueryParamsArgs): ListEnvironmentsQueryParamsArgs {
+        return {
+            ...val,
+            limit: (val.limit) ?? 20,
+        };
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface ResourcesToEnvironmentCreateQueryParamsArgs {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
+    }
+
+    /**
+     * Query params for each of the operations of the resource.
+     */
+    export interface ResourcesToEnvironmentQueryParamsArgs {
+        /**
+         * Query params for the create operation.
+         */
+        create?: pulumi.Input<inputs.environments.ResourcesToEnvironmentCreateQueryParamsArgs | undefined>;
+    }
 }
 
 export namespace keyvalue {
@@ -39,15 +1011,646 @@ export namespace keyvalue {
         description: pulumi.Input<string>;
     }
 
+    /**
+     * Query params for the API request.
+     */
+    export interface GetKeyValueConnectionInfoQueryParams {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: {[key: string]: string};
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface GetKeyValueConnectionInfoQueryParamsArgs {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface GetKeyValueQueryParams {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: {[key: string]: string};
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface GetKeyValueQueryParamsArgs {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface KeyValueCreateQueryParamsArgs {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface KeyValueDeleteQueryParamsArgs {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
+    }
+
+    /**
+     * Query params for each of the operations of the resource.
+     */
+    export interface KeyValueQueryParamsArgs {
+        /**
+         * Query params for the create operation.
+         */
+        create?: pulumi.Input<inputs.keyvalue.KeyValueCreateQueryParamsArgs | undefined>;
+        /**
+         * Query params for the delete operation.
+         */
+        delete?: pulumi.Input<inputs.keyvalue.KeyValueDeleteQueryParamsArgs | undefined>;
+        /**
+         * Query params for the read operation.
+         */
+        read?: pulumi.Input<inputs.keyvalue.KeyValueReadQueryParamsArgs | undefined>;
+        /**
+         * Query params for the update operation.
+         */
+        update?: pulumi.Input<inputs.keyvalue.KeyValueUpdateQueryParamsArgs | undefined>;
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface KeyValueReadQueryParamsArgs {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface KeyValueUpdateQueryParamsArgs {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface ListKeyValueQueryParams {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: {[key: string]: string};
+        /**
+         * Filter for resources created after a certain time (specified as an ISO 8601 timestamp)
+         */
+        createdAfter?: string;
+        /**
+         * Filter for resources created before a certain time (specified as an ISO 8601 timestamp)
+         */
+        createdBefore?: string;
+        /**
+         * The position in the result list to start from when fetching paginated results. For details, see [Pagination](https://api-docs.render.com/reference/pagination).
+         */
+        cursor?: string;
+        /**
+         * Filter for resources that belong to an environment
+         */
+        environmentId?: string[];
+        /**
+         * The maximum number of items to return. For details, see [Pagination](https://api-docs.render.com/reference/pagination).
+         */
+        limit?: number;
+        /**
+         * Filter by name
+         */
+        name?: string[];
+        /**
+         * The ID of the workspaces to return resources for
+         */
+        ownerId?: string[];
+        /**
+         * Filter by resource region
+         */
+        region?: enums.keyvalue.ListKeyValueQueryParamsRegionItem[];
+        /**
+         * Filter for resources updated after a certain time (specified as an ISO 8601 timestamp)
+         */
+        updatedAfter?: string;
+        /**
+         * Filter for resources updated before a certain time (specified as an ISO 8601 timestamp)
+         */
+        updatedBefore?: string;
+    }
+    /**
+     * listKeyValueQueryParamsProvideDefaults sets the appropriate defaults for ListKeyValueQueryParams
+     */
+    export function listKeyValueQueryParamsProvideDefaults(val: ListKeyValueQueryParams): ListKeyValueQueryParams {
+        return {
+            ...val,
+            limit: (val.limit) ?? 20,
+        };
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface ListKeyValueQueryParamsArgs {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
+        /**
+         * Filter for resources created after a certain time (specified as an ISO 8601 timestamp)
+         */
+        createdAfter?: pulumi.Input<string | undefined>;
+        /**
+         * Filter for resources created before a certain time (specified as an ISO 8601 timestamp)
+         */
+        createdBefore?: pulumi.Input<string | undefined>;
+        /**
+         * The position in the result list to start from when fetching paginated results. For details, see [Pagination](https://api-docs.render.com/reference/pagination).
+         */
+        cursor?: pulumi.Input<string | undefined>;
+        /**
+         * Filter for resources that belong to an environment
+         */
+        environmentId?: pulumi.Input<pulumi.Input<string>[] | undefined>;
+        /**
+         * The maximum number of items to return. For details, see [Pagination](https://api-docs.render.com/reference/pagination).
+         */
+        limit?: pulumi.Input<number | undefined>;
+        /**
+         * Filter by name
+         */
+        name?: pulumi.Input<pulumi.Input<string>[] | undefined>;
+        /**
+         * The ID of the workspaces to return resources for
+         */
+        ownerId?: pulumi.Input<pulumi.Input<string>[] | undefined>;
+        /**
+         * Filter by resource region
+         */
+        region?: pulumi.Input<pulumi.Input<enums.keyvalue.ListKeyValueQueryParamsRegionItem>[] | undefined>;
+        /**
+         * Filter for resources updated after a certain time (specified as an ISO 8601 timestamp)
+         */
+        updatedAfter?: pulumi.Input<string | undefined>;
+        /**
+         * Filter for resources updated before a certain time (specified as an ISO 8601 timestamp)
+         */
+        updatedBefore?: pulumi.Input<string | undefined>;
+    }
+    /**
+     * listKeyValueQueryParamsArgsProvideDefaults sets the appropriate defaults for ListKeyValueQueryParamsArgs
+     */
+    export function listKeyValueQueryParamsArgsProvideDefaults(val: ListKeyValueQueryParamsArgs): ListKeyValueQueryParamsArgs {
+        return {
+            ...val,
+            limit: (val.limit) ?? 20,
+        };
+    }
+
 }
 
 export namespace metrics {
+    /**
+     * Query params for the API request.
+     */
+    export interface GetBandwidthSourceQueryParams {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: {[key: string]: string};
+        /**
+         * Epoch/Unix timestamp of end of time range to return. Defaults to `now()`.
+         */
+        endTime?: string;
+        /**
+         * Service ID to query. When multiple service ids are provided, they are ORed together
+         */
+        resource?: string;
+        /**
+         * This parameter is deprecated. Please use `resource` instead
+         */
+        service?: string;
+        /**
+         * Epoch/Unix timestamp of start of time range to return. Defaults to `now() - 1 hour`.
+         */
+        startTime?: string;
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface GetBandwidthSourceQueryParamsArgs {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
+        /**
+         * Epoch/Unix timestamp of end of time range to return. Defaults to `now()`.
+         */
+        endTime?: pulumi.Input<string | undefined>;
+        /**
+         * Service ID to query. When multiple service ids are provided, they are ORed together
+         */
+        resource?: pulumi.Input<string | undefined>;
+        /**
+         * This parameter is deprecated. Please use `resource` instead
+         */
+        service?: pulumi.Input<string | undefined>;
+        /**
+         * Epoch/Unix timestamp of start of time range to return. Defaults to `now() - 1 hour`.
+         */
+        startTime?: pulumi.Input<string | undefined>;
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface ListActiveConnectionsQueryParams {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: {[key: string]: string};
+        /**
+         * Epoch/Unix timestamp of end of time range to return. Defaults to `now()`.
+         */
+        endTime?: string;
+        /**
+         * The resolution of the returned data
+         */
+        resolutionSeconds?: number;
+        /**
+         * Resource ID to query. When multiple resource query params are provided, they are ORed together. Resources Postgres ids or Redis ids
+         */
+        resource?: string;
+        /**
+         * Epoch/Unix timestamp of start of time range to return. Defaults to `now() - 1 hour`.
+         */
+        startTime?: string;
+    }
+    /**
+     * listActiveConnectionsQueryParamsProvideDefaults sets the appropriate defaults for ListActiveConnectionsQueryParams
+     */
+    export function listActiveConnectionsQueryParamsProvideDefaults(val: ListActiveConnectionsQueryParams): ListActiveConnectionsQueryParams {
+        return {
+            ...val,
+            resolutionSeconds: (val.resolutionSeconds) ?? 60,
+        };
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface ListActiveConnectionsQueryParamsArgs {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
+        /**
+         * Epoch/Unix timestamp of end of time range to return. Defaults to `now()`.
+         */
+        endTime?: pulumi.Input<string | undefined>;
+        /**
+         * The resolution of the returned data
+         */
+        resolutionSeconds?: pulumi.Input<number | undefined>;
+        /**
+         * Resource ID to query. When multiple resource query params are provided, they are ORed together. Resources Postgres ids or Redis ids
+         */
+        resource?: pulumi.Input<string | undefined>;
+        /**
+         * Epoch/Unix timestamp of start of time range to return. Defaults to `now() - 1 hour`.
+         */
+        startTime?: pulumi.Input<string | undefined>;
+    }
+    /**
+     * listActiveConnectionsQueryParamsArgsProvideDefaults sets the appropriate defaults for ListActiveConnectionsQueryParamsArgs
+     */
+    export function listActiveConnectionsQueryParamsArgsProvideDefaults(val: ListActiveConnectionsQueryParamsArgs): ListActiveConnectionsQueryParamsArgs {
+        return {
+            ...val,
+            resolutionSeconds: (val.resolutionSeconds) ?? 60,
+        };
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface ListReplicationLagQueryParams {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: {[key: string]: string};
+        /**
+         * Epoch/Unix timestamp of end of time range to return. Defaults to `now()`.
+         */
+        endTime?: string;
+        /**
+         * The resolution of the returned data
+         */
+        resolutionSeconds?: number;
+        /**
+         * Postgres ID to query. When multiple resource query params are provided, they are ORed together
+         */
+        resource?: string;
+        /**
+         * Epoch/Unix timestamp of start of time range to return. Defaults to `now() - 1 hour`.
+         */
+        startTime?: string;
+    }
+    /**
+     * listReplicationLagQueryParamsProvideDefaults sets the appropriate defaults for ListReplicationLagQueryParams
+     */
+    export function listReplicationLagQueryParamsProvideDefaults(val: ListReplicationLagQueryParams): ListReplicationLagQueryParams {
+        return {
+            ...val,
+            resolutionSeconds: (val.resolutionSeconds) ?? 60,
+        };
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface ListReplicationLagQueryParamsArgs {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
+        /**
+         * Epoch/Unix timestamp of end of time range to return. Defaults to `now()`.
+         */
+        endTime?: pulumi.Input<string | undefined>;
+        /**
+         * The resolution of the returned data
+         */
+        resolutionSeconds?: pulumi.Input<number | undefined>;
+        /**
+         * Postgres ID to query. When multiple resource query params are provided, they are ORed together
+         */
+        resource?: pulumi.Input<string | undefined>;
+        /**
+         * Epoch/Unix timestamp of start of time range to return. Defaults to `now() - 1 hour`.
+         */
+        startTime?: pulumi.Input<string | undefined>;
+    }
+    /**
+     * listReplicationLagQueryParamsArgsProvideDefaults sets the appropriate defaults for ListReplicationLagQueryParamsArgs
+     */
+    export function listReplicationLagQueryParamsArgsProvideDefaults(val: ListReplicationLagQueryParamsArgs): ListReplicationLagQueryParamsArgs {
+        return {
+            ...val,
+            resolutionSeconds: (val.resolutionSeconds) ?? 60,
+        };
+    }
 }
 
 export namespace notificationsettings {
+    /**
+     * Query params for the API request.
+     */
+    export interface GetOwnerNotificationSettingQueryParams {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: {[key: string]: string};
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface GetOwnerNotificationSettingQueryParamsArgs {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface GetServiceNotificationOverrideQueryParams {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: {[key: string]: string};
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface GetServiceNotificationOverrideQueryParamsArgs {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface ListNotificationOverridesQueryParams {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: {[key: string]: string};
+        /**
+         * The position in the result list to start from when fetching paginated results. For details, see [Pagination](https://api-docs.render.com/reference/pagination).
+         */
+        cursor?: string;
+        /**
+         * The maximum number of items to return. For details, see [Pagination](https://api-docs.render.com/reference/pagination).
+         */
+        limit?: number;
+        /**
+         * The ID of the workspaces to return resources for
+         */
+        ownerId?: string[];
+        /**
+         * Filter for resources by service ID
+         */
+        serviceId?: string[];
+    }
+    /**
+     * listNotificationOverridesQueryParamsProvideDefaults sets the appropriate defaults for ListNotificationOverridesQueryParams
+     */
+    export function listNotificationOverridesQueryParamsProvideDefaults(val: ListNotificationOverridesQueryParams): ListNotificationOverridesQueryParams {
+        return {
+            ...val,
+            limit: (val.limit) ?? 20,
+        };
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface ListNotificationOverridesQueryParamsArgs {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
+        /**
+         * The position in the result list to start from when fetching paginated results. For details, see [Pagination](https://api-docs.render.com/reference/pagination).
+         */
+        cursor?: pulumi.Input<string | undefined>;
+        /**
+         * The maximum number of items to return. For details, see [Pagination](https://api-docs.render.com/reference/pagination).
+         */
+        limit?: pulumi.Input<number | undefined>;
+        /**
+         * The ID of the workspaces to return resources for
+         */
+        ownerId?: pulumi.Input<pulumi.Input<string>[] | undefined>;
+        /**
+         * Filter for resources by service ID
+         */
+        serviceId?: pulumi.Input<pulumi.Input<string>[] | undefined>;
+    }
+    /**
+     * listNotificationOverridesQueryParamsArgsProvideDefaults sets the appropriate defaults for ListNotificationOverridesQueryParamsArgs
+     */
+    export function listNotificationOverridesQueryParamsArgsProvideDefaults(val: ListNotificationOverridesQueryParamsArgs): ListNotificationOverridesQueryParamsArgs {
+        return {
+            ...val,
+            limit: (val.limit) ?? 20,
+        };
+    }
+
 }
 
 export namespace owners {
+    /**
+     * Query params for the API request.
+     */
+    export interface GetOwnerQueryParams {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: {[key: string]: string};
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface GetOwnerQueryParamsArgs {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface ListOwnerMembersQueryParams {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: {[key: string]: string};
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface ListOwnerMembersQueryParamsArgs {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface ListOwnersQueryParams {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: {[key: string]: string};
+        /**
+         * The position in the result list to start from when fetching paginated results. For details, see [Pagination](https://api-docs.render.com/reference/pagination).
+         */
+        cursor?: string;
+        /**
+         * Only return workspaces owned by one of the provided email addresses.
+         */
+        email?: string[];
+        /**
+         * The maximum number of items to return. For details, see [Pagination](https://api-docs.render.com/reference/pagination).
+         */
+        limit?: number;
+        /**
+         * Only return workspaces with one of the provided names. Only exact matches are returned.
+         */
+        name?: string[];
+    }
+    /**
+     * listOwnersQueryParamsProvideDefaults sets the appropriate defaults for ListOwnersQueryParams
+     */
+    export function listOwnersQueryParamsProvideDefaults(val: ListOwnersQueryParams): ListOwnersQueryParams {
+        return {
+            ...val,
+            limit: (val.limit) ?? 20,
+        };
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface ListOwnersQueryParamsArgs {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
+        /**
+         * The position in the result list to start from when fetching paginated results. For details, see [Pagination](https://api-docs.render.com/reference/pagination).
+         */
+        cursor?: pulumi.Input<string | undefined>;
+        /**
+         * Only return workspaces owned by one of the provided email addresses.
+         */
+        email?: pulumi.Input<pulumi.Input<string>[] | undefined>;
+        /**
+         * The maximum number of items to return. For details, see [Pagination](https://api-docs.render.com/reference/pagination).
+         */
+        limit?: pulumi.Input<number | undefined>;
+        /**
+         * Only return workspaces with one of the provided names. Only exact matches are returned.
+         */
+        name?: pulumi.Input<pulumi.Input<string>[] | undefined>;
+    }
+    /**
+     * listOwnersQueryParamsArgsProvideDefaults sets the appropriate defaults for ListOwnersQueryParamsArgs
+     */
+    export function listOwnersQueryParamsArgsProvideDefaults(val: ListOwnersQueryParamsArgs): ListOwnersQueryParamsArgs {
+        return {
+            ...val,
+            limit: (val.limit) ?? 20,
+        };
+    }
+
 }
 
 export namespace postgres {
@@ -59,6 +1662,324 @@ export namespace postgres {
         description: pulumi.Input<string>;
     }
 
+    /**
+     * Query params for the API request.
+     */
+    export interface FailoverPostgresCreateQueryParamsArgs {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
+    }
+
+    /**
+     * Query params for each of the operations of the resource.
+     */
+    export interface FailoverPostgresQueryParamsArgs {
+        /**
+         * Query params for the create operation.
+         */
+        create?: pulumi.Input<inputs.postgres.FailoverPostgresCreateQueryParamsArgs | undefined>;
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface GetPostgresConnectionInfoQueryParams {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: {[key: string]: string};
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface GetPostgresConnectionInfoQueryParamsArgs {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface GetPostgresQueryParams {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: {[key: string]: string};
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface GetPostgresQueryParamsArgs {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface GetPostgresRecoveryInfoQueryParams {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: {[key: string]: string};
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface GetPostgresRecoveryInfoQueryParamsArgs {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface ListPostgresExportQueryParams {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: {[key: string]: string};
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface ListPostgresExportQueryParamsArgs {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface ListPostgresQueryParams {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: {[key: string]: string};
+        /**
+         * Filter for resources created after a certain time (specified as an ISO 8601 timestamp)
+         */
+        createdAfter?: string;
+        /**
+         * Filter for resources created before a certain time (specified as an ISO 8601 timestamp)
+         */
+        createdBefore?: string;
+        /**
+         * The position in the result list to start from when fetching paginated results. For details, see [Pagination](https://api-docs.render.com/reference/pagination).
+         */
+        cursor?: string;
+        /**
+         * Filter for resources that belong to an environment
+         */
+        environmentId?: string[];
+        /**
+         * Include replicas in the response
+         */
+        includeReplicas?: boolean;
+        /**
+         * The maximum number of items to return. For details, see [Pagination](https://api-docs.render.com/reference/pagination).
+         */
+        limit?: number;
+        /**
+         * Filter by name
+         */
+        name?: string[];
+        /**
+         * The ID of the workspaces to return resources for
+         */
+        ownerId?: string[];
+        /**
+         * Filter by resource region
+         */
+        region?: enums.postgres.ListPostgresQueryParamsRegionItem[];
+        /**
+         * Filter resources based on whether they're suspended or not suspended
+         */
+        suspended?: enums.postgres.ListPostgresQueryParamsSuspendedItem[];
+        /**
+         * Filter for resources updated after a certain time (specified as an ISO 8601 timestamp)
+         */
+        updatedAfter?: string;
+        /**
+         * Filter for resources updated before a certain time (specified as an ISO 8601 timestamp)
+         */
+        updatedBefore?: string;
+    }
+    /**
+     * listPostgresQueryParamsProvideDefaults sets the appropriate defaults for ListPostgresQueryParams
+     */
+    export function listPostgresQueryParamsProvideDefaults(val: ListPostgresQueryParams): ListPostgresQueryParams {
+        return {
+            ...val,
+            includeReplicas: (val.includeReplicas) ?? true,
+            limit: (val.limit) ?? 20,
+        };
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface ListPostgresQueryParamsArgs {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
+        /**
+         * Filter for resources created after a certain time (specified as an ISO 8601 timestamp)
+         */
+        createdAfter?: pulumi.Input<string | undefined>;
+        /**
+         * Filter for resources created before a certain time (specified as an ISO 8601 timestamp)
+         */
+        createdBefore?: pulumi.Input<string | undefined>;
+        /**
+         * The position in the result list to start from when fetching paginated results. For details, see [Pagination](https://api-docs.render.com/reference/pagination).
+         */
+        cursor?: pulumi.Input<string | undefined>;
+        /**
+         * Filter for resources that belong to an environment
+         */
+        environmentId?: pulumi.Input<pulumi.Input<string>[] | undefined>;
+        /**
+         * Include replicas in the response
+         */
+        includeReplicas?: pulumi.Input<boolean | undefined>;
+        /**
+         * The maximum number of items to return. For details, see [Pagination](https://api-docs.render.com/reference/pagination).
+         */
+        limit?: pulumi.Input<number | undefined>;
+        /**
+         * Filter by name
+         */
+        name?: pulumi.Input<pulumi.Input<string>[] | undefined>;
+        /**
+         * The ID of the workspaces to return resources for
+         */
+        ownerId?: pulumi.Input<pulumi.Input<string>[] | undefined>;
+        /**
+         * Filter by resource region
+         */
+        region?: pulumi.Input<pulumi.Input<enums.postgres.ListPostgresQueryParamsRegionItem>[] | undefined>;
+        /**
+         * Filter resources based on whether they're suspended or not suspended
+         */
+        suspended?: pulumi.Input<pulumi.Input<enums.postgres.ListPostgresQueryParamsSuspendedItem>[] | undefined>;
+        /**
+         * Filter for resources updated after a certain time (specified as an ISO 8601 timestamp)
+         */
+        updatedAfter?: pulumi.Input<string | undefined>;
+        /**
+         * Filter for resources updated before a certain time (specified as an ISO 8601 timestamp)
+         */
+        updatedBefore?: pulumi.Input<string | undefined>;
+    }
+    /**
+     * listPostgresQueryParamsArgsProvideDefaults sets the appropriate defaults for ListPostgresQueryParamsArgs
+     */
+    export function listPostgresQueryParamsArgsProvideDefaults(val: ListPostgresQueryParamsArgs): ListPostgresQueryParamsArgs {
+        return {
+            ...val,
+            includeReplicas: (val.includeReplicas) ?? true,
+            limit: (val.limit) ?? 20,
+        };
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface PostgresCreateQueryParamsArgs {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface PostgresDeleteQueryParamsArgs {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface PostgresExportCreateQueryParamsArgs {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
+    }
+
+    /**
+     * Query params for each of the operations of the resource.
+     */
+    export interface PostgresExportQueryParamsArgs {
+        /**
+         * Query params for the create operation.
+         */
+        create?: pulumi.Input<inputs.postgres.PostgresExportCreateQueryParamsArgs | undefined>;
+    }
+
+    /**
+     * Query params for each of the operations of the resource.
+     */
+    export interface PostgresQueryParamsArgs {
+        /**
+         * Query params for the create operation.
+         */
+        create?: pulumi.Input<inputs.postgres.PostgresCreateQueryParamsArgs | undefined>;
+        /**
+         * Query params for the delete operation.
+         */
+        delete?: pulumi.Input<inputs.postgres.PostgresDeleteQueryParamsArgs | undefined>;
+        /**
+         * Query params for the read operation.
+         */
+        read?: pulumi.Input<inputs.postgres.PostgresReadQueryParamsArgs | undefined>;
+        /**
+         * Query params for the update operation.
+         */
+        update?: pulumi.Input<inputs.postgres.PostgresUpdateQueryParamsArgs | undefined>;
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface PostgresReadQueryParamsArgs {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface PostgresUpdateQueryParamsArgs {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
+    }
+
     export interface ReadReplicaInputArgs {
         /**
          * The display name of the replica instance.
@@ -66,9 +1987,210 @@ export namespace postgres {
         name: pulumi.Input<string>;
     }
 
+    /**
+     * Query params for the API request.
+     */
+    export interface RecoverPostgresCreateQueryParamsArgs {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
+    }
+
+    /**
+     * Query params for each of the operations of the resource.
+     */
+    export interface RecoverPostgresQueryParamsArgs {
+        /**
+         * Query params for the create operation.
+         */
+        create?: pulumi.Input<inputs.postgres.RecoverPostgresCreateQueryParamsArgs | undefined>;
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface RestartPostgresCreateQueryParamsArgs {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
+    }
+
+    /**
+     * Query params for each of the operations of the resource.
+     */
+    export interface RestartPostgresQueryParamsArgs {
+        /**
+         * Query params for the create operation.
+         */
+        create?: pulumi.Input<inputs.postgres.RestartPostgresCreateQueryParamsArgs | undefined>;
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface ResumePostgresCreateQueryParamsArgs {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
+    }
+
+    /**
+     * Query params for each of the operations of the resource.
+     */
+    export interface ResumePostgresQueryParamsArgs {
+        /**
+         * Query params for the create operation.
+         */
+        create?: pulumi.Input<inputs.postgres.ResumePostgresCreateQueryParamsArgs | undefined>;
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface SuspendPostgresCreateQueryParamsArgs {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
+    }
+
+    /**
+     * Query params for each of the operations of the resource.
+     */
+    export interface SuspendPostgresQueryParamsArgs {
+        /**
+         * Query params for the create operation.
+         */
+        create?: pulumi.Input<inputs.postgres.SuspendPostgresCreateQueryParamsArgs | undefined>;
+    }
 }
 
 export namespace projects {
+    /**
+     * Query params for the API request.
+     */
+    export interface GetProjectQueryParams {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: {[key: string]: string};
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface GetProjectQueryParamsArgs {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface ListProjectsQueryParams {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: {[key: string]: string};
+        /**
+         * Filter for resources created after a certain time (specified as an ISO 8601 timestamp)
+         */
+        createdAfter?: string;
+        /**
+         * Filter for resources created before a certain time (specified as an ISO 8601 timestamp)
+         */
+        createdBefore?: string;
+        /**
+         * The position in the result list to start from when fetching paginated results. For details, see [Pagination](https://api-docs.render.com/reference/pagination).
+         */
+        cursor?: string;
+        /**
+         * The maximum number of items to return. For details, see [Pagination](https://api-docs.render.com/reference/pagination).
+         */
+        limit?: number;
+        /**
+         * Filter by name
+         */
+        name?: string[];
+        /**
+         * The ID of the workspaces to return resources for
+         */
+        ownerId?: string[];
+        /**
+         * Filter for resources updated after a certain time (specified as an ISO 8601 timestamp)
+         */
+        updatedAfter?: string;
+        /**
+         * Filter for resources updated before a certain time (specified as an ISO 8601 timestamp)
+         */
+        updatedBefore?: string;
+    }
+    /**
+     * listProjectsQueryParamsProvideDefaults sets the appropriate defaults for ListProjectsQueryParams
+     */
+    export function listProjectsQueryParamsProvideDefaults(val: ListProjectsQueryParams): ListProjectsQueryParams {
+        return {
+            ...val,
+            limit: (val.limit) ?? 20,
+        };
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface ListProjectsQueryParamsArgs {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
+        /**
+         * Filter for resources created after a certain time (specified as an ISO 8601 timestamp)
+         */
+        createdAfter?: pulumi.Input<string | undefined>;
+        /**
+         * Filter for resources created before a certain time (specified as an ISO 8601 timestamp)
+         */
+        createdBefore?: pulumi.Input<string | undefined>;
+        /**
+         * The position in the result list to start from when fetching paginated results. For details, see [Pagination](https://api-docs.render.com/reference/pagination).
+         */
+        cursor?: pulumi.Input<string | undefined>;
+        /**
+         * The maximum number of items to return. For details, see [Pagination](https://api-docs.render.com/reference/pagination).
+         */
+        limit?: pulumi.Input<number | undefined>;
+        /**
+         * Filter by name
+         */
+        name?: pulumi.Input<pulumi.Input<string>[] | undefined>;
+        /**
+         * The ID of the workspaces to return resources for
+         */
+        ownerId?: pulumi.Input<pulumi.Input<string>[] | undefined>;
+        /**
+         * Filter for resources updated after a certain time (specified as an ISO 8601 timestamp)
+         */
+        updatedAfter?: pulumi.Input<string | undefined>;
+        /**
+         * Filter for resources updated before a certain time (specified as an ISO 8601 timestamp)
+         */
+        updatedBefore?: pulumi.Input<string | undefined>;
+    }
+    /**
+     * listProjectsQueryParamsArgsProvideDefaults sets the appropriate defaults for ListProjectsQueryParamsArgs
+     */
+    export function listProjectsQueryParamsArgsProvideDefaults(val: ListProjectsQueryParamsArgs): ListProjectsQueryParamsArgs {
+        return {
+            ...val,
+            limit: (val.limit) ?? 20,
+        };
+    }
+
     export interface ProjectCreateEnvironmentInputArgs {
         name: pulumi.Input<string>;
         /**
@@ -79,6 +2201,68 @@ export namespace projects {
          * Indicates whether an environment is `unprotected` or `protected`. Only admin users can perform destructive actions in `protected` environments.
          */
         protectedStatus?: pulumi.Input<enums.projects.ProjectCreateEnvironmentInputProtectedStatus | undefined>;
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface ProjectCreateQueryParamsArgs {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface ProjectDeleteQueryParamsArgs {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
+    }
+
+    /**
+     * Query params for each of the operations of the resource.
+     */
+    export interface ProjectQueryParamsArgs {
+        /**
+         * Query params for the create operation.
+         */
+        create?: pulumi.Input<inputs.projects.ProjectCreateQueryParamsArgs | undefined>;
+        /**
+         * Query params for the delete operation.
+         */
+        delete?: pulumi.Input<inputs.projects.ProjectDeleteQueryParamsArgs | undefined>;
+        /**
+         * Query params for the read operation.
+         */
+        read?: pulumi.Input<inputs.projects.ProjectReadQueryParamsArgs | undefined>;
+        /**
+         * Query params for the update operation.
+         */
+        update?: pulumi.Input<inputs.projects.ProjectUpdateQueryParamsArgs | undefined>;
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface ProjectReadQueryParamsArgs {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface ProjectUpdateQueryParamsArgs {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     }
 
 }
@@ -92,12 +2276,485 @@ export namespace redis {
         description: pulumi.Input<string>;
     }
 
+    /**
+     * Query params for the API request.
+     */
+    export interface GetRedisConnectionInfoQueryParams {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: {[key: string]: string};
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface GetRedisConnectionInfoQueryParamsArgs {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface GetRedisQueryParams {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: {[key: string]: string};
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface GetRedisQueryParamsArgs {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface ListRedisQueryParams {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: {[key: string]: string};
+        /**
+         * Filter for resources created after a certain time (specified as an ISO 8601 timestamp)
+         */
+        createdAfter?: string;
+        /**
+         * Filter for resources created before a certain time (specified as an ISO 8601 timestamp)
+         */
+        createdBefore?: string;
+        /**
+         * The position in the result list to start from when fetching paginated results. For details, see [Pagination](https://api-docs.render.com/reference/pagination).
+         */
+        cursor?: string;
+        /**
+         * Filter for resources that belong to an environment
+         */
+        environmentId?: string[];
+        /**
+         * The maximum number of items to return. For details, see [Pagination](https://api-docs.render.com/reference/pagination).
+         */
+        limit?: number;
+        /**
+         * Filter by name
+         */
+        name?: string[];
+        /**
+         * The ID of the workspaces to return resources for
+         */
+        ownerId?: string[];
+        /**
+         * Filter by resource region
+         */
+        region?: enums.redis.ListRedisQueryParamsRegionItem[];
+        /**
+         * Filter for resources updated after a certain time (specified as an ISO 8601 timestamp)
+         */
+        updatedAfter?: string;
+        /**
+         * Filter for resources updated before a certain time (specified as an ISO 8601 timestamp)
+         */
+        updatedBefore?: string;
+    }
+    /**
+     * listRedisQueryParamsProvideDefaults sets the appropriate defaults for ListRedisQueryParams
+     */
+    export function listRedisQueryParamsProvideDefaults(val: ListRedisQueryParams): ListRedisQueryParams {
+        return {
+            ...val,
+            limit: (val.limit) ?? 20,
+        };
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface ListRedisQueryParamsArgs {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
+        /**
+         * Filter for resources created after a certain time (specified as an ISO 8601 timestamp)
+         */
+        createdAfter?: pulumi.Input<string | undefined>;
+        /**
+         * Filter for resources created before a certain time (specified as an ISO 8601 timestamp)
+         */
+        createdBefore?: pulumi.Input<string | undefined>;
+        /**
+         * The position in the result list to start from when fetching paginated results. For details, see [Pagination](https://api-docs.render.com/reference/pagination).
+         */
+        cursor?: pulumi.Input<string | undefined>;
+        /**
+         * Filter for resources that belong to an environment
+         */
+        environmentId?: pulumi.Input<pulumi.Input<string>[] | undefined>;
+        /**
+         * The maximum number of items to return. For details, see [Pagination](https://api-docs.render.com/reference/pagination).
+         */
+        limit?: pulumi.Input<number | undefined>;
+        /**
+         * Filter by name
+         */
+        name?: pulumi.Input<pulumi.Input<string>[] | undefined>;
+        /**
+         * The ID of the workspaces to return resources for
+         */
+        ownerId?: pulumi.Input<pulumi.Input<string>[] | undefined>;
+        /**
+         * Filter by resource region
+         */
+        region?: pulumi.Input<pulumi.Input<enums.redis.ListRedisQueryParamsRegionItem>[] | undefined>;
+        /**
+         * Filter for resources updated after a certain time (specified as an ISO 8601 timestamp)
+         */
+        updatedAfter?: pulumi.Input<string | undefined>;
+        /**
+         * Filter for resources updated before a certain time (specified as an ISO 8601 timestamp)
+         */
+        updatedBefore?: pulumi.Input<string | undefined>;
+    }
+    /**
+     * listRedisQueryParamsArgsProvideDefaults sets the appropriate defaults for ListRedisQueryParamsArgs
+     */
+    export function listRedisQueryParamsArgsProvideDefaults(val: ListRedisQueryParamsArgs): ListRedisQueryParamsArgs {
+        return {
+            ...val,
+            limit: (val.limit) ?? 20,
+        };
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface RedisCreateQueryParamsArgs {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface RedisDeleteQueryParamsArgs {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
+    }
+
+    /**
+     * Query params for each of the operations of the resource.
+     */
+    export interface RedisQueryParamsArgs {
+        /**
+         * Query params for the create operation.
+         */
+        create?: pulumi.Input<inputs.redis.RedisCreateQueryParamsArgs | undefined>;
+        /**
+         * Query params for the delete operation.
+         */
+        delete?: pulumi.Input<inputs.redis.RedisDeleteQueryParamsArgs | undefined>;
+        /**
+         * Query params for the read operation.
+         */
+        read?: pulumi.Input<inputs.redis.RedisReadQueryParamsArgs | undefined>;
+        /**
+         * Query params for the update operation.
+         */
+        update?: pulumi.Input<inputs.redis.RedisUpdateQueryParamsArgs | undefined>;
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface RedisReadQueryParamsArgs {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface RedisUpdateQueryParamsArgs {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
+    }
+
 }
 
 export namespace registrycredentials {
+    /**
+     * Query params for the API request.
+     */
+    export interface GetRegistryCredentialQueryParams {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: {[key: string]: string};
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface GetRegistryCredentialQueryParamsArgs {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface ListRegistryCredentialsQueryParams {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: {[key: string]: string};
+        /**
+         * Filter for services created after a certain time (specified as an ISO 8601 timestamp)
+         */
+        createdAfter?: string;
+        /**
+         * Filter for services created before a certain time (specified as an ISO 8601 timestamp)
+         */
+        createdBefore?: string;
+        /**
+         * The position in the result list to start from when fetching paginated results. For details, see [Pagination](https://api-docs.render.com/reference/pagination).
+         */
+        cursor?: string;
+        /**
+         * The maximum number of items to return. For details, see [Pagination](https://api-docs.render.com/reference/pagination).
+         */
+        limit?: number;
+        /**
+         * Filter for the name of a credential
+         */
+        name?: string[];
+        /**
+         * The ID of the workspaces to return resources for
+         */
+        ownerId?: string[];
+        /**
+         * Filter for the registry type for the credential
+         */
+        type?: enums.registrycredentials.ListRegistryCredentialsQueryParamsTypeItem[];
+        /**
+         * Filter for services updated after a certain time (specified as an ISO 8601 timestamp)
+         */
+        updatedAfter?: string;
+        /**
+         * Filter for services updated before a certain time (specified as an ISO 8601 timestamp)
+         */
+        updatedBefore?: string;
+        /**
+         * Filter for the username of a credential
+         */
+        username?: string[];
+    }
+    /**
+     * listRegistryCredentialsQueryParamsProvideDefaults sets the appropriate defaults for ListRegistryCredentialsQueryParams
+     */
+    export function listRegistryCredentialsQueryParamsProvideDefaults(val: ListRegistryCredentialsQueryParams): ListRegistryCredentialsQueryParams {
+        return {
+            ...val,
+            limit: (val.limit) ?? 20,
+        };
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface ListRegistryCredentialsQueryParamsArgs {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
+        /**
+         * Filter for services created after a certain time (specified as an ISO 8601 timestamp)
+         */
+        createdAfter?: pulumi.Input<string | undefined>;
+        /**
+         * Filter for services created before a certain time (specified as an ISO 8601 timestamp)
+         */
+        createdBefore?: pulumi.Input<string | undefined>;
+        /**
+         * The position in the result list to start from when fetching paginated results. For details, see [Pagination](https://api-docs.render.com/reference/pagination).
+         */
+        cursor?: pulumi.Input<string | undefined>;
+        /**
+         * The maximum number of items to return. For details, see [Pagination](https://api-docs.render.com/reference/pagination).
+         */
+        limit?: pulumi.Input<number | undefined>;
+        /**
+         * Filter for the name of a credential
+         */
+        name?: pulumi.Input<pulumi.Input<string>[] | undefined>;
+        /**
+         * The ID of the workspaces to return resources for
+         */
+        ownerId?: pulumi.Input<pulumi.Input<string>[] | undefined>;
+        /**
+         * Filter for the registry type for the credential
+         */
+        type?: pulumi.Input<pulumi.Input<enums.registrycredentials.ListRegistryCredentialsQueryParamsTypeItem>[] | undefined>;
+        /**
+         * Filter for services updated after a certain time (specified as an ISO 8601 timestamp)
+         */
+        updatedAfter?: pulumi.Input<string | undefined>;
+        /**
+         * Filter for services updated before a certain time (specified as an ISO 8601 timestamp)
+         */
+        updatedBefore?: pulumi.Input<string | undefined>;
+        /**
+         * Filter for the username of a credential
+         */
+        username?: pulumi.Input<pulumi.Input<string>[] | undefined>;
+    }
+    /**
+     * listRegistryCredentialsQueryParamsArgsProvideDefaults sets the appropriate defaults for ListRegistryCredentialsQueryParamsArgs
+     */
+    export function listRegistryCredentialsQueryParamsArgsProvideDefaults(val: ListRegistryCredentialsQueryParamsArgs): ListRegistryCredentialsQueryParamsArgs {
+        return {
+            ...val,
+            limit: (val.limit) ?? 20,
+        };
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface RegistryCredentialCreateQueryParamsArgs {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface RegistryCredentialDeleteQueryParamsArgs {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
+    }
+
+    /**
+     * Query params for each of the operations of the resource.
+     */
+    export interface RegistryCredentialQueryParamsArgs {
+        /**
+         * Query params for the create operation.
+         */
+        create?: pulumi.Input<inputs.registrycredentials.RegistryCredentialCreateQueryParamsArgs | undefined>;
+        /**
+         * Query params for the delete operation.
+         */
+        delete?: pulumi.Input<inputs.registrycredentials.RegistryCredentialDeleteQueryParamsArgs | undefined>;
+        /**
+         * Query params for the read operation.
+         */
+        read?: pulumi.Input<inputs.registrycredentials.RegistryCredentialReadQueryParamsArgs | undefined>;
+        /**
+         * Query params for the update operation.
+         */
+        update?: pulumi.Input<inputs.registrycredentials.RegistryCredentialUpdateQueryParamsArgs | undefined>;
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface RegistryCredentialReadQueryParamsArgs {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface RegistryCredentialUpdateQueryParamsArgs {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
+    }
 }
 
 export namespace services {
+    /**
+     * Query params for the API request.
+     */
+    export interface AutoscaleServiceCreateQueryParamsArgs {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface AutoscaleServicePutQueryParamsArgs {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
+    }
+
+    /**
+     * Query params for each of the operations of the resource.
+     */
+    export interface AutoscaleServiceQueryParamsArgs {
+        /**
+         * Query params for the create operation.
+         */
+        create?: pulumi.Input<inputs.services.AutoscaleServiceCreateQueryParamsArgs | undefined>;
+        /**
+         * Query params for the put operation.
+         */
+        put?: pulumi.Input<inputs.services.AutoscaleServicePutQueryParamsArgs | undefined>;
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface BackgroundWorkerCreateQueryParamsArgs {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface BackgroundWorkerDeleteQueryParamsArgs {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
+    }
+
     export interface BackgroundWorkerDetailsCreateArgs {
         autoscaling?: pulumi.Input<inputs.services.WebServiceDetailspropertiesautoscalingArgs | undefined>;
         disk?: pulumi.Input<inputs.services.ServiceDiskArgs | undefined>;
@@ -149,9 +2806,91 @@ export namespace services {
         };
     }
 
+    /**
+     * Query params for each of the operations of the resource.
+     */
+    export interface BackgroundWorkerQueryParamsArgs {
+        /**
+         * Query params for the create operation.
+         */
+        create?: pulumi.Input<inputs.services.BackgroundWorkerCreateQueryParamsArgs | undefined>;
+        /**
+         * Query params for the delete operation.
+         */
+        delete?: pulumi.Input<inputs.services.BackgroundWorkerDeleteQueryParamsArgs | undefined>;
+        /**
+         * Query params for the read operation.
+         */
+        read?: pulumi.Input<inputs.services.BackgroundWorkerReadQueryParamsArgs | undefined>;
+        /**
+         * Query params for the update operation.
+         */
+        update?: pulumi.Input<inputs.services.BackgroundWorkerUpdateQueryParamsArgs | undefined>;
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface BackgroundWorkerReadQueryParamsArgs {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface BackgroundWorkerUpdateQueryParamsArgs {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
+    }
+
     export interface BuildFilterArgs {
         ignoredPaths: pulumi.Input<pulumi.Input<string>[]>;
         paths: pulumi.Input<pulumi.Input<string>[]>;
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface CancelDeployCreateQueryParamsArgs {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
+    }
+
+    /**
+     * Query params for each of the operations of the resource.
+     */
+    export interface CancelDeployQueryParamsArgs {
+        /**
+         * Query params for the create operation.
+         */
+        create?: pulumi.Input<inputs.services.CancelDeployCreateQueryParamsArgs | undefined>;
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface CancelJobCreateQueryParamsArgs {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
+    }
+
+    /**
+     * Query params for each of the operations of the resource.
+     */
+    export interface CancelJobQueryParamsArgs {
+        /**
+         * Query params for the create operation.
+         */
+        create?: pulumi.Input<inputs.services.CancelJobCreateQueryParamsArgs | undefined>;
     }
 
     export interface CriteriaPropertiesArgs {
@@ -186,6 +2925,26 @@ export namespace services {
         };
     }
 
+    /**
+     * Query params for the API request.
+     */
+    export interface CronJobCreateQueryParamsArgs {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface CronJobDeleteQueryParamsArgs {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
+    }
+
     export interface CronJobDetailsCreateArgs {
         /**
          * This field has been deprecated, runtime should be used in its place.
@@ -217,6 +2976,130 @@ export namespace services {
         };
     }
 
+    /**
+     * Query params for each of the operations of the resource.
+     */
+    export interface CronJobQueryParamsArgs {
+        /**
+         * Query params for the create operation.
+         */
+        create?: pulumi.Input<inputs.services.CronJobCreateQueryParamsArgs | undefined>;
+        /**
+         * Query params for the delete operation.
+         */
+        delete?: pulumi.Input<inputs.services.CronJobDeleteQueryParamsArgs | undefined>;
+        /**
+         * Query params for the read operation.
+         */
+        read?: pulumi.Input<inputs.services.CronJobReadQueryParamsArgs | undefined>;
+        /**
+         * Query params for the update operation.
+         */
+        update?: pulumi.Input<inputs.services.CronJobUpdateQueryParamsArgs | undefined>;
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface CronJobReadQueryParamsArgs {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface CronJobUpdateQueryParamsArgs {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface CustomDomainCreateQueryParamsArgs {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface CustomDomainDeleteQueryParamsArgs {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
+    }
+
+    /**
+     * Query params for each of the operations of the resource.
+     */
+    export interface CustomDomainQueryParamsArgs {
+        /**
+         * Query params for the create operation.
+         */
+        create?: pulumi.Input<inputs.services.CustomDomainCreateQueryParamsArgs | undefined>;
+        /**
+         * Query params for the delete operation.
+         */
+        delete?: pulumi.Input<inputs.services.CustomDomainDeleteQueryParamsArgs | undefined>;
+        /**
+         * Query params for the read operation.
+         */
+        read?: pulumi.Input<inputs.services.CustomDomainReadQueryParamsArgs | undefined>;
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface CustomDomainReadQueryParamsArgs {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface DeployCreateQueryParamsArgs {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
+    }
+
+    /**
+     * Query params for each of the operations of the resource.
+     */
+    export interface DeployQueryParamsArgs {
+        /**
+         * Query params for the create operation.
+         */
+        create?: pulumi.Input<inputs.services.DeployCreateQueryParamsArgs | undefined>;
+        /**
+         * Query params for the read operation.
+         */
+        read?: pulumi.Input<inputs.services.DeployReadQueryParamsArgs | undefined>;
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface DeployReadQueryParamsArgs {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
+    }
+
     export interface EnvSpecificDetailsArgs {
         buildCommand?: pulumi.Input<string | undefined>;
         dockerCommand?: pulumi.Input<string | undefined>;
@@ -239,10 +3122,326 @@ export namespace services {
         startCommand?: pulumi.Input<string | undefined>;
     }
 
+    /**
+     * Query params for the API request.
+     */
+    export interface EnvVarCreateQueryParamsArgs {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface EnvVarDeleteQueryParamsArgs {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
+    }
+
     export interface EnvVarInputArgs {
         generateValue?: pulumi.Input<boolean | undefined>;
         key?: pulumi.Input<string | undefined>;
         value?: pulumi.Input<string | undefined>;
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface EnvVarPutQueryParamsArgs {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
+    }
+
+    /**
+     * Query params for each of the operations of the resource.
+     */
+    export interface EnvVarQueryParamsArgs {
+        /**
+         * Query params for the create operation.
+         */
+        create?: pulumi.Input<inputs.services.EnvVarCreateQueryParamsArgs | undefined>;
+        /**
+         * Query params for the delete operation.
+         */
+        delete?: pulumi.Input<inputs.services.EnvVarDeleteQueryParamsArgs | undefined>;
+        /**
+         * Query params for the put operation.
+         */
+        put?: pulumi.Input<inputs.services.EnvVarPutQueryParamsArgs | undefined>;
+        /**
+         * Query params for the read operation.
+         */
+        read?: pulumi.Input<inputs.services.EnvVarReadQueryParamsArgs | undefined>;
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface EnvVarReadQueryParamsArgs {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface EnvVarsForServiceCreateQueryParamsArgs {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface EnvVarsForServicePutQueryParamsArgs {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
+    }
+
+    /**
+     * Query params for each of the operations of the resource.
+     */
+    export interface EnvVarsForServiceQueryParamsArgs {
+        /**
+         * Query params for the create operation.
+         */
+        create?: pulumi.Input<inputs.services.EnvVarsForServiceCreateQueryParamsArgs | undefined>;
+        /**
+         * Query params for the put operation.
+         */
+        put?: pulumi.Input<inputs.services.EnvVarsForServicePutQueryParamsArgs | undefined>;
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface GetBackgroundWorkerQueryParams {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: {[key: string]: string};
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface GetBackgroundWorkerQueryParamsArgs {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface GetCronJobQueryParams {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: {[key: string]: string};
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface GetCronJobQueryParamsArgs {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface GetCustomDomainQueryParams {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: {[key: string]: string};
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface GetCustomDomainQueryParamsArgs {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface GetDeployQueryParams {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: {[key: string]: string};
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface GetDeployQueryParamsArgs {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface GetEnvVarQueryParams {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: {[key: string]: string};
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface GetEnvVarQueryParamsArgs {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface GetJobQueryParams {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: {[key: string]: string};
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface GetJobQueryParamsArgs {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface GetPrivateServiceQueryParams {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: {[key: string]: string};
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface GetPrivateServiceQueryParamsArgs {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface GetSecretFileQueryParams {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: {[key: string]: string};
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface GetSecretFileQueryParamsArgs {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface GetStaticSiteQueryParams {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: {[key: string]: string};
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface GetStaticSiteQueryParamsArgs {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface GetWebServiceQueryParams {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: {[key: string]: string};
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface GetWebServiceQueryParamsArgs {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface HeaderCreateQueryParamsArgs {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface HeaderDeleteQueryParamsArgs {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     }
 
     export interface HeaderInputArgs {
@@ -260,6 +3459,20 @@ export namespace services {
         value: pulumi.Input<string>;
     }
 
+    /**
+     * Query params for each of the operations of the resource.
+     */
+    export interface HeaderQueryParamsArgs {
+        /**
+         * Query params for the create operation.
+         */
+        create?: pulumi.Input<inputs.services.HeaderCreateQueryParamsArgs | undefined>;
+        /**
+         * Query params for the delete operation.
+         */
+        delete?: pulumi.Input<inputs.services.HeaderDeleteQueryParamsArgs | undefined>;
+    }
+
     export interface ImageArgs {
         /**
          * Path to the image used for this server (e.g docker.io/library/nginx:latest).
@@ -275,12 +3488,816 @@ export namespace services {
         registryCredentialId?: pulumi.Input<string | undefined>;
     }
 
+    /**
+     * Query params for the API request.
+     */
+    export interface JobCreateQueryParamsArgs {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
+    }
+
+    /**
+     * Query params for each of the operations of the resource.
+     */
+    export interface JobQueryParamsArgs {
+        /**
+         * Query params for the create operation.
+         */
+        create?: pulumi.Input<inputs.services.JobCreateQueryParamsArgs | undefined>;
+        /**
+         * Query params for the read operation.
+         */
+        read?: pulumi.Input<inputs.services.JobReadQueryParamsArgs | undefined>;
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface JobReadQueryParamsArgs {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface ListCustomDomainsQueryParams {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: {[key: string]: string};
+        /**
+         * Filter for custom domains created after a certain time (specified as an ISO 8601 timestamp)
+         */
+        createdAfter?: string;
+        /**
+         * Filter for custom domains created before a certain time (specified as an ISO 8601 timestamp)
+         */
+        createdBefore?: string;
+        /**
+         * The position in the result list to start from when fetching paginated results. For details, see [Pagination](https://api-docs.render.com/reference/pagination).
+         */
+        cursor?: string;
+        /**
+         * Filter for domain type
+         */
+        domainType?: enums.services.ListCustomDomainsQueryParamsDomainType;
+        /**
+         * The maximum number of items to return. For details, see [Pagination](https://api-docs.render.com/reference/pagination).
+         */
+        limit?: number;
+        /**
+         * Filter for the names of custom domain
+         */
+        name?: string[];
+        /**
+         * Filter for domain verification status (`verified` or `unverified`)
+         */
+        verificationStatus?: enums.services.ListCustomDomainsQueryParamsVerificationStatus;
+    }
+    /**
+     * listCustomDomainsQueryParamsProvideDefaults sets the appropriate defaults for ListCustomDomainsQueryParams
+     */
+    export function listCustomDomainsQueryParamsProvideDefaults(val: ListCustomDomainsQueryParams): ListCustomDomainsQueryParams {
+        return {
+            ...val,
+            limit: (val.limit) ?? 20,
+        };
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface ListCustomDomainsQueryParamsArgs {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
+        /**
+         * Filter for custom domains created after a certain time (specified as an ISO 8601 timestamp)
+         */
+        createdAfter?: pulumi.Input<string | undefined>;
+        /**
+         * Filter for custom domains created before a certain time (specified as an ISO 8601 timestamp)
+         */
+        createdBefore?: pulumi.Input<string | undefined>;
+        /**
+         * The position in the result list to start from when fetching paginated results. For details, see [Pagination](https://api-docs.render.com/reference/pagination).
+         */
+        cursor?: pulumi.Input<string | undefined>;
+        /**
+         * Filter for domain type
+         */
+        domainType?: pulumi.Input<enums.services.ListCustomDomainsQueryParamsDomainType | undefined>;
+        /**
+         * The maximum number of items to return. For details, see [Pagination](https://api-docs.render.com/reference/pagination).
+         */
+        limit?: pulumi.Input<number | undefined>;
+        /**
+         * Filter for the names of custom domain
+         */
+        name?: pulumi.Input<pulumi.Input<string>[] | undefined>;
+        /**
+         * Filter for domain verification status (`verified` or `unverified`)
+         */
+        verificationStatus?: pulumi.Input<enums.services.ListCustomDomainsQueryParamsVerificationStatus | undefined>;
+    }
+    /**
+     * listCustomDomainsQueryParamsArgsProvideDefaults sets the appropriate defaults for ListCustomDomainsQueryParamsArgs
+     */
+    export function listCustomDomainsQueryParamsArgsProvideDefaults(val: ListCustomDomainsQueryParamsArgs): ListCustomDomainsQueryParamsArgs {
+        return {
+            ...val,
+            limit: (val.limit) ?? 20,
+        };
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface ListDeploysQueryParams {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: {[key: string]: string};
+        /**
+         * Filter for deploys created after a certain time (specified as an ISO 8601 timestamp)
+         */
+        createdAfter?: string;
+        /**
+         * Filter for deploys created before a certain time (specified as an ISO 8601 timestamp)
+         */
+        createdBefore?: string;
+        /**
+         * The position in the result list to start from when fetching paginated results. For details, see [Pagination](https://api-docs.render.com/reference/pagination).
+         */
+        cursor?: string;
+        /**
+         * Filter for deploys finished after a certain time (specified as an ISO 8601 timestamp)
+         */
+        finishedAfter?: string;
+        /**
+         * Filter for deploys finished before a certain time (specified as an ISO 8601 timestamp)
+         */
+        finishedBefore?: string;
+        /**
+         * The maximum number of items to return. For details, see [Pagination](https://api-docs.render.com/reference/pagination).
+         */
+        limit?: number;
+        /**
+         * Filter for deploys with the specified statuses
+         */
+        status?: enums.services.ListDeploysQueryParamsStatusItem[];
+        /**
+         * Filter for deploys updated after a certain time (specified as an ISO 8601 timestamp)
+         */
+        updatedAfter?: string;
+        /**
+         * Filter for deploys updated before a certain time (specified as an ISO 8601 timestamp)
+         */
+        updatedBefore?: string;
+    }
+    /**
+     * listDeploysQueryParamsProvideDefaults sets the appropriate defaults for ListDeploysQueryParams
+     */
+    export function listDeploysQueryParamsProvideDefaults(val: ListDeploysQueryParams): ListDeploysQueryParams {
+        return {
+            ...val,
+            limit: (val.limit) ?? 20,
+        };
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface ListDeploysQueryParamsArgs {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
+        /**
+         * Filter for deploys created after a certain time (specified as an ISO 8601 timestamp)
+         */
+        createdAfter?: pulumi.Input<string | undefined>;
+        /**
+         * Filter for deploys created before a certain time (specified as an ISO 8601 timestamp)
+         */
+        createdBefore?: pulumi.Input<string | undefined>;
+        /**
+         * The position in the result list to start from when fetching paginated results. For details, see [Pagination](https://api-docs.render.com/reference/pagination).
+         */
+        cursor?: pulumi.Input<string | undefined>;
+        /**
+         * Filter for deploys finished after a certain time (specified as an ISO 8601 timestamp)
+         */
+        finishedAfter?: pulumi.Input<string | undefined>;
+        /**
+         * Filter for deploys finished before a certain time (specified as an ISO 8601 timestamp)
+         */
+        finishedBefore?: pulumi.Input<string | undefined>;
+        /**
+         * The maximum number of items to return. For details, see [Pagination](https://api-docs.render.com/reference/pagination).
+         */
+        limit?: pulumi.Input<number | undefined>;
+        /**
+         * Filter for deploys with the specified statuses
+         */
+        status?: pulumi.Input<pulumi.Input<enums.services.ListDeploysQueryParamsStatusItem>[] | undefined>;
+        /**
+         * Filter for deploys updated after a certain time (specified as an ISO 8601 timestamp)
+         */
+        updatedAfter?: pulumi.Input<string | undefined>;
+        /**
+         * Filter for deploys updated before a certain time (specified as an ISO 8601 timestamp)
+         */
+        updatedBefore?: pulumi.Input<string | undefined>;
+    }
+    /**
+     * listDeploysQueryParamsArgsProvideDefaults sets the appropriate defaults for ListDeploysQueryParamsArgs
+     */
+    export function listDeploysQueryParamsArgsProvideDefaults(val: ListDeploysQueryParamsArgs): ListDeploysQueryParamsArgs {
+        return {
+            ...val,
+            limit: (val.limit) ?? 20,
+        };
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface ListEnvVarsForServiceQueryParams {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: {[key: string]: string};
+        /**
+         * The position in the result list to start from when fetching paginated results. For details, see [Pagination](https://api-docs.render.com/reference/pagination).
+         */
+        cursor?: string;
+        /**
+         * The maximum number of items to return. For details, see [Pagination](https://api-docs.render.com/reference/pagination).
+         */
+        limit?: number;
+    }
+    /**
+     * listEnvVarsForServiceQueryParamsProvideDefaults sets the appropriate defaults for ListEnvVarsForServiceQueryParams
+     */
+    export function listEnvVarsForServiceQueryParamsProvideDefaults(val: ListEnvVarsForServiceQueryParams): ListEnvVarsForServiceQueryParams {
+        return {
+            ...val,
+            limit: (val.limit) ?? 20,
+        };
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface ListEnvVarsForServiceQueryParamsArgs {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
+        /**
+         * The position in the result list to start from when fetching paginated results. For details, see [Pagination](https://api-docs.render.com/reference/pagination).
+         */
+        cursor?: pulumi.Input<string | undefined>;
+        /**
+         * The maximum number of items to return. For details, see [Pagination](https://api-docs.render.com/reference/pagination).
+         */
+        limit?: pulumi.Input<number | undefined>;
+    }
+    /**
+     * listEnvVarsForServiceQueryParamsArgsProvideDefaults sets the appropriate defaults for ListEnvVarsForServiceQueryParamsArgs
+     */
+    export function listEnvVarsForServiceQueryParamsArgsProvideDefaults(val: ListEnvVarsForServiceQueryParamsArgs): ListEnvVarsForServiceQueryParamsArgs {
+        return {
+            ...val,
+            limit: (val.limit) ?? 20,
+        };
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface ListHeadersQueryParams {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: {[key: string]: string};
+        /**
+         * The position in the result list to start from when fetching paginated results. For details, see [Pagination](https://api-docs.render.com/reference/pagination).
+         */
+        cursor?: string;
+        /**
+         * The maximum number of items to return. For details, see [Pagination](https://api-docs.render.com/reference/pagination).
+         */
+        limit?: number;
+        /**
+         * Filter for header names
+         */
+        name?: string[];
+        /**
+         * Filter for specific paths that headers apply to
+         */
+        path?: string[];
+        /**
+         * Filter for header values
+         */
+        value?: string[];
+    }
+    /**
+     * listHeadersQueryParamsProvideDefaults sets the appropriate defaults for ListHeadersQueryParams
+     */
+    export function listHeadersQueryParamsProvideDefaults(val: ListHeadersQueryParams): ListHeadersQueryParams {
+        return {
+            ...val,
+            limit: (val.limit) ?? 20,
+        };
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface ListHeadersQueryParamsArgs {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
+        /**
+         * The position in the result list to start from when fetching paginated results. For details, see [Pagination](https://api-docs.render.com/reference/pagination).
+         */
+        cursor?: pulumi.Input<string | undefined>;
+        /**
+         * The maximum number of items to return. For details, see [Pagination](https://api-docs.render.com/reference/pagination).
+         */
+        limit?: pulumi.Input<number | undefined>;
+        /**
+         * Filter for header names
+         */
+        name?: pulumi.Input<pulumi.Input<string>[] | undefined>;
+        /**
+         * Filter for specific paths that headers apply to
+         */
+        path?: pulumi.Input<pulumi.Input<string>[] | undefined>;
+        /**
+         * Filter for header values
+         */
+        value?: pulumi.Input<pulumi.Input<string>[] | undefined>;
+    }
+    /**
+     * listHeadersQueryParamsArgsProvideDefaults sets the appropriate defaults for ListHeadersQueryParamsArgs
+     */
+    export function listHeadersQueryParamsArgsProvideDefaults(val: ListHeadersQueryParamsArgs): ListHeadersQueryParamsArgs {
+        return {
+            ...val,
+            limit: (val.limit) ?? 20,
+        };
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface ListInstancesQueryParams {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: {[key: string]: string};
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface ListInstancesQueryParamsArgs {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface ListJobQueryParams {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: {[key: string]: string};
+        /**
+         * Filter for jobs created after a certain time (specified as an ISO 8601 timestamp)
+         */
+        createdAfter?: string;
+        /**
+         * Filter for jobs created before a certain time (specified as an ISO 8601 timestamp)
+         */
+        createdBefore?: string;
+        /**
+         * The position in the result list to start from when fetching paginated results. For details, see [Pagination](https://api-docs.render.com/reference/pagination).
+         */
+        cursor?: string;
+        /**
+         * Filter for jobs finished after a certain time (specified as an ISO 8601 timestamp)
+         */
+        finishedAfter?: string;
+        /**
+         * Filter for jobs finished before a certain time (specified as an ISO 8601 timestamp)
+         */
+        finishedBefore?: string;
+        /**
+         * The maximum number of items to return. For details, see [Pagination](https://api-docs.render.com/reference/pagination).
+         */
+        limit?: number;
+        /**
+         * Filter for jobs started after a certain time (specified as an ISO 8601 timestamp)
+         */
+        startedAfter?: string;
+        /**
+         * Filter for jobs started before a certain time (specified as an ISO 8601 timestamp)
+         */
+        startedBefore?: string;
+        /**
+         * Filter for the status of the job (`pending`, `running`, `succeeded`, `failed`, or `canceled`)
+         */
+        status?: enums.services.ListJobQueryParamsStatusItem[];
+    }
+    /**
+     * listJobQueryParamsProvideDefaults sets the appropriate defaults for ListJobQueryParams
+     */
+    export function listJobQueryParamsProvideDefaults(val: ListJobQueryParams): ListJobQueryParams {
+        return {
+            ...val,
+            limit: (val.limit) ?? 20,
+        };
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface ListJobQueryParamsArgs {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
+        /**
+         * Filter for jobs created after a certain time (specified as an ISO 8601 timestamp)
+         */
+        createdAfter?: pulumi.Input<string | undefined>;
+        /**
+         * Filter for jobs created before a certain time (specified as an ISO 8601 timestamp)
+         */
+        createdBefore?: pulumi.Input<string | undefined>;
+        /**
+         * The position in the result list to start from when fetching paginated results. For details, see [Pagination](https://api-docs.render.com/reference/pagination).
+         */
+        cursor?: pulumi.Input<string | undefined>;
+        /**
+         * Filter for jobs finished after a certain time (specified as an ISO 8601 timestamp)
+         */
+        finishedAfter?: pulumi.Input<string | undefined>;
+        /**
+         * Filter for jobs finished before a certain time (specified as an ISO 8601 timestamp)
+         */
+        finishedBefore?: pulumi.Input<string | undefined>;
+        /**
+         * The maximum number of items to return. For details, see [Pagination](https://api-docs.render.com/reference/pagination).
+         */
+        limit?: pulumi.Input<number | undefined>;
+        /**
+         * Filter for jobs started after a certain time (specified as an ISO 8601 timestamp)
+         */
+        startedAfter?: pulumi.Input<string | undefined>;
+        /**
+         * Filter for jobs started before a certain time (specified as an ISO 8601 timestamp)
+         */
+        startedBefore?: pulumi.Input<string | undefined>;
+        /**
+         * Filter for the status of the job (`pending`, `running`, `succeeded`, `failed`, or `canceled`)
+         */
+        status?: pulumi.Input<pulumi.Input<enums.services.ListJobQueryParamsStatusItem>[] | undefined>;
+    }
+    /**
+     * listJobQueryParamsArgsProvideDefaults sets the appropriate defaults for ListJobQueryParamsArgs
+     */
+    export function listJobQueryParamsArgsProvideDefaults(val: ListJobQueryParamsArgs): ListJobQueryParamsArgs {
+        return {
+            ...val,
+            limit: (val.limit) ?? 20,
+        };
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface ListRoutesQueryParams {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: {[key: string]: string};
+        /**
+         * The position in the result list to start from when fetching paginated results. For details, see [Pagination](https://api-docs.render.com/reference/pagination).
+         */
+        cursor?: string;
+        /**
+         * Filter for the destination path of the route
+         */
+        destination?: string[];
+        /**
+         * The maximum number of items to return. For details, see [Pagination](https://api-docs.render.com/reference/pagination).
+         */
+        limit?: number;
+        /**
+         * Filter for the source path of the route
+         */
+        source?: string[];
+        /**
+         * Filter for the type of route rule
+         */
+        type?: enums.services.ListRoutesQueryParamsTypeItem[];
+    }
+    /**
+     * listRoutesQueryParamsProvideDefaults sets the appropriate defaults for ListRoutesQueryParams
+     */
+    export function listRoutesQueryParamsProvideDefaults(val: ListRoutesQueryParams): ListRoutesQueryParams {
+        return {
+            ...val,
+            limit: (val.limit) ?? 20,
+        };
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface ListRoutesQueryParamsArgs {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
+        /**
+         * The position in the result list to start from when fetching paginated results. For details, see [Pagination](https://api-docs.render.com/reference/pagination).
+         */
+        cursor?: pulumi.Input<string | undefined>;
+        /**
+         * Filter for the destination path of the route
+         */
+        destination?: pulumi.Input<pulumi.Input<string>[] | undefined>;
+        /**
+         * The maximum number of items to return. For details, see [Pagination](https://api-docs.render.com/reference/pagination).
+         */
+        limit?: pulumi.Input<number | undefined>;
+        /**
+         * Filter for the source path of the route
+         */
+        source?: pulumi.Input<pulumi.Input<string>[] | undefined>;
+        /**
+         * Filter for the type of route rule
+         */
+        type?: pulumi.Input<pulumi.Input<enums.services.ListRoutesQueryParamsTypeItem>[] | undefined>;
+    }
+    /**
+     * listRoutesQueryParamsArgsProvideDefaults sets the appropriate defaults for ListRoutesQueryParamsArgs
+     */
+    export function listRoutesQueryParamsArgsProvideDefaults(val: ListRoutesQueryParamsArgs): ListRoutesQueryParamsArgs {
+        return {
+            ...val,
+            limit: (val.limit) ?? 20,
+        };
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface ListSecretFilesForServiceQueryParams {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: {[key: string]: string};
+        /**
+         * The position in the result list to start from when fetching paginated results. For details, see [Pagination](https://api-docs.render.com/reference/pagination).
+         */
+        cursor?: string;
+        /**
+         * The maximum number of items to return. For details, see [Pagination](https://api-docs.render.com/reference/pagination).
+         */
+        limit?: number;
+    }
+    /**
+     * listSecretFilesForServiceQueryParamsProvideDefaults sets the appropriate defaults for ListSecretFilesForServiceQueryParams
+     */
+    export function listSecretFilesForServiceQueryParamsProvideDefaults(val: ListSecretFilesForServiceQueryParams): ListSecretFilesForServiceQueryParams {
+        return {
+            ...val,
+            limit: (val.limit) ?? 20,
+        };
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface ListSecretFilesForServiceQueryParamsArgs {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
+        /**
+         * The position in the result list to start from when fetching paginated results. For details, see [Pagination](https://api-docs.render.com/reference/pagination).
+         */
+        cursor?: pulumi.Input<string | undefined>;
+        /**
+         * The maximum number of items to return. For details, see [Pagination](https://api-docs.render.com/reference/pagination).
+         */
+        limit?: pulumi.Input<number | undefined>;
+    }
+    /**
+     * listSecretFilesForServiceQueryParamsArgsProvideDefaults sets the appropriate defaults for ListSecretFilesForServiceQueryParamsArgs
+     */
+    export function listSecretFilesForServiceQueryParamsArgsProvideDefaults(val: ListSecretFilesForServiceQueryParamsArgs): ListSecretFilesForServiceQueryParamsArgs {
+        return {
+            ...val,
+            limit: (val.limit) ?? 20,
+        };
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface ListServicesQueryParams {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: {[key: string]: string};
+        /**
+         * Filter for resources created after a certain time (specified as an ISO 8601 timestamp)
+         */
+        createdAfter?: string;
+        /**
+         * Filter for resources created before a certain time (specified as an ISO 8601 timestamp)
+         */
+        createdBefore?: string;
+        /**
+         * The position in the result list to start from when fetching paginated results. For details, see [Pagination](https://api-docs.render.com/reference/pagination).
+         */
+        cursor?: string;
+        /**
+         * Filter for environments (runtimes) of services (deprecated; use `runtime` instead)
+         */
+        env?: enums.services.ListServicesQueryParamsEnvItem[];
+        /**
+         * Filter for resources that belong to an environment
+         */
+        environmentId?: string[];
+        /**
+         * Include previews in the response
+         */
+        includePreviews?: boolean;
+        /**
+         * The maximum number of items to return. For details, see [Pagination](https://api-docs.render.com/reference/pagination).
+         */
+        limit?: number;
+        /**
+         * Filter by name
+         */
+        name?: string[];
+        /**
+         * The ID of the workspaces to return resources for
+         */
+        ownerId?: string[];
+        /**
+         * Filter by resource region
+         */
+        region?: enums.services.ListServicesQueryParamsRegionItem[];
+        /**
+         * Filter resources based on whether they're suspended or not suspended
+         */
+        suspended?: enums.services.ListServicesQueryParamsSuspendedItem[];
+        /**
+         * Filter for types of services
+         */
+        type?: enums.services.ListServicesQueryParamsTypeItem[];
+        /**
+         * Filter for resources updated after a certain time (specified as an ISO 8601 timestamp)
+         */
+        updatedAfter?: string;
+        /**
+         * Filter for resources updated before a certain time (specified as an ISO 8601 timestamp)
+         */
+        updatedBefore?: string;
+    }
+    /**
+     * listServicesQueryParamsProvideDefaults sets the appropriate defaults for ListServicesQueryParams
+     */
+    export function listServicesQueryParamsProvideDefaults(val: ListServicesQueryParams): ListServicesQueryParams {
+        return {
+            ...val,
+            includePreviews: (val.includePreviews) ?? true,
+            limit: (val.limit) ?? 20,
+        };
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface ListServicesQueryParamsArgs {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
+        /**
+         * Filter for resources created after a certain time (specified as an ISO 8601 timestamp)
+         */
+        createdAfter?: pulumi.Input<string | undefined>;
+        /**
+         * Filter for resources created before a certain time (specified as an ISO 8601 timestamp)
+         */
+        createdBefore?: pulumi.Input<string | undefined>;
+        /**
+         * The position in the result list to start from when fetching paginated results. For details, see [Pagination](https://api-docs.render.com/reference/pagination).
+         */
+        cursor?: pulumi.Input<string | undefined>;
+        /**
+         * Filter for environments (runtimes) of services (deprecated; use `runtime` instead)
+         */
+        env?: pulumi.Input<pulumi.Input<enums.services.ListServicesQueryParamsEnvItem>[] | undefined>;
+        /**
+         * Filter for resources that belong to an environment
+         */
+        environmentId?: pulumi.Input<pulumi.Input<string>[] | undefined>;
+        /**
+         * Include previews in the response
+         */
+        includePreviews?: pulumi.Input<boolean | undefined>;
+        /**
+         * The maximum number of items to return. For details, see [Pagination](https://api-docs.render.com/reference/pagination).
+         */
+        limit?: pulumi.Input<number | undefined>;
+        /**
+         * Filter by name
+         */
+        name?: pulumi.Input<pulumi.Input<string>[] | undefined>;
+        /**
+         * The ID of the workspaces to return resources for
+         */
+        ownerId?: pulumi.Input<pulumi.Input<string>[] | undefined>;
+        /**
+         * Filter by resource region
+         */
+        region?: pulumi.Input<pulumi.Input<enums.services.ListServicesQueryParamsRegionItem>[] | undefined>;
+        /**
+         * Filter resources based on whether they're suspended or not suspended
+         */
+        suspended?: pulumi.Input<pulumi.Input<enums.services.ListServicesQueryParamsSuspendedItem>[] | undefined>;
+        /**
+         * Filter for types of services
+         */
+        type?: pulumi.Input<pulumi.Input<enums.services.ListServicesQueryParamsTypeItem>[] | undefined>;
+        /**
+         * Filter for resources updated after a certain time (specified as an ISO 8601 timestamp)
+         */
+        updatedAfter?: pulumi.Input<string | undefined>;
+        /**
+         * Filter for resources updated before a certain time (specified as an ISO 8601 timestamp)
+         */
+        updatedBefore?: pulumi.Input<string | undefined>;
+    }
+    /**
+     * listServicesQueryParamsArgsProvideDefaults sets the appropriate defaults for ListServicesQueryParamsArgs
+     */
+    export function listServicesQueryParamsArgsProvideDefaults(val: ListServicesQueryParamsArgs): ListServicesQueryParamsArgs {
+        return {
+            ...val,
+            includePreviews: (val.includePreviews) ?? true,
+            limit: (val.limit) ?? 20,
+        };
+    }
+
     export interface MaintenanceModeArgs {
         enabled: pulumi.Input<boolean>;
         /**
          * The page to be served when [maintenance mode](https://render.com/docs/maintenance-mode) is enabled. When empty, the default maintenance mode page is served.
          */
         uri: pulumi.Input<string>;
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface PreviewServiceCreateQueryParamsArgs {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
+    }
+
+    /**
+     * Query params for each of the operations of the resource.
+     */
+    export interface PreviewServiceQueryParamsArgs {
+        /**
+         * Query params for the create operation.
+         */
+        create?: pulumi.Input<inputs.services.PreviewServiceCreateQueryParamsArgs | undefined>;
     }
 
     export interface PreviewsArgs {
@@ -297,6 +4314,26 @@ export namespace services {
             ...val,
             generation: (val.generation) ?? "off",
         };
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface PrivateServiceCreateQueryParamsArgs {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface PrivateServiceDeleteQueryParamsArgs {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     }
 
     export interface PrivateServiceDetailsCreateArgs {
@@ -350,6 +4387,68 @@ export namespace services {
         };
     }
 
+    /**
+     * Query params for each of the operations of the resource.
+     */
+    export interface PrivateServiceQueryParamsArgs {
+        /**
+         * Query params for the create operation.
+         */
+        create?: pulumi.Input<inputs.services.PrivateServiceCreateQueryParamsArgs | undefined>;
+        /**
+         * Query params for the delete operation.
+         */
+        delete?: pulumi.Input<inputs.services.PrivateServiceDeleteQueryParamsArgs | undefined>;
+        /**
+         * Query params for the read operation.
+         */
+        read?: pulumi.Input<inputs.services.PrivateServiceReadQueryParamsArgs | undefined>;
+        /**
+         * Query params for the update operation.
+         */
+        update?: pulumi.Input<inputs.services.PrivateServiceUpdateQueryParamsArgs | undefined>;
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface PrivateServiceReadQueryParamsArgs {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface PrivateServiceUpdateQueryParamsArgs {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface RefreshCustomDomainCreateQueryParamsArgs {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
+    }
+
+    /**
+     * Query params for each of the operations of the resource.
+     */
+    export interface RefreshCustomDomainQueryParamsArgs {
+        /**
+         * Query params for the create operation.
+         */
+        create?: pulumi.Input<inputs.services.RefreshCustomDomainCreateQueryParamsArgs | undefined>;
+    }
+
     export interface RegistryCredentialArgs {
         /**
          * Unique identifier for this credential
@@ -373,6 +4472,46 @@ export namespace services {
         username: pulumi.Input<string>;
     }
 
+    /**
+     * Query params for the API request.
+     */
+    export interface RestartServiceCreateQueryParamsArgs {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
+    }
+
+    /**
+     * Query params for each of the operations of the resource.
+     */
+    export interface RestartServiceQueryParamsArgs {
+        /**
+         * Query params for the create operation.
+         */
+        create?: pulumi.Input<inputs.services.RestartServiceCreateQueryParamsArgs | undefined>;
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface RollbackDeployCreateQueryParamsArgs {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
+    }
+
+    /**
+     * Query params for each of the operations of the resource.
+     */
+    export interface RollbackDeployQueryParamsArgs {
+        /**
+         * Query params for the create operation.
+         */
+        create?: pulumi.Input<inputs.services.RollbackDeployCreateQueryParamsArgs | undefined>;
+    }
+
     export interface RouteCreateArgs {
         destination: pulumi.Input<string>;
         /**
@@ -383,9 +4522,173 @@ export namespace services {
         type: pulumi.Input<enums.services.RouteCreateType>;
     }
 
+    /**
+     * Query params for the API request.
+     */
+    export interface RouteCreateQueryParamsArgs {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface RouteDeleteQueryParamsArgs {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
+    }
+
+    /**
+     * Query params for each of the operations of the resource.
+     */
+    export interface RouteQueryParamsArgs {
+        /**
+         * Query params for the create operation.
+         */
+        create?: pulumi.Input<inputs.services.RouteCreateQueryParamsArgs | undefined>;
+        /**
+         * Query params for the delete operation.
+         */
+        delete?: pulumi.Input<inputs.services.RouteDeleteQueryParamsArgs | undefined>;
+        /**
+         * Query params for the update operation.
+         */
+        update?: pulumi.Input<inputs.services.RouteUpdateQueryParamsArgs | undefined>;
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface RouteUpdateQueryParamsArgs {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface ScaleServiceCreateQueryParamsArgs {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
+    }
+
+    /**
+     * Query params for each of the operations of the resource.
+     */
+    export interface ScaleServiceQueryParamsArgs {
+        /**
+         * Query params for the create operation.
+         */
+        create?: pulumi.Input<inputs.services.ScaleServiceCreateQueryParamsArgs | undefined>;
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface SecretFileCreateQueryParamsArgs {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface SecretFileDeleteQueryParamsArgs {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
+    }
+
     export interface SecretFileInputArgs {
         content: pulumi.Input<string>;
         name: pulumi.Input<string>;
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface SecretFilePutQueryParamsArgs {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
+    }
+
+    /**
+     * Query params for each of the operations of the resource.
+     */
+    export interface SecretFileQueryParamsArgs {
+        /**
+         * Query params for the create operation.
+         */
+        create?: pulumi.Input<inputs.services.SecretFileCreateQueryParamsArgs | undefined>;
+        /**
+         * Query params for the delete operation.
+         */
+        delete?: pulumi.Input<inputs.services.SecretFileDeleteQueryParamsArgs | undefined>;
+        /**
+         * Query params for the put operation.
+         */
+        put?: pulumi.Input<inputs.services.SecretFilePutQueryParamsArgs | undefined>;
+        /**
+         * Query params for the read operation.
+         */
+        read?: pulumi.Input<inputs.services.SecretFileReadQueryParamsArgs | undefined>;
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface SecretFileReadQueryParamsArgs {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface SecretFilesForServiceCreateQueryParamsArgs {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface SecretFilesForServicePutQueryParamsArgs {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
+    }
+
+    /**
+     * Query params for each of the operations of the resource.
+     */
+    export interface SecretFilesForServiceQueryParamsArgs {
+        /**
+         * Query params for the create operation.
+         */
+        create?: pulumi.Input<inputs.services.SecretFilesForServiceCreateQueryParamsArgs | undefined>;
+        /**
+         * Query params for the put operation.
+         */
+        put?: pulumi.Input<inputs.services.SecretFilesForServicePutQueryParamsArgs | undefined>;
     }
 
     export interface ServiceDiskArgs {
@@ -395,6 +4698,26 @@ export namespace services {
          * Defaults to 1
          */
         sizeGB?: pulumi.Input<number | undefined>;
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface StaticSiteCreateQueryParamsArgs {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface StaticSiteDeleteQueryParamsArgs {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     }
 
     export interface StaticSiteDetailsCreateArgs {
@@ -424,6 +4747,88 @@ export namespace services {
             previews: pulumi.output(val.previews).apply(v => v === undefined ? undefined : inputs.services.previewsArgsProvideDefaults(v)),
             pullRequestPreviewsEnabled: (val.pullRequestPreviewsEnabled) ?? "no",
         };
+    }
+
+    /**
+     * Query params for each of the operations of the resource.
+     */
+    export interface StaticSiteQueryParamsArgs {
+        /**
+         * Query params for the create operation.
+         */
+        create?: pulumi.Input<inputs.services.StaticSiteCreateQueryParamsArgs | undefined>;
+        /**
+         * Query params for the delete operation.
+         */
+        delete?: pulumi.Input<inputs.services.StaticSiteDeleteQueryParamsArgs | undefined>;
+        /**
+         * Query params for the read operation.
+         */
+        read?: pulumi.Input<inputs.services.StaticSiteReadQueryParamsArgs | undefined>;
+        /**
+         * Query params for the update operation.
+         */
+        update?: pulumi.Input<inputs.services.StaticSiteUpdateQueryParamsArgs | undefined>;
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface StaticSiteReadQueryParamsArgs {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface StaticSiteUpdateQueryParamsArgs {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface SuspendServiceCreateQueryParamsArgs {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
+    }
+
+    /**
+     * Query params for each of the operations of the resource.
+     */
+    export interface SuspendServiceQueryParamsArgs {
+        /**
+         * Query params for the create operation.
+         */
+        create?: pulumi.Input<inputs.services.SuspendServiceCreateQueryParamsArgs | undefined>;
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface WebServiceCreateQueryParamsArgs {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface WebServiceDeleteQueryParamsArgs {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
     }
 
     export interface WebServiceDetailsCreateArgs {
@@ -554,10 +4959,215 @@ export namespace services {
         };
     }
 
+    /**
+     * Query params for each of the operations of the resource.
+     */
+    export interface WebServiceQueryParamsArgs {
+        /**
+         * Query params for the create operation.
+         */
+        create?: pulumi.Input<inputs.services.WebServiceCreateQueryParamsArgs | undefined>;
+        /**
+         * Query params for the delete operation.
+         */
+        delete?: pulumi.Input<inputs.services.WebServiceDeleteQueryParamsArgs | undefined>;
+        /**
+         * Query params for the read operation.
+         */
+        read?: pulumi.Input<inputs.services.WebServiceReadQueryParamsArgs | undefined>;
+        /**
+         * Query params for the update operation.
+         */
+        update?: pulumi.Input<inputs.services.WebServiceUpdateQueryParamsArgs | undefined>;
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface WebServiceReadQueryParamsArgs {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface WebServiceUpdateQueryParamsArgs {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
+    }
 }
 
 export namespace users {
+    /**
+     * Query params for the API request.
+     */
+    export interface GetUserQueryParams {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: {[key: string]: string};
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface GetUserQueryParamsArgs {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
+    }
+
 }
 
 export namespace webhooks {
+    /**
+     * Query params for the API request.
+     */
+    export interface GetWebhookQueryParams {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: {[key: string]: string};
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface GetWebhookQueryParamsArgs {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface ListWebhooksQueryParams {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: {[key: string]: string};
+        /**
+         * The position in the result list to start from when fetching paginated results. For details, see [Pagination](https://api-docs.render.com/reference/pagination).
+         */
+        cursor?: string;
+        /**
+         * The maximum number of items to return. For details, see [Pagination](https://api-docs.render.com/reference/pagination).
+         */
+        limit?: number;
+        /**
+         * The ID of the workspaces to return resources for
+         */
+        ownerId?: string[];
+    }
+    /**
+     * listWebhooksQueryParamsProvideDefaults sets the appropriate defaults for ListWebhooksQueryParams
+     */
+    export function listWebhooksQueryParamsProvideDefaults(val: ListWebhooksQueryParams): ListWebhooksQueryParams {
+        return {
+            ...val,
+            limit: (val.limit) ?? 20,
+        };
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface ListWebhooksQueryParamsArgs {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
+        /**
+         * The position in the result list to start from when fetching paginated results. For details, see [Pagination](https://api-docs.render.com/reference/pagination).
+         */
+        cursor?: pulumi.Input<string | undefined>;
+        /**
+         * The maximum number of items to return. For details, see [Pagination](https://api-docs.render.com/reference/pagination).
+         */
+        limit?: pulumi.Input<number | undefined>;
+        /**
+         * The ID of the workspaces to return resources for
+         */
+        ownerId?: pulumi.Input<pulumi.Input<string>[] | undefined>;
+    }
+    /**
+     * listWebhooksQueryParamsArgsProvideDefaults sets the appropriate defaults for ListWebhooksQueryParamsArgs
+     */
+    export function listWebhooksQueryParamsArgsProvideDefaults(val: ListWebhooksQueryParamsArgs): ListWebhooksQueryParamsArgs {
+        return {
+            ...val,
+            limit: (val.limit) ?? 20,
+        };
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface WebhookCreateQueryParamsArgs {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface WebhookDeleteQueryParamsArgs {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
+    }
+
+    /**
+     * Query params for each of the operations of the resource.
+     */
+    export interface WebhookQueryParamsArgs {
+        /**
+         * Query params for the create operation.
+         */
+        create?: pulumi.Input<inputs.webhooks.WebhookCreateQueryParamsArgs | undefined>;
+        /**
+         * Query params for the delete operation.
+         */
+        delete?: pulumi.Input<inputs.webhooks.WebhookDeleteQueryParamsArgs | undefined>;
+        /**
+         * Query params for the read operation.
+         */
+        read?: pulumi.Input<inputs.webhooks.WebhookReadQueryParamsArgs | undefined>;
+        /**
+         * Query params for the update operation.
+         */
+        update?: pulumi.Input<inputs.webhooks.WebhookUpdateQueryParamsArgs | undefined>;
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface WebhookReadQueryParamsArgs {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
+    }
+
+    /**
+     * Query params for the API request.
+     */
+    export interface WebhookUpdateQueryParamsArgs {
+        /**
+         * Additional query params to send with the request that are not defined in the API spec.
+         */
+        additionalParams?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
+    }
+
 }

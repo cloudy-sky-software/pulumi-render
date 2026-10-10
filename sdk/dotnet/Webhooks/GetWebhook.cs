@@ -25,6 +25,12 @@ namespace Pulumi.Render.Webhooks
     public sealed class GetWebhookArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
+        /// Query params to send with the API request.
+        /// </summary>
+        [Input("queryParams")]
+        public Inputs.GetWebhookQueryParams? QueryParams { get; set; }
+
+        /// <summary>
         /// Unique identifier for the webhook
         /// </summary>
         [Input("webhookId", required: true)]
@@ -38,6 +44,12 @@ namespace Pulumi.Render.Webhooks
 
     public sealed class GetWebhookInvokeArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// Query params to send with the API request.
+        /// </summary>
+        [Input("queryParams")]
+        public Input<Inputs.GetWebhookQueryParamsArgs>? QueryParams { get; set; }
+
         /// <summary>
         /// Unique identifier for the webhook
         /// </summary>

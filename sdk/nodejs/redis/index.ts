@@ -15,7 +15,7 @@ export const getRedisConnectionInfo: typeof import("./getRedisConnectionInfo").g
 export const getRedisConnectionInfoOutput: typeof import("./getRedisConnectionInfo").getRedisConnectionInfoOutput = null as any;
 utilities.lazyLoad(exports, ["getRedisConnectionInfo","getRedisConnectionInfoOutput"], () => require("./getRedisConnectionInfo"));
 
-export { ListRedisArgs, ListRedisResult } from "./listRedis";
+export { ListRedisArgs, ListRedisResult, ListRedisOutputArgs } from "./listRedis";
 export const listRedis: typeof import("./listRedis").listRedis = null as any;
 export const listRedisOutput: typeof import("./listRedis").listRedisOutput = null as any;
 utilities.lazyLoad(exports, ["listRedis","listRedisOutput"], () => require("./listRedis"));

@@ -2,6 +2,9 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
+import * as inputs from "../types/input";
+import * as outputs from "../types/output";
+import * as enums from "../types/enums";
 import * as utilities from "../utilities";
 
 export function getEnvGroupEnvVar(args: GetEnvGroupEnvVarArgs, opts?: pulumi.InvokeOptions): Promise<GetEnvGroupEnvVarResult> {
@@ -9,6 +12,7 @@ export function getEnvGroupEnvVar(args: GetEnvGroupEnvVarArgs, opts?: pulumi.Inv
     return pulumi.runtime.invoke("render:env-groups:getEnvGroupEnvVar", {
         "envGroupId": args.envGroupId,
         "envVarKey": args.envVarKey,
+        "queryParams": args.queryParams,
     }, opts);
 }
 
@@ -21,6 +25,10 @@ export interface GetEnvGroupEnvVarArgs {
      * The name of the environment variable
      */
     envVarKey: string;
+    /**
+     * Query params to send with the API request.
+     */
+    queryParams?: inputs.envgroups.GetEnvGroupEnvVarQueryParams;
 }
 
 export interface GetEnvGroupEnvVarResult {
@@ -32,6 +40,7 @@ export function getEnvGroupEnvVarOutput(args: GetEnvGroupEnvVarOutputArgs, opts?
     return pulumi.runtime.invokeOutput("render:env-groups:getEnvGroupEnvVar", {
         "envGroupId": args.envGroupId,
         "envVarKey": args.envVarKey,
+        "queryParams": args.queryParams,
     }, opts);
 }
 
@@ -44,4 +53,8 @@ export interface GetEnvGroupEnvVarOutputArgs {
      * The name of the environment variable
      */
     envVarKey: pulumi.Input<string>;
+    /**
+     * Query params to send with the API request.
+     */
+    queryParams?: pulumi.Input<inputs.envgroups.GetEnvGroupEnvVarQueryParamsArgs | undefined>;
 }

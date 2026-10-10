@@ -14,6 +14,7 @@ else:
     from typing_extensions import NotRequired, TypedDict, TypeAlias
 from .. import _utilities
 from ._enums import *
+from ._inputs import *
 
 __all__ = [
     'GetPostgresRecoveryInfoResult',
@@ -57,12 +58,16 @@ class AwaitableGetPostgresRecoveryInfoResult(GetPostgresRecoveryInfoResult):
 
 
 def get_postgres_recovery_info(postgres_id: Optional[_builtins.str] = None,
+                               query_params: Optional[Union['GetPostgresRecoveryInfoQueryParams', 'GetPostgresRecoveryInfoQueryParamsDict']] = None,
                                opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetPostgresRecoveryInfoResult:
     """
     Use this data source to access information about an existing resource.
+
+    :param Union['GetPostgresRecoveryInfoQueryParams', 'GetPostgresRecoveryInfoQueryParamsDict'] query_params: Query params to send with the API request.
     """
     __args__ = dict()
     __args__['postgresId'] = postgres_id
+    __args__['queryParams'] = query_params
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke('render:postgres:getPostgresRecoveryInfo', __args__, opts=opts, typ=GetPostgresRecoveryInfoResult).value
 
@@ -70,12 +75,16 @@ def get_postgres_recovery_info(postgres_id: Optional[_builtins.str] = None,
         recovery_status=pulumi.get(__ret__, 'recovery_status'),
         starts_at=pulumi.get(__ret__, 'starts_at'))
 def get_postgres_recovery_info_output(postgres_id: pulumi.Input[Optional[_builtins.str]] = None,
+                                      query_params: pulumi.Input[Optional[Optional[Union['GetPostgresRecoveryInfoQueryParams', 'GetPostgresRecoveryInfoQueryParamsDict']]]] = None,
                                       opts: Optional[Union[pulumi.InvokeOptions, pulumi.InvokeOutputOptions]] = None) -> pulumi.Output[GetPostgresRecoveryInfoResult]:
     """
     Use this data source to access information about an existing resource.
+
+    :param Union['GetPostgresRecoveryInfoQueryParams', 'GetPostgresRecoveryInfoQueryParamsDict'] query_params: Query params to send with the API request.
     """
     __args__ = dict()
     __args__['postgresId'] = postgres_id
+    __args__['queryParams'] = query_params
     opts = pulumi.InvokeOutputOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke_output('render:postgres:getPostgresRecoveryInfo', __args__, opts=opts, typ=GetPostgresRecoveryInfoResult)
     return __ret__.apply(lambda __response__: GetPostgresRecoveryInfoResult(

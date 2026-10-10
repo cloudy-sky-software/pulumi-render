@@ -2,25 +2,41 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
+import * as inputs from "../types/input";
+import * as outputs from "../types/output";
+import * as enums from "../types/enums";
 import * as utilities from "../utilities";
 
 export function getUser(args?: GetUserArgs, opts?: pulumi.InvokeOptions): Promise<GetUserResult> {
     args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("render:users:getUser", {
+        "queryParams": args.queryParams,
     }, opts);
 }
 
 export interface GetUserArgs {
+    /**
+     * Query params to send with the API request.
+     */
+    queryParams?: inputs.users.GetUserQueryParams;
 }
 
 export interface GetUserResult {
     readonly email: string;
     readonly name: string;
 }
-export function getUserOutput(opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetUserResult> {
+export function getUserOutput(args?: GetUserOutputArgs, opts?: pulumi.InvokeOutputOptions): pulumi.Output<GetUserResult> {
+    args = args || {};
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invokeOutput("render:users:getUser", {
+        "queryParams": args.queryParams,
     }, opts);
 }
 
+export interface GetUserOutputArgs {
+    /**
+     * Query params to send with the API request.
+     */
+    queryParams?: pulumi.Input<inputs.users.GetUserQueryParamsArgs | undefined>;
+}

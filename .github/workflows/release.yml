@@ -22,7 +22,7 @@ jobs:
       - name: Install Go
         uses: actions/setup-go@v7
         with:
-          go-version: ${{ env.GO_VERSION }}
+          go-version-file: go.work
 
       # Use a commit hash from https://github.com/golangci/golangci-lint/commits/main.
       - run: |
@@ -36,6 +36,9 @@ jobs:
     name: Publish binary
     runs-on: ${{ matrix.agent-os }}
     needs: lint
+    permissions:
+      # To allow goreleaser to create/edit GH releases.
+      contents: write
     steps:
       - name: Checkout Repo
         uses: actions/checkout@v7
@@ -48,7 +51,7 @@ jobs:
       - name: Install Go
         uses: actions/setup-go@v7
         with:
-          go-version: ${{ env.GO_VERSION }}
+          go-version-file: go.work
 
       - name: Install Pulumi CLI
         uses: pulumi/actions@598b17045ce608f3af1f68e06c04649a0ab4a829
@@ -86,6 +89,11 @@ jobs:
     name: Publish SDKs
     runs-on: ubuntu-latest
     needs: publish-binary
+    permissions:
+      contents: read
+      # Needed for OIDC token exchange with language registries
+      # for Trusted Publishing.
+      id-token: write
     steps:
       - name: Checkout Repo
         uses: actions/checkout@v7
@@ -98,7 +106,7 @@ jobs:
       - name: Install Go
         uses: actions/setup-go@v7
         with:
-          go-version: ${{ env.GO_VERSION }}
+          go-version-file: go.work
 
       - name: Install pulumictl
         uses: jaxxstorm/action-install-gh-release@25e24d2d23ae098373794ef1d6faecb48ee52da8
@@ -131,6 +139,11 @@ jobs:
 
       - name: Generate SDK
         run: make gen ${{ matrix.language }}_sdk
+        env:
+          # The setup-node action creates an .npmrc file
+          # referencing `NODE_AUTH_TOKEN`.
+          # https://docs.github.com/en/actions/tutorials/publish-packages/publish-nodejs-packages
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_AUTOMATION_TOKEN }}
 
       - name: Check worktree clean
         run: |

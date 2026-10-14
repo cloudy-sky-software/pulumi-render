@@ -8,6 +8,14 @@ If a version requires the use of [`aliases`](https://www.pulumi.com/docs/concept
 they can be removed after you run at least one update with the `aliases`
 resource option.
 
+## v0.6.x
+
+:warning: This is only applicable to .NET users.
+
+Please install the NuGet package: `CloudySkySoftware.Pulumi.Render`.
+The old one `Pulumi.Render` has been deprecated. There are no
+changes to any of the resource APIs.
+
 ## v0.4.x
 
 - `PostgresBackup` has been renamed to `PostgresExport` by Render.

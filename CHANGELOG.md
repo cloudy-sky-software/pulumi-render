@@ -1,3 +1,13 @@
+## 0.6.0
+
+Upgrade `pulumi-provider-framework` and `pulschema` to the latest which brings
+several improvements to Pulumi schema generation, validation and handling of
+interactions with the Pulumi engine.
+
+:warning: The root namespace for .NET NuGet package was changed to `CloudySkySoftware.Render`
+to avoid collisions with Pulumi's own NuGet packages that are now considered a reserved
+namespace. So please update your imports if you are using the .NET provider package.
+
 ## 0.5.5
 
 Fix Node.js SDK plugin version.
@@ -18,7 +28,7 @@ No provider changes were made in this verison.
 Update the OpenAPI spec to the latest as of 9/19/2025.
 
 - You can now set subdomain policy on static sites and web services which controls whether render.com subdomains are available for the service.
-This is useful when you want your service to only be reachable via a custom domain.
+  This is useful when you want your service to only be reachable via a custom domain.
 - Upgrade `pulumi-provider-framework` to `v0.0.0-20250918170230-bcf556a34f30`.
 
 ## 0.4.7
@@ -107,8 +117,8 @@ This release contains some breaking changes related to the names of functions bu
 
 - Upgrade pulschema and pulumi-provider-framework which changes the names of certain get/list functions.
 - New resources have been added:
-  - `RegistryCredential`
-  - `AutoScaling`
+    - `RegistryCredential`
+    - `AutoScaling`
 
 ## 0.0.47
 

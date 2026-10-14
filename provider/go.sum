@@ -132,8 +132,12 @@ github.com/cloudflare/circl v1.6.5 h1:O64F26HEqNhznd/hrC5KZXVKYuKM2rx4deZDTc4ihQ
 github.com/cloudflare/circl v1.6.5/go.mod h1:h5LNyxAc5nTue9DS5jT+48en2PSDYt3zdGnz5OstK6c=
 github.com/cloudy-sky-software/pulschema v0.0.0-20261011143647-8a1cc5878c73 h1:N48biewBSqAVf3DA42m6dsk2RVXOB1oYJpTwVB++v9U=
 github.com/cloudy-sky-software/pulschema v0.0.0-20261011143647-8a1cc5878c73/go.mod h1:NnsKKn4UaR1bvuy5eWhHlfbz7HpolTFdhaKnsA+gQuA=
+github.com/cloudy-sky-software/pulschema v0.0.0-20261013235203-8f5d7bc93e1c h1:H8q90sHO0iDWpaXWlAz7jrocduAewzC2VYUuVFMhfT0=
+github.com/cloudy-sky-software/pulschema v0.0.0-20261013235203-8f5d7bc93e1c/go.mod h1:m7+GilBntJchZwBmFe3gt+giZxfJuccfCpmTRG/gb6o=
 github.com/cloudy-sky-software/pulumi-provider-framework v0.0.0-20261012045839-ff703e8c2a74 h1:wT+2sdYfBOm/DX0i3IxteOlFga/QZMGRMZ55ECXAYgg=
 github.com/cloudy-sky-software/pulumi-provider-framework v0.0.0-20261012045839-ff703e8c2a74/go.mod h1:F1oFufX7inwXmV/u61De++ZUAPxcjfmJrMLn2E66kcU=
+github.com/cloudy-sky-software/pulumi-provider-framework v0.0.0-20261014000823-9db61e112c73 h1:NoyZyzJiAPcJL1q+tBaB8P1QPa1TC/e4ajQNkKzwQBQ=
+github.com/cloudy-sky-software/pulumi-provider-framework v0.0.0-20261014000823-9db61e112c73/go.mod h1:CAS8Pvaxe7nkV0sma6uq3x6qET2dmQCGDKgMbBNhlV0=
 github.com/cncf/xds/go v0.0.0-20260202195803-dba9d589def2 h1:aBangftG7EVZoUb69Os8IaYg++6uMOdKK83QtkkvJik=
 github.com/cncf/xds/go v0.0.0-20260202195803-dba9d589def2/go.mod h1:qwXFYgsP6T7XnJtbKlf1HP8AjxZZyzxMmc+Lq5GjlU4=
 github.com/cpuguy83/go-md2man/v2 v2.0.6/go.mod h1:oOW0eioCTA6cOiMLiUPZOpcVxMig6NIQQ7OS05n1F4g=
@@ -166,6 +170,8 @@ github.com/felixge/httpsnoop v1.1.0 h1:3YtUj32ZZkqZtt3sZZsClsymw/QDuVfpNhoA31zeO
 github.com/felixge/httpsnoop v1.1.0/go.mod h1:Zqxgdd+1Rkcz8euOqdr7lqgCRJztwr5hp9vDSi5UZCE=
 github.com/getkin/kin-openapi v0.149.0 h1:ZbhmVJ4yq5RZDUsyP8lcBcGMsjsaTqXEFt6isdtMDfA=
 github.com/getkin/kin-openapi v0.149.0/go.mod h1:1+BHDzstro+P5CKtPy1X4PfofnFgmRe6uvMy9+r9fKY=
+github.com/getkin/kin-openapi v0.150.0 h1:7+O1HMsrAB4BevQDElbLAeCAWwyJC/RjQJYw4oosUUU=
+github.com/getkin/kin-openapi v0.150.0/go.mod h1:1+BHDzstro+P5CKtPy1X4PfofnFgmRe6uvMy9+r9fKY=
 github.com/git-pkgs/manifests v0.4.1 h1:CWml+TrRXVzrfNJ2pTNKLqyi+9y/BFiQP/BX3pL4pPQ=
 github.com/git-pkgs/manifests v0.4.1/go.mod h1:7SPFwU9diUG1Az682/p4ZupHJkfpbWKwRvNPwCcOeVs=
 github.com/git-pkgs/packageurl-go v0.3.1 h1:WM3RBABQZLaRBxgKyYughc3cVBE8KyQxbSC6Jt5ak7M=

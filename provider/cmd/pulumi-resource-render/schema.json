@@ -38,7 +38,7 @@
                 "users": "Users",
                 "webhooks": "Webhooks"
             },
-            "rootNamespace": "Pulumi"
+            "rootNamespace": "CloudySkySoftware.Pulumi"
         },
         "go": {
             "importBasePath": "github.com/cloudy-sky-software/pulumi-render/sdk/go/render",

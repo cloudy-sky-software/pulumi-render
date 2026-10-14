@@ -3,10 +3,6 @@ version: 2
 archives:
   - id: archive
     name_template: "{{ .Binary }}-{{ .Tag }}-{{ .Os }}-{{ .Arch }}"
-before:
-  hooks:
-    - make gen generate_schema
-    - make build
 builds:
   - binary: pulumi-resource-render
     main: ./cmd/pulumi-resource-render/
@@ -27,6 +23,20 @@ changelog:
   disable: true
 release:
   disable: false
+  # If set to true, will not auto-publish the release.
+  # Note: all GitHub releases start as drafts while artifacts are uploaded.
+  # Available only for GitHub and Gitea.
+  draft: true
+
+  # Whether to remove existing draft releases with the same name before creating
+  # a new one.
+  #
+  # Only effective if `draft` is set to true.
+  # Available only for GitHub.
+  replace_existing_draft: false
+
+  # Whether to use an existing draft release as the target release.
+  use_existing_draft: true
   prerelease: auto
   header: |
     See [CHANGELOG.md](https://github.com/cloudy-sky-software/pulumi-render/blob/main/CHANGELOG.md)

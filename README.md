@@ -8,7 +8,8 @@
 
 - Node.js: https://www.npmjs.com/package/@cloudyskysoftware/pulumi-render
 - Python: https://pypi.org/project/pulumi-render/
-- .NET: https://www.nuget.org/packages/Pulumi.Render
+- .NET: https://www.nuget.org/packages/CloudySkySoftware.Pulumi.Render
+    - :warning: Previous versions of this provider used the namespace `Pulumi.Render` which are now deprecated.
 - Go: `import github.com/cloudyskysoftware/pulumi-render/sdk/go/render`
 
 ## Using The Provider
@@ -39,12 +40,12 @@ you should remove the `import` resource option.
 
 ```typescript
 const myCustomDomain = new render.services.CustomDomain(
-  "myCustomDomain",
-  { name: "www.somedomain.com", serviceId: staticSite.id },
-  {
-    protect: true,
-    import: `/srv-xxxxxxxxxxxxxxx/www.somedomain.com`,
-  }
+    "myCustomDomain",
+    { name: "www.somedomain.com", serviceId: staticSite.id },
+    {
+        protect: true,
+        import: `/srv-xxxxxxxxxxxxxxx/www.somedomain.com`,
+    },
 );
 ```
 
@@ -60,13 +61,13 @@ resource.
 1. Commit the changelog with `git commit -am "vX.Y.Z"` or something similar and push `git push origin main`.
 1. Tag the commit with the release version by running
 
-   ```bash
-   git tag vX.Y.Z
-   git tag sdk/vX.Y.Z
-   ```
+    ```bash
+    git tag vX.Y.Z
+    git tag sdk/vX.Y.Z
+    ```
 
 1. Push the tags.
 
-   ```bash
-   git push --tags
-   ```
+    ```bash
+    git push --tags
+    ```

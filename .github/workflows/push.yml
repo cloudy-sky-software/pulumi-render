@@ -80,7 +80,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Install Pulumi CLI
-        uses: pulumi/actions@85a185baea80a1ab120237e362612233003f2e29
+        uses: pulumi/actions@598b17045ce608f3af1f68e06c04649a0ab4a829
         with:
           pulumi-version: latest
 

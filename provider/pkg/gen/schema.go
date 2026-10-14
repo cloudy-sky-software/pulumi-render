@@ -168,7 +168,7 @@ func PulumiSchema(openAPIDoc openapi3.T) (pschema.PackageSpec, openapigen.Provid
 		PackageReferences: map[string]string{
 			"Pulumi": "3.*",
 		},
-		RootNamespace: "Pulumi",
+		RootNamespace: "CloudySkySoftware.Pulumi",
 	})
 
 	pkg.Language["go"] = rawMessage(gogen.GoPackageInfo{

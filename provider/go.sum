@@ -130,10 +130,10 @@ github.com/clipperhouse/uax29/v2 v2.7.0 h1:+gs4oBZ2gPfVrKPthwbMzWZDaAFPGYK72F0NJ
 github.com/clipperhouse/uax29/v2 v2.7.0/go.mod h1:EFJ2TJMRUaplDxHKj1qAEhCtQPW2tJSwu5BF98AuoVM=
 github.com/cloudflare/circl v1.6.5 h1:O64F26HEqNhznd/hrC5KZXVKYuKM2rx4deZDTc4ihQA=
 github.com/cloudflare/circl v1.6.5/go.mod h1:h5LNyxAc5nTue9DS5jT+48en2PSDYt3zdGnz5OstK6c=
-github.com/cloudy-sky-software/pulschema v0.0.0-20261014170341-059b934365ed h1:Rh0jcOPa/KPM7mx7TaVa12zQKkT3ZXuB9nrVlE76d6g=
-github.com/cloudy-sky-software/pulschema v0.0.0-20261014170341-059b934365ed/go.mod h1:m7+GilBntJchZwBmFe3gt+giZxfJuccfCpmTRG/gb6o=
-github.com/cloudy-sky-software/pulumi-provider-framework v0.0.0-20261014170746-42aa9a505cf7 h1:/2gc/OqybV2gxQ2qIA8iSZStvI8od8xD4tusWnOgxnQ=
-github.com/cloudy-sky-software/pulumi-provider-framework v0.0.0-20261014170746-42aa9a505cf7/go.mod h1:G6NmuyoJe9gxiCn8HDFKC8dcMjwXIYTtkkBYZLIF4D4=
+github.com/cloudy-sky-software/pulschema v0.0.0-20261016003927-2fd5455cee1d h1:rxzcvcplX2IV7CvN6pPBaRtKXAHEu/oO2LqiAhl1W4c=
+github.com/cloudy-sky-software/pulschema v0.0.0-20261016003927-2fd5455cee1d/go.mod h1:SlBC/xvrSfSh41FzhZIIdOQb69wo+BsBVrrN/8IUs3I=
+github.com/cloudy-sky-software/pulumi-provider-framework v0.0.0-20261016033338-0d865517f4a2 h1:wxrZzPIEZmdQnXKmVT27O0sv5WROvqJ2QhZ8GKHHkrU=
+github.com/cloudy-sky-software/pulumi-provider-framework v0.0.0-20261016033338-0d865517f4a2/go.mod h1:GvEogTwhOitAV1mzyw+/wuJvOf3TAfLQ2FPGwuNWmZU=
 github.com/cncf/xds/go v0.0.0-20260202195803-dba9d589def2 h1:aBangftG7EVZoUb69Os8IaYg++6uMOdKK83QtkkvJik=
 github.com/cncf/xds/go v0.0.0-20260202195803-dba9d589def2/go.mod h1:qwXFYgsP6T7XnJtbKlf1HP8AjxZZyzxMmc+Lq5GjlU4=
 github.com/cpuguy83/go-md2man/v2 v2.0.6/go.mod h1:oOW0eioCTA6cOiMLiUPZOpcVxMig6NIQQ7OS05n1F4g=
@@ -164,8 +164,8 @@ github.com/erikgeiser/coninput v0.0.0-20211004153227-1c3628e74d0f h1:Y/CXytFA4m6
 github.com/erikgeiser/coninput v0.0.0-20211004153227-1c3628e74d0f/go.mod h1:vw97MGsxSvLiUE2X8qFplwetxpGLQrlU1Q9AUEIzCaM=
 github.com/felixge/httpsnoop v1.1.0 h1:3YtUj32ZZkqZtt3sZZsClsymw/QDuVfpNhoA31zeORc=
 github.com/felixge/httpsnoop v1.1.0/go.mod h1:Zqxgdd+1Rkcz8euOqdr7lqgCRJztwr5hp9vDSi5UZCE=
-github.com/getkin/kin-openapi v0.150.0 h1:7+O1HMsrAB4BevQDElbLAeCAWwyJC/RjQJYw4oosUUU=
-github.com/getkin/kin-openapi v0.150.0/go.mod h1:1+BHDzstro+P5CKtPy1X4PfofnFgmRe6uvMy9+r9fKY=
+github.com/getkin/kin-openapi v0.151.0 h1:p8NIstL53h620DnlO9R4pR4QRkEzJ3jbw9flb4kc1hg=
+github.com/getkin/kin-openapi v0.151.0/go.mod h1:1+BHDzstro+P5CKtPy1X4PfofnFgmRe6uvMy9+r9fKY=
 github.com/git-pkgs/manifests v0.4.1 h1:CWml+TrRXVzrfNJ2pTNKLqyi+9y/BFiQP/BX3pL4pPQ=
 github.com/git-pkgs/manifests v0.4.1/go.mod h1:7SPFwU9diUG1Az682/p4ZupHJkfpbWKwRvNPwCcOeVs=
 github.com/git-pkgs/packageurl-go v0.3.1 h1:WM3RBABQZLaRBxgKyYughc3cVBE8KyQxbSC6Jt5ak7M=

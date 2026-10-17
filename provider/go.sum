@@ -130,8 +130,8 @@ github.com/clipperhouse/uax29/v2 v2.7.0 h1:+gs4oBZ2gPfVrKPthwbMzWZDaAFPGYK72F0NJ
 github.com/clipperhouse/uax29/v2 v2.7.0/go.mod h1:EFJ2TJMRUaplDxHKj1qAEhCtQPW2tJSwu5BF98AuoVM=
 github.com/cloudflare/circl v1.6.5 h1:O64F26HEqNhznd/hrC5KZXVKYuKM2rx4deZDTc4ihQA=
 github.com/cloudflare/circl v1.6.5/go.mod h1:h5LNyxAc5nTue9DS5jT+48en2PSDYt3zdGnz5OstK6c=
-github.com/cloudy-sky-software/pulschema v0.0.0-20261017010130-a7017d6073a3 h1:IGdz06z4K/dbLeG/vy4Jvuzt/M5ilxvR1BJY8v9OTBs=
-github.com/cloudy-sky-software/pulschema v0.0.0-20261017010130-a7017d6073a3/go.mod h1:1H1BR9RnJcvy94C8Pjcu6dLOnPQbapBxjVDYleUfYlE=
+github.com/cloudy-sky-software/pulschema v0.0.0-20261017160255-10ef8649b2ad h1:XfmNxbjTfmg3uN4w820Km0eaYgxbqQf+QrIrjOBps2U=
+github.com/cloudy-sky-software/pulschema v0.0.0-20261017160255-10ef8649b2ad/go.mod h1:1H1BR9RnJcvy94C8Pjcu6dLOnPQbapBxjVDYleUfYlE=
 github.com/cloudy-sky-software/pulumi-provider-framework v0.0.0-20261017034726-302be076f3ba h1:mnB9VgkGYUjislzPBGsHEBXdq5ERFr1cDwqZ071IpNI=
 github.com/cloudy-sky-software/pulumi-provider-framework v0.0.0-20261017034726-302be076f3ba/go.mod h1:lWAKndWc7uzOd6sTEj6VnZLRWC3koZSxM7lpuw8TJh4=
 github.com/cncf/xds/go v0.0.0-20260202195803-dba9d589def2 h1:aBangftG7EVZoUb69Os8IaYg++6uMOdKK83QtkkvJik=

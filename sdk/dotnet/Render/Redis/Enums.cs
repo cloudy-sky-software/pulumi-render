@@ -148,12 +148,12 @@ namespace CloudySkySoftware.Pulumi.Render.Redis
             _value = value ?? throw new ArgumentNullException(nameof(value));
         }
 
-        public static Plan Free { get; } = new Plan("free");
-        public static Plan Starter { get; } = new Plan("starter");
-        public static Plan Standard { get; } = new Plan("standard");
-        public static Plan Pro { get; } = new Plan("pro");
-        public static Plan ProPlus { get; } = new Plan("pro_plus");
-        public static Plan Custom { get; } = new Plan("custom");
+        public static Plan RedisPlanFree { get; } = new Plan("free");
+        public static Plan RedisPlanStarter { get; } = new Plan("starter");
+        public static Plan RedisPlanStandard { get; } = new Plan("standard");
+        public static Plan RedisPlanPro { get; } = new Plan("pro");
+        public static Plan RedisPlanPro_plus { get; } = new Plan("pro_plus");
+        public static Plan RedisPlanCustom { get; } = new Plan("custom");
 
         public static bool operator ==(Plan left, Plan right) => left.Equals(right);
         public static bool operator !=(Plan left, Plan right) => !left.Equals(right);
@@ -212,12 +212,12 @@ namespace CloudySkySoftware.Pulumi.Render.Redis
             _value = value ?? throw new ArgumentNullException(nameof(value));
         }
 
-        public static RedisDetailPlan Free { get; } = new RedisDetailPlan("free");
-        public static RedisDetailPlan Starter { get; } = new RedisDetailPlan("starter");
-        public static RedisDetailPlan Standard { get; } = new RedisDetailPlan("standard");
-        public static RedisDetailPlan Pro { get; } = new RedisDetailPlan("pro");
-        public static RedisDetailPlan ProPlus { get; } = new RedisDetailPlan("pro_plus");
-        public static RedisDetailPlan Custom { get; } = new RedisDetailPlan("custom");
+        public static RedisDetailPlan RedisPlanFree { get; } = new RedisDetailPlan("free");
+        public static RedisDetailPlan RedisPlanStarter { get; } = new RedisDetailPlan("starter");
+        public static RedisDetailPlan RedisPlanStandard { get; } = new RedisDetailPlan("standard");
+        public static RedisDetailPlan RedisPlanPro { get; } = new RedisDetailPlan("pro");
+        public static RedisDetailPlan RedisPlanPro_plus { get; } = new RedisDetailPlan("pro_plus");
+        public static RedisDetailPlan RedisPlanCustom { get; } = new RedisDetailPlan("custom");
 
         public static bool operator ==(RedisDetailPlan left, RedisDetailPlan right) => left.Equals(right);
         public static bool operator !=(RedisDetailPlan left, RedisDetailPlan right) => !left.Equals(right);
@@ -315,12 +315,12 @@ namespace CloudySkySoftware.Pulumi.Render.Redis
             _value = value ?? throw new ArgumentNullException(nameof(value));
         }
 
-        public static RedisPlan Free { get; } = new RedisPlan("free");
-        public static RedisPlan Starter { get; } = new RedisPlan("starter");
-        public static RedisPlan Standard { get; } = new RedisPlan("standard");
-        public static RedisPlan Pro { get; } = new RedisPlan("pro");
-        public static RedisPlan ProPlus { get; } = new RedisPlan("pro_plus");
-        public static RedisPlan Custom { get; } = new RedisPlan("custom");
+        public static RedisPlan RedisPlanFree { get; } = new RedisPlan("free");
+        public static RedisPlan RedisPlanStarter { get; } = new RedisPlan("starter");
+        public static RedisPlan RedisPlanStandard { get; } = new RedisPlan("standard");
+        public static RedisPlan RedisPlanPro { get; } = new RedisPlan("pro");
+        public static RedisPlan RedisPlanPro_plus { get; } = new RedisPlan("pro_plus");
+        public static RedisPlan RedisPlanCustom { get; } = new RedisPlan("custom");
 
         public static bool operator ==(RedisPlan left, RedisPlan right) => left.Equals(right);
         public static bool operator !=(RedisPlan left, RedisPlan right) => !left.Equals(right);

@@ -69,12 +69,12 @@ class OwnerType(_builtins.str, Enum):
 
 @pulumi.type_token("render:redis:Plan")
 class Plan(_builtins.str, Enum):
-    FREE = "free"
-    STARTER = "starter"
-    STANDARD = "standard"
-    PRO = "pro"
-    PRO_PLUS = "pro_plus"
-    CUSTOM = "custom"
+    REDIS_PLAN_FREE = "free"
+    REDIS_PLAN_STARTER = "starter"
+    REDIS_PLAN_STANDARD = "standard"
+    REDIS_PLAN_PRO = "pro"
+    REDIS_PLAN_PRO_PLUS = "pro_plus"
+    REDIS_PLAN_CUSTOM = "custom"
 
 
 @pulumi.type_token("render:redis:RedisDetailMaintenancePropertiesState")
@@ -89,12 +89,12 @@ class RedisDetailMaintenancePropertiesState(_builtins.str, Enum):
 
 @pulumi.type_token("render:redis:RedisDetailPlan")
 class RedisDetailPlan(_builtins.str, Enum):
-    FREE = "free"
-    STARTER = "starter"
-    STANDARD = "standard"
-    PRO = "pro"
-    PRO_PLUS = "pro_plus"
-    CUSTOM = "custom"
+    REDIS_PLAN_FREE = "free"
+    REDIS_PLAN_STARTER = "starter"
+    REDIS_PLAN_STANDARD = "standard"
+    REDIS_PLAN_PRO = "pro"
+    REDIS_PLAN_PRO_PLUS = "pro_plus"
+    REDIS_PLAN_CUSTOM = "custom"
 
 
 @pulumi.type_token("render:redis:RedisDetailRegion")
@@ -126,12 +126,12 @@ class RedisDetailStatus(_builtins.str, Enum):
 
 @pulumi.type_token("render:redis:RedisPlan")
 class RedisPlan(_builtins.str, Enum):
-    FREE = "free"
-    STARTER = "starter"
-    STANDARD = "standard"
-    PRO = "pro"
-    PRO_PLUS = "pro_plus"
-    CUSTOM = "custom"
+    REDIS_PLAN_FREE = "free"
+    REDIS_PLAN_STARTER = "starter"
+    REDIS_PLAN_STANDARD = "standard"
+    REDIS_PLAN_PRO = "pro"
+    REDIS_PLAN_PRO_PLUS = "pro_plus"
+    REDIS_PLAN_CUSTOM = "custom"
 
 
 @pulumi.type_token("render:redis:RedisRegion")

@@ -5307,27 +5307,27 @@
             "type": "string",
             "enum": [
                 {
-                    "name": "Free",
+                    "name": "RedisPlanFree",
                     "value": "free"
                 },
                 {
-                    "name": "Starter",
+                    "name": "RedisPlanStarter",
                     "value": "starter"
                 },
                 {
-                    "name": "Standard",
+                    "name": "RedisPlanStandard",
                     "value": "standard"
                 },
                 {
-                    "name": "Pro",
+                    "name": "RedisPlanPro",
                     "value": "pro"
                 },
                 {
-                    "name": "ProPlus",
+                    "name": "RedisPlanPro_plus",
                     "value": "pro_plus"
                 },
                 {
-                    "name": "Custom",
+                    "name": "RedisPlanCustom",
                     "value": "custom"
                 }
             ]
@@ -5585,27 +5585,27 @@
             "type": "string",
             "enum": [
                 {
-                    "name": "Free",
+                    "name": "RedisPlanFree",
                     "value": "free"
                 },
                 {
-                    "name": "Starter",
+                    "name": "RedisPlanStarter",
                     "value": "starter"
                 },
                 {
-                    "name": "Standard",
+                    "name": "RedisPlanStandard",
                     "value": "standard"
                 },
                 {
-                    "name": "Pro",
+                    "name": "RedisPlanPro",
                     "value": "pro"
                 },
                 {
-                    "name": "ProPlus",
+                    "name": "RedisPlanPro_plus",
                     "value": "pro_plus"
                 },
                 {
-                    "name": "Custom",
+                    "name": "RedisPlanCustom",
                     "value": "custom"
                 }
             ]
@@ -5698,27 +5698,27 @@
             "type": "string",
             "enum": [
                 {
-                    "name": "Free",
+                    "name": "RedisPlanFree",
                     "value": "free"
                 },
                 {
-                    "name": "Starter",
+                    "name": "RedisPlanStarter",
                     "value": "starter"
                 },
                 {
-                    "name": "Standard",
+                    "name": "RedisPlanStandard",
                     "value": "standard"
                 },
                 {
-                    "name": "Pro",
+                    "name": "RedisPlanPro",
                     "value": "pro"
                 },
                 {
-                    "name": "ProPlus",
+                    "name": "RedisPlanPro_plus",
                     "value": "pro_plus"
                 },
                 {
-                    "name": "Custom",
+                    "name": "RedisPlanCustom",
                     "value": "custom"
                 }
             ]

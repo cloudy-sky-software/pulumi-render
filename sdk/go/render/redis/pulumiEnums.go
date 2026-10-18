@@ -592,12 +592,12 @@ func (o OwnerTypePtrOutput) ToStringPtrOutputWithContext(ctx context.Context) pu
 type Plan string
 
 const (
-	PlanFree     = Plan("free")
-	PlanStarter  = Plan("starter")
-	PlanStandard = Plan("standard")
-	PlanPro      = Plan("pro")
-	PlanProPlus  = Plan("pro_plus")
-	PlanCustom   = Plan("custom")
+	PlanRedisPlanFree      = Plan("free")
+	PlanRedisPlanStarter   = Plan("starter")
+	PlanRedisPlanStandard  = Plan("standard")
+	PlanRedisPlanPro       = Plan("pro")
+	Plan_RedisPlanPro_plus = Plan("pro_plus")
+	PlanRedisPlanCustom    = Plan("custom")
 )
 
 func (Plan) ElementType() reflect.Type {
@@ -722,12 +722,12 @@ func (o PlanPtrOutput) ToStringPtrOutputWithContext(ctx context.Context) pulumi.
 // PlanInput is an input type that accepts values of the Plan enum
 // A concrete instance of `PlanInput` can be one of the following:
 //
-//	PlanFree
-//	PlanStarter
-//	PlanStandard
-//	PlanPro
-//	PlanProPlus
-//	PlanCustom
+//	PlanRedisPlanFree
+//	PlanRedisPlanStarter
+//	PlanRedisPlanStandard
+//	PlanRedisPlanPro
+//	Plan_RedisPlanPro_plus
+//	PlanRedisPlanCustom
 type PlanInput interface {
 	pulumi.Input
 
@@ -859,12 +859,12 @@ func (o RedisDetailMaintenancePropertiesStatePtrOutput) ToStringPtrOutputWithCon
 type RedisDetailPlan string
 
 const (
-	RedisDetailPlanFree     = RedisDetailPlan("free")
-	RedisDetailPlanStarter  = RedisDetailPlan("starter")
-	RedisDetailPlanStandard = RedisDetailPlan("standard")
-	RedisDetailPlanPro      = RedisDetailPlan("pro")
-	RedisDetailPlanProPlus  = RedisDetailPlan("pro_plus")
-	RedisDetailPlanCustom   = RedisDetailPlan("custom")
+	RedisDetailPlanRedisPlanFree      = RedisDetailPlan("free")
+	RedisDetailPlanRedisPlanStarter   = RedisDetailPlan("starter")
+	RedisDetailPlanRedisPlanStandard  = RedisDetailPlan("standard")
+	RedisDetailPlanRedisPlanPro       = RedisDetailPlan("pro")
+	RedisDetailPlan_RedisPlanPro_plus = RedisDetailPlan("pro_plus")
+	RedisDetailPlanRedisPlanCustom    = RedisDetailPlan("custom")
 )
 
 type RedisDetailPlanOutput struct{ *pulumi.OutputState }
@@ -1146,12 +1146,12 @@ func (o RedisDetailStatusPtrOutput) ToStringPtrOutputWithContext(ctx context.Con
 type RedisPlan string
 
 const (
-	RedisPlanFree     = RedisPlan("free")
-	RedisPlanStarter  = RedisPlan("starter")
-	RedisPlanStandard = RedisPlan("standard")
-	RedisPlanPro      = RedisPlan("pro")
-	RedisPlanProPlus  = RedisPlan("pro_plus")
-	RedisPlanCustom   = RedisPlan("custom")
+	RedisPlanRedisPlanFree      = RedisPlan("free")
+	RedisPlanRedisPlanStarter   = RedisPlan("starter")
+	RedisPlanRedisPlanStandard  = RedisPlan("standard")
+	RedisPlanRedisPlanPro       = RedisPlan("pro")
+	RedisPlan_RedisPlanPro_plus = RedisPlan("pro_plus")
+	RedisPlanRedisPlanCustom    = RedisPlan("custom")
 )
 
 type RedisPlanOutput struct{ *pulumi.OutputState }

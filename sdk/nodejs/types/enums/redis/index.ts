@@ -50,12 +50,12 @@ export const OwnerType = {
 export type OwnerType = (typeof OwnerType)[keyof typeof OwnerType];
 
 export const Plan = {
-    Free: "free",
-    Starter: "starter",
-    Standard: "standard",
-    Pro: "pro",
-    ProPlus: "pro_plus",
-    Custom: "custom",
+    RedisPlanFree: "free",
+    RedisPlanStarter: "starter",
+    RedisPlanStandard: "standard",
+    RedisPlanPro: "pro",
+    RedisPlanPro_plus: "pro_plus",
+    RedisPlanCustom: "custom",
 } as const;
 
 export type Plan = (typeof Plan)[keyof typeof Plan];
@@ -72,12 +72,12 @@ export const RedisDetailMaintenancePropertiesState = {
 export type RedisDetailMaintenancePropertiesState = (typeof RedisDetailMaintenancePropertiesState)[keyof typeof RedisDetailMaintenancePropertiesState];
 
 export const RedisDetailPlan = {
-    Free: "free",
-    Starter: "starter",
-    Standard: "standard",
-    Pro: "pro",
-    ProPlus: "pro_plus",
-    Custom: "custom",
+    RedisPlanFree: "free",
+    RedisPlanStarter: "starter",
+    RedisPlanStandard: "standard",
+    RedisPlanPro: "pro",
+    RedisPlanPro_plus: "pro_plus",
+    RedisPlanCustom: "custom",
 } as const;
 
 export type RedisDetailPlan = (typeof RedisDetailPlan)[keyof typeof RedisDetailPlan];
@@ -112,12 +112,12 @@ export const RedisDetailStatus = {
 export type RedisDetailStatus = (typeof RedisDetailStatus)[keyof typeof RedisDetailStatus];
 
 export const RedisPlan = {
-    Free: "free",
-    Starter: "starter",
-    Standard: "standard",
-    Pro: "pro",
-    ProPlus: "pro_plus",
-    Custom: "custom",
+    RedisPlanFree: "free",
+    RedisPlanStarter: "starter",
+    RedisPlanStandard: "standard",
+    RedisPlanPro: "pro",
+    RedisPlanPro_plus: "pro_plus",
+    RedisPlanCustom: "custom",
 } as const;
 
 export type RedisPlan = (typeof RedisPlan)[keyof typeof RedisPlan];

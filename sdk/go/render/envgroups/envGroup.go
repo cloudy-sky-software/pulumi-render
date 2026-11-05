@@ -74,6 +74,12 @@ func (EnvGroupState) ElementType() reflect.Type {
 	return reflect.TypeOf((*envGroupState)(nil)).Elem()
 }
 
+// EnvGroupExists checks whether an existing EnvGroup resource with the given ID exists.
+func EnvGroupExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *EnvGroupState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("render:env-groups:EnvGroup", id, state, "", opts...)
+}
+
 type envGroupArgs struct {
 	EnvVars       []EnvVarInputType `pulumi:"envVars"`
 	EnvironmentId *string           `pulumi:"environmentId"`

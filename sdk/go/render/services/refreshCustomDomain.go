@@ -57,6 +57,12 @@ func (RefreshCustomDomainState) ElementType() reflect.Type {
 	return reflect.TypeOf((*refreshCustomDomainState)(nil)).Elem()
 }
 
+// RefreshCustomDomainExists checks whether an existing RefreshCustomDomain resource with the given ID exists.
+func RefreshCustomDomainExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *RefreshCustomDomainState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("render:services:RefreshCustomDomain", id, state, "", opts...)
+}
+
 type refreshCustomDomainArgs struct {
 	// The ID or name of the custom domain
 	CustomDomainIdOrName *string `pulumi:"customDomainIdOrName"`

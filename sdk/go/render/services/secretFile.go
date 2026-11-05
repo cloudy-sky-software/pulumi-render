@@ -59,6 +59,12 @@ func (SecretFileState) ElementType() reflect.Type {
 	return reflect.TypeOf((*secretFileState)(nil)).Elem()
 }
 
+// SecretFileExists checks whether an existing SecretFile resource with the given ID exists.
+func SecretFileExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *SecretFileState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("render:services:SecretFile", id, state, "", opts...)
+}
+
 type secretFileArgs struct {
 	Content *string `pulumi:"content"`
 	// Query params to send with the API requests for this resource.

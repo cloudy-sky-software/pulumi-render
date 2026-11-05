@@ -72,6 +72,12 @@ func (RollbackDeployState) ElementType() reflect.Type {
 	return reflect.TypeOf((*rollbackDeployState)(nil)).Elem()
 }
 
+// RollbackDeployExists checks whether an existing RollbackDeploy resource with the given ID exists.
+func RollbackDeployExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *RollbackDeployState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("render:services:RollbackDeploy", id, state, "", opts...)
+}
+
 type rollbackDeployArgs struct {
 	// The ID of the deploy to roll back to
 	DeployId string `pulumi:"deployId"`

@@ -89,6 +89,12 @@ func (KeyValueState) ElementType() reflect.Type {
 	return reflect.TypeOf((*keyValueState)(nil)).Elem()
 }
 
+// KeyValueExists checks whether an existing KeyValue resource with the given ID exists.
+func KeyValueExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *KeyValueState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("render:key-value:KeyValue", id, state, "", opts...)
+}
+
 type keyValueArgs struct {
 	EnvironmentId *string                   `pulumi:"environmentId"`
 	IpAllowList   []CidrBlockAndDescription `pulumi:"ipAllowList"`

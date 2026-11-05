@@ -67,6 +67,12 @@ func (EnvGroupSecretFileState) ElementType() reflect.Type {
 	return reflect.TypeOf((*envGroupSecretFileState)(nil)).Elem()
 }
 
+// EnvGroupSecretFileExists checks whether an existing EnvGroupSecretFile resource with the given ID exists.
+func EnvGroupSecretFileExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *EnvGroupSecretFileState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("render:env-groups:EnvGroupSecretFile", id, state, "", opts...)
+}
+
 type envGroupSecretFileArgs struct {
 	Content    *string `pulumi:"content"`
 	EnvGroupId *string `pulumi:"envGroupId"`

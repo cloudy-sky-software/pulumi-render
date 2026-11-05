@@ -58,6 +58,12 @@ func (SecretFilesForServiceState) ElementType() reflect.Type {
 	return reflect.TypeOf((*secretFilesForServiceState)(nil)).Elem()
 }
 
+// SecretFilesForServiceExists checks whether an existing SecretFilesForService resource with the given ID exists.
+func SecretFilesForServiceExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *SecretFilesForServiceState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("render:services:SecretFilesForService", id, state, "", opts...)
+}
+
 type secretFilesForServiceArgs struct {
 	// Query params to send with the API requests for this resource.
 	QueryParams *SecretFilesForServiceQueryParams `pulumi:"queryParams"`

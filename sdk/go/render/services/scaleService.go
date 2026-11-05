@@ -62,6 +62,12 @@ func (ScaleServiceState) ElementType() reflect.Type {
 	return reflect.TypeOf((*scaleServiceState)(nil)).Elem()
 }
 
+// ScaleServiceExists checks whether an existing ScaleService resource with the given ID exists.
+func ScaleServiceExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *ScaleServiceState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("render:services:ScaleService", id, state, "", opts...)
+}
+
 type scaleServiceArgs struct {
 	NumInstances int `pulumi:"numInstances"`
 	// Query params to send with the API requests for this resource.

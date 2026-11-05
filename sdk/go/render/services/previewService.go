@@ -69,6 +69,12 @@ func (PreviewServiceState) ElementType() reflect.Type {
 	return reflect.TypeOf((*previewServiceState)(nil)).Elem()
 }
 
+// PreviewServiceExists checks whether an existing PreviewService resource with the given ID exists.
+func PreviewServiceExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *PreviewServiceState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("render:services:PreviewService", id, state, "", opts...)
+}
+
 type previewServiceArgs struct {
 	// Must be either a full URL or the relative path to an image. If a relative path, Render uses the base service's image URL as its root. For example, if the base service's image URL is `docker.io/library/nginx:latest`, then valid values are: `docker.io/library/nginx:<any tag or SHA>`, `library/nginx:<any tag or SHA>`, or `nginx:<any tag or SHA>`. Note that the path must match (only the tag or SHA can vary).
 	ImagePath string `pulumi:"imagePath"`

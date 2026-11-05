@@ -57,6 +57,12 @@ func (ResumePostgresState) ElementType() reflect.Type {
 	return reflect.TypeOf((*resumePostgresState)(nil)).Elem()
 }
 
+// ResumePostgresExists checks whether an existing ResumePostgres resource with the given ID exists.
+func ResumePostgresExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *ResumePostgresState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("render:postgres:ResumePostgres", id, state, "", opts...)
+}
+
 type resumePostgresArgs struct {
 	PostgresId *string `pulumi:"postgresId"`
 	// Query params to send with the API requests for this resource.

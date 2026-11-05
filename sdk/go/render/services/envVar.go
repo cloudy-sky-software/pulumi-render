@@ -60,6 +60,12 @@ func (EnvVarState) ElementType() reflect.Type {
 	return reflect.TypeOf((*envVarState)(nil)).Elem()
 }
 
+// EnvVarExists checks whether an existing EnvVar resource with the given ID exists.
+func EnvVarExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *EnvVarState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("render:services:EnvVar", id, state, "", opts...)
+}
+
 type envVarArgs struct {
 	// The name of the environment variable
 	EnvVarKey     *string `pulumi:"envVarKey"`

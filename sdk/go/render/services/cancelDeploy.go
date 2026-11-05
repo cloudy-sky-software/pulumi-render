@@ -66,6 +66,12 @@ func (CancelDeployState) ElementType() reflect.Type {
 	return reflect.TypeOf((*cancelDeployState)(nil)).Elem()
 }
 
+// CancelDeployExists checks whether an existing CancelDeploy resource with the given ID exists.
+func CancelDeployExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *CancelDeployState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("render:services:CancelDeploy", id, state, "", opts...)
+}
+
 type cancelDeployArgs struct {
 	// The ID of the deploy
 	DeployId *string `pulumi:"deployId"`

@@ -75,6 +75,12 @@ func (ProjectState) ElementType() reflect.Type {
 	return reflect.TypeOf((*projectState)(nil)).Elem()
 }
 
+// ProjectExists checks whether an existing Project resource with the given ID exists.
+func ProjectExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *ProjectState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("render:projects:Project", id, state, "", opts...)
+}
+
 type projectArgs struct {
 	// The environments to create when creating the project
 	Environments []ProjectCreateEnvironmentInput `pulumi:"environments"`

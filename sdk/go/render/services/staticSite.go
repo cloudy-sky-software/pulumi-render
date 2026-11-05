@@ -97,6 +97,12 @@ func (StaticSiteState) ElementType() reflect.Type {
 	return reflect.TypeOf((*staticSiteState)(nil)).Elem()
 }
 
+// StaticSiteExists checks whether an existing StaticSite resource with the given ID exists.
+func StaticSiteExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *StaticSiteState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("render:services:StaticSite", id, state, "", opts...)
+}
+
 type staticSiteArgs struct {
 	AutoDeploy *ServiceCreateAutoDeploy `pulumi:"autoDeploy"`
 	// If left empty, this will fall back to the default branch of the repository

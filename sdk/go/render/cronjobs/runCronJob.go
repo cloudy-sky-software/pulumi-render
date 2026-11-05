@@ -64,6 +64,12 @@ func (RunCronJobState) ElementType() reflect.Type {
 	return reflect.TypeOf((*runCronJobState)(nil)).Elem()
 }
 
+// RunCronJobExists checks whether an existing RunCronJob resource with the given ID exists.
+func RunCronJobExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *RunCronJobState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("render:cron-jobs:RunCronJob", id, state, "", opts...)
+}
+
 type runCronJobArgs struct {
 	// The ID of the cron job
 	CronJobId *string `pulumi:"cronJobId"`

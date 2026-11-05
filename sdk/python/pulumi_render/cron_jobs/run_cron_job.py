@@ -149,6 +149,12 @@ class RunCronJob(pulumi.CustomResource):
         __props__.__dict__["triggered_by"] = None
         return RunCronJob(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        return pulumi.runtime.exists_resource(None, 'render:cron-jobs:RunCronJob', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter(name="canceledBy")
     def canceled_by(self) -> pulumi.Output[Optional[_builtins.str]]:

@@ -207,6 +207,12 @@ class PreviewService(pulumi.CustomResource):
         __props__.__dict__["service"] = None
         return PreviewService(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        return pulumi.runtime.exists_resource(None, 'render:services:PreviewService', id, __props__, opts or pulumi.ResourceOptions())
+
     @_builtins.property
     @pulumi.getter(name="deployId")
     def deploy_id(self) -> pulumi.Output[Optional[_builtins.str]]:

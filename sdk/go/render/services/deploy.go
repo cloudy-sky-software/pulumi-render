@@ -83,6 +83,12 @@ func (DeployState) ElementType() reflect.Type {
 	return reflect.TypeOf((*deployState)(nil)).Elem()
 }
 
+// DeployExists checks whether an existing Deploy resource with the given ID exists.
+func DeployExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *DeployState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("render:services:Deploy", id, state, "", opts...)
+}
+
 type deployArgs struct {
 	// If `clear`, Render clears the service's build cache before deploying. This can be useful if you're experiencing issues with your build.
 	ClearCache *ClearCache `pulumi:"clearCache"`

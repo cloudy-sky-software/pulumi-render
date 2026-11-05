@@ -77,6 +77,12 @@ func (AutoscaleServiceState) ElementType() reflect.Type {
 	return reflect.TypeOf((*autoscaleServiceState)(nil)).Elem()
 }
 
+// AutoscaleServiceExists checks whether an existing AutoscaleService resource with the given ID exists.
+func AutoscaleServiceExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *AutoscaleServiceState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("render:services:AutoscaleService", id, state, "", opts...)
+}
+
 type autoscaleServiceArgs struct {
 	Criteria CriteriaProperties `pulumi:"criteria"`
 	Enabled  bool               `pulumi:"enabled"`

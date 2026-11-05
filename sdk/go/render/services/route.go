@@ -72,6 +72,12 @@ func (RouteState) ElementType() reflect.Type {
 	return reflect.TypeOf((*routeState)(nil)).Elem()
 }
 
+// RouteExists checks whether an existing Route resource with the given ID exists.
+func RouteExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *RouteState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("render:services:Route", id, state, "", opts...)
+}
+
 type routeArgs struct {
 	Destination string `pulumi:"destination"`
 	// Redirect and Rewrite Rules are applied in priority order starting at 0. Defaults to last in the priority list.

@@ -57,6 +57,12 @@ func (PostgresExportState) ElementType() reflect.Type {
 	return reflect.TypeOf((*postgresExportState)(nil)).Elem()
 }
 
+// PostgresExportExists checks whether an existing PostgresExport resource with the given ID exists.
+func PostgresExportExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *PostgresExportState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("render:postgres:PostgresExport", id, state, "", opts...)
+}
+
 type postgresExportArgs struct {
 	PostgresId *string `pulumi:"postgresId"`
 	// Query params to send with the API requests for this resource.

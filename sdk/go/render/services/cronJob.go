@@ -96,6 +96,12 @@ func (CronJobState) ElementType() reflect.Type {
 	return reflect.TypeOf((*cronJobState)(nil)).Elem()
 }
 
+// CronJobExists checks whether an existing CronJob resource with the given ID exists.
+func CronJobExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *CronJobState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("render:services:CronJob", id, state, "", opts...)
+}
+
 type cronJobArgs struct {
 	AutoDeploy *ServiceCreateAutoDeploy `pulumi:"autoDeploy"`
 	// If left empty, this will fall back to the default branch of the repository

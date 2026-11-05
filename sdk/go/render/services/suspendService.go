@@ -57,6 +57,12 @@ func (SuspendServiceState) ElementType() reflect.Type {
 	return reflect.TypeOf((*suspendServiceState)(nil)).Elem()
 }
 
+// SuspendServiceExists checks whether an existing SuspendService resource with the given ID exists.
+func SuspendServiceExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *SuspendServiceState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("render:services:SuspendService", id, state, "", opts...)
+}
+
 type suspendServiceArgs struct {
 	// Query params to send with the API requests for this resource.
 	QueryParams *SuspendServiceQueryParams `pulumi:"queryParams"`

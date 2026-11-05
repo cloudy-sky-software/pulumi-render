@@ -57,6 +57,12 @@ func (RestartPostgresState) ElementType() reflect.Type {
 	return reflect.TypeOf((*restartPostgresState)(nil)).Elem()
 }
 
+// RestartPostgresExists checks whether an existing RestartPostgres resource with the given ID exists.
+func RestartPostgresExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *RestartPostgresState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("render:postgres:RestartPostgres", id, state, "", opts...)
+}
+
 type restartPostgresArgs struct {
 	PostgresId *string `pulumi:"postgresId"`
 	// Query params to send with the API requests for this resource.

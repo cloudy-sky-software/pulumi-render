@@ -80,6 +80,12 @@ func (RegistryCredentialState) ElementType() reflect.Type {
 	return reflect.TypeOf((*registryCredentialState)(nil)).Elem()
 }
 
+// RegistryCredentialExists checks whether an existing RegistryCredential resource with the given ID exists.
+func RegistryCredentialExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *RegistryCredentialState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("render:registrycredentials:RegistryCredential", id, state, "", opts...)
+}
+
 type registryCredentialArgs struct {
 	AuthToken string  `pulumi:"authToken"`
 	Name      *string `pulumi:"name"`

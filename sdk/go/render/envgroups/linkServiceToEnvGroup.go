@@ -66,6 +66,12 @@ func (LinkServiceToEnvGroupState) ElementType() reflect.Type {
 	return reflect.TypeOf((*linkServiceToEnvGroupState)(nil)).Elem()
 }
 
+// LinkServiceToEnvGroupExists checks whether an existing LinkServiceToEnvGroup resource with the given ID exists.
+func LinkServiceToEnvGroupExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *LinkServiceToEnvGroupState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("render:env-groups:LinkServiceToEnvGroup", id, state, "", opts...)
+}
+
 type linkServiceToEnvGroupArgs struct {
 	// Filter for resources that belong to an environment group
 	EnvGroupId *string `pulumi:"envGroupId"`

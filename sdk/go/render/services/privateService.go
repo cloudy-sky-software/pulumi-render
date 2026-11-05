@@ -96,6 +96,12 @@ func (PrivateServiceState) ElementType() reflect.Type {
 	return reflect.TypeOf((*privateServiceState)(nil)).Elem()
 }
 
+// PrivateServiceExists checks whether an existing PrivateService resource with the given ID exists.
+func PrivateServiceExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *PrivateServiceState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("render:services:PrivateService", id, state, "", opts...)
+}
+
 type privateServiceArgs struct {
 	AutoDeploy *ServiceCreateAutoDeploy `pulumi:"autoDeploy"`
 	// If left empty, this will fall back to the default branch of the repository

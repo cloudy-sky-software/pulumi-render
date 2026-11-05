@@ -78,6 +78,12 @@ func (WebhookState) ElementType() reflect.Type {
 	return reflect.TypeOf((*webhookState)(nil)).Elem()
 }
 
+// WebhookExists checks whether an existing Webhook resource with the given ID exists.
+func WebhookExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *WebhookState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("render:webhooks:Webhook", id, state, "", opts...)
+}
+
 type webhookArgs struct {
 	Enabled bool `pulumi:"enabled"`
 	// The event types that will trigger the webhook. An empty list means all event types will trigger the webhook.

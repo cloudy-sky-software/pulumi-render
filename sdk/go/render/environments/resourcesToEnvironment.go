@@ -72,6 +72,12 @@ func (ResourcesToEnvironmentState) ElementType() reflect.Type {
 	return reflect.TypeOf((*resourcesToEnvironmentState)(nil)).Elem()
 }
 
+// ResourcesToEnvironmentExists checks whether an existing ResourcesToEnvironment resource with the given ID exists.
+func ResourcesToEnvironmentExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *ResourcesToEnvironmentState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("render:environments:ResourcesToEnvironment", id, state, "", opts...)
+}
+
 type resourcesToEnvironmentArgs struct {
 	EnvironmentId *string `pulumi:"environmentId"`
 	// Query params to send with the API requests for this resource.

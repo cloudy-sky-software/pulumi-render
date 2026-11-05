@@ -64,6 +64,12 @@ func (CancelJobState) ElementType() reflect.Type {
 	return reflect.TypeOf((*cancelJobState)(nil)).Elem()
 }
 
+// CancelJobExists checks whether an existing CancelJob resource with the given ID exists.
+func CancelJobExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *CancelJobState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("render:services:CancelJob", id, state, "", opts...)
+}
+
 type cancelJobArgs struct {
 	// The ID of the job
 	JobId *string `pulumi:"jobId"`

@@ -96,6 +96,12 @@ func (WebServiceState) ElementType() reflect.Type {
 	return reflect.TypeOf((*webServiceState)(nil)).Elem()
 }
 
+// WebServiceExists checks whether an existing WebService resource with the given ID exists.
+func WebServiceExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *WebServiceState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("render:services:WebService", id, state, "", opts...)
+}
+
 type webServiceArgs struct {
 	AutoDeploy *ServiceCreateAutoDeploy `pulumi:"autoDeploy"`
 	// If left empty, this will fall back to the default branch of the repository

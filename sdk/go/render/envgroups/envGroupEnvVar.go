@@ -68,6 +68,12 @@ func (EnvGroupEnvVarState) ElementType() reflect.Type {
 	return reflect.TypeOf((*envGroupEnvVarState)(nil)).Elem()
 }
 
+// EnvGroupEnvVarExists checks whether an existing EnvGroupEnvVar resource with the given ID exists.
+func EnvGroupEnvVarExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *EnvGroupEnvVarState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("render:env-groups:EnvGroupEnvVar", id, state, "", opts...)
+}
+
 type envGroupEnvVarArgs struct {
 	// Filter for resources that belong to an environment group
 	EnvGroupId *string `pulumi:"envGroupId"`

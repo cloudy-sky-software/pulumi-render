@@ -70,6 +70,12 @@ func (RestoreSnapshotState) ElementType() reflect.Type {
 	return reflect.TypeOf((*restoreSnapshotState)(nil)).Elem()
 }
 
+// RestoreSnapshotExists checks whether an existing RestoreSnapshot resource with the given ID exists.
+func RestoreSnapshotExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *RestoreSnapshotState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("render:disks:RestoreSnapshot", id, state, "", opts...)
+}
+
 type restoreSnapshotArgs struct {
 	// The ID of the disk
 	DiskId *string `pulumi:"diskId"`

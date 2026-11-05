@@ -57,6 +57,12 @@ func (RestartServiceState) ElementType() reflect.Type {
 	return reflect.TypeOf((*restartServiceState)(nil)).Elem()
 }
 
+// RestartServiceExists checks whether an existing RestartService resource with the given ID exists.
+func RestartServiceExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *RestartServiceState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("render:services:RestartService", id, state, "", opts...)
+}
+
 type restartServiceArgs struct {
 	// Query params to send with the API requests for this resource.
 	QueryParams *RestartServiceQueryParams `pulumi:"queryParams"`

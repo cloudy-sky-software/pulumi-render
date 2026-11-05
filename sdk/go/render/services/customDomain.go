@@ -58,6 +58,12 @@ func (CustomDomainState) ElementType() reflect.Type {
 	return reflect.TypeOf((*customDomainState)(nil)).Elem()
 }
 
+// CustomDomainExists checks whether an existing CustomDomain resource with the given ID exists.
+func CustomDomainExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *CustomDomainState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("render:services:CustomDomain", id, state, "", opts...)
+}
+
 type customDomainArgs struct {
 	Name *string `pulumi:"name"`
 	// Query params to send with the API requests for this resource.

@@ -96,6 +96,12 @@ func (BackgroundWorkerState) ElementType() reflect.Type {
 	return reflect.TypeOf((*backgroundWorkerState)(nil)).Elem()
 }
 
+// BackgroundWorkerExists checks whether an existing BackgroundWorker resource with the given ID exists.
+func BackgroundWorkerExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *BackgroundWorkerState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("render:services:BackgroundWorker", id, state, "", opts...)
+}
+
 type backgroundWorkerArgs struct {
 	AutoDeploy *ServiceCreateAutoDeploy `pulumi:"autoDeploy"`
 	// If left empty, this will fall back to the default branch of the repository

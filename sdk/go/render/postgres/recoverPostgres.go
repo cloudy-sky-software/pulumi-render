@@ -95,6 +95,12 @@ func (RecoverPostgresState) ElementType() reflect.Type {
 	return reflect.TypeOf((*recoverPostgresState)(nil)).Elem()
 }
 
+// RecoverPostgresExists checks whether an existing RecoverPostgres resource with the given ID exists.
+func RecoverPostgresExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *RecoverPostgresState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("render:postgres:RecoverPostgres", id, state, "", opts...)
+}
+
 type recoverPostgresArgs struct {
 	// Datadog API key to use for monitoring the new database. Defaults to the API key of the original database. Use an empty string to prevent copying of the API key to the new database.
 	DatadogApiKey *string `pulumi:"datadogApiKey"`

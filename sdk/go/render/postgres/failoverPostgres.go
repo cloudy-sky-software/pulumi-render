@@ -57,6 +57,12 @@ func (FailoverPostgresState) ElementType() reflect.Type {
 	return reflect.TypeOf((*failoverPostgresState)(nil)).Elem()
 }
 
+// FailoverPostgresExists checks whether an existing FailoverPostgres resource with the given ID exists.
+func FailoverPostgresExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *FailoverPostgresState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("render:postgres:FailoverPostgres", id, state, "", opts...)
+}
+
 type failoverPostgresArgs struct {
 	PostgresId *string `pulumi:"postgresId"`
 	// Query params to send with the API requests for this resource.

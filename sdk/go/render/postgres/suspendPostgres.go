@@ -57,6 +57,12 @@ func (SuspendPostgresState) ElementType() reflect.Type {
 	return reflect.TypeOf((*suspendPostgresState)(nil)).Elem()
 }
 
+// SuspendPostgresExists checks whether an existing SuspendPostgres resource with the given ID exists.
+func SuspendPostgresExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *SuspendPostgresState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("render:postgres:SuspendPostgres", id, state, "", opts...)
+}
+
 type suspendPostgresArgs struct {
 	PostgresId *string `pulumi:"postgresId"`
 	// Query params to send with the API requests for this resource.

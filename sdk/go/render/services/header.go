@@ -71,6 +71,12 @@ func (HeaderState) ElementType() reflect.Type {
 	return reflect.TypeOf((*headerState)(nil)).Elem()
 }
 
+// HeaderExists checks whether an existing Header resource with the given ID exists.
+func HeaderExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *HeaderState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("render:services:Header", id, state, "", opts...)
+}
+
 type headerArgs struct {
 	// Header name
 	Name *string `pulumi:"name"`

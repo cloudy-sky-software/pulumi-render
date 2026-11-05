@@ -110,6 +110,12 @@ func (PostgresState) ElementType() reflect.Type {
 	return reflect.TypeOf((*postgresState)(nil)).Elem()
 }
 
+// PostgresExists checks whether an existing Postgres resource with the given ID exists.
+func PostgresExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *PostgresState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("render:postgres:Postgres", id, state, "", opts...)
+}
+
 type postgresArgs struct {
 	DatabaseName *string `pulumi:"databaseName"`
 	DatabaseUser *string `pulumi:"databaseUser"`

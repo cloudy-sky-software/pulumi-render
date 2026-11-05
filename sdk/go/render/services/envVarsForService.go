@@ -58,6 +58,12 @@ func (EnvVarsForServiceState) ElementType() reflect.Type {
 	return reflect.TypeOf((*envVarsForServiceState)(nil)).Elem()
 }
 
+// EnvVarsForServiceExists checks whether an existing EnvVarsForService resource with the given ID exists.
+func EnvVarsForServiceExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *EnvVarsForServiceState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("render:services:EnvVarsForService", id, state, "", opts...)
+}
+
 type envVarsForServiceArgs struct {
 	EnvVars []EnvVarInputType `pulumi:"envVars"`
 	// Query params to send with the API requests for this resource.

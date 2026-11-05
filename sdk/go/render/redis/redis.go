@@ -89,6 +89,12 @@ func (RedisState) ElementType() reflect.Type {
 	return reflect.TypeOf((*redisState)(nil)).Elem()
 }
 
+// RedisExists checks whether an existing Redis resource with the given ID exists.
+func RedisExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *RedisState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	return ctx.ExistsResource("render:redis:Redis", id, state, "", opts...)
+}
+
 type redisArgs struct {
 	EnvironmentId *string                   `pulumi:"environmentId"`
 	IpAllowList   []CidrBlockAndDescription `pulumi:"ipAllowList"`
